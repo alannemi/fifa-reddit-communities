@@ -1,0 +1,32 @@
+subreddit: "soccer"
+collection_end_date: "2026-07-31T23:59:59+00:00"
+polling_interval_hours: 1
+comment_delay_hours: 48
+
+# Set to "rss" now; change to "oauth" once Reddit approves API access
+mode: "rss"
+
+comment_limits:
+  default: 10000
+  match_thread: 2500
+
+match_thread_patterns:
+  - "Match Thread"
+  - "Post Match Thread"
+  - "Post-Match Thread"
+
+media:
+  download_reddit_hosted: true
+  verify_external_links: true
+  download_timeout_seconds: 30
+  max_file_size_mb: 100
+
+reddit:
+  user_agent: "academic-research:soccer-collector:v1.0 (McGill University research project)"
+  requests_per_minute: 8
+  retry_attempts: 3
+  retry_backoff_seconds: 30
+
+storage:
+  data_dir: "data"
+  log_dir: "logs"

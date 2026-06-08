@@ -5,12 +5,6 @@ Academic research tool that collects public posts and comments from r/soccer usi
 - **Scanner (Agent 1):** Runs hourly, collects new posts with full metadata and media
 - **Harvester (Agent 2):** Runs hourly with a 48-hour delay, collects comment trees and updated post metadata
 
-## Setup
-
-1. Create a private GitHub repository
-2. Push this code to the repository
-3. GitHub Actions will automatically start running on the cron schedule
-
 ## Local Export
 
 To convert collected JSON data into CSV files for R analysis:

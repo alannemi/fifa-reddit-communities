@@ -44,9 +44,11 @@ class Storage:
             json.dump(data, f, ensure_ascii=False, indent=2)
 
     def save_collected_post(self, batch_id: str, post_id: str, data: dict):
-        batch_dir = os.path.join(self.collected_dir, batch_id)
-        os.makedirs(batch_dir, exist_ok=True)
-        filepath = os.path.join(batch_dir, f"post_{post_id}.json")
+        # Group by date (YYYY-MM-DD) instead of hourly batch
+        date_folder = batch_id[:10]  # "2026-06-07T20" -> "2026-06-07"
+        date_dir = os.path.join(self.collected_dir, date_folder)
+        os.makedirs(date_dir, exist_ok=True)
+        filepath = os.path.join(date_dir, f"post_{post_id}.json")
         with open(filepath, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
 

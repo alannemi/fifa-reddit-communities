@@ -1,10 +1,10 @@
 subreddit: "soccer"
 collection_end_date: "2026-07-31T23:59:59+00:00"
-polling_interval_hours: 1
+polling_interval_minutes: 5
 comment_delay_hours: 48
 
-# Set to "rss" now; change to "oauth" once Reddit approves API access
-mode: "rss"
+# Dual-source mode: Arctic Shift (primary) + RSS (failsafe)
+mode: "arctic_shift+rss"
 
 comment_limits:
   default: 10000
@@ -26,6 +26,9 @@ reddit:
   requests_per_minute: 8
   retry_attempts: 3
   retry_backoff_seconds: 30
+
+arctic_shift:
+  rate_limit_seconds: 1.0
 
 storage:
   data_dir: "data"

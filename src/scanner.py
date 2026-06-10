@@ -1,9 +1,10 @@
 """
 Agent 1: Scanner
-Runs hourly. Collects new posts from r/soccer with full metadata and media.
+Runs every 5 minutes. Collects new posts from r/soccer with full metadata and media.
 Does not collect comments (that's the Harvester's job 48 hours later).
 
-Supports two modes:
+Supports three modes:
+  - "arctic_shift+rss": Dual-source — Arctic Shift primary, RSS failsafe (default)
   - "rss": Uses Reddit's public RSS feeds (no auth required, limited metadata)
   - "oauth": Uses Reddit's authenticated API (full metadata, requires credentials)
 """
@@ -17,6 +18,7 @@ import yaml
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from src.utils.logging_config import setup_logging
 from src.utils.reddit_client import RedditClient
+from src.utils.arctic_shift_client import ArcticShiftClient
 from src.utils.storage import Storage
 from src.utils.media import extract_media_urls, is_reddit_hosted, download_media, verify_url
 
@@ -34,6 +36,33 @@ def is_match_thread(post_data: dict, patterns: list) -> bool:
         if pattern.lower() in title.lower() or pattern.lower() in flair.lower():
             return True
     return False
+
+
+def extract_post_arctic_shift(post_data: dict, batch_id: str, match_thread_patterns: list) -> dict:
+    """Build a collected post record from an Arctic Shift post object.
+    Preserves the full Arctic Shift schema and adds collection metadata."""
+    now = datetime.now(timezone.utc).isoformat()
+
+    post = dict(post_data)
+
+    post["is_match_thread"] = is_match_thread(post_data, match_thread_patterns)
+    post["media_urls"] = []
+    post["source"] = "arctic_shift"
+    post["t0_snapshot"] = {
+        "collected_at": now,
+        "batch_id": batch_id,
+        "score": post_data.get("score", 0),
+        "upvote_ratio": post_data.get("upvote_ratio", 0.0),
+        "num_comments": post_data.get("num_comments", 0),
+        "author_flair_text": post_data.get("author_flair_text", ""),
+        "link_flair_text": post_data.get("link_flair_text", ""),
+        "edited": post_data.get("edited", False),
+    }
+    post["t48_snapshot"] = None
+    post["comments"] = []
+    post["collection_metadata"] = None
+
+    return post
 
 
 def extract_post_fields_oauth(post_data: dict, batch_id: str, match_thread_patterns: list) -> dict:
@@ -176,6 +205,160 @@ def create_client(config: dict) -> RedditClient:
         )
 
 
+def merge_arctic_shift_over_rss(as_post: dict, rss_post: dict) -> dict:
+    """Merge Arctic Shift data over an RSS post. AS fields take priority."""
+    merged = dict(as_post)
+    merged["source"] = "merged"
+    merged["rss_content_html_raw"] = rss_post.get("content_html_raw", "")
+    return merged
+
+
+def process_media(post: dict, post_data_for_media: dict, storage: Storage,
+                  media_config: dict, post_id: str) -> tuple:
+    """Extract, download, and verify media. Returns (media_urls, downloaded_count, verified_count)."""
+    media_downloaded = 0
+    media_verified = 0
+
+    media_urls = extract_media_urls(post_data_for_media)
+    for media_entry in media_urls:
+        url = media_entry["url"]
+        if media_config["download_reddit_hosted"] and is_reddit_hosted(url):
+            save_dir = os.path.join(storage.media_dir, post_id)
+            result = download_media(
+                url, save_dir,
+                timeout=media_config["download_timeout_seconds"],
+                max_size_mb=media_config["max_file_size_mb"],
+            )
+            media_entry.update(result)
+            if result.get("downloaded"):
+                media_downloaded += 1
+        elif media_config["verify_external_links"] and media_entry["source"] == "external_link":
+            result = verify_url(url)
+            media_entry.update(result)
+            media_verified += 1
+
+    return media_urls, media_downloaded, media_verified
+
+
+def run_arctic_shift_rss(config, storage, logger, batch_id):
+    """Dual-source mode: Arctic Shift primary, RSS failsafe."""
+    subreddit = config["subreddit"]
+    match_thread_patterns = config["match_thread_patterns"]
+    media_config = config["media"]
+    as_config = config.get("arctic_shift", {})
+
+    logger.info("Running in dual-source mode (Arctic Shift + RSS)")
+
+    # Determine time window: last polling interval
+    interval_minutes = config.get("polling_interval_minutes", 5)
+    now_ts = int(datetime.now(timezone.utc).timestamp())
+    window_seconds = interval_minutes * 60 + 120  # add 2-min buffer for overlap
+    after_ts = now_ts - window_seconds
+
+    # Try Arctic Shift first
+    as_posts = {}
+    as_success = False
+    try:
+        rate_limit = as_config.get("rate_limit_seconds", 1.0)
+        with ArcticShiftClient(rate_limit=rate_limit) as as_client:
+            raw_posts = as_client.get_posts(subreddit, after_ts, now_ts)
+            for p in raw_posts:
+                pid = p.get("id")
+                if pid:
+                    as_posts[pid] = p
+            as_success = True
+            logger.info(f"Arctic Shift returned {len(as_posts)} posts")
+    except Exception as e:
+        logger.warning(f"Arctic Shift failed: {e}. Falling back to RSS only.")
+
+    # Also fetch RSS as failsafe
+    rss_posts = {}
+    rss_success = False
+    try:
+        rss_client = create_client({**config, "mode": "rss"})
+        raw_rss = rss_client.get_new_posts_rss(subreddit, limit=100)
+        for p in raw_rss:
+            pid = p.get("id")
+            if pid:
+                rss_posts[pid] = p
+        rss_success = True
+        logger.info(f"RSS returned {len(rss_posts)} posts")
+    except Exception as e:
+        logger.warning(f"RSS failed: {e}")
+
+    if not as_success and not rss_success:
+        logger.error("Both Arctic Shift and RSS failed. No posts collected.")
+        return
+
+    # Merge: union of all post IDs, AS data takes priority
+    all_post_ids = set(as_posts.keys()) | set(rss_posts.keys())
+
+    new_posts_count = 0
+    media_downloaded = 0
+    media_verified = 0
+
+    for post_id in all_post_ids:
+        if storage.is_seen(post_id):
+            continue
+
+        storage.mark_seen(post_id)
+
+        if post_id in as_posts and post_id in rss_posts:
+            post = extract_post_arctic_shift(as_posts[post_id], batch_id, match_thread_patterns)
+            post = merge_arctic_shift_over_rss(post, rss_posts[post_id])
+        elif post_id in as_posts:
+            post = extract_post_arctic_shift(as_posts[post_id], batch_id, match_thread_patterns)
+        else:
+            post = extract_post_fields_rss(rss_posts[post_id], batch_id, match_thread_patterns)
+
+        # Media processing — Arctic Shift posts have full media metadata
+        if post_id in as_posts:
+            urls, dl, vf = process_media(post, as_posts[post_id], storage, media_config, post_id)
+        else:
+            external_url = rss_posts[post_id].get("url", "")
+            urls = []
+            if external_url and external_url != rss_posts[post_id].get("permalink", ""):
+                media_entry = {"url": external_url, "source": "external_link", "type": "link"}
+                if media_config["verify_external_links"]:
+                    result = verify_url(external_url)
+                    media_entry.update(result)
+                    vf = 1
+                else:
+                    vf = 0
+                if is_reddit_hosted(external_url) and media_config["download_reddit_hosted"]:
+                    save_dir = os.path.join(storage.media_dir, post_id)
+                    result = download_media(
+                        external_url, save_dir,
+                        timeout=media_config["download_timeout_seconds"],
+                        max_size_mb=media_config["max_file_size_mb"],
+                    )
+                    media_entry.update(result)
+                    dl = 1 if result.get("downloaded") else 0
+                else:
+                    dl = 0
+                urls.append(media_entry)
+            else:
+                dl, vf = 0, 0
+
+        post["media_urls"] = urls
+        media_downloaded += dl
+        media_verified += vf
+
+        storage.save_pending_post(batch_id, post_id, post)
+        new_posts_count += 1
+
+    storage.save_seen_posts()
+    sources = []
+    if as_success:
+        sources.append("Arctic Shift")
+    if rss_success:
+        sources.append("RSS")
+    logger.info(
+        f"Scanner complete ({'+'.join(sources)}). {new_posts_count} new posts collected, "
+        f"{media_downloaded} media downloaded, {media_verified} links verified."
+    )
+
+
 def run_rss(config, client, storage, logger, batch_id):
     subreddit = config["subreddit"]
     match_thread_patterns = config["match_thread_patterns"]
@@ -274,25 +457,11 @@ def run_oauth(config, client, storage, logger, batch_id):
             storage.mark_seen(post_id)
             post = extract_post_fields_oauth(post_data, batch_id, match_thread_patterns)
 
-            media_urls = extract_media_urls(post_data)
-            for media_entry in media_urls:
-                url = media_entry["url"]
-                if media_config["download_reddit_hosted"] and is_reddit_hosted(url):
-                    save_dir = os.path.join(storage.media_dir, post_id)
-                    result = download_media(
-                        url, save_dir,
-                        timeout=media_config["download_timeout_seconds"],
-                        max_size_mb=media_config["max_file_size_mb"],
-                    )
-                    media_entry.update(result)
-                    if result.get("downloaded"):
-                        media_downloaded += 1
-                elif media_config["verify_external_links"] and media_entry["source"] == "external_link":
-                    result = verify_url(url)
-                    media_entry.update(result)
-                    media_verified += 1
+            urls, dl, vf = process_media(post, post_data, storage, media_config, post_id)
+            post["media_urls"] = urls
+            media_downloaded += dl
+            media_verified += vf
 
-            post["media_urls"] = media_urls
             storage.save_pending_post(batch_id, post_id, post)
             new_posts_count += 1
 
@@ -318,16 +487,19 @@ def run():
         logger.info("Collection end date has passed. Exiting.")
         return
 
-    batch_id = now.strftime("%Y-%m-%dT%H")
+    batch_id = now.strftime("%Y-%m-%dT%H:%M")
     logger.info(f"Scanner starting. Batch: {batch_id}")
 
     mode = config.get("mode", "rss")
-    client = create_client(config)
     storage = Storage(config["storage"]["data_dir"])
 
-    if mode == "oauth":
+    if mode == "arctic_shift+rss":
+        run_arctic_shift_rss(config, storage, logger, batch_id)
+    elif mode == "oauth":
+        client = create_client(config)
         run_oauth(config, client, storage, logger, batch_id)
     else:
+        client = create_client(config)
         run_rss(config, client, storage, logger, batch_id)
 
 

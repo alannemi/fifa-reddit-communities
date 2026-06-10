@@ -1,0 +1,110 @@
+name: Backfill Arctic Shift
+
+on:
+  workflow_dispatch:
+    inputs:
+      start_date:
+        description: 'Start date (YYYY-MM-DD)'
+        required: false
+        default: '2010-01-01'
+      end_date:
+        description: 'End date (YYYY-MM-DD)'
+        required: false
+        default: '2026-06-08'
+
+permissions:
+  contents: write
+
+jobs:
+  backfill-chunk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.DISPATCH_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run backfill chunk
+        id: backfill
+        run: |
+          python -m src.backfill_arctic_shift \
+            --start "${{ github.event.inputs.start_date || '2010-01-01' }}" \
+            --end "${{ github.event.inputs.end_date || '2026-06-08' }}" \
+            --chunk-hours 5.5
+
+          # Check if backfill is complete
+          if python -c "import json; p=json.load(open('data/index/backfill_progress.json')); exit(0 if p.get('completed_at') else 1)"; then
+            echo "complete=true" >> $GITHUB_OUTPUT
+          else
+            echo "complete=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Get chunk number
+        id: chunk
+        run: |
+          CHUNK=$(python -c "import json; print(json.load(open('data/index/backfill_progress.json')).get('chunk_number', 0))")
+          echo "number=$CHUNK" >> $GITHUB_OUTPUT
+
+      - name: Create release and upload chunks
+        env:
+          GH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
+        run: |
+          CHUNK=${{ steps.chunk.outputs.number }}
+          TAG="backfill-chunk-${CHUNK}"
+
+          # Create release
+          gh release create "$TAG" \
+            --title "Backfill Chunk ${CHUNK}" \
+            --notes "Automated backfill chunk ${CHUNK} from Arctic Shift" \
+            --repo ${{ github.repository }} || true
+
+          # Upload any chunk files
+          for f in data/backfill_chunks/chunk_*.jsonl.gz; do
+            if [ -f "$f" ]; then
+              echo "Uploading $f..."
+              gh release upload "$TAG" "$f" --repo ${{ github.repository }} --clobber
+            fi
+          done
+
+      - name: Commit progress
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/index/backfill_progress.json
+          git commit -m "Backfill: chunk ${{ steps.chunk.outputs.number }} progress" || true
+          git pull --rebase
+          git push
+
+      - name: Clean up chunk files from repo
+        run: |
+          rm -rf data/backfill_chunks/
+          git add -A data/backfill_chunks/ || true
+          git commit -m "Backfill: clean up chunk files (data in release assets)" || true
+          git push || true
+
+      - name: Trigger next chunk
+        if: steps.backfill.outputs.complete == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
+        run: |
+          echo "Triggering next backfill chunk..."
+          gh workflow run backfill_arctic_shift.yml \
+            --repo ${{ github.repository }} \
+            -f start_date="${{ github.event.inputs.start_date || '2010-01-01' }}" \
+            -f end_date="${{ github.event.inputs.end_date || '2026-06-08' }}"

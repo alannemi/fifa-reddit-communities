@@ -2,8 +2,8 @@ name: Harvester (Agent 2)
 
 on:
   schedule:
-    - cron: '5 * * * *'  # Every hour at 5 minutes past (offset from scanner)
-  workflow_dispatch:       # Allow manual trigger
+    - cron: '2-57/5 * * * *'  # Every 5 minutes, offset 2 min from scanner
+  workflow_dispatch:           # Allow manual trigger
 
 permissions:
   contents: write
@@ -11,7 +11,7 @@ permissions:
 jobs:
   harvest:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 4
 
     steps:
       - name: Checkout repository
@@ -44,6 +44,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/ logs/
-          git commit -m "Harvester: $(date -u '+%Y-%m-%dT%H:%M') UTC"
+          git commit -m "Harvester: $(date -u '+%Y-%m-%dT%H:%M') UTC" || true
           git pull --rebase
           git push

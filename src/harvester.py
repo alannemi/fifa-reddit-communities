@@ -1,12 +1,12 @@
 """
 Agent 2: Harvester
-Runs hourly. Processes posts from 48 hours ago — re-fetches post metadata
+Runs every 5 minutes. Processes posts from 48 hours ago — re-fetches post metadata
 and collects the full comment tree.
 
-Supports two modes:
-  - "rss": Uses Reddit's RSS feed for comments (limited: no scores, no flair,
-           no parent chain, max ~500 comments). Still captures content and authors.
-  - "oauth": Uses Reddit's authenticated API (full metadata, full comment tree).
+Supports three modes:
+  - "arctic_shift+rss": Dual-source — Arctic Shift primary, RSS failsafe (default)
+  - "rss": Uses Reddit's RSS feed for comments (limited: no scores, no threading)
+  - "oauth": Uses Reddit's authenticated API (full metadata, full comment tree)
 """
 
 import os
@@ -19,6 +19,7 @@ import yaml
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from src.utils.logging_config import setup_logging
 from src.utils.reddit_client import RedditClient
+from src.utils.arctic_shift_client import ArcticShiftClient
 from src.utils.storage import Storage
 
 
@@ -142,6 +143,81 @@ def find_more_in_tree(children):
     return ids
 
 
+def process_post_arctic_shift(as_client: ArcticShiftClient, storage: Storage,
+                              post: dict, comment_limit: int, config: dict,
+                              logger) -> dict:
+    """Process a post using Arctic Shift: re-fetch metadata + collect comments."""
+    post_id = post["id"]
+    subreddit = config["subreddit"]
+    now = datetime.now(timezone.utc).isoformat()
+
+    logger.info(f"Processing post {post_id} (Arctic Shift): {post['title'][:60]}")
+
+    # Re-fetch post for t48 snapshot
+    updated_post = as_client.get_post_by_id(subreddit, post_id)
+    if updated_post:
+        post["t48_snapshot"] = {
+            "collected_at": now,
+            "score": updated_post.get("score", 0),
+            "upvote_ratio": updated_post.get("upvote_ratio", 0.0),
+            "num_comments": updated_post.get("num_comments", 0),
+            "author_flair_text": updated_post.get("author_flair_text", ""),
+            "link_flair_text": updated_post.get("link_flair_text", ""),
+            "edited": updated_post.get("edited", False),
+            "deleted": updated_post.get("author") == "[deleted]",
+            "removed": updated_post.get("selftext") == "[removed]",
+            "selftext": updated_post.get("selftext", ""),
+        }
+    else:
+        logger.warning(f"  Could not re-fetch post {post_id} from Arctic Shift")
+        post["t48_snapshot"] = {
+            "collected_at": now,
+            "note": "Arctic Shift post re-fetch failed",
+        }
+
+    # Fetch comments
+    comments_raw = as_client.get_comments_for_post(subreddit, post_id)
+    logger.info(f"  Arctic Shift returned {len(comments_raw)} comments")
+
+    # Arctic Shift comments come as flat records with full metadata
+    comments = []
+    for c in comments_raw:
+        if not c.get("id"):
+            continue
+        comments.append(dict(c))  # preserve full Arctic Shift comment schema
+
+    # Enforce comment ceiling
+    was_truncated = len(comments) > comment_limit
+    if was_truncated:
+        comments = comments[:comment_limit]
+        storage.log_truncated(post_id, comment_limit, len(comments))
+        logger.warning(f"  Post {post_id} truncated at {comment_limit} comments")
+
+    post["comments"] = comments
+    post["collection_metadata"] = {
+        "total_comments_collected": len(comments),
+        "comment_limit_applied": comment_limit,
+        "was_truncated": was_truncated,
+        "harvested_at": now,
+        "comment_source": "arctic_shift",
+    }
+
+    return post
+
+
+def process_post_arctic_shift_with_rss_fallback(as_client: ArcticShiftClient,
+                                                 rss_client: RedditClient,
+                                                 storage: Storage, post: dict,
+                                                 comment_limit: int, config: dict,
+                                                 logger) -> dict:
+    """Try Arctic Shift first, fall back to RSS for comments if AS fails."""
+    try:
+        return process_post_arctic_shift(as_client, storage, post, comment_limit, config, logger)
+    except Exception as e:
+        logger.warning(f"  Arctic Shift failed for post {post['id']}: {e}. Trying RSS.")
+        return process_post_rss(rss_client, storage, post, config, logger)
+
+
 def process_post_oauth(client: RedditClient, storage: Storage, post: dict,
                        comment_limit: int, config: dict, logger) -> dict:
     post_id = post["id"]
@@ -240,6 +316,29 @@ def process_post_rss(client: RedditClient, storage: Storage, post: dict,
     return post
 
 
+def get_pending_batches_for_target(storage: Storage, target_time: datetime,
+                                   interval_minutes: int) -> list:
+    """Find all pending batch IDs that fall within the target time window.
+    With 5-minute batches, we need to check all batches from the target hour."""
+    target_date = target_time.strftime("%Y-%m-%dT%H")
+    all_posts = []
+
+    if not os.path.exists(storage.pending_dir):
+        return all_posts
+
+    for batch_name in sorted(os.listdir(storage.pending_dir)):
+        if not os.path.isdir(os.path.join(storage.pending_dir, batch_name)):
+            continue
+        # Match batches that start with the target hour, or the exact minute batch
+        if batch_name.startswith(target_date):
+            batch_posts = storage.get_pending_batch(batch_name)
+            for post in batch_posts:
+                post["_batch_id"] = batch_name
+            all_posts.extend(batch_posts)
+
+    return all_posts
+
+
 def run():
     config = load_config()
     logger = setup_logging("harvester", config["storage"]["log_dir"])
@@ -253,17 +352,17 @@ def run():
 
     delay_hours = config["comment_delay_hours"]
     target_time = now - timedelta(hours=delay_hours)
-    target_batch_id = target_time.strftime("%Y-%m-%dT%H")
+    interval_minutes = config.get("polling_interval_minutes", 5)
 
     mode = config.get("mode", "rss")
-    logger.info(f"Harvester starting. Target batch: {target_batch_id}. Mode: {mode}")
+    logger.info(f"Harvester starting. Target time: {target_time.isoformat()}. Mode: {mode}")
 
-    client = create_client(config)
     storage = Storage(config["storage"]["data_dir"])
 
-    pending_posts = storage.get_pending_batch(target_batch_id)
+    # Collect pending posts from all batches in the target hour
+    pending_posts = get_pending_batches_for_target(storage, target_time, interval_minutes)
     if not pending_posts:
-        logger.info(f"No pending posts for batch {target_batch_id}. Nothing to do.")
+        logger.info(f"No pending posts for target time {target_time.strftime('%Y-%m-%dT%H')}. Nothing to do.")
         return
 
     logger.info(f"Found {len(pending_posts)} posts to process")
@@ -275,26 +374,49 @@ def run():
     failed = 0
     total_comments = 0
 
-    for post in pending_posts:
-        post_id = post["id"]
+    as_client = None
+    rss_client = None
 
-        try:
-            if mode == "oauth":
-                comment_limit = match_limit if post.get("is_match_thread") else default_limit
-                result = process_post_oauth(client, storage, post, comment_limit, config, logger)
-            else:
-                result = process_post_rss(client, storage, post, config, logger)
+    if mode == "arctic_shift+rss":
+        as_config = config.get("arctic_shift", {})
+        rate_limit = as_config.get("rate_limit_seconds", 1.0)
+        as_client = ArcticShiftClient(rate_limit=rate_limit)
+        rss_client = create_client({**config, "mode": "rss"})
+    elif mode == "oauth":
+        oauth_client = create_client(config)
+    else:
+        rss_client = create_client(config)
 
-            if result:
-                storage.save_collected_post(target_batch_id, post_id, result)
-                storage.remove_pending_post(target_batch_id, post_id)
-                total_comments += len(result.get("comments", []))
-                processed += 1
-            else:
+    try:
+        for post in pending_posts:
+            post_id = post["id"]
+            batch_id = post.pop("_batch_id", "unknown")
+
+            try:
+                if mode == "arctic_shift+rss":
+                    comment_limit = match_limit if post.get("is_match_thread") else default_limit
+                    result = process_post_arctic_shift_with_rss_fallback(
+                        as_client, rss_client, storage, post, comment_limit, config, logger
+                    )
+                elif mode == "oauth":
+                    comment_limit = match_limit if post.get("is_match_thread") else default_limit
+                    result = process_post_oauth(oauth_client, storage, post, comment_limit, config, logger)
+                else:
+                    result = process_post_rss(rss_client, storage, post, config, logger)
+
+                if result:
+                    storage.save_collected_post(batch_id, post_id, result)
+                    storage.remove_pending_post(batch_id, post_id)
+                    total_comments += len(result.get("comments", []))
+                    processed += 1
+                else:
+                    failed += 1
+            except Exception as e:
+                logger.error(f"Error processing post {post_id}: {e}")
                 failed += 1
-        except Exception as e:
-            logger.error(f"Error processing post {post_id}: {e}")
-            failed += 1
+    finally:
+        if as_client:
+            as_client.close()
 
     logger.info(
         f"Harvester complete ({mode}). {processed} posts processed, {failed} failed, "

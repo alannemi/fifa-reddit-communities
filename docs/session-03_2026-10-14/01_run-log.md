@@ -26,3 +26,4 @@ Options proposed for the research design: (1) a curated political-mention flag p
 a seed list for a "politics/governance/FIFA" topic; (3) LLM classification of posts into political sub-types.
 Decision pending with the co-authors.
 | 2026-10-14 17:30 | Progress report for co-authors written as a Claude Doc (link in `02_progress-report-for-coauthors.md`) with a repository copy | — |
+| 2026-10-14 ~18:10 | Root `README.md` written; workspace made a git repository and pushed to GitHub (`alannemi/fifa-reddit-communities`, public) on top of the remote history (3,651 newer collector commits fetched; local work re-based onto them; license notice kept; data excluded via `.gitignore`, explained in `data/README.md`) | pushed |

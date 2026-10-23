@@ -81,21 +81,49 @@ These year/window/era runs are now **exploratory**; the chapter's analysis uses 
 The 2010 test outputs (`window-wc2010/`, `year-2010/`) and the MiniLM embedding cache were deleted on 2026-10-23
 (author's decision, session 05); re-run the commands above to regenerate them if ever needed.
 
-## 7. Analytical pipeline (period bins → BERTopic → two-agent labels → VADER → tagging) — designed, not yet implemented
+## 7. Analytical pipeline (period bins → BERTopic → two-agent labels → VADER → tagging) — implemented in session 05
 
 Design (settings, prompts, outputs, flags, decisions): `docs/session-04_2026-10-22/01_analytical-pipeline-design.md`.
-Variables it adds: codebook §4.9. Implementation is scheduled for session 05; the intended commands are:
+Approvals, implementation notes, dry-run log and the runbook for the run session: `docs/session-05_2026-10-23/`.
+Variables it adds: codebook §4.9. Program: `code/06-analysis-pipeline.py` (one `--stage` per call; every stage skips
+when its output exists, `--force` re-runs; per bin `results/analysis/bin-N/config.json` + `log.txt`).
+
 ```bash
-python code/06-analysis-pipeline.py --stage bins                      # period_bin for every post (checks Σ = corpus)
-python code/06-analysis-pipeline.py --stage embed --bin 1             # mpnet embeddings, cached per year
-python -m cuml.accel code/06-analysis-pipeline.py --stage topics --bin 1   # BERTopic per bin (GPU on Colab)
-python code/06-analysis-pipeline.py --stage label --bin 1             # two-agent cluster labelling (resumable)
-#   -> co-author review: results/analysis/bin-1/topic_overrides.csv
-python code/06-analysis-pipeline.py --stage taxonomy --bin 1          # two-agent taxonomy of the bin
-#   -> co-author review: category_overrides.csv
-python code/06-analysis-pipeline.py --stage sentiment                 # VADER (title + full) for every post
-python code/06-analysis-pipeline.py --stage collect                   # post_variables.csv + aggregated CSVs
-Rscript code/07-tag-corpus.R && Rscript code/08-validate-analysis.R   # local: append the 8 columns (v3.0) + checks
+export HF_HOME=$PWD/.hf-cache TOKENIZERS_PARALLELISM=false
+P=.venv/bin/python; S=code/06-analysis-pipeline.py
+$P code/tests/test_pipeline_units.py                 # 13 unit checks (no GPU, no LLM), ~1 min
+$P $S --stage bins                                   # S0: data/analysis/period_bins.csv (+ summary; checks Σ = 1,302,021)
+$P $S --stage embed --bin 1                          # S1: mpnet embeddings, cached per year (GPU)
+python -m cuml.accel $S --stage topics --bin 1       # S2: BERTopic per bin (GPU on Colab; same command without the prefix on CPU)
+$P $S --stage label --bin 1                          # S3a: two-agent cluster labelling (resumable via labels.jsonl)
+#   -> co-author review: results/analysis/bin-1/topics_labelled.csv, report.html -> fill topic_overrides.csv
+$P $S --stage taxonomy --bin 1                       # S3b: per-bin taxonomy (re-run with --force after any S3a override)
+#   -> co-author review: categories.csv -> fill category_overrides.csv
+$P $S --stage reassign --bin 1 --outlier-threshold T # D3: apply the calibrated T (seconds; see outlier_calibration/)
+$P $S --stage sentiment                              # S4: data/analysis/sentiment.csv (+ sentiment_validation_sample.csv)
+$P $S --stage collect                                # S5: data/analysis/post_variables.csv (+ .json), topic_labels_all_bins.csv, categories_all_bins.csv
+Rscript code/07-tag-corpus.R && Rscript code/08-validate-analysis.R   # S6 (local): append the 8 columns (v3.0) + 12 check families
 ```
+Options: `--bins 1-9` (loop), `--device auto|cuda|mps|cpu`, `--embedding-model <id>`, `--llm <id>`, `--sampling greedy|seeded`,
+`--max-topics N` (smoke test), `--years 2010 2011` (sentiment subset), `--allow-partial` (collect before all bins exist).
+Order matters: S3a review → S3b → overrides → S5 → S6; S6 refuses to write unless `post_variables.json` says `complete`.
 On Colab: `code/06b-analysis-pipeline-colab.ipynb` runs the same commands (A100 preferred; data copied from Drive to
-`/content`; results and caches on Drive). Order matters: S3a review → S3b → overrides → collect → write-back.
+`/content`; results, embedding cache and `.hf-cache` symlinked to Drive). Step-by-step: `docs/session-05_2026-10-23/03_runbook-session-06.md`.
+
+**Local dry run on bin 1** (the design's test sequence; never touches `results/analysis/` or the real `data/analysis/`):
+```bash
+OUT=results/dry-runs/bin1-3000; MINI=sentence-transformers/all-MiniLM-L6-v2
+mkdir -p $OUT/data/analysis && cp data/analysis/period_bins*.csv $OUT/data/analysis/   # or: --stage bins --out-root $OUT
+$P $S --stage embed --bin 1 --embedding-model $MINI --out-root $OUT
+$P $S --stage topics --bin 1 --max-docs 3000 --embedding-model $MINI --out-root $OUT     # guard disabled on subsamples
+$P $S --stage reassign --bin 1 --outlier-threshold 0.5 --embedding-model $MINI --out-root $OUT
+$P $S --stage label --bin 1 --out-root $OUT            # Qwen3-1.7B on MPS, batch 4; --max-topics 5 for a quick smoke test
+$P $S --stage taxonomy --bin 1 --out-root $OUT
+$P $S --stage sentiment --years 2010 --out-root $OUT
+$P $S --stage collect --allow-partial --out-root $OUT
+# S6 on a mini corpus: the 2010 yearly file + the dry run's post_variables, written to a separate root
+mkdir -p $OUT/r-mini/data/yearly\ datasets $OUT/r-mini/data/analysis
+cp "data/yearly datasets/soccer.data.cleaned-2010.csv" "$OUT/r-mini/data/yearly datasets/"; cp $OUT/data/analysis/post_variables.* $OUT/r-mini/data/analysis/
+TAG_IN_ROOT=$OUT/r-mini TAG_OUT_ROOT=$OUT/r-out TAG_ALLOW_PARTIAL=1 Rscript code/07-tag-corpus.R
+TAG_IN_ROOT=$OUT/r-mini TAG_OUT_ROOT=$OUT/r-out ANALYSIS_DIR=$OUT/results/analysis Rscript code/08-validate-analysis.R
+```

@@ -8,7 +8,11 @@ without reading the pipeline code.
 
 Settings were agreed with A. Nemirovski on 2026-10-13 (see
 docs/session-02_2026-10-13/02_topic-modelling-design.md for the plain-language
-explanation of each one).
+explanation of each one).  The section "Analytical pipeline" at the end holds
+the settings of the period-bin pipeline designed in session 04
+(docs/session-04_2026-10-22/01_analytical-pipeline-design.md, approved
+2026-10-22) and implemented in session 05 (code/06-analysis-pipeline.py);
+the approvals of 2026-10-23 are in docs/session-05_2026-10-23/00_approvals.md.
 """
 from __future__ import annotations
 import datetime as dt
@@ -100,6 +104,7 @@ EXTRA_STOPWORDS = [
     "thread", "match thread", "post match", "pre match", "discussion", "daily discussion",
     "amp", "http", "https", "www", "com", "html", "reddit", "redd", "imgur", "youtube", "youtu",
     "twitter", "streamable", "gfycat", "edit", "deleted", "removed",
+    "vs", "soccer",   # added 2026-10-22 (design F11): scaffolding seen in the 2010 keyword lists
 ]
 
 # ---------------------------------------------------------------------------
@@ -111,11 +116,11 @@ ERA_MERGE_MIN_SIMILARITY = 0.85
 # ---------------------------------------------------------------------------
 # LLM labelling (two-analyst debate, as in the template paper)
 # ---------------------------------------------------------------------------
-LLM_MODEL = "Qwen/Qwen3-4B"            # recommended (Apache-2.0, same family as the template paper)
-LLM_MODEL_FAST = "Qwen/Qwen3-1.7B"     # fallback for speed
+LLM_MODEL = "Qwen/Qwen3-1.7B"          # the brief's model (design §7.1, 2026-10-22); Apache-2.0; revision pinned below
+LLM_MODEL_LARGE = "Qwen/Qwen3-4B"      # optional comparison on bin 1 (design §12.4; weights cached in .hf-cache)
 LLM_MODEL_ALT = "microsoft/Phi-4-mini-instruct"   # optional comparison (MIT licence)
-LLM_MAX_NEW_TOKENS = 500
-LLM_TEMPERATURE = 0.2
+LLM_MAX_NEW_TOKENS = 500               # used by the exploratory tool (05); the bin pipeline uses the *_LABEL/_TAXONOMY values
+LLM_TEMPERATURE = 0                    # greedy decoding for reproducibility (design F12; was 0.2 in session 02)
 LLM_SAMPLE_POSTS = 40                  # posts shown to the analysts per topic
 LLM_MAX_TURNS = 3                      # initial answer + up to 2 revision turns
 LLM_AGENTS = ("Analyst A", "Analyst B")
@@ -137,3 +142,63 @@ def effective_settings(**overrides) -> dict:
     d = json.loads(json.dumps(d, default=str))
     d.update(overrides)
     return d
+
+
+# ===========================================================================
+# Analytical pipeline (period bins → BERTopic per bin → two agents → VADER → tagging)
+# Design: docs/session-04_2026-10-22/01_analytical-pipeline-design.md (v1.0, approved 2026-10-22)
+# Approvals/refinements: docs/session-05_2026-10-23/00_approvals.md
+# Entry point: code/06-analysis-pipeline.py (stages bins, embed, topics, reassign, label, taxonomy,
+# sentiment, collect, report).  Everything below is written to each bin's config.json.
+# ===========================================================================
+ANALYSIS_DIR = ROOT / "results" / "analysis"          # results/analysis/bin-N/ + aggregated CSVs
+ANALYSIS_DATA_DIR = DATA_DIR / "analysis"             # join tables by post id (period_bins, sentiment, post_variables)
+
+# --- S0: period bins (design §4; the brief's nine batches). The UTC calendar date of created_datetime decides.
+PERIOD_BINS = [
+    dict(bin=1, start=dt.date(2010, 1, 1),  end=dt.date(2010, 9, 30), period_type="tournament", world_cup=2010),
+    dict(bin=2, start=dt.date(2010, 10, 1), end=dt.date(2014, 1, 31), period_type="interim",    world_cup=None),
+    dict(bin=3, start=dt.date(2014, 2, 1),  end=dt.date(2014, 9, 30), period_type="tournament", world_cup=2014),
+    dict(bin=4, start=dt.date(2014, 10, 1), end=dt.date(2018, 1, 31), period_type="interim",    world_cup=None),
+    dict(bin=5, start=dt.date(2018, 2, 1),  end=dt.date(2018, 9, 30), period_type="tournament", world_cup=2018),
+    dict(bin=6, start=dt.date(2018, 10, 1), end=dt.date(2022, 6, 30), period_type="interim",    world_cup=None),
+    dict(bin=7, start=dt.date(2022, 7, 1),  end=dt.date(2023, 2, 28), period_type="tournament", world_cup=2022),
+    dict(bin=8, start=dt.date(2023, 3, 1),  end=dt.date(2026, 1, 31), period_type="interim",    world_cup=None),
+    dict(bin=9, start=dt.date(2026, 2, 1),  end=dt.date(2026, 7, 31), period_type="tournament", world_cup=2026),
+]
+# Bin sizes computed from the v2.1 yearly files on 2026-10-22 (design §4); S0 compares and logs any difference.
+PERIOD_BIN_EXPECTED_N = {1: 10002, 2: 186988, 3: 83147, 4: 331216, 5: 88648, 6: 305653, 7: 41438, 8: 217303, 9: 37626}
+BIN_TIME_BIN = {"tournament": "W", "interim": "M"}   # topics-over-time resolution per period type
+
+# --- S1: embeddings (design §5) — mpnet on the GPU; the cache in EMBED_CACHE_DIR is keyed by model name.
+ANALYSIS_EMBEDDING_MODEL = EMBEDDING_MODEL_HQ
+
+# --- S2: BERTopic per bin (design §6). UMAP_PARAMS, HDBSCAN_MIN_SAMPLES, NGRAM_RANGE, TOP_N_WORDS, MMR_DIVERSITY,
+#     N_REPRESENTATIVE_DOCS and EXTRA_STOPWORDS above are shared with the exploratory tool.
+BIN_MIN_CLUSTER_FRACTION = 0.0025      # starting min_cluster_size = 0.25 % of the bin's modelled posts ...
+BIN_MIN_CLUSTER_FLOOR = 25             # ... but never fewer than 25 (05-topic-model.py keeps its floor of 15)
+TOPIC_COUNT_RANGE = (50, 100)          # topic-count guard target (raw topics per bin)
+GUARD_MAX_TRIALS = 4                   # at most four HDBSCAN fits on the frozen 5-d array
+GUARD_STEP = 1.5                       # first move ×1.5 / ÷1.5, then bisection between bracketing values
+OUTLIER_STRATEGY = "embeddings"        # decision D3: cosine similarity to the topic embedding, thresholded
+OUTLIER_THRESHOLD: dict = {}           # {"default": T} or per bin {1: T1, 4: T4}; empty = not calibrated -> no reassignment yet
+OUTLIER_CALIBRATION_QUANTILES = (0.50, 0.65, 0.80)   # candidate thresholds = these quantiles of outlier similarity
+OUTLIER_SAMPLE_PER_CANDIDATE = 100     # posts per candidate threshold for the co-author judgement sample
+
+# --- S3: two-agent labelling (design §7). LLM_MODEL, LLM_TEMPERATURE, LLM_SAMPLE_POSTS, LLM_AGENTS, TONE_SET above.
+LLM_REVISION = "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e"   # Hugging Face snapshot of Qwen/Qwen3-1.7B used throughout
+LLM_SAMPLING_SEEDED = False            # True = seeded sampling (comparison on bin 1, F17); False = greedy
+LLM_SAMPLING_TEMPERATURE = 0.7
+LLM_BATCH_SIZE = {"cuda": 16, "mps": 4, "cpu": 1}   # prompts generated together (greedy mode only)
+MAX_ROUNDS = 5                         # decision D2: cap on debate rounds
+LLM_MAX_NEW_TOKENS_LABEL = 600         # S3a answer
+LLM_MAX_NEW_TOKENS_TAXONOMY = 8000     # S3b answer (design said 4,000; raised 2026-10-23, review finding R2)
+LLM_POST_MAX_CHARS = 300               # each sample post shown to the analysts is truncated to this length
+TAXONOMY_MAX_ITEMS = 100               # above this many topics S3b uses the chunking fallback (design §7.4)
+TAXONOMY_CHUNK_SIZE = 80
+TAXONOMY_KEYWORDS_PER_TOPIC = 8        # keywords per topic line in the S3b items
+
+# --- S4: sentiment (design §8, F18). SENTIMENT_POS/NEG_THRESHOLD above.
+SENTIMENT_TEXT = "title"               # post_sentiment is scored on the cleaned title; post_sentiment_full on title + body
+SENTIMENT_VALIDATION_SAMPLE = 300      # hand-coding sample (stratified by bin × label × is_self)
+SENTIMENT_DECIMALS = 4

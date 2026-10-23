@@ -30,11 +30,23 @@ fifa-reddit-communities/
 │   ├── 02-data-cleaning.R            rebuild every cleaned file from the raw export (7 filter stages)
 │   ├── 03-data-validation.R          28 consistency and fidelity checks
 │   ├── 04-render-codebook.R          codebook Markdown → PDF
-│   ├── 05-topic-model.py             BERTopic topic modelling (year / World-Cup window / era runs)
-│   ├── 05b-topic-model-colab.ipynb   the same pipeline on a Google Colab GPU
-│   ├── topicmodel/                   the Python package behind 05 (config.py holds every setting)
-│   └── requirements-topicmodel.txt   pinned Python environment
-├── results/topic-models/         ← one folder per topic-model run (report.html is the thing to open)
+│   ├── 05-topic-model.py             exploratory BERTopic runs (year / World-Cup window / era); superseded by 06
+│   ├── 05b-topic-model-colab.ipynb   the exploratory tool on a Colab GPU
+│   ├── 06-analysis-pipeline.py       THE ANALYTICAL PIPELINE: period bins → BERTopic per bin → two Qwen3 agents
+│   │                                  → VADER → post_variables.csv (stages: bins, embed, topics, reassign, label,
+│   │                                  taxonomy, sentiment, collect, report)
+│   ├── 06b-analysis-pipeline-colab.ipynb   orchestration of 06 on a Colab GPU (A100; cuML)
+│   ├── 07-tag-corpus.R               stage S6: append the 8 analysis columns to the master and yearly files
+│   ├── 08-validate-analysis.R        12 check families on the tagged files (fingerprints of the original columns)
+│   ├── topicmodel/                   the Python package behind 05 and 06 (config.py holds every setting;
+│   │                                  bins, embed, model, prompts, agents, sentiment, tagging, report)
+│   ├── tests/test_pipeline_units.py  13 unit checks that need no GPU and no language model
+│   ├── requirements-topicmodel.txt   pinned Python environment (local)
+│   └── requirements-colab.txt        the few packages installed on top of Colab's RAPIDS stack
+├── results/analysis/             ← the analytical pipeline's outputs: bin-1 … bin-9/ (topics, labels, taxonomy,
+│                                    transcripts, config.json, report.html) + topic_labels_all_bins.csv etc.
+├── results/topic-models/         ← exploratory runs of 05 (the 2010 test outputs were removed on 2026-10-23)
+├── results/dry-runs/             ← local dry runs of 06 (gitignored)
 ├── docs/                         ← documentation by working session (what was found, decided, run)
 │   ├── README.md                     index of sessions
 │   ├── codebook.css                  styling for the codebook PDF
@@ -86,16 +98,23 @@ Things to keep in mind when analysing: 88 % of posts are link posts whose only t
 engagement figures are crawl-time snapshots; Reddit's removal metadata exists only from mid-2019, so the
 retained share of posts drops from 2020 onwards (a metadata effect, not a collection gap).
 
-## 4. Topic modelling (current work)
+## 4. The analytical pipeline (current work)
 
-`code/05-topic-model.py` fits BERTopic models with one post = one document (title + up to 1,000
-characters of body): sentence embeddings → UMAP → HDBSCAN → distinctive keywords per topic (c-TF-IDF) →
-topic names, descriptions and tones from two local LLM "analysts" that must agree (Qwen3) → an editable
-merge table for our decisions → VADER sentiment as a first baseline. Runs exist per calendar year, per
-World Cup tournament window (±2 months) and per four-year era (year models aligned). These runs are exploratory;
-the 2010 test-case outputs were removed on 2026-10-23 (git history up to `6eeb0fee`; see
-`docs/session-02_2026-10-13/03_topic-model-test-case.md`). The chapter's analysis uses the period-bin pipeline
-designed in session 04 and implemented in session 05 (`code/06-analysis-pipeline.py`, see §5 and `memory/workflows.md` §7).
+`code/06-analysis-pipeline.py` (designed in session 04, implemented in session 05) turns the clean corpus into the
+chapter's analysis variables. One post = one document (title + up to 1,000 characters of body). The corpus is cut
+into **nine period bins** (five World Cup tournament periods, four interim periods; `period_bin`); for each bin a
+BERTopic model (mpnet sentence embeddings → UMAP → HDBSCAN with a 50–100-topic guard → c-TF-IDF keywords) assigns
+every post a `topic_id`; two Qwen3-1.7B "analyst" agents that must agree (multi-turn debate, at most five rounds)
+name and describe every topic (S3a) and then group each bin's topics into a discourse taxonomy (`category_id`, S3b);
+VADER scores every title (`post_sentiment`). Co-authors review the labels and taxonomies through editable override
+files before stage S6 (`code/07-tag-corpus.R`) appends the eight columns (codebook §4.9) to the master and yearly
+files. Design with every setting and its reason: `docs/session-04_2026-10-22/01_analytical-pipeline-design.md`;
+approvals and implementation notes: `docs/session-05_2026-10-23/`; how to run it: `memory/workflows.md` §7 and the
+session-06 runbook (`docs/session-05_2026-10-23/03_runbook-session-06.md`).
+
+`code/05-topic-model.py` (year / ±2-month window / era runs) remains as the exploratory tool from session 02; its 2010
+test outputs were removed on 2026-10-23 (git history up to `6eeb0fee`; see
+`docs/session-02_2026-10-13/03_topic-model-test-case.md`).
 Design and plain-language explanation of every setting: `docs/session-02_2026-10-13/02_topic-modelling-design.md`.
 
 ## 5. Running things
@@ -108,14 +127,22 @@ step); Python 3.14 for topic modelling.
 Rscript code/02-data-cleaning.R
 Rscript code/03-data-validation.R
 
-# topic modelling (one-time environment, then runs)
+# Python environment (one-time)
 python3 -m venv .venv && .venv/bin/pip install -r code/requirements-topicmodel.txt
-export HF_HOME=$PWD/.hf-cache
-.venv/bin/python code/05-topic-model.py --run window --worldcup 2010
-.venv/bin/python code/05-topic-model.py --run year --year 2010
-.venv/bin/python code/05-topic-model.py --label-only results/topic-models/window-wc2010 --llm Qwen/Qwen3-1.7B
+export HF_HOME=$PWD/.hf-cache TOKENIZERS_PARALLELISM=false
+.venv/bin/python code/tests/test_pipeline_units.py                       # 13 checks, no GPU needed
+
+# the analytical pipeline (full runs on Colab: code/06b-analysis-pipeline-colab.ipynb)
+.venv/bin/python code/06-analysis-pipeline.py --stage bins               # period_bin for every post (≈ 3 min)
+.venv/bin/python code/06-analysis-pipeline.py --stage embed --bin 1
+.venv/bin/python code/06-analysis-pipeline.py --stage topics --bin 1     # on Colab: python -m cuml.accel …
+.venv/bin/python code/06-analysis-pipeline.py --stage label --bin 1      # → review topic_overrides.csv
+.venv/bin/python code/06-analysis-pipeline.py --stage taxonomy --bin 1   # → review category_overrides.csv
+.venv/bin/python code/06-analysis-pipeline.py --stage sentiment
+.venv/bin/python code/06-analysis-pipeline.py --stage collect
+Rscript code/07-tag-corpus.R && Rscript code/08-validate-analysis.R      # stage S6 (gated on the reviews)
 ```
-Full details, dry-run options and the Colab route: `memory/workflows.md`.
+Full details, the local dry-run recipe and the Colab route: `memory/workflows.md` §7.
 
 ## 6. Conventions
 

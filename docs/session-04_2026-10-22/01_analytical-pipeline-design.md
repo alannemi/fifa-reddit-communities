@@ -1,12 +1,15 @@
-# Analytical pipeline design — period-binned topic modelling, two-agent labelling and sentiment (v1.0)
+# Analytical pipeline design — period-binned topic modelling, two-agent labelling and sentiment (v1.1)
 
 **Session 04, 2026-10-22/23 · FIFA Communities chapter, McGill University.**
 Decisions: Alan Nemirovski. Drafting and technical design: Claude. Brief: `00_brief.md`. Template method: the
 ICWSM submission *AI-Generated Sexual Content on Reddit* (BERTopic → Qwen3-1.7B two-analyst multi-turn labels →
 manual merge → aggregate reporting), used as a guide, not a recipe.
 
-**Status.** Design approved on 2026-10-22 (decisions D1–D4, §14). Implementation and the test run on bin 1 follow
-in session 05 (§16). This document supersedes the *run structure* of `../session-02_2026-10-13/02_topic-modelling-design.md`
+**Status.** Design approved on 2026-10-22 (decisions D1–D4, §14). **Implemented in session 05 (2026-10-23)**:
+`code/06-analysis-pipeline.py` + `code/topicmodel/`, the Colab notebook, `07-tag-corpus.R`, `08-validate-analysis.R`;
+the open flags F4/F6/F18 were approved as designed and a few implementation-level refinements were accepted — see
+§14 (rows of 2026-10-23), §17 and `../session-05_2026-10-23/00_approvals.md`. Version 1.1 of this document records
+them; the method itself is unchanged. The full run (bin 1 on Colab, the gates of §12, bins 2–9, S6) is session 06. This document supersedes the *run structure* of `../session-02_2026-10-13/02_topic-modelling-design.md`
 (calendar-year, ±2-month window and era models); the modelling settings approved there are kept unless stated.
 
 ---
@@ -508,6 +511,11 @@ the effective settings, guard trials, backend, CUDA/cuML versions, `pip freeze`,
 | D4 | Session scope | Design document + codebook now; implementation and test in session 05 | Author reviews F1–F21 first |
 | Defaults accepted with the plan (2026-10-22) | bins supersede year/window/era runs (F6); `all-mpnet-base-v2`; Qwen3-1.7B, greedy, thinking off, lenses; `period_type` column; bin-local ids with composite keys; stop-list additions; title-only `post_sentiment` with `post_sentiment_full` (F18); topic range 50–100; `min_samples` 10 | As proposed; each is a single value in `config.py` |
 | Open | `T` (outlier threshold), greedy vs seeded sampling, `min_samples` for large bins | Set at the quality gates (§12) and recorded here |
+| 2026-10-23 F4 | Cross-bin comparability | Approved as designed: manual `category_crosswalk.csv` (template written by S5); S3c stays a hook | author's review before implementation |
+| 2026-10-23 F6 | Bin boundaries | Approved exactly as in the brief (§4); no `in_tournament` column | idem |
+| 2026-10-23 F18 | Sentiment measure | Approved: `post_sentiment` on the title, `post_sentiment_full` kept | idem |
+| 2026-10-23 | Earlier test data | The session-02/03 run folders (`window-wc2010`, `year-2010`) removed from git, MiniLM cache deleted; `05-topic-model.py` kept as the exploratory tool | clean start for the bin-1 test |
+| 2026-10-23 N1–N10, R1–R13 | Implementation refinements (approved with the session-05 plan) | §17; none changes D1–D4 or a codebook variable | `../session-05_2026-10-23/00_approvals.md` |
 
 ## 15. Brief versus design
 
@@ -550,7 +558,37 @@ tool.
 Test sequence: local dry run on bin 1 (`--max-docs 3000`, MiniLM, guard disabled) → bin 1 in full on Colab → the
 large-bin gate → gates of §12 → bins 2–9 → reviews → S5 → S6 → validation → review pack for co-authors.
 
-## 17. References
+## 17. Implementation notes (session 05, 2026-10-23)
+
+The code follows §3–§11 and the layout of §16; `../session-05_2026-10-23/01_implementation-notes.md` maps every
+section to its function. Points where the implementation is more specific than, or deviates from, the text above:
+
+* **`topic_id_raw` is the BERTopic id before outlier reassignment.** BERTopic renumbers the clusters it receives by
+  size; the pipeline pre-renumbers the guard's HDBSCAN labels (largest → 0) and saves both `hdbscan_labels_raw.npy`
+  (HDBSCAN's labels) and `hdbscan_to_topic_map.json` (R1). §6.3's "`topic_id_raw` = the HDBSCAN label" reads accordingly.
+* **Outlier reassignment is a separate stage** (`--stage reassign`, N1): S2 saves every outlier's nearest topic and
+  similarity, the quantile table and the 100-post judgement samples; `T` is applied afterwards in seconds, rewriting
+  `documents.csv`, `topics.csv`, `topics_over_time.csv` and the report (R4). Until `T` is set, `topic_id = topic_id_raw`.
+* **Frozen cluster labels** (N2): the guard's chosen labels are injected into BERTopic (no second HDBSCAN fit;
+  `prediction_data` unnecessary). The guard never goes below the floor of 25; a bin that cannot reach 50 topics at
+  the floor is flagged rather than split into smaller topics.
+* **S3b token budget 8,000** instead of 4,000 (§7.1, R2); truncated answers are detected and reported in the repair turn.
+* **`agreement_mode` gains `no_answer`** (R7): one analyst produced no usable round-1 answer after the repair turn; the
+  peer's answer is provisional and the topic is `needs_review`. A failed revision turn counts as an identical revise
+  (stalemate rule). An `accept` in round 1 is invalid.
+* **Representative posts:** five per topic via BERTopic's extractor (it keeps three by default; R3).
+* **Overrides** (R5): `merge_into` in `topic_overrides.csv` re-maps post `topic_id` in S5, drops merged-away topics from
+  the S3b items and sums sizes; `category_id_agent` is the pre-override category.
+* **documents.csv** also carries `num_comments` (needed by `reassign`); `topics_labelled.csv` carries no size columns.
+* **S5 may run partially** (N6): all ids always present, `post_variables.json` lists `bins_complete`; `07-tag-corpus.R`
+  refuses an incomplete table except for dry runs into another root. `08` verifies per-column xxhash64 fingerprints of
+  the 42 original columns (R12).
+* **Colab environment** (N5, R8): `requirements-colab.txt` installed with `--no-deps` on top of RAPIDS, `pip check`
+  asserted; backend detection records `cuml.accel` state and the imported UMAP/HDBSCAN classes.
+* **Seeded sampling** (F17 comparison) runs unbatched so the per-call seed is exact (N4).
+* **Dry runs** write under `--out-root` (both `results/analysis` and `data/analysis`), never into the real folders (N10).
+
+## 18. References
 
 * Campello, R. J. G. B., Moulavi, D., & Sander, J. (2013). Density-based clustering based on hierarchical density
   estimates. *PAKDD 2013*, LNCS 7819, 160–172.

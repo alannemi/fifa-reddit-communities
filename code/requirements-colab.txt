@@ -1,0 +1,15 @@
+# Google Colab environment for code/06-analysis-pipeline.py (session 05, refinement N5 / review R8).
+# Colab ships NVIDIA RAPIDS (cuML, used through `python -m cuml.accel`) with pinned numpy / scikit-learn / pandas,
+# plus torch, transformers, accelerate, scipy, plotly, tqdm, huggingface-hub and Pillow.  Install ONLY the
+# packages below, without letting pip move the pre-installed ones:
+#
+#   pip install -q --no-deps -r code/requirements-colab.txt && pip check
+#
+# `pip check` must report no broken requirements; the notebook asserts `import cuml` and CUDA afterwards.
+# Local machines use code/requirements-topicmodel.txt instead (fully pinned, tested 2026-10-13 on macOS).
+bertopic==0.17.4
+umap-learn==0.5.12
+pynndescent>=0.5.13
+hdbscan==0.8.44
+sentence-transformers==6.1.0
+vaderSentiment==3.3.2

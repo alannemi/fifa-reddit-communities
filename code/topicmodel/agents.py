@@ -151,6 +151,43 @@ def extract_json(text: str) -> tuple[dict | None, str | None]:
     return obj, None
 
 
+_CAT_START = re.compile(r'\{\s*"(?:id|name)"\s*:')
+_STR_FIELD = r'"%s"\s*:\s*"((?:[^"\\]|\\.)*)"'
+_ARR_FIELD = r'"%s"\s*:\s*(\[[^\]]*\])'
+
+
+def salvage_json(text: str) -> dict | None:
+    """Recover an answer whose category objects are well-formed but whose brackets between them are not
+    (Qwen3-1.7B wrote `}], [{` between categories and `]]]` endings in the 2026-10-23 dry run). Each category is
+    cut at the next category start and its fields are read individually; arrays must be flat. Returns None when
+    no category with a name can be recovered. Used only after the strict parse failed (config.LLM_JSON_SALVAGE)."""
+    starts = [m.start() for m in _CAT_START.finditer(text)]
+    cats = []
+    for i, s in enumerate(starts):
+        seg = text[s: starts[i + 1] if i + 1 < len(starts) else len(text)]
+        cat = {}
+        for k in ("id", "name", "purpose", "emotion_tone", "description"):
+            m = re.search(_STR_FIELD % k, seg)
+            if m:
+                try:
+                    cat[k] = json.loads('"' + m.group(1) + '"')
+                except json.JSONDecodeError:
+                    cat[k] = m.group(1)
+        for k in ("inclusion_cues", "topics"):
+            m = re.search(_ARR_FIELD % k, seg)
+            if m:
+                try:
+                    cat[k] = json.loads(m.group(1))
+                except json.JSONDecodeError:
+                    pass
+        if cat.get("name"):
+            cats.append(cat)
+    if not cats:
+        return None
+    decision = "accept" if re.search(r'"decision"\s*:\s*"accept"', text, flags=re.I) else "revise"
+    return {"decision": decision, "categories": cats}
+
+
 def _cues(v) -> list[str]:
     if isinstance(v, str):
         v = re.split(r"[;\n]|, (?=[A-Z])", v)
@@ -327,6 +364,7 @@ class Debate:
             parsed, err = self._parse(r, it, allow_accept)
             it["transcript"].append({"round": rnd, "analyst": analyst, "repair": False, "system": sys_, "user": usr,
                                      "answer": r["text"], "parsed": parsed, "error": err, "truncated": r["truncated"],
+                                     "parsed_via": r.get("parsed_via"), "salvage_reason": r.get("salvage_reason"),
                                      "n_tokens": r["n_tokens"], "seed": seed, "seconds": r["seconds"]})
             it["_turn"] = (parsed, err)
             if parsed is None or err:
@@ -340,6 +378,7 @@ class Debate:
                 parsed, err = self._parse(r, it, allow_accept)
                 it["transcript"].append({"round": rnd, "analyst": analyst, "repair": True, "system": sys_, "user": usr,
                                          "answer": r["text"], "parsed": parsed, "error": err, "truncated": r["truncated"],
+                                         "parsed_via": r.get("parsed_via"), "salvage_reason": r.get("salvage_reason"),
                                          "n_tokens": r["n_tokens"], "seed": seed, "seconds": r["seconds"]})
                 prev_parsed, _ = it["_turn"]
                 if parsed is not None and not err:
@@ -350,6 +389,12 @@ class Debate:
 
     def _parse(self, r: dict, it: dict, allow_accept: bool):
         obj, err = extract_json(r["text"])
+        r["parsed_via"] = "json"
+        if obj is None and C.LLM_JSON_SALVAGE and not r["truncated"]:
+            obj = salvage_json(r["text"])
+            if obj is not None:
+                r["parsed_via"] = "salvage"
+                r["salvage_reason"] = err
         if obj is None:
             if r["truncated"]:
                 err = f"the answer was cut off at {self.max_new} tokens ({err}); answer more concisely"
@@ -708,14 +753,18 @@ def run_taxonomy(bin_dir: Path, bin_id: int, emb_of, llm, start: str, end: str) 
     for t in topic_ids:
         if assignment.get(t) == "unplaced":
             tmap.append({"topic_id": t, "category_id": "", "category_assignment": "unplaced"})
-    categories = pd.DataFrame(rows)
+    cat_cols = ["period_bin", "category_id", "name", "purpose", "emotion_tone", "tone_category", "description", "inclusion_cues",
+                "topic_ids", "n_topics", "n_posts", "share", "round_iterations", "agreed", "agreement_mode", "needs_review", "n_repaired"]
+    categories = pd.DataFrame(rows, columns=cat_cols)
     categories.to_csv(bin_dir / "categories.csv", index=False)
-    pd.DataFrame(tmap).sort_values("topic_id").to_csv(bin_dir / "topic_categories.csv", index=False)
+    pd.DataFrame(tmap, columns=["topic_id", "category_id", "category_assignment"]).sort_values("topic_id").to_csv(bin_dir / "topic_categories.csv", index=False)
+    n_salvaged = sum(1 for d in records.values() for t in d["transcript"] if t.get("parsed_via") == "salvage")
     (bin_dir / "taxonomy.json").write_text(json.dumps({
         "period_bin": bin_id, "start": start, "end": end, "n_topics": len(topic_ids), "topic_overrides_merged": merges,
         **llm.describe(), "prompt_version": P.PROMPT_VERSION, "agreed": rec["agreed"], "agreement_mode": rec["agreement_mode"],
         "round_iterations": rec["round_iterations"], "needs_review": rec["needs_review"], "categories": cats,
         "category_assignment": {str(k): v for k, v in assignment.items()}, "repair_log": rlog, "chunking": chunk_info,
+        "n_answers_salvaged": n_salvaged,
         "debates": {k: {kk: vv for kk, vv in v.items()} for k, v in records.items()}}, ensure_ascii=False, indent=1, default=str), encoding="utf-8")
     ov = bin_dir / "category_overrides.csv"
     if not ov.exists() and len(categories):

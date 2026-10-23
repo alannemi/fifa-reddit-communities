@@ -276,11 +276,14 @@ def stage_reassign(args, paths: Paths, b: int):
     if T is None:
         raise SystemExit("reassign needs --outlier-threshold T or config.OUTLIER_THRESHOLD")
     device = embed.get_device(args.device)
-    docs, modelled, full = bin_documents(args, paths, b)
+    # the document set is whatever --stage topics modelled (documents.csv), so no --max-docs is needed here
     prev = pd.read_csv(bdir / "documents.csv", dtype=str, keep_default_na=False)
+    docs_all, full = BINS.load_bin(b, paths.analysis_data)
+    docs = docs_all[docs_all["id"].isin(set(prev["id"]))].reset_index(drop=True)
+    modelled = docs[~docs["too_short"]].reset_index(drop=True)
     prev_mod = prev[prev["topic_id_raw"] != ""]
     if len(prev_mod) != len(modelled) or set(prev_mod["id"]) != set(modelled["id"]):
-        raise SystemExit("reassign: documents.csv does not match the bin's documents (different --max-docs?)")
+        raise SystemExit("reassign: documents.csv does not match the bin's documents (corpus changed since --stage topics?)")
     raw = prev_mod.set_index("id").loc[modelled["id"], "topic_id_raw"].astype(int).to_numpy()
     ids = modelled["id"].to_numpy().astype(str)
     nearest = pd.read_csv(bdir / "outlier_nearest.csv", dtype={"id": str})

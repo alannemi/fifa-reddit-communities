@@ -197,6 +197,9 @@ LLM_POST_MAX_CHARS = 300               # each sample post shown to the analysts 
 TAXONOMY_MAX_ITEMS = 100               # above this many topics S3b uses the chunking fallback (design §7.4)
 TAXONOMY_CHUNK_SIZE = 80
 TAXONOMY_KEYWORDS_PER_TOPIC = 8        # keywords per topic line in the S3b items
+LLM_JSON_SALVAGE = True                # recover answers whose only defect is bracket syntax (N11, 2026-10-23 dry run);
+                                       # strict JSON is tried first; recovered answers are marked parsed_via="salvage"
+                                       # in the transcript. False = design §7.1 literally (second failure = no answer).
 
 # --- S4: sentiment (design §8, F18). SENTIMENT_POS/NEG_THRESHOLD above.
 SENTIMENT_TEXT = "title"               # post_sentiment is scored on the cleaned title; post_sentiment_full on title + body

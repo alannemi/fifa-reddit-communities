@@ -19,7 +19,8 @@
 #  A4  every post has one bin in 1..9; bin sizes sum to the file; period_type consistent with the bin
 #  A5  topic_id exists in the bin's topics.csv (after overrides); -1 = outlier; empty = not modelled
 #  A6  category_id exists in the bin's categories.csv (after overrides); empty iff topic empty or -1
-#  A7  topic_assignment consistent with topic_id (outlier <-> -1, not_modelled <-> empty, else cluster/reassigned)
+#  A7  topic_assignment consistent with topic_id (outlier <-> -1, not_modelled <-> empty, else cluster/reassigned);
+#      A7b rows without an assignment occur only in bins that have no model run yet (partial dry runs)
 #  A8  sentiment scores within [-1, 1] and label consistent with the +/-0.05 thresholds
 #  A9  the 42 original columns are unchanged (per-column xxhash64 equals the pre-write fingerprint)
 #  A10 master and post_variables.csv identical on the 8 columns
@@ -136,9 +137,14 @@ for (b in 1:9) {
 }
 check("A5 topic_id valid for its bin", a5, paste(a5_detail, collapse = "; "))
 check("A6 category_id valid for its bin and empty for outliers / not modelled", a6)
-check("A7 topic_assignment consistent with topic_id",
-      all((ass == "outlier") == (tid == "-1")) && all((ass == "not_modelled") == (tid == "")) &&
-        all(ass %in% c("cluster", "reassigned", "outlier", "not_modelled")))
+tagged <- ass != ""                      # rows of bins that have a model run (all rows once the collection is complete)
+check("A7 topic_assignment consistent with topic_id (tagged rows)",
+      all((ass[tagged] == "outlier") == (tid[tagged] == "-1")) && all((ass[tagged] == "not_modelled") == (tid[tagged] == "")) &&
+        all(ass[tagged] %in% c("cluster", "reassigned", "outlier", "not_modelled")), sprintf("%s tagged rows", format(sum(tagged), big.mark = ",")))
+untagged_bins <- unique(b_file[!tagged])
+check("A7b untagged rows occur only in bins without a model run",
+      all(tid[!tagged] == "" & cid[!tagged] == "") && all(vapply(untagged_bins, function(b) is.null(bin_tables[[b]]$topics), logical(1))),
+      if (length(untagged_bins)) sprintf("untagged bins: %s", paste(untagged_bins, collapse = ",")) else "")
 s <- suppressWarnings(as.numeric(m$post_sentiment)); sf <- suppressWarnings(as.numeric(m$post_sentiment_full)); lab <- m$post_sentiment_label
 has_s <- m$post_sentiment != ""
 check("A8a sentiment within [-1, 1]", all(s[has_s] >= -1 & s[has_s] <= 1) && all(sf[has_s] >= -1 & sf[has_s] <= 1), sprintf("%s scored", format(sum(has_s), big.mark = ",")))

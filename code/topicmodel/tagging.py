@@ -42,7 +42,10 @@ CATEGORY_COLUMNS = ["period_bin", "category_id", "name", "purpose", "emotion_ton
 
 
 def _read(p: Path) -> pd.DataFrame:
-    return pd.read_csv(p, dtype=str, keep_default_na=False)
+    try:
+        return pd.read_csv(p, dtype=str, keep_default_na=False)
+    except pd.errors.EmptyDataError:
+        return pd.DataFrame()
 
 
 def _int_str(x) -> str:
@@ -54,7 +57,9 @@ def _int_str(x) -> str:
 
 def bin_state(bin_dir: Path) -> str:
     if (bin_dir / "categories.csv").exists() and (bin_dir / "topics_labelled.csv").exists():
-        return "complete"
+        if len(_read(bin_dir / "categories.csv")):
+            return "complete"
+        return "labelled"          # the taxonomy stage ran but produced no category (needs a re-run / review)
     if (bin_dir / "topics_labelled.csv").exists():
         return "labelled"
     if (bin_dir / "documents.csv").exists():

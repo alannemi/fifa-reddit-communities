@@ -382,6 +382,45 @@ def test_sentiment_labels():
     assert [S.label_of(x) for x in (0.05, 0.0501, -0.05, -0.0501, 0.0)] == ["neutral", "positive", "neutral", "negative", "neutral"]
 
 
+def test_salvage_json():
+    broken = ('{"decision": "revise", "categories": [{"id": "cat_1", "name": "World Cup Predictions", "purpose": "Predicting", '
+              '"emotion_tone": "enthusiastic", "description": "Posts about predictions.", "inclusion_cues": ["a", "b"], "topics": [1, 3, 9]}], '
+              '[{"id": "cat_2", "name": "Streaming", "purpose": "Streams", "emotion_tone": "frustrated", "description": "Where to watch.", '
+              '"inclusion_cues": ["espn"], "topics": [4, 5]}], [{"id": "cat_3", "name": "Vuvuzela Complaints", "purpose": "Complaints", '
+              '"emotion_tone": "negative", "description": "Noise.", "inclusion_cues": ["horns"], "topics": [6]]], [{"id": "cat_4", "name": "Rest", '
+              '"purpose": "p", "emotion_tone": "t", "description": "d", "inclusion_cues": ["x"], "topics": [0, 2, 7, 8, 10, 11]]]}]')
+    assert G.extract_json(broken)[0] is None
+    obj = G.salvage_json(broken)
+    assert obj and [c["id"] for c in obj["categories"]] == ["cat_1", "cat_2", "cat_3", "cat_4"] and obj["categories"][2]["topics"] == [6]
+    parsed, err = G.validate_taxonomy(obj, list(range(12)), False)
+    assert err is None and len(parsed["categories"]) == 4
+    assert G.salvage_json("no categories here") is None
+    # the engine uses it: a broken round-1 answer from both analysts is recovered, validated and agreed
+    A, B = P.AGENTS
+    s = {("bin", A, 1, False): broken, ("bin", B, 1, False): broken}
+    res = G.Debate("taxonomy", StubLLM(s), lambda o, it, acc: G.validate_taxonomy(o, it["topic_ids"], acc), G.taxonomies_identical).run(
+        [{"key": "bin", "topic_ids": list(range(12)), "items_block": "ITEMS"}])["bin"]
+    assert res["agreement_mode"] == "identical" and res["transcript"][0]["parsed_via"] == "salvage" and len(res["final"]["categories"]) == 4
+    # S3a: a label answer with the same defect
+    lab = '{"decision": "revise", "categories": [{"name": "Refs", "purpose": "p", "emotion_tone": "angry", "description": "d", "inclusion_cues": ["var"]]]}]'
+    obj = G.salvage_json(lab); assert obj and G.validate_label(obj, False)[1] is None
+
+
+def test_taxonomy_empty_is_not_fatal():
+    tmp = Path(tempfile.mkdtemp())
+    try:
+        _taxonomy_fixture(tmp, 4)
+        A, B = P.AGENTS
+        s = {("bin", a, 1, r): "garbage" for a in (A, B) for r in (False, True)}
+        cats = G.run_taxonomy(tmp, 1, lambda t: np.eye(4)[int(t)], StubLLM(s), "2010-01-01", "2010-09-30")
+        assert len(cats) == 0 and (tmp / "categories.csv").exists()
+        tc = pd.read_csv(tmp / "topic_categories.csv", keep_default_na=False)
+        assert sorted(tc["topic_id"]) == [0, 1, 2, 3] and set(tc["category_assignment"]) == {"unplaced"}
+        assert T.bin_state(tmp) == "labelled"
+    finally:
+        shutil.rmtree(tmp)
+
+
 if __name__ == "__main__":
     for name, fn in list(globals().items()):
         if name.startswith("test_") and callable(fn):

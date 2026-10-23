@@ -44,6 +44,11 @@ implementation is reproduced in §6.
 * **Resume granularity** = topic: `labels.jsonl` is appended as soon as a topic resolves; an interrupted debate restarts
   from round 1 for that topic. Batches are formed per (round, analyst) over all unresolved topics in sorted id order.
 * **S3b token budget** 8,000 (R2); a truncated answer is reported as such in the repair turn and in the transcript.
+* **Tolerant JSON recovery (N11, added during the dry run):** `agents.salvage_json()` recovers answers whose category
+  objects are intact but whose brackets between them are not (the 1.7B model's `}], [{` pattern); it runs only after
+  the strict parse failed and never on truncated answers; the transcript records `parsed_via` and the original parser
+  error; `config.LLM_JSON_SALVAGE = False` disables it. A taxonomy that still yields no category writes empty
+  `categories.csv` / all-`unplaced` `topic_categories.csv`, and S5 treats the bin as `labelled`, not `complete`.
 * **Taxonomy ids**: the agents' `cat_N` ids are kept when they are well-formed and unique; otherwise categories are
   renumbered in the order given. `topic_categories.csv` (topic → category, `category_assignment`) is the per-topic map
   that S5 consumes; `categories.csv` carries `n_repaired`.

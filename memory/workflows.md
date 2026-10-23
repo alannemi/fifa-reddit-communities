@@ -110,12 +110,14 @@ Order matters: S3a review → S3b → overrides → S5 → S6; S6 refuses to wri
 On Colab: `code/06b-analysis-pipeline-colab.ipynb` runs the same commands (A100 preferred; data copied from Drive to
 `/content`; results, embedding cache and `.hf-cache` symlinked to Drive). Step-by-step: `docs/session-05_2026-10-23/03_runbook-session-06.md`.
 
-**Local dry run on bin 1** (the design's test sequence; never touches `results/analysis/` or the real `data/analysis/`):
+**Local dry run on bin 1** (never touches `results/analysis/` or the real `data/analysis/`). Run it on the **full bin**
+(10,002 posts, ≈ 2 min for S2 with MiniLM): a 3,000-post subsample (`--max-docs 3000`) collapses to 2 topics under
+HDBSCAN's excess-of-mass selection at the floor of 25 (session-05 dry-run log, finding D1), so it only tests mechanics.
 ```bash
-OUT=results/dry-runs/bin1-3000; MINI=sentence-transformers/all-MiniLM-L6-v2
+OUT=results/dry-runs/bin1-full; MINI=sentence-transformers/all-MiniLM-L6-v2
 mkdir -p $OUT/data/analysis && cp data/analysis/period_bins*.csv $OUT/data/analysis/   # or: --stage bins --out-root $OUT
 $P $S --stage embed --bin 1 --embedding-model $MINI --out-root $OUT
-$P $S --stage topics --bin 1 --max-docs 3000 --embedding-model $MINI --out-root $OUT     # guard disabled on subsamples
+$P $S --stage topics --bin 1 --embedding-model $MINI --out-root $OUT                     # add --max-docs N only for mechanics tests (guard off)
 $P $S --stage reassign --bin 1 --outlier-threshold 0.5 --embedding-model $MINI --out-root $OUT
 $P $S --stage label --bin 1 --out-root $OUT            # Qwen3-1.7B on MPS, batch 4; --max-topics 5 for a quick smoke test
 $P $S --stage taxonomy --bin 1 --out-root $OUT

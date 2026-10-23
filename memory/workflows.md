@@ -78,6 +78,8 @@ All settings: `code/topicmodel/config.py` (each run also writes its effective se
 Google Colab (GPU, full corpus): `code/05b-topic-model-colab.ipynb` — upload `code/` and `data/yearly datasets/` to Drive.
 Design and plain-language explanation: `docs/session-02_2026-10-13/02_topic-modelling-design.md`.
 These year/window/era runs are now **exploratory**; the chapter's analysis uses the period-bin pipeline of §7.
+The 2010 test outputs (`window-wc2010/`, `year-2010/`) and the MiniLM embedding cache were deleted on 2026-10-23
+(author's decision, session 05); re-run the commands above to regenerate them if ever needed.
 
 ## 7. Analytical pipeline (period bins → BERTopic → two-agent labels → VADER → tagging) — designed, not yet implemented
 

@@ -1,5 +1,7 @@
 # Session 02 (2026-10-13) — Topic-model test case: 2010 World Cup
 
+> **Note (2026-10-23, session 05).** The run folders described here (`results/topic-models/window-wc2010/`, `year-2010/`) and the local MiniLM embedding cache were removed from the repository on the author's instruction before the analytical pipeline was implemented (they are in git history up to commit `6eeb0fee`). They can be regenerated with `code/05-topic-model.py` (see `memory/workflows.md` §6); the chapter's analysis uses the period-bin pipeline of session 04/05 instead. This document is kept as the historical record of the test case.
+
 Companion to `02_topic-modelling-design.md` (the approved design). This note records what was run, the
 first numbers and first observations, so co-authors can review the outputs in `results/topic-models/`.
 

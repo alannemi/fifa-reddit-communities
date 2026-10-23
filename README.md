@@ -92,8 +92,10 @@ retained share of posts drops from 2020 onwards (a metadata effect, not a collec
 characters of body): sentence embeddings → UMAP → HDBSCAN → distinctive keywords per topic (c-TF-IDF) →
 topic names, descriptions and tones from two local LLM "analysts" that must agree (Qwen3) → an editable
 merge table for our decisions → VADER sentiment as a first baseline. Runs exist per calendar year, per
-World Cup tournament window (±2 months) and per four-year era (year models aligned). The 2010 test case
-(`results/topic-models/window-wc2010/`, `year-2010/`) is the current review object; open `report.html`.
+World Cup tournament window (±2 months) and per four-year era (year models aligned). These runs are exploratory;
+the 2010 test-case outputs were removed on 2026-10-23 (git history up to `6eeb0fee`; see
+`docs/session-02_2026-10-13/03_topic-model-test-case.md`). The chapter's analysis uses the period-bin pipeline
+designed in session 04 and implemented in session 05 (`code/06-analysis-pipeline.py`, see §5 and `memory/workflows.md` §7).
 Design and plain-language explanation of every setting: `docs/session-02_2026-10-13/02_topic-modelling-design.md`.
 
 ## 5. Running things

@@ -77,3 +77,23 @@ export HF_HOME=$PWD/.hf-cache TOKENIZERS_PARALLELISM=false
 All settings: `code/topicmodel/config.py` (each run also writes its effective settings to `config.json`).
 Google Colab (GPU, full corpus): `code/05b-topic-model-colab.ipynb` — upload `code/` and `data/yearly datasets/` to Drive.
 Design and plain-language explanation: `docs/session-02_2026-10-13/02_topic-modelling-design.md`.
+These year/window/era runs are now **exploratory**; the chapter's analysis uses the period-bin pipeline of §7.
+
+## 7. Analytical pipeline (period bins → BERTopic → two-agent labels → VADER → tagging) — designed, not yet implemented
+
+Design (settings, prompts, outputs, flags, decisions): `docs/session-04_2026-10-22/01_analytical-pipeline-design.md`.
+Variables it adds: codebook §4.9. Implementation is scheduled for session 05; the intended commands are:
+```bash
+python code/06-analysis-pipeline.py --stage bins                      # period_bin for every post (checks Σ = corpus)
+python code/06-analysis-pipeline.py --stage embed --bin 1             # mpnet embeddings, cached per year
+python -m cuml.accel code/06-analysis-pipeline.py --stage topics --bin 1   # BERTopic per bin (GPU on Colab)
+python code/06-analysis-pipeline.py --stage label --bin 1             # two-agent cluster labelling (resumable)
+#   -> co-author review: results/analysis/bin-1/topic_overrides.csv
+python code/06-analysis-pipeline.py --stage taxonomy --bin 1          # two-agent taxonomy of the bin
+#   -> co-author review: category_overrides.csv
+python code/06-analysis-pipeline.py --stage sentiment                 # VADER (title + full) for every post
+python code/06-analysis-pipeline.py --stage collect                   # post_variables.csv + aggregated CSVs
+Rscript code/07-tag-corpus.R && Rscript code/08-validate-analysis.R   # local: append the 8 columns (v3.0) + checks
+```
+On Colab: `code/06b-analysis-pipeline-colab.ipynb` runs the same commands (A100 preferred; data copied from Drive to
+`/content`; results and caches on Drive). Order matters: S3a review → S3b → overrides → collect → write-back.

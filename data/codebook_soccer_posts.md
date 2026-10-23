@@ -1,8 +1,8 @@
 # Codebook: r/soccer post corpus (2010–2026)
 
-**Version 2.1 — 13 October 2026** · r/soccer posts from the Arctic Shift archive, 1 January 2010 – 31 July 2026 · Assembled for the FIFA Communities chapter, McGill University.
+**Version 3.0 (draft) — 23 October 2026** · r/soccer posts from the Arctic Shift archive, 1 January 2010 – 31 July 2026 · Assembled for the FIFA Communities chapter, McGill University.
 
-This codebook documents every data file in `data/`, how each was produced, the meaning of every variable, and the known limitations of the corpus. It is written for co-authors, reviewers and any researcher who re-uses the data. Section 8 is a placeholder for the methodological use of the data and will be completed by the team.
+This codebook documents every data file in `data/`, how each was produced, the meaning of every variable, and the known limitations of the corpus. It is written for co-authors, reviewers and any researcher who re-uses the data. Version 3.0 adds the **analysis variables** that the analytical pipeline appends to the master and yearly files (Section 4.9) and the methodological use of the data (Section 8), both specified in `docs/session-04_2026-10-22/01_analytical-pipeline-design.md`. **Status:** the data files on disk are still version 2.1 (42 columns) until stage S6 of that pipeline has run; this version is marked *draft* until then.
 
 ---
 
@@ -25,6 +25,11 @@ The corpus is a **family of files derived from one raw export**. Use the *clean 
 | `data/data artefacts/spam_accounts.csv`, `piracy_accounts.csv` | — | — | Accounts caught by the account-level rules, with the statistics that triggered them. |
 | `data/data artefacts/encoding_repairs.csv` | — | — | Every title/body repaired in stage S6: post id, field, original text, repaired text, source encoding (126 fields). |
 | `data/data artefacts/POSTS-*.jsonl`, `soccer_posts.csv.gz`, `jsonl_to_csv.py` | — | — | Collection artefacts: the three JSONL batches as downloaded, a compressed copy of the raw CSV, and the conversion script. |
+| `data/analysis/post_variables.csv` *(planned, v3.0)* | 1,302,021 | 11 | **Analysis join table.** One row per clean post: the 8 analysis variables of Section 4.9 plus two audit columns (`topic_id_raw`, `category_id_agent`). Written by stage S5 of the analytical pipeline; the source of the columns appended to the master and yearly files in stage S6. |
+| `results/analysis/topic_labels_all_bins.csv` *(planned, v3.0)* | one per topic | — | Two-agent label of every BERTopic topic (name, purpose, emotional tone, description, inclusion cues, debate rounds, agreement) with its `period_bin` and its discourse category. |
+| `results/analysis/categories_all_bins.csv` *(planned, v3.0)* | one per category | — | The discourse taxonomy of each period bin: categories grouping similar topics, with the topics they contain. |
+
+**Version 3.0 (planned).** After stage S6 of the analytical pipeline, the clean master and the yearly files gain the 8 analysis columns of Section 4.9 (50 columns in total); the side files are unchanged (43 columns). The row counts do not change.
 
 **Accounting identity.** raw = clean + deleted + removed + bot + promotional + encoding + non_english (2,047,322 = 1,302,021 + 283,433 + 375,613 + 48,156 + 34,974 + 335 + 2,790). Every post id appears in exactly one file. Verified by `code/03-data-validation.R` (28 checks).
 
@@ -219,6 +224,23 @@ All 42 columns are stored as text; types below are the *intended* types after co
 | `lang` | string | ISO-639-1 code of the language detected by cld2 on title + body; `und` when the detector was not confident. Informational; the S7 filter uses a stricter, title-based rule (Section 3.1). | `en` |
 | `filter_reason` | string | **Side files only.** The rule that moved the row, e.g. `S3_removed_by_category_moderator`, `S5a_spam_account`, `S7_non_english`. | — |
 
+### 4.9 Analysis variables (appended by the analytical pipeline; version 3.0, planned)
+
+These eight columns are produced by the analytical pipeline designed in session 04 (`docs/session-04_2026-10-22/01_analytical-pipeline-design.md`) and appended, after the 42 columns above, to the clean master and the yearly files in its final stage (S6). They are **model outputs**, not properties of the post: topics come from a BERTopic model fitted separately to each period bin, categories from two Qwen3-1.7B "analyst" agents that must agree on each label, and sentiment from the VADER lexicon. Side files do not carry them. Provenance of every value is recorded in `data/analysis/post_variables.csv` (plus two audit columns) and in the per-bin run folders `results/analysis/bin-N/`.
+
+| Variable | Type | Description | Values |
+|---|---|---|---|
+| `period_bin` | integer | Analysis period of the post, from the UTC calendar date of `created_datetime`. Bins: 1 = 2010-01-01 – 2010-09-30 (2010 World Cup window); 2 = 2010-10-01 – 2014-01-31; 3 = 2014-02-01 – 2014-09-30 (2014 WC); 4 = 2014-10-01 – 2018-01-31; 5 = 2018-02-01 – 2018-09-30 (2018 WC); 6 = 2018-10-01 – 2022-06-30; 7 = 2022-07-01 – 2023-02-28 (2022 WC); 8 = 2023-03-01 – 2026-01-31; 9 = 2026-02-01 – 2026-07-31 (2026 WC). Contiguous; every post has exactly one bin. | `1`–`9` |
+| `period_type` | string | `tournament` for bins 1, 3, 5, 7, 9; `interim` for bins 2, 4, 6, 8. Derivable from `period_bin`; a convenience column. | `tournament` / `interim` |
+| `topic_id` | integer | BERTopic topic of the post **within its period bin** (one model per bin; ids are bin-local, so the key is `period_bin` + `topic_id`). After thresholded outlier reassignment: `-1` = outlier (no topic); empty = not modelled (fewer than 3 word tokens in title + body). | `-1`, `0`, `1`, … (bin-local); empty |
+| `topic_assignment` | string | How `topic_id` was obtained: `cluster` = assigned by HDBSCAN; `reassigned` = outlier attached to its nearest topic because the embedding similarity reached the calibrated threshold; `outlier` = below the threshold, `topic_id = -1`; `not_modelled`. | `cluster` / `reassigned` / `outlier` / `not_modelled` |
+| `category_id` | string | Discourse category of the post's topic in the two-agent taxonomy of its period bin (after co-author overrides); bin-local id (key: `period_bin` + `category_id`). Empty for outliers and not-modelled posts. Definitions in `results/analysis/categories_all_bins.csv`. | `cat_1`, `cat_2`, … (bin-local); empty |
+| `post_sentiment` | float | VADER compound sentiment score of the cleaned **title** (the unit every post has; comparable across bins regardless of body length). 4 decimals. | −1.0000 … 1.0000 |
+| `post_sentiment_full` | float | VADER compound score of title + body (body truncated to 1,000 characters); a second measure for analyses of self posts. 4 decimals. | −1.0000 … 1.0000 |
+| `post_sentiment_label` | string | Categorised `post_sentiment` with VADER's conventional thresholds: `positive` > 0.05, `negative` < −0.05, otherwise `neutral`. | `positive` / `neutral` / `negative` |
+
+Audit columns in `post_variables.csv` only: `topic_id_raw` (the HDBSCAN label before reassignment) and `category_id_agent` (the category before co-author overrides). The per-topic labels (`results/analysis/topic_labels_all_bins.csv`) carry, for each `period_bin` × `topic_id`: `name`, `purpose`, `emotion_tone`, `tone_category` (controlled vocabulary), `description`, `inclusion_cues`, `round_iterations` (debate rounds until the two agents agreed), `agreed`, `agreement_mode`, `needs_review`, both agents' final answers, the category, sizes (`n_cluster`, `n_total`, `share`), keywords and the model/prompt versions.
+
 ---
 
 ## 5. File format conventions
@@ -276,12 +298,21 @@ d = pd.read_csv("data/soccer_data.clean.csv", dtype=str, keep_default_na=False)
 7. **Encoding.** 126 posts had mangled characters repaired by byte-level re-decoding (logged in `encoding_repairs.csv`); 335 posts that could not be repaired without guessing, or whose title is emoji-only, are in `encoding_issue_posts.csv`.
 8. **Flair drift.** Flair labels and their spelling change over the 16 years; normalise before using them as categories.
 9. **Spam rules are rule-based.** They are auditable and reversible (every row carries `filter_reason`) but neither exhaustive nor perfect; small numbers of false positives exist in `promotional_posts.csv` (e.g. genuine news on bookmaker domains) and some spam remains in the master.
+10. **Analysis variables are model outputs (v3.0).** `topic_id`, `category_id` and the sentiment scores (Section 4.9) are produced by a topic model, two small language-model agents and a lexicon, respectively. Topic and category ids are only meaningful within a period bin (nine separate models); comparisons across bins need the category crosswalk. Topic granularity differs between the small tournament bins and the large interim bins (a relative minimum topic size). VADER scores headline-length text with a general lexicon and misreads sarcasm and football vocabulary; a validation sample is part of the pipeline. Posts with fewer than three word tokens have no topic or category.
 
 ---
 
-## 8. Methodological use of the data *(placeholder)*
+## 8. Methodological use of the data
 
-> To be completed by the research team. Planned sections: (8.1) corpus construction for topic modelling — unit of analysis, text fields used, pre-processing; (8.2) sentiment analysis — tools, validation, handling of title-only posts; (8.3) discourse analysis — sampling strategy, coding frame, use of `post_type`, flair and time windows; (8.4) reproducibility — software versions, seeds, scripts.
+Full design, settings with rationale, prompts and flagged limitations: `docs/session-04_2026-10-22/01_analytical-pipeline-design.md` (session 04, 2026-10-22; decisions by the author recorded there). Summary:
+
+**8.1 Corpus construction for topic modelling.** Unit of analysis: one post = one document. Text: the cleaned `title`, a newline, and the cleaned `selftext` truncated to 1,000 characters (cleaning removes Markdown link syntax, URLs, Reddit sprite codes, HTML entities and extra whitespace; it never changes words). Posts with fewer than three word tokens are not modelled. All retained posts are used, including human match/daily threads (`post_type`) and posts whose `lang` is not `en`. The corpus is divided into nine period bins (Section 4.9, `period_bin`) and a separate BERTopic model is fitted per bin: `all-mpnet-base-v2` sentence embeddings → UMAP (15 neighbours, 5 dimensions, cosine, seed 42) → HDBSCAN (minimum topic size 0.25 % of the bin, floor 25, adjusted by a guard to 50–100 topics; `min_samples` 10) → c-TF-IDF keywords (1–2-grams, English and scaffolding stop-words, KeyBERT-inspired re-ranking with maximal marginal relevance). Outliers are reassigned to their nearest topic only above a calibrated embedding-similarity threshold (`topic_assignment`). Each topic is then labelled by two Qwen3-1.7B analyst agents that must agree (multi-turn debate, explicit acceptance, at most five rounds; unresolved topics are flagged for the co-authors), and the labelled topics of each bin are grouped by the same agents into a discourse taxonomy (`category_id`); co-author overrides are recorded in editable tables.
+
+**8.2 Sentiment analysis.** VADER (Hutto & Gilbert 2014) compound scores: `post_sentiment` on the title (comparable across bins and post types), `post_sentiment_full` on title + body, `post_sentiment_label` at the conventional ±0.05 thresholds. A 300-post sample stratified by bin, label and `is_self` is hand-coded by two co-authors to report agreement. Title-only posts (88 %) are scored on their title; the lexicon's known weaknesses on sports vocabulary and sarcasm are documented in the design (F10).
+
+**8.3 Discourse analysis.** The coding frame is the per-bin taxonomy (`results/analysis/categories_all_bins.csv`) with its topic labels (`topic_labels_all_bins.csv`); cross-bin comparison of World Cup periods uses a manual crosswalk of categories to chapter-level themes. `post_type`, `lang` and flair are covariates for checking topics (share of match threads, share of English titles per topic), not inputs to the model. Time windows are the period bins; topic prevalence is reported weekly in tournament bins and monthly in interim bins.
+
+**8.4 Reproducibility.** Scripts `code/06-analysis-pipeline.py` (+ `code/topicmodel/`), `code/06b-analysis-pipeline-colab.ipynb`, `code/07-tag-corpus.R`, `code/08-validate-analysis.R` (session 05). Pinned package versions (`code/requirements-topicmodel.txt`) and model revisions; seed 42; greedy decoding; every run folder holds `config.json` (settings, prompts, backend, versions), the intermediate arrays (UMAP output, raw HDBSCAN labels) and the full agent transcripts, so every downstream output can be replayed exactly.
 
 ---
 
@@ -289,6 +320,7 @@ d = pd.read_csv("data/soccer_data.clean.csv", dtype=str, keep_default_na=False)
 
 | Version | Date | Change |
 |---|---|---|
+| 3.0 (draft) | 2026-10-23 | Analysis variables specified (Section 4.9: `period_bin`, `period_type`, `topic_id`, `topic_assignment`, `category_id`, `post_sentiment`, `post_sentiment_full`, `post_sentiment_label`), methodological use documented (Section 8) and limitation 10 added, from the session-04 pipeline design. **The data files remain v2.1 until stage S6 appends the 8 columns to the master and yearly files**; this row is then finalised with the run date and taxonomy version. |
 | 1.0 | 2026-08-09 | Raw export (`soccer_posts.csv`, 2,047,322 posts, 64 columns) documented. First cleaned files produced with `data.table::fread()`: 25 columns dropped, posts with `selftext` `[removed]`/`[deleted]` split off (1,591,577 retained). |
 | 2.1 | 2026-10-13 | Gambling rule confirmed by the team. Stage S6 now **repairs** encoding damage by strict byte-level re-decoding before filtering (126 posts repaired, 335 filtered); repairs logged in `encoding_repairs.csv` and verified by two new validation checks (28 in total). Clean master: 1,302,021 posts. |
 | 2.0 | 2026-10-11 | **Full rebuild from the raw export.** (1) Fixed a quote-doubling corruption introduced by `fread()` in v1 (every literal `"` had become `""`; JSON columns unparseable). (2) Removal detection extended to link posts via `removed_by_category` and placeholder titles. (3) New side files for bot threads, promotional content, encoding issues and non-English titles. (4) Derived columns `post_type` and `lang` added. (5) One writer and one format for all files; redundant duplicate master in the yearly folder removed. (6) Validation script added (26 checks). Details: `docs/session-01_2026-10-11/`. |
@@ -304,5 +336,11 @@ d = pd.read_csv("data/soccer_data.clean.csv", dtype=str, keep_default_na=False)
 * Stringhini, G., Kruegel, C., & Vigna, G. (2010). Detecting spammers on social networks. *Proceedings of the Annual Computer Security Applications Conference (ACSAC)*, 1–9.
 * Arctic Shift Reddit archive: https://arctic-shift.photon-reddit.com/ (data source; cite when using this corpus).
 * Ooms, J. `cld2` and `cld3` R packages (bindings to Google's Compact Language Detector 2 and 3), CRAN.
+* Campello, R. J. G. B., Moulavi, D., & Sander, J. (2013). Density-based clustering based on hierarchical density estimates. *PAKDD 2013*, LNCS 7819, 160–172. (HDBSCAN)
+* Grootendorst, M. (2022). BERTopic: Neural topic modeling with a class-based TF-IDF procedure. arXiv:2203.05794.
+* Hutto, C. J., & Gilbert, E. (2014). VADER: A parsimonious rule-based model for sentiment analysis of social media text. *Proceedings of ICWSM*, 8(1), 216–225.
+* McInnes, L., Healy, J., & Melville, J. (2018). UMAP: Uniform Manifold Approximation and Projection for dimension reduction. arXiv:1802.03426.
+* Qwen Team (2025). Qwen3 Technical Report. arXiv:2505.09388.
+* Reimers, N., & Gurevych, I. (2019). Sentence-BERT: Sentence embeddings using Siamese BERT-networks. *Proceedings of EMNLP-IJCNLP 2019*, 3982–3992.
 
-**Citation.** When using this corpus, cite the Arctic Shift project as the data source and this codebook (version 2.1, McGill University, 2026).
+**Citation.** When using this corpus, cite the Arctic Shift project as the data source and this codebook (version 3.0, McGill University, 2026; version 2.1 for the files without analysis variables).

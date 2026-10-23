@@ -147,7 +147,7 @@ A copy of the 12-topic run resumed with `--stage label --bin 1` (80 topics to go
 | all S3a answers parse or are flagged; rounds, modes and transcripts present; S3b partition valid or repaired with `category_assignment` | **met** (12 topics: all parsed; 1 `needs_review`; S3b valid after one embedding-based placement) — S3b needed the N11 recovery |
 | 2010 themes visible in the keywords (sanity) | **met** except *Jabulani* (see §3.1) |
 | 08 passes on the mini corpus; fingerprint check works | **met** after the A7 fix |
-| nothing written under `results/analysis/`; under `data/` only the real S0 output and the MiniLM cache | **met** (`results/analysis/` does not exist; `data/analysis/` holds `period_bins.csv`, `period_bins_summary.csv`, `pipeline-log.txt`) |
+| nothing written under `results/analysis/`; under `data/` only the real S0 output and the MiniLM cache | **met** (`results/analysis/` exists only as an empty folder created by the program's path setup during the real S0 run — no files; `data/analysis/` holds `period_bins.csv`, `period_bins_summary.csv`, `pipeline-log.txt`) |
 | the design's `--max-docs 3000` subsample run | run, but degenerate (§2, finding D1); the full-bin run replaces it as the reference dry run |
 
 ## 5. Defects found and fixed during the dry run

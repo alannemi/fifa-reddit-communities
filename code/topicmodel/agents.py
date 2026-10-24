@@ -230,9 +230,13 @@ def validate_label(obj: dict, allow_accept: bool) -> tuple[dict | None, str | No
             return None, f"field '{k}' is empty"
         out[k] = v
     cues = _cues(c["inclusion_cues"])
-    if not 1 <= len(cues) <= 10:
-        return None, f"'inclusion_cues' must list 1-10 short cues (got {len(cues)})"
-    out["inclusion_cues"] = cues
+    if not cues:
+        return None, "'inclusion_cues' must list at least one short cue"
+    # The prompt asks for 3-6 cues; the 1.7B model often copies 11-21 keywords. An over-long list is content, not a
+    # defect: keep the first ten and record how many were given (N12, 2026-10-23 dry run).
+    out["inclusion_cues"] = cues[:10]
+    if len(cues) > 10:
+        out["n_cues_given"] = len(cues)
     return {"decision": "revise", "categories": [out]}, None
 
 

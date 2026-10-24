@@ -135,7 +135,44 @@ i.e. bin 2, which has no model run) + the dry run's `post_variables.csv`/`.json`
 
 A copy of the 12-topic run resumed with `--stage label --bin 1` (80 topics to go; ≈ 1 h on this machine), then
 `--stage taxonomy --bin 1 --force` on all 92 items (the realistic S3b test: ≤ 100 items, 8,000-token budget),
-`collect`, `report`. Resumable at any time (`labels.jsonl`). Results are appended below when available.
+`collect`, `report`. Resumable at any time (`labels.jsonl`).
+
+**Addendum, 2026-10-24 (the run finished after the session; numbers from `config.json`, `labels.jsonl`, `taxonomy.json`
+and `log.txt` of `results/dry-runs/bin1-full92/`).**
+
+*S3a over the remaining 80 topics* (12:38–14:05, 87 min; ≈ 1.1 min per topic with batch 4 on MPS): 92 topics labelled,
+**13 needing review** — the stalemate of topic 1 and 12 `no_answer`. Ten of the twelve failed only because the validator's
+1–10 cue cap rejected labels whose `inclusion_cues` copied 11–26 keywords (repair turn included; names, purposes and
+descriptions were sound); the other two failed on JSON syntax in both attempts. This is refinement **N12** (`00_approvals.md`;
+confirmed by the author on 2026-10-24). After N12 the twelve topics were relabelled (15:48–15:54, 5.6 min): eleven resolved,
+one still `no_answer` (topic 25, *Torres' Stay at Liverpool*). Final state of the 92 topics: `needs_review` **2 (2.2 %)**;
+`agreement_mode` accepted_by_A 76, identical 11, accepted_by_B 3, stalemate 1, no_answer 1; `round_iterations` 1 / 2 / 3 for
+7 / 84 / 1 topics; no truncated answer; 9 labels carry `n_cues_given` (11–21 cues given, first ten kept).
+
+*S3b over all 92 items in one prompt* (14:06–15:45, **99 min**) — **finding D2**. The eight answers:
+
+| Round | Analyst | Turn | Parsed via | Tokens | Categories | Topic ids listed | Outcome |
+|---|---|---|---|---|---|---|---|
+| 1 | A | answer | — | 8,000 (cut off) | — | — | no usable JSON |
+| 1 | A | repair | json | 3,870 | 10 | 605 (largest category 81) | unknown id 92, duplicates |
+| 1 | B | answer | — | 8,000 (cut off) | — | — | no usable JSON |
+| 1 | B | repair | json | 3,010 | 10 | 443 (largest 60) | duplicates |
+| 2 | A | revise | salvage | 2,888 | 10 | 442 (largest 60) | duplicates |
+| 2 | A | repair | — | 8,000 (cut off) | — | — | previous answer kept |
+| 2 | B | revise | salvage | 2,888 | 10 | 442 | identical to A's → agreed |
+| 2 | B | repair | json | 1,418 | 5 | 203 (largest 86) | unknown id 92; previous answer kept |
+
+Agreement: `identical`, round 2 — between two answers that both failed the partition check. The agreed answer proposed
+**10 categories** and listed 442 topic ids of which 69 were distinct; the deterministic repair kept each duplicated id in
+the first category listed (373 placements dropped), six categories ended empty and were dropped, and the 23 missing
+topics were placed by embedding similarity (`category_assignment = repaired`). Result: 4 categories (28 / 45 / 8 / 11
+topics; *World Cup Streaming & Access* alone holds 45 of 92 topics), `n_repaired` 23, `unplaced` 0, 2 answers recovered by
+the N11 salvage, 3 truncated at the 8,000-token cap. **The model never produced a valid partition of 92 items; the
+"4 categories" are a product of the repair rule, not the model's taxonomy.** The 12-item run of §3.5 had worked because
+12 ids are enumerable; 92 are not for this model. Decision taken on 2026-10-24: the two-step protocol D5
+(`../session-06_2026-10-24/00_approvals.md`); the single-prompt protocol stays available as `TAXONOMY_PROTOCOL = "partition"`.
+
+`collect --allow-partial` and `report` ran on this folder as in §3.6; `post_variables.csv` again held 1,302,021 rows.
 
 ## 4. Acceptance criteria of the plan (§5.3) — status
 
@@ -162,6 +199,6 @@ A copy of the 12-topic run resumed with `--stage label --bin 1` (80 topics to go
 ## 6. Timings on the M4 (MiniLM, MPS/CPU)
 
 S0 all 17 files ≈ 3 min · embed 2010 (13,638 docs) 22 s · S2 bin 1 1.9 min (UMAP 0.4 min) · reassign 20 s ·
-S3a 12 topics 6.3 min (8.7 s per prompt, batch 4) · S3b 12 items 6.5 min (65–80 s per answer) · S4 2010 3 s ·
+S3a 12 topics 6.3 min (8.7 s per prompt, batch 4) · S3a 80 topics 87 min · S3b 12 items 6.5 min (65–80 s per answer) · S3b 92 items in one prompt 99 min (finding D2) · S4 2010 3 s ·
 S5 7 s · 07 4 s · 08 4 s · unit checks ≈ 1 min.
 

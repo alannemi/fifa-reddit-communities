@@ -44,6 +44,8 @@ implementation is reproduced in §6.
 * **Resume granularity** = topic: `labels.jsonl` is appended as soon as a topic resolves; an interrupted debate restarts
   from round 1 for that topic. Batches are formed per (round, analyst) over all unresolved topics in sorted id order.
 * **S3b token budget** 8,000 (R2); a truncated answer is reported as such in the repair turn and in the transcript.
+* **Inclusion cues (N12, added after the 92-topic run):** `validate_label` keeps the first ten cues of an over-long list and
+  records `n_cues_given`; an empty list is still an error. Before this, over-long lists made whole labels `no_answer`.
 * **Tolerant JSON recovery (N11, added during the dry run):** `agents.salvage_json()` recovers answers whose category
   objects are intact but whose brackets between them are not (the 1.7B model's `}], [{` pattern); it runs only after
   the strict parse failed and never on truncated answers; the transcript records `parsed_via` and the original parser

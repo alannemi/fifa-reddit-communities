@@ -126,6 +126,10 @@ def test_json_and_validation():
     assert e is None and p["categories"][0]["inclusion_cues"] == ["ref", "var", "penalty"]
     assert G.validate_label({"decision": "accept"}, False)[0] is None and G.validate_label({"decision": "accept"}, True)[0] == {"decision": "accept"}
     assert G.validate_label({"categories": []}, False)[0] is None
+    many = {"categories": [{**full["categories"][0], "inclusion_cues": [f"cue {i}" for i in range(15)]}]}
+    p, e = G.validate_label(many, False)                       # over-long cue lists are kept (first 10), not rejected (N12)
+    assert e is None and len(p["categories"][0]["inclusion_cues"]) == 10 and p["categories"][0]["n_cues_given"] == 15
+    assert G.validate_label({"categories": [{**full["categories"][0], "inclusion_cues": []}]}, False)[0] is None
     assert G.validate_label({"categories": [full["categories"][0], full["categories"][0]]}, False)[0] is None
     tax = {"categories": [{"id": "cat_1", "name": "A", "purpose": "p", "emotion_tone": "excited", "description": "d", "inclusion_cues": ["x"], "topics": [0, "1", "topic_2"]},
                           {"id": "cat_2", "name": "B", "purpose": "p", "emotion_tone": "critical", "description": "d", "inclusion_cues": [], "topics": [3]}]}

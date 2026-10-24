@@ -52,7 +52,14 @@ Repeat on the large bin of step 7 before fixing `T`. Then: set `OUTLIER_THRESHOL
 bin; rewrites sizes, prevalence and the report, never `topic_id_raw`, keywords or labels).
 **Decision to record:** `T` (one value or per bin), the co-author agreement on the samples.
 
-## 6. Bin 1 — S3b taxonomy (cell 10)
+## 6. Bin 1 — S3b taxonomy (cell 10) — protocol decided 2026-10-24 (dry-run finding D2 → decision D5)
+In the local 92-topic run, Qwen3-1.7B could not produce a valid partition of 92 items in one prompt: both round-1 answers ran
+past 8,000 tokens, every parsed answer listed 443–605 topic ids for 92 topics, and the deterministic repair decided 23
+placements (`02_dry-run-log.md` §3.8). **Decided 2026-10-24 (D5, `../session-06_2026-10-24/00_approvals.md`): the two-step
+protocol** — the agents first agree on the bin's category definitions, then one assignment debate per topic
+(`TAXONOMY_PROTOCOL = "two_step"`, `TAXONOMY_ASSIGN_BATCH = 1`, prompt v1.2). The alternatives (chunking at 30/25, Qwen3-4B,
+a single assignment-style prompt) were declined. The cell runs `--stage taxonomy --bin 1 --force`; check `taxonomy.json →
+protocol`, `categories_defined`, `assignment_items`, `unplaced = 0`, `n_repaired`, `n_answers_salvaged`.
 After the S3a review (`topic_overrides.csv` filled). Check `categories.csv`: `agreement_mode`, `round_iterations`,
 `n_repaired` (topics the deterministic repair had to place) and read `taxonomy.json → repair_log`. Co-authors review
 → `category_overrides.csv`. Any later change to `topic_overrides.csv` requires `--stage taxonomy --bin 1 --force`.

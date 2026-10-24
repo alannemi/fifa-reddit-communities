@@ -63,9 +63,12 @@ the eight codebook variables and `post_variables.csv`.
 
 ## 4. Local verification before Colab (step C of the plan)
 
-Unit checks: 19/19. The two-step taxonomy with the real model (Qwen3-1.7B on MPS) on a copy of the 92-topic dry run
-(`results/dry-runs/bin1-twostep/`, `--stage taxonomy --bin 1 --force`, then `collect --allow-partial` and `report`):
-results in `02_colab-run-log.md` §0 (local) once finished.
+Unit checks: 19/19. The two-step taxonomy with the real model (Qwen3-1.7B on MPS) was started on a copy of the 92-topic
+dry run (`results/dry-runs/bin1-twostep/`, `--stage taxonomy --bin 1 --force`) at 15:27 and **stopped at 15:35 by the
+author's decision** (`00_approvals.md` §8): round 1 of the definitions debate alone took 7 minutes on the Mac (142 s and
+260 s per answer; the answers differed, so a revision round followed), and the whole stage was estimated at 1.5–2 hours.
+The first run of the protocol with the real model is therefore the Colab test batch (`02_colab-run-log.md`). The partial
+local folder is kept (gitignored) for the record; its `run-twostep.log` ends with the stop note.
 
 ## 5. Running
 

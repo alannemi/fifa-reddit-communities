@@ -159,7 +159,13 @@ peer while preserving quality. Same schema. JSON only.
 USER — repair turn: unchanged from v1.1.
 ```
 
-## 8. How the approvals were obtained
+## 8. Decisions taken during execution (2026-10-24)
+
+| Time | Question | Decision | Why |
+|---|---|---|---|
+| 15:35 | The local dry run of the two-step S3b with Qwen3-1.7B on the Mac (step C of the plan) had taken 7 min for round 1 of the definitions debate alone (Analyst A 142 s, Analyst B 260 s on MPS) and was estimated at 1.5–2 h in total; push now and start Colab in parallel, or wait? | **Push now, stop the local dry run, move the dry run of the two-step stage to Colab** (the test batch's taxonomy cells become the first run of the protocol with the real model; the unit checks stand as the local verification) | the Mac's prefill speed on long prompts is the bottleneck, not the protocol; on an A100 the same stage takes minutes; a defect found on Colab is fixed with a small commit that cell 0.2 pulls |
+
+## 9. How the approvals were obtained
 
 2026-10-24: all memory files, the design and the session-05 records were re-read and the 92-topic outputs inspected;
 the outstanding decisions were presented in one message with a recommendation each and asked in one round (§2); plan

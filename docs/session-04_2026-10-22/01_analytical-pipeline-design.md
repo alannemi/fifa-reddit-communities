@@ -1,4 +1,4 @@
-# Analytical pipeline design — period-binned topic modelling, two-agent labelling and sentiment (v1.1)
+# Analytical pipeline design — period-binned topic modelling, two-agent labelling and sentiment (v1.2)
 
 **Session 04, 2026-10-22/23 · FIFA Communities chapter, McGill University.**
 Decisions: Alan Nemirovski. Drafting and technical design: Claude. Brief: `00_brief.md`. Template method: the
@@ -9,7 +9,12 @@ manual merge → aggregate reporting), used as a guide, not a recipe.
 `code/06-analysis-pipeline.py` + `code/topicmodel/`, the Colab notebook, `07-tag-corpus.R`, `08-validate-analysis.R`;
 the open flags F4/F6/F18 were approved as designed and a few implementation-level refinements were accepted — see
 §14 (rows of 2026-10-23), §17 and `../session-05_2026-10-23/00_approvals.md`. Version 1.1 of this document records
-them; the method itself is unchanged. The full run (bin 1 on Colab, the gates of §12, bins 2–9, S6) is session 06. This document supersedes the *run structure* of `../session-02_2026-10-13/02_topic-modelling-design.md`
+them; the method itself is unchanged. **Version 1.2 (2026-10-24)** changes one stage: the taxonomy stage S3b runs a
+two-step protocol — the agents first agree on a bin's category definitions, then assign each topic in its own debate
+(decision D5, §7.4; prompt v1.2, §7.6) — after the 92-topic dry run showed that Qwen3-1.7B cannot partition a whole bin's
+topics in one prompt (`../session-05_2026-10-23/02_dry-run-log.md` §3.8, finding D2; approvals in
+`../session-06_2026-10-24/00_approvals.md`). The bin-1 test batch on Colab is session 06; the gates of §12, bins 2–9 and S6
+follow. This document supersedes the *run structure* of `../session-02_2026-10-13/02_topic-modelling-design.md`
 (calendar-year, ±2-month window and era models); the modelling settings approved there are kept unless stated.
 
 ---
@@ -73,7 +78,7 @@ yearly CSVs ─► S0 period bins ─► S1 documents + sentence embeddings (cac
 | S1 embed | yearly CSVs | `results/topic-models/embeddings/<model>/<year>.npz` | Colab GPU |
 | S2 topics | S0, S1 | `results/analysis/bin-N/` (§6.4) | Colab GPU (cuML) |
 | S3a label | S2 | `bin-N/labels/topic_<id>.json`, `labels.jsonl`, `topics_labelled.csv` | Colab GPU |
-| S3b taxonomy | S3a (+ overrides) | `bin-N/taxonomy.json`, `categories.csv` | Colab GPU |
+| S3b taxonomy | S3a (+ overrides) | `bin-N/taxonomy.json`, `taxonomy_definitions.json` (step-1 checkpoint), `categories.csv`, `topic_categories.csv` | Colab GPU |
 | S4 sentiment | yearly CSVs | `data/analysis/sentiment.csv` (id, post_sentiment, post_sentiment_full, label) | CPU |
 | S5 collect | S0–S4 (+ overrides) | `data/analysis/post_variables.csv` (+ `.json` sidecar), `results/analysis/topic_labels_all_bins.csv`, `categories_all_bins.csv` | any |
 | S6 write-back | S5 | `data/soccer_data.clean.csv`, 17 yearly files (v3.0), validation report | local (R) |
@@ -216,7 +221,8 @@ of posts without a topic or category.
   transcript) is implemented and compared with greedy decoding on bin 1 (§12, F17).
 * **Backend:** Hugging Face `transformers`, with generation **batched across topics** (all pending "round r, Analyst
   A" turns in batches of `LLM_BATCH_SIZE`, batches formed in sorted topic-id order and independent of resume state);
-  vLLM is an optional accelerator with the same prompts. `max_new_tokens` 600 (S3a) / 4,000 (S3b).
+  vLLM is an optional accelerator with the same prompts. `max_new_tokens` 600 (S3a) / 4,000 (S3b step 1, definitions) /
+  800 (S3b step 2, assignment); the superseded single-prompt S3b used 8,000 (R2).
 * **Parsing and validation:** the first JSON object is extracted with `json.JSONDecoder().raw_decode` from the first
   `{`; the object is validated against the stage schema (§7.3/§7.4). An invalid answer triggers one repair turn that
   quotes the validation error; a second failure counts as "no answer" for that turn (S3a: the topic is flagged
@@ -241,7 +247,42 @@ each post truncated to 300 characters) and must describe the cluster as **exactl
 critical, supportive, curious, cautious; stem-based mapper from session 02) as `tone_category`, so tones can be
 counted.
 
-### 7.4 Stage S3b — discourse taxonomy (per bin)
+### 7.4 Stage S3b — discourse taxonomy (per bin): the two-step protocol (v1.2, decision D5, 2026-10-24)
+
+Items are the bin's topics, one compact line each — `topic_id | agreed name | emotion_tone | 8 keywords |
+one-sentence description` (≈ 60 tokens per topic). The brief's rule applies: no minimum or maximum number of
+categories; topics are grouped only if sufficiently similar. The 1.7B model cannot, however, enumerate a whole bin's
+topic ids inside category objects (dry-run finding D2: 92 items → answers cut off at 8,000 tokens, 443–605 ids listed
+for 92 topics, 23 topics placed by the repair). The taxonomy is therefore built in two steps, both under the D2
+protocol of §7.5:
+
+* **Step 1 — definitions (one debate per bin).** Both analysts receive all topic lines and define the categories
+  (`id, name, purpose, emotion_tone, description, inclusion_cues`), **without topic ids**. Validation: at least one
+  named category (hard); duplicated names or an empty text field are soft problems — the answer is kept, the repair
+  turn quotes them, and what the repair does not cure is settled deterministically (same-name categories merged, logged
+  in `taxonomy.json → definitions_cleanup`). Ids are canonicalised to `cat_1 … cat_K` in the order given and never
+  renumbered afterwards. Identity rule: same set of normalised names and, per name, the same `tone_category`. The agreed
+  definitions are checkpointed (`taxonomy_definitions.json`) before step 2; `--force` removes the checkpoint.
+* **Step 2 — assignment (one debate per topic; `TAXONOMY_ASSIGN_BATCH = 1`).** Each item shows the agreed category
+  list (`category_id | name | emotion_tone | inclusion_cues | one-sentence description`) and one topic line; the
+  analysts return `{"topic_id", "category_id"}`. Category references are resolved leniently (exact id, bare number,
+  the category's name; `null`/"none" count as missing; the resolution is recorded per answer). Identity rule: the same
+  topic → category mapping. Items are generated together per (round, analyst) like S3a topics. Several topics per
+  item remain possible through the same setting (recorded per topic as `assignment_item`).
+* **Deterministic repair.** Topics the agents left without a category are placed in the category whose member-mean
+  topic embedding is most similar (cosine); `category_assignment ∈ {agent, repaired, unplaced}`. A defined category to
+  which no topic was assigned is dropped from `categories.csv` and listed in `taxonomy.json →
+  categories_dropped_empty` (ids keep their gaps). Degenerate paths: no agreed definitions → step 2 skipped, all topics
+  `unplaced`, bin state `labelled`; every assignment without answer → all topics `unplaced`.
+* **Record.** `categories.csv` carries the definitions debate (`round_iterations`, `agreement_mode`, `agreed`,
+  `needs_review`); `topic_categories.csv` carries, per topic, `assignment_item`, `assignment_round_iterations`,
+  `assignment_agreement_mode`, `assignment_contested` (the analysts' final answers name different categories) and
+  `assignment_needs_review` (item not agreed and contested); `taxonomy.json` keeps both steps' transcripts,
+  `categories_defined`, the repair log and `n_answers_salvaged`.
+* **Review files.** `category_overrides.csv` (rename or merge categories) and `topic_category_overrides.csv` (move one
+  topic to another category, F28), both written by the taxonomy stage with the ids of the taxonomy they refer to.
+
+#### 7.4.1 The single-prompt protocol of v1.0/v1.1 (superseded 2026-10-24; kept as `TAXONOMY_PROTOCOL = "partition"`)
 
 Items are the bin's topics, one compact line each — `topic_id | agreed name | emotion_tone | 8 keywords |
 one-sentence description` (≈ 60 tokens per topic; ≤ 100 topics ≈ 6k tokens). The analysts group topics into
@@ -267,7 +308,9 @@ Every answer carries a field `"decision": "accept" | "revise"`.
 
 1. **Round 1.** Both analysts answer the same prompt independently (A's batch, then B's). If the two answers are
    identical after normalisation (lower-case; whitespace and punctuation collapsed; order of cues/topics ignored;
-   S3b compared as partitions with matched categories' names and tone categories equal), the topic is agreed
+   S3b step 1 compared as sets of category names with equal tone categories, S3b step 2 as the topic → category
+   mapping, the superseded single prompt as partitions with matched categories' names and tone categories equal),
+   the topic is agreed
    (`agreement_mode = identical`, `round_iterations = 1`).
 2. **Round r ≥ 2 (alternating).** Analyst A receives its own latest answer and B's latest answer and returns either
    `{"decision": "accept"}` — the pipeline then adopts B's already-parsed answer as the agreed output (the model never
@@ -284,12 +327,20 @@ Every answer carries a field `"decision": "accept" | "revise"`.
    session-02 merge table. Nothing is resolved silently.
 
 Outcome fields per topic / category: `round_iterations`, `agreed`, `agreement_mode ∈ {identical, accepted_by_A,
-accepted_by_B, stalemate, cap}`, `needs_review`, `analyst_a_final`, `analyst_b_final`. Batch definition: round r, all
-unresolved topics for Analyst A; topics A accepted leave the set; the remainder for Analyst B.
+accepted_by_B, stalemate, cap, no_answer}`, `needs_review`, `analyst_a_final`, `analyst_b_final`. Batch definition: round r, all
+unresolved topics for Analyst A; topics A accepted leave the set; the remainder for Analyst B. In the two-step S3b
+(v1.2) the definitions debate's fields describe the taxonomy as a whole (`categories.csv`), and every topic additionally
+carries its assignment debate's `assignment_round_iterations`, `assignment_agreement_mode`, `assignment_contested` and
+`assignment_needs_review` (`topic_categories.csv` and the label table; F22). Under two lenses and greedy decoding the
+usual path to agreement is an `accept` in round 2 (S3a dry run: 76 of 92 topics), so Analyst B's wording is adopted
+more often than Analyst A's.
 
-### 7.6 Prompt v1.1 (final; logged verbatim in every run's `config.json`)
+### 7.6 Prompt v1.2 (2026-10-24; logged verbatim in every run's `config.json`)
 
-Refinements of the brief's prompt, each flagged in §13: F1 (duplicated `inclusion_cues` removed, `round_iterations`
+v1.2 = v1.1 with the two-step S3b texts (step 1 definitions, step 2 assignment) and the revision turn naming the
+stage's answer key; the S3a texts are byte-identical to v1.1 (approved as drafted, `../session-06_2026-10-24/00_approvals.md`
+§3 and §7). The v1.1 single-prompt S3b texts remain in `code/topicmodel/prompts.py` (`SYSTEM_TAXONOMY`,
+`USER_TAXONOMY`) for the `partition` protocol. Refinements of the brief's prompt in v1.1, each flagged in §13: F1 (duplicated `inclusion_cues` removed, `round_iterations`
 moved to the pipeline), F2 (S3b schema gains `topics`), F3 (two stages), F16 (`decision` field), F17 (lenses), F20
 (stateless S3b turns), F21 ("Use keywords and tagged" completed as "the tagged sample posts"; the r/soccer context
 sentence kept from the 2010 test because a small model otherwise produces generic names such as "Football news").
@@ -315,34 +366,60 @@ Output schema:
 Rules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the
 communicative purpose and the emotional tone; 3–6 inclusion cues.
 
-SYSTEM — S3b (taxonomy)
+SYSTEM — S3b step 1 (definitions; v1.2)
 You are {agent_name}, a discourse analyst studying posts from the football community r/soccer.
 {lens}
-Build a discourse taxonomy from the items. Use the keywords and the labelled sample of each item.
+Build a discourse taxonomy from the items: define its categories. Use the keywords and the labelled sample of each item.
 Return JSON only; no prose or markdown.
 
-USER — S3b
+USER — S3b step 1
 Items: the {n_topics} topics found in r/soccer posts between {start} and {end}, one per line:
 topic_id | name | emotion_tone | keywords | description
 {topic_lines}
 Output schema:
 {"decision": "revise",
  "categories": [
-  {"id": "cat_1", "name": "...", "purpose": "...", "emotion_tone": "...", "description": "...",
-   "inclusion_cues": ["..."], "topics": [topic_id, ...]}
+  {"id": "cat_1", "name": "...", "purpose": "...", "emotion_tone": "...", "description": "...", "inclusion_cues": ["..."]}
  ]}
 Rules: keep category names short and non-overlapping; capture both communicative purpose and emotional tone.
-There is no minimum or maximum number of categories: group topics into one category only if they are sufficiently
-similar; every topic_id must appear in exactly one category.
+There is no minimum or maximum number of categories: define a category for a group of topics only if they are
+sufficiently similar; the categories together must cover all topics above. Do not list topic ids; the topics are
+assigned to the categories in a second step.
 
-USER — revision turn (both stages; the items block of the stage is repeated above this text; no chat history)
+SYSTEM — S3b step 2 (assignment; v1.2)
+You are {agent_name}, a discourse analyst studying posts from the football community r/soccer.
+{lens}
+Assign each topic to exactly one category of the agreed discourse taxonomy. Use the keywords and the labelled sample
+of each item. Return JSON only; no prose or markdown.
+
+USER — S3b step 2
+Categories (the agreed taxonomy of r/soccer posts between {start} and {end}), one per line:
+category_id | name | emotion_tone | inclusion_cues | description
+{category_lines}
+Topics to assign ({n_batch} of the bin's {n_topics} topics), one per line:
+topic_id | name | emotion_tone | keywords | description
+{topic_lines}
+Output schema:
+{"decision": "revise",
+ "assignments": [
+  {"topic_id": <topic_id>, "category_id": "<category_id>"}
+ ]}
+Rules: list every topic_id above exactly once, each with the single best-fitting category_id; use only the category
+ids listed; if no category fits well, choose the closest one.
+
+(S3b single prompt of v1.1 — superseded, `partition` protocol only: SYSTEM "Build a discourse taxonomy from the
+items. Use the keywords and the labelled sample of each item."; USER with the schema above plus "topics": [topic_id, ...]
+per category and the rule "every topic_id must appear in exactly one category".)
+
+USER — revision turn (all stages; the items block of the stage is repeated above this text; no chat history)
 Your previous answer:
 {mine}
 Your peer's latest answer:
 {peer}
 If the peer's answer is at least as good as yours, return {"decision": "accept"} and nothing else.
-Otherwise return {"decision": "revise", "categories": [...]} with a revised answer that improves agreement with the
+Otherwise return {"decision": "revise", "{answer_key}": [...]} with a revised answer that improves agreement with the
 peer while preserving quality. Same schema. JSON only.
+   {answer_key} = "categories" (S3a, S3b step 1) | "assignments" (S3b step 2) — the only change to the v1.1 revision text
 ```
 
 ### 7.7 Outputs
@@ -350,16 +427,23 @@ peer while preserving quality. Same schema. JSON only.
 * Per topic: `results/analysis/bin-N/labels/topic_<id>.json` — the agreed category, both analysts' final answers, the
   full transcript (every prompt and answer, decisions, seeds), `round_iterations`, `agreement_mode`; `labels.jsonl`
   (one line per topic, append-only, the resume file).
-* Per bin: `taxonomy.json` (same structure for the categories) and `categories.csv`.
+* Per bin: `taxonomy.json` (the definitions debate and every assignment debate with their transcripts, the categories
+  defined and final, the repair log, `n_answers_salvaged`), `taxonomy_definitions.json` (step-1 checkpoint),
+  `categories.csv`, and `topic_categories.csv` (topic → category with `category_assignment` and the assignment-debate
+  columns of §7.4).
 * **`results/analysis/topic_labels_all_bins.csv`** — the brief's single aggregated CSV, one row per topic cluster:
   `period_bin, topic_id, name, purpose, emotion_tone, tone_category, description, inclusion_cues, round_iterations,
   agreed, agreement_mode, needs_review, analyst_a_final, analyst_b_final, category_id, category_name,
-  category_assignment, n_cluster, n_total, share, keywords, llm_model, llm_revision, prompt_version, decoding`.
+  category_assignment, assignment_round_iterations, assignment_agreement_mode, assignment_contested,
+  assignment_needs_review, n_cluster, n_total, share, keywords, llm_model, llm_revision, prompt_version, decoding`
+  (+ `name_agent`, `merged_from` from the overrides).
   (The S3a answer's `id`, always `cat_1`, is not carried: it would collide with the post `id`.)
 * `results/analysis/categories_all_bins.csv` — one row per S3b category: `period_bin, category_id, name, purpose,
   emotion_tone, tone_category, description, inclusion_cues, topic_ids, n_topics, n_posts, share, round_iterations,
   agreed, agreement_mode, needs_review`.
-* `topic_overrides.csv`, `category_overrides.csv` — editable decision files (applied before S5).
+* `topic_overrides.csv`, `category_overrides.csv`, `topic_category_overrides.csv` (topic → `final_category_id`,
+  F28) — editable decision files (applied before S5, in this order: topic merges, topic-level category moves on the
+  surviving topics, category merges).
 
 ## 8. Stage S4 — sentiment (VADER)
 
@@ -465,15 +549,15 @@ the effective settings, guard trials, backend, CUDA/cuML versions, `pip freeze`,
 1. **Bin 1 (2010) end-to-end on Colab.** Compare with `results/topic-models/window-wc2010` and `year-2010`: the
    tournament's known themes must surface (vuvuzelas, Jabulani ball, Lampard's disallowed goal, Suárez handball,
    Spain's win, Paul the octopus).
-2. **Large-bin gate (bin 4 or 6).** Raw outlier share ≤ 45 %, guard converges within four trials, S3b partition valid
-   without deterministic repair for most topics; otherwise revisit `min_samples` and the topic range before the other
-   bins.
+2. **Large-bin gate (bin 4 or 6).** Raw outlier share ≤ 45 %, guard converges within four trials, most topics
+   assigned by the agents in S3b step 2 (few `repaired`); otherwise revisit `min_samples` and the topic range before the
+   other bins.
 3. **Outlier threshold.** `T` from the similarity quantiles + the 100-post human check, on bin 1 and the large bin.
 4. **Agents.** Round distribution and `agreement_mode` counts; `needs_review` ≤ 15 % of topics; greedy versus
    seeded-sampling comparison on bin 1; 20 topics read by a co-author against their posts; optional relabel of bin 1
    with Qwen3-4B (weights cached) to see what the larger model changes.
 5. **Sentiment.** The 300-post hand-coded sample.
-6. **Automatic checks** per bin (counts, coverage, partition validity, ids valid) and the S6 validation script.
+6. **Automatic checks** per bin (counts, coverage, assignment coverage, ids valid) and the S6 validation script.
 
 ## 13. Flagged issues and refinements (for the author's review)
 
@@ -500,6 +584,15 @@ the effective settings, guard trials, backend, CUDA/cuML versions, `pip freeze`,
 | F19 | Bit-identical re-runs are unattainable on GPU; the saved model lacks UMAP/HDBSCAN | Replay-based reproducibility with persisted arrays (§11) |
 | F20 | S3b with history-carrying turns would overrun the context; a 1.7B model may not emit a valid partition | Stateless turns, ≤ 100 items, partition validation, deterministic repair with `category_assignment` (§7.4) |
 | F21 | Deviations from the brief made explicit | §15 |
+| F22 (2026-10-24) | Two S3b debates per bin instead of one; under two lenses the definitions are mostly adopted through `accept` (Analyst B's wording) | `round_iterations` in `categories.csv` = definitions debate; per-topic assignment rounds, modes and `contested` in `topic_categories.csv` and the label table; §7.4, §7.5 |
+| F23 | A defined category to which no topic is assigned has no posts and is never a placement candidate | dropped from `categories.csv`, listed in `taxonomy.json → categories_dropped_empty`; ids keep gaps |
+| F24 | Assignment can be batched; batches would be a procedural artefact | one topic per item (decided); batching stays a config value, item recorded per topic |
+| F25 | Prompt version 1.2 applies to all records although only the S3b texts and the revision turn's answer key changed | S3a text byte-identical to v1.1; every stage logs its own prompt texts into its section of `config.json` |
+| F26 | Keeping the single-prompt protocol adds a switch nobody may use | kept as `partition`: tested, replays the session-05 dry run, allows a comparison |
+| F27 | The Colab environment is verified only at run time (hdbscan source build, transformers compatibility, cuML UMAP with the cosine metric) | assertions in the notebook's environment cell and `backend` in `config.json` |
+| F28 | Co-authors could not move a single topic to another category | `topic_category_overrides.csv` written by the taxonomy stage, applied in S5; `category_id_agent` keeps the agents' value |
+| F29 | Complete transcripts of two debates per bin ≈ 1 MB of `taxonomy.json` per bin in git | accepted: the transcripts are the audit trail |
+| F30 | Assignment references are resolved leniently (names, bare numbers) and `null` counts as missing | recorded per answer (`resolved_from`); strictness is one function |
 
 ## 14. Decisions log (author: Alan Nemirovski, 2026-10-22)
 
@@ -516,6 +609,11 @@ the effective settings, guard trials, backend, CUDA/cuML versions, `pip freeze`,
 | 2026-10-23 F18 | Sentiment measure | Approved: `post_sentiment` on the title, `post_sentiment_full` kept | idem |
 | 2026-10-23 | Earlier test data | The session-02/03 run folders (`window-wc2010`, `year-2010`) removed from git, MiniLM cache deleted; `05-topic-model.py` kept as the exploratory tool | clean start for the bin-1 test |
 | 2026-10-23 N1–N10, R1–R13 | Implementation refinements (approved with the session-05 plan) | §17; none changes D1–D4 or a codebook variable | `../session-05_2026-10-23/00_approvals.md` |
+| **2026-10-24 D5** | S3b protocol after dry-run finding D2 | **Two-step: a definitions debate per bin, then one assignment debate per topic** (`TAXONOMY_PROTOCOL = "two_step"`, `TAXONOMY_ASSIGN_BATCH = 1`); prompt v1.2; the single prompt kept as `partition` | Qwen3-1.7B cannot enumerate 92 topic ids in one answer; alternatives declined: chunking at 30/25, Qwen3-4B for S3b, a single assignment-style prompt — `../session-06_2026-10-24/00_approvals.md` |
+| 2026-10-24 N11, N12 | Tolerant JSON recovery; over-long cue lists kept | **Confirmed** | idem |
+| 2026-10-24 | Qwen3-4B comparison (F9, §12.4) | **Dropped**: the pipeline stays with Qwen3-1.7B | author's decision |
+| 2026-10-24 | Colab test batch | Pass 1 (every stage once, 12 labelled topics) + the full bin 1; gates and bins 2–9 afterwards | idem |
+| 2026-10-24 F22–F30 | Consequences of the two-step protocol (above) | as listed | approvals §5 |
 
 ## 15. Brief versus design
 
@@ -525,7 +623,7 @@ the effective settings, guard trials, backend, CUDA/cuML versions, `pip freeze`,
 | Tag the relevant topic id ("id" of the schema) to each post in the main CSV | `topic_id` (BERTopic) **and** `category_id` (agents' `cat_N`) per post; written to the master and yearly files in S6 | §9, D1, F2 |
 | Two Qwen3-1.7B agents agree on topic name and attributes through multi-turn cluster labelling; debate on disagreement; multiple rounds | S3a per topic with explicit acceptance, alternating turns, cap 5; unresolved flagged | §7.3, §7.5, D2 |
 | Tag how many rounds it took in the output | `round_iterations` per topic and per category, computed by the pipeline | §7.5, F1 |
-| The given prompt (may be refined; final version logged) | Prompt v1.1: schema fixed (F1), `decision` and `topics` fields added, lenses, stage-specific wording; the r/soccer context sentence; "Use keywords and tagged" read as "the tagged sample posts" (alternative reading, "tagged keywords", rejected because the items carry both) | §7.6 |
+| The given prompt (may be refined; final version logged) | Prompt v1.2 (v1.1 + the two-step S3b texts, 2026-10-24): schema fixed (F1), `decision` field added, lenses, stage-specific wording; the r/soccer context sentence; "Use keywords and tagged" read as "the tagged sample posts" (alternative reading, "tagged keywords", rejected because the items carry both); the brief's category schema is answered by step 1 and the topic membership by step 2 | §7.6 |
 | "No minimum or maximum number of categories; cluster topics together only if sufficiently similar" | Applies to S3b (the taxonomy). S3a must return exactly one category per cluster, otherwise posts could not be assigned | §7.3–7.4, F21 |
 | Posts fed to the agents | S3a: 40 posts per topic. S3b: topic lines (name, tone, keywords, description) instead of posts, for context reasons | §7.4, F3 |
 | JSON per topic cluster aggregated into one separate CSV with `period_bin` | `topic_<id>.json` per topic → `topic_labels_all_bins.csv` (one row per topic, with the category columns joined); `categories_all_bins.csv` is an additional convenience table | §7.7 |
@@ -548,7 +646,7 @@ tool.
 | `code/topicmodel/bins.py` (new) | assign and validate `period_bin` / `period_type`; bin summary |
 | `code/topicmodel/model.py` (extended) | `FrozenUMAP`; one UMAP fit per bin with persisted array; bisecting topic-count guard; thresholded outlier reassignment with `embeddings=`; `topic_id_raw`; cluster-only keywords and samples; backend detection |
 | `code/topicmodel/prompts.py` (new) | prompt v1.1 texts and lenses; `PROMPT_VERSION` |
-| `code/topicmodel/agents.py` (new) | batched alternating debate with `decision`, normalisation and partition comparison, stalemate detection, S3a and S3b, chunking fallback, deterministic repair, transcripts, aggregation, override application |
+| `code/topicmodel/agents.py` (new) | batched alternating debate with `decision`, normalisation and partition comparison, stalemate detection, S3a and S3b, chunking fallback, deterministic repair, transcripts, aggregation, override application; v1.2: definitions / assignment validators and identity rules, per-stage salvage, the two-step runner with checkpoint, the topic-level override reader |
 | `code/topicmodel/tagging.py` (new) | `post_variables.csv` + sidecar, `topic_labels_all_bins.csv`, `categories_all_bins.csv`, per-bin checks |
 | `code/06-analysis-pipeline.py` (new) | the stage CLI (`--stage`, `--bin`, `--device`, `--embedding-model`, `--llm`, `--max-docs`) |
 | `code/06b-analysis-pipeline-colab.ipynb` (new) | orchestration on Colab (§10) |
@@ -587,6 +685,13 @@ section to its function. Points where the implementation is more specific than, 
   asserted; backend detection records `cuml.accel` state and the imported UMAP/HDBSCAN classes.
 * **Seeded sampling** (F17 comparison) runs unbatched so the per-call seed is exact (N4).
 * **Dry runs** write under `--out-root` (both `results/analysis` and `data/analysis`), never into the real folders (N10).
+* **Two-step S3b (v1.2, session 06, 2026-10-24):** `agents.run_taxonomy()` dispatches on `TAXONOMY_PROTOCOL`;
+  `run_taxonomy_two_step()` = definitions debate (`validate_definitions`, `cleanup_definitions`,
+  `definitions_identical`, salvage of truncated definitions) → checkpoint → one assignment debate per topic
+  (`validate_assignments` with lenient references, `assignments_identical`, `salvage_assignments`) → `repair_partition`
+  → the shared writer; `Debate` takes the stage's token budget, salvage function and revision answer key; each stage
+  logs its own prompt texts into `config.json`; review templates are regenerated unless filled in. Details:
+  `../session-06_2026-10-24/01_implementation-notes.md`.
 
 ## 18. References
 

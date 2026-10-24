@@ -85,27 +85,31 @@ The 2010 test outputs (`window-wc2010/`, `year-2010/`) and the MiniLM embedding 
 
 Design (settings, prompts, outputs, flags, decisions): `docs/session-04_2026-10-22/01_analytical-pipeline-design.md`.
 Approvals, implementation notes, dry-run log and the runbook for the run session: `docs/session-05_2026-10-23/`.
+The two-step taxonomy protocol (decision D5, 2026-10-24, prompt v1.2) and the Colab test batch: `docs/session-06_2026-10-24/`.
 Variables it adds: codebook §4.9. Program: `code/06-analysis-pipeline.py` (one `--stage` per call; every stage skips
 when its output exists, `--force` re-runs; per bin `results/analysis/bin-N/config.json` + `log.txt`).
 
 ```bash
 export HF_HOME=$PWD/.hf-cache TOKENIZERS_PARALLELISM=false
 P=.venv/bin/python; S=code/06-analysis-pipeline.py
-$P code/tests/test_pipeline_units.py                 # 13 unit checks (no GPU, no LLM), ~1 min
+$P code/tests/test_pipeline_units.py                 # 19 unit checks (no GPU, no LLM), ~1 min
 $P $S --stage bins                                   # S0: data/analysis/period_bins.csv (+ summary; checks Σ = 1,302,021)
 $P $S --stage embed --bin 1                          # S1: mpnet embeddings, cached per year (GPU)
 python -m cuml.accel $S --stage topics --bin 1       # S2: BERTopic per bin (GPU on Colab; same command without the prefix on CPU)
 $P $S --stage label --bin 1                          # S3a: two-agent cluster labelling (resumable via labels.jsonl)
 #   -> co-author review: results/analysis/bin-1/topics_labelled.csv, report.html -> fill topic_overrides.csv
-$P $S --stage taxonomy --bin 1                       # S3b: per-bin taxonomy (re-run with --force after any S3a override)
-#   -> co-author review: categories.csv -> fill category_overrides.csv
+$P $S --stage taxonomy --bin 1                       # S3b two-step (D5): definitions debate, then one assignment debate per topic;
+#                                                       re-run with --force after any S3a override (removes the step-1 checkpoint)
+#   -> co-author review: categories.csv -> fill category_overrides.csv (rename/merge) and topic_category_overrides.csv (move a topic)
 $P $S --stage reassign --bin 1 --outlier-threshold T # D3: apply the calibrated T (seconds; see outlier_calibration/)
 $P $S --stage sentiment                              # S4: data/analysis/sentiment.csv (+ sentiment_validation_sample.csv)
 $P $S --stage collect                                # S5: data/analysis/post_variables.csv (+ .json), topic_labels_all_bins.csv, categories_all_bins.csv
 Rscript code/07-tag-corpus.R && Rscript code/08-validate-analysis.R   # S6 (local): append the 8 columns (v3.0) + 12 check families
 ```
 Options: `--bins 1-9` (loop), `--device auto|cuda|mps|cpu`, `--embedding-model <id>`, `--llm <id>`, `--sampling greedy|seeded`,
-`--max-topics N` (smoke test), `--years 2010 2011` (sentiment subset), `--allow-partial` (collect before all bins exist).
+`--max-topics N` (smoke test), `--years 2010 2011` (sentiment subset), `--allow-partial` (collect before all bins exist),
+`--taxonomy-protocol two_step|partition` (`partition` = the superseded v1.1 single prompt, for comparison/replay),
+`--assign-batch N` (topics per assignment item; default 1).
 Order matters: S3a review → S3b → overrides → S5 → S6; S6 refuses to write unless `post_variables.json` says `complete`.
 On Colab: `code/06b-analysis-pipeline-colab.ipynb` runs the same commands (A100 preferred; data copied from Drive to
 `/content`; results, embedding cache and `.hf-cache` symlinked to Drive). Step-by-step: `docs/session-05_2026-10-23/03_runbook-session-06.md`.
@@ -128,4 +132,7 @@ mkdir -p $OUT/r-mini/data/yearly\ datasets $OUT/r-mini/data/analysis
 cp "data/yearly datasets/soccer.data.cleaned-2010.csv" "$OUT/r-mini/data/yearly datasets/"; cp $OUT/data/analysis/post_variables.* $OUT/r-mini/data/analysis/
 TAG_IN_ROOT=$OUT/r-mini TAG_OUT_ROOT=$OUT/r-out TAG_ALLOW_PARTIAL=1 Rscript code/07-tag-corpus.R
 TAG_IN_ROOT=$OUT/r-mini TAG_OUT_ROOT=$OUT/r-out ANALYSIS_DIR=$OUT/results/analysis Rscript code/08-validate-analysis.R
+# the two-step taxonomy alone, on a copy of a finished dry run (session 06; ≈ 1 h on the Mac, minutes on an A100)
+cp -R results/dry-runs/bin1-full92 results/dry-runs/bin1-twostep
+$P $S --stage taxonomy --bin 1 --force --out-root results/dry-runs/bin1-twostep && $P $S --stage collect --allow-partial --out-root results/dry-runs/bin1-twostep
 ```

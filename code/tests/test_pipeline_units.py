@@ -191,7 +191,7 @@ def label_json(name, tone="excited", cues=("a", "b", "c")):
 class StubLLM:
     def __init__(self, script: dict, default=None, taxonomy_fn=None):
         self.script, self.default, self.taxonomy_fn = script, default, taxonomy_fn
-        self.calls = []
+        self.calls, self.users = [], []
         self.stats = {"calls": 0, "prompts": 0, "seconds": 0.0, "tokens_out": 0, "truncated": 0}
 
     def describe(self):
@@ -200,7 +200,7 @@ class StubLLM:
     def generate(self, requests, max_new_tokens, seeds=None, meta=None):
         out = []
         for (sysm, user), m in zip(requests, meta):
-            self.calls.append(m)
+            self.calls.append(m); self.users.append((m, user))
             key = (m["key"], m["analyst"], m["round"], m["repair"])
             if key in self.script:
                 text = self.script[key]
@@ -212,7 +212,8 @@ class StubLLM:
                 text = label_json(f"default {m['key']} {m['analyst']} r{m['round']}")
             if callable(text):
                 text = text(user)
-            out.append({"text": text, "truncated": text == "TRUNC", "n_tokens": 10, "seed": None, "seconds": 0.0})
+            trunc = text == "TRUNC" or text.startswith("TRUNC:")          # "TRUNC:<text>" = a cut-off answer with that text
+            out.append({"text": text[6:] if text.startswith("TRUNC:") else text, "truncated": trunc, "n_tokens": 10, "seed": None, "seconds": 0.0})
         self.stats["prompts"] += len(out)
         return out
 
@@ -316,7 +317,7 @@ def test_taxonomy_small_and_repair():
         bad = json.dumps({"categories": [{"id": "cat_1", "name": "X", "purpose": "p", "emotion_tone": "sad", "description": "d", "inclusion_cues": [], "topics": [0, 1, 0]},
                                          {"id": "cat_2", "name": "Y", "purpose": "p", "emotion_tone": "sad", "description": "d", "inclusion_cues": [], "topics": [2, 4]}]})
         s = {("bin", A, 1, False): bad, ("bin", A, 1, True): bad, ("bin", B, 1, False): bad, ("bin", B, 1, True): bad}
-        cats = G.run_taxonomy(tmp, 1, lambda t: emb[int(t)], StubLLM(s), "2010-01-01", "2010-09-30")
+        cats = G.run_taxonomy(tmp, 1, lambda t: emb[int(t)], StubLLM(s), "2010-01-01", "2010-09-30", protocol="partition")
         assert len(cats) == 2 and cats["agreement_mode"].iloc[0] == "identical"
         tc = pd.read_csv(tmp / "topic_categories.csv")
         assert sorted(tc["topic_id"]) == [0, 1, 2, 3, 4] and tc.loc[tc["topic_id"] == 3, "category_assignment"].iloc[0] == "repaired"
@@ -334,7 +335,7 @@ def test_taxonomy_chunking():
         _taxonomy_fixture(tmp, n)
         rng = np.random.RandomState(1)
         emb = rng.normal(size=(n, 8))
-        cats = G.run_taxonomy(tmp, 4, lambda t: emb[int(t)], StubLLM({}, taxonomy_fn=_taxonomy_answer), "2014-10-01", "2018-01-31")
+        cats = G.run_taxonomy(tmp, 4, lambda t: emb[int(t)], StubLLM({}, taxonomy_fn=_taxonomy_answer), "2014-10-01", "2018-01-31", protocol="partition")
         tc = pd.read_csv(tmp / "topic_categories.csv")
         assert sorted(tc["topic_id"]) == list(range(n)) and set(tc["category_assignment"]) == {"agent"}
         tj = json.loads((tmp / "taxonomy.json").read_text())
@@ -378,6 +379,28 @@ def test_collect_partial():
         assert list(lab.columns) == T.LABEL_COLUMNS and lab.loc[lab["topic_id"] == 1, "name"].iloc[0] == "One (final)" and lab["n_total"].tolist() == [2, 2]
         cat = pd.read_csv(an / "categories_all_bins.csv", keep_default_na=False)
         assert cat["category_id"].tolist() == ["cat_1"] and cat["n_topics"].iloc[0] == 2 and (an / "category_crosswalk.csv").exists()
+        assert all(c in lab.columns for c in G.ASSIGN_COLS) and (lab[G.ASSIGN_COLS] == "").all().all()   # v1.1-style outputs: empty
+        # --- F28: topic-level move, no category merge: topic 0 -> cat_2; cat_1 stays with n_topics 0 ----------------
+        pd.DataFrame({"category_id": ["cat_2"], "name": ["C2"], "n_topics": [1], "needs_review": [False], "final_name": [""], "merge_into": [""], "notes": [""]}).to_csv(b / "category_overrides.csv", index=False)
+        pd.DataFrame({"topic_id": [0, 1, 7], "name": ["Zero", "One", "?"], "category_id_agent": ["cat_1", "cat_2", ""], "category_name": ["C1", "C2", ""],
+                      "category_assignment": ["agent", "agent", ""], "final_category_id": ["cat_2", "", "cat_1"], "notes": ["", "", "unknown topic"]}).to_csv(b / "topic_category_overrides.csv", index=False)
+        side = T.collect(an, ad, allow_partial=True, run_info={})
+        pv = pd.read_csv(ad / "post_variables.csv", dtype=str, keep_default_na=False)
+        assert pv["category_id"].tolist()[:4] == ["cat_2"] * 4 and pv["category_id_agent"].tolist()[:4] == ["cat_1", "cat_1", "cat_2", "cat_2"] and side["errors"] == []
+        cat = pd.read_csv(an / "categories_all_bins.csv", keep_default_na=False)
+        assert cat.set_index("category_id")["n_topics"].to_dict() == {"cat_1": 0, "cat_2": 2}
+        lab = pd.read_csv(an / "topic_labels_all_bins.csv", keep_default_na=False)
+        assert lab["category_id"].tolist() == ["cat_2", "cat_2"]
+        # --- F28 + topic merge: topic 1 merged into 0; a move on the merged-away topic is ignored, one on the target moves all
+        pd.DataFrame({"topic_id": [1], "name": ["One"], "needs_review": [True], "final_name": [""], "merge_into": ["0"], "notes": [""]}).to_csv(b / "topic_overrides.csv", index=False)
+        pd.DataFrame({"topic_id": [0, 1], "final_category_id": ["cat_2", "cat_1"]}).to_csv(b / "topic_category_overrides.csv", index=False)
+        side = T.collect(an, ad, allow_partial=True, run_info={})
+        pv = pd.read_csv(ad / "post_variables.csv", dtype=str, keep_default_na=False)
+        assert pv["topic_id"].tolist()[:4] == ["0"] * 4 and pv["category_id"].tolist()[:4] == ["cat_2"] * 4 and side["errors"] == []
+        # --- F28 to an unknown category -> S5 check fails (tolerated only with --allow-partial) -------------------
+        pd.DataFrame({"topic_id": [0], "final_category_id": ["cat_9"]}).to_csv(b / "topic_category_overrides.csv", index=False)
+        side = T.collect(an, ad, allow_partial=True, run_info={})
+        assert any("category ids not in categories.csv" in e for e in side["errors"])
     finally:
         shutil.rmtree(tmp)
 
@@ -415,12 +438,196 @@ def test_taxonomy_empty_is_not_fatal():
     try:
         _taxonomy_fixture(tmp, 4)
         A, B = P.AGENTS
-        s = {("bin", a, 1, r): "garbage" for a in (A, B) for r in (False, True)}
-        cats = G.run_taxonomy(tmp, 1, lambda t: np.eye(4)[int(t)], StubLLM(s), "2010-01-01", "2010-09-30")
-        assert len(cats) == 0 and (tmp / "categories.csv").exists()
+        for protocol, key in (("partition", "bin"), ("two_step", "definitions")):
+            s = {(key, a, 1, r): "garbage" for a in (A, B) for r in (False, True)}
+            cats = G.run_taxonomy(tmp, 1, lambda t: np.eye(4)[int(t)], StubLLM(s), "2010-01-01", "2010-09-30", protocol=protocol)
+            assert len(cats) == 0 and (tmp / "categories.csv").exists(), protocol
+            tc = pd.read_csv(tmp / "topic_categories.csv", keep_default_na=False)
+            assert sorted(tc["topic_id"]) == [0, 1, 2, 3] and set(tc["category_assignment"]) == {"unplaced"}, protocol
+            assert T.bin_state(tmp) == "labelled"
+            tj = json.loads((tmp / "taxonomy.json").read_text())
+            assert tj["protocol"] == protocol and tj["agreement_mode"] == "no_answer"
+            if protocol == "two_step":
+                assert tj["assignment_items"] == [] and (tmp / "taxonomy_definitions.json").exists()
+            (tmp / "categories.csv").unlink()
+    finally:
+        shutil.rmtree(tmp)
+
+
+# ---------------------------------------------------------------------------
+# S3b two-step protocol (decision D5, 2026-10-24)
+# ---------------------------------------------------------------------------
+def test_two_step_validators():
+    # definitions: canonical ids, soft problems kept with the answer, hard failure without names
+    obj = {"categories": [{"id": "1", "name": "A", "purpose": "p", "emotion_tone": "sad", "description": "d", "inclusion_cues": ["x"]},
+                          {"id": "C2", "name": "a", "purpose": "", "emotion_tone": "sad", "description": "d", "inclusion_cues": [f"c{i}" for i in range(12)], "topics": [1]},
+                          {"id": "cat_3", "name": "B", "purpose": "p", "emotion_tone": "angry", "description": "d", "inclusion_cues": "x; y"}]}
+    d, err = G.validate_definitions(obj, False)
+    assert d is not None and [c["id"] for c in d["categories"]] == ["cat_1", "cat_2", "cat_3"] and d["categories"][0]["id_given"] == "1"
+    assert "duplicated category name" in err and "field 'purpose' is empty" in err
+    assert d["categories"][1]["n_cues_given"] == 12 and len(d["categories"][1]["inclusion_cues"]) == 10 and d["categories"][1]["topics_ignored"]
+    assert d["categories"][2]["inclusion_cues"] == ["x", "y"] and "id_given" not in d["categories"][2]
+    clean, log_ = G.cleanup_definitions(d["categories"])
+    assert [c["id"] for c in clean] == ["cat_1", "cat_2"] and clean[0]["name"] == "A" and clean[1]["name"] == "B"
+    assert log_["merged_same_name"] == {"cat_2": "cat_1"} and log_["renumbered"] == {"cat_3": "cat_2"} and "x" in clean[0]["inclusion_cues"]
+    assert G.validate_definitions({"categories": [{"name": "", "purpose": "p"}]}, False)[0] is None
+    assert G.validate_definitions({"categories": []}, False)[0] is None
+    assert G.validate_definitions({"decision": "accept"}, False)[0] is None and G.validate_definitions({"decision": "accept"}, True)[0] == {"decision": "accept"}
+    good, err = G.validate_definitions({"categories": [{"id": "cat_1", "name": "A", "purpose": "p", "emotion_tone": "t", "description": "d", "inclusion_cues": ["x"]}]}, False)
+    assert err is None and good["categories"][0]["id"] == "cat_1" and "id_given" not in good["categories"][0]
+    # assignments: shapes, lenient references, coverage problems kept with the cleaned answer
+    idx = G.build_category_index([{"id": "cat_1", "name": "World Cup Streaming & Access"}, {"id": "cat_2", "name": "Referee Criticism"}])
+    assert G.resolve_category_ref("cat_2", idx) == ("cat_2", "id") and G.resolve_category_ref("2", idx) == ("cat_2", "number")
+    assert G.resolve_category_ref("Category 1", idx) == ("cat_1", "number") and G.resolve_category_ref("referee criticism", idx) == ("cat_2", "name")
+    assert G.resolve_category_ref(None, idx) == (None, "missing") and G.resolve_category_ref("none", idx) == (None, "missing") and G.resolve_category_ref("cat_9", idx) == (None, "unknown")
+    p, e = G.validate_assignments({"assignments": [{"topic_id": 5, "category_id": "cat_2"}, {"topic_id": "7", "category_id": "Referee Criticism"}]}, [5, 7], idx, False)
+    assert e is None and G._mapping(p) == {5: "cat_2", 7: "cat_2"} and p["resolved_from"] == {"7": "name"}
+    p, e = G.validate_assignments({"assignments": {"5": "cat_1", "7": "cat_2"}}, [5, 7], idx, False)                 # mapping form
+    assert e is None and G._mapping(p) == {5: "cat_1", 7: "cat_2"}
+    p, e = G.validate_assignments({"categories": [{"id": "cat_1", "topics": [5, 7]}]}, [5, 7], idx, False)           # v1.1 habit
+    assert e is None and G._mapping(p) == {5: "cat_1", 7: "cat_1"}
+    p, e = G.validate_assignments({"assignments": [{"topic_id": 5, "category_id": None}, {"topic_id": 5, "category_id": "cat_1"}, {"topic_id": 99, "category_id": "cat_1"}]}, [5, 7], idx, False)
+    assert p is not None and G._mapping(p) == {5: "cat_1"} and "missing topic_id(s): [7]" in e and "not in this list: [99]" in e and "not among" not in e
+    p, e = G.validate_assignments({"assignments": [{"topic_id": 5, "category_id": "cat_2"}, {"topic_id": 5, "category_id": "cat_1"}, {"topic_id": 7, "category_id": "none"}]}, [5, 7], idx, False)
+    assert G._mapping(p) == {5: "cat_2"} and "more than once: [5]" in e and "topic_id(s) 7 ('none')" in e and "missing topic_id(s): [7]" in e
+    assert G.validate_assignments({"foo": 1}, [5], idx, False)[0] is None
+    assert G.validate_assignments({"decision": "accept"}, [5], idx, True)[0] == {"decision": "accept"}
+    assert G.assignments_identical({"assignments": [{"topic_id": 5, "category_id": "cat_1"}]}, {"assignments": [{"topic_id": 5, "category_id": "cat_1"}]})
+    assert not G.assignments_identical({"assignments": []}, {"assignments": []}) and not G.assignments_identical(None, {"assignments": []})
+    da = {"categories": [{"name": "Match Talk!", "emotion_tone": "excited"}, {"name": "Refs", "emotion_tone": "angry"}]}
+    db = {"categories": [{"name": "refs", "emotion_tone": "furious and angry"}, {"name": "match talk", "emotion_tone": "Excited"}]}
+    assert G.definitions_identical(da, db)
+    db["categories"].append({"name": "Other", "emotion_tone": "neutral"})
+    assert not G.definitions_identical(da, db) and not G.definitions_identical(da, None)
+
+
+def test_salvage_assignments_and_truncated_definitions():
+    broken = '{"decision":"revise","assignments":[{"topic_id": 5, "category_id": "cat_2"}], [{"topic_id":7,"category_id":"cat_1"}]]]'
+    assert G.extract_json(broken)[0] is None
+    obj = G.salvage_assignments(broken, False)
+    assert obj and G._mapping(obj) == {5: "cat_2", 7: "cat_1"} and obj["decision"] == "revise"
+    assert G._mapping(G.salvage_assignments('[{"category_id": "cat_3", "topic_id": "4"}', False)) == {4: "cat_3"}
+    assert G._mapping(G.salvage_assignments('{"assignments": {"12": "cat_3", "13": "Refs"', False)) == {12: "cat_3", 13: "Refs"}
+    assert G.salvage_assignments(broken, True) is None and G.salvage_assignments("nothing here", False) is None
+    # definitions: a truncated answer keeps the complete category objects and drops the last (cut-off) one
+    cut = ('{"decision": "revise", "categories": [{"id": "cat_1", "name": "A", "purpose": "p", "emotion_tone": "t", "description": "d", "inclusion_cues": ["x"]}, '
+           '{"id": "cat_2", "name": "B", "purpose": "p", "emotion_tone": "t", "description": "d", "inclusion_cues": ["y"]}, {"id": "cat_3", "name": "C", "purpose": "p')
+    obj = G.salvage_definitions(cut, True)
+    assert obj and [c["name"] for c in obj["categories"]] == ["A", "B"]
+    assert [c["name"] for c in G.salvage_definitions(cut, False)["categories"]] == ["A", "B", "C"]
+    assert G._default_salvage(cut, True) is None and G._default_salvage(cut, False) is not None
+    # the engine uses the stage's salvage: a truncated definitions answer is recovered
+    A, B = P.AGENTS
+    s = {("definitions", A, 1, False): "TRUNC:" + cut, ("definitions", B, 1, False): cut.replace('{"id": "cat_3", "name": "C", "purpose": "p', '') + "]}"}
+    llm = StubLLM(s)
+    res = G.Debate("define", llm, lambda o, it, acc: G.validate_definitions(o, acc), G.definitions_identical,
+                   max_new_tokens=50, salvage=G.salvage_definitions).run([{"key": "definitions", "items_block": "ITEMS"}])["definitions"]
+    assert res["transcript"][0]["truncated"] and res["transcript"][0]["parsed_via"] == "salvage" and res["agreement_mode"] == "identical"
+
+
+def _two_step_answer(user: str, meta: dict) -> str:
+    """Scripted stand-in for both steps: definitions X/Y/Z/W with non-canonical ids; assignment by topic_id modulo."""
+    if "Topics to assign" in user:
+        tids = [int(m.group(1)) for m in re.finditer(r"^(\d+) \| ", user.split("Topics to assign", 1)[1], flags=re.M)]
+        cids = [m.group(1) for m in re.finditer(r"^(cat_\d+) \| ", user, flags=re.M)]
+        return json.dumps({"decision": "revise", "assignments": [{"topic_id": t, "category_id": cids[t % min(3, len(cids))]} for t in tids]})
+    cats = [{"id": str(i), "name": n, "purpose": "p", "emotion_tone": "excited", "description": f"About {n}. More.", "inclusion_cues": ["x"]}
+            for i, n in enumerate(["X", "Y", "Z", "W"], 1)]
+    return json.dumps({"decision": "revise", "categories": cats})
+
+
+def _pairs(*pairs):
+    return json.dumps({"decision": "revise", "assignments": [{"topic_id": t, "category_id": c} for t, c in pairs]})
+
+
+def test_taxonomy_two_step():
+    tmp = Path(tempfile.mkdtemp())
+    try:
+        n = 45
+        _taxonomy_fixture(tmp, n)
+        emb = np.random.RandomState(0).normal(size=(n, 8))
+        A, B = P.AGENTS
+        dup = json.dumps({"categories": [{"id": "1", "name": "X", "purpose": "p", "emotion_tone": "excited", "description": "d", "inclusion_cues": ["x"]},
+                                         {"id": "1", "name": "x", "purpose": "p", "emotion_tone": "excited", "description": "d", "inclusion_cues": ["x"]},
+                                         {"id": "2", "name": "Y", "purpose": "p", "emotion_tone": "excited", "description": "d", "inclusion_cues": ["x"]},
+                                         {"id": "3", "name": "Z", "purpose": "p", "emotion_tone": "excited", "description": "d", "inclusion_cues": ["x"]}]})
+        s = {("definitions", A, 1, False): dup, ("definitions", A, 1, True): dup,          # soft error kept; B's default X/Y/Z/W
+             ("definitions", A, 2, False): '{"decision": "accept"}',                           # -> accepted_by_A, round 2
+             ("assign_002", A, 1, False): _pairs((1, "cat_1")), ("assign_002", B, 1, False): _pairs((1, "Y")),
+             ("assign_002", A, 2, False): '{"decision": "accept"}',                            # -> cat_2, contested, agreed
+             ("assign_003", A, 1, False): '{"decision": "revise", "assignments": {"2": "cat_3"}}',
+             ("assign_003", B, 1, False): _pairs((2, "Z")),                                   # mapping form + name -> identical
+             ("assign_004", A, 1, False): "garbage", ("assign_004", A, 1, True): "garbage",
+             ("assign_004", B, 1, False): _pairs((3, None)), ("assign_004", B, 1, True): _pairs((3, "none")),   # no_answer; topic 3 repaired
+             ("assign_005", A, 1, False): _pairs((99, "cat_1"), (4, "cat_1")), ("assign_005", A, 1, True): _pairs((4, "cat_1")),
+             ("assign_005", B, 1, False): _pairs((4, "cat_1")),                               # foreign id repaired away -> identical
+             ("assign_006", A, 1, False): _pairs((5, "cat_2"), (5, "cat_3")), ("assign_006", A, 1, True): _pairs((5, "cat_2"), (5, "cat_3")),
+             ("assign_006", B, 1, False): _pairs((5, "cat_2")),                               # duplicate kept-with-error, first wins -> identical
+             ("assign_007", A, 1, False): '{"decision": "revise", "assignments": [{"topic_id": 6, "category_id": "cat_1"}], ["x"]}',
+             ("assign_007", B, 1, False): _pairs((6, "cat_1")),                               # salvage -> identical
+             }
+        for r in (False, True):
+            s[("assign_008", A, 1, r)] = "garbage"; s[("assign_008", B, 1, r)] = "garbage"      # no answer at all -> repaired
+        llm = StubLLM(s, taxonomy_fn=_two_step_answer)
+        cats = G.run_taxonomy(tmp, 1, lambda t: emb[int(t)], llm, "2010-01-01", "2010-09-30", protocol="two_step", assign_batch=1)
+        assert cats["category_id"].tolist() == ["cat_1", "cat_2", "cat_3"] and cats["name"].tolist() == ["X", "Y", "Z"]
+        assert set(cats["agreement_mode"]) == {"accepted_by_A"} and set(cats["round_iterations"]) == {2} and not cats["needs_review"].any()
+        tc = pd.read_csv(tmp / "topic_categories.csv", keep_default_na=False).set_index("topic_id")
+        assert sorted(tc.index) == list(range(n)) and list(tc.columns) == ["category_id", "category_assignment"] + G.ASSIGN_COLS
+        assert tc.loc[1, "category_id"] == "cat_2" and tc.loc[1, "assignment_agreement_mode"] == "accepted_by_A" and tc.loc[1, "assignment_round_iterations"] == 2
+        assert bool(tc.loc[1, "assignment_contested"]) is True and bool(tc.loc[1, "assignment_needs_review"]) is False
+        assert tc.loc[0, "assignment_agreement_mode"] == "identical" and bool(tc.loc[0, "assignment_contested"]) is False
+        assert tc.loc[2, "category_id"] == "cat_3" and tc.loc[2, "assignment_agreement_mode"] == "identical"
+        assert tc.loc[3, "category_assignment"] == "repaired" and tc.loc[3, "assignment_agreement_mode"] == "no_answer" and bool(tc.loc[3, "assignment_needs_review"]) is True
+        assert tc.loc[4, "category_id"] == "cat_1" and tc.loc[4, "assignment_agreement_mode"] == "identical"
+        assert tc.loc[5, "category_id"] == "cat_2" and tc.loc[5, "category_assignment"] == "agent"
+        assert tc.loc[6, "category_id"] == "cat_1" and tc.loc[7, "category_assignment"] == "repaired" and bool(tc.loc[7, "assignment_needs_review"]) is True
+        assert (tc["category_assignment"] == "repaired").sum() == 2 and (tc["assignment_item"] == "assign_001").sum() == 1
+        tj = json.loads((tmp / "taxonomy.json").read_text())
+        assert tj["protocol"] == "two_step" and tj["assign_batch"] == 1 and tj["categories_dropped_empty"] == ["cat_4"]
+        assert [c["id"] for c in tj["categories_defined"]] == ["cat_1", "cat_2", "cat_3", "cat_4"] and tj["categories_defined"][0]["id_given"] == "1"
+        assert len(tj["assignment_items"]) == n and set(tj["debates"]) == {"definitions"} | {f"assign_{i:03d}" for i in range(1, n + 1)}
+        assert tj["n_answers_salvaged"] >= 1 and tj["debates"]["assign_007"]["transcript"][0]["parsed_via"] == "salvage"
+        assert tj["debates"]["assign_003"]["transcript"][1]["parsed"]["resolved_from"] == {"2": "name"}
+        assert "foreign" not in tj["debates"]["assign_005"]["transcript"][0]["error"] and "not in this list: [99]" in tj["debates"]["assign_005"]["transcript"][0]["error"]
+        assert (tmp / "taxonomy_definitions.json").exists() and (tmp / "topic_category_overrides.csv").exists() and (tmp / "category_overrides.csv").exists()
+        tov = pd.read_csv(tmp / "topic_category_overrides.csv", keep_default_na=False)
+        assert list(tov.columns) == ["topic_id", "name", "category_id_agent", "category_name", "category_assignment", "final_category_id", "notes"] and len(tov) == n
+        # revision turns of the assign stage name "assignments", never "categories"; bookkeeping keys are not shown
+        rev = [u for m, u in llm.users if m["key"] == "assign_002" and m["round"] == 2]
+        assert rev and '"assignments": [...]' in rev[0] and '"categories": [...]' not in rev[0] and "resolved_from" not in rev[0]
+        rev_def = [u for m, u in llm.users if m["key"] == "definitions" and m["round"] == 2]
+        assert rev_def and '"categories": [...]' in rev_def[0] and "id_given" not in rev_def[0]
+        # resume: categories.csv removed, the step-1 checkpoint is reused even if the model could no longer define anything
+        (tmp / "categories.csv").unlink()
+        s2 = {("definitions", a, 1, r): "garbage" for a in (A, B) for r in (False, True)}
+        cats2 = G.run_taxonomy(tmp, 1, lambda t: emb[int(t)], StubLLM(s2, taxonomy_fn=_two_step_answer), "2010-01-01", "2010-09-30", protocol="two_step")
+        assert cats2["name"].tolist() == ["X", "Y", "Z"] and cats2["agreement_mode"].iloc[0] == "accepted_by_A"
+        # batching: 3 topics per item -> 15 items, item recorded per topic
+        (tmp / "categories.csv").unlink(); (tmp / "taxonomy_definitions.json").unlink()
+        cats3 = G.run_taxonomy(tmp, 1, lambda t: emb[int(t)], StubLLM({}, taxonomy_fn=_two_step_answer), "2010-01-01", "2010-09-30", protocol="two_step", assign_batch=3)
+        tj3 = json.loads((tmp / "taxonomy.json").read_text()); tc3 = pd.read_csv(tmp / "topic_categories.csv", keep_default_na=False)
+        assert len(tj3["assignment_items"]) == 15 and tc3["assignment_item"].nunique() == 15 and set(tc3["assignment_agreement_mode"]) == {"identical"}
+        assert len(cats3) == 3 and tj3["agreement_mode"] == "identical" and tj3["round_iterations"] == 1
+    finally:
+        shutil.rmtree(tmp)
+
+
+def test_taxonomy_two_step_cap():
+    tmp = Path(tempfile.mkdtemp())
+    try:
+        _taxonomy_fixture(tmp, 4)
+        A, B = P.AGENTS
+        def defs(name):
+            return json.dumps({"categories": [{"id": "cat_1", "name": name, "purpose": "p", "emotion_tone": "t", "description": "d", "inclusion_cues": ["x"]}]})
+        s = {}
+        for r in range(1, 6):
+            s[("definitions", A, r, False)] = defs(f"A{r}"); s[("definitions", B, r, False)] = defs(f"B{r}")
+        cats = G.run_taxonomy(tmp, 1, lambda t: np.eye(4)[int(t)], StubLLM(s, taxonomy_fn=_two_step_answer), "2010-01-01", "2010-09-30", protocol="two_step")
+        assert len(cats) == 1 and cats["name"].iloc[0] == "A5" and cats["agreement_mode"].iloc[0] == "cap" and cats["round_iterations"].iloc[0] == 5
+        assert cats["needs_review"].all() and not cats["agreed"].any()
         tc = pd.read_csv(tmp / "topic_categories.csv", keep_default_na=False)
-        assert sorted(tc["topic_id"]) == [0, 1, 2, 3] and set(tc["category_assignment"]) == {"unplaced"}
-        assert T.bin_state(tmp) == "labelled"
+        assert set(tc["category_id"]) == {"cat_1"} and set(tc["category_assignment"]) == {"agent"}
     finally:
         shutil.rmtree(tmp)
 

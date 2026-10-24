@@ -12,7 +12,8 @@ explanation of each one).  The section "Analytical pipeline" at the end holds
 the settings of the period-bin pipeline designed in session 04
 (docs/session-04_2026-10-22/01_analytical-pipeline-design.md, approved
 2026-10-22) and implemented in session 05 (code/06-analysis-pipeline.py);
-the approvals of 2026-10-23 are in docs/session-05_2026-10-23/00_approvals.md.
+the approvals of 2026-10-23 are in docs/session-05_2026-10-23/00_approvals.md and those of
+2026-10-24 (two-step taxonomy protocol D5, prompt v1.2) in docs/session-06_2026-10-24/00_approvals.md.
 """
 from __future__ import annotations
 import datetime as dt
@@ -117,7 +118,8 @@ ERA_MERGE_MIN_SIMILARITY = 0.85
 # LLM labelling (two-analyst debate, as in the template paper)
 # ---------------------------------------------------------------------------
 LLM_MODEL = "Qwen/Qwen3-1.7B"          # the brief's model (design §7.1, 2026-10-22); Apache-2.0; revision pinned below
-LLM_MODEL_LARGE = "Qwen/Qwen3-4B"      # optional comparison on bin 1 (design §12.4; weights cached in .hf-cache)
+LLM_MODEL_LARGE = "Qwen/Qwen3-4B"      # NOT USED: the optional 4B comparison (design F9/§12.4) was dropped by the author on
+                                       # 2026-10-24 — the pipeline stays with Qwen3-1.7B; kept only so --llm can name it
 LLM_MODEL_ALT = "microsoft/Phi-4-mini-instruct"   # optional comparison (MIT licence)
 LLM_MAX_NEW_TOKENS = 500               # used by the exploratory tool (05); the bin pipeline uses the *_LABEL/_TAXONOMY values
 LLM_TEMPERATURE = 0                    # greedy decoding for reproducibility (design F12; was 0.2 in session 02)
@@ -194,9 +196,18 @@ MAX_ROUNDS = 5                         # decision D2: cap on debate rounds
 LLM_MAX_NEW_TOKENS_LABEL = 600         # S3a answer
 LLM_MAX_NEW_TOKENS_TAXONOMY = 8000     # S3b answer (design said 4,000; raised 2026-10-23, review finding R2)
 LLM_POST_MAX_CHARS = 300               # each sample post shown to the analysts is truncated to this length
-TAXONOMY_MAX_ITEMS = 100               # above this many topics S3b uses the chunking fallback (design §7.4)
-TAXONOMY_CHUNK_SIZE = 80
 TAXONOMY_KEYWORDS_PER_TOPIC = 8        # keywords per topic line in the S3b items
+# S3b protocol (decision D5, 2026-10-24; dry-run finding D2: Qwen3-1.7B cannot partition 92 topics in one prompt):
+#   "two_step"  = the analysts first agree on the bin's category definitions (no topic ids), then assign the topics to
+#                 those categories, one debate item per TAXONOMY_ASSIGN_BATCH topics (1 = one debate per topic);
+#   "partition" = the v1.1 single-prompt protocol (categories with explicit `topics` lists; chunking fallback above
+#                 TAXONOMY_MAX_ITEMS), kept for comparison and replay of the session-05 dry run.
+TAXONOMY_PROTOCOL = "two_step"
+TAXONOMY_ASSIGN_BATCH = 1              # topics per assignment prompt (author's decision 2026-10-24: one topic per item)
+LLM_MAX_NEW_TOKENS_DEFINE = 4000       # step-1 answer (10-20 categories x ~100 tokens, with margin)
+LLM_MAX_NEW_TOKENS_ASSIGN = 800        # step-2 answer (one {topic_id, category_id} pair per topic in the item)
+TAXONOMY_MAX_ITEMS = 100               # partition protocol only: above this many topics S3b uses the chunking fallback (design §7.4)
+TAXONOMY_CHUNK_SIZE = 80               # partition protocol only
 LLM_JSON_SALVAGE = True                # recover answers whose only defect is bracket syntax (N11, 2026-10-23 dry run);
                                        # strict JSON is tried first; recovered answers are marked parsed_via="salvage"
                                        # in the transcript. False = design §7.1 literally (second failure = no answer).

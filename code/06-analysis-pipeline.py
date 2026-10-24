@@ -23,7 +23,8 @@ STAGES (design §3)                                            reads -> writes
   label       S3a two-agent cluster labelling (resumable)     bin-N/ -> labels/topic_<id>.json, labels.jsonl, topics_labelled.csv,
                                                               topic_overrides.csv (template)   -> co-author review
   taxonomy    S3b two-agent discourse taxonomy of the bin     topics_labelled + topic_overrides -> taxonomy.json, categories.csv,
-                                                              topic_categories.csv, category_overrides.csv (template) -> review
+              (two-step protocol D5: definitions, then one   topic_categories.csv, taxonomy_definitions.json (checkpoint),
+              assignment debate per topic; prompt v1.2)      category_overrides.csv + topic_category_overrides.csv (templates) -> review
   sentiment   S4 VADER per post (title; title + body)         yearly CSVs -> data/analysis/sentiment.csv (+ validation sample)
   collect     S5 post_variables.csv + aggregated tables       S0–S4 (+ overrides) -> data/analysis/post_variables.csv (+ .json),
                                                               results/analysis/topic_labels_all_bins.csv, categories_all_bins.csv
@@ -44,6 +45,8 @@ Options: --bin N | --bins 1-9   --device auto|cuda|mps|cpu   --embedding-model <
          --llm <hf id>   --sampling greedy|seeded   --max-docs N (debug subsample, guard off)   --max-topics N
          --outlier-threshold T   --years 2010 2011   --out-root PATH (dry runs: redirects results/analysis AND
          data/analysis)   --allow-partial (collect)   --force
+         --taxonomy-protocol two_step|partition (default config.TAXONOMY_PROTOCOL; "partition" = the v1.1 single prompt)
+         --assign-batch N (topics per assignment item, default config.TAXONOMY_ASSIGN_BATCH = 1)
 Local dry run on bin 1 (design §16): --max-docs 3000 --embedding-model sentence-transformers/all-MiniLM-L6-v2
          --out-root results/dry-runs/bin1-3000
 """
@@ -63,6 +66,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))   # make `topicmodel` i
 from topicmodel import config as C
 from topicmodel import data, embed, bins as BINS, model as M, sentiment, report, tagging, prompts as P
 from topicmodel import agents as G
+from collections import Counter
 
 log = logging.getLogger("topicmodel")
 STAGES = ["bins", "embed", "topics", "reassign", "label", "taxonomy", "sentiment", "collect", "report"]
@@ -333,7 +337,7 @@ def stage_label(args, paths: Paths, b: int):
                                   "agreement_modes": labelled["agreement_mode"].value_counts().to_dict() if len(labelled) else {},
                                   "round_iterations": labelled["round_iterations"].value_counts().sort_index().to_dict() if len(labelled) else {},
                                   "llm_stats": llm.stats, "max_topics": args.max_topics, "elapsed_min": round((time.time() - t0) / 60, 1),
-                                  "run_at": dt.datetime.now().isoformat(timespec="seconds")})
+                                  "run_at": dt.datetime.now().isoformat(timespec="seconds"), "prompts": P.stage_prompts("label")})
     render_report(args, paths, b)
 
 
@@ -341,19 +345,41 @@ def stage_taxonomy(args, paths: Paths, b: int):
     bdir = paths.bin_dir(b)
     if not (bdir / "topics_labelled.csv").exists():
         raise SystemExit(f"bin {b}: run --stage label first")
+    ckpt = bdir / "taxonomy_definitions.json"
     if (bdir / "categories.csv").exists() and not args.force:
-        log.info("taxonomy: bin %d already has categories.csv; use --force", b); return
+        prev = "?"
+        if (bdir / "taxonomy.json").exists():
+            prev = json.loads((bdir / "taxonomy.json").read_text(encoding="utf-8")).get("protocol", "partition (v1.1 output)")
+        log.info("taxonomy: bin %d already has categories.csv (protocol %s); use --force", b, prev); return
+    if args.force and ckpt.exists():
+        ckpt.unlink()
+        log.info("taxonomy: --force removed the step-1 checkpoint %s (definitions will be debated again)", ckpt.name)
     t0 = time.time()
     te = np.load(bdir / "topic_embeddings.npy")
     info = BINS.bin_info(b)
+    protocol = args.taxonomy_protocol or C.TAXONOMY_PROTOCOL
+    batch = args.assign_batch or C.TAXONOMY_ASSIGN_BATCH
     llm = get_llm(args)
-    cats = G.run_taxonomy(bdir, b, lambda t: te[int(t)], llm, str(info["start"]), str(info["end"]))
-    update_config(bdir, "taxonomy", {**llm.describe(), "prompt_version": P.PROMPT_VERSION, "n_categories": int(len(cats)),
-                                     "agreement_mode": cats["agreement_mode"].iloc[0] if len(cats) else None,
-                                     "round_iterations": int(cats["round_iterations"].iloc[0]) if len(cats) else None,
-                                     "needs_review": bool(cats["needs_review"].iloc[0]) if len(cats) else None,
-                                     "n_repaired": int(cats["n_repaired"].sum()) if len(cats) else 0, "llm_stats": llm.stats,
-                                     "elapsed_min": round((time.time() - t0) / 60, 1), "run_at": dt.datetime.now().isoformat(timespec="seconds")})
+    cats = G.run_taxonomy(bdir, b, lambda t: te[int(t)], llm, str(info["start"]), str(info["end"]), protocol=protocol, assign_batch=batch)
+    tj = json.loads((bdir / "taxonomy.json").read_text(encoding="utf-8"))
+    items = tj.get("assignment_items") or []
+    update_config(bdir, "taxonomy", {**llm.describe(), "prompt_version": P.PROMPT_VERSION, "protocol": tj.get("protocol"),
+                                     "assign_batch": tj.get("assign_batch"),
+                                     "n_categories_defined": len(tj["categories_defined"]) if tj.get("categories_defined") is not None else None,
+                                     "n_categories": int(len(cats)), "categories_dropped_empty": tj.get("categories_dropped_empty"),
+                                     "definitions_cleanup": tj.get("definitions_cleanup"),
+                                     "agreement_mode": cats["agreement_mode"].iloc[0] if len(cats) else tj.get("agreement_mode"),
+                                     "round_iterations": int(cats["round_iterations"].iloc[0]) if len(cats) else tj.get("round_iterations"),
+                                     "needs_review": bool(cats["needs_review"].iloc[0]) if len(cats) else tj.get("needs_review"),
+                                     "n_repaired": int(cats["n_repaired"].sum()) if len(cats) else 0,
+                                     "n_unplaced": sum(v == "unplaced" for v in tj["category_assignment"].values()),
+                                     "n_items": len(items), "assignment_agreement_modes": dict(Counter(i["agreement_mode"] for i in items)),
+                                     "n_items_contested": sum(1 for i in items if i.get("n_contested")),
+                                     "n_answers_salvaged": tj.get("n_answers_salvaged"),
+                                     "token_budgets": {"define": C.LLM_MAX_NEW_TOKENS_DEFINE, "assign": C.LLM_MAX_NEW_TOKENS_ASSIGN,
+                                                       "partition": C.LLM_MAX_NEW_TOKENS_TAXONOMY},
+                                     "llm_stats": llm.stats, "elapsed_min": round((time.time() - t0) / 60, 1),
+                                     "run_at": dt.datetime.now().isoformat(timespec="seconds"), "prompts": P.stage_prompts("taxonomy")})
     render_report(args, paths, b)
 
 
@@ -420,6 +446,9 @@ def main():
     p.add_argument("--years", type=int, nargs="*", help="sentiment: restrict to these years")
     p.add_argument("--out-root", default=None, help="write results/analysis and data/analysis under this root (dry runs)")
     p.add_argument("--allow-partial", action="store_true"); p.add_argument("--force", action="store_true")
+    p.add_argument("--taxonomy-protocol", default=None, choices=["two_step", "partition"],
+                   help="S3b protocol (default config.TAXONOMY_PROTOCOL; 'partition' = the v1.1 single prompt)")
+    p.add_argument("--assign-batch", type=int, default=None, help="topics per assignment item (default config.TAXONOMY_ASSIGN_BATCH)")
     args = p.parse_args()
     paths = Paths(args.out_root)
     per_bin = args.stage in ("embed", "topics", "reassign", "label", "taxonomy", "report")

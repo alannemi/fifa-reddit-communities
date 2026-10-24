@@ -3,8 +3,11 @@ Stage S5 — collect every post's analysis variables and aggregate the topic lab
 ======================================================================================================
 Inputs (all join tables by post id):  data/analysis/period_bins.csv, data/analysis/sentiment.csv and, per bin,
 results/analysis/bin-N/{documents.csv, topics.csv, topics_labelled.csv, topic_overrides.csv, topic_categories.csv,
-categories.csv, category_overrides.csv}.  Overrides are applied here (never in place), so the agents' values stay
-auditable (`topic_id_raw`, `category_id_agent`, `name_agent`).
+categories.csv, category_overrides.csv, topic_category_overrides.csv}.  Overrides are applied here (never in place), so
+the agents' values stay auditable (`topic_id_raw`, `category_id_agent`, `name_agent`).  Order of the category
+overrides (F28, 2026-10-24): `category_id_agent` = the agents' value; then `final_category_id` moves of
+topic_category_overrides.csv on the topic that survives `merge_into`; then the category merges of
+category_overrides.csv; then topic lists and sizes are recomputed (a category emptied by moves stays with n_topics 0).
 Outputs:
   data/analysis/post_variables.csv (+ .json sidecar)  one row per clean post, the eight codebook §4.9 columns plus
                                                        the two audit columns; the input of 07-tag-corpus.R
@@ -25,7 +28,7 @@ import pandas as pd
 
 from . import config as C
 from . import bins as BINS
-from .agents import apply_topic_overrides, apply_category_overrides, read_overrides, _resolve_chain
+from .agents import apply_topic_overrides, apply_category_overrides, read_overrides, read_final_categories, ASSIGN_COLS
 
 log = logging.getLogger("topicmodel")
 
@@ -34,7 +37,7 @@ POST_COLUMNS = ["id", "period_bin", "period_type", "topic_id", "topic_assignment
 AUDIT_COLUMNS = ["topic_id_raw", "category_id_agent"]
 LABEL_COLUMNS = ["period_bin", "topic_id", "name", "purpose", "emotion_tone", "tone_category", "description",
                  "inclusion_cues", "round_iterations", "agreed", "agreement_mode", "needs_review", "analyst_a_final",
-                 "analyst_b_final", "category_id", "category_name", "category_assignment", "n_cluster", "n_total",
+                 "analyst_b_final", "category_id", "category_name", "category_assignment", *ASSIGN_COLS, "n_cluster", "n_total",
                  "share", "keywords", "llm_model", "llm_revision", "prompt_version", "decoding", "name_agent", "merged_from"]
 CATEGORY_COLUMNS = ["period_bin", "category_id", "name", "purpose", "emotion_tone", "tone_category", "description",
                     "inclusion_cues", "topic_ids", "n_topics", "n_posts", "share", "round_iterations", "agreed",
@@ -103,6 +106,18 @@ def load_bin_outputs(bin_dir: Path, b: int) -> dict:
         cats, cmerges = apply_category_overrides(cats_raw, read_overrides(bin_dir / "category_overrides.csv"))
         out["category_merges"] = cmerges
         tmap["category_id_agent"] = tmap["category_id"]
+        # F28: topic-level moves (topic_category_overrides.csv) on the surviving topics, before the category merges
+        moves = read_final_categories(bin_dir / "topic_category_overrides.csv")
+        applied = {}
+        for t, cid in moves.items():
+            if t in merges:
+                log.warning("bin %d: topic_category_overrides for topic %d ignored — the topic was merged into %d", b, t, merges[t]); continue
+            sel = tmap["topic_id"].astype(int) == t
+            if not sel.any():
+                log.warning("bin %d: topic_category_overrides names topic %d, which has no category row", b, t); continue
+            tmap.loc[sel, "category_id"] = cid
+            applied[t] = cid
+        out["category_moves"] = applied
         tmap["category_id"] = tmap["category_id"].map(lambda c: cmerges.get(c, c))
         cmerged_from = {}
         for old, new in cmerges.items():
@@ -123,12 +138,17 @@ def load_bin_outputs(bin_dir: Path, b: int) -> dict:
         labels["category_id"] = labels["topic_id"].astype(str).map(cat_of).fillna("")
         labels["category_name"] = labels["category_id"].map(name_of).fillna("")
         labels["category_assignment"] = labels["topic_id"].astype(str).map(assign_of).fillna("")
+        for k in ASSIGN_COLS:   # per-topic assignment debate (two-step protocol); empty for v1.1 outputs
+            m = dict(zip(tmap["topic_id"].astype(str), tmap[k])) if k in tmap.columns else {}
+            labels[k] = labels["topic_id"].astype(str).map(m).fillna("")
         docs["category_id"] = docs["topic_id"].map(lambda t: cat_of.get(t, "") if t not in ("", "-1") else "")
         docs["category_id_agent"] = docs["topic_id"].map(lambda t: cat_agent_of.get(t, "") if t not in ("", "-1") else "")
     else:
         docs["category_id"] = ""; docs["category_id_agent"] = ""
         if labels is not None:
             labels["category_id"] = ""; labels["category_name"] = ""; labels["category_assignment"] = ""
+            for k in ASSIGN_COLS:
+                labels[k] = ""
     out.update(posts=docs, labels=labels, categories=cats, topics=topics)
     return out
 

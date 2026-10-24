@@ -40,7 +40,7 @@ fifa-reddit-communities/
 │   ├── 08-validate-analysis.R        12 check families on the tagged files (fingerprints of the original columns)
 │   ├── topicmodel/                   the Python package behind 05 and 06 (config.py holds every setting;
 │   │                                  bins, embed, model, prompts, agents, sentiment, tagging, report)
-│   ├── tests/test_pipeline_units.py  13 unit checks that need no GPU and no language model
+│   ├── tests/test_pipeline_units.py  19 unit checks that need no GPU and no language model
 │   ├── requirements-topicmodel.txt   pinned Python environment (local)
 │   └── requirements-colab.txt        the few packages installed on top of Colab's RAPIDS stack
 ├── results/analysis/             ← the analytical pipeline's outputs: bin-1 … bin-9/ (topics, labels, taxonomy,
@@ -105,12 +105,14 @@ chapter's analysis variables. One post = one document (title + up to 1,000 chara
 into **nine period bins** (five World Cup tournament periods, four interim periods; `period_bin`); for each bin a
 BERTopic model (mpnet sentence embeddings → UMAP → HDBSCAN with a 50–100-topic guard → c-TF-IDF keywords) assigns
 every post a `topic_id`; two Qwen3-1.7B "analyst" agents that must agree (multi-turn debate, at most five rounds)
-name and describe every topic (S3a) and then group each bin's topics into a discourse taxonomy (`category_id`, S3b);
+name and describe every topic (S3a) and then build each bin's discourse taxonomy in two steps — they first agree on the
+category definitions, then assign each topic to one category in its own debate (`category_id`, S3b; decision D5 of 2026-10-24);
 VADER scores every title (`post_sentiment`). Co-authors review the labels and taxonomies through editable override
 files before stage S6 (`code/07-tag-corpus.R`) appends the eight columns (codebook §4.9) to the master and yearly
 files. Design with every setting and its reason: `docs/session-04_2026-10-22/01_analytical-pipeline-design.md`;
-approvals and implementation notes: `docs/session-05_2026-10-23/`; how to run it: `memory/workflows.md` §7 and the
-session-06 runbook (`docs/session-05_2026-10-23/03_runbook-session-06.md`).
+approvals and implementation notes: `docs/session-05_2026-10-23/` and `docs/session-06_2026-10-24/` (the two-step
+taxonomy protocol and the Colab test batch); how to run it: `memory/workflows.md` §7 and the runbook
+(`docs/session-05_2026-10-23/03_runbook-session-06.md`).
 
 `code/05-topic-model.py` (year / ±2-month window / era runs) remains as the exploratory tool from session 02; its 2010
 test outputs were removed on 2026-10-23 (git history up to `6eeb0fee`; see
@@ -130,7 +132,7 @@ Rscript code/03-data-validation.R
 # Python environment (one-time)
 python3 -m venv .venv && .venv/bin/pip install -r code/requirements-topicmodel.txt
 export HF_HOME=$PWD/.hf-cache TOKENIZERS_PARALLELISM=false
-.venv/bin/python code/tests/test_pipeline_units.py                       # 13 checks, no GPU needed
+.venv/bin/python code/tests/test_pipeline_units.py                       # 19 checks, no GPU needed
 
 # the analytical pipeline (full runs on Colab: code/06b-analysis-pipeline-colab.ipynb)
 .venv/bin/python code/06-analysis-pipeline.py --stage bins               # period_bin for every post (≈ 3 min)

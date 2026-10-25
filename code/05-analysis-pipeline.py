@@ -379,6 +379,19 @@ def stage_reassign(args, paths: Paths, b: int):
     tagging.write_status(bdir)
 
 
+# ---------------------------------------------------------------------------
+# S3a
+# ---------------------------------------------------------------------------
+_LLM = None
+
+
+def get_llm(args):
+    global _LLM
+    if _LLM is None:
+        _LLM = G.LLM(args.llm, embed.get_device(args.device), sampling=args.sampling)
+    return _LLM
+
+
 def stage_label(args, paths: Paths, b: int):
     bdir = paths.bin_dir(b)
     if not (bdir / "documents.csv").exists():

@@ -36,6 +36,27 @@ def check(name, fn):
 
 
 # ---------------------------------------------------------------------------
+def test_script_names_defined():
+    """Every global name that a function of the stage script or the review-pack script reads must be defined at module
+    level (import, def, assignment) or be a builtin. Added 2026-10-25 after a rewrite of stage_reassign had taken the
+    LLM loader between two functions with it (NameError: get_llm, found only when Colab reached the label stage)."""
+    import builtins, symtable
+    for script in ("05-analysis-pipeline.py", "08-review-pack.py"):
+        src = (Path(__file__).resolve().parents[1] / script).read_text(encoding="utf-8")
+        top = symtable.symtable(src, script, "exec")
+        defined = {sym.get_name() for sym in top.get_symbols() if sym.is_assigned() or sym.is_imported() or sym.is_namespace()}
+        defined |= set(dir(builtins)) | {"__file__", "__name__", "__doc__"}
+        missing = set()
+        def walk(tbl):
+            for child in tbl.get_children():
+                for sym in child.get_symbols():
+                    if sym.is_global() and sym.is_referenced() and sym.get_name() not in defined:
+                        missing.add(f"{child.get_name()}: {sym.get_name()}")
+                walk(child)
+        walk(top)
+        assert not missing, f"{script}: undefined global name(s) {sorted(missing)}"
+
+
 def test_paths_and_tones():
     # repository layout (PIPELINE_ROOT unset)
     p = C.resolve_paths(None)

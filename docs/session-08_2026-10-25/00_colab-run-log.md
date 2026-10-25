@@ -368,3 +368,12 @@ run fails A6 only because 80 topics have no label there — the expected result.
 3 from 45.8 % to about 16 %, with roughly 45 % of each bin's former outliers carrying a second topic. **Open:** the author's
 confirmation of the gate tolerance; the co-authors' coding of the four bands on bin 1 and one large bin (the 35th-percentile band
 first) before the data files are final.
+
+**On Colab (2026-10-25, 20:01 UTC, commit `acac7988`).** Cell 3.4 applied the tiers: **bin 1** T = 0.4971, C = 0.6173 →
+681 reassigned, 1,537 dual, **12.2 % outliers left** (raw 34.8 %); **bin 3** T = 0.5634, C = 0.6755 → 7,472 reassigned,
+16,826 dual, **16.0 % left** (raw 45.8 %); bin 4's pre-D8 clustering (74 topics) got them too (19.7 % left) but is refitted
+by cell 3.5 anyway. Cell 3.5 then passed bin 3 through the gate (`OUTLIER_GATE` 0.50) and **failed at the label stage with
+`NameError: get_llm`**: the rewrite of `stage_reassign` in the D9 commit had replaced the text up to the next function and
+taken the LLM loader (`_LLM`, `get_llm`) that sat between the two with it. Restored the same evening; a static check
+(`test_script_names_defined`, Python's `symtable`) now fails the unit checks when a function of the stage script or the
+review-pack script reads a global name that is not defined — the class of defect that only shows when a stage is reached.

@@ -396,3 +396,49 @@ neither analyst returned a usable answer); the review pack, four calibration sam
 `results/analysis/bin-5/`; `08-review-pack.py check --bin 5` finds no problems. Local `collect --allow-partial` rebuilt
 `topic_labels_all_bins.csv` and the crosswalk template with bins 1, 3 and 5 (987 topics). Per bin, the two tournament runs so far
 took 29–33 min end to end; the three remaining tournament bins (7, 9, then 2) should follow at that pace, the interim bins slower.
+
+## 14. The gate stopped the loop at bin 7: the guard hit the floor with too few topics (2026-10-25, 20:56–21:04 UTC)
+
+After bin 5, cell 3.5 embedded 2022 and 2023 (2.2 min, now cached) and clustered **bin 7** (the 2022 World Cup period, 1 July 2022 –
+28 February 2023: 41,438 documents, 41,397 modelled). The density target of D8 for this size is **207–310 topics**. The guard's
+first trial, at the floor `min_cluster_size` 25, gave **172 topics with 35.6 % raw outliers** — *too few* topics, not too many.
+The guard moves down by ÷ 1.5 to get more topics, but it never goes below the floor (25 → 17 → clamped to 25, already tried), so it
+stopped after one trial with `converged: false` and kept the floor. The topics stage completed normally (5.6 min; tiers
+T = 0.5626, C = 0.6887 → 2,950 reassigned, 6,633 dual, **12.5 % outliers left**; four calibration samples written), and the gate
+then failed on the convergence half of `gate_ok` — the outlier share (35.6 %) is the lowest of the three large tournament bins.
+Cell 3.3 run afterwards changed nothing (topics skipped, same assertion), as with bin 3 (§12). Nothing is labelled yet.
+
+This is the first bin where the two constraints of D8 conflict: a topic holds at least 25 posts (design §6.1) *and* the bin has
+50–75 raw topics per 10,000 posts. Bin 7 reaches 41.5 per 10,000 at the floor (bin 1: 66; bin 3: 58; bin 5: 51).
+
+**Grid, run locally on the cached UMAP array** (`umap_5d.npy` from Drive; CPU `hdbscan`, so the counts are indicative — at the
+Colab setting the CPU gives 163 topics / 32.5 % where cuML gave 172 / 35.6 %; cell 3.3b with `GATE_BIN = 7` gives the exact figures
+in seconds). At the floor of 25:
+
+| `min_samples` | selection | topics | in 207–310 | raw outliers | largest topic |
+|---|---|---|---|---|---|
+| 10 (in force) | eom | 163 (cuML 172) | no | 32.5 % (35.6) | 4.3 % |
+| 5 | eom | 199 | no | 31.4 % | 4.3 % |
+| **3** | eom | **223** | **yes** | **31.0 %** | 4.3 % |
+| 10 | leaf | 250 | yes | 51.1 % | 1.5 % |
+| 5 | leaf | 297 | yes | 50.5 % | 1.2 % |
+| 3 | leaf | 324 | no | 46.6 % | 1.4 % |
+
+Larger `min_cluster_size` (40, 60, 100) gives 65–202 topics, all below the target. Below the floor, for information only (not a
+candidate: §6.1): 20 posts with `min_samples` 5 → 252 topics (31.5 %); 15 posts with `min_samples` 10 → 273 (31.9 %). Leaf
+selection reaches the target only by declaring half the posts noise, over the gate.
+
+**Options for the author.** (a) **Accept the floor-bound clustering**: 172 topics (41.5 per 10,000), 35.6 % raw outliers, tiers
+applied. Rule: when the guard stops at the floor with too few topics, the floor wins over the density target and the bin passes
+the gate as *floor-bound* (recorded in `config.json → topics.guard`, shown in `status`); the clustering settings stay identical
+for every bin; nothing refits; re-running cell 3.5 goes straight to the labelling (172 topics, ≈ 7 min) and the hand-back.
+(b) **Meet the target for bin 7 alone** with `min_samples` 3 (≈ 223 topics, ≈ 31 % raw outliers): a per-bin override in
+`config.setting()` (code and a unit check, about half an hour), refit with `--force --keep-umap` (≈ 6 min; the safeguard moves the
+four calibration samples to `results/stale/`, no labels exist yet) and labelling of ≈ 223 topics (≈ 9 min) — a documented per-bin
+exception to the tournament setting. (c) `min_samples` 3 for every tournament bin: re-cluster and relabel bins 1, 3 and 5
+(≈ 1.3 h) and restart the bin-1 review — not recommended. Lowering the floor contradicts §6.1; leaf selection fails the outlier gate.
+
+The assistant recommends **(a)**: the guard did what D8 says ("never below the floor", keep the trial nearest the range); the
+shortfall is 17 % below the lower bound while the outlier share is the best of the large bins; one setting for every bin is easier
+to report than a per-bin `min_samples`; and the dual tier already carries the finer distinctions a smaller cluster size would
+make. **Decision pending (author).** Until it is taken, cell 3.5 stops at bin 7 again (bins 9, 2, 4, 6, 8 wait behind it).

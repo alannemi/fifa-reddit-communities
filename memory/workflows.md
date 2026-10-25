@@ -1,8 +1,8 @@
 # Workflows (how to re-run things)
 
-All commands run from the repository root
-(`…/SHARED FOLDER - FIFA Chapter/fifa-reddit-communities`). The repository is not under git; it is
-synchronised through OneDrive, so large rewrites take a few minutes to sync.
+All commands run from the repository root. The repository is under git (GitHub `alannemi/fifa-reddit-communities`,
+since 2026-10-14); the author's working copy lives in Dropbox, and the `data/` folder is shared through OneDrive
+(`data/README.md`), so large rewrites of the data files take a few minutes to sync.
 
 ## 1. Rebuild the cleaned corpus from the raw export
 
@@ -58,41 +58,39 @@ Rscript -e 'html <- commonmark::markdown_html(readLines("data/codebook_soccer_po
   all writes with `readr::write_csv(na = "")`.
 * No row is ever discarded silently: filtered rows go to a side file with `filter_reason`.
 * Literature cited only when real and verifiable; thresholds justified from the data.
+* The R scripts 02, 03, 06 and 07 source `code/R/pipeline-utils.R` (logging, the PASS/FAIL check, the character-only
+  reader, the per-column fingerprint, `find_root`, the 42-column and 8-column specifications, the bin table); run them
+  from the repository root (`Rscript code/<script>.R`) or with the `.Rproj` open.
 
-## 6. Topic modelling (BERTopic; Python)
+## 6. The session-02 exploratory tool (removed 2026-10-25)
 
-Environment (machine-local, rebuild once per machine):
-```bash
-python3 -m venv .venv && .venv/bin/pip install -r code/requirements-topicmodel.txt
-```
-Runs (from the repository root; weights cache in `.hf-cache/`, results in `results/topic-models/<run>/`):
-```bash
-export HF_HOME=$PWD/.hf-cache TOKENIZERS_PARALLELISM=false
-.venv/bin/python code/05-topic-model.py --run window --worldcup 2010          # tournament window (±2 months)
-.venv/bin/python code/05-topic-model.py --run year --year 2010                # calendar year
-.venv/bin/python code/05-topic-model.py --run era --era 2010                  # align the era's year models (run years first)
-.venv/bin/python code/05-topic-model.py --label-only results/topic-models/window-wc2010 --llm Qwen/Qwen3-1.7B   # LLM labels, resumable
-.venv/bin/python code/05-topic-model.py --run year --year 2010 --apply-merges # after editing topic_merge_table.csv
-```
-All settings: `code/topicmodel/config.py` (each run also writes its effective settings to `config.json`).
-Google Colab (GPU, full corpus): `code/05b-topic-model-colab.ipynb` — upload `code/` and `data/yearly datasets/` to Drive.
-Design and plain-language explanation: `docs/session-02_2026-10-13/02_topic-modelling-design.md`.
-These year/window/era runs are now **exploratory**; the chapter's analysis uses the period-bin pipeline of §7.
-The 2010 test outputs (`window-wc2010/`, `year-2010/`) and the MiniLM embedding cache were deleted on 2026-10-23
-(author's decision, session 05); re-run the commands above to regenerate them if ever needed.
+`code/05-topic-model.py` (calendar-year, ±2-month tournament-window and era runs) and `05b-topic-model-colab.ipynb` were
+the exploratory tool of session 02; the period-bin pipeline of §7 superseded them and they were removed from `code/` in
+session 07 (decision H1; code in git history up to commit `1ad6e489`). Their design and the 2010 test case remain in
+`docs/session-02_2026-10-13/` and `docs/session-03_2026-10-14/`.
 
-## 7. Analytical pipeline (period bins → BERTopic → two-agent labels → VADER → tagging) — implemented in session 05
+## 7. The analytical pipeline (period bins → BERTopic → two-agent labels and taxonomies → VADER → tagging)
 
 Design (settings, prompts, outputs, flags, decisions): `docs/session-04_2026-10-22/01_analytical-pipeline-design.md`.
-Approvals, implementation notes, dry-run log and the runbook for the run session: `docs/session-05_2026-10-23/`.
-The two-step taxonomy protocol (decision D5, 2026-10-24, prompt v1.2) and the Colab test batch: `docs/session-06_2026-10-24/`.
-Variables it adds: codebook §4.9. Program: `code/06-analysis-pipeline.py` (one `--stage` per call; every stage skips
-when its output exists, `--force` re-runs; per bin `results/analysis/bin-N/config.json` + `log.txt`).
+Approvals, implementation notes, dry-run log: `docs/session-05_2026-10-23/`; the two-step taxonomy protocol (decision D5,
+prompt v1.2): `docs/session-06_2026-10-24/`; the consolidated code, the path root and the Drive layout:
+`docs/session-07_2026-10-25/` (runbook for the Colab run: `02_runbook-colab-run.md`). Variables it adds: codebook §4.9.
+Program: `code/05-analysis-pipeline.py` (one `--stage` per call; every stage skips when its output exists, `--force`
+re-runs; per bin `config.json` + `log.txt`; every stage logs the effective paths). Package: `code/topicmodel/` (every
+setting in `config.py`).
+
+**Paths.** By default the repository layout: `data/yearly datasets` (input), `data/analysis` (join tables),
+`results/analysis` (bin folders + aggregated tables), `results/embeddings` (embedding cache), `.hf-cache` (model weights).
+`PIPELINE_ROOT=<folder>` re-roots everything that persists on the flat layout of the shared Drive folder
+`MyDrive/fifa-communities/` (`yearly datasets/`, `analysis/`, `results/`, `embeddings/`, `hf-cache/`); `PIPELINE_YEARLY_DIR`
+overrides the input folder alone (the Colab notebook points it at a local copy of the CSVs). `--out-root PATH` is for dry
+runs: it writes `PATH/results/analysis` and `PATH/data/analysis` (repository-shaped, so the R scripts read them) and leaves
+the input and the caches alone. `HF_HOME` is set by the program to the model cache when unset.
 
 ```bash
-export HF_HOME=$PWD/.hf-cache TOKENIZERS_PARALLELISM=false
-P=.venv/bin/python; S=code/06-analysis-pipeline.py
-$P code/tests/test_pipeline_units.py                 # 19 unit checks (no GPU, no LLM), ~1 min
+export TOKENIZERS_PARALLELISM=false
+P=.venv/bin/python; S=code/05-analysis-pipeline.py
+$P code/tests/test_pipeline_units.py                 # 20 unit checks (no GPU, no LLM), ~1 min
 $P $S --stage bins                                   # S0: data/analysis/period_bins.csv (+ summary; checks Σ = 1,302,021)
 $P $S --stage embed --bin 1                          # S1: mpnet embeddings, cached per year (GPU)
 python -m cuml.accel $S --stage topics --bin 1       # S2: BERTopic per bin (GPU on Colab; same command without the prefix on CPU)
@@ -104,35 +102,37 @@ $P $S --stage taxonomy --bin 1                       # S3b two-step (D5): defini
 $P $S --stage reassign --bin 1 --outlier-threshold T # D3: apply the calibrated T (seconds; see outlier_calibration/)
 $P $S --stage sentiment                              # S4: data/analysis/sentiment.csv (+ sentiment_validation_sample.csv)
 $P $S --stage collect                                # S5: data/analysis/post_variables.csv (+ .json), topic_labels_all_bins.csv, categories_all_bins.csv
-Rscript code/07-tag-corpus.R && Rscript code/08-validate-analysis.R   # S6 (local): append the 8 columns (v3.0) + 12 check families
+Rscript code/06-tag-corpus.R && Rscript code/07-validate-analysis.R   # S6 (local): append the 8 columns (v3.0) + 13 check families
 ```
-Options: `--bins 1-9` (loop), `--device auto|cuda|mps|cpu`, `--embedding-model <id>`, `--llm <id>`, `--sampling greedy|seeded`,
-`--max-topics N` (smoke test), `--years 2010 2011` (sentiment subset), `--allow-partial` (collect before all bins exist),
-`--taxonomy-protocol two_step|partition` (`partition` = the superseded v1.1 single prompt, for comparison/replay),
-`--assign-batch N` (topics per assignment item; default 1).
+Options: `--bins 1-9` (loop), `--device auto|cuda|mps|cpu`, `--embedding-model <id>` (default `config.EMBEDDING_MODEL` = mpnet),
+`--llm <id>`, `--sampling greedy|seeded`, `--max-topics N` (smoke test), `--years 2010 2011` (sentiment subset),
+`--allow-partial` (collect before all bins exist), `--taxonomy-protocol two_step|partition` (`partition` = the superseded
+v1.1 single prompt, for comparison/replay), `--assign-batch N` (topics per assignment item; default 1), `--max-docs N`
+(mechanics test on a subsample; guard off).
 Order matters: S3a review → S3b → overrides → S5 → S6; S6 refuses to write unless `post_variables.json` says `complete`.
-On Colab: `code/06b-analysis-pipeline-colab.ipynb` runs the same commands (A100 preferred; data copied from Drive to
-`/content`; results, embedding cache and `.hf-cache` symlinked to Drive). Step-by-step: `docs/session-05_2026-10-23/03_runbook-session-06.md`.
+On Colab: `code/05b-analysis-pipeline-colab.ipynb` runs the same commands (A100 preferred; the code cloned from GitHub on
+the Colab machine, the CSVs copied to its local disk, every output written to `MyDrive/fifa-communities/` through
+`PIPELINE_ROOT`; the hand-back zip rebuilds the repository paths). Step by step: `docs/session-07_2026-10-25/02_runbook-colab-run.md`.
 
 **Local dry run on bin 1** (never touches `results/analysis/` or the real `data/analysis/`). Run it on the **full bin**
 (10,002 posts, ≈ 2 min for S2 with MiniLM): a 3,000-post subsample (`--max-docs 3000`) collapses to 2 topics under
 HDBSCAN's excess-of-mass selection at the floor of 25 (session-05 dry-run log, finding D1), so it only tests mechanics.
 ```bash
-OUT=results/dry-runs/bin1-full; MINI=sentence-transformers/all-MiniLM-L6-v2
+OUT=results/dry-runs/<name>; MINI=sentence-transformers/all-MiniLM-L6-v2        # = config.EMBEDDING_MODEL_DRY_RUN
 mkdir -p $OUT/data/analysis && cp data/analysis/period_bins*.csv $OUT/data/analysis/   # or: --stage bins --out-root $OUT
 $P $S --stage embed --bin 1 --embedding-model $MINI --out-root $OUT
-$P $S --stage topics --bin 1 --embedding-model $MINI --out-root $OUT                     # add --max-docs N only for mechanics tests (guard off)
+$P $S --stage topics --bin 1 --embedding-model $MINI --out-root $OUT                     # 92 topics, 35.9 % raw outliers (2026-10-23 and 2026-10-25)
 $P $S --stage reassign --bin 1 --outlier-threshold 0.5 --embedding-model $MINI --out-root $OUT
 $P $S --stage label --bin 1 --out-root $OUT            # Qwen3-1.7B on MPS, batch 4; --max-topics 5 for a quick smoke test
-$P $S --stage taxonomy --bin 1 --out-root $OUT
+$P $S --stage taxonomy --bin 1 --out-root $OUT         # ≈ 1 h on the Mac for 92 topics (prefill of the long prompts), minutes on an A100
 $P $S --stage sentiment --years 2010 --out-root $OUT
 $P $S --stage collect --allow-partial --out-root $OUT
 # S6 on a mini corpus: the 2010 yearly file + the dry run's post_variables, written to a separate root
 mkdir -p $OUT/r-mini/data/yearly\ datasets $OUT/r-mini/data/analysis
 cp "data/yearly datasets/soccer.data.cleaned-2010.csv" "$OUT/r-mini/data/yearly datasets/"; cp $OUT/data/analysis/post_variables.* $OUT/r-mini/data/analysis/
-TAG_IN_ROOT=$OUT/r-mini TAG_OUT_ROOT=$OUT/r-out TAG_ALLOW_PARTIAL=1 Rscript code/07-tag-corpus.R
-TAG_IN_ROOT=$OUT/r-mini TAG_OUT_ROOT=$OUT/r-out ANALYSIS_DIR=$OUT/results/analysis Rscript code/08-validate-analysis.R
-# the two-step taxonomy alone, on a copy of a finished dry run (session 06; ≈ 1 h on the Mac, minutes on an A100)
-cp -R results/dry-runs/bin1-full92 results/dry-runs/bin1-twostep
-$P $S --stage taxonomy --bin 1 --force --out-root results/dry-runs/bin1-twostep && $P $S --stage collect --allow-partial --out-root results/dry-runs/bin1-twostep
+TAG_IN_ROOT=$OUT/r-mini TAG_OUT_ROOT=$OUT/r-out TAG_ALLOW_PARTIAL=1 Rscript code/06-tag-corpus.R
+TAG_IN_ROOT=$OUT/r-mini TAG_OUT_ROOT=$OUT/r-out TAG_ANALYSIS_DIR=$OUT/results/analysis Rscript code/07-validate-analysis.R
 ```
+The dry runs of sessions 05–07 are under `results/dry-runs/` (gitignored): `bin1-full` (12 labelled topics), `bin1-full92`
+(all 92 topics; the single-prompt taxonomy that led to D5), `bin1-twostep` (stopped after round 1 of the definitions
+debate), `h7-bin1` (session 07: S1 + S2 after the harmonization, identical UMAP array and HDBSCAN labels).

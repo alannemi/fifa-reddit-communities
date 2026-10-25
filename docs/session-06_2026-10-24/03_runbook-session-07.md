@@ -1,5 +1,7 @@
 # Runbook for session 07 — gates, the remaining bins, S6 (carried forward from the session-05 runbook for the two-step taxonomy)
 
+> **Superseded (2026-10-25, session 07)** by `../session-07_2026-10-25/02_runbook-colab-run.md`, which carries the same steps with the renamed scripts (`05-analysis-pipeline.py`, `05b-…`, `06-tag-corpus.R`, `07-validate-analysis.R`) and the flat Drive layout `MyDrive/fifa-communities/`. The Colab test batch planned here never ran in session 06; `02_colab-run-log.md` does not exist.
+
 **For:** whoever runs the pipeline next (Alan Nemirovski; a co-author could follow it). **Assumes:** the repository at the
 state of the session-06 commits, the data folder on Drive, Colab Pro+ (A100), and the outcome of the session-06 test batch
 on bin 1 recorded in `02_colab-run-log.md`. Design references are to `../session-04_2026-10-22/01_analytical-pipeline-design.md`

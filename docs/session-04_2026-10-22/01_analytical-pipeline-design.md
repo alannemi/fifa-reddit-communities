@@ -1,4 +1,4 @@
-# Analytical pipeline design — period-binned topic modelling, two-agent labelling and sentiment (v1.2)
+# Analytical pipeline design — period-binned topic modelling, two-agent labelling and sentiment (v1.3)
 
 **Session 04, 2026-10-22/23 · FIFA Communities chapter, McGill University.**
 Decisions: Alan Nemirovski. Drafting and technical design: Claude. Brief: `00_brief.md`. Template method: the
@@ -14,7 +14,11 @@ two-step protocol — the agents first agree on a bin's category definitions, th
 (decision D5, §7.4; prompt v1.2, §7.6) — after the 92-topic dry run showed that Qwen3-1.7B cannot partition a whole bin's
 topics in one prompt (`../session-05_2026-10-23/02_dry-run-log.md` §3.8, finding D2; approvals in
 `../session-06_2026-10-24/00_approvals.md`). The bin-1 test batch on Colab is session 06; the gates of §12, bins 2–9 and S6
-follow. This document supersedes the *run structure* of `../session-02_2026-10-13/02_topic-modelling-design.md`
+follow. **Version 1.3 (2026-10-25)** records the code harmonization of session 07 — one pipeline under `code/` (the session-02
+exploratory tool removed), the scripts renumbered (`05-analysis-pipeline.py`, `05b-…-colab.ipynb`, `06-tag-corpus.R`,
+`07-validate-analysis.R`), one path root (`PIPELINE_ROOT`) and the flat Google Drive layout `MyDrive/fifa-communities/`
+(`../session-07_2026-10-25/00_approvals.md`, decisions H1–H7); nothing analytical changed. The session documents of
+October 2026 use the file names of their time. This document supersedes the *run structure* of `../session-02_2026-10-13/02_topic-modelling-design.md`
 (calendar-year, ±2-month window and era models); the modelling settings approved there are kept unless stated.
 
 ---
@@ -512,6 +516,12 @@ data/soccer_data.clean.csv, data/yearly datasets/*.csv                          
   or the Drive copy of `code/`. Data: upload `data/yearly datasets/` (2.4 GB) once to
   `MyDrive/fifa-reddit-communities/data/yearly datasets/`; at session start copy them to `/content/data` (local SSD —
   Drive I/O is slow for large CSVs). Results, the embedding cache and `.hf-cache` (model weights) live on Drive.
+* **Layout since session 07 (2026-10-25; decisions H2/H3).** Everything that persists lives in the flat Drive folder
+  `MyDrive/fifa-communities/` — `yearly datasets/` (input), `analysis/` (join tables), `results/` (`bin-N/` and the aggregated
+  tables), `embeddings/`, `hf-cache/`, `logs/`, `handback/`, `comparisons/` — through the program's root setting `PIPELINE_ROOT`
+  (no symlinks). The code is cloned from GitHub on the Colab machine; the 17 CSVs are copied once per session to its local
+  disk (`PIPELINE_YEARLY_DIR`). The hand-back zip rebuilds the repository paths. Locally the repository layout applies, with
+  the embedding cache under `results/embeddings/`. Notebook: `code/05b-analysis-pipeline-colab.ipynb`.
 * **Environment.** Install `code/requirements-topicmodel.txt` without disturbing the pre-installed RAPIDS stack
   (install the `numpy`/`scikit-learn` lines with `--no-deps`, or pin them to the versions RAPIDS ships); the notebook
   asserts that `import cuml` works after the install and that CUDA is visible; the program writes the backend it
@@ -614,6 +624,7 @@ the effective settings, guard trials, backend, CUDA/cuML versions, `pip freeze`,
 | 2026-10-24 | Qwen3-4B comparison (F9, §12.4) | **Dropped**: the pipeline stays with Qwen3-1.7B | author's decision |
 | 2026-10-24 | Colab test batch | Pass 1 (every stage once, 12 labelled topics) + the full bin 1; gates and bins 2–9 afterwards | idem |
 | 2026-10-24 F22–F30 | Consequences of the two-step protocol (above) | as listed | approvals §5 |
+| **2026-10-25 H1–H7** | Code harmonization (session 07) | **H1** the session-02 exploratory tool removed entirely; **H2** flat, purpose-named Drive layout under `MyDrive/fifa-communities/`; **H3** Drive as the root for everything that persists, code cloned on the Colab machine, CSVs copied locally, no symlinks; **H4** shared R helper file `code/R/pipeline-utils.R`; **H5** scripts renumbered 06→05, 06b→05b, 07→06, 08→07; **H6** stale tracked copies under `data/` untracked; **H7** `03-data-validation.R` accepts the v3.0 spec now | `../session-07_2026-10-25/00_approvals.md` (defaults and flags F31–F38 there); no analytical change |
 
 ## 15. Brief versus design
 
@@ -634,6 +645,15 @@ the effective settings, guard trials, backend, CUDA/cuML versions, `pip freeze`,
 | Flaws flagged for review; ask before assuming | F1–F21; four questions asked and answered (D1–D4) before the plan was finalised | §13–§14 |
 
 ## 16. Code layout for the implementation (session 05)
+
+> **Note (2026-10-25, session 07).** The layout below is the one implemented in session 05. Since session 07 there is one
+> pipeline under `code/`: `05-analysis-pipeline.py` (was `06-…`), `05b-analysis-pipeline-colab.ipynb` (was `06b-…`),
+> `06-tag-corpus.R` (was `07-…`), `07-validate-analysis.R` (was `08-…`), the new `code/R/pipeline-utils.R`; `05-topic-model.py`,
+> `05b-topic-model-colab.ipynb` and `topicmodel/label.py` were removed (the tone mapper lives in `agents.py`, its table in
+> `config.TONE_STEMS`); `config.py` lost the exploratory settings and gained the path root (`PIPELINE_ROOT`, `PIPELINE_YEARLY_DIR`,
+> `YEARLY_FILE`) and these renames: `EMBEDDING_MODEL` (mpnet; `EMBEDDING_MODEL_DRY_RUN` = MiniLM), `MIN_CLUSTER_FRACTION`,
+> `MIN_CLUSTER_FLOOR`, `TIME_BIN`, `LLM_MAX_NEW_TOKENS_PARTITION`; `model.py` keeps one builder (`build_topic_model`, `fit_model`,
+> `topic_table`, `topics_over_time`). Mapping and reasons: `../session-07_2026-10-25/01_code-harmonization-notes.md`.
 
 Reused unchanged: `code/topicmodel/data.py` (documents), `embed.py` (cache), `sentiment.py` (VADER; gains the
 title/full switch), `report.py`; `model.py` functions `build_topic_model`, `topic_table`, `topics_over_time`,
@@ -692,6 +712,11 @@ section to its function. Points where the implementation is more specific than, 
   → the shared writer; `Debate` takes the stage's token budget, salvage function and revision answer key; each stage
   logs its own prompt texts into `config.json`; review templates are regenerated unless filled in. Details:
   `../session-06_2026-10-24/01_implementation-notes.md`.
+
+* **Session 07 (2026-10-25):** no change to the method; the code was consolidated into one pipeline, the paths re-rooted
+  through `PIPELINE_ROOT`, the scripts renumbered and the Colab notebook rooted on `MyDrive/fifa-communities/`; the bin-1
+  dry run after the clean-up reproduces the session-05 UMAP array and HDBSCAN labels exactly
+  (`../session-07_2026-10-25/01_code-harmonization-notes.md` §8).
 
 ## 18. References
 

@@ -95,6 +95,30 @@ def test_guard():
     assert not r["converged"] and r["min_cluster_size"] == C.MIN_CLUSTER_FLOOR
     r = M.guard_min_cluster_size(X, 4000, False, fit=stub2)   # disabled: one fit
     assert len(r["trials"]) == 1 and r["enabled"] is False
+    # the gate diagnostic: HDBSCAN over the grid on the cached array (stub: topics = 6000 / mcs, fewer outliers with lower min_samples)
+    def stub4(X, mcs, ms, method, eps):
+        k = max(1, int(6000 / mcs)); n = len(X); n_out = int(n * ms / 20)
+        lab = np.array([i % k for i in range(n)]); lab[:n_out] = -1
+        return lab
+    g = M.hdbscan_grid(X, 100, {"min_cluster_size_factor": [1.0, 0.5], "min_samples": [10, 2], "method": ["eom", "leaf"], "epsilon": [0.0]}, fit=stub4)
+    assert len(g) == 8 and list(g.columns) == ["min_cluster_size", "min_samples", "method", "epsilon", "n_topics", "outlier_share", "largest_share", "median_size", "in_range", "seconds"]
+    row = g[(g.min_cluster_size == 100) & (g.min_samples == 10) & (g.method == "eom")].iloc[0]
+    assert row.n_topics == 60 and abs(row.outlier_share - 0.5) < 1e-6 and bool(row.in_range) is True
+    row = g[(g.min_cluster_size == 50) & (g.min_samples == 2)].iloc[0]
+    assert row.n_topics == 120 and abs(row.outlier_share - 0.1) < 1e-6 and bool(row.in_range) is False
+    assert M.cluster_stats(np.array([-1, -1, 0, 0, 0, 1])) == {"n_topics": 2, "outlier_share": 0.3333, "largest_share": 0.5, "median_size": 2}
+    # settings by period type (the decision space of a failed gate)
+    assert C.setting(10) == 10 and C.setting({"tournament": 10, "interim": 5}, "interim") == 5 and C.setting({"default": 7, "interim": 5}, "tournament") == 7
+    saved = C.TOPIC_COUNT_RANGE
+    try:
+        C.TOPIC_COUNT_RANGE = {"tournament": (50, 100), "interim": (50, 150)}
+        assert M.hdbscan_settings("interim")["topic_count_range"] == [50, 150] and M.hdbscan_settings("tournament")["min_samples"] == 10
+        g2 = M.hdbscan_grid(X, 100, {"min_cluster_size_factor": [0.5], "min_samples": [2], "method": ["eom"], "epsilon": [0.0]}, fit=stub4, period_type="interim")
+        assert bool(g2.iloc[0].in_range) is True                       # 120 topics are in range for an interim bin
+        r = M.guard_min_cluster_size(np.zeros((4000, 5)), 4000, True, fit=stub2, period_type="interim")
+        assert r["converged"] and 50 <= r["n_topics"] <= 150
+    finally:
+        C.TOPIC_COUNT_RANGE = saved
 
 
 def test_frozen_components_in_bertopic():

@@ -20,6 +20,9 @@ STAGES (design §3)                                            reads -> writes  
   topics      S2 BERTopic for one bin (frozen UMAP, guard)    S0, S1 -> <results>/bin-N/ (umap_5d.npy, hdbscan_labels_raw.npy,
                                                               documents.csv, topics.csv, topics_over_time.csv, model/, outlier_nearest.csv,
                                                               outlier_calibration/, config.json, report.html)
+  grid        diagnostic of a failed large-bin gate (§12.2):  bin-N/umap_5d.npy -> bin-N/hdbscan_grid.csv (one row per HDBSCAN
+              HDBSCAN over config.HDBSCAN_GRID on the cached   setting: topics, outlier share, largest cluster); the author chooses
+              UMAP array (GPU under cuml.accel)               the setting, then `topics --force --keep-umap`
   reassign    D3 thresholded outlier reassignment             bin-N/ (+ --outlier-threshold T or config.OUTLIER_THRESHOLD) -> rewrites
                                                               documents.csv, topics.csv, topics_over_time.csv, report.html
   label       S3a two-agent cluster labelling (resumable)     bin-N/ -> labels/topic_<id>.json, labels.jsonl, topics_labelled.csv,
@@ -53,6 +56,8 @@ OPTIONS: --bin N | --bins 1-9   --device auto|cuda|mps|cpu   --embedding-model <
   --outlier-threshold T   --years 2010 2011   --out-root PATH (dry runs: writes <PATH>/results/analysis AND
   <PATH>/data/analysis; input and caches unchanged)   --allow-partial (collect)   --force
   --keep-definitions (taxonomy with --force: keep the step-1 checkpoint and re-run the assignments only — the D6 re-run)
+  --keep-umap (topics with --force: keep umap_5d.npy, refit HDBSCAN only — after a clustering decision)   --grid '<json>' (grid stage:
+  override config.HDBSCAN_GRID, e.g. '{"min_samples": [5]}')
   --taxonomy-protocol two_step|partition (default config.TAXONOMY_PROTOCOL; "partition" = the superseded v1.1 single prompt)
   --assign-batch N (topics per assignment item; default config.TAXONOMY_ASSIGN_BATCH = 1)
 Local dry run on the full bin 1 (memory/workflows.md §7): --embedding-model sentence-transformers/all-MiniLM-L6-v2
@@ -78,7 +83,7 @@ from topicmodel import data, embed, bins as BINS, model as M, sentiment, report,
 from topicmodel import agents as G
 
 log = logging.getLogger("topicmodel")
-STAGES = ["bins", "embed", "topics", "reassign", "label", "taxonomy", "sentiment", "collect", "report"]
+STAGES = ["bins", "embed", "topics", "grid", "reassign", "label", "taxonomy", "sentiment", "collect", "report"]
 
 
 # ---------------------------------------------------------------------------
@@ -207,7 +212,7 @@ def stage_topics(args, paths: Paths, b: int):
 
     # UMAP once per bin (replayed from umap_5d.npy on re-runs with the same documents)
     umap_path = bdir / "umap_5d.npy"
-    if umap_path.exists() and not args.force:
+    if umap_path.exists() and (not args.force or args.keep_umap):     # --keep-umap: refit HDBSCAN only (a clustering decision)
         umap5d = np.load(umap_path)
         if len(umap5d) != len(modelled):
             umap5d = None
@@ -218,7 +223,7 @@ def stage_topics(args, paths: Paths, b: int):
         np.save(umap_path, umap5d)
 
     # HDBSCAN with the topic-count guard; raw labels persisted, then renumbered by size (R1)
-    guard = M.guard_min_cluster_size(umap5d, len(modelled), enabled=not args.max_docs)
+    guard = M.guard_min_cluster_size(umap5d, len(modelled), enabled=not args.max_docs, period_type=info["period_type"])
     np.save(bdir / "hdbscan_labels_raw.npy", guard["labels"])
     labels_sorted, size_map = M.renumber_by_size(guard["labels"])
 
@@ -248,6 +253,7 @@ def stage_topics(args, paths: Paths, b: int):
     meta = {"period_bin": b, "period_type": info["period_type"], "start": str(info["start"]), "end": str(info["end"]),
             "n_documents": int(len(docs)), "n_modelled": int(len(modelled)), "n_too_short": int(docs["too_short"].sum()),
             "debug_max_docs": args.max_docs or None, "embedding_model": args.embedding_model, "device": device, "backend": backend,
+            "hdbscan": M.hdbscan_settings(info["period_type"]),
             "guard": {k: v for k, v in guard.items() if k != "labels"}, "n_topics_raw": int(M.n_topics_of(topics_raw)),
             "outlier_share_raw": round(float((topics_raw == -1).mean()), 4), "outlier_threshold": T,
             "outlier_share_final": round(float((topic_id == -1).mean()), 4), "n_reassigned": int((assignment == "reassigned").sum()),
@@ -278,6 +284,28 @@ def write_bin_tables(bdir, bt, docs, modelled, topics_raw, topic_id, assignment,
 # ---------------------------------------------------------------------------
 # reassign: apply (a new) T from the persisted arrays, no refit
 # ---------------------------------------------------------------------------
+def stage_grid(args, paths: Paths, b: int):
+    """Diagnostic of a failed large-bin gate (design §12.2): HDBSCAN over config.HDBSCAN_GRID on the bin's cached UMAP
+    array; writes bin-N/hdbscan_grid.csv and the grid section of config.json. Nothing else in the bin changes."""
+    bdir = paths.bin_dir(b)
+    if not (bdir / "umap_5d.npy").exists():
+        raise SystemExit(f"bin {b}: no umap_5d.npy — run --stage topics first")
+    t0 = time.time()
+    umap5d = np.load(bdir / "umap_5d.npy")
+    guard = read_config(bdir).get("topics", {}).get("guard", {})
+    base = int(guard.get("min_cluster_size") or M.start_min_cluster_size(len(umap5d)))
+    grid = json.loads(args.grid) if args.grid else None
+    ptype = BINS.bin_info(b)["period_type"]
+    log.info("grid: bin %d (%s), %d points, base min_cluster_size %d (the guard's), backend %s", b, ptype, len(umap5d), base, M.detect_backend()["backend"])
+    table = M.hdbscan_grid(umap5d, base, grid, period_type=ptype)
+    table.to_csv(bdir / "hdbscan_grid.csv", index=False)
+    log.info("grid: %d fits in %.1f min -> %s\n%s", len(table), (time.time() - t0) / 60, bdir / "hdbscan_grid.csv", table.to_string(index=False))
+    update_config(bdir, "grid", {"base_min_cluster_size": base, "grid": {**C.HDBSCAN_GRID, **(grid or {})}, "n_fits": int(len(table)),
+                                 "settings_in_force": M.hdbscan_settings(ptype),
+                                 "backend": M.detect_backend(), "elapsed_min": round((time.time() - t0) / 60, 1),
+                                 "run_at": dt.datetime.now().isoformat(timespec="seconds")})
+
+
 def stage_reassign(args, paths: Paths, b: int):
     bdir = paths.bin_dir(b)
     cfg = read_config(bdir)
@@ -468,19 +496,20 @@ def main():
     p.add_argument("--years", type=int, nargs="*", help="sentiment: restrict to these years")
     p.add_argument("--out-root", default=None, help="dry runs: write <PATH>/results/analysis and <PATH>/data/analysis (input and caches unchanged)")
     p.add_argument("--allow-partial", action="store_true"); p.add_argument("--force", action="store_true")
-    p.add_argument("--keep-definitions", action="store_true")
+    p.add_argument("--keep-definitions", action="store_true"); p.add_argument("--keep-umap", action="store_true")
+    p.add_argument("--grid", default=None, help="grid stage: JSON overriding config.HDBSCAN_GRID keys")
     p.add_argument("--taxonomy-protocol", default=None, choices=["two_step", "partition"],
                    help="S3b protocol (default config.TAXONOMY_PROTOCOL; 'partition' = the superseded v1.1 single prompt)")
     p.add_argument("--assign-batch", type=int, default=None, help="topics per assignment item (default config.TAXONOMY_ASSIGN_BATCH)")
     args = p.parse_args()
     os.environ.setdefault("HF_HOME", str(C.LLM_CACHE_DIR))   # every loader passes cache_dir explicitly; this keeps hub metadata there too
     paths = Paths(args.out_root)
-    per_bin = args.stage in ("embed", "topics", "reassign", "label", "taxonomy", "report")
+    per_bin = args.stage in ("embed", "topics", "grid", "reassign", "label", "taxonomy", "report")
     if per_bin:
         for b in parse_bins(args):
             setup_logging(paths.bin_dir(b) / "log.txt")
             log.info("=== stage %s, bin %d === args: %s | paths: %s", args.stage, b, vars(args), paths.describe())
-            {"embed": stage_embed, "topics": stage_topics, "reassign": stage_reassign, "label": stage_label,
+            {"embed": stage_embed, "topics": stage_topics, "grid": stage_grid, "reassign": stage_reassign, "label": stage_label,
              "taxonomy": stage_taxonomy, "report": render_report}[args.stage](args, paths, b)
     else:
         setup_logging(paths.analysis_data / "pipeline-log.txt")

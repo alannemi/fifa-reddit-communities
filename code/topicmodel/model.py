@@ -93,11 +93,58 @@ def fit_umap(emb: np.ndarray) -> np.ndarray:
     return red
 
 
-def hdbscan_labels(umap5d: np.ndarray, min_cluster_size: int) -> np.ndarray:
+def hdbscan_settings(period_type: str | None = None) -> dict:
+    """The HDBSCAN choices and the guard's range in force for a bin of this period type (recorded in config.json)."""
+    return {"min_samples": int(C.setting(C.HDBSCAN_MIN_SAMPLES, period_type)), "method": C.setting(C.HDBSCAN_SELECTION_METHOD, period_type),
+            "epsilon": float(C.setting(C.HDBSCAN_EPSILON, period_type)), "topic_count_range": list(C.setting(C.TOPIC_COUNT_RANGE, period_type))}
+
+
+def hdbscan_labels(umap5d: np.ndarray, min_cluster_size: int, min_samples: int | None = None, method: str | None = None,
+                   epsilon: float | None = None, period_type: str | None = None) -> np.ndarray:
+    """One HDBSCAN fit on the frozen 5-d array; the three choices default to the settings in force for the bin's period
+    type (design §6.1; per-type values since 2026-10-25)."""
     from hdbscan import HDBSCAN
-    m = HDBSCAN(min_cluster_size=int(min_cluster_size), min_samples=C.HDBSCAN_MIN_SAMPLES, metric="euclidean",
-                cluster_selection_method="eom")
-    return np.asarray(m.fit(umap5d).labels_, dtype=int)
+    d = hdbscan_settings(period_type)
+    kw = dict(min_cluster_size=int(min_cluster_size), min_samples=int(d["min_samples"] if min_samples is None else min_samples),
+              metric="euclidean", cluster_selection_method=method or d["method"])
+    eps = d["epsilon"] if epsilon is None else epsilon
+    if eps:
+        kw["cluster_selection_epsilon"] = float(eps)
+    return np.asarray(HDBSCAN(**kw).fit(umap5d).labels_, dtype=int)
+
+
+def cluster_stats(labels: np.ndarray) -> dict:
+    """Topic count, outlier share, share of the largest cluster and the median cluster size of one labelling."""
+    lab = labels[labels != -1]
+    sizes = np.bincount(lab) if len(lab) else np.array([0])
+    sizes = sizes[sizes > 0]
+    return {"n_topics": int(len(sizes)) if len(lab) else 0, "outlier_share": round(float((labels == -1).mean()), 4),
+            "largest_share": round(float(sizes.max() / max(1, len(labels))), 4) if len(lab) else 0.0,
+            "median_size": int(np.median(sizes)) if len(lab) else 0}
+
+
+def hdbscan_grid(umap5d: np.ndarray, base_min_cluster_size: int, grid: dict | None = None, fit=hdbscan_labels,
+                 period_type: str | None = None) -> pd.DataFrame:
+    """The diagnostic of a failed large-bin gate (design §12.2): HDBSCAN refitted on the cached UMAP array over
+    config.HDBSCAN_GRID (min_cluster_size = factors of the guard's converged value, min_samples, selection method,
+    epsilon). One row per fit with the cluster statistics and whether the topic count lies in TOPIC_COUNT_RANGE.
+    `fit(umap5d, mcs, min_samples, method, epsilon)` is injectable for tests."""
+    import time as _time
+    g = {**C.HDBSCAN_GRID, **(grid or {})}
+    lo, hi = C.setting(C.TOPIC_COUNT_RANGE, period_type)
+    rows = []
+    for f in g["min_cluster_size_factor"]:
+        mcs = max(C.MIN_CLUSTER_FLOOR, int(round(base_min_cluster_size * float(f))))
+        for ms in g["min_samples"]:
+            for method in g["method"]:
+                for eps in g["epsilon"]:
+                    t0 = _time.time()
+                    st = cluster_stats(fit(umap5d, mcs, int(ms), method, float(eps)))
+                    rows.append({"min_cluster_size": mcs, "min_samples": int(ms), "method": method, "epsilon": float(eps), **st,
+                                 "in_range": lo <= st["n_topics"] <= hi, "seconds": round(_time.time() - t0, 1)})
+                    log.info("grid: mcs=%d ms=%d %s eps=%.2f -> %d topics, %.1f %% outliers, largest %.1f %%", mcs, ms, method, eps,
+                             st["n_topics"], 100 * st["outlier_share"], 100 * st["largest_share"])
+    return pd.DataFrame(rows)
 
 
 def start_min_cluster_size(n_modelled: int) -> int:
@@ -109,12 +156,15 @@ def n_topics_of(labels: np.ndarray) -> int:
     return int(len(set(labels.tolist()) - {-1}))
 
 
-def guard_min_cluster_size(umap5d: np.ndarray, n_modelled: int, enabled: bool = True, fit=hdbscan_labels) -> dict:
+def guard_min_cluster_size(umap5d: np.ndarray, n_modelled: int, enabled: bool = True, fit=hdbscan_labels,
+                           period_type: str | None = None) -> dict:
     """Topic-count guard (design §6.2): start at the relative minimum, then move ×1.5 / ÷1.5 and bisect between
-    the bracketing values until the raw topic count lies in TOPIC_COUNT_RANGE; at most GUARD_MAX_TRIALS fits;
-    never below MIN_CLUSTER_FLOOR. Keeps the trial nearest to the range; `converged` says whether it was
-    reached. `fit` is injectable for tests."""
-    lo, hi = C.TOPIC_COUNT_RANGE
+    the bracketing values until the raw topic count lies in TOPIC_COUNT_RANGE (per period type if so configured);
+    at most GUARD_MAX_TRIALS fits; never below MIN_CLUSTER_FLOOR. Keeps the trial nearest to the range; `converged`
+    says whether it was reached. `fit` is injectable for tests."""
+    lo, hi = C.setting(C.TOPIC_COUNT_RANGE, period_type)
+    if fit is hdbscan_labels:
+        fit = lambda X, m: hdbscan_labels(X, m, period_type=period_type)
     trials = []
 
     def run(m):

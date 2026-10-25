@@ -116,8 +116,17 @@ SEED = 42                               # UMAP, post sampling and shuffles
 UMAP_PARAMS = dict(n_neighbors=15, n_components=5, min_dist=0.0, metric="cosine", random_state=SEED)
 MIN_CLUSTER_FRACTION = 0.0025           # starting HDBSCAN min_cluster_size = 0.25 % of the bin's modelled posts ...
 MIN_CLUSTER_FLOOR = 25                  # ... but never fewer than 25 (design §6.1; the guard never goes below it)
+# The four HDBSCAN / guard settings below accept either one value for every bin or a dict by period type, e.g.
+# HDBSCAN_MIN_SAMPLES = {"tournament": 10, "interim": 5} — the decision space of a failed large-bin gate (design §12.2;
+# the interim bins are 20–30× larger and more heterogeneous than the tournament bins). Read through setting().
 HDBSCAN_MIN_SAMPLES = 10                # revisited only if the large-bin gate shows > 45 % raw outliers (design §12.2)
-TOPIC_COUNT_RANGE = (50, 100)           # topic-count guard target: raw topics per bin (design §6.2)
+HDBSCAN_SELECTION_METHOD = "eom"       # "eom" (excess of mass, the design's standard) or "leaf" (more, smaller clusters)
+HDBSCAN_EPSILON = 0.0                   # cluster_selection_epsilon in the 5-d UMAP space (0 = off); merges micro-clusters
+# Diagnostic for a failed large-bin gate (2026-10-25, bin 4: 74 topics but 56 % raw outliers): `--stage grid --bin N` refits
+# HDBSCAN on the bin's cached UMAP array over this grid and writes bin-N/hdbscan_grid.csv; the author then chooses the setting
+# (design §12.2). min_cluster_size values are factors of the guard's converged value; None = that value itself.
+HDBSCAN_GRID = {"min_cluster_size_factor": [1.0, 0.67, 0.5], "min_samples": [10, 5, 3], "method": ["eom", "leaf"], "epsilon": [0.0]}
+TOPIC_COUNT_RANGE = (50, 100)           # topic-count guard target: raw topics per bin (design §6.2); dict by period type allowed
 GUARD_MAX_TRIALS = 4                    # at most four HDBSCAN fits on the frozen 5-d array
 GUARD_STEP = 1.5                        # first move ×1.5 / ÷1.5, then bisection between the bracketing values
 NGRAM_RANGE = (1, 2)                    # keyword candidates: unigrams and bigrams
@@ -208,6 +217,18 @@ SENTIMENT_NEG_THRESHOLD = -0.05         #   otherwise neutral (VADER's conventio
 SENTIMENT_VALIDATION_SAMPLE = 300       # hand-coding sample (stratified by bin × label × is_self; refinement N9)
 SENTIMENT_DECIMALS = 4
 
+
+
+def setting(value, period_type: str | None = None):
+    """A setting that may differ by period type: a plain value applies to every bin; a dict {"tournament": …, "interim": …}
+    (optionally with a "default" key) is read by the bin's period_type (2026-10-25, the gate decision space of design §12.2)."""
+    if isinstance(value, dict):
+        if period_type in value:
+            return value[period_type]
+        if "default" in value:
+            return value["default"]
+        raise KeyError(f"no value for period type {period_type!r} in {value}")
+    return value
 
 def effective_settings(**overrides) -> dict:
     """All settings as a JSON-serialisable dict (written to each bin's config.json), the effective paths included."""

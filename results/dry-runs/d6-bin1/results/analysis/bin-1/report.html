@@ -1,0 +1,961 @@
+<!doctype html><html><head><meta charset="utf-8"><title>bin-1 — period bin report</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<style>body{font-family:Helvetica,Arial,sans-serif;max-width:1200px;margin:20px auto;color:#1f2933}
+table.topics{border-collapse:collapse;font-size:12px} table.topics td,table.topics th{border:1px solid #d9e2ec;padding:4px 6px;vertical-align:top}
+th{background:#e8eef5} pre{background:#f0f4f8;padding:8px;font-size:12px}</style></head><body>
+<h1>Period bin report — bin-1</h1>
+<p>Generated 2026-10-25 12:49. One document = one r/soccer post (title + up to 1000 characters of body); one BERTopic model per period bin.</p>
+<h2>Run summary</h2><pre>{
+ "period_bin": 1,
+ "period_type": "tournament",
+ "start": "2010-01-01",
+ "end": "2010-09-30",
+ "n_documents": 10002,
+ "n_modelled": 9809,
+ "n_topics_raw": 65,
+ "outlier_share_raw": 0.348,
+ "outlier_threshold": null,
+ "outlier_share_final": 0.348,
+ "embedding_model": "sentence-transformers/all-mpnet-base-v2",
+ "backend": {
+  "backend": "cuml",
+  "cuml_accel": true,
+  "cuml_version": "26.06.00",
+  "umap_class": "umap.UMAP",
+  "hdbscan_class": "hdbscan.HDBSCAN"
+ },
+ "run_name": "bin-1"
+}</pre>
+<p><b>How to read this.</b> Topics are dense groups of posts with similar meaning found by BERTopic; each is described by its most distinctive words (c-TF-IDF keywords) and, once the labelling stage has run, by the name, tone and description the two analysts agreed on, and by the category of the bin's discourse taxonomy. Posts that fit no topic are topic −1 (outliers); above the calibrated similarity threshold they are reassigned to their nearest topic (<code>n_cluster</code> = cluster members, <code>n_total</code> = after reassignment). Sentiment is the VADER compound score of the title in [−1, 1], a lexicon measure (design F10).</p>
+<h2>Charts</h2><div style="height:1430px; width:100%;">                            <div id="17c81f18-a339-432e-ac6e-c4f790273e29" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("17c81f18-a339-432e-ac6e-c4f790273e29")) {                    Plotly.newPlot(                        "17c81f18-a339-432e-ac6e-c4f790273e29",                        [{"hovertemplate":"n_total=%{x}\u003cbr\u003elabel=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"","marker":{"color":"#636efa","pattern":{"shape":""}},"name":"","orientation":"h","showlegend":false,"textposition":"auto","x":{"dtype":"i2","bdata":"GgAaABoAGwAdAB0AHgAeAB8AIAAgACEAJQAmACYAJwAnACgAKwAsADAAMgAyADUANgA3ADgAOgA6ADoAOwA9AD4APwBCAEQARQBFAEcARwBLAEwATwBQAFYAVgBcAGAAYwBjAHMAdgB5AIEAgQCiAKMApQCoALgAAQESAX0BswFaAw=="},"xaxis":"x","y":["64: Paraguayan Fan & World Cup Controversy","63: EPL Standings & Predictions","62: Togo Football Ban","61: World Cup Prep","60: Sex Scandal","59: NSFW Fan Culture","58: USMNT coaching debate","57: Mourinho Real Madrid","56: World Cup Match Viewing","55: Zonal Marking Analysis","54: Transfer News","53: World Cup Live Streaming","52: Italy World Cup Elimination","51: UEFA Champions League","50: Germany vs England Rivalry","48: Copa Libertadores Highlights","49: Portsmouth Crisis","47: World Cup 2010","46: EPL Team Support","45: CONCACAF Champions League","44: Team Crests","43: Rafa Benitez Inter Deal","42: Mourinho Analysis","41: Soccer News Aggregator","40: Jabulani Ball Discussion","39: Fabregas Transfer Saga","38: Inter vs Roma","37: Vuvuzela Controversy","36: World Cup Commentators","35: MLS Week 15","34: North Korea Football","33: Capello England","32: World Cup Highlights","31: Landon Donovan & Football Stars","30: Sevilla vs Barcelona","29: Coaching & Development","28: Psychic Octopus Predictions","27: French Football Crisis","26: Vuvuzela Noise","25: Goal Celebrations","24: MLS Support","23: World Cup Highlights","22: UEFA Champions League Live","21: Terry & Rooney Controversy","20: Mondiali 2010","19: Managerial Changes","18: World Cup Anthem & Chant","17: World Cup Ads","15: South Africa World Cup 2010","16: Squad Analysis","14: US vs England","13: FIFA Fantasy Leagues","12: American Soccer Interest","11: Live Football Coverage","10: Jersey Shopping","9: Manchester City","8: World Cup Humor","7: Injury Updates","6: Streaming Solutions","5: Messi & Maradona Legacy","4: Best Goal Ever","3: Arsenal Match Thread","2: Refereeing Issues","1: Transfer Window Rumors","0: World Cup 2010 Predictions"],"yaxis":"y","type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"n_total"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"label"}},"legend":{"tracegroupgap":0},"title":{"text":"Topic sizes (number of posts)"},"barmode":"relative","height":1430},                        {"responsive": true}                    )                };            </script>        </div><div style="height:100%; width:100%;">                            <div id="50d5f98b-1942-4511-bdcb-0f3a1c133ce5" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("50d5f98b-1942-4511-bdcb-0f3a1c133ce5")) {                    Plotly.newPlot(                        "50d5f98b-1942-4511-bdcb-0f3a1c133ce5",                        [{"hovertemplate":"label=0: World Cup 2010 Predictions\u003cbr\u003eperiod=%{x}\u003cbr\u003en_docs=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"0: World Cup 2010 Predictions","line":{"color":"#636efa","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"0: World Cup 2010 Predictions","orientation":"v","showlegend":true,"x":["2009-12-28T00:00:00.000000","2010-01-04T00:00:00.000000","2010-01-11T00:00:00.000000","2010-01-18T00:00:00.000000","2010-01-25T00:00:00.000000","2010-02-01T00:00:00.000000","2010-02-15T00:00:00.000000","2010-03-01T00:00:00.000000","2010-03-08T00:00:00.000000","2010-03-22T00:00:00.000000","2010-03-29T00:00:00.000000","2010-04-12T00:00:00.000000","2010-04-19T00:00:00.000000","2010-04-26T00:00:00.000000","2010-05-03T00:00:00.000000","2010-05-10T00:00:00.000000","2010-05-17T00:00:00.000000","2010-05-24T00:00:00.000000","2010-05-31T00:00:00.000000","2010-06-07T00:00:00.000000","2010-06-14T00:00:00.000000","2010-06-21T00:00:00.000000","2010-06-28T00:00:00.000000","2010-07-05T00:00:00.000000","2010-07-12T00:00:00.000000","2010-07-19T00:00:00.000000","2010-07-26T00:00:00.000000","2010-08-02T00:00:00.000000","2010-08-09T00:00:00.000000","2010-08-16T00:00:00.000000","2010-08-23T00:00:00.000000","2010-08-30T00:00:00.000000","2010-09-06T00:00:00.000000","2010-09-13T00:00:00.000000"],"xaxis":"x","y":{"dtype":"i2","bdata":"AQACAAMABAACAAIAAQAGAAIABQACAAMAAgADAAUADAAMABsAJQBhAJ4AlABuAIgALQACAAMABQAGAAEAAwAHAAQAAgA="},"yaxis":"y","type":"scatter"},{"hovertemplate":"label=1: Transfer Window Rumors\u003cbr\u003eperiod=%{x}\u003cbr\u003en_docs=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"1: Transfer Window Rumors","line":{"color":"#EF553B","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"1: Transfer Window Rumors","orientation":"v","showlegend":true,"x":["2009-12-28T00:00:00.000000","2010-01-04T00:00:00.000000","2010-01-11T00:00:00.000000","2010-01-18T00:00:00.000000","2010-01-25T00:00:00.000000","2010-02-01T00:00:00.000000","2010-02-08T00:00:00.000000","2010-02-15T00:00:00.000000","2010-03-01T00:00:00.000000","2010-03-08T00:00:00.000000","2010-03-15T00:00:00.000000","2010-03-22T00:00:00.000000","2010-03-29T00:00:00.000000","2010-04-05T00:00:00.000000","2010-04-12T00:00:00.000000","2010-04-19T00:00:00.000000","2010-04-26T00:00:00.000000","2010-05-03T00:00:00.000000","2010-05-10T00:00:00.000000","2010-05-17T00:00:00.000000","2010-05-24T00:00:00.000000","2010-05-31T00:00:00.000000","2010-06-07T00:00:00.000000","2010-06-14T00:00:00.000000","2010-06-21T00:00:00.000000","2010-06-28T00:00:00.000000","2010-07-05T00:00:00.000000","2010-07-12T00:00:00.000000","2010-07-19T00:00:00.000000","2010-07-26T00:00:00.000000","2010-08-02T00:00:00.000000","2010-08-09T00:00:00.000000","2010-08-16T00:00:00.000000","2010-08-23T00:00:00.000000","2010-08-30T00:00:00.000000","2010-09-06T00:00:00.000000","2010-09-13T00:00:00.000000","2010-09-20T00:00:00.000000","2010-09-27T00:00:00.000000"],"xaxis":"x","y":{"dtype":"i1","bdata":"AgcHBgsJBAIDBQEKAgYDAQoHBxUKCQQIBg4JHiIiFBoWLR0HAgEB"},"yaxis":"y","type":"scatter"},{"hovertemplate":"label=3: Arsenal Match Thread\u003cbr\u003eperiod=%{x}\u003cbr\u003en_docs=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"3: Arsenal Match Thread","line":{"color":"#00cc96","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"3: Arsenal Match Thread","orientation":"v","showlegend":true,"x":["2009-12-28T00:00:00.000000","2010-01-04T00:00:00.000000","2010-01-11T00:00:00.000000","2010-01-18T00:00:00.000000","2010-01-25T00:00:00.000000","2010-02-01T00:00:00.000000","2010-02-08T00:00:00.000000","2010-02-15T00:00:00.000000","2010-02-22T00:00:00.000000","2010-03-01T00:00:00.000000","2010-03-08T00:00:00.000000","2010-03-15T00:00:00.000000","2010-03-22T00:00:00.000000","2010-03-29T00:00:00.000000","2010-04-05T00:00:00.000000","2010-04-12T00:00:00.000000","2010-04-19T00:00:00.000000","2010-04-26T00:00:00.000000","2010-05-03T00:00:00.000000","2010-05-10T00:00:00.000000","2010-05-17T00:00:00.000000","2010-05-24T00:00:00.000000","2010-06-14T00:00:00.000000","2010-06-28T00:00:00.000000","2010-07-12T00:00:00.000000","2010-07-19T00:00:00.000000","2010-07-26T00:00:00.000000","2010-08-02T00:00:00.000000","2010-08-09T00:00:00.000000","2010-08-16T00:00:00.000000","2010-08-23T00:00:00.000000","2010-08-30T00:00:00.000000","2010-09-06T00:00:00.000000","2010-09-13T00:00:00.000000","2010-09-20T00:00:00.000000","2010-09-27T00:00:00.000000"],"xaxis":"x","y":{"dtype":"i1","bdata":"BwUEBwkEAgUGBAkECQgLEQ4IEwYGBAEBAQYDDQsKDQQGCRYG"},"yaxis":"y","type":"scatter"},{"hovertemplate":"label=7: Injury Updates\u003cbr\u003eperiod=%{x}\u003cbr\u003en_docs=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"7: Injury Updates","line":{"color":"#ab63fa","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"7: Injury Updates","orientation":"v","showlegend":true,"x":["2009-12-28T00:00:00.000000","2010-01-04T00:00:00.000000","2010-01-18T00:00:00.000000","2010-01-25T00:00:00.000000","2010-02-01T00:00:00.000000","2010-02-08T00:00:00.000000","2010-02-15T00:00:00.000000","2010-02-22T00:00:00.000000","2010-03-01T00:00:00.000000","2010-03-08T00:00:00.000000","2010-03-15T00:00:00.000000","2010-03-22T00:00:00.000000","2010-03-29T00:00:00.000000","2010-04-05T00:00:00.000000","2010-04-12T00:00:00.000000","2010-04-19T00:00:00.000000","2010-04-26T00:00:00.000000","2010-05-03T00:00:00.000000","2010-05-10T00:00:00.000000","2010-05-17T00:00:00.000000","2010-05-24T00:00:00.000000","2010-05-31T00:00:00.000000","2010-06-07T00:00:00.000000","2010-06-14T00:00:00.000000","2010-06-21T00:00:00.000000","2010-06-28T00:00:00.000000","2010-07-05T00:00:00.000000","2010-07-12T00:00:00.000000","2010-07-19T00:00:00.000000","2010-07-26T00:00:00.000000","2010-08-02T00:00:00.000000","2010-08-09T00:00:00.000000","2010-08-16T00:00:00.000000","2010-08-23T00:00:00.000000","2010-08-30T00:00:00.000000","2010-09-06T00:00:00.000000","2010-09-13T00:00:00.000000","2010-09-20T00:00:00.000000","2010-09-27T00:00:00.000000"],"xaxis":"x","y":{"dtype":"i1","bdata":"AQEDAQECAQMEAwEDBgYCBQECBgMDHAgIBgMBAQIFAgIEBAIIDgUE"},"yaxis":"y","type":"scatter"},{"hovertemplate":"label=9: Manchester City\u003cbr\u003eperiod=%{x}\u003cbr\u003en_docs=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"9: Manchester City","line":{"color":"#FFA15A","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"9: Manchester City","orientation":"v","showlegend":true,"x":["2009-12-28T00:00:00.000000","2010-01-04T00:00:00.000000","2010-01-11T00:00:00.000000","2010-01-18T00:00:00.000000","2010-01-25T00:00:00.000000","2010-02-01T00:00:00.000000","2010-02-22T00:00:00.000000","2010-03-01T00:00:00.000000","2010-03-08T00:00:00.000000","2010-03-15T00:00:00.000000","2010-03-22T00:00:00.000000","2010-03-29T00:00:00.000000","2010-04-05T00:00:00.000000","2010-04-12T00:00:00.000000","2010-04-19T00:00:00.000000","2010-04-26T00:00:00.000000","2010-05-03T00:00:00.000000","2010-05-10T00:00:00.000000","2010-05-17T00:00:00.000000","2010-05-24T00:00:00.000000","2010-05-31T00:00:00.000000","2010-06-07T00:00:00.000000","2010-06-28T00:00:00.000000","2010-07-05T00:00:00.000000","2010-07-12T00:00:00.000000","2010-07-19T00:00:00.000000","2010-07-26T00:00:00.000000","2010-08-02T00:00:00.000000","2010-08-09T00:00:00.000000","2010-08-16T00:00:00.000000","2010-08-23T00:00:00.000000","2010-08-30T00:00:00.000000","2010-09-06T00:00:00.000000","2010-09-13T00:00:00.000000","2010-09-20T00:00:00.000000","2010-09-27T00:00:00.000000"],"xaxis":"x","y":{"dtype":"i1","bdata":"AwIGCAIBAQcFBgMBBQMEBAcBBAYDBgICBAQEDgQHBQEHBQwD"},"yaxis":"y","type":"scatter"},{"hovertemplate":"label=11: Live Football Coverage\u003cbr\u003eperiod=%{x}\u003cbr\u003en_docs=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"11: Live Football Coverage","line":{"color":"#19d3f3","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"11: Live Football Coverage","orientation":"v","showlegend":true,"x":["2009-12-28T00:00:00.000000","2010-01-04T00:00:00.000000","2010-01-11T00:00:00.000000","2010-01-18T00:00:00.000000","2010-01-25T00:00:00.000000","2010-02-01T00:00:00.000000","2010-02-08T00:00:00.000000","2010-02-15T00:00:00.000000","2010-02-22T00:00:00.000000","2010-03-01T00:00:00.000000","2010-03-08T00:00:00.000000","2010-03-22T00:00:00.000000","2010-03-29T00:00:00.000000","2010-04-12T00:00:00.000000","2010-04-26T00:00:00.000000","2010-05-03T00:00:00.000000","2010-05-10T00:00:00.000000","2010-06-07T00:00:00.000000","2010-07-05T00:00:00.000000","2010-07-12T00:00:00.000000","2010-07-19T00:00:00.000000","2010-08-02T00:00:00.000000","2010-08-09T00:00:00.000000","2010-09-13T00:00:00.000000","2010-09-20T00:00:00.000000"],"xaxis":"x","y":{"dtype":"i1","bdata":"EQUIEQcWCQUGAgMBAwECAgMCAQIDAQEEAg=="},"yaxis":"y","type":"scatter"},{"hovertemplate":"label=2: Refereeing Issues\u003cbr\u003eperiod=%{x}\u003cbr\u003en_docs=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"2: Refereeing Issues","line":{"color":"#FF6692","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"2: Refereeing Issues","orientation":"v","showlegend":true,"x":["2010-01-04T00:00:00.000000","2010-01-18T00:00:00.000000","2010-01-25T00:00:00.000000","2010-02-01T00:00:00.000000","2010-02-08T00:00:00.000000","2010-02-15T00:00:00.000000","2010-02-22T00:00:00.000000","2010-03-01T00:00:00.000000","2010-03-08T00:00:00.000000","2010-03-15T00:00:00.000000","2010-03-22T00:00:00.000000","2010-03-29T00:00:00.000000","2010-04-05T00:00:00.000000","2010-04-19T00:00:00.000000","2010-04-26T00:00:00.000000","2010-05-03T00:00:00.000000","2010-05-10T00:00:00.000000","2010-05-17T00:00:00.000000","2010-05-31T00:00:00.000000","2010-06-07T00:00:00.000000","2010-06-14T00:00:00.000000","2010-06-21T00:00:00.000000","2010-06-28T00:00:00.000000","2010-07-05T00:00:00.000000","2010-07-12T00:00:00.000000","2010-07-19T00:00:00.000000","2010-07-26T00:00:00.000000","2010-08-02T00:00:00.000000","2010-08-09T00:00:00.000000","2010-08-16T00:00:00.000000","2010-08-23T00:00:00.000000","2010-08-30T00:00:00.000000","2010-09-06T00:00:00.000000","2010-09-13T00:00:00.000000","2010-09-20T00:00:00.000000","2010-09-27T00:00:00.000000"],"xaxis":"x","y":{"dtype":"i1","bdata":"AQMDAgMBAgoDAQIDAwcDBgIFBg9AME8gFAYEAwYFBwUEBggD"},"yaxis":"y","type":"scatter"},{"hovertemplate":"label=6: Streaming Solutions\u003cbr\u003eperiod=%{x}\u003cbr\u003en_docs=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"6: Streaming Solutions","line":{"color":"#B6E880","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"6: Streaming Solutions","orientation":"v","showlegend":true,"x":["2010-01-04T00:00:00.000000","2010-01-11T00:00:00.000000","2010-02-01T00:00:00.000000","2010-02-15T00:00:00.000000","2010-03-01T00:00:00.000000","2010-03-29T00:00:00.000000","2010-04-05T00:00:00.000000","2010-04-12T00:00:00.000000","2010-04-19T00:00:00.000000","2010-04-26T00:00:00.000000","2010-05-03T00:00:00.000000","2010-05-10T00:00:00.000000","2010-05-17T00:00:00.000000","2010-05-31T00:00:00.000000","2010-06-07T00:00:00.000000","2010-06-14T00:00:00.000000","2010-06-21T00:00:00.000000","2010-06-28T00:00:00.000000","2010-07-05T00:00:00.000000","2010-07-12T00:00:00.000000","2010-07-19T00:00:00.000000","2010-07-26T00:00:00.000000","2010-08-02T00:00:00.000000","2010-08-09T00:00:00.000000","2010-08-16T00:00:00.000000","2010-08-23T00:00:00.000000","2010-08-30T00:00:00.000000","2010-09-06T00:00:00.000000","2010-09-13T00:00:00.000000","2010-09-20T00:00:00.000000","2010-09-27T00:00:00.000000"],"xaxis":"x","y":{"dtype":"i1","bdata":"AQMBBQIBAgMBAgEEBwMfGxIECgEEAgIJBwgBAgMBAg=="},"yaxis":"y","type":"scatter"},{"hovertemplate":"label=8: World Cup Humor\u003cbr\u003eperiod=%{x}\u003cbr\u003en_docs=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"8: World Cup Humor","line":{"color":"#FF97FF","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"8: World Cup Humor","orientation":"v","showlegend":true,"x":["2010-01-04T00:00:00.000000","2010-01-11T00:00:00.000000","2010-02-22T00:00:00.000000","2010-03-15T00:00:00.000000","2010-03-22T00:00:00.000000","2010-03-29T00:00:00.000000","2010-04-05T00:00:00.000000","2010-04-12T00:00:00.000000","2010-04-19T00:00:00.000000","2010-04-26T00:00:00.000000","2010-05-03T00:00:00.000000","2010-05-10T00:00:00.000000","2010-05-17T00:00:00.000000","2010-05-24T00:00:00.000000","2010-05-31T00:00:00.000000","2010-06-07T00:00:00.000000","2010-06-14T00:00:00.000000","2010-06-21T00:00:00.000000","2010-06-28T00:00:00.000000","2010-07-05T00:00:00.000000","2010-07-12T00:00:00.000000","2010-07-19T00:00:00.000000","2010-07-26T00:00:00.000000","2010-08-02T00:00:00.000000","2010-08-09T00:00:00.000000","2010-08-16T00:00:00.000000","2010-08-23T00:00:00.000000","2010-08-30T00:00:00.000000","2010-09-06T00:00:00.000000","2010-09-13T00:00:00.000000","2010-09-20T00:00:00.000000","2010-09-27T00:00:00.000000"],"xaxis":"x","y":{"dtype":"i1","bdata":"AQEBAQIFAgICBAQCAwQFFBAPDxIJBAMFAgUEAgMBAQE="},"yaxis":"y","type":"scatter"},{"hovertemplate":"label=10: Jersey Shopping\u003cbr\u003eperiod=%{x}\u003cbr\u003en_docs=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"10: Jersey Shopping","line":{"color":"#FECB52","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"10: Jersey Shopping","orientation":"v","showlegend":true,"x":["2010-01-04T00:00:00.000000","2010-01-11T00:00:00.000000","2010-01-18T00:00:00.000000","2010-01-25T00:00:00.000000","2010-02-08T00:00:00.000000","2010-02-22T00:00:00.000000","2010-03-08T00:00:00.000000","2010-03-15T00:00:00.000000","2010-03-22T00:00:00.000000","2010-04-05T00:00:00.000000","2010-04-12T00:00:00.000000","2010-04-19T00:00:00.000000","2010-04-26T00:00:00.000000","2010-05-10T00:00:00.000000","2010-05-17T00:00:00.000000","2010-05-24T00:00:00.000000","2010-05-31T00:00:00.000000","2010-06-07T00:00:00.000000","2010-06-14T00:00:00.000000","2010-06-21T00:00:00.000000","2010-06-28T00:00:00.000000","2010-07-05T00:00:00.000000","2010-07-12T00:00:00.000000","2010-07-19T00:00:00.000000","2010-07-26T00:00:00.000000","2010-08-02T00:00:00.000000","2010-08-09T00:00:00.000000","2010-08-16T00:00:00.000000","2010-08-23T00:00:00.000000","2010-08-30T00:00:00.000000","2010-09-06T00:00:00.000000","2010-09-13T00:00:00.000000","2010-09-20T00:00:00.000000","2010-09-27T00:00:00.000000"],"xaxis":"x","y":{"dtype":"i1","bdata":"AQECAgEBAQEDAgEDBgMEBAoECgoBBQgDCAQIBAMFBAIDAQ=="},"yaxis":"y","type":"scatter"},{"hovertemplate":"label=4: Best Goal Ever\u003cbr\u003eperiod=%{x}\u003cbr\u003en_docs=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"4: Best Goal Ever","line":{"color":"#636efa","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"4: Best Goal Ever","orientation":"v","showlegend":true,"x":["2010-01-18T00:00:00.000000","2010-01-25T00:00:00.000000","2010-02-01T00:00:00.000000","2010-03-01T00:00:00.000000","2010-03-08T00:00:00.000000","2010-03-22T00:00:00.000000","2010-03-29T00:00:00.000000","2010-04-05T00:00:00.000000","2010-04-12T00:00:00.000000","2010-04-19T00:00:00.000000","2010-04-26T00:00:00.000000","2010-05-03T00:00:00.000000","2010-05-10T00:00:00.000000","2010-05-17T00:00:00.000000","2010-05-24T00:00:00.000000","2010-05-31T00:00:00.000000","2010-06-07T00:00:00.000000","2010-06-14T00:00:00.000000","2010-06-21T00:00:00.000000","2010-06-28T00:00:00.000000","2010-07-05T00:00:00.000000","2010-07-12T00:00:00.000000","2010-07-19T00:00:00.000000","2010-07-26T00:00:00.000000","2010-08-02T00:00:00.000000","2010-08-09T00:00:00.000000","2010-08-16T00:00:00.000000","2010-08-23T00:00:00.000000","2010-08-30T00:00:00.000000","2010-09-06T00:00:00.000000","2010-09-13T00:00:00.000000","2010-09-20T00:00:00.000000","2010-09-27T00:00:00.000000"],"xaxis":"x","y":{"dtype":"i1","bdata":"AQIDAQQDAQIGAgcFFgUFBw4MEgkFBQMMFAUJCwoQCBIG"},"yaxis":"y","type":"scatter"},{"hovertemplate":"label=5: Messi & Maradona Legacy\u003cbr\u003eperiod=%{x}\u003cbr\u003en_docs=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"5: Messi & Maradona Legacy","line":{"color":"#EF553B","dash":"solid"},"marker":{"symbol":"circle"},"mode":"lines","name":"5: Messi & Maradona Legacy","orientation":"v","showlegend":true,"x":["2010-01-18T00:00:00.000000","2010-01-25T00:00:00.000000","2010-02-01T00:00:00.000000","2010-02-08T00:00:00.000000","2010-02-15T00:00:00.000000","2010-02-22T00:00:00.000000","2010-03-01T00:00:00.000000","2010-03-08T00:00:00.000000","2010-03-15T00:00:00.000000","2010-03-22T00:00:00.000000","2010-03-29T00:00:00.000000","2010-04-05T00:00:00.000000","2010-04-12T00:00:00.000000","2010-04-19T00:00:00.000000","2010-04-26T00:00:00.000000","2010-05-03T00:00:00.000000","2010-05-10T00:00:00.000000","2010-05-17T00:00:00.000000","2010-05-24T00:00:00.000000","2010-05-31T00:00:00.000000","2010-06-07T00:00:00.000000","2010-06-14T00:00:00.000000","2010-06-21T00:00:00.000000","2010-06-28T00:00:00.000000","2010-07-05T00:00:00.000000","2010-07-12T00:00:00.000000","2010-07-19T00:00:00.000000","2010-07-26T00:00:00.000000","2010-08-02T00:00:00.000000","2010-08-09T00:00:00.000000","2010-08-16T00:00:00.000000","2010-08-23T00:00:00.000000","2010-08-30T00:00:00.000000","2010-09-06T00:00:00.000000","2010-09-13T00:00:00.000000","2010-09-20T00:00:00.000000"],"xaxis":"x","y":{"dtype":"i1","bdata":"AQEBAQECAQEBAQIJBwMCAgIGBQMICgsoEAwGBwMEBQIBAwMB"},"yaxis":"y","type":"scatter"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"period"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"n_docs"}},"legend":{"title":{"text":"label"},"tracegroupgap":0},"title":{"text":"Topic prevalence over time (12 largest topics)"},"shapes":[{"line":{"color":"#52606d","dash":"dash"},"type":"line","x0":"2010-06-11","x1":"2010-06-11","y0":0,"y1":1,"yref":"paper"},{"line":{"color":"#52606d","dash":"dash"},"type":"line","x0":"2010-07-11","x1":"2010-07-11","y0":0,"y1":1,"yref":"paper"}],"annotations":[{"font":{"size":11},"showarrow":false,"text":"kick-off","x":"2010-06-11","y":1,"yanchor":"bottom","yref":"paper"},{"font":{"size":11},"showarrow":false,"text":"final","x":"2010-07-11","y":1,"yanchor":"bottom","yref":"paper"}]},                        {"responsive": true}                    )                };            </script>        </div><div style="height:1430px; width:100%;">                            <div id="77b6f2cd-192b-45d0-94f8-905ab91fe5e0" class="plotly-graph-div" style="height:100%; width:100%;"></div>            <script>                window.PLOTLYENV=window.PLOTLYENV || {};                                if (document.getElementById("77b6f2cd-192b-45d0-94f8-905ab91fe5e0")) {                    Plotly.newPlot(                        "77b6f2cd-192b-45d0-94f8-905ab91fe5e0",                        [{"hovertemplate":"mean_compound=%{x}\u003cbr\u003elabel=%{y}\u003cextra\u003e\u003c\u002fextra\u003e","legendgroup":"","marker":{"color":"#636efa","pattern":{"shape":""}},"name":"","orientation":"h","showlegend":false,"textposition":"auto","x":{"dtype":"f8","bdata":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="},"xaxis":"x","y":["0: World Cup 2010 Predictions","34: North Korea Football","35: MLS Week 15","36: World Cup Commentators","37: Vuvuzela Controversy","38: Inter vs Roma","39: Fabregas Transfer Saga","40: Jabulani Ball Discussion","41: Soccer News Aggregator","42: Mourinho Analysis","43: Rafa Benitez Inter Deal","44: Team Crests","45: CONCACAF Champions League","46: EPL Team Support","47: World Cup 2010","48: Copa Libertadores Highlights","49: Portsmouth Crisis","50: Germany vs England Rivalry","51: UEFA Champions League","52: Italy World Cup Elimination","53: World Cup Live Streaming","54: Transfer News","55: Zonal Marking Analysis","56: World Cup Match Viewing","57: Mourinho Real Madrid","58: USMNT coaching debate","59: NSFW Fan Culture","60: Sex Scandal","61: World Cup Prep","62: Togo Football Ban","33: Capello England","63: EPL Standings & Predictions","32: World Cup Highlights","30: Sevilla vs Barcelona","1: Transfer Window Rumors","2: Refereeing Issues","3: Arsenal Match Thread","4: Best Goal Ever","5: Messi & Maradona Legacy","6: Streaming Solutions","7: Injury Updates","8: World Cup Humor","9: Manchester City","10: Jersey Shopping","11: Live Football Coverage","12: American Soccer Interest","13: FIFA Fantasy Leagues","14: US vs England","15: South Africa World Cup 2010","16: Squad Analysis","17: World Cup Ads","18: World Cup Anthem & Chant","19: Managerial Changes","20: Mondiali 2010","21: Terry & Rooney Controversy","22: UEFA Champions League Live","23: World Cup Highlights","24: MLS Support","25: Goal Celebrations","26: Vuvuzela Noise","27: French Football Crisis","28: Psychic Octopus Predictions","29: Coaching & Development","31: Landon Donovan & Football Stars","64: Paraguayan Fan & World Cup Controversy"],"yaxis":"y","type":"bar"}],                        {"template":{"data":{"histogram2dcontour":[{"type":"histogram2dcontour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"choropleth":[{"type":"choropleth","colorbar":{"outlinewidth":0,"ticks":""}}],"histogram2d":[{"type":"histogram2d","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"heatmap":[{"type":"heatmap","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"contourcarpet":[{"type":"contourcarpet","colorbar":{"outlinewidth":0,"ticks":""}}],"contour":[{"type":"contour","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"surface":[{"type":"surface","colorbar":{"outlinewidth":0,"ticks":""},"colorscale":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]]}],"mesh3d":[{"type":"mesh3d","colorbar":{"outlinewidth":0,"ticks":""}}],"scatter":[{"fillpattern":{"fillmode":"overlay","size":10,"solidity":0.2},"type":"scatter"}],"parcoords":[{"type":"parcoords","line":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolargl":[{"type":"scatterpolargl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"bar":[{"error_x":{"color":"#2a3f5f"},"error_y":{"color":"#2a3f5f"},"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"bar"}],"scattergeo":[{"type":"scattergeo","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterpolar":[{"type":"scatterpolar","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"histogram":[{"marker":{"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"histogram"}],"scattergl":[{"type":"scattergl","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatter3d":[{"type":"scatter3d","line":{"colorbar":{"outlinewidth":0,"ticks":""}},"marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattermap":[{"type":"scattermap","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scatterternary":[{"type":"scatterternary","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"scattercarpet":[{"type":"scattercarpet","marker":{"colorbar":{"outlinewidth":0,"ticks":""}}}],"carpet":[{"aaxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"baxis":{"endlinecolor":"#2a3f5f","gridcolor":"white","linecolor":"white","minorgridcolor":"white","startlinecolor":"#2a3f5f"},"type":"carpet"}],"table":[{"cells":{"fill":{"color":"#EBF0F8"},"line":{"color":"white"}},"header":{"fill":{"color":"#C8D4E3"},"line":{"color":"white"}},"type":"table"}],"barpolar":[{"marker":{"line":{"color":"#E5ECF6","width":0.5},"pattern":{"fillmode":"overlay","size":10,"solidity":0.2}},"type":"barpolar"}],"pie":[{"automargin":true,"type":"pie"}]},"layout":{"autotypenumbers":"strict","colorway":["#636efa","#EF553B","#00cc96","#ab63fa","#FFA15A","#19d3f3","#FF6692","#B6E880","#FF97FF","#FECB52"],"font":{"color":"#2a3f5f"},"hovermode":"closest","hoverlabel":{"align":"left"},"paper_bgcolor":"white","plot_bgcolor":"#E5ECF6","polar":{"bgcolor":"#E5ECF6","angularaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"radialaxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"ternary":{"bgcolor":"#E5ECF6","aaxis":{"gridcolor":"white","linecolor":"white","ticks":""},"baxis":{"gridcolor":"white","linecolor":"white","ticks":""},"caxis":{"gridcolor":"white","linecolor":"white","ticks":""}},"coloraxis":{"colorbar":{"outlinewidth":0,"ticks":""}},"colorscale":{"sequential":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"sequentialminus":[[0.0,"#0d0887"],[0.1111111111111111,"#46039f"],[0.2222222222222222,"#7201a8"],[0.3333333333333333,"#9c179e"],[0.4444444444444444,"#bd3786"],[0.5555555555555556,"#d8576b"],[0.6666666666666666,"#ed7953"],[0.7777777777777778,"#fb9f3a"],[0.8888888888888888,"#fdca26"],[1.0,"#f0f921"]],"diverging":[[0,"#8e0152"],[0.1,"#c51b7d"],[0.2,"#de77ae"],[0.3,"#f1b6da"],[0.4,"#fde0ef"],[0.5,"#f7f7f7"],[0.6,"#e6f5d0"],[0.7,"#b8e186"],[0.8,"#7fbc41"],[0.9,"#4d9221"],[1,"#276419"]]},"xaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"yaxis":{"gridcolor":"white","linecolor":"white","ticks":"","title":{"standoff":15},"zerolinecolor":"white","automargin":true,"zerolinewidth":2},"scene":{"xaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"yaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2},"zaxis":{"backgroundcolor":"#E5ECF6","gridcolor":"white","linecolor":"white","showbackground":true,"ticks":"","zerolinecolor":"white","gridwidth":2}},"shapedefaults":{"line":{"color":"#2a3f5f"}},"annotationdefaults":{"arrowcolor":"#2a3f5f","arrowhead":0,"arrowwidth":1},"geo":{"bgcolor":"white","landcolor":"#E5ECF6","subunitcolor":"white","showland":true,"showlakes":true,"lakecolor":"white"},"title":{"x":0.05}}},"xaxis":{"anchor":"y","domain":[0.0,1.0],"title":{"text":"mean_compound"}},"yaxis":{"anchor":"x","domain":[0.0,1.0],"title":{"text":"label"}},"legend":{"tracegroupgap":0},"title":{"text":"Mean VADER sentiment of the titles by topic"},"barmode":"relative","height":1430},                        {"responsive": true}                    )                };            </script>        </div>
+<h2>Topics</h2><table border="1" class="dataframe topics">
+  <thead>
+    <tr style="text-align: right;">
+      <th>topic_id</th>
+      <th>n_cluster</th>
+      <th>n_total</th>
+      <th>share</th>
+      <th>keywords</th>
+      <th>name</th>
+      <th>emotion_tone</th>
+      <th>description</th>
+      <th>needs_review</th>
+      <th>category_id</th>
+      <th>category_name</th>
+      <th>representative_titles</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>858</td>
+      <td>858</td>
+      <td>0.08747</td>
+      <td>mexico uruguay, uruguay, group stage, paraguay, brazil, fifa world, ivory coast, cup 2010, ghana, goals scored, predictions, africa mexico, fifa livestream, 2010 highlights, tied</td>
+      <td>World Cup 2010 Predictions</td>
+      <td>excited</td>
+      <td>Posts discussing predictions for the 2010 World Cup, including goals scored, team outcomes, and FIFA World Cup highlights.</td>
+      <td>False</td>
+      <td>cat_21</td>
+      <td>World Cup Highlights &amp; Player Performances</td>
+      <td>Match Thread: Italy vs New Zealand || Let's discuss Group D: Germany, Australia, Serbia and Ghana || Match Thread: Mexico vs Uruguay || Match Thread: Spain vs Honduras || Revised Brackets anyone?</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>435</td>
+      <td>435</td>
+      <td>0.04435</td>
+      <td>villa, david villa, transfer window, madrid, benfica, barca, chelsea, robinho, liverpool, javier mascherano, west ham, torres, di maria, ozil, khedira</td>
+      <td>Transfer Window Rumors</td>
+      <td>Excited/Excitement</td>
+      <td>Posts about current transfer rumors, player signings, and transfer window activities</td>
+      <td>False</td>
+      <td>cat_10</td>
+      <td>Manchester City &amp; Financial Issues</td>
+      <td>Ajax acquire Mido and El Hamdaoui, Sulejmani to join West Ham on loan. || 2010/2011 Sun DreamTeam Bargins. || David Villa and his final stages in signing for Barcelona || FC Barcelona Have Only 3 Days Left To Sign A Replacement For Ibra || Real Madrid Transfer Speculation</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>381</td>
+      <td>381</td>
+      <td>0.03884</td>
+      <td>referees, sepp blatter, refereeing, reffing, referee, bad calls, blatter, offside rule, yellow card, fifa, refs, ref, henry handball, suarez, biased</td>
+      <td>Refereeing Issues</td>
+      <td>critical</td>
+      <td>Posts discussing bad calls, biased refereeing, and calls for reform in the refereeing system</td>
+      <td>False</td>
+      <td>cat_3</td>
+      <td>Refereeing &amp; Rule Issues</td>
+      <td>I think there is only one way to advance soccer and bring about replay of some kind...the final's teams need to protest [more inside]... || r/soccer, I would like to clarify a small part of the laws || In re: the german debacle... football would be better if the referees treated aggression the way they do in rugby. || Bad refereeing with no recourse is one of the reasons soccer is having a tough time becoming popular in the US. || Anyone else think Howard Webb actually did a good \r\njob reffing the final?</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>274</td>
+      <td>274</td>
+      <td>0.02793</td>
+      <td>arsenal, match liverpool, bolton wanderers, tottenham arsenal, liverpool arsenal, chelsea win, fulham, tottenham, everton, leeds united, chelsea manchester, burnley, carling cup, sunderland, fa cup</td>
+      <td>Arsenal Match Thread</td>
+      <td>enthusiastic</td>
+      <td>Posts about Arsenal's matches, players, and team dynamics</td>
+      <td>False</td>
+      <td>cat_4</td>
+      <td>Arsenal &amp; Liverpool Match Discussions</td>
+      <td>Match Thread: Liverpool vs Arsenal || Match Thread: Arsenal v Blackpool || Match Thread: Arsenal v Bolton Wanderers || Match Thread: Blackburn Rovers v Arsenal || Carling Cup third round draw... inlcudes Arsenal vs. Spurs!</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>257</td>
+      <td>257</td>
+      <td>0.02620</td>
+      <td>free kick, kick goal, bicycle kick, goal best, greatest goal, maradona goal, volleys, hat trick, goals, cup goals, goal fc, goal england, league goals, roberto carlos, maicon goal</td>
+      <td>Best Goal Ever</td>
+      <td>emotional</td>
+      <td>Focuses on the most iconic, memorable, or emotionally impactful goals in football, including those that evoke admiration, nostalgia, or surprise.</td>
+      <td>False</td>
+      <td>cat_5</td>
+      <td>Iconic Goals &amp; Memorable Moments</td>
+      <td>So in honour of Japan's victory and the importance of their 2 free kicks - in your opinion who was/is the ultimate free kick taker? || At what angle does a scissor kick become a bicycle kick? || What do you say we have a Reddit's Best Goal Ever bracket? Nominations go in this thread. || Hey r/Soccer, I'm looking for help for a challenge (Details inside) || Me copying Zlatan!</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>184</td>
+      <td>184</td>
+      <td>0.01876</td>
+      <td>messi best, messi play, messi, lionel messi, maradona messi, leo messi, messi 10, ronaldinho, maradona, christiano ronaldo, maradona hand, best player, 2010 maradona, pele, xavi</td>
+      <td>Messi &amp; Maradona Legacy</td>
+      <td>respectful, nostalgic</td>
+      <td>Posts discussing Messi's role and Maradona's impact, including comparisons and emotional responses to their legacies</td>
+      <td>False</td>
+      <td>cat_6</td>
+      <td>Football Legacy &amp; Historical Context</td>
+      <td>Would Messi look as good without Xavi? || Wayne Rooney is a great player but Leo Messi is even better... || Cristiano Ronaldo: "God sent me to earth to﻿ show people how to play football." ............ || God || It's really not hard to see why Messi plays so much better for club than country.</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>168</td>
+      <td>168</td>
+      <td>0.01713</td>
+      <td>streaming sites, streams, espn3, channels, live stream, games live, cup online, cup live, watch fifa, watch games, univision, watch match, broadcast, cup matches, abc</td>
+      <td>Streaming Solutions</td>
+      <td>frustrated</td>
+      <td>Posts discussing streaming options for football matches, including ESPN3, Univision, and other platforms, with a focus on US and international access.</td>
+      <td>False</td>
+      <td>cat_7</td>
+      <td>Streaming &amp; Access Issues</td>
+      <td>Looking for EPL/Champions League video highlights viewable in the US... || For those of you in the US that want to stream the world cup in high quality... || Football on American TV? || Football Games online? Gonna get rid of cable TV. || Can we get a online streaming summary on the subreddit side panel?</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>165</td>
+      <td>165</td>
+      <td>0.01682</td>
+      <td>injury list, injury world, injuries, injury, cup injury, injured, injury blow, injures, ankle, cup squads, michael owen, owen, wayne rooney, worst football, michael essien</td>
+      <td>Injury Updates</td>
+      <td>Concerned</td>
+      <td>Posts about injuries, updates, and related news in the football community</td>
+      <td>False</td>
+      <td>cat_8</td>
+      <td>Injury &amp; Health Concerns</td>
+      <td>r/Soccer: All of these injuries are getting depressing... || Idea: Injury Reserve list to go with EPL's 25 man squad list || Dear r/soccer, does anyone have a blog and a slice of time to keep an up to date injury list for the world cup squads? || "My body is asking me to stop playing"... not just for Ronaldo anymore.&nbsp;&nbsp;Am 34, been playing since I was 7, and now my body punishes me afte || What part(s) of your body have you sacrificed for the love of the game?</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>163</td>
+      <td>163</td>
+      <td>0.01662</td>
+      <td>cup pic, funny pictures, cup teams, teams wc, team kit, soccerreddit, matches watch, cup great, teams world, poster, cup english, funny football, english team, mosaic illustration, photos world</td>
+      <td>World Cup Humor</td>
+      <td>light-hearted</td>
+      <td>Posts about funny pictures, memes, and jokes related to the World Cup, including team kits, soccer Reddit, and funny football content</td>
+      <td>False</td>
+      <td>cat_9</td>
+      <td>World Cup Humor &amp; Cultural Content</td>
+      <td>Anyone want to trade 2010 World Cup Panini stickers? || Can we get info on the subreddit pic? || Remember to take picture tomorrow || Jokes about soccer (football)/teams or the World Cup anyone? || Would anyone like for me to make more of the wallpapers for the clubs they support?&nbsp;&nbsp;(Milan+US examples inside)</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>162</td>
+      <td>162</td>
+      <td>0.01652</td>
+      <td>man city, manchester city, liverpool, abramovich, league clubs, crystal palace, west ham, liverpool fc, manchester, player wages, palace, takeover, liverpool sale, glazers, 20m</td>
+      <td>Manchester City</td>
+      <td>critical</td>
+      <td>Posts discussing Manchester City's financial strategies, transfer spending, and related controversies</td>
+      <td>False</td>
+      <td>cat_10</td>
+      <td>Manchester City &amp; Financial Issues</td>
+      <td>RBS moves loans to "toxic-assets division" to force George Gillett and Tom Hicks to sell Liverpool || AskSoccerReddit: Do you think European soccer leagues should have a salary cap? || Here is my defense for Manchester City once and for all. || Question for Premier league fans - How threatening do you guys see The Manchester City this upcoming season? || Manchester City's Crazy Spending.</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>129</td>
+      <td>129</td>
+      <td>0.01315</td>
+      <td>jerseys, away kit, shirts, manchester united, uniforms, robinho, wearing, united new, new boots, bellamy, sizes, cheap, ebay, 1966, colors</td>
+      <td>Jersey Shopping</td>
+      <td>Inquisitive and practical</td>
+      <td>Posts about purchasing jerseys, finding cheap options, and discussing kit styles and sizes.</td>
+      <td>False</td>
+      <td>cat_11</td>
+      <td>Jersey &amp; Clothing Discussions</td>
+      <td>Who do you think has the best World Cup kit? || Hey /r/soccer: Why do football teams sell ad space on their jerseys? || r/soccer, show me your jerseys! || Sorry, /r/soccer, a favor to ask. Can someone help me find last year's home St. Pauli kit? || Robinho and Bellamy at Man City</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>129</td>
+      <td>129</td>
+      <td>0.01315</td>
+      <td>live football, match everton, arsenal live, chelsea live, watch liverpool, live epl, watch live, live stream, league match, streaming arsenal, telecast live, united live, live tv, coverage espn, match online</td>
+      <td>Live Football Coverage</td>
+      <td>enthusiastic</td>
+      <td>Posts seeking live streaming, live television, and live broadcast of football matches, often with specific teams and leagues mentioned.</td>
+      <td>False</td>
+      <td>cat_12</td>
+      <td>Live Football Coverage &amp; Streaming</td>
+      <td>Watch Manchester City vs Scunthorpe United Live Streaming Video Telecast on LIVE SOCCER TV | FA Cup 2010 || Watch Man Utd vs Chelsea live streaming soccer match online coverage on ESPN TV | England Premier League 2010 Live || West Ham United vs Aston Villa Live Streaming Video Telecast on LIVE SOCCER TV | English Premier League 2010 || Watch &amp; Enjoy Everton vs Birmingham City Live Streaming Video Telecast on LIVE SOCCER TV | England FA Cup 2010 || Enjoy Hull City vs Manchester United Live Streaming Video Telecast on LIVE SOCCER TV | England Premier League 2010</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>121</td>
+      <td>121</td>
+      <td>0.01234</td>
+      <td>american sports, american football, watch football, american fans, football sport, sports, american fan, americans like, culture, americans, size field, american, cheer, television, america</td>
+      <td>American Soccer Interest</td>
+      <td>enthusiastic, curious</td>
+      <td>Posts discussing American soccer fan culture, interest in the sport, and its cultural impact in the US.</td>
+      <td>False</td>
+      <td>cat_13</td>
+      <td>American Soccer &amp; Fan Culture</td>
+      <td>My response to the uneducated, non-fan trying to diss soccer. || I'm interested in doing a research paper on the topic of the American soccer fan. || The size of the field is the major reason football (soccer) is boring. || what (i think) needs to be done for soccer to get the same amount of appreciation as baseball and golf in america || The Real Reasons We Americans Don't Care About Soccer (Er, Football, Whatever)</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>118</td>
+      <td>118</td>
+      <td>0.01203</td>
+      <td>league fantasy, fifa online, fifa 10, fifa10, fantasy football, fifa 11, play fifa, leagues, 10 league, playing fifa, fifa, liga, buy players, football manager, registration</td>
+      <td>FIFA Fantasy Leagues</td>
+      <td>enthusiastic</td>
+      <td>Posts discussing creating and participating in fantasy football and soccer leagues, including FIFA 10, 11, 12, and Football Manager games.</td>
+      <td>False</td>
+      <td>cat_14</td>
+      <td>Fantasy Football Leagues</td>
+      <td>Reddit FIFA 10 tournament? || Reddit Premier Fantasy League || Anyone play FIFA10 on the PS3? || Fantasy Soccer League Recommendations for Newcomers? || Anyone up for a reddit FIFA 10 Virtual Pro Club on X360?</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>115</td>
+      <td>115</td>
+      <td>0.01172</td>
+      <td>usa team, support england, england fans, donovan goal, england defeat, team england, england usa, england win, yanks, england women, won world, american flag, ball, scousers, american world</td>
+      <td>US vs England</td>
+      <td>Frustration and pride</td>
+      <td>Posts discussing US team performance, support for England, and reactions to England's defeat, including calls for improvement and celebration of England's achievements.</td>
+      <td>False</td>
+      <td>cat_15</td>
+      <td>US vs England Match Discussions</td>
+      <td>Dear US soccer, KEEP THE FUCKING BALL ON THE GROUND!!!! || "Good try" vs. World Class || An Open Letter to the US National Soccer Team || To all new fans of the US Men's National Team || I have never been prouder to hate England.</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>99</td>
+      <td>99</td>
+      <td>0.01009</td>
+      <td>africa teams, africa 2010, african teams, south africans, south africa, cape town, africa world, south african, cup south, africa, 2010 south, africa irc, cup fifa, watching england, team visited</td>
+      <td>South Africa World Cup 2010</td>
+      <td>Excitement, humor, concern</td>
+      <td>Posts discussing the 2010 World Cup in South Africa, including match threads, fan reactions, media coverage, and related events.</td>
+      <td>False</td>
+      <td>cat_16</td>
+      <td>South Africa World Cup 2010</td>
+      <td>How South Africa was had by the World Cup || Match Thread: France v South Africa || Who thinks the world cup in south africa is gonna be great? || Should teams have gone to South Africa sooner? || Open letter to out foreign media friends</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>99</td>
+      <td>99</td>
+      <td>0.01009</td>
+      <td>provisional squad, cup squad, england squad, squad analysis, fullbacks, formation, bocanegra, dempsey, strikers, baines, owen, walcott, crouch, analysis england, warnock</td>
+      <td>Squad Analysis</td>
+      <td>analytical</td>
+      <td>Posts discussing team formations, player roles, and squad analysis, including discussions on England's provisional squad, Spain's World Cup squad, and USA's 23-man roster.</td>
+      <td>False</td>
+      <td>cat_17</td>
+      <td>Squad Analysis &amp; Team Formation</td>
+      <td>Hey /r/Soccer, if you were in charge of the USMNT, what would your line-up be? || USA and England fans- post your best guesses for Saturday's lineups || Official England Squad named || SO what does /r/soccer think of Del Bosque's final 23 for Spain? || USA: why not a 4-3-3?</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td>96</td>
+      <td>96</td>
+      <td>0.00979</td>
+      <td>cup commercials, adidas, equipment adidas, nike, heels, shoe, ads, cleats, turf, 2010 uefa, cola, cannavaro, small african, rooney ronaldo, italy team</td>
+      <td>World Cup Ads</td>
+      <td>enthusiastic, nostalgic</td>
+      <td>Posts discussing World Cup commercials, including Nike, Adidas, and other brands, with a focus on 2010 UEFA World Cup.</td>
+      <td>False</td>
+      <td>cat_18</td>
+      <td>World Cup Advertising &amp; Branding</td>
+      <td>Looking for a commercial shown on TV during the World Cup. Featured an African child cleaning an AK47. || Anyone else noticed that all the stars in that Nike: \r\nWrite the Future ad have been playing somewhat \r\npoorly? || Are there any other Australian Redditors getting SICK TO DEATH of the constant ad repeats on the SBS broadcast? || Here is my shoe collection - I need to make room. Please help me get them off my hands? :D || r/soccer: I get blood blisters on the 'corners' of my heels when I play. I think it's from trying to cut too hard/too much agility. Anyone e</td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td>92</td>
+      <td>92</td>
+      <td>0.00938</td>
+      <td>national anthem, national anthems, chant, anthems, usa supporters, england national, english football, singing, remix, african culture, england need, beatles, croatian, theme, messi england</td>
+      <td>World Cup Anthem &amp; Chant</td>
+      <td>enthusiastic, nostalgic, and celebratory</td>
+      <td>Posts about World Cup anthems, chants, and related music, including national anthems, fan chants, and music remixes</td>
+      <td>False</td>
+      <td>cat_18</td>
+      <td>World Cup Advertising &amp; Branding</td>
+      <td>Favorite chants? || Shakira's "Waka Waka" is based on African Folklore. Here it is preformed where I grew up. || USA really needs a crowd song, any ideas? || USA needs a chant/song besides USA USA USA || Help me identify this English football song....please.</td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td>86</td>
+      <td>86</td>
+      <td>0.00877</td>
+      <td>liverpool manager, manage liverpool, roy hodgson, villa job, steve mcclaren, manager roy, mcclaren, sven goran, new manager, england manager, managerial, pellegrini, fulham, city manager, sacked</td>
+      <td>Managerial Changes</td>
+      <td>informative</td>
+      <td>Posts discussing new or upcoming managers, their roles, and related controversies</td>
+      <td>False</td>
+      <td>cat_20</td>
+      <td>Managerial Changes &amp; Controversies</td>
+      <td>BBC Sport - Football - Aston Villa appoint Gerard Houllier as new manager || Roy Hodgson Poised to Become New Liverpool Manager. || Aston Villa spark tug of war for Mark Hughes as Martin O'Neill quits on eve of new season || Aston Villa hope to appoint Gerard Houllier as successor to Martin O'Neill in the next 48 hours. || Who should manage Liverpool?</td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td>86</td>
+      <td>86</td>
+      <td>0.00877</td>
+      <td>mondiali di, di calcio, italia mondiali, calcio 2010, italia nuova, calciopoli, inter fiorentina, coppa italia, lazio, italiana, inter barcellona, italia inter, milan won, carlo, maldini</td>
+      <td>Mondiali 2010</td>
+      <td>enthusiastic</td>
+      <td>Posts related to the 2010 World Cup, including results, matches, and commentary on Italian teams and players.</td>
+      <td>False</td>
+      <td>cat_1</td>
+      <td>World Cup Predictions &amp; Analysis</td>
+      <td>Risultati, Classifica finale e Record del Campionato di Calcio italiano di Serie A 2009/2010 || TIM Cup Primavera Final Milan-Palermo (2-0): Milan win the Coppa Italia! || Mondiali 2010 Sudafrica: Zakumi, la mascotte dei Mondiali di Calcio || Mondiali 2010 di Calcio in Sudafrica, i convocati del Brasile di Dunga e Kaka' || Mondiali Calcio 2010: aneddoti e curiosita' della Coppa del Mondo di Calcio</td>
+    </tr>
+    <tr>
+      <td>21</td>
+      <td>80</td>
+      <td>80</td>
+      <td>0.00816</td>
+      <td>rooney, wayne rooney, john terry, rooney season, alex ferguson, rooney wins, england wayne, rooneys, paul scholes, england football, rumours, terry affair, neville, ban press, career manchester</td>
+      <td>Terry &amp; Rooney Controversy</td>
+      <td>Critical &amp; Emotional</td>
+      <td>Posts discussing media scrutiny, public opinion, and personal conflicts between Rooney and Terry, including gagging orders, arrests, and career implications.</td>
+      <td>False</td>
+      <td>cat_30</td>
+      <td>Landon Donovan &amp; Football Stars</td>
+      <td>Wayne Rooney's game is hurting in media glare, says Sir Alex Ferguson || Sir Alex Ferguson admits he 'misused' Wayne Rooney last season || "Jack Wilshere was arrested by police in the early hours following a fracas but was released on bail later. The police have made it very cle || An order preventing the media from reporting details of England football captain John Terry's private life has been lifted by the High Court || Steven Gerrads Rumours</td>
+    </tr>
+    <tr>
+      <td>22</td>
+      <td>79</td>
+      <td>79</td>
+      <td>0.00805</td>
+      <td>live uefa, madrid live, watch barcelona, watch online, arsenal live, uefa europa, live football, italy serie, watch arsenal, milan manchester, league match, telecast live, arsenal barcelona, enjoy match, sports online</td>
+      <td>UEFA Champions League Live</td>
+      <td>excitement</td>
+      <td>Posts about live UEFA Champions League matches, including streaming and TV links</td>
+      <td>False</td>
+      <td>cat_22</td>
+      <td>UEFA Champions League Live</td>
+      <td>Enjoy Real Madrid vs Olympique Lyon Live UEFA Champions League 2010 soccer match online || Watch Barcelona vs&nbsp;&nbsp;Inter Milan live UEFA Champions League semifinals match sopcast free || Inter Milan vs Barcelona Live UEFA Champions League semifinals match sopcast tv links || FC Barcelona vs Inter Milan Live UEFA Champions League semifinals match sopcast online || Watch Inter Milan vs Barcelona Live UEFA Champions League semifinals match sopcast online</td>
+    </tr>
+    <tr>
+      <td>23</td>
+      <td>76</td>
+      <td>76</td>
+      <td>0.00775</td>
+      <td>javier zanetti, seydou keita, müller, roberto carlos, zidane, roberto, japanese players, xabi alonso, cup coach, borussia dortmund, dortmund, transfers rumours, cup liverpool, eljero, smaller leagues</td>
+      <td>World Cup Highlights</td>
+      <td>excitement</td>
+      <td>Posts discussing notable performances, memorable moments, and standout players from the World Cup</td>
+      <td>False</td>
+      <td>cat_21</td>
+      <td>World Cup Highlights &amp; Player Performances</td>
+      <td>Who is your favorite prospect player for this season? || Players to Watch: Round One || I miss 20Legend || Classy, silent workhorses || Japan's success in the World Cup has opened up the transfer market for many Japanese players, here's some transfers and rumours.</td>
+    </tr>
+    <tr>
+      <td>24</td>
+      <td>75</td>
+      <td>75</td>
+      <td>0.00765</td>
+      <td>support mls, know mls, mls, mls team, league mls, mls players, coming mls, mls fans, mls attendance, 2010 mls, european leagues, toronto fc, philadelphia union, 1860 munich, seattle philadelphia</td>
+      <td>MLS Support</td>
+      <td>Positive</td>
+      <td>Posts discussing support for MLS, fan engagement, and league development</td>
+      <td>False</td>
+      <td>cat_23</td>
+      <td>MLS Support &amp; Fan Engagement</td>
+      <td>The MLS, just how good is it? || Questions about stars from Europe coming to MLS. || Interest in or have questions about MLS? Come join us at the newly re-energized /r/MLS where we already have a stable base of MLS fans. Indi || Do soccer fans here understand why the MLS (in terms of single entity) is the way it is? || My experience with the MLS. What's yours?</td>
+    </tr>
+    <tr>
+      <td>25</td>
+      <td>71</td>
+      <td>71</td>
+      <td>0.00724</td>
+      <td>goal celebration, goal video, video goal, robben goal, video ronaldo, winning goal, donovan goal, usa goal, goal algeria, goal century, goals great, madrid fans, goals barcelona, andres iniesta, favourite team</td>
+      <td>Goal Celebrations</td>
+      <td>Excitement, enthusiasm, nostalgia</td>
+      <td>Posts about goal celebrations, including videos, GIFs, and fan reactions to goals in football</td>
+      <td>False</td>
+      <td>cat_24</td>
+      <td>Goal Celebrations &amp; Fan Reactions</td>
+      <td>GIF request: van der Wiel foul on Iniesta || Stjarnan's newest goal celebration... the Grenade! || If you had the chance to play in a league game and score a goal, what would be your goal celebration? || What's the significance of kissing the ring finger during a goal celebration? || Soccer vid request!&nbsp;&nbsp;Disallowed Robben goal</td>
+    </tr>
+    <tr>
+      <td>26</td>
+      <td>71</td>
+      <td>71</td>
+      <td>0.00724</td>
+      <td>use vuvuzela, vuvuzelas, vuvuzela, vuvuzela stay, vuvuzela button, vuvuzelas weren, blowing vuvuzela, vuvuzela message, buzz vuvuzela, microphones, microphone, audio, noise, worldwide broadcast, annoying people</td>
+      <td>Vuvuzela Noise</td>
+      <td>Annoying, frustrated, and rebellious</td>
+      <td>Posts discussing vuvuzela noise, filtering methods, and the impact of vuvuzela sounds on football broadcasts.</td>
+      <td>False</td>
+      <td>cat_35</td>
+      <td>Vuvuzela Controversy &amp; Its Impact</td>
+      <td>why aren't they placing microphones in the non-vuvuzela blocks for the audio ? || (The most evil man in the worldf) Neil van Schalkwyk, who brought the vuvuzela to the mass market has partnered with Uthango Social Investme || Vuvuzela noise filter app for Mac OS X || Fuck those vuvuzelas || Does anyone know how to configure Virtual Audio Cable? I would like to get rid of the vuvu's...\n\n</td>
+    </tr>
+    <tr>
+      <td>27</td>
+      <td>69</td>
+      <td>69</td>
+      <td>0.00703</td>
+      <td>french football, french team, team france, france world, news france, france, france mexico, blanc, 2010 france, cup squad, french, lille, match ban, zinedine zidane, mexico draw</td>
+      <td>French Football Crisis</td>
+      <td>Critical and Disheartened</td>
+      <td>Posts discussing the French team's performance, coach's management, player conflicts, and the emotional impact on fans, including the 2010 World Cup and related events.</td>
+      <td>False</td>
+      <td>cat_26</td>
+      <td>French Football Crisis &amp; Team Performance</td>
+      <td>Anyone else feeling even worse for Ireland after the actions of the French on and off the field? || France Football Team is imploding at Sunday's Training || France Coach Laurent Blanc has named his rebels-free squad || A non-fact-checked translation of a comment on \r\nEvra's failed suspension appeal -&nbsp;&nbsp;explains what \r\nactually happened in France, and the rea || Conspiracy Theory: FIFA cannot financially afford to lose a host nation in the first round. French camp debacle just too convenient?</td>
+    </tr>
+    <tr>
+      <td>28</td>
+      <td>69</td>
+      <td>69</td>
+      <td>0.00703</td>
+      <td>octopus, england paul, psychic, final german, predict winner, germany fuck, germany fans, predictions, holland world, end draw, cup argentina, spain win, finals germany, betray, goes spain</td>
+      <td>Psychic Octopus Predictions</td>
+      <td>enthusiastic, critical, and angry</td>
+      <td>Posts about Paul the Octopus and his predictions in the World Cup, including his accuracy, fan reactions, and controversies.</td>
+      <td>False</td>
+      <td>cat_27</td>
+      <td>Paul the Octopus Predictions &amp; Controversies</td>
+      <td>'Psychic' octopus predicts Germany victory over England || Paul the Octopus || Psychic octopus Paul predicts Spain to beat Holland in World Cup final || Germans demand killing of psychic octopus Paul after World Cup semi-final defeat || Limerick for Paul the psychic octopus.</td>
+    </tr>
+    <tr>
+      <td>29</td>
+      <td>68</td>
+      <td>68</td>
+      <td>0.00693</td>
+      <td>coaching, fullback, tactics, tryout, formations, play team, learn play, skills, goal keeper, training, improve, rec league, football blog, tips, fields</td>
+      <td>Coaching &amp; Development</td>
+      <td>Supportive and encouraging</td>
+      <td>Posts related to coaching methods, skill development, training, and player improvement</td>
+      <td>False</td>
+      <td>cat_28</td>
+      <td>Coaching &amp; Development in Football</td>
+      <td>An appeal to all: Since we've had this discussion 14 times already, can you please shut the fuck up about scores in titles? || Help a right fullback out. || Need advice for a veteran footballer looking to improve his competitiveness on the pitch || About to join a rec league; what skills/knowledge do I need? || How are young children taught to play soccer in soccer-serious countries?</td>
+    </tr>
+    <tr>
+      <td>30</td>
+      <td>66</td>
+      <td>66</td>
+      <td>0.00673</td>
+      <td>match sevilla, sevilla, deportivo la, atletico, fc barcelona, goal villa, levante, athletic bilbao, madrid, madrid liverpool, valencia, piqué, villarreal, final score, yellow card</td>
+      <td>Sevilla vs Barcelona</td>
+      <td>Excitement and anticipation</td>
+      <td>Posts discussing the match between Sevilla and Barcelona, including line-ups, highlights, and final scores</td>
+      <td>False</td>
+      <td>cat_29</td>
+      <td>Sevilla vs Barcelona Match Discussion</td>
+      <td>Match Thread: Mallorca - Real Madrid || Match Thread: Levante vs Real Madrid || Match thread: FC Barcelona v. Sporting Gijón || Match Thread: Racing Santander - FC Barcelona || Match Thread: FC Sevilla vs. FC Barcelona</td>
+    </tr>
+    <tr>
+      <td>31</td>
+      <td>63</td>
+      <td>63</td>
+      <td>0.00642</td>
+      <td>landon donovan, landon, donovan, favourite footballer, wayne rooney, david beckham, beckford, becks, brian mcbride, dennis bergkamp, marouane fellaini, robbie, footballers, cup 2006, charlton</td>
+      <td>Landon Donovan &amp; Football Stars</td>
+      <td>Celebratory, affectionate, and passionate</td>
+      <td>Posts discussing Landon Donovan and various footballers, including Wayne Rooney, David Beckham, and others, with a focus on their careers and personal connections.</td>
+      <td>False</td>
+      <td>cat_30</td>
+      <td>Landon Donovan &amp; Football Stars</td>
+      <td>Landon Donovan: This is Sportscenter || Landon Donovan - This is Sportscenter || Landon Donovan: Fuck yes. [PIC] || Landon Donovan on David Letterman || Who would you rather have on your team Donovan or Rooney?</td>
+    </tr>
+    <tr>
+      <td>32</td>
+      <td>62</td>
+      <td>62</td>
+      <td>0.00632</td>
+      <td>cup world, futbol world, non football, 2010 world, futbol, greatest sporting, brasil, cup heroes, highlights 2010, italy won, drinking game, won world, ban world, kicks ball, carlos bocanegra</td>
+      <td>World Cup Highlights</td>
+      <td>enthusiastic</td>
+      <td>Posts about the 2010 World Cup highlights, including memorable moments, player performances, and fan reactions</td>
+      <td>False</td>
+      <td>cat_21</td>
+      <td>World Cup Highlights &amp; Player Performances</td>
+      <td>We all know we don't like vuvuzelas, boring matches, bad refereeing. Now tell me what you really LIKE regarding the 2010 FIFA World Cup! || Fan reactions to the world cup... from non-footballing countries || Hey Reddit, do you have also in your country this Guy on TV, convinced that Football follows statistics? || WC 2010 rules... || Reddit World Cup Drinking Game</td>
+    </tr>
+    <tr>
+      <td>33</td>
+      <td>61</td>
+      <td>61</td>
+      <td>0.00622</td>
+      <td>capello england, fabio capello, england coach, capello, england manager, capello announces, squad fabio, terry england, carlo ancelotti, england best, england players, analysis england, defoe england, lose england, england dressing</td>
+      <td>Capello England</td>
+      <td>Reflective, analytical, nostalgic</td>
+      <td>Posts discussing England's managerial decisions, player performance, and Capello's role in the team's success or challenges, including his tenure, strategies, and impact on the squad, with a focus on his legacy and emotional significance.</td>
+      <td>False</td>
+      <td>cat_31</td>
+      <td>Capello England &amp; Managerial Decisions</td>
+      <td>Fabio Capello rates England players on Capello Index || England from back to front: the five questions Fabio Capello must resolve || Fabio Capello believes England can challenge at Euro 2012 || Fabio Capello to remain England manager || Fabio Capello to remain as England manager through Euro 2012</td>
+    </tr>
+    <tr>
+      <td>34</td>
+      <td>59</td>
+      <td>59</td>
+      <td>0.00601</td>
+      <td>korea team, korea fifa, korea world, korea portugal, news fifa, dprk, south korean, portugal match, yugoslavia, team north, united fifa, national players, cup defeat, fifa club, players squad</td>
+      <td>North Korea Football</td>
+      <td>Empathetic and critical</td>
+      <td>Posts discussing North Korea's World Cup performance, political context, and cultural aspects of their football team and fans.</td>
+      <td>False</td>
+      <td>cat_32</td>
+      <td>North Korea Football &amp; Cultural Aspects</td>
+      <td>Aged but Amazing and Relative Documentary about North Korea's Surprising performance in World Cup 1966. Also provides interesting insight in || Interview with North Korea's Jong Tae-se, "the People's Rooney." || What we assumed happened after some weeks of silence: North Korea soccer coach fears for his life / North Korea’s World Cup Team Faces Gover || Anyone else kinda nervous for the North Korea game? || DAE thinks north korea just tought us all a football lesson?</td>
+    </tr>
+    <tr>
+      <td>35</td>
+      <td>58</td>
+      <td>58</td>
+      <td>0.00591</td>
+      <td>opener mls, mls matches, mls season, season mls, mls cup, superliga, mls, mls announces, 2010 mls, chivas usa, mls star, houston dynamo, xi mls, league week, philadelphia union</td>
+      <td>MLS Week 15</td>
+      <td>excitement</td>
+      <td>Posts about MLS matches, previews, and rankings for week 15, including team recaps and power rankings.</td>
+      <td>False</td>
+      <td>cat_33</td>
+      <td>MLS Week 15 &amp; Match Previews</td>
+      <td>MLS week 15 kicks off with Real Salt Lake at the Chicago Fire - Match Preview || MLS action kicks off tonight with Real Salt Lake and San Jose - match preview || /r/soccer's Official Champions League Power Rankings || MLS and FMF fans, the Superliga starts tonight! || MLS and FMF fans, the Superliga starts tonight!</td>
+    </tr>
+    <tr>
+      <td>36</td>
+      <td>58</td>
+      <td>58</td>
+      <td>0.00591</td>
+      <td>commentators, commentator, announcer, commentary, pundits, daily football, german tv, analysts, uk football, highlights uk, interviews premier, joachim loew, sky sports, ruud, chap</td>
+      <td>World Cup Commentators</td>
+      <td>critical, humorous, nostalgic</td>
+      <td>Posts discussing football commentators, their styles, and their impact on the sport, including comparisons with other sports and cultural references.</td>
+      <td>False</td>
+      <td>cat_34</td>
+      <td>World Cup Commentators &amp; Their Impact</td>
+      <td>Good job, ESPN analysts || Who are the commentators for the World Cup? And why has my google-fu failed so miserably at finding this out? || In Germany we mostly have terrible football/soccer TV commentators. How about your country/state? || The only sound worse than that of vuvuzelas = the voice of John Harkes || Some classic gems already from the international English feed of Play-by-Play.</td>
+    </tr>
+    <tr>
+      <td>37</td>
+      <td>58</td>
+      <td>58</td>
+      <td>0.00591</td>
+      <td>blowing vuvuzela, vuvuzelas weren, vuvuzela message, like vuvuzelas, plastic horns, loud, chanting, noise, shouting, hooliganism, fifa failed, stadium replays, buzzing, opening ceremony, stadium</td>
+      <td>Vuvuzela Controversy</td>
+      <td>critical, frustrated, nostalgic</td>
+      <td>Posts discussing the vuvuzela's impact on football, cultural significance, and bans, with emotional tones of frustration and nostalgia.</td>
+      <td>False</td>
+      <td>cat_25</td>
+      <td>Vuvuzela Noise &amp; Its Impact</td>
+      <td>FIFA plan to ban the Vuvuzela completely if one gets thrown onto the pitch. I hear by offer 10,000,000 karma points to any South African red || FIFA ban in-stadium replays but not vuvuzela. || Please: drop the "V"-word and call them "horns" from now on.&nbsp;&nbsp;By using that other word, you're perpetuating the "it's the culture" argument. || The truth about the Jabulani and the vuvuzela. || So the Vuvuzela horns are a cultural thing... well so are flares and hooliganism. Just because something is "cultural" doesn't mean it's a g</td>
+    </tr>
+    <tr>
+      <td>38</td>
+      <td>56</td>
+      <td>56</td>
+      <td>0.00571</td>
+      <td>match inter, inter match, roma inter, defeat inter, inter, inter roma, italia inter, inter juventus, derby italia, juventus, bayern inter, advantage inter, roma, lazio, milan</td>
+      <td>Inter vs Roma</td>
+      <td>excited</td>
+      <td>Posts about Inter vs Roma matches, including highlights, goals, and fan reactions</td>
+      <td>False</td>
+      <td>cat_29</td>
+      <td>Sevilla vs Barcelona Match Discussion</td>
+      <td>Hey guys - just a reminder, please don't put very recent results in a thread title (for people who have a match DVR'd and haven't seen it ye || Roma-Inter Question || Match Thread: Inter - Roma (Supercoppa Italia) || Two Questions about the Champions League Final... (game spoiler inside) || What are your predictions for tonights Derby d’Italia (Inter-Juventus)?</td>
+    </tr>
+    <tr>
+      <td>39</td>
+      <td>55</td>
+      <td>55</td>
+      <td>0.00561</td>
+      <td>cesc fabregas, cesc fábregas, fabregas, fabregas barcelona, fabregas transfer, contract barcelona, arsenal cesc, arsenal sign, summer arsenal, loan arsenal, arsenal arsenal, arsenal captain, barcelona shirt, sevilla confirmed, wenger</td>
+      <td>Fabregas Transfer Saga</td>
+      <td>Critical and emotional</td>
+      <td>Posts discussing Fabregas' transfer rumors, contractual issues, and emotional reactions from fans and players, including his role at Arsenal and Barcelona.</td>
+      <td>False</td>
+      <td>cat_2</td>
+      <td>Transfer Rumors &amp; Player Signings</td>
+      <td>Barcelona's "stratospheric debt" could scupper any deal for Arsenal's Cesc Fabregas || Arsenal captain Cesc Fabregas cries as film shows him as a Barcelona youth player || FIFA should fine Barcelona for "tapping-up" Arsenal captain Cesc Fabregas || Cesc Fabregas signs five-year contract with Barcelona, as Arsenal captain waits for clubs to agree fee || Barcelona state they are in official talks with Arsenal \r\nover Cesc Fabregas</td>
+    </tr>
+    <tr>
+      <td>40</td>
+      <td>54</td>
+      <td>54</td>
+      <td>0.00551</td>
+      <td>new ball, ball design, ball, corner kicks, adidas, nice ball, sepp blatter, cup corner, players cups, official match, design, follow football, review world, socks, liverpool player</td>
+      <td>Jabulani Ball Discussion</td>
+      <td>critical</td>
+      <td>Posts discussing the Jabulani ball, its design, and the controversies surrounding its use in the World Cup, including player complaints, fake balls, and official responses.</td>
+      <td>False</td>
+      <td>cat_9</td>
+      <td>World Cup Humor &amp; Cultural Content</td>
+      <td>Looking for an affordable, yet quality ball. Any suggestions? || Can someone explain to me (someone who doesn't follow football) why they keep redesigning the ball? || Beware of fake Jabulani balls on eBay. Details inside! || Thoughts on the Jabulani ball and how it might affect your WC predictions? || Craig Johnston's open letter to Sepp Blatter about the Jabulani ball. Also, my own observations playing with the Jabulani.</td>
+    </tr>
+    <tr>
+      <td>41</td>
+      <td>53</td>
+      <td>53</td>
+      <td>0.00540</td>
+      <td>soccernet, follow league, follow team, follow news, livestreams, cup schedule, liga serie, favourite football, know team, best sites, spanish primera, players scored, aggregator, time zone, matches right</td>
+      <td>Soccer News Aggregator</td>
+      <td>Inquisitive and informative</td>
+      <td>Posts about finding news sites, schedules, and aggregators for soccer leagues and teams</td>
+      <td>False</td>
+      <td>cat_12</td>
+      <td>Live Football Coverage &amp; Streaming</td>
+      <td>Question: Does anyone know a website with a constant stream of soccer injury news? || What are the best sites for EPL news? || Any way I can keep track of upcoming matches? || Google helps keep track of all your games/times/scores. || I wrote a small gtalk (XMPP/jabber) chat bot to let you very simply follow the FIFA World Cup scores at your pc or mobile</td>
+    </tr>
+    <tr>
+      <td>42</td>
+      <td>50</td>
+      <td>50</td>
+      <td>0.00510</td>
+      <td>mourinho mourinho, mourinho says, mourinho, think mourinho, jose mourinho, gaal mourinho, arsene wenger, interview wenger, capello mourinho, roy hodgson, allardyce, mancini, league managers, arsenal players, ranieri</td>
+      <td>Mourinho Analysis</td>
+      <td>Critical</td>
+      <td>Posts discussing Mourinho's tactics, behavior, and influence on football, including comparisons to other managers and critiques of his approach.</td>
+      <td>False</td>
+      <td>cat_20</td>
+      <td>Managerial Changes &amp; Controversies</td>
+      <td>Arsene' Wenger Quotes || Jose Mourinho: the cases for and against - more lucky than great? ... His teams already knew how to win, he's had easy runs to his silverwar || Spoof interviews with Premier league managers...and Arsene Wenger pretends to be a shop owner. || Fair play to Inter on getting through to the final but I think Mourinho behaved like an amateur tonight and showed a lack of respect.. || Mourinho is present at the World Cup... as Switzerland deservedly beats Spain</td>
+    </tr>
+    <tr>
+      <td>43</td>
+      <td>50</td>
+      <td>50</td>
+      <td>0.00510</td>
+      <td>rafael benitez, rafael benítez, rafa benitez, benitez inter, milan coach, liverpool manager, liverpool rafael, leaves liverpool, liverpool board, allardyce, juventus, future liverpool, blames liverpool, liverpool liverpool, rafael</td>
+      <td>Rafa Benitez Inter Deal</td>
+      <td>Negative</td>
+      <td>Posts discussing Rafa Benitez's potential transfer to Inter Milan, including his current status, future plans, and reactions from fans and media.</td>
+      <td>False</td>
+      <td>cat_10</td>
+      <td>Manchester City &amp; Financial Issues</td>
+      <td>Rafa Benitez to hold talks with Inter Milan next week. || Total respect to new Inter coach Rafa Benitez: \r\nDonates £96,000 to the Hillsborough Family \r\nSupport Group || Liverpool's guus-ing game: I've made my stance very public on this – I can't stand the sight of Rafa Benitez. When watching games on TV, I h || Inter Milan coach Rafa Benitez shrugs off Panathinaikos defeat || Rafa Benitez leaves Liverpool F.C.</td>
+    </tr>
+    <tr>
+      <td>44</td>
+      <td>48</td>
+      <td>48</td>
+      <td>0.00489</td>
+      <td>club crests, club crest, portland timbers, timbers, logo, socceroos, team international, new mls, flags, css, stats team, philadelphia union, peru friendly, mod, votes</td>
+      <td>Team Crests</td>
+      <td>positive, enthusiastic, slightly frustrated</td>
+      <td>Posts discussing the introduction and implementation of club crests in /r/soccer, including user experiences, limitations, and community reactions.</td>
+      <td>False</td>
+      <td>cat_23</td>
+      <td>MLS Support &amp; Fan Engagement</td>
+      <td>/r/soccer World Cup stats || Club crests are back! || Portland Timbers replace classic crest with plastic bullcrap. || Reddit soccer stats || Club crests updated. We are now very close to the limit on the number of users of this feature.</td>
+    </tr>
+    <tr>
+      <td>45</td>
+      <td>44</td>
+      <td>44</td>
+      <td>0.00449</td>
+      <td>sounders fc, sounders, seattle sounders, mls match, tickets la, fc dallas, la galaxy, chivas usa, cup quarterfinal, concacaf champions, whitecaps fc, toronto fc, xi mls, red bulls, concacaf</td>
+      <td>CONCACAF Champions League</td>
+      <td>Excitement, competition</td>
+      <td>Posts related to CONCACAF Champions League matches, including results, commentary, and fan reactions.</td>
+      <td>False</td>
+      <td>cat_29</td>
+      <td>Sevilla vs Barcelona Match Discussion</td>
+      <td>Seattle Sounders earn draw, advance to group stage in CONCACAF Champions League - ESPN || FC Dallas facing must win against Seattle Sounders FC || Seattle Sounders to refund fans their tickets for the LA Galaxy Loss last Saturday. || Seattle Sounders to refund fans in attendance of last night's rout by LA Galaxy || On Tuesday, the LA Galaxy play host to the Puerto Rico Islanders in the first leg of their CONCACAF Champions League preliminary round match</td>
+    </tr>
+    <tr>
+      <td>46</td>
+      <td>43</td>
+      <td>43</td>
+      <td>0.00438</td>
+      <td>club teams, epl teams, la liga, man chelsea, mls epl, favorite team, watch epl, liga bundesliga, team league, bolton wanderers, everton everton, hotspur, chelsea marseille, redditch united, celtic</td>
+      <td>EPL Team Support</td>
+      <td>enthusiastic</td>
+      <td>Posts discussing favorite EPL teams, fan bases, and support for specific clubs</td>
+      <td>False</td>
+      <td>cat_22</td>
+      <td>UEFA Champions League Live</td>
+      <td>Pre-Season Friendlies this week || Soccer Etiquette Question: Rooting for Multiple Teams || Nominate a club level football team to be the /r/Soccer team that we all support! || UEFA Champions League cheering protocol.&nbsp;&nbsp;Help a new soccer fan. || After much research, and careful deliberation I have decided my soccer teams;\r\n\r\nP.S. Italian flag for my name please.&nbsp;&nbsp;My old account was l</td>
+    </tr>
+    <tr>
+      <td>47</td>
+      <td>40</td>
+      <td>40</td>
+      <td>0.00408</td>
+      <td>league players, player wages, player wc, 10 players, world football, football leagues, player ratings, football clubs, know leagues, espn soccernet, leagues world, soccernet, italy serie, match fixing, 2010 season</td>
+      <td>World Cup 2010</td>
+      <td>Inquisitive, analytical, and critical</td>
+      <td>Posts related to the 2010 World Cup, including player rankings, wages, match fixing, and league comparisons.</td>
+      <td>False</td>
+      <td>cat_16</td>
+      <td>South Africa World Cup 2010</td>
+      <td>Top 50 players of the 2010 World Cup - ESPN Soccernet || Is there a comprehensive list of player wages available? || Which league(s) has the most match fixing/corruption in world football? || Need help finding salaries of lower league soccer players. (Those who are susceptible to bribes) || Top 10 Great players who will miss the World Cup 2010</td>
+    </tr>
+    <tr>
+      <td>48</td>
+      <td>39</td>
+      <td>39</td>
+      <td>0.00398</td>
+      <td>goal video, concacaf champions, mexican league, highlights mexico, concacaf cl, win mexico, cup highlights, chivas, mexico 2010, primera, boca juniors, final brazilian, video highlights, omar bravo, video</td>
+      <td>Copa Libertadores Highlights</td>
+      <td>excitement</td>
+      <td>Posts about Copa Libertadores matches, including goal videos, team highlights, and final results</td>
+      <td>False</td>
+      <td>cat_29</td>
+      <td>Sevilla vs Barcelona Match Discussion</td>
+      <td>Copa Libertadores Final: Chivas Guadalajara (MEX) x Internacional (BRA) || Video Highlights: Mexico Playoffs Quarterfinals First Leg - Santos v Pumas || Video Highlights - Mexico Playoffs Quarterfinals first leg, Pachuca v Monterrey || Video Highlights: Mexico Playoffs Quarterfinals First Leg - América v Toluca || Video Highlights - Mexico Playoffs Quarterfinals first leg, Morelia v Chivas</td>
+    </tr>
+    <tr>
+      <td>49</td>
+      <td>39</td>
+      <td>39</td>
+      <td>0.00398</td>
+      <td>portsmouth fa, portsmouth fc, portsmouth, league fa, relegated, fa cup, cup win, future club, chester, season starts, chester city, goal keepers, administration, collapse, read bbc</td>
+      <td>Portsmouth Crisis</td>
+      <td>Urgent</td>
+      <td>Posts discuss Portsmouth's financial collapse, administration, FA Cup prospects, and future plans</td>
+      <td>False</td>
+      <td>cat_10</td>
+      <td>Manchester City &amp; Financial Issues</td>
+      <td>Portsmouth have only 14 Players registered,including no goal keepers and the championship season starts in 11 Days time! || Portsmouth have no plans to sue Premier League (possibly because the only lawyers they can afford are 19-year-old Malawians) || Portsmouth to appeal FA ruling that denies clubs in administration a place in Europe. || While the media focuses on the plights of Portsmouth, please spare a thought for a team that didn't make it; Chester City || If Portsmouth thought that things could hardly get any worse for them after going into administration, being relegated from the Premier Leag</td>
+    </tr>
+    <tr>
+      <td>50</td>
+      <td>38</td>
+      <td>38</td>
+      <td>0.00387</td>
+      <td>germany fuck, match german, germany lose, germany fan, germany world, usual germany, games germany, england germany, hitler reacts, germans, germany 1966, football remember, 1966 world, england games, wwii</td>
+      <td>Germany vs England Rivalry</td>
+      <td>nostalgic, critical, and competitive</td>
+      <td>Posts discussing the historical and ongoing rivalry between Germany and England in football, including references to past matches, historical context, and current sentiments.</td>
+      <td>False</td>
+      <td>cat_15</td>
+      <td>US vs England Match Discussions</td>
+      <td>Hello football/soccer fans worldwide - this is how Germany was celebrating yesterday's ARG-GER match. (incl. link - sorry for my 1st post w/ || To thank die Mannschaft for playing their level best, I will run down the streets of Berlin naked! || England fans of r/soccer: thank you for the class and respect you showed today. While the yellow press&nbsp;&nbsp;tries to steer up stupid WW2 referen || An apology to Germany/World for the WWII references that will be made prior to Sunday. || The War and all that...</td>
+    </tr>
+    <tr>
+      <td>51</td>
+      <td>38</td>
+      <td>38</td>
+      <td>0.00387</td>
+      <td>uefa europa, europa league, uefa champions, champions league, uefa, league draw, agg sevilla, group stage, league group, league playoffs, league preview, league 3rd, sweden football, werder, hotspur</td>
+      <td>UEFA Champions League</td>
+      <td>enthusiastic</td>
+      <td>Posts about UEFA Champions League matches, group stages, play-offs, and draws, including match threads, previews, and results.</td>
+      <td>False</td>
+      <td>cat_22</td>
+      <td>UEFA Champions League Live</td>
+      <td>Match thread: UEFA Champions League third qualifying round (July 28) || Match thread: UEFA Champions League group stage (September 14) || Match thread: UEFA Champions League play-off round second leg (August 25) || UEFA Champions League &amp; Europa League Qualifying: Second Round Thread || Match thread: UEFA Champions League play-off round first leg (August 17)</td>
+    </tr>
+    <tr>
+      <td>52</td>
+      <td>37</td>
+      <td>37</td>
+      <td>0.00377</td>
+      <td>italy team, italian football, italian team, way italy, players italians, italy, italians, giuseppe, italian, prandelli, maldini, bonucci, marchetti, ancellotti, borriello</td>
+      <td>Italy World Cup Elimination</td>
+      <td>Disappointment, frustration, and mockery</td>
+      <td>Posts discussing Italy's World Cup elimination, criticism of the team, and related football culture, including players and media coverage.</td>
+      <td>False</td>
+      <td>cat_21</td>
+      <td>World Cup Highlights &amp; Player Performances</td>
+      <td>Italian spirits take a dive as Italy fall dramatically to the bottom of Group F, tumble theatrically out of World Cup. Italy almost cheat el || If a team loses, can we not gloat about it? Yes I'm referring to ITALY IS OUT FUCK YEAH post. Stay classy reddit. You wouldn't want a thread || Dear Italy... please stop being little bitches... || Something to admire from the italians. || Prandelli's First Squad Named : What are your thoughts, fans of Italian Football?</td>
+    </tr>
+    <tr>
+      <td>53</td>
+      <td>33</td>
+      <td>33</td>
+      <td>0.00336</td>
+      <td>worldcup live, watch argentina, germany live, germany game, live football, match live, watch italy, watch fifa, watch live, watch algeria, uruguay live, international friendlies, highlights argentina, fifa worldcup, coverage espn</td>
+      <td>World Cup Live Streaming</td>
+      <td>enthusiastic</td>
+      <td>Posts related to live football matches, streaming services, and coverage during the FIFA World Cup.</td>
+      <td>False</td>
+      <td>cat_12</td>
+      <td>Live Football Coverage &amp; Streaming</td>
+      <td>Watch Germany U20 vs. Switzerland U20 live streaming online TV || Enjoy Live free International Friendly Matches Germany vs. Switzerland on&nbsp;&nbsp;|| Watch Italy Vs Cameroon Live Streaming Online. International Match soccer live streaming,live streaming soccer,live broadcast,watch live foo || Watch Germany vs.Argentina live streaming online TV || Enjoy Live free International Friendly Matches Germany vs.Argentina on PC. || Watch Germany Vs Argentina Live Streaming Online. International Match soccer live streaming,live streaming soccer,live broadcast,watch live&nbsp;&nbsp;|| Watch Germany vs Argentina live streaming online coverage on ESPN TV | International Friendlies 2010 Live</td>
+    </tr>
+    <tr>
+      <td>54</td>
+      <td>32</td>
+      <td>32</td>
+      <td>0.00326</td>
+      <td>transfer news, january transfer, transfers rumours, transfer window, transfers, epl transfer, players loan, arsenal spurs, luca toni, wc performances, signings, spurs man, italian serie, premier league, football live</td>
+      <td>Transfer News</td>
+      <td>informative</td>
+      <td>Includes discussions about transfer windows, player signings, loan deals, and rumours, with a focus on the Premier League and other leagues.</td>
+      <td>False</td>
+      <td>cat_2</td>
+      <td>Transfer Rumors &amp; Player Signings</td>
+      <td>It's Transfer Deadline Day! Live transfers and rumours&nbsp;&nbsp;to appear throughout the day on the BBC. || So...biggest disappointments for the world cup? (Squad-wise) || The Guardian's Sport Blog, Joy of Six: Inspired substitutions. From taking off Baggio for a backup keeper to ending an Irish legend's career || Where can I find the last few years of transfer dealings for Premier League clubs? || Who's had the best transfer window so far? (My pick: Genoa)</td>
+    </tr>
+    <tr>
+      <td>55</td>
+      <td>32</td>
+      <td>32</td>
+      <td>0.00326</td>
+      <td>zonal marking, zonal, spain tactical, best football, formation, analysis spain, best xi, mainz, inter, midfielder, hodgson, european team, mancini, barcelona arsenal, inter mourinho</td>
+      <td>Zonal Marking Analysis</td>
+      <td>Analytical and informative</td>
+      <td>Posts discussing zonal marking tactics, team performances, and tactical analysis in football, including Spain's tactics, European teams, and player performances.</td>
+      <td>False</td>
+      <td>cat_1</td>
+      <td>World Cup Predictions &amp; Analysis</td>
+      <td>Barcelona 1-0 Inter: Mourinho's side progress deservedly | Zonal Marking || Zonal Marking analyzes Mainz || Zonal Marking Analysis: Argentina v Nigeria || Zonal Marking Analysis of Spurs vs. Young Boys || Six to watch: the fringe players | Zonal Marking</td>
+    </tr>
+    <tr>
+      <td>56</td>
+      <td>31</td>
+      <td>31</td>
+      <td>0.00316</td>
+      <td>good pub, pubs, galaxy toronto, pub watch, watch england, boston, pub catch, watch argentina, best place, usa england, love football, tickets sale, match saturday, cup friends, post mls</td>
+      <td>World Cup Match Viewing</td>
+      <td>excitement</td>
+      <td>Posts about watching World Cup matches, including locations, group opportunities, and fan engagement</td>
+      <td>False</td>
+      <td>cat_16</td>
+      <td>South Africa World Cup 2010</td>
+      <td>LA folks: Pick up games? || What would be the best place to watch England vs USA in New York City? || Any American Pubs in London to watch USA v England? || DAE want to watch the USA vs England game in Cardiff? || Denver Redditors: Where is a good spot to watch the Argentina/Germany game on Saturday?</td>
+    </tr>
+    <tr>
+      <td>57</td>
+      <td>30</td>
+      <td>30</td>
+      <td>0.00306</td>
+      <td>mourinho real, mourinho mourinho, mourinho, mourinho make, josé mourinho, jose mourinho, mourinho says, capello mourinho, madrid official, united manager, madrid real, madrid ready, manuel pellegrini, new coach, ancelotti</td>
+      <td>Mourinho Real Madrid</td>
+      <td>Excitement and anticipation</td>
+      <td>Posts discussing Mourinho's potential appointment to Real Madrid, his plans, and the impact on the team.</td>
+      <td>False</td>
+      <td>cat_20</td>
+      <td>Managerial Changes &amp; Controversies</td>
+      <td>Real Madrid unveil Jose Mourinho as their new coach || José Mourinho: "Sooner or later I will coach Real Madrid" || Real Madrid to unveil Jose Mourinho as coach || José Mourinho is ninth Real Madrid coach in last six years... || It's official. José Mourinho -&gt; Real Madrid.</td>
+    </tr>
+    <tr>
+      <td>58</td>
+      <td>30</td>
+      <td>30</td>
+      <td>0.00306</td>
+      <td>usmnt coach, best coach, jurgen klinsmann, klinsmann, team coach, bruce arena, head coach, villa job, close coach, managerial, gonzales, gordon, does mls, fired immediately, fellow americans</td>
+      <td>USMNT coaching debate</td>
+      <td>critical</td>
+      <td>Posts discussing Bob Bradley, Jurgen Klinsmann, Bruce Arena, and the future of the U.S. Men's National Team coaching staff.</td>
+      <td>False</td>
+      <td>cat_20</td>
+      <td>Managerial Changes &amp; Controversies</td>
+      <td>Bob Bradley and Aston Villa: If the U.S. Men's National Team Coach Succeeded Martin O'Neill || Soccer Reddit, who do you think should take over the USMNT's coaching position? || Bob Bradley coaching in Europe. Opinions? || Dear fellow Americans of /r/soccer: Just say NO to Klinsmann. || What is your opinion on Bob Bradley?</td>
+    </tr>
+    <tr>
+      <td>59</td>
+      <td>29</td>
+      <td>29</td>
+      <td>0.00296</td>
+      <td>goal nsfw, female fans, larissa riquelme, women world, socceroos, hottest, cup vote, naked, footballers, reporter sara, prostitutes, newcastle, fans world, wags, bastian schweinsteiger</td>
+      <td>NSFW Fan Culture</td>
+      <td>critical</td>
+      <td>Posts discussing NSFW content related to female fans, footballers, and fan culture, including naked individuals, bodypainting, and explicit imagery.</td>
+      <td>False</td>
+      <td>cat_9</td>
+      <td>World Cup Humor &amp; Cultural Content</td>
+      <td>China’s World Cup contribution: (PICS) slightly nsfw-ish || Naked Female Streaker Scores a Soccer Goal! NSFW video WTF || The girls of the World Cup (from a Spanish website) NSFW-ish || Which country has the most attractive female supporters? || Who are the hottest WAGs (wives and girlfriends) of the World Cup?</td>
+    </tr>
+    <tr>
+      <td>60</td>
+      <td>29</td>
+      <td>29</td>
+      <td>0.00296</td>
+      <td>ribéry, ribery, franck ribery, franck ribéry, sex scandal, scandals, players sex, prostitutes, football human, footballers, french national, ibrahimovic, football boss, rumor, freddie ljungberg</td>
+      <td>Sex Scandal</td>
+      <td>Critical</td>
+      <td>Posts discussing footballers' sexual misconduct, including allegations of prostitution, human trafficking, and homophobia in football</td>
+      <td>False</td>
+      <td>cat_26</td>
+      <td>French Football Crisis &amp; Team Performance</td>
+      <td>Franck Ribery, French Soccer Star, Questioned In Child Prostitution Probe || Franck Ribéry 'admits to relationship with prostitute'. || Franck Ribéry: "I must now overcome this low point" - Bayern winger reveals how he is coping with underage prostitute allegations. || French international footballers Franck Ribery and Sidney Govou in child prostitute scandal || Bayern Munich "very worried" about Franck Ribéry's&nbsp;&nbsp;underage prostitute sex scandal court case. Karl-Heinz Rummenigge doesn't want to see hi</td>
+    </tr>
+    <tr>
+      <td>61</td>
+      <td>27</td>
+      <td>27</td>
+      <td>0.00275</td>
+      <td>watching england, matches today, cup starts, cup match, currently watching, games time, epl starts, tomorrow going, ready world, excited, 20 portugal, look forward, england mexico, time watching, wcup</td>
+      <td>World Cup Prep</td>
+      <td>Excited, anxious, nostalgic</td>
+      <td>Posts discussing World Cup matches, preparation, and emotional responses to the schedule</td>
+      <td>False</td>
+      <td>cat_1</td>
+      <td>World Cup Predictions &amp; Analysis</td>
+      <td>Are there any retards here (other than me), who plan on watching EVERY World Cup Match? || So, are you guys doing anything special to get ready for the World Cup? Also, vote up if you are excited and discuss anything WC related. || World Cup Detox - Day One || Anyone else annoyed with the game schedule for the World Cup? (USA EST TIME) || World Cup warm-up matches today! Who is getting excited?</td>
+    </tr>
+    <tr>
+      <td>62</td>
+      <td>26</td>
+      <td>26</td>
+      <td>0.00265</td>
+      <td>togo, togo national, african cup, africa cup, african football, cup nigeria, africa 2010, angola, nigeria world, nigeria, fifa match, cup nations, african, national team, match fixing</td>
+      <td>Togo Football Ban</td>
+      <td>Frustration and concern</td>
+      <td>Posts discussing Togo's ban from the African Cup of Nations, including the attack on their team bus, fake national team, and related controversies.</td>
+      <td>False</td>
+      <td>cat_16</td>
+      <td>South Africa World Cup 2010</td>
+      <td>Togo banned for leaving Africa Cup of Nations after attack || Togo team that lost to Bahrain 'completely fake' - Last week a squad claiming to be Togo lost 3-0 to Bahrain in an unsanctioned exhibition.&nbsp;&nbsp;|| African Cup of Nations - Angolan rebels attack Togo bus with machine guns || Togo banned from African Cup of Nations for next 2 cycles, after withdrawing following deadly attack on team bus. || African Football Confederation - Bunch of Idiots: You would have no doubt heard by now that the African Football Confederation (CAF) have ba</td>
+    </tr>
+    <tr>
+      <td>63</td>
+      <td>26</td>
+      <td>26</td>
+      <td>0.00265</td>
+      <td>epl teams, arsenal tottenham, everton, everton just, tottenham manchester, city epl, villa everton, season chelsea, promotion relegation, teams liverpool, league europa, epl preview, epl, league winners, blackpool</td>
+      <td>EPL Standings &amp; Predictions</td>
+      <td>optimistic</td>
+      <td>Posts discussing EPL team standings, predictions, and analysis of upcoming season outcomes</td>
+      <td>False</td>
+      <td>cat_4</td>
+      <td>Arsenal &amp; Liverpool Match Discussions</td>
+      <td>EPL Preview: 20 Teams in 20 Days - #8 Blackburn: An Ode To Sam Allardyce || EPL Preview: 20 Teams in 20 Days - #7 Everton: Just a Bit Short of The Big Boys || The Future of EPL Teams? || EPL Prediction Summary || Final Premiership Standings Predictions</td>
+    </tr>
+    <tr>
+      <td>64</td>
+      <td>26</td>
+      <td>26</td>
+      <td>0.00265</td>
+      <td>larissa riquelme, riquelme, paraguayan, joan laporta, maradona, diego maradona, argentine, cup diego, rio, joan, argentina wins, model, buenos, hot, strip</td>
+      <td>Paraguayan Fan &amp; World Cup Controversy</td>
+      <td>Neutral with underlying frustration</td>
+      <td>Posts about Paraguayan fan Larissa Riquelme, her role in World Cup discussions, and related controversies</td>
+      <td>False</td>
+      <td>cat_26</td>
+      <td>French Football Crisis &amp; Team Performance</td>
+      <td>Sexy Paraguay Soccer Fan Larissa Riquelme || Larissa Riquelme, name of: I'm a fan of this Paraguayan fan. || Strip Naked Deals with Larissa Riquelme &amp; Maradona || Larissa Riquelme, Lingerie Model, Will Run Naked If Paraguay Wins World Cup (PHOTOS)\n || World Cup 2010: Model Larissa Riquelme promises to run through streets naked if Paraguay wins title</td>
+    </tr>
+  </tbody>
+</table>
+</body></html>

@@ -511,9 +511,22 @@ def test_two_step_validators():
     p, e = G.validate_assignments({"categories": [{"id": "cat_1", "topics": [5, 7]}]}, [5, 7], idx, False)           # v1.1 habit
     assert e is None and G._mapping(p) == {5: "cat_1", 7: "cat_1"}
     p, e = G.validate_assignments({"assignments": [{"topic_id": 5, "category_id": None}, {"topic_id": 5, "category_id": "cat_1"}, {"topic_id": 99, "category_id": "cat_1"}]}, [5, 7], idx, False)
-    assert p is not None and G._mapping(p) == {5: "cat_1"} and "missing topic_id(s): [7]" in e and "not in this list: [99]" in e and "not among" not in e
+    assert p is not None and G._mapping(p) == {5: "cat_1"} and "missing topic_id(s): [7]" in e and "not among" not in e
+    assert "not in this list" not in e and p["cleanup"]["foreign"] == [99]                                            # N13: extras recorded, no repair
     p, e = G.validate_assignments({"assignments": [{"topic_id": 5, "category_id": "cat_2"}, {"topic_id": 5, "category_id": "cat_1"}, {"topic_id": 7, "category_id": "none"}]}, [5, 7], idx, False)
-    assert G._mapping(p) == {5: "cat_2"} and "more than once: [5]" in e and "topic_id(s) 7 ('none')" in e and "missing topic_id(s): [7]" in e
+    assert G._mapping(p) == {5: "cat_2"} and p["cleanup"]["duplicated"] == [5] and "more than once" not in e
+    assert "topic_id(s) 7 ('none')" in e and "missing topic_id(s): [7]" in e
+    p, e = G.validate_assignments({"assignments": [{"topic_id": 5, "category_id": "cat_2"}, {"topic_id": 5, "category_id": "cat_1"}, {"topic_id": 99, "category_id": "cat_1"}]}, [5], idx, False)
+    assert e is None and G._mapping(p) == {5: "cat_2"} and p["cleanup"] == {"foreign": [99], "duplicated": [5]}     # complete -> no repair turn
+    # D6: category_id + category_name; a conflict is resolved in favour of the name and reported (one repair turn)
+    p, e = G.validate_assignments({"assignments": [{"topic_id": 5, "category_id": "cat_2", "category_name": "Referee Criticism"}]}, [5], idx, False)
+    assert e is None and G._mapping(p) == {5: "cat_2"} and p["resolved_from"] == {}
+    p, e = G.validate_assignments({"assignments": [{"topic_id": 5, "category_id": "cat_1", "category_name": "Referee Criticism"}]}, [5], idx, False)
+    assert e is None and G._mapping(p) == {5: "cat_2"} and p["resolved_from"] == {"5": "name_over_id"} and p["cleanup"]["conflicts"] == [[5, "cat_1", "Referee Criticism"]]
+    p, e = G.validate_assignments({"assignments": [{"topic_id": 5, "category_name": "Referee Criticism"}]}, [5], idx, False)
+    assert e is None and G._mapping(p) == {5: "cat_2"} and p["resolved_from"] == {"5": "name"}
+    p, e = G.validate_assignments({"assignments": [{"topic_id": 5, "category_id": "cat_1", "category_name": "No Such Category"}]}, [5], idx, False)
+    assert e is None and G._mapping(p) == {5: "cat_1"}
     assert G.validate_assignments({"foo": 1}, [5], idx, False)[0] is None
     assert G.validate_assignments({"decision": "accept"}, [5], idx, True)[0] == {"decision": "accept"}
     assert G.assignments_identical({"assignments": [{"topic_id": 5, "category_id": "cat_1"}]}, {"assignments": [{"topic_id": 5, "category_id": "cat_1"}]})
@@ -613,10 +626,13 @@ def test_taxonomy_two_step():
         assert len(tj["assignment_items"]) == n and set(tj["debates"]) == {"definitions"} | {f"assign_{i:03d}" for i in range(1, n + 1)}
         assert tj["n_answers_salvaged"] >= 1 and tj["debates"]["assign_007"]["transcript"][0]["parsed_via"] == "salvage"
         assert tj["debates"]["assign_003"]["transcript"][1]["parsed"]["resolved_from"] == {"2": "name"}
-        assert "foreign" not in tj["debates"]["assign_005"]["transcript"][0]["error"] and "not in this list: [99]" in tj["debates"]["assign_005"]["transcript"][0]["error"]
+        t5 = tj["debates"]["assign_005"]["transcript"]
+        assert t5[0]["error"] is None and t5[0]["parsed"]["cleanup"]["foreign"] == [99] and len(t5) == 2 and tj["n_answers_cleaned"] >= 2   # N13
         assert (tmp / "taxonomy_definitions.json").exists() and (tmp / "topic_category_overrides.csv").exists() and (tmp / "category_overrides.csv").exists()
         tov = pd.read_csv(tmp / "topic_category_overrides.csv", keep_default_na=False)
-        assert list(tov.columns) == ["topic_id", "name", "category_id_agent", "category_name", "category_assignment", "final_category_id", "notes"] and len(tov) == n
+        assert list(tov.columns) == ["topic_id", "name", "category_id_agent", "category_name", "category_assignment", "assignment_needs_review",
+                                     "similarity_rank", "final_category_id", "notes"] and len(tov) == n
+        assert tj["shortlist"]["text_embeddings"] is False and tj["shortlist"]["k"] == 0 and (tc["assignment_similarity_rank"] == "").all()
         # revision turns of the assign stage name "assignments", never "categories"; bookkeeping keys are not shown
         rev = [u for m, u in llm.users if m["key"] == "assign_002" and m["round"] == 2]
         assert rev and '"assignments": [...]' in rev[0] and '"categories": [...]' not in rev[0] and "resolved_from" not in rev[0]
@@ -634,6 +650,63 @@ def test_taxonomy_two_step():
         assert len(tj3["assignment_items"]) == 15 and tc3["assignment_item"].nunique() == 15 and set(tc3["assignment_agreement_mode"]) == {"identical"}
         assert len(cats3) == 3 and tj3["agreement_mode"] == "identical" and tj3["round_iterations"] == 1
     finally:
+        shutil.rmtree(tmp)
+
+
+def test_taxonomy_shortlist():
+    """D6: step 2 lists each topic's k most similar categories (text embeddings), nearest first; the answer carries
+    category_id + category_name (the name wins a conflict); a topic whose agreed category ranks worse than
+    TAXONOMY_REVIEW_RANK by similarity is flagged although the analysts agreed."""
+    tmp = Path(tempfile.mkdtemp()); saved = (C.TAXONOMY_SHORTLIST, C.TAXONOMY_REVIEW_RANK)
+    try:
+        n = 12
+        _taxonomy_fixture(tmp, n)
+        C.TAXONOMY_SHORTLIST, C.TAXONOMY_REVIEW_RANK = 4, 3
+        groups = [{"id": f"cat_{i + 1}", "name": f"Group {i}", "purpose": "p", "emotion_tone": "excited",
+                   "description": f"Posts about {i}. More.", "inclusion_cues": ["x"]} for i in range(n)]
+        defs = json.dumps({"decision": "revise", "categories": groups})
+
+        def embed_texts(texts):          # positions on a line: topic t at t, category "Group c" at c + 0.3 -> nearest = same number
+            out = []
+            for s_ in texts:
+                m = re.search(r"(Topic|Group) (\d+)", s_)
+                out.append([1.0, (int(m.group(2)) + (0.3 if m.group(1) == "Group" else 0.0)) / 100.0])
+            return np.asarray(out)
+
+        def answer(user, meta):
+            if "Topics to assign" not in user:
+                return defs
+            tid = int(re.search(r"^(\d+) \| Topic", user.split("Topics to assign", 1)[1], flags=re.M).group(1))
+            cands = re.findall(r"^(cat_\d+) \| (Group \d+) \|", user, flags=re.M)
+            assert len(cands) == 4 and "4 of the 12 categories" in user, user[:300]
+            if tid == 5:
+                cid, name = cands[3]                       # both analysts take the 4th candidate -> agreed, rank 4 -> flagged
+            elif tid == 6:
+                cid, name = cands[0][0], cands[1][1]       # id of the 1st candidate, name of the 2nd -> the name wins
+            else:
+                cid, name = cands[0]
+            return json.dumps({"decision": "revise", "assignments": [{"topic_id": tid, "category_id": cid, "category_name": name}]})
+
+        emb = np.eye(n)
+        cats = G.run_taxonomy(tmp, 1, lambda t: emb[int(t)], StubLLM({}, taxonomy_fn=answer), "2010-01-01", "2010-09-30",
+                              protocol="two_step", assign_batch=1, embed_texts=embed_texts)
+        tc = pd.read_csv(tmp / "topic_categories.csv", keep_default_na=False).set_index("topic_id")
+        tj = json.loads((tmp / "taxonomy.json").read_text())
+        assert tc.loc[0, "category_id"] == "cat_1" and tc.loc[11, "category_id"] == "cat_12"
+        assert tc.loc[3, "assignment_candidates"] == "cat_4|cat_3|cat_5|cat_2" and int(tc.loc[3, "assignment_similarity_rank"]) == 1
+        assert tc.loc[5, "category_id"] == "cat_4" and int(tc.loc[5, "assignment_similarity_rank"]) == 4
+        assert bool(tc.loc[5, "assignment_needs_review"]) is True and bool(tc.loc[5, "assignment_contested"]) is False
+        assert tc.loc[5, "assignment_agreement_mode"] == "identical"
+        assert tc.loc[6, "category_id"] == "cat_6" and int(tc.loc[6, "assignment_similarity_rank"]) == 2 and bool(tc.loc[6, "assignment_needs_review"]) is False
+        tr = tj["debates"]["assign_007"]["transcript"]
+        assert tr[0]["parsed"]["resolved_from"] == {"6": "name_over_id"} and tr[0]["error"] is None and len(tr) == 2        # N13: no repair turn
+        assert tr[0]["parsed"]["cleanup"]["conflicts"] == [[6, "cat_7", "Group 5"]] and tj["n_answers_cleaned"] == 2
+        assert tj["shortlist"] == {"k": 4, "review_rank": 3, "text_embeddings": True, "rank_distribution": {"1": 10, "2": 1, "4": 1}, "n_flagged_by_rank": 1}
+        assert tj["categories_dropped_empty"] == ["cat_7"] and len(cats) == 11 and tj["assignment_items"][3]["candidates"] == ["cat_4", "cat_3", "cat_5", "cat_2"]
+        tov = pd.read_csv(tmp / "topic_category_overrides.csv", keep_default_na=False).set_index("topic_id")
+        assert bool(tov.loc[5, "assignment_needs_review"]) is True and int(tov.loc[5, "similarity_rank"]) == 4
+    finally:
+        C.TAXONOMY_SHORTLIST, C.TAXONOMY_REVIEW_RANK = saved
         shutil.rmtree(tmp)
 
 

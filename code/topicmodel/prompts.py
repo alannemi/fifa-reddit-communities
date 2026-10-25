@@ -1,11 +1,13 @@
 """
-Prompts for the two-agent labelling — version 1.2 (logged verbatim in every bin's config.json).
+Prompts for the two-agent labelling — version 1.3 (logged verbatim in every bin's config.json).
 =================================================================================================
 Stages that share the analysts, the lenses and the revision turn:
   S3a  cluster labelling   — one category per BERTopic topic (keywords + up to 40 sample posts)   [text = v1.1]
   S3b  discourse taxonomy  — two-step protocol (decision D5, 2026-10-24; design §7.4 v1.2):
          step 1 "define":  the bin's labelled topics are the items; the analysts define the categories (no topic ids)
-         step 2 "assign":  one item per topic (configurable batch); the analysts assign it to one of the agreed categories
+         step 2 "assign":  one item per topic (configurable batch); the analysts assign it to one of the agreed categories —
+                           since v1.3 (decision D6, 2026-10-25) the item lists only the topic's most similar categories,
+                           most similar first, and the answer carries the category's id and its name
        The v1.1 single-prompt protocol ("taxonomy": categories with explicit `topics` lists, chunked above 100 items)
        is kept for comparison and replay (config.TAXONOMY_PROTOCOL = "partition").
 The analysts differ in one instruction only (the "lens", design §7.2) so that greedy decoding still yields two
@@ -13,12 +15,14 @@ independent judgements.  Revision turns are stateless: the items block is repeat
 answers; no chat history is carried (design §7.4, F20).  The revision text names the stage's answer key
 (`categories` or `assignments`) — the only change to the v1.1 revision turn.
 Version history: 1.1 (design §7.6, 2026-10-22: F1, F2, F3, F16, F17, F20, F21) → 1.2 (2026-10-24: step-1 and step-2
-texts of the two-step S3b, `{answer_key}` in the revision turn; the S3a texts are byte-identical to v1.1).
-Approvals: docs/session-06_2026-10-24/00_approvals.md §3 and §7.
+texts of the two-step S3b, `{answer_key}` in the revision turn; the S3a texts are byte-identical to v1.1) → 1.3
+(2026-10-25, D6: the step-2 text shows a similarity-ranked shortlist of categories and asks for category_id + category_name;
+the S3a and step-1 texts are byte-identical to v1.2).
+Approvals: docs/session-06_2026-10-24/00_approvals.md §3 and §7; docs/session-08_2026-10-25/00_colab-run-log.md (D6).
 """
 from __future__ import annotations
 
-PROMPT_VERSION = "1.2"
+PROMPT_VERSION = "1.3"
 
 AGENTS = ("Analyst A", "Analyst B")
 LENSES = {
@@ -74,7 +78,7 @@ USER_DEFINE = (
 )
 
 # ---------------------------------------------------------------------------
-# S3b, two-step protocol (v1.2) — step 2: assignment
+# S3b, two-step protocol (v1.3 since D6; v1.2 text = the whole list) — step 2: assignment
 # ---------------------------------------------------------------------------
 SYSTEM_ASSIGN = (
     "You are {agent_name}, a discourse analyst studying posts from the football community r/soccer.\n"
@@ -83,8 +87,15 @@ SYSTEM_ASSIGN = (
     "of each item. Return JSON only; no prose or markdown."
 )
 
-USER_ASSIGN = (
+USER_ASSIGN_INTRO_SHORTLIST = (     # D6: the item lists the {n_candidates} categories most similar to the topic(s), nearest first
+    "Candidate categories for the topic(s) below: the {n_candidates} of the {n_categories} categories of the agreed taxonomy of\n"
+    "r/soccer posts between {start} and {end} that are most similar to them, most similar first, one per line:\n"
+)
+USER_ASSIGN_INTRO_ALL = (           # the whole taxonomy fits (TAXONOMY_SHORTLIST = 0, or fewer categories than the shortlist)
     "Categories (the agreed taxonomy of r/soccer posts between {start} and {end}), one per line:\n"
+)
+USER_ASSIGN = (
+    "{intro}"
     "category_id | name | emotion_tone | inclusion_cues | description\n"
     "{category_lines}\n"
     "Topics to assign ({n_batch} of the bin's {n_topics} topics), one per line:\n"
@@ -93,10 +104,10 @@ USER_ASSIGN = (
     "Output schema:\n"
     '{{"decision": "revise",\n'
     ' "assignments": [\n'
-    '  {{"topic_id": <topic_id>, "category_id": "<category_id>"}}\n'
+    '  {{"topic_id": <topic_id>, "category_id": "<category_id>", "category_name": "<name>"}}\n'
     " ]}}\n"
-    "Rules: list every topic_id above exactly once, each with the single best-fitting category_id; use only the category\n"
-    "ids listed; if no category fits well, choose the closest one."
+    "Rules: list every topic_id above exactly once with the single best-fitting category; copy that category's category_id and\n"
+    "name exactly as listed, from the same line; use only the categories listed; if none fits well, choose the closest one."
 )
 
 # ---------------------------------------------------------------------------
@@ -168,9 +179,14 @@ def render_define_items(n_topics: int, start: str, end: str, topic_lines: list[s
 
 
 def render_assign_items(start: str, end: str, category_lines: list[str], n_batch: int, n_topics: int,
-                        topic_lines: list[str]) -> str:
-    """The items block of S3b step 2: the agreed categories + the topic line(s) of one item."""
-    return USER_ASSIGN.format(start=start, end=end, category_lines="\n".join(category_lines), n_batch=n_batch,
+                        topic_lines: list[str], n_categories: int | None = None) -> str:
+    """The items block of S3b step 2: the candidate categories (a similarity-ranked shortlist when `n_categories`, the
+    size of the whole taxonomy, exceeds the lines given — D6) + the topic line(s) of one item."""
+    if n_categories is not None and n_categories > len(category_lines):
+        intro = USER_ASSIGN_INTRO_SHORTLIST.format(n_candidates=len(category_lines), n_categories=n_categories, start=start, end=end)
+    else:
+        intro = USER_ASSIGN_INTRO_ALL.format(start=start, end=end)
+    return USER_ASSIGN.format(intro=intro, category_lines="\n".join(category_lines), n_batch=n_batch,
                               n_topics=n_topics, topic_lines="\n".join(topic_lines))
 
 
@@ -207,6 +223,7 @@ def all_prompts() -> dict:
             "system_label": SYSTEM_LABEL, "user_label": USER_LABEL,
             "system_define": SYSTEM_DEFINE, "user_define": USER_DEFINE,
             "system_assign": SYSTEM_ASSIGN, "user_assign": USER_ASSIGN,
+            "user_assign_intro_shortlist": USER_ASSIGN_INTRO_SHORTLIST, "user_assign_intro_all": USER_ASSIGN_INTRO_ALL,
             "system_taxonomy_v1_1": SYSTEM_TAXONOMY, "user_taxonomy_v1_1": USER_TAXONOMY,
             "user_revision": USER_REVISION, "user_repair": USER_REPAIR}
 
@@ -214,6 +231,7 @@ def all_prompts() -> dict:
 def stage_prompts(stage: str) -> dict:
     """The texts one stage actually uses (written into that stage's section of config.json, review finding R36)."""
     keys = {"label": ["system_label", "user_label"],
-            "taxonomy": ["system_define", "user_define", "system_assign", "user_assign", "system_taxonomy_v1_1", "user_taxonomy_v1_1"]}
+            "taxonomy": ["system_define", "user_define", "system_assign", "user_assign", "user_assign_intro_shortlist",
+                         "user_assign_intro_all", "system_taxonomy_v1_1", "user_taxonomy_v1_1"]}
     allp = all_prompts()
     return {k: allp[k] for k in ["prompt_version", "agents", "lenses"] + keys[stage] + ["user_revision", "user_repair"]}

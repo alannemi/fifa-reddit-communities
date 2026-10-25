@@ -96,8 +96,10 @@ $P $S --stage embed --bin 1                          # S1: mpnet embeddings, cac
 python -m cuml.accel $S --stage topics --bin 1       # S2: BERTopic per bin (GPU on Colab; same command without the prefix on CPU)
 $P $S --stage label --bin 1                          # S3a: two-agent cluster labelling (resumable via labels.jsonl)
 #   -> co-author review: results/analysis/bin-1/topics_labelled.csv, report.html -> fill topic_overrides.csv
-$P $S --stage taxonomy --bin 1                       # S3b two-step (D5): definitions debate, then one assignment debate per topic;
-#                                                       re-run with --force after any S3a override (removes the step-1 checkpoint)
+$P $S --stage taxonomy --bin 1                       # S3b two-step (D5): definitions debate, then one assignment debate per topic over
+#                                                       the topic's 10 most similar categories (D6, 2026-10-25); re-run with --force after
+#                                                       any S3a override (removes the step-1 checkpoint); --force --keep-definitions
+#                                                       re-runs the assignments alone
 #   -> co-author review: categories.csv -> fill category_overrides.csv (rename/merge) and topic_category_overrides.csv (move a topic)
 $P $S --stage reassign --bin 1 --outlier-threshold T # D3: apply the calibrated T (seconds; see outlier_calibration/)
 $P $S --stage sentiment                              # S4: data/analysis/sentiment.csv (+ sentiment_validation_sample.csv)

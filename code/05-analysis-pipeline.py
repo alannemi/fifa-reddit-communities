@@ -26,7 +26,8 @@ STAGES (design §3)                                            reads -> writes  
                                                               topic_overrides.csv (template)   -> co-author review
   taxonomy    S3b two-agent discourse taxonomy of the bin     topics_labelled + topic_overrides -> taxonomy.json, categories.csv,
               (two-step protocol D5: definitions, then one   topic_categories.csv, taxonomy_definitions.json (checkpoint),
-              assignment debate per topic; prompt v1.2)      category_overrides.csv + topic_category_overrides.csv (templates) -> review
+              assignment debate per topic over a similarity- category_overrides.csv + topic_category_overrides.csv (templates) -> review
+              ranked shortlist of categories, D6; prompt v1.3)
   sentiment   S4 VADER per post (title; title + body)         yearly CSVs -> <tables>/sentiment.csv (+ validation sample)
   collect     S5 post_variables.csv + aggregated tables       S0–S4 (+ overrides) -> <tables>/post_variables.csv (+ .json),
                                                               <results>/topic_labels_all_bins.csv, categories_all_bins.csv
@@ -51,6 +52,7 @@ OPTIONS: --bin N | --bins 1-9   --device auto|cuda|mps|cpu   --embedding-model <
   --llm <hf id>   --sampling greedy|seeded   --max-docs N (mechanics test on a subsample; guard off)   --max-topics N
   --outlier-threshold T   --years 2010 2011   --out-root PATH (dry runs: writes <PATH>/results/analysis AND
   <PATH>/data/analysis; input and caches unchanged)   --allow-partial (collect)   --force
+  --keep-definitions (taxonomy with --force: keep the step-1 checkpoint and re-run the assignments only — the D6 re-run)
   --taxonomy-protocol two_step|partition (default config.TAXONOMY_PROTOCOL; "partition" = the superseded v1.1 single prompt)
   --assign-batch N (topics per assignment item; default config.TAXONOMY_ASSIGN_BATCH = 1)
 Local dry run on the full bin 1 (memory/workflows.md §7): --embedding-model sentence-transformers/all-MiniLM-L6-v2
@@ -357,15 +359,24 @@ def stage_taxonomy(args, paths: Paths, b: int):
             prev = json.loads((bdir / "taxonomy.json").read_text(encoding="utf-8")).get("protocol", "partition (v1.1 output)")
         log.info("taxonomy: bin %d already has categories.csv (protocol %s); use --force", b, prev); return
     if args.force and ckpt.exists():
-        ckpt.unlink()
-        log.info("taxonomy: --force removed the step-1 checkpoint %s (definitions will be debated again)", ckpt.name)
+        if args.keep_definitions:
+            log.info("taxonomy: --force with --keep-definitions keeps the step-1 checkpoint %s; only the assignments re-run (D6)", ckpt.name)
+        else:
+            ckpt.unlink()
+            log.info("taxonomy: --force removed the step-1 checkpoint %s (definitions will be debated again)", ckpt.name)
     t0 = time.time()
     te = np.load(bdir / "topic_embeddings.npy")
     info = BINS.bin_info(b)
     protocol = args.taxonomy_protocol or C.TAXONOMY_PROTOCOL
     batch = args.assign_batch or C.TAXONOMY_ASSIGN_BATCH
     llm = get_llm(args)
-    cats = G.run_taxonomy(bdir, b, lambda t: te[int(t)], llm, str(info["start"]), str(info["end"]), protocol=protocol, assign_batch=batch)
+    embed_texts = None
+    if protocol == "two_step" and C.TAXONOMY_SHORTLIST > 0:
+        # D6: the step-2 shortlist ranks the categories by the sentence embeddings of the category and topic lines
+        st = embed.load_embedding_model(args.embedding_model, embed.get_device(args.device))
+        embed_texts = lambda texts: st.encode(list(texts), batch_size=64, normalize_embeddings=True, show_progress_bar=False, convert_to_numpy=True)
+    cats = G.run_taxonomy(bdir, b, lambda t: te[int(t)], llm, str(info["start"]), str(info["end"]), protocol=protocol, assign_batch=batch,
+                          embed_texts=embed_texts)
     tj = json.loads((bdir / "taxonomy.json").read_text(encoding="utf-8"))
     items = tj.get("assignment_items") or []
     update_config(bdir, "taxonomy", {**llm.describe(), "prompt_version": P.PROMPT_VERSION, "protocol": tj.get("protocol"),
@@ -380,7 +391,8 @@ def stage_taxonomy(args, paths: Paths, b: int):
                                      "n_unplaced": sum(v == "unplaced" for v in tj["category_assignment"].values()),
                                      "n_items": len(items), "assignment_agreement_modes": dict(Counter(i["agreement_mode"] for i in items)),
                                      "n_items_contested": sum(1 for i in items if i.get("n_contested")),
-                                     "n_answers_salvaged": tj.get("n_answers_salvaged"),
+                                     "n_answers_salvaged": tj.get("n_answers_salvaged"), "n_answers_cleaned": tj.get("n_answers_cleaned"),
+                                     "shortlist": tj.get("shortlist"), "text_embedding_model": args.embedding_model if embed_texts else None,
                                      "token_budgets": {"define": C.LLM_MAX_NEW_TOKENS_DEFINE, "assign": C.LLM_MAX_NEW_TOKENS_ASSIGN,
                                                        "partition": C.LLM_MAX_NEW_TOKENS_PARTITION},
                                      "llm_stats": llm.stats, "elapsed_min": round((time.time() - t0) / 60, 1),
@@ -456,6 +468,7 @@ def main():
     p.add_argument("--years", type=int, nargs="*", help="sentiment: restrict to these years")
     p.add_argument("--out-root", default=None, help="dry runs: write <PATH>/results/analysis and <PATH>/data/analysis (input and caches unchanged)")
     p.add_argument("--allow-partial", action="store_true"); p.add_argument("--force", action="store_true")
+    p.add_argument("--keep-definitions", action="store_true")
     p.add_argument("--taxonomy-protocol", default=None, choices=["two_step", "partition"],
                    help="S3b protocol (default config.TAXONOMY_PROTOCOL; 'partition' = the superseded v1.1 single prompt)")
     p.add_argument("--assign-batch", type=int, default=None, help="topics per assignment item (default config.TAXONOMY_ASSIGN_BATCH)")

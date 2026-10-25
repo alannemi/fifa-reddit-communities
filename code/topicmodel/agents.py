@@ -20,7 +20,10 @@ S3a items = one BERTopic topic each (15 keywords + up to 40 sample posts).
 S3b (decision D5, 2026-10-24; design §7.4 v1.2) is a two-step protocol: step 1 "define" — one debate per bin over all
 topic lines (`topic_id | name | tone | keywords | description`) that agrees on the category definitions (no topic
 ids; ids canonicalised cat_1..K before step 2); step 2 "assign" — one debate item per topic (config
-TAXONOMY_ASSIGN_BATCH) that assigns it to one of the agreed categories. Topics left unassigned are placed by the
+TAXONOMY_ASSIGN_BATCH) that assigns it to one of the agreed categories — since decision D6 (2026-10-25, after the first
+Colab run) the item lists only the topic's TAXONOMY_SHORTLIST most similar categories, most similar first (sentence
+embeddings of the category and topic lines), the answer carries the category's id and name (the name wins a conflict),
+and a topic whose agreed category ranks worse than TAXONOMY_REVIEW_RANK is flagged. Topics left unassigned are placed by the
 deterministic repair (`category_assignment` records it); defined categories that end empty are dropped and listed.
 The v1.1 single-prompt protocol (categories with explicit `topics` lists, chunking above 100 items) is kept as
 TAXONOMY_PROTOCOL = "partition" for comparison and replay. Approvals: docs/session-06_2026-10-24/00_approvals.md.
@@ -50,9 +53,9 @@ A, B = P.AGENTS
 LABEL_KEYS = ["name", "purpose", "emotion_tone", "description", "inclusion_cues"]
 AGREEMENT_MODES = ("identical", "accepted_by_A", "accepted_by_B", "stalemate", "cap", "no_answer")
 ASSIGN_COLS = ["assignment_item", "assignment_round_iterations", "assignment_agreement_mode", "assignment_contested",
-               "assignment_needs_review"]
+               "assignment_needs_review", "assignment_similarity_rank", "assignment_candidates"]   # the last two: D6
 # bookkeeping keys kept in parsed answers but never shown to the model in a revision turn
-INTERNAL_KEYS = {"id_given", "topics_ignored", "resolved_from", "n_cues_given"}
+INTERNAL_KEYS = {"id_given", "topics_ignored", "resolved_from", "n_cues_given", "cleanup"}
 
 
 # ===========================================================================
@@ -443,7 +446,8 @@ def resolve_category_ref(ref, index: dict) -> tuple[str | None, str]:
 
 
 def _pairs_of(obj: dict) -> list | None:
-    """The (topic_id, category reference) pairs of a step-2 answer in any of the accepted shapes."""
+    """The (topic_id, category reference, category name or None) triples of a step-2 answer in any accepted shape
+    (the name column exists since prompt v1.3, D6)."""
     a = obj.get("assignments")
     if a is None and isinstance(obj.get("categories"), list):          # the v1.1 habit: categories with topic lists
         pairs = []
@@ -451,25 +455,27 @@ def _pairs_of(obj: dict) -> list | None:
             if isinstance(c, dict):
                 tl = c.get("topics", [])
                 for t in (tl if isinstance(tl, list) else [tl]):
-                    pairs.append((t, c.get("id") or c.get("category_id") or c.get("name")))
+                    pairs.append((t, c.get("id") or c.get("category_id") or c.get("name"), c.get("name")))
         return pairs
     if isinstance(a, dict):
-        return list(a.items())
+        return [(t, c, None) for t, c in a.items()]
     if isinstance(a, list):
         pairs = []
         for x in a:
             if isinstance(x, dict):
-                pairs.append((x.get("topic_id", x.get("topic", x.get("id"))), x.get("category_id", x.get("category", x.get("cat")))))
-            elif isinstance(x, (list, tuple)) and len(x) == 2:
-                pairs.append((x[0], x[1]))
+                pairs.append((x.get("topic_id", x.get("topic", x.get("id"))), x.get("category_id", x.get("category", x.get("cat"))),
+                              x.get("category_name", x.get("name"))))
+            elif isinstance(x, (list, tuple)) and len(x) in (2, 3):
+                pairs.append((x[0], x[1], x[2] if len(x) == 3 else None))
         return pairs
     return None
 
 
 def validate_assignments(obj: dict, topic_ids: list[int], index: dict, allow_accept: bool) -> tuple[dict | None, str | None]:
-    """Step-2 answer: accept, or one category per topic of the item. Structural failure -> (None, err); coverage
-    problems (missing / duplicated / foreign topic ids, unresolvable category references) -> (cleaned answer, err)
-    so that the debate keeps it and the deterministic repair can finish it (review finding R22)."""
+    """Step-2 answer: accept, or one category per topic of the item. Structural failure -> (None, err); a topic without
+    a category or an unresolvable category reference -> (cleaned answer, err) so that the debate keeps it, one repair
+    turn is tried and the deterministic repair can finish it (review finding R22). Extra pairs (foreign or repeated
+    topic ids) and an id/name conflict are settled and recorded in `cleanup` without a repair turn (N13, 2026-10-25)."""
     decision = str(obj.get("decision", "revise")).strip().lower()
     if decision == "accept":
         if allow_accept:
@@ -479,8 +485,8 @@ def validate_assignments(obj: dict, topic_ids: list[int], index: dict, allow_acc
     if pairs is None:
         return None, "'assignments' must be a list of {\"topic_id\": ..., \"category_id\": ...} objects"
     valid = set(topic_ids)
-    mapping, how, foreign, dup, unresolved, bad = {}, {}, [], [], [], []
-    for t_raw, c_raw in pairs:
+    mapping, how, foreign, dup, unresolved, bad, conflicts = {}, {}, [], [], [], [], []
+    for t_raw, c_raw, n_raw in pairs:
         t = _coerce_topic_id(t_raw)
         if t is None:
             bad.append(t_raw); continue
@@ -489,22 +495,38 @@ def validate_assignments(obj: dict, topic_ids: list[int], index: dict, allow_acc
         if t in mapping:
             dup.append(t); continue
         cid, h = resolve_category_ref(c_raw, index)
-        if cid is None:
-            unresolved.append((t, c_raw)); continue
+        nid = resolve_category_ref(n_raw, index)[0] if n_raw is not None and str(n_raw).strip() else None
+        if cid is None and nid is None:
+            unresolved.append((t, c_raw if c_raw is not None else n_raw)); continue
+        if cid is not None and nid is not None and cid != nid:
+            # D6: id and name point to different categories — the name carries the meaning, the id is the token the
+            # model confuses; the name wins, the conflict is reported (one repair turn) and recorded
+            conflicts.append((t, c_raw, n_raw)); cid, h = nid, "name_over_id"
+        elif cid is None:
+            cid, h = nid, "name"
         mapping[t] = cid; how[t] = h
     unresolved = [(t, c) for t, c in unresolved if t not in mapping]   # a later pair may have named a category
     missing = [t for t in topic_ids if t not in mapping]
     if not mapping and not pairs:
         return None, "no assignments found"
+    # N13 (2026-10-25, after the D6 dry run on bin 1): extra pairs — a topic id that is not in the item, a repeated id, a
+    # non-integer id — and an id/name conflict are settled here (dropped, first kept, name wins) and recorded, WITHOUT a
+    # repair turn: 16 of 65 items had spent a repair turn on such extras and 5 answers changed category in it (topic 18
+    # from right to wrong). The repair turn stays for what cannot be settled: a topic without a category, an
+    # unresolvable reference.
+    cleanup = {}
+    if bad: cleanup["bad_topic_ids"] = [str(x) for x in bad[:10]]
+    if foreign: cleanup["foreign"] = sorted(set(foreign))
+    if dup: cleanup["duplicated"] = sorted(set(dup))
+    if conflicts: cleanup["conflicts"] = [[t, str(c), str(n)] for t, c, n in conflicts]
     msgs = []
-    if bad: msgs.append(f"topic_id(s) that are not integers: {bad[:10]}")
-    if foreign: msgs.append(f"topic_id(s) that are not in this list: {sorted(set(foreign))[:20]}")
-    if dup: msgs.append(f"topic_id(s) listed more than once: {sorted(set(dup))[:20]}")
     if unresolved: msgs.append("category_id not among the listed ids for topic_id(s) " +
                                ", ".join(f"{t} ({c!r})" for t, c in unresolved[:10]) + " — use the category ids exactly as listed")
     if missing: msgs.append(f"missing topic_id(s): {missing[:20]}")
     parsed = {"decision": "revise", "assignments": [{"topic_id": t, "category_id": mapping[t]} for t in topic_ids if t in mapping],
               "resolved_from": {str(t): h for t, h in how.items() if h != "id"}}
+    if cleanup:
+        parsed["cleanup"] = cleanup
     if msgs:
         return parsed, "every topic_id must appear exactly once with one of the listed category ids — " + "; ".join(msgs)
     return parsed, None
@@ -1007,22 +1029,59 @@ def _load_taxonomy_inputs(bin_dir: Path):
 
 
 def run_taxonomy(bin_dir: Path, bin_id: int, emb_of, llm, start: str, end: str, protocol: str | None = None,
-                 assign_batch: int | None = None) -> pd.DataFrame:
+                 assign_batch: int | None = None, embed_texts=None) -> pd.DataFrame:
     """Group the bin's labelled topics (after topic overrides) into a discourse taxonomy. `emb_of(topic_id)`
-    returns the topic embedding (768-d). Dispatches on the protocol (config.TAXONOMY_PROTOCOL): "two_step" (D5,
-    2026-10-24) or "partition" (v1.1). Writes taxonomy.json, categories.csv, topic_categories.csv and the review
-    templates; returns categories.csv as a DataFrame."""
+    returns the topic embedding (768-d); `embed_texts(list[str]) -> array` embeds texts with the sentence-transformer
+    (the step-2 shortlist of D6; None = every item lists the whole taxonomy). Dispatches on the protocol
+    (config.TAXONOMY_PROTOCOL): "two_step" (D5, 2026-10-24) or "partition" (v1.1). Writes taxonomy.json,
+    categories.csv, topic_categories.csv and the review templates; returns categories.csv as a DataFrame."""
     protocol = protocol or C.TAXONOMY_PROTOCOL
     if protocol == "two_step":
-        return run_taxonomy_two_step(bin_dir, bin_id, emb_of, llm, start, end, assign_batch or C.TAXONOMY_ASSIGN_BATCH)
+        return run_taxonomy_two_step(bin_dir, bin_id, emb_of, llm, start, end, assign_batch or C.TAXONOMY_ASSIGN_BATCH, embed_texts)
     if protocol == "partition":
         return run_taxonomy_partition(bin_dir, bin_id, emb_of, llm, start, end)
     raise ValueError(f"unknown taxonomy protocol {protocol!r} (expected 'two_step' or 'partition')")
 
 
-def run_taxonomy_two_step(bin_dir: Path, bin_id: int, emb_of, llm, start: str, end: str, assign_batch: int = 1) -> pd.DataFrame:
+def _unit_rows(x: np.ndarray) -> np.ndarray:
+    n = np.linalg.norm(x, axis=1, keepdims=True)
+    return x / np.where(n == 0, 1.0, n)
+
+
+def _candidate_order(cats: list[dict], tbl: pd.DataFrame, embed_texts) -> tuple[dict[int, list[str]] | None, int]:
+    """D6: for every topic, the category ids ordered by the cosine similarity of the sentence embeddings of the
+    category line and the topic line (the texts shown to the analysts, without the ids). (None, 0) when no text
+    embedder is given or the shortlist is switched off (config.TAXONOMY_SHORTLIST = 0)."""
+    k = int(C.TAXONOMY_SHORTLIST)
+    if embed_texts is None or k <= 0 or not cats:
+        return None, 0
+    cat_texts = [P.category_line("", c["name"], c["emotion_tone"], c["inclusion_cues"], c["description"]).split(" | ", 1)[1] for c in cats]
+    topic_texts = [line.split(" | ", 1)[1] for line in _topic_lines(tbl)]
+    ce = _unit_rows(np.asarray(embed_texts(cat_texts), dtype=float))
+    te = _unit_rows(np.asarray(embed_texts(topic_texts), dtype=float))
+    sims = te @ ce.T
+    ids = tbl["topic_id"].astype(int).tolist()
+    order = {t: [cats[j]["id"] for j in np.argsort(-sims[i], kind="stable")] for i, t in enumerate(ids)}
+    return order, min(k, len(cats))
+
+
+def _union_candidates(order: dict[int, list[str]], topic_ids: list[int], k: int) -> list[str]:
+    """The candidates of an item with several topics: the per-topic shortlists interleaved by rank, without repeats."""
+    out = []
+    for r in range(k):
+        for t in topic_ids:
+            c = order[t][r]
+            if c not in out:
+                out.append(c)
+    return out
+
+
+def run_taxonomy_two_step(bin_dir: Path, bin_id: int, emb_of, llm, start: str, end: str, assign_batch: int = 1,
+                          embed_texts=None) -> pd.DataFrame:
     """Decision D5: step 1 defines the categories (one debate per bin, checkpointed in taxonomy_definitions.json);
-    step 2 assigns the topics (one debate item per `assign_batch` topics); the deterministic repair finishes."""
+    step 2 assigns the topics (one debate item per `assign_batch` topics) — since D6 (2026-10-25) each item lists
+    only the topics' TAXONOMY_SHORTLIST most similar categories, most similar first, and a topic whose agreed
+    category ranks worse than TAXONOMY_REVIEW_RANK is flagged for review; the deterministic repair finishes."""
     tbl, topic_ids, sizes, merges = _load_taxonomy_inputs(bin_dir)
     assign_batch = max(1, int(assign_batch))
     log.info("taxonomy bin %d (two-step): %d topics (%d merged away by overrides), %d topic(s) per assignment item",
@@ -1063,13 +1122,18 @@ def run_taxonomy_two_step(bin_dir: Path, bin_id: int, emb_of, llm, start: str, e
         log.warning("taxonomy bin %d: no agreed category definitions — all %d topics unplaced", bin_id, len(topic_ids))
     else:
         index = build_category_index(cats_def)
-        cat_lines = [P.category_line(c["id"], c["name"], c["emotion_tone"], c["inclusion_cues"], c["description"]) for c in cats_def]
+        line_of = {c["id"]: P.category_line(c["id"], c["name"], c["emotion_tone"], c["inclusion_cues"], c["description"]) for c in cats_def}
+        order, k = _candidate_order(cats_def, tbl, embed_texts)          # D6 shortlist (None = whole list)
         chunks = [topic_ids[i:i + assign_batch] for i in range(0, len(topic_ids), assign_batch)]
         items = []
         for i, ch in enumerate(chunks, 1):
             lines = _topic_lines(tbl[tbl["topic_id"].astype(int).isin(ch)])
-            items.append({"key": f"assign_{i:03d}", "topic_ids": ch,
-                          "items_block": P.render_assign_items(start, end, cat_lines, len(ch), len(topic_ids), lines)})
+            cand = _union_candidates(order, ch, k) if order else [c["id"] for c in cats_def]
+            items.append({"key": f"assign_{i:03d}", "topic_ids": ch, "candidates": cand,
+                          "items_block": P.render_assign_items(start, end, [line_of[c] for c in cand], len(ch), len(topic_ids), lines,
+                                                               n_categories=len(cats_def))})
+        log.info("taxonomy bin %d: step 2 — %d item(s), %s", bin_id, len(items),
+                 f"shortlist of {k} of {len(cats_def)} categories per topic (D6)" if order else f"all {len(cats_def)} categories listed")
         recs = Debate("assign", llm, lambda o, it, acc: validate_assignments(o, it["topic_ids"], index, acc),
                       assignments_identical, seed_prefix=f"{bin_id}-assign", max_new_tokens=C.LLM_MAX_NEW_TOKENS_ASSIGN,
                       salvage=salvage_assignments, answer_key="assignments").run(items)
@@ -1084,12 +1148,18 @@ def run_taxonomy_two_step(bin_dir: Path, bin_id: int, emb_of, llm, start: str, e
                 # contested unless both analysts' final answers name the same category for the topic
                 contested = not (a_m.get(t) is not None and a_m.get(t) == b_m.get(t))
                 n_contested += int(contested)
+                # D6: where does the agreed category rank among all categories by similarity to the topic? (1 = nearest)
+                rank = (order[t].index(mapping[t]) + 1) if (order and t in mapping and mapping[t] in order[t]) else None
                 per_topic[t] = {"assignment_item": it["key"], "assignment_round_iterations": rec["round_iterations"],
                                 "assignment_agreement_mode": rec["agreement_mode"], "assignment_contested": contested,
-                                "assignment_needs_review": (not rec["agreed"]) and contested}
+                                "assignment_needs_review": ((not rec["agreed"]) and contested) or
+                                                           (rank is not None and rank > int(C.TAXONOMY_REVIEW_RANK)),
+                                "assignment_similarity_rank": rank if rank is not None else "",
+                                "assignment_candidates": "|".join(it["candidates"])}
             items_info.append({"item": it["key"], "topic_ids": it["topic_ids"], "agreement_mode": rec["agreement_mode"],
                                "round_iterations": rec["round_iterations"], "agreed": rec["agreed"],
-                               "n_contested": n_contested, "n_assigned": sum(t in mapping for t in it["topic_ids"])})
+                               "n_contested": n_contested, "n_assigned": sum(t in mapping for t in it["topic_ids"]),
+                               "candidates": it["candidates"]})
         cats_with = [{**c, "topics": [t for t in topic_ids if mapping.get(t) == c["id"]]} for c in cats_def]
         cats, assignment, rlog = repair_partition(cats_with, topic_ids, emb_of)
         rlog["assigned_by_agents"] = len(mapping)
@@ -1097,9 +1167,14 @@ def run_taxonomy_two_step(bin_dir: Path, bin_id: int, emb_of, llm, start: str, e
         log.info("taxonomy bin %d: step 2 done — %d/%d topics assigned by the agents over %d item(s) (modes %s), %d placed by repair",
                  bin_id, len(mapping), len(topic_ids), len(items), modes, sum(v == "repaired" for v in assignment.values()))
     dropped = [c["id"] for c in cats_def if c["id"] not in {x["id"] for x in cats}]
+    ranks = [v["assignment_similarity_rank"] for v in per_topic.values() if v.get("assignment_similarity_rank") != ""]
+    shortlist = {"k": int(C.TAXONOMY_SHORTLIST) if (cats_def and embed_texts is not None) else 0, "review_rank": int(C.TAXONOMY_REVIEW_RANK),
+                 "text_embeddings": bool(cats_def) and embed_texts is not None,
+                 "rank_distribution": {str(r): int(n) for r, n in sorted(Counter(ranks).items())},
+                 "n_flagged_by_rank": int(sum(1 for r in ranks if r > int(C.TAXONOMY_REVIEW_RANK)))}
     extra = {"protocol": "two_step", "assign_batch": assign_batch, "categories_defined": cats_def,
              "definitions_cleanup": clean_log, "categories_dropped_empty": dropped, "assignment_items": items_info,
-             "chunking": None}
+             "shortlist": shortlist, "chunking": None}
     return _write_taxonomy_outputs(bin_dir, bin_id, start, end, llm, tbl, sizes, merges, topic_ids, cats, assignment,
                                    rlog, rec_def, records, extra, per_topic)
 
@@ -1184,13 +1259,14 @@ def _write_taxonomy_outputs(bin_dir: Path, bin_id: int, start: str, end: str, ll
     tmap_df = pd.DataFrame(tmap, columns=["topic_id", "category_id", "category_assignment"] + ASSIGN_COLS).sort_values("topic_id")
     tmap_df.to_csv(bin_dir / "topic_categories.csv", index=False)
     n_salvaged = sum(1 for d in records.values() for t in d["transcript"] if t.get("parsed_via") == "salvage")
+    n_cleaned = sum(1 for d in records.values() for t in d["transcript"] if isinstance(t.get("parsed"), dict) and t["parsed"].get("cleanup"))
     (bin_dir / "taxonomy.json").write_text(json.dumps({
         "period_bin": bin_id, "start": start, "end": end, "n_topics": len(topic_ids), "topic_overrides_merged": merges,
         **llm.describe(), "prompt_version": P.PROMPT_VERSION, **extra,
         "agreed": rec["agreed"], "agreement_mode": rec["agreement_mode"], "round_iterations": rec["round_iterations"],
         "needs_review": rec["needs_review"], "categories": cats,
         "category_assignment": {str(k): v for k, v in assignment.items()}, "repair_log": rlog,
-        "n_answers_salvaged": n_salvaged,
+        "n_answers_salvaged": n_salvaged, "n_answers_cleaned": n_cleaned,
         "debates": {k: {kk: vv for kk, vv in v.items()} for k, v in records.items()}}, ensure_ascii=False, indent=1, default=str), encoding="utf-8")
     _write_review_templates(bin_dir, categories, tmap_df, tbl)
     log.info("taxonomy bin %d: %d categories [%s, %d round(s)], %d topics repaired, %d unplaced, %d answer(s) salvaged -> %s",
@@ -1228,4 +1304,5 @@ def _write_review_templates(bin_dir: Path, categories: pd.DataFrame, tmap: pd.Da
         t = tmap.sort_values("topic_id")
         pd.DataFrame({"topic_id": t["topic_id"], "name": [tname.get(int(x), "") for x in t["topic_id"]],
                       "category_id_agent": t["category_id"], "category_name": [name_of.get(c, "") for c in t["category_id"]],
-                      "category_assignment": t["category_assignment"], "final_category_id": "", "notes": ""}).to_csv(tov, index=False)
+                      "category_assignment": t["category_assignment"], "assignment_needs_review": t["assignment_needs_review"],
+                      "similarity_rank": t["assignment_similarity_rank"], "final_category_id": "", "notes": ""}).to_csv(tov, index=False)

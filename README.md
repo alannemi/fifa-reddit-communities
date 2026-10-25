@@ -112,7 +112,8 @@ VADER scores every title (`post_sentiment`). Co-authors review the labels and ta
 files before stage S6 (`code/06-tag-corpus.R`) appends the eight columns (codebook §4.9) to the master and yearly
 files. Design with every setting and its reason: `docs/session-04_2026-10-22/01_analytical-pipeline-design.md`;
 approvals and implementation notes: `docs/session-05_2026-10-23/`, `docs/session-06_2026-10-24/` (the two-step
-taxonomy protocol) and `docs/session-07_2026-10-25/` (one pipeline, the Drive layout); how to run it: `memory/workflows.md`
+taxonomy protocol), `docs/session-07_2026-10-25/` (one pipeline, the Drive layout) and `docs/session-08_2026-10-25/` (the first
+Colab run of bin 1; decision D6: the assignment step works from a similarity-ranked shortlist of categories); how to run it: `memory/workflows.md`
 §7 and the runbook `docs/session-07_2026-10-25/02_runbook-colab-run.md`.
 
 Paths: locally the repository layout; on Colab the environment variable `PIPELINE_ROOT` re-roots everything that persists

@@ -160,7 +160,7 @@ LLM_JSON_SALVAGE = True                 # recover answers whose only defect is b
                                         # "salvage" in the transcript.  False = a second syntax failure is "no answer"
 
 # ---------------------------------------------------------------------------
-# S3b — discourse taxonomy protocol (decision D5, 2026-10-24; design §7.4 v1.2; prompt v1.2)
+# S3b — discourse taxonomy protocol (decision D5, 2026-10-24, and D6, 2026-10-25; design §7.4 v1.4; prompt v1.3)
 # ---------------------------------------------------------------------------
 #   "two_step"  = the analysts first agree on the bin's category definitions (no topic ids), then assign the topics
 #                 to those categories, one debate item per TAXONOMY_ASSIGN_BATCH topics (1 = one debate per topic);
@@ -170,7 +170,16 @@ TAXONOMY_PROTOCOL = "two_step"
 TAXONOMY_ASSIGN_BATCH = 1               # topics per assignment prompt (author's decision 2026-10-24: one topic per item)
 TAXONOMY_KEYWORDS_PER_TOPIC = 8         # keywords per topic line shown to the analysts
 LLM_MAX_NEW_TOKENS_DEFINE = 4000        # step-1 answer (10–20 categories × ≈ 100 tokens, with margin)
-LLM_MAX_NEW_TOKENS_ASSIGN = 800         # step-2 answer (one {topic_id, category_id} pair per topic in the item)
+LLM_MAX_NEW_TOKENS_ASSIGN = 800         # step-2 answer (one {topic_id, category_id, category_name} triple per topic in the item)
+# Decision D6 (Alan Nemirovski, 2026-10-25, after the first Colab run of bin 1): with all 35 defined categories listed in
+# every assignment prompt, both analysts ignored the categories late in the list and agreed on the same wrong ids (8 of
+# the 35 categories stayed empty, ≈ 18 of 65 topics misplaced; agreement is no check on correctness when both analysts
+# are the same model). Step 2 therefore shows each topic only its most similar categories, most similar first — cosine
+# similarity of the sentence embeddings (EMBEDDING_MODEL) of the category line and the topic line as shown in the prompt —
+# and the answer names the category as well as its id (a mismatch is resolved in favour of the name).
+TAXONOMY_SHORTLIST = 10                 # candidate categories per topic (0 = the whole list, the v1.2 behaviour)
+TAXONOMY_REVIEW_RANK = 3                # a topic whose agreed category ranks worse than this by similarity is flagged
+                                        #   assignment_needs_review; the rank itself is recorded (assignment_similarity_rank)
 LLM_MAX_NEW_TOKENS_PARTITION = 8000     # partition protocol only (review finding R2 raised it from 4,000)
 TAXONOMY_MAX_ITEMS = 100                # partition protocol only: above this many topics the chunking fallback runs
 TAXONOMY_CHUNK_SIZE = 80                # partition protocol only

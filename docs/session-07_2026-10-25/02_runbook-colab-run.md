@@ -73,7 +73,15 @@ repository root, commit `results/analysis/bin-1/` with the review templates, mov
 The reviewer reads the outputs through the Google Drive connector (to be authorised in claude.ai) or from the zip.
 **Decisions to record (design §14):** ~~greedy vs seeded sampling~~ — **decided 2026-10-25 (Alan): greedy kept, the seeded
 comparison of cell 3.2 dropped**; whether the D2 "identical" rule needs the name + tone refinement (only if `needs_review`
-exceeds 15 %; the rule compares all five label fields, the refinement would count a match on name + tone category).
+exceeds 15 %; the rule compares all five label fields, the refinement would count a match on name + tone category) — **moot on
+2026-10-25: 0 of 65 topics flagged**.
+**D6 (Alan, 2026-10-25), after the first full bin 1** (`../session-08_2026-10-25/00_colab-run-log.md`): the assignment step
+lists only each topic's 10 most similar categories, asks for id + name, and flags a topic whose agreed category ranks worse
+than 3rd by similarity. Re-run step 2 alone — the definitions are kept — with notebook cell 3.1b (`--stage taxonomy --bin 1
+--force --keep-definitions`), then `collect --allow-partial` and the hand-back again. Read `taxonomy.json → shortlist`
+(`rank_distribution`, `n_flagged_by_rank`), `topic_categories.csv → assignment_similarity_rank`, and the flagged topics in
+`topic_category_overrides.csv` (columns `assignment_needs_review`, `similarity_rank`); `resolved_from = name_over_id` in the
+transcripts counts the id slips the name caught.
 
 ## 5. Outlier threshold `T` — gate 3 (§12.3)
 `results/bin-1/outlier_calibration/calibration_table.csv` lists the candidate thresholds (50th / 65th / 80th percentile of

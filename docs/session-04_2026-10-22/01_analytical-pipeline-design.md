@@ -1,4 +1,4 @@
-# Analytical pipeline design — period-binned topic modelling, two-agent labelling and sentiment (v1.3)
+# Analytical pipeline design — period-binned topic modelling, two-agent labelling and sentiment (v1.4)
 
 **Session 04, 2026-10-22/23 · FIFA Communities chapter, McGill University.**
 Decisions: Alan Nemirovski. Drafting and technical design: Claude. Brief: `00_brief.md`. Template method: the
@@ -19,7 +19,11 @@ exploratory tool removed), the scripts renumbered (`05-analysis-pipeline.py`, `0
 `07-validate-analysis.R`), one path root (`PIPELINE_ROOT`) and the flat Google Drive layout `MyDrive/fifa-communities/`
 (`../session-07_2026-10-25/00_approvals.md`, decisions H1–H7); nothing analytical changed. The session documents of
 October 2026 use the file names of their time. This document supersedes the *run structure* of `../session-02_2026-10-13/02_topic-modelling-design.md`
-(calendar-year, ±2-month window and era models); the modelling settings approved there are kept unless stated.
+(calendar-year, ±2-month window and era models); the modelling settings approved there are kept unless stated. **Version 1.4 (2026-10-25, after the first Colab run of bin 1)** changes step 2 of the taxonomy stage: each
+assignment item lists only the topic's most similar categories, most similar first, the answer names the category as well
+as its id, and a topic whose agreed category ranks low by similarity is flagged (decision D6, §7.4; prompt v1.3, §7.6; flag
+F41) — with all 35 categories listed, both analysts had agreed on the same wrong ids for about 18 of 65 topics
+(`../session-08_2026-10-25/00_colab-run-log.md`).
 
 ---
 
@@ -266,13 +270,25 @@ protocol of §7.5:
   turn quotes them, and what the repair does not cure is settled deterministically (same-name categories merged, logged
   in `taxonomy.json → definitions_cleanup`). Ids are canonicalised to `cat_1 … cat_K` in the order given and never
   renumbered afterwards. Identity rule: same set of normalised names and, per name, the same `tone_category`. The agreed
-  definitions are checkpointed (`taxonomy_definitions.json`) before step 2; `--force` removes the checkpoint.
-* **Step 2 — assignment (one debate per topic; `TAXONOMY_ASSIGN_BATCH = 1`).** Each item shows the agreed category
-  list (`category_id | name | emotion_tone | inclusion_cues | one-sentence description`) and one topic line; the
-  analysts return `{"topic_id", "category_id"}`. Category references are resolved leniently (exact id, bare number,
-  the category's name; `null`/"none" count as missing; the resolution is recorded per answer). Identity rule: the same
-  topic → category mapping. Items are generated together per (round, analyst) like S3a topics. Several topics per
-  item remain possible through the same setting (recorded per topic as `assignment_item`).
+  definitions are checkpointed (`taxonomy_definitions.json`) before step 2; `--force` removes the checkpoint
+  (`--force --keep-definitions` keeps it, so that only step 2 re-runs — D6).
+* **Step 2 — assignment (one debate per topic; `TAXONOMY_ASSIGN_BATCH = 1`).** Each item shows **the topic's
+  `TAXONOMY_SHORTLIST` (10) most similar categories, most similar first** (decision D6, 2026-10-25: the cosine similarity
+  of the sentence embeddings, `EMBEDDING_MODEL`, of the category line `category_id | name | emotion_tone | inclusion_cues |
+  one-sentence description` and the topic line as they appear in the prompt; the whole list when the taxonomy has no more
+  categories than the shortlist, or with `TAXONOMY_SHORTLIST = 0`) and one topic line; the analysts return `{"topic_id",
+  "category_id", "category_name"}`. Category references are resolved leniently (exact id, bare number, the category's name;
+  `null`/"none" count as missing; the resolution is recorded per answer); when id and name point to different categories
+  the **name wins** (the id is the token a small model slips on) and the conflict is recorded (`resolved_from = name_over_id`,
+  `cleanup`). Extra pairs — a topic id that is not in the item, a repeated id — are dropped and recorded **without a repair
+  turn** (refinement N13, 2026-10-25: in the D6 dry run on bin 1, 16 of 65 items spent a repair turn on such extras and 5
+  answers changed category in it, one from right to wrong); the repair turn remains for a topic left without a category or
+  an unresolvable reference. Identity rule: the same topic → category mapping. Items are generated together per
+  (round, analyst) like S3a topics. Several topics per item remain possible through the same setting (recorded per topic
+  as `assignment_item`; the item then lists the union of the topics' shortlists, interleaved by rank). Before D6 (prompt
+  v1.2, the first Colab run of bin 1) every item listed all 35 defined categories: both analysts ignored the categories late
+  in the list and agreed on the same wrong ids — 8 categories stayed empty and about 18 of 65 topics were misplaced
+  (`../session-08_2026-10-25/00_colab-run-log.md`).
 * **Deterministic repair.** Topics the agents left without a category are placed in the category whose member-mean
   topic embedding is most similar (cosine); `category_assignment ∈ {agent, repaired, unplaced}`. A defined category to
   which no topic was assigned is dropped from `categories.csv` and listed in `taxonomy.json →
@@ -280,9 +296,12 @@ protocol of §7.5:
   `unplaced`, bin state `labelled`; every assignment without answer → all topics `unplaced`.
 * **Record.** `categories.csv` carries the definitions debate (`round_iterations`, `agreement_mode`, `agreed`,
   `needs_review`); `topic_categories.csv` carries, per topic, `assignment_item`, `assignment_round_iterations`,
-  `assignment_agreement_mode`, `assignment_contested` (the analysts' final answers name different categories) and
-  `assignment_needs_review` (item not agreed and contested); `taxonomy.json` keeps both steps' transcripts,
-  `categories_defined`, the repair log and `n_answers_salvaged`.
+  `assignment_agreement_mode`, `assignment_contested` (the analysts' final answers name different categories),
+  `assignment_similarity_rank` (D6: the rank of the agreed category among all categories by similarity to the topic, 1 =
+  nearest), `assignment_candidates` (the shortlist shown) and `assignment_needs_review` (item not agreed and contested, **or
+  rank worse than `TAXONOMY_REVIEW_RANK` = 3** — the analysts agreed on a category the embeddings call a poor fit; the
+  co-author review reads these first); `taxonomy.json` keeps both steps' transcripts, `categories_defined`, the repair log,
+  `n_answers_salvaged` and `shortlist` (k, the rank distribution, `n_flagged_by_rank`).
 * **Review files.** `category_overrides.csv` (rename or merge categories) and `topic_category_overrides.csv` (move one
   topic to another category, F28), both written by the taxonomy stage with the ids of the taxonomy they refer to.
 
@@ -390,14 +409,16 @@ There is no minimum or maximum number of categories: define a category for a gro
 sufficiently similar; the categories together must cover all topics above. Do not list topic ids; the topics are
 assigned to the categories in a second step.
 
-SYSTEM — S3b step 2 (assignment; v1.2)
+SYSTEM — S3b step 2 (assignment; text unchanged since v1.2)
 You are {agent_name}, a discourse analyst studying posts from the football community r/soccer.
 {lens}
 Assign each topic to exactly one category of the agreed discourse taxonomy. Use the keywords and the labelled sample
 of each item. Return JSON only; no prose or markdown.
 
-USER — S3b step 2
-Categories (the agreed taxonomy of r/soccer posts between {start} and {end}), one per line:
+USER — S3b step 2 (v1.3, decision D6; the v1.2 text listed the whole taxonomy and asked for category_id only)
+Candidate categories for the topic(s) below: the {n_candidates} of the {n_categories} categories of the agreed taxonomy of
+r/soccer posts between {start} and {end} that are most similar to them, most similar first, one per line:
+   (or, when the whole taxonomy is listed: "Categories (the agreed taxonomy of r/soccer posts between {start} and {end}), one per line:")
 category_id | name | emotion_tone | inclusion_cues | description
 {category_lines}
 Topics to assign ({n_batch} of the bin's {n_topics} topics), one per line:
@@ -406,10 +427,10 @@ topic_id | name | emotion_tone | keywords | description
 Output schema:
 {"decision": "revise",
  "assignments": [
-  {"topic_id": <topic_id>, "category_id": "<category_id>"}
+  {"topic_id": <topic_id>, "category_id": "<category_id>", "category_name": "<name>"}
  ]}
-Rules: list every topic_id above exactly once, each with the single best-fitting category_id; use only the category
-ids listed; if no category fits well, choose the closest one.
+Rules: list every topic_id above exactly once with the single best-fitting category; copy that category's category_id and
+name exactly as listed, from the same line; use only the categories listed; if none fits well, choose the closest one.
 
 (S3b single prompt of v1.1 — superseded, `partition` protocol only: SYSTEM "Build a discourse taxonomy from the
 items. Use the keywords and the labelled sample of each item."; USER with the schema above plus "topics": [topic_id, ...]
@@ -565,7 +586,9 @@ the effective settings, guard trials, backend, CUDA/cuML versions, `pip freeze`,
 3. **Outlier threshold.** `T` from the similarity quantiles + the 100-post human check, on bin 1 and the large bin.
 4. **Agents.** Round distribution and `agreement_mode` counts; `needs_review` ≤ 15 % of topics; greedy versus
    seeded-sampling comparison on bin 1 (dropped 2026-10-25, §14); 20 topics read by a co-author against their posts; optional relabel of bin 1
-   with Qwen3-4B (weights cached) to see what the larger model changes (dropped 2026-10-24, §14).
+   with Qwen3-4B (weights cached) to see what the larger model changes (dropped 2026-10-24, §14). Since D6: the distribution
+   of `assignment_similarity_rank` and the topics flagged by rank (`taxonomy.json → shortlist`), read by a co-author against
+   the category definitions — agreement between the two analysts is not a check on correctness (F41).
 5. **Sentiment.** The 300-post hand-coded sample.
 6. **Automatic checks** per bin (counts, coverage, assignment coverage, ids valid) and the S6 validation script.
 
@@ -603,6 +626,7 @@ the effective settings, guard trials, backend, CUDA/cuML versions, `pip freeze`,
 | F28 | Co-authors could not move a single topic to another category | `topic_category_overrides.csv` written by the taxonomy stage, applied in S5; `category_id_agent` keeps the agents' value |
 | F29 | Complete transcripts of two debates per bin ≈ 1 MB of `taxonomy.json` per bin in git | accepted: the transcripts are the audit trail |
 | F30 | Assignment references are resolved leniently (names, bare numbers) and `null` counts as missing | recorded per answer (`resolved_from`); strictness is one function |
+| F41 (2026-10-25) | The two analysts are one model: with all 35 categories listed in every assignment prompt they agreed on the same wrong ids (first Colab run of bin 1: 8 defined categories empty, ≈ 18 of 65 topics misplaced, `needs_review` 0 %); agreement is no check on correctness | D6: a similarity-ranked shortlist per topic, `category_id` + `category_name` in the answer (the name wins a conflict), a rank-based review flag (`assignment_similarity_rank`, `TAXONOMY_REVIEW_RANK`); gate 4 reads the rank distribution; the co-author review starts with the flagged topics |
 
 ## 14. Decisions log (author: Alan Nemirovski, 2026-10-22)
 
@@ -625,6 +649,8 @@ the effective settings, guard trials, backend, CUDA/cuML versions, `pip freeze`,
 | 2026-10-24 | Colab test batch | Pass 1 (every stage once, 12 labelled topics) + the full bin 1; gates and bins 2–9 afterwards | idem |
 | 2026-10-24 F22–F30 | Consequences of the two-step protocol (above) | as listed | approvals §5 |
 | **2026-10-25** | Greedy vs seeded sampling (F17, §12.4) | **Greedy decoding kept for every bin; the seeded-sampling comparison on bin 1 is dropped** (notebook cell 3.2 stays as an unused tool) | author's decision after Colab Pass 1 on bin 1 (65 topics, the 12 labelled topics sound): reproducible labels; the two lenses already give the second analyst a distinct view; the comparison would have cost a second labelling run of bin 1 |
+| **2026-10-25 D6** | S3b step 2 after the first full run of bin 1 on Colab | **Each assignment item lists only the topic's `TAXONOMY_SHORTLIST` (10) most similar categories, most similar first (sentence embeddings of the category and topic lines); the answer carries `category_id` + `category_name` (a mismatch is resolved in favour of the name); a topic whose agreed category ranks worse than `TAXONOMY_REVIEW_RANK` (3) is flagged `assignment_needs_review`**; prompt v1.3; `--force --keep-definitions` re-runs step 2 alone | with all 35 categories listed, both analysts ignored the late categories and agreed on the same wrong ids (8 empty categories, ≈ 18 of 65 topics misplaced — `../session-08_2026-10-25/00_colab-run-log.md`); alternatives declined: embedding-only assignment with the analysts confirming, a review flag alone, hand repair per bin |
+| 2026-10-25 N13 | Step-2 answers with extra pairs (a foreign or repeated topic id) or an id/name conflict | **Cleaned and recorded (`cleanup`), no repair turn**; the repair turn stays for a missing topic or an unresolvable reference | applied with D6 after its dry run on the Mac: 16 of 65 items had spent a repair turn on extras, 5 answers changed category in it (topic 18 from right to wrong) |
 | **2026-10-25 H1–H7** | Code harmonization (session 07) | **H1** the session-02 exploratory tool removed entirely; **H2** flat, purpose-named Drive layout under `MyDrive/fifa-communities/`; **H3** Drive as the root for everything that persists, code cloned on the Colab machine, CSVs copied locally, no symlinks; **H4** shared R helper file `code/R/pipeline-utils.R`; **H5** scripts renumbered 06→05, 06b→05b, 07→06, 08→07; **H6** stale tracked copies under `data/` untracked; **H7** `03-data-validation.R` accepts the v3.0 spec now | `../session-07_2026-10-25/00_approvals.md` (defaults and flags F31–F38 there); no analytical change |
 
 ## 15. Brief versus design

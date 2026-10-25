@@ -1,0 +1,204 @@
+{
+ "period_bin": 1,
+ "topic_id": 55,
+ "keywords": "zonal marking, zonal, spain tactical, best football, formation, analysis spain, best xi, mainz, inter, midfielder, hodgson, european team, mancini, barcelona arsenal, inter mourinho",
+ "n_sample_posts": 32,
+ "sample_ids": [
+  "bxk6r",
+  "dl3q0",
+  "cegnd",
+  "d2gdx",
+  "cdxas",
+  "d37to",
+  "dit1j",
+  "cj8rn",
+  "cr78g",
+  "ce5vw",
+  "ddmbm",
+  "co21a",
+  "cbkjl",
+  "dkq51",
+  "c77nw",
+  "c67cp",
+  "bxmca",
+  "cdlly",
+  "c7kst",
+  "db8mv",
+  "ccaba",
+  "c0lic",
+  "ceel0",
+  "cvhov",
+  "c9669",
+  "coaw8",
+  "cdm5o",
+  "d945b",
+  "bndqu",
+  "clzkp",
+  "d4rge",
+  "cjm2s"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.2",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Zonal Marking Analysis",
+  "purpose": "Analyzing football tactics and performance using zonal marking",
+  "emotion_tone": "Analytical and informative",
+  "description": "Posts discussing zonal marking tactics, team performances, and tactical analysis in football, including Spain's tactics, European teams, and player performances.",
+  "inclusion_cues": [
+   "Zonal Marking",
+   "Spain tactical",
+   "Best football",
+   "Formation",
+   "Analysis Spain",
+   "Best XI",
+   "Mainz",
+   "Inter",
+   "Midfielder",
+   "Hodgson"
+  ],
+  "n_cues_given": 14
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Zonal Marking Analysis",
+    "purpose": "Analyzing football tactics and performance using zonal marking",
+    "emotion_tone": "Analytical",
+    "description": "Posts discussing zonal marking tactics, team performances, and tactical analysis in football, including Spain, Barcelona, and other European teams.",
+    "inclusion_cues": [
+     "Zonal Marking",
+     "Spain tactical",
+     "Barcelona 1-0 Inter",
+     "Analysis of Spurs vs. Young Boys",
+     "Zonal Marking's World Cup 2010 Best XI"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Zonal Marking Analysis",
+    "purpose": "Analyzing football tactics and performance using zonal marking",
+    "emotion_tone": "Analytical and informative",
+    "description": "Posts discussing zonal marking tactics, team performances, and tactical analysis in football, including Spain's tactics, European teams, and player performances.",
+    "inclusion_cues": [
+     "Zonal Marking",
+     "Spain tactical",
+     "Best football",
+     "Formation",
+     "Analysis Spain",
+     "Best XI",
+     "Mainz",
+     "Inter",
+     "Midfielder",
+     "Hodgson"
+    ],
+    "n_cues_given": 14
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: zonal marking, zonal, spain tactical, best football, formation, analysis spain, best xi, mainz, inter, midfielder, hodgson, european team, mancini, barcelona arsenal, inter mourinho\nPosts (one per line, title first):\n- Barcelona 1-0 Inter: Mourinho's side progress deservedly | Zonal Marking\n- Zonal Marking analyzes Mainz\n- Zonal Marking Analysis: Argentina v Nigeria\n- Zonal Marking Analysis of Spurs vs. Young Boys\n- Six to watch: the fringe players | Zonal Marking\n- Zonal Marking: Analysis of Werder Bremen 3-1 Sampdoria\n- Manchester City 1-0 Chelsea: Tevez wins it | Zonal Marking\n- ZonalMarking's World Cup second round preview (part one)\n- Zonal Marking's World Cup 2010 Best XI\n- Zonal Marking: South Africa v Mexico\n- Barcelona vs Hercules: Game summary of Zonal Marking\n- World Cup final preview (part one) | ZonalMarking\n- Ivory Coast's uphill task just got even steeper | Zonal Marking\n- Ajax 1-1 Milan: neither plays their best football (ZonalMarking)\n- ZonalMarking: Inter 2-0 Bayern: Milito the master of Madrid\n- ZonalMarking’s European Team of the Season\n- Zonal Marking calls it one of the greatest defensive displays in recent history. Barca completed 555 passes vs 67 for Inter, and still only broke through once.\n- ZonalMarking analyzing Team USA\n- ZonalMarking's end-of-season awards\n- Interview with Michael Cox of Zonal Marking\n- France unpredictable with new formation | Zonal Marking\n- ZonalMarking: Manchester City 0-1 Tottenham: Spurs deservedly into the Champions League\n- Zonal Marking's analysis of USA-England: England poor in possession, US get wide players forward well\n- What does a central midfielder do in 2010? - fascinating article from Zonal Marking\n- USMNT practice observations (including Gooch observations)\n- Holland v Spain: tactical preview - Zonal Marking\n- Zonal Marking: \"USA a good side, but need tactical tweaks\" / I'm posting it as a self post cause Reddit is being rubbish:\n- [ZonalMarking.net] Summary of FIFA's Technical Report for the 2010 World Cup\n- Zonal Marking: Barcelona - Arsenal (2nd leg)\n- ZonalMarking analysis: Spain 1 - 0 Paraguay\n- How Mancini beat Hodgson, ZonalMarking explains the tactics behind City's win.\n- Zonal Marking: Brilliant German performance demolishes lifeless England\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Zonal Marking Analysis\", \"purpose\": \"Analyzing football tactics and performance using zonal marking\", \"emotion_tone\": \"Analytical\", \"description\": \"Posts discussing zonal marking tactics, team performances, and tactical analysis in football, including Spain, Barcelona, and other European teams.\", \"inclusion_cues\": [\"Zonal Marking\", \"Spain tactical\", \"Barcelona 1-0 Inter\", \"Analysis of Spurs vs. Young Boys\", \"Zonal Marking's World Cup 2010 Best XI\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Zonal Marking Analysis",
+      "purpose": "Analyzing football tactics and performance using zonal marking",
+      "emotion_tone": "Analytical",
+      "description": "Posts discussing zonal marking tactics, team performances, and tactical analysis in football, including Spain, Barcelona, and other European teams.",
+      "inclusion_cues": [
+       "Zonal Marking",
+       "Spain tactical",
+       "Barcelona 1-0 Inter",
+       "Analysis of Spurs vs. Young Boys",
+       "Zonal Marking's World Cup 2010 Best XI"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 127,
+   "seed": 2188463853,
+   "seconds": 0.47
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: zonal marking, zonal, spain tactical, best football, formation, analysis spain, best xi, mainz, inter, midfielder, hodgson, european team, mancini, barcelona arsenal, inter mourinho\nPosts (one per line, title first):\n- Barcelona 1-0 Inter: Mourinho's side progress deservedly | Zonal Marking\n- Zonal Marking analyzes Mainz\n- Zonal Marking Analysis: Argentina v Nigeria\n- Zonal Marking Analysis of Spurs vs. Young Boys\n- Six to watch: the fringe players | Zonal Marking\n- Zonal Marking: Analysis of Werder Bremen 3-1 Sampdoria\n- Manchester City 1-0 Chelsea: Tevez wins it | Zonal Marking\n- ZonalMarking's World Cup second round preview (part one)\n- Zonal Marking's World Cup 2010 Best XI\n- Zonal Marking: South Africa v Mexico\n- Barcelona vs Hercules: Game summary of Zonal Marking\n- World Cup final preview (part one) | ZonalMarking\n- Ivory Coast's uphill task just got even steeper | Zonal Marking\n- Ajax 1-1 Milan: neither plays their best football (ZonalMarking)\n- ZonalMarking: Inter 2-0 Bayern: Milito the master of Madrid\n- ZonalMarking’s European Team of the Season\n- Zonal Marking calls it one of the greatest defensive displays in recent history. Barca completed 555 passes vs 67 for Inter, and still only broke through once.\n- ZonalMarking analyzing Team USA\n- ZonalMarking's end-of-season awards\n- Interview with Michael Cox of Zonal Marking\n- France unpredictable with new formation | Zonal Marking\n- ZonalMarking: Manchester City 0-1 Tottenham: Spurs deservedly into the Champions League\n- Zonal Marking's analysis of USA-England: England poor in possession, US get wide players forward well\n- What does a central midfielder do in 2010? - fascinating article from Zonal Marking\n- USMNT practice observations (including Gooch observations)\n- Holland v Spain: tactical preview - Zonal Marking\n- Zonal Marking: \"USA a good side, but need tactical tweaks\" / I'm posting it as a self post cause Reddit is being rubbish:\n- [ZonalMarking.net] Summary of FIFA's Technical Report for the 2010 World Cup\n- Zonal Marking: Barcelona - Arsenal (2nd leg)\n- ZonalMarking analysis: Spain 1 - 0 Paraguay\n- How Mancini beat Hodgson, ZonalMarking explains the tactics behind City's win.\n- Zonal Marking: Brilliant German performance demolishes lifeless England\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Zonal Marking Analysis\", \"purpose\": \"Analyzing football tactics and performance using zonal marking\", \"emotion_tone\": \"Analytical and informative\", \"description\": \"Posts discussing zonal marking tactics, team performances, and tactical analysis in football, including Spain's tactics, European teams, and player performances.\", \"inclusion_cues\": [\"Zonal Marking\", \"Spain tactical\", \"Best football\", \"Formation\", \"Analysis Spain\", \"Best XI\", \"Mainz\", \"Inter\", \"Midfielder\", \"Hodgson\", \"European team\", \"Mancini\", \"Barcelona Arsenal\", \"Inter Mourinho\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Zonal Marking Analysis",
+      "purpose": "Analyzing football tactics and performance using zonal marking",
+      "emotion_tone": "Analytical and informative",
+      "description": "Posts discussing zonal marking tactics, team performances, and tactical analysis in football, including Spain's tactics, European teams, and player performances.",
+      "inclusion_cues": [
+       "Zonal Marking",
+       "Spain tactical",
+       "Best football",
+       "Formation",
+       "Analysis Spain",
+       "Best XI",
+       "Mainz",
+       "Inter",
+       "Midfielder",
+       "Hodgson"
+      ],
+      "n_cues_given": 14
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 148,
+   "seed": 1961930906,
+   "seconds": 0.52
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: zonal marking, zonal, spain tactical, best football, formation, analysis spain, best xi, mainz, inter, midfielder, hodgson, european team, mancini, barcelona arsenal, inter mourinho\nPosts (one per line, title first):\n- Barcelona 1-0 Inter: Mourinho's side progress deservedly | Zonal Marking\n- Zonal Marking analyzes Mainz\n- Zonal Marking Analysis: Argentina v Nigeria\n- Zonal Marking Analysis of Spurs vs. Young Boys\n- Six to watch: the fringe players | Zonal Marking\n- Zonal Marking: Analysis of Werder Bremen 3-1 Sampdoria\n- Manchester City 1-0 Chelsea: Tevez wins it | Zonal Marking\n- ZonalMarking's World Cup second round preview (part one)\n- Zonal Marking's World Cup 2010 Best XI\n- Zonal Marking: South Africa v Mexico\n- Barcelona vs Hercules: Game summary of Zonal Marking\n- World Cup final preview (part one) | ZonalMarking\n- Ivory Coast's uphill task just got even steeper | Zonal Marking\n- Ajax 1-1 Milan: neither plays their best football (ZonalMarking)\n- ZonalMarking: Inter 2-0 Bayern: Milito the master of Madrid\n- ZonalMarking’s European Team of the Season\n- Zonal Marking calls it one of the greatest defensive displays in recent history. Barca completed 555 passes vs 67 for Inter, and still only broke through once.\n- ZonalMarking analyzing Team USA\n- ZonalMarking's end-of-season awards\n- Interview with Michael Cox of Zonal Marking\n- France unpredictable with new formation | Zonal Marking\n- ZonalMarking: Manchester City 0-1 Tottenham: Spurs deservedly into the Champions League\n- Zonal Marking's analysis of USA-England: England poor in possession, US get wide players forward well\n- What does a central midfielder do in 2010? - fascinating article from Zonal Marking\n- USMNT practice observations (including Gooch observations)\n- Holland v Spain: tactical preview - Zonal Marking\n- Zonal Marking: \"USA a good side, but need tactical tweaks\" / I'm posting it as a self post cause Reddit is being rubbish:\n- [ZonalMarking.net] Summary of FIFA's Technical Report for the 2010 World Cup\n- Zonal Marking: Barcelona - Arsenal (2nd leg)\n- ZonalMarking analysis: Spain 1 - 0 Paraguay\n- How Mancini beat Hodgson, ZonalMarking explains the tactics behind City's win.\n- Zonal Marking: Brilliant German performance demolishes lifeless England\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Zonal Marking Analysis\", \"purpose\": \"Analyzing football tactics and performance using zonal marking\", \"emotion_tone\": \"Analytical\", \"description\": \"Posts discussing zonal marking tactics, team performances, and tactical analysis in football, including Spain, Barcelona, and other European teams.\", \"inclusion_cues\": [\"Zonal Marking\", \"Spain tactical\", \"Barcelona 1-0 Inter\", \"Analysis of Spurs vs. Young Boys\", \"Zonal Marking's World Cup 2010 Best XI\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Zonal Marking Analysis\", \"purpose\": \"Analyzing football tactics and performance using zonal marking\", \"emotion_tone\": \"Analytical and informative\", \"description\": \"Posts discussing zonal marking tactics, team performances, and tactical analysis in football, including Spain's tactics, European teams, and player performances.\", \"inclusion_cues\": [\"Zonal Marking\", \"Spain tactical\", \"Best football\", \"Formation\", \"Analysis Spain\", \"Best XI\", \"Mainz\", \"Inter\", \"Midfielder\", \"Hodgson\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Zonal Marking Analysis\", \"purpose\": \"Analyzing football tactics and performance using zonal marking\", \"emotion_tone\": \"Analytical and informative\", \"description\": \"Posts discussing zonal marking tactics, team performances, and tactical analysis in football, including Spain's tactics, European teams, and player performances.\", \"inclusion_cues\": [\"Zonal Marking\", \"Spain tactical\", \"Best football\", \"Formation\", \"Analysis Spain\", \"Best XI\", \"Mainz\", \"Inter\", \"Midfielder\", \"Hodgson\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 129,
+   "seed": 3753735205,
+   "seconds": 0.53
+  }
+ ]
+}

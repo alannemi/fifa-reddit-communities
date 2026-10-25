@@ -1,0 +1,195 @@
+{
+ "period_bin": 1,
+ "topic_id": 49,
+ "keywords": "portsmouth fa, portsmouth fc, portsmouth, league fa, relegated, fa cup, cup win, future club, chester, season starts, chester city, goal keepers, administration, collapse, read bbc",
+ "n_sample_posts": 39,
+ "sample_ids": [
+  "cudpj",
+  "aqxv9",
+  "bprtv",
+  "b7b6k",
+  "ctqxo",
+  "b6s8x",
+  "b5kw8",
+  "bpchj",
+  "c43jv",
+  "d4rcq",
+  "bcpuj",
+  "bpoie",
+  "b1y59",
+  "bu8ik",
+  "avjve",
+  "b0poi",
+  "bpuu5",
+  "c43d9",
+  "cxigg",
+  "b6wb7",
+  "bow8y",
+  "cxqkn",
+  "bb9cm",
+  "bc81y",
+  "c3t4u",
+  "avef5",
+  "axxkb",
+  "bp5hb",
+  "buksj",
+  "ba1ml",
+  "cpr78",
+  "beif2",
+  "bv00w",
+  "b1sh8",
+  "bxcle",
+  "b9088",
+  "b0akw",
+  "d5jtw",
+  "bu5os"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.2",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Portsmouth Crisis",
+  "purpose": "Report on Portsmouth's financial and managerial struggles",
+  "emotion_tone": "Urgent",
+  "description": "Posts discuss Portsmouth's financial collapse, administration, FA Cup prospects, and future plans",
+  "inclusion_cues": [
+   "Portsmouth in administration",
+   "FA Cup semi",
+   "Financial troubles",
+   "New owner",
+   "Future club"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Portsmouth Crisis",
+    "purpose": "Report on Portsmouth's financial and managerial struggles",
+    "emotion_tone": "Urgent",
+    "description": "Posts about Portsmouth's financial collapse, administrative issues, FA Cup prospects, and future plans",
+    "inclusion_cues": [
+     "Portsmouth in administration",
+     "FA Cup semi",
+     "relegation",
+     "new owner",
+     "tax case",
+     "future club"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Portsmouth Crisis",
+    "purpose": "Report on Portsmouth's financial and managerial struggles",
+    "emotion_tone": "Urgent",
+    "description": "Posts discuss Portsmouth's financial collapse, administration, FA Cup prospects, and future plans",
+    "inclusion_cues": [
+     "Portsmouth in administration",
+     "FA Cup semi",
+     "Financial troubles",
+     "New owner",
+     "Future club"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: portsmouth fa, portsmouth fc, portsmouth, league fa, relegated, fa cup, cup win, future club, chester, season starts, chester city, goal keepers, administration, collapse, read bbc\nPosts (one per line, title first):\n- Portsmouth have only 14 Players registered,including no goal keepers and the championship season starts in 11 Days time!\n- Portsmouth have no plans to sue Premier League (possibly because the only lawyers they can afford are 19-year-old Malawians)\n- Portsmouth to appeal FA ruling that denies clubs in administration a place in Europe.\n- While the media focuses on the plights of Portsmouth, please spare a thought for a team that didn't make it; Chester City\n- If Portsmouth thought that things could hardly get any worse for them after going into administration, being relegated from the Premier League and having a transfer embargo imposed upon them, they were sorely mistaken.\n- Its official, Pompey enter administration.\n- Portsmouth expected to go into administration this Friday.\n- What await Portsmouth in FA Cup semi?\n- Behind the Hat: Mr. Portsmouth\n- 21 year old entrepreneur in talks to buy Portsmouth!\n- Peter Storrie quits as Portsmouth chief executive.\n- Well done Portsmouth!\n- West Ham co-owner says Premier League \"must take responsibility\" and ensure Portsmouth do not go out of business.\n- Comprehensive Portsmouth Look\n- so with all of the financial troubles portsmouth are having lately, i found it highly ironic to have found this gem on their newly re-opened website.\n- Law of the Jungle: The old dirge of the Portsmouth fans has had to be amended. “Pay up Pompey. Pompey pay up,” they’re singing now.\n- Pompey eye Europa reprieve, new bidder in?\n- Good news for Portsmouth … Guardian finds missing £4m\n- Portsmouth face oblivion if they lose tax case - lawyer\n- Portsmouth's collapse must prompt football to examine itself\n- David James says 2008 FA Cup win began Pompey crisis\n- Pompey win latest survival battle\n- FA Cup win would not give European spot to Portsmouth\n- Bargain Basement Bertie\n- Portsmouth to axe FA Cup heroes\n- Cash-strapped Portsmouth hit new low, shut down Web site\n- Portsmouth have a new owner (AGAIN): Number 4 so far this season...\n- Pompey gets relegated\n- Portsmouth Europa League bid rejected\n- Portsmouth Qualify for FA Cup Semis\n- Club America tops Portsmouth FC 2-1\n- Portsmouth officially docked 9 points.\n- BBC: The true extent of Pompey horror show\n- Crisis only makes Portsmouth stronger, says Avram Grant\n- Premier League and FA statement On Portsmouth (Must Read)\n- Portsmouth 'up for grabs at £30m'\n- D-Day for Pompey: Portsmouth are in the High Court right now fighting for the future of the club.\n- Portsmouth to be bought out by a 21 year-old\n- Do Portsmouth owe any of you guys any money?\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Portsmouth Crisis\", \"purpose\": \"Report on Portsmouth's financial and managerial struggles\", \"emotion_tone\": \"Urgent\", \"description\": \"Posts about Portsmouth's financial collapse, administrative issues, FA Cup prospects, and future plans\", \"inclusion_cues\": [\"Portsmouth in administration\", \"FA Cup semi\", \"relegation\", \"new owner\", \"tax case\", \"future club\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Portsmouth Crisis",
+      "purpose": "Report on Portsmouth's financial and managerial struggles",
+      "emotion_tone": "Urgent",
+      "description": "Posts about Portsmouth's financial collapse, administrative issues, FA Cup prospects, and future plans",
+      "inclusion_cues": [
+       "Portsmouth in administration",
+       "FA Cup semi",
+       "relegation",
+       "new owner",
+       "tax case",
+       "future club"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 99,
+   "seed": 2108060405,
+   "seconds": 0.47
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: portsmouth fa, portsmouth fc, portsmouth, league fa, relegated, fa cup, cup win, future club, chester, season starts, chester city, goal keepers, administration, collapse, read bbc\nPosts (one per line, title first):\n- Portsmouth have only 14 Players registered,including no goal keepers and the championship season starts in 11 Days time!\n- Portsmouth have no plans to sue Premier League (possibly because the only lawyers they can afford are 19-year-old Malawians)\n- Portsmouth to appeal FA ruling that denies clubs in administration a place in Europe.\n- While the media focuses on the plights of Portsmouth, please spare a thought for a team that didn't make it; Chester City\n- If Portsmouth thought that things could hardly get any worse for them after going into administration, being relegated from the Premier League and having a transfer embargo imposed upon them, they were sorely mistaken.\n- Its official, Pompey enter administration.\n- Portsmouth expected to go into administration this Friday.\n- What await Portsmouth in FA Cup semi?\n- Behind the Hat: Mr. Portsmouth\n- 21 year old entrepreneur in talks to buy Portsmouth!\n- Peter Storrie quits as Portsmouth chief executive.\n- Well done Portsmouth!\n- West Ham co-owner says Premier League \"must take responsibility\" and ensure Portsmouth do not go out of business.\n- Comprehensive Portsmouth Look\n- so with all of the financial troubles portsmouth are having lately, i found it highly ironic to have found this gem on their newly re-opened website.\n- Law of the Jungle: The old dirge of the Portsmouth fans has had to be amended. “Pay up Pompey. Pompey pay up,” they’re singing now.\n- Pompey eye Europa reprieve, new bidder in?\n- Good news for Portsmouth … Guardian finds missing £4m\n- Portsmouth face oblivion if they lose tax case - lawyer\n- Portsmouth's collapse must prompt football to examine itself\n- David James says 2008 FA Cup win began Pompey crisis\n- Pompey win latest survival battle\n- FA Cup win would not give European spot to Portsmouth\n- Bargain Basement Bertie\n- Portsmouth to axe FA Cup heroes\n- Cash-strapped Portsmouth hit new low, shut down Web site\n- Portsmouth have a new owner (AGAIN): Number 4 so far this season...\n- Pompey gets relegated\n- Portsmouth Europa League bid rejected\n- Portsmouth Qualify for FA Cup Semis\n- Club America tops Portsmouth FC 2-1\n- Portsmouth officially docked 9 points.\n- BBC: The true extent of Pompey horror show\n- Crisis only makes Portsmouth stronger, says Avram Grant\n- Premier League and FA statement On Portsmouth (Must Read)\n- Portsmouth 'up for grabs at £30m'\n- D-Day for Pompey: Portsmouth are in the High Court right now fighting for the future of the club.\n- Portsmouth to be bought out by a 21 year-old\n- Do Portsmouth owe any of you guys any money?\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Portsmouth Crisis\", \"purpose\": \"Report on Portsmouth's financial and managerial struggles\", \"emotion_tone\": \"Urgent\", \"description\": \"Posts discuss Portsmouth's financial collapse, administration, FA Cup prospects, and future plans\", \"inclusion_cues\": [\"Portsmouth in administration\", \"FA Cup semi\", \"Financial troubles\", \"New owner\", \"Future club\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Portsmouth Crisis",
+      "purpose": "Report on Portsmouth's financial and managerial struggles",
+      "emotion_tone": "Urgent",
+      "description": "Posts discuss Portsmouth's financial collapse, administration, FA Cup prospects, and future plans",
+      "inclusion_cues": [
+       "Portsmouth in administration",
+       "FA Cup semi",
+       "Financial troubles",
+       "New owner",
+       "Future club"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 94,
+   "seed": 2611641724,
+   "seconds": 0.52
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: portsmouth fa, portsmouth fc, portsmouth, league fa, relegated, fa cup, cup win, future club, chester, season starts, chester city, goal keepers, administration, collapse, read bbc\nPosts (one per line, title first):\n- Portsmouth have only 14 Players registered,including no goal keepers and the championship season starts in 11 Days time!\n- Portsmouth have no plans to sue Premier League (possibly because the only lawyers they can afford are 19-year-old Malawians)\n- Portsmouth to appeal FA ruling that denies clubs in administration a place in Europe.\n- While the media focuses on the plights of Portsmouth, please spare a thought for a team that didn't make it; Chester City\n- If Portsmouth thought that things could hardly get any worse for them after going into administration, being relegated from the Premier League and having a transfer embargo imposed upon them, they were sorely mistaken.\n- Its official, Pompey enter administration.\n- Portsmouth expected to go into administration this Friday.\n- What await Portsmouth in FA Cup semi?\n- Behind the Hat: Mr. Portsmouth\n- 21 year old entrepreneur in talks to buy Portsmouth!\n- Peter Storrie quits as Portsmouth chief executive.\n- Well done Portsmouth!\n- West Ham co-owner says Premier League \"must take responsibility\" and ensure Portsmouth do not go out of business.\n- Comprehensive Portsmouth Look\n- so with all of the financial troubles portsmouth are having lately, i found it highly ironic to have found this gem on their newly re-opened website.\n- Law of the Jungle: The old dirge of the Portsmouth fans has had to be amended. “Pay up Pompey. Pompey pay up,” they’re singing now.\n- Pompey eye Europa reprieve, new bidder in?\n- Good news for Portsmouth … Guardian finds missing £4m\n- Portsmouth face oblivion if they lose tax case - lawyer\n- Portsmouth's collapse must prompt football to examine itself\n- David James says 2008 FA Cup win began Pompey crisis\n- Pompey win latest survival battle\n- FA Cup win would not give European spot to Portsmouth\n- Bargain Basement Bertie\n- Portsmouth to axe FA Cup heroes\n- Cash-strapped Portsmouth hit new low, shut down Web site\n- Portsmouth have a new owner (AGAIN): Number 4 so far this season...\n- Pompey gets relegated\n- Portsmouth Europa League bid rejected\n- Portsmouth Qualify for FA Cup Semis\n- Club America tops Portsmouth FC 2-1\n- Portsmouth officially docked 9 points.\n- BBC: The true extent of Pompey horror show\n- Crisis only makes Portsmouth stronger, says Avram Grant\n- Premier League and FA statement On Portsmouth (Must Read)\n- Portsmouth 'up for grabs at £30m'\n- D-Day for Pompey: Portsmouth are in the High Court right now fighting for the future of the club.\n- Portsmouth to be bought out by a 21 year-old\n- Do Portsmouth owe any of you guys any money?\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Portsmouth Crisis\", \"purpose\": \"Report on Portsmouth's financial and managerial struggles\", \"emotion_tone\": \"Urgent\", \"description\": \"Posts about Portsmouth's financial collapse, administrative issues, FA Cup prospects, and future plans\", \"inclusion_cues\": [\"Portsmouth in administration\", \"FA Cup semi\", \"relegation\", \"new owner\", \"tax case\", \"future club\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Portsmouth Crisis\", \"purpose\": \"Report on Portsmouth's financial and managerial struggles\", \"emotion_tone\": \"Urgent\", \"description\": \"Posts discuss Portsmouth's financial collapse, administration, FA Cup prospects, and future plans\", \"inclusion_cues\": [\"Portsmouth in administration\", \"FA Cup semi\", \"Financial troubles\", \"New owner\", \"Future club\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Portsmouth Crisis\", \"purpose\": \"Report on Portsmouth's financial and managerial struggles\", \"emotion_tone\": \"Urgent\", \"description\": \"Posts about Portsmouth's financial collapse, administrative issues, FA Cup prospects, and future plans\", \"inclusion_cues\": [\"Portsmouth in administration\", \"FA Cup semi\", \"Financial troubles\", \"New owner\", \"Future club\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 94,
+   "seed": 3595045686,
+   "seconds": 0.53
+  }
+ ]
+}

@@ -1,0 +1,192 @@
+{
+ "period_bin": 1,
+ "topic_id": 60,
+ "keywords": "ribéry, ribery, franck ribery, franck ribéry, sex scandal, scandals, players sex, prostitutes, football human, footballers, french national, ibrahimovic, football boss, rumor, freddie ljungberg",
+ "n_sample_posts": 29,
+ "sample_ids": [
+  "bt70j",
+  "bua1f",
+  "csx7q",
+  "bt5kv",
+  "csi3u",
+  "c1u1k",
+  "dd7h0",
+  "cf8oo",
+  "cryyk",
+  "crlmz",
+  "b0bqo",
+  "ck05w",
+  "ddv76",
+  "bdxv9",
+  "btfa8",
+  "cu3f2",
+  "cyn6o",
+  "d0a8q",
+  "db2dc",
+  "c4ug3",
+  "croek",
+  "cgze3",
+  "ckop8",
+  "bdb67",
+  "btfub",
+  "cgs74",
+  "cj770",
+  "bst76",
+  "cpdlc"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.2",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Sex Scandal",
+  "purpose": "Categorize posts about footballers' sexual misconduct and related issues",
+  "emotion_tone": "Critical",
+  "description": "Posts discussing footballers' sexual misconduct, including allegations of prostitution, human trafficking, and homophobia in football",
+  "inclusion_cues": [
+   "Franck Ribery in sex scandal",
+   "French footballers in underage sex probe",
+   "Human trafficking would end if footballers stopped having sex with prostitutes",
+   "Gay footballers who come out"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Sex Scandal",
+    "purpose": "Categorize posts about footballers' sexual misconduct and related issues",
+    "emotion_tone": "Critical",
+    "description": "Posts discussing footballers' sexual misconduct, including allegations of prostitution, human trafficking, and homophobia in football",
+    "inclusion_cues": [
+     "Franck Ribery",
+     "sex scandal",
+     "players sex",
+     "prostitutes",
+     "football human",
+     "footballers",
+     "french national",
+     "ibrahimovic",
+     "football boss",
+     "rumor"
+    ],
+    "n_cues_given": 11
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Sex Scandal",
+    "purpose": "Categorize posts about footballers' sexual misconduct and related issues",
+    "emotion_tone": "Critical",
+    "description": "Posts discussing footballers' sexual misconduct, including allegations of prostitution, human trafficking, and homophobia in football",
+    "inclusion_cues": [
+     "Franck Ribery in sex scandal",
+     "French footballers in underage sex probe",
+     "Human trafficking would end if footballers stopped having sex with prostitutes",
+     "Gay footballers who come out"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: ribéry, ribery, franck ribery, franck ribéry, sex scandal, scandals, players sex, prostitutes, football human, footballers, french national, ibrahimovic, football boss, rumor, freddie ljungberg\nPosts (one per line, title first):\n- Franck Ribery, French Soccer Star, Questioned In Child Prostitution Probe\n- Franck Ribéry 'admits to relationship with prostitute'.\n- Franck Ribéry: \"I must now overcome this low point\" - Bayern winger reveals how he is coping with underage prostitute allegations.\n- French international footballers Franck Ribery and Sidney Govou in child prostitute scandal\n- Bayern Munich \"very worried\" about Franck Ribéry's underage prostitute sex scandal court case. Karl-Heinz Rummenigge doesn't want to see his star midfielder spend three years behind bars...\n- \"Come to my house and bring your sister with you, I'll show you who is gay!\" -Zlatan Ibrahimovic\n- Human trafficking would end if footballers stopped having sex with prostitutes, report claims\n- Freddie Ljungberg Proud of Gay Rumor\n- French footballers formally accused of soliciting underage prostitute\n- French police 'detain footballers' in sex inquiry\n- Can gay footballers ever come out?\n- Maradon denies he is gay.\n- ...and homophobia persists in the modern game of football\n- Former Schalke boss is homophobiac\n- Ribery in Sex Scandal\n- Footballers Turned Underwear Models\n- Fans say they would back gay footballers who come out\n- English Football Players and Sex Scandals\n- Diary of a Pro Footballer: The Truth About Sex and Footballers | Sabotage Times\n- How Hillsborough and Rupert Murdoch Gave Us Christiano Ronaldo on the Vanity Fair Cover in his Underwear\n- French stars in underage sex probe\n- Soccer Officially Announces It Is Gay\n- Kaka hates whores,along with Ashton Kutcher.\n- Fury as German ex-football boss says: 'There's no place in football for gays'\n- Choose your celebrations wisely, because ESPN is judging you: Neville Scholes kiss was 'gay'\n- Diego Maradona is NOT gay\n- Hatin' From Hollywood: Coming Out of The Closet\n- At least two French national team players involved in a prostitution affair\n- Storm over 'bunch of gays' in Germany's World Cup team\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Sex Scandal\", \"purpose\": \"Categorize posts about footballers' sexual misconduct and related issues\", \"emotion_tone\": \"Critical\", \"description\": \"Posts discussing footballers' sexual misconduct, including allegations of prostitution, human trafficking, and homophobia in football\", \"inclusion_cues\": [\"Franck Ribery\", \"sex scandal\", \"players sex\", \"prostitutes\", \"football human\", \"footballers\", \"french national\", \"ibrahimovic\", \"football boss\", \"rumor\", \"freddie ljungberg\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Sex Scandal",
+      "purpose": "Categorize posts about footballers' sexual misconduct and related issues",
+      "emotion_tone": "Critical",
+      "description": "Posts discussing footballers' sexual misconduct, including allegations of prostitution, human trafficking, and homophobia in football",
+      "inclusion_cues": [
+       "Franck Ribery",
+       "sex scandal",
+       "players sex",
+       "prostitutes",
+       "football human",
+       "footballers",
+       "french national",
+       "ibrahimovic",
+       "football boss",
+       "rumor"
+      ],
+      "n_cues_given": 11
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 132,
+   "seed": 436787974,
+   "seconds": 1.26
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: ribéry, ribery, franck ribery, franck ribéry, sex scandal, scandals, players sex, prostitutes, football human, footballers, french national, ibrahimovic, football boss, rumor, freddie ljungberg\nPosts (one per line, title first):\n- Franck Ribery, French Soccer Star, Questioned In Child Prostitution Probe\n- Franck Ribéry 'admits to relationship with prostitute'.\n- Franck Ribéry: \"I must now overcome this low point\" - Bayern winger reveals how he is coping with underage prostitute allegations.\n- French international footballers Franck Ribery and Sidney Govou in child prostitute scandal\n- Bayern Munich \"very worried\" about Franck Ribéry's underage prostitute sex scandal court case. Karl-Heinz Rummenigge doesn't want to see his star midfielder spend three years behind bars...\n- \"Come to my house and bring your sister with you, I'll show you who is gay!\" -Zlatan Ibrahimovic\n- Human trafficking would end if footballers stopped having sex with prostitutes, report claims\n- Freddie Ljungberg Proud of Gay Rumor\n- French footballers formally accused of soliciting underage prostitute\n- French police 'detain footballers' in sex inquiry\n- Can gay footballers ever come out?\n- Maradon denies he is gay.\n- ...and homophobia persists in the modern game of football\n- Former Schalke boss is homophobiac\n- Ribery in Sex Scandal\n- Footballers Turned Underwear Models\n- Fans say they would back gay footballers who come out\n- English Football Players and Sex Scandals\n- Diary of a Pro Footballer: The Truth About Sex and Footballers | Sabotage Times\n- How Hillsborough and Rupert Murdoch Gave Us Christiano Ronaldo on the Vanity Fair Cover in his Underwear\n- French stars in underage sex probe\n- Soccer Officially Announces It Is Gay\n- Kaka hates whores,along with Ashton Kutcher.\n- Fury as German ex-football boss says: 'There's no place in football for gays'\n- Choose your celebrations wisely, because ESPN is judging you: Neville Scholes kiss was 'gay'\n- Diego Maradona is NOT gay\n- Hatin' From Hollywood: Coming Out of The Closet\n- At least two French national team players involved in a prostitution affair\n- Storm over 'bunch of gays' in Germany's World Cup team\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Sex Scandal\", \"purpose\": \"Categorize posts about footballers' sexual misconduct and related issues\", \"emotion_tone\": \"Critical\", \"description\": \"Posts discussing footballers' sexual misconduct, including allegations of prostitution, human trafficking, and homophobia in football\", \"inclusion_cues\": [\"Franck Ribery in sex scandal\", \"French footballers in underage sex probe\", \"Human trafficking would end if footballers stopped having sex with prostitutes\", \"Gay footballers who come out\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Sex Scandal",
+      "purpose": "Categorize posts about footballers' sexual misconduct and related issues",
+      "emotion_tone": "Critical",
+      "description": "Posts discussing footballers' sexual misconduct, including allegations of prostitution, human trafficking, and homophobia in football",
+      "inclusion_cues": [
+       "Franck Ribery in sex scandal",
+       "French footballers in underage sex probe",
+       "Human trafficking would end if footballers stopped having sex with prostitutes",
+       "Gay footballers who come out"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 119,
+   "seed": 2831863595,
+   "seconds": 1.27
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: ribéry, ribery, franck ribery, franck ribéry, sex scandal, scandals, players sex, prostitutes, football human, footballers, french national, ibrahimovic, football boss, rumor, freddie ljungberg\nPosts (one per line, title first):\n- Franck Ribery, French Soccer Star, Questioned In Child Prostitution Probe\n- Franck Ribéry 'admits to relationship with prostitute'.\n- Franck Ribéry: \"I must now overcome this low point\" - Bayern winger reveals how he is coping with underage prostitute allegations.\n- French international footballers Franck Ribery and Sidney Govou in child prostitute scandal\n- Bayern Munich \"very worried\" about Franck Ribéry's underage prostitute sex scandal court case. Karl-Heinz Rummenigge doesn't want to see his star midfielder spend three years behind bars...\n- \"Come to my house and bring your sister with you, I'll show you who is gay!\" -Zlatan Ibrahimovic\n- Human trafficking would end if footballers stopped having sex with prostitutes, report claims\n- Freddie Ljungberg Proud of Gay Rumor\n- French footballers formally accused of soliciting underage prostitute\n- French police 'detain footballers' in sex inquiry\n- Can gay footballers ever come out?\n- Maradon denies he is gay.\n- ...and homophobia persists in the modern game of football\n- Former Schalke boss is homophobiac\n- Ribery in Sex Scandal\n- Footballers Turned Underwear Models\n- Fans say they would back gay footballers who come out\n- English Football Players and Sex Scandals\n- Diary of a Pro Footballer: The Truth About Sex and Footballers | Sabotage Times\n- How Hillsborough and Rupert Murdoch Gave Us Christiano Ronaldo on the Vanity Fair Cover in his Underwear\n- French stars in underage sex probe\n- Soccer Officially Announces It Is Gay\n- Kaka hates whores,along with Ashton Kutcher.\n- Fury as German ex-football boss says: 'There's no place in football for gays'\n- Choose your celebrations wisely, because ESPN is judging you: Neville Scholes kiss was 'gay'\n- Diego Maradona is NOT gay\n- Hatin' From Hollywood: Coming Out of The Closet\n- At least two French national team players involved in a prostitution affair\n- Storm over 'bunch of gays' in Germany's World Cup team\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Sex Scandal\", \"purpose\": \"Categorize posts about footballers' sexual misconduct and related issues\", \"emotion_tone\": \"Critical\", \"description\": \"Posts discussing footballers' sexual misconduct, including allegations of prostitution, human trafficking, and homophobia in football\", \"inclusion_cues\": [\"Franck Ribery\", \"sex scandal\", \"players sex\", \"prostitutes\", \"football human\", \"footballers\", \"french national\", \"ibrahimovic\", \"football boss\", \"rumor\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Sex Scandal\", \"purpose\": \"Categorize posts about footballers' sexual misconduct and related issues\", \"emotion_tone\": \"Critical\", \"description\": \"Posts discussing footballers' sexual misconduct, including allegations of prostitution, human trafficking, and homophobia in football\", \"inclusion_cues\": [\"Franck Ribery in sex scandal\", \"French footballers in underage sex probe\", \"Human trafficking would end if footballers stopped having sex with prostitutes\", \"Gay footballers who come out\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Sex Scandal\", \"purpose\": \"Categorize posts about footballers' sexual misconduct and related issues\", \"emotion_tone\": \"Critical\", \"description\": \"Posts discussing footballers' sexual misconduct, including allegations of prostitution, human trafficking, and homophobia in football\", \"inclusion_cues\": [\"Franck Ribery in sex scandal\", \"French footballers in underage sex probe\", \"Human trafficking would end if footballers stopped having sex with prostitutes\", \"Gay footballers who come out\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 118,
+   "seed": 3749954866,
+   "seconds": 1.3
+  }
+ ]
+}

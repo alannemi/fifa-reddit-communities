@@ -1,0 +1,560 @@
+=== Colab session log /content/drive/MyDrive/fifa-communities/logs/colab_2026-10-25_1524.log (UTC 2026-10-25 15:24) ===
+Drive mounted; yearly files: 17 | folders under fifa-communities: ['analysis', 'comparisons', 'embeddings', 'handback', 'hf-cache', 'logs', 'results', 'yearly datasets']
+repository at commit 3b55d984fc1ad39c461f108b40497dd533f7a840
+yearly files on the local disk: 17 | total GB: 1.93
+effective paths of the program: {
+ "PIPELINE_ROOT": "/content/drive/MyDrive/fifa-communities",
+ "YEARLY_DIR": "/content/data/yearly datasets",
+ "ANALYSIS_DATA_DIR": "/content/drive/MyDrive/fifa-communities/analysis",
+ "ANALYSIS_DIR": "/content/drive/MyDrive/fifa-communities/results",
+ "EMBED_CACHE_DIR": "/content/drive/MyDrive/fifa-communities/embeddings",
+ "LLM_CACHE_DIR": "/content/hf-cache"
+}
+>>> /usr/bin/python3 -u code/05-analysis-pipeline.py --stage embed --bin 1
+2026-10-25 15:24:17,951 | INFO | === stage embed, bin 1 === args: {'stage': 'embed', 'bin': 1, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': False, 'taxonomy_protocol': None, 'assign_batch': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 15:24:21,151 | INFO | bin 1: 10002 documents from years [2010]
+2026-10-25 15:24:21,196 | INFO | embeddings: cache hit 2010.npz (13638 docs)
+<<< exit 0 after 0.1 min
+>>> /usr/bin/python3 -u -m cuml.accel code/05-analysis-pipeline.py --stage topics --bin 1
+2026-10-25 15:24:24,285 | INFO | === stage topics, bin 1 === args: {'stage': 'topics', 'bin': 1, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': False, 'taxonomy_protocol': None, 'assign_batch': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1792941873.150609    7510 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1792941875.919313    7510 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1792941875.919864    7510 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+2026-10-25 15:24:38,248 | INFO | topics: bin 1 on backend cuml ({'backend': 'cuml', 'cuml_accel': True, 'cuml_version': '26.06.00', 'umap_class': 'umap.UMAP', 'hdbscan_class': 'hdbscan.HDBSCAN'})
+2026-10-25 15:24:39,939 | INFO | bin 1: 10002 documents from years [2010]
+2026-10-25 15:24:39,985 | INFO | embeddings: cache hit 2010.npz (13638 docs)
+2026-10-25 15:24:40,282 | INFO | guard: min_cluster_size=25 -> 65 topics, 34.8 % outliers
+2026-10-25 15:24:45,770 | INFO | TensorFlow version 2.21.0 available.
+2026-10-25 15:24:45,771 | INFO | JAX version 0.11.1 available.
+2026-10-25 15:24:47,379 | INFO | HTTP Request: GET https://huggingface.co/api/agent-harnesses "HTTP/1.1 200 OK"
+2026-10-25 15:24:47,480 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-25 15:24:47,481 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-25 15:24:47,491 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/modules.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22 "HTTP/1.1 200 OK"
+2026-10-25 15:24:47,501 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/modules.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22 "HTTP/1.1 200 OK"
+2026-10-25 15:24:47,607 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 15:24:47,617 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/config_sentence_transformers.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22fd1b291129c607e5d49799f87cb219b27f98acdf%22 "HTTP/1.1 200 OK"
+2026-10-25 15:24:47,626 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/config_sentence_transformers.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22fd1b291129c607e5d49799f87cb219b27f98acdf%22 "HTTP/1.1 200 OK"
+2026-10-25 15:24:47,628 | INFO | Loading SentenceTransformer model from sentence-transformers/all-mpnet-base-v2.
+2026-10-25 15:24:47,730 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 15:24:47,743 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/config_sentence_transformers.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22fd1b291129c607e5d49799f87cb219b27f98acdf%22 "HTTP/1.1 200 OK"
+2026-10-25 15:24:47,844 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 15:24:47,853 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/README.md?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2FREADME.md=&etag=%221452a960a1189347d079efa950d3c87d5706c0d6%22 "HTTP/1.1 200 OK"
+2026-10-25 15:24:47,863 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/README.md?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2FREADME.md=&etag=%221452a960a1189347d079efa950d3c87d5706c0d6%22 "HTTP/1.1 200 OK"
+2026-10-25 15:24:47,968 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 15:24:47,977 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/modules.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22 "HTTP/1.1 200 OK"
+2026-10-25 15:24:48,084 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 15:24:48,094 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/sentence_bert_config.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fsentence_bert_config.json=&etag=%224eb670bb4e7f34e9031acec2b86d39e5c921198e%22 "HTTP/1.1 200 OK"
+2026-10-25 15:24:48,105 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/sentence_bert_config.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fsentence_bert_config.json=&etag=%224eb670bb4e7f34e9031acec2b86d39e5c921198e%22 "HTTP/1.1 200 OK"
+2026-10-25 15:24:48,210 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-10-25 15:24:48,316 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2 "HTTP/1.1 200 OK"
+2026-10-25 15:24:48,418 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/e8c3b32edf5434bc2275fc9bab85f82640a19130/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 15:24:48,427 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/config.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fe8c3b32edf5434bc2275fc9bab85f82640a19130%2Fconfig.json=&etag=%22b9fd4298819da011007a6a4ceb728c860914fc88%22 "HTTP/1.1 200 OK"
+2026-10-25 15:24:48,437 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/config.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fe8c3b32edf5434bc2275fc9bab85f82640a19130%2Fconfig.json=&etag=%22b9fd4298819da011007a6a4ceb728c860914fc88%22 "HTTP/1.1 200 OK"
+2026-10-25 15:24:48,549 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2 "HTTP/1.1 200 OK"
+2026-10-25 15:24:48,648 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/e8c3b32edf5434bc2275fc9bab85f82640a19130/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-10-25 15:24:48,762 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/e8c3b32edf5434bc2275fc9bab85f82640a19130/model.safetensors "HTTP/1.1 302 Found"
+2026-10-25 15:24:48,871 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2/xet-read-token/e8c3b32edf5434bc2275fc9bab85f82640a19130 "HTTP/1.1 200 OK"
+2026-10-25 15:24:52,794 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2 "HTTP/1.1 200 OK"
+2026-10-25 15:24:52,901 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/e8c3b32edf5434bc2275fc9bab85f82640a19130/processor_config.json "HTTP/1.1 404 Not Found"
+2026-10-25 15:24:53,003 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/e8c3b32edf5434bc2275fc9bab85f82640a19130/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-10-25 15:24:53,109 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/e8c3b32edf5434bc2275fc9bab85f82640a19130/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-10-25 15:24:53,210 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/e8c3b32edf5434bc2275fc9bab85f82640a19130/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 15:24:53,219 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/tokenizer_config.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fe8c3b32edf5434bc2275fc9bab85f82640a19130%2Ftokenizer_config.json=&etag=%2220ae1276042f43d1c80f4f7b7f084a8704592c1d%22 "HTTP/1.1 200 OK"
+2026-10-25 15:24:53,231 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/tokenizer_config.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fe8c3b32edf5434bc2275fc9bab85f82640a19130%2Ftokenizer_config.json=&etag=%2220ae1276042f43d1c80f4f7b7f084a8704592c1d%22 "HTTP/1.1 200 OK"
+2026-10-25 15:24:53,339 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-25 15:24:53,471 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-25 15:24:53,572 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/e8c3b32edf5434bc2275fc9bab85f82640a19130/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 15:24:53,582 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/vocab.txt?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fe8c3b32edf5434bc2275fc9bab85f82640a19130%2Fvocab.txt=&etag=%221c51ab79a2298a340952d3e6012042a9c84bbe4d%22 "HTTP/1.1 200 OK"
+2026-10-25 15:24:53,592 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/vocab.txt?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fe8c3b32edf5434bc2275fc9bab85f82640a19130%2Fvocab.txt=&etag=%221c51ab79a2298a340952d3e6012042a9c84bbe4d%22 "HTTP/1.1 200 OK"
+2026-10-25 15:24:53,701 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/e8c3b32edf5434bc2275fc9bab85f82640a19130/tokenizer.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 15:24:53,710 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/tokenizer.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fe8c3b32edf5434bc2275fc9bab85f82640a19130%2Ftokenizer.json=&etag=%227c8e194053bc80e27e19bb2125469e4f289ab2b3%22 "HTTP/1.1 200 OK"
+2026-10-25 15:24:53,720 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/tokenizer.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fe8c3b32edf5434bc2275fc9bab85f82640a19130%2Ftokenizer.json=&etag=%227c8e194053bc80e27e19bb2125469e4f289ab2b3%22 "HTTP/1.1 200 OK"
+2026-10-25 15:24:53,826 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/e8c3b32edf5434bc2275fc9bab85f82640a19130/added_tokens.json "HTTP/1.1 404 Not Found"
+2026-10-25 15:24:53,932 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/e8c3b32edf5434bc2275fc9bab85f82640a19130/special_tokens_map.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 15:24:53,941 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/special_tokens_map.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fe8c3b32edf5434bc2275fc9bab85f82640a19130%2Fspecial_tokens_map.json=&etag=%22378d4fa393d5eaccf69c437a20f1cda6ac65c14d%22 "HTTP/1.1 200 OK"
+2026-10-25 15:24:53,951 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/special_tokens_map.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fe8c3b32edf5434bc2275fc9bab85f82640a19130%2Fspecial_tokens_map.json=&etag=%22378d4fa393d5eaccf69c437a20f1cda6ac65c14d%22 "HTTP/1.1 200 OK"
+2026-10-25 15:24:54,052 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/e8c3b32edf5434bc2275fc9bab85f82640a19130/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-10-25 15:24:54,193 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 15:24:54,203 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/1_Pooling%2Fconfig.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2F1_Pooling%2Fconfig.json=&etag=%224e09f293dfe90bba49f87cfe7996271f07be2666%22 "HTTP/1.1 200 OK"
+2026-10-25 15:24:54,213 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/1_Pooling%2Fconfig.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2F1_Pooling%2Fconfig.json=&etag=%224e09f293dfe90bba49f87cfe7996271f07be2666%22 "HTTP/1.1 200 OK"
+2026-10-25 15:24:54,317 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/2_Normalize/config.json "HTTP/1.1 404 Not Found"
+2026-10-25 15:24:54,427 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2 "HTTP/1.1 200 OK"
+2026-10-25 15:24:54,581 - BERTopic - Dimensionality - Fitting the dimensionality reduction algorithm
+2026-10-25 15:24:54,582 - BERTopic - Dimensionality - Completed ✓
+2026-10-25 15:24:54,582 - BERTopic - Cluster - Start clustering the reduced embeddings
+2026-10-25 15:24:54,584 - BERTopic - Cluster - Completed ✓
+2026-10-25 15:24:54,588 - BERTopic - Representation - Fine-tuning topics using representation models.
+2026-10-25 15:25:00,442 - BERTopic - Representation - Completed ✓
+2026-10-25 15:25:00,719 | INFO | BERTopic renumbered 21 topic id(s) (ties in size): {15: 16, 16: 15, 19: 20, 20: 19, 25: 26, 26: 25, 27: 28, 28: 27, 35: 37, 36: 35}
+
+0it [00:00, ?it/s]
+1it [00:00,  1.54it/s]
+2it [00:01,  1.13it/s]
+3it [00:02,  1.00s/it]
+4it [00:03,  1.03it/s]
+5it [00:04,  1.00it/s]
+6it [00:06,  1.08s/it]
+7it [00:07,  1.08s/it]
+8it [00:08,  1.05s/it]
+9it [00:08,  1.01it/s]
+10it [00:10,  1.05s/it]
+11it [00:11,  1.15s/it]
+12it [00:12,  1.20s/it]
+13it [00:13,  1.18s/it]
+14it [00:15,  1.30s/it]
+15it [00:17,  1.36s/it]
+16it [00:18,  1.52s/it]
+17it [00:20,  1.60s/it]
+18it [00:22,  1.66s/it]
+19it [00:24,  1.70s/it]
+20it [00:26,  1.74s/it]
+21it [00:28,  1.83s/it]
+22it [00:30,  1.86s/it]
+23it [00:32,  1.99s/it]
+24it [00:35,  2.19s/it]
+25it [00:37,  2.31s/it]
+26it [00:40,  2.45s/it]
+27it [00:42,  2.47s/it]
+28it [00:45,  2.48s/it]
+29it [00:47,  2.46s/it]
+30it [00:50,  2.43s/it]
+31it [00:52,  2.29s/it]
+32it [00:54,  2.23s/it]
+33it [00:56,  2.17s/it]
+34it [00:58,  2.09s/it]
+35it [01:00,  2.05s/it]
+36it [01:01,  1.95s/it]
+37it [01:03,  1.89s/it]
+38it [01:05,  1.87s/it]
+39it [01:07,  1.80s/it]
+40it [01:08,  1.65s/it]
+40it [01:08,  1.71s/it]
+2026-10-25 15:26:12,036 | WARNING | report for bin 1 skipped: unsupported operand type(s) for +: 'int' and 'datetime.datetime'
+2026-10-25 15:26:12,038 | INFO | topics: bin 1 done in 1.8 min — 65 topics, 34.8 % raw outliers, T=None -> /content/drive/MyDrive/fifa-communities/results/bin-1
+<<< exit 0 after 1.9 min
+{
+ "n_documents": 10002,
+ "n_modelled": 9809,
+ "n_topics_raw": 65,
+ "outlier_share_raw": 0.348,
+ "elapsed_min": 1.8
+}
+backend: {'backend': 'cuml', 'cuml_accel': True, 'cuml_version': '26.06.00', 'umap_class': 'umap.UMAP', 'hdbscan_class': 'hdbscan.HDBSCAN'}
+guard: {'min_cluster_size': 25, 'n_topics': 65, 'trials': [{'min_cluster_size': 25, 'n_topics': 65, 'outlier_share': 0.348}], 'converged': True, 'enabled': True}
+calibration candidates (T, n reassigned): [(0.5428, 1707), (0.5789, 1198), (0.6173, 684)]
+>>> /usr/bin/python3 -u code/05-analysis-pipeline.py --stage label --bin 1 --max-topics 12
+2026-10-25 15:26:20,536 | INFO | === stage label, bin 1 === args: {'stage': 'label', 'bin': 1, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 12, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': False, 'taxonomy_protocol': None, 'assign_batch': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 15:26:22,258 | INFO | bin 1: 10002 documents from years [2010]
+2026-10-25 15:26:28,587 | INFO | HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-1.7B/resolve/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/config.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-25 15:26:28,588 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-25 15:26:28,597 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-1.7B/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/config.json?%2FQwen%2FQwen3-1.7B%2Fresolve%2F70d244cc86ccca08cf5af4e1e306ecf908b1ad5e%2Fconfig.json=&etag=%22044a86ecf7cb32238f3fae4184e55d354787edec%22 "HTTP/1.1 200 OK"
+2026-10-25 15:26:28,609 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-1.7B/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/config.json?%2FQwen%2FQwen3-1.7B%2Fresolve%2F70d244cc86ccca08cf5af4e1e306ecf908b1ad5e%2Fconfig.json=&etag=%22044a86ecf7cb32238f3fae4184e55d354787edec%22 "HTTP/1.1 200 OK"
+2026-10-25 15:26:28,716 | INFO | HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-1.7B/resolve/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 15:26:28,726 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-1.7B/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/tokenizer_config.json?%2FQwen%2FQwen3-1.7B%2Fresolve%2F70d244cc86ccca08cf5af4e1e306ecf908b1ad5e%2Ftokenizer_config.json=&etag=%22417d038a63fa3de29cfde265caedae14d1a58d92%22 "HTTP/1.1 200 OK"
+2026-10-25 15:26:28,737 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-1.7B/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/tokenizer_config.json?%2FQwen%2FQwen3-1.7B%2Fresolve%2F70d244cc86ccca08cf5af4e1e306ecf908b1ad5e%2Ftokenizer_config.json=&etag=%22417d038a63fa3de29cfde265caedae14d1a58d92%22 "HTTP/1.1 200 OK"
+2026-10-25 15:26:28,846 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-25 15:26:28,951 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-25 15:26:29,053 | INFO | HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-1.7B/resolve/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/vocab.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 15:26:29,064 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-1.7B/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/vocab.json?%2FQwen%2FQwen3-1.7B%2Fresolve%2F70d244cc86ccca08cf5af4e1e306ecf908b1ad5e%2Fvocab.json=&etag=%224783fe10ac3adce15ac8f358ef5462739852c569%22 "HTTP/1.1 200 OK"
+2026-10-25 15:26:29,077 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-1.7B/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/vocab.json?%2FQwen%2FQwen3-1.7B%2Fresolve%2F70d244cc86ccca08cf5af4e1e306ecf908b1ad5e%2Fvocab.json=&etag=%224783fe10ac3adce15ac8f358ef5462739852c569%22 "HTTP/1.1 200 OK"
+2026-10-25 15:26:29,208 | INFO | HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-1.7B/resolve/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/merges.txt "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 15:26:29,220 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-1.7B/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/merges.txt?%2FQwen%2FQwen3-1.7B%2Fresolve%2F70d244cc86ccca08cf5af4e1e306ecf908b1ad5e%2Fmerges.txt=&etag=%2231349551d90c7606f325fe0f11bbb8bd5fa0d7c7%22 "HTTP/1.1 200 OK"
+2026-10-25 15:26:29,230 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-1.7B/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/merges.txt?%2FQwen%2FQwen3-1.7B%2Fresolve%2F70d244cc86ccca08cf5af4e1e306ecf908b1ad5e%2Fmerges.txt=&etag=%2231349551d90c7606f325fe0f11bbb8bd5fa0d7c7%22 "HTTP/1.1 200 OK"
+2026-10-25 15:26:29,346 | INFO | HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-1.7B/resolve/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/tokenizer.json "HTTP/1.1 302 Found"
+2026-10-25 15:26:29,456 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/xet-read-token/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e "HTTP/1.1 200 OK"
+2026-10-25 15:26:30,242 | INFO | HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-1.7B/resolve/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/added_tokens.json "HTTP/1.1 404 Not Found"
+2026-10-25 15:26:30,346 | INFO | HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-1.7B/resolve/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/special_tokens_map.json "HTTP/1.1 404 Not Found"
+2026-10-25 15:26:30,448 | INFO | HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-1.7B/resolve/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-10-25 15:26:30,984 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B "HTTP/1.1 200 OK"
+2026-10-25 15:26:31,108 | INFO | HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-1.7B/resolve/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-10-25 15:26:31,819 | INFO | HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-1.7B/resolve/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-10-25 15:26:31,922 | INFO | HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-1.7B/resolve/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/model.safetensors "HTTP/1.1 404 Not Found"
+2026-10-25 15:26:32,024 | INFO | HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-1.7B/resolve/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/model.safetensors.index.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 15:26:32,034 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-1.7B/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/model.safetensors.index.json?%2FQwen%2FQwen3-1.7B%2Fresolve%2F70d244cc86ccca08cf5af4e1e306ecf908b1ad5e%2Fmodel.safetensors.index.json=&etag=%22986d7db875b47d21f68530f6baac038f1b297b39%22 "HTTP/1.1 200 OK"
+2026-10-25 15:26:32,045 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-1.7B/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/model.safetensors.index.json?%2FQwen%2FQwen3-1.7B%2Fresolve%2F70d244cc86ccca08cf5af4e1e306ecf908b1ad5e%2Fmodel.safetensors.index.json=&etag=%22986d7db875b47d21f68530f6baac038f1b297b39%22 "HTTP/1.1 200 OK"
+2026-10-25 15:26:32,150 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-25 15:26:45,733 | INFO | HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-1.7B/resolve/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 15:26:45,745 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-1.7B/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/generation_config.json?%2FQwen%2FQwen3-1.7B%2Fresolve%2F70d244cc86ccca08cf5af4e1e306ecf908b1ad5e%2Fgeneration_config.json=&etag=%2220a8a9156fc8c3f25295ca067f61fdf120d517c5%22 "HTTP/1.1 200 OK"
+2026-10-25 15:26:45,755 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-1.7B/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/generation_config.json?%2FQwen%2FQwen3-1.7B%2Fresolve%2F70d244cc86ccca08cf5af4e1e306ecf908b1ad5e%2Fgeneration_config.json=&etag=%2220a8a9156fc8c3f25295ca067f61fdf120d517c5%22 "HTTP/1.1 200 OK"
+2026-10-25 15:26:47,004 | INFO | LLM loaded: Qwen/Qwen3-1.7B (revision 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e) on cuda, bfloat16, batch 16, greedy decoding
+2026-10-25 15:26:47,014 | INFO | labelling bin 1: 12 topics, 0 already done, 12 to do
+2026-10-25 15:26:54,625 | INFO | LLM: 12 prompt(s) in 7.5s (0.6 s/prompt; cap 600 tokens)
+2026-10-25 15:27:01,457 | INFO | LLM: 12 prompt(s) in 6.8s (0.6 s/prompt; cap 600 tokens)
+2026-10-25 15:27:01,470 | INFO | topic 0: World Cup 2010 Predictions [identical, 1 round(s)]
+2026-10-25 15:27:01,471 | INFO | label: round 1 done — 1/12 items resolved
+2026-10-25 15:27:07,751 | INFO | LLM: 11 prompt(s) in 6.2s (0.6 s/prompt; cap 600 tokens)
+2026-10-25 15:27:07,761 | INFO | topic 1: Transfer Window Rumors [accepted_by_A, 2 round(s)]
+2026-10-25 15:27:07,777 | INFO | topic 2: Refereeing Issues [accepted_by_A, 2 round(s)]
+2026-10-25 15:27:07,784 | INFO | topic 3: Arsenal Match Thread [accepted_by_A, 2 round(s)]
+2026-10-25 15:27:07,790 | INFO | topic 4: Best Goal Ever [accepted_by_A, 2 round(s)]
+2026-10-25 15:27:07,796 | INFO | topic 5: Messi & Maradona Legacy [accepted_by_A, 2 round(s)]
+2026-10-25 15:27:07,803 | INFO | topic 6: Streaming Solutions [accepted_by_A, 2 round(s)]
+2026-10-25 15:27:07,809 | INFO | topic 7: Injury Updates [accepted_by_A, 2 round(s)]
+2026-10-25 15:27:07,816 | INFO | topic 8: World Cup Humor [accepted_by_A, 2 round(s)]
+2026-10-25 15:27:07,822 | INFO | topic 9: Manchester City [accepted_by_A, 2 round(s)]
+2026-10-25 15:27:07,829 | INFO | topic 10: Jersey Shopping [accepted_by_A, 2 round(s)]
+2026-10-25 15:27:07,836 | INFO | topic 11: Live Football Coverage [accepted_by_A, 2 round(s)]
+2026-10-25 15:27:07,836 | INFO | label: round 2 done — 12/12 items resolved
+2026-10-25 15:27:07,850 | INFO | labelling bin 1: 12 topics labelled, 0 need review -> /content/drive/MyDrive/fifa-communities/results/bin-1/topics_labelled.csv
+2026-10-25 15:27:08,556 | WARNING | report for bin 1 skipped: unsupported operand type(s) for +: 'int' and 'datetime.datetime'
+<<< exit 0 after 0.8 min
+ topic_id                       name tone_category  round_iterations agreement_mode  needs_review
+        0 World Cup 2010 Predictions       excited                 1      identical         False
+        1     Transfer Window Rumors       excited                 2  accepted_by_A         False
+        2          Refereeing Issues      critical                 2  accepted_by_A         False
+        3       Arsenal Match Thread  enthusiastic                 2  accepted_by_A         False
+        4             Best Goal Ever         other                 2  accepted_by_A         False
+        5    Messi & Maradona Legacy         other                 2  accepted_by_A         False
+        6        Streaming Solutions    frustrated                 2  accepted_by_A         False
+        7             Injury Updates         other                 2  accepted_by_A         False
+        8            World Cup Humor         other                 2  accepted_by_A         False
+        9            Manchester City      critical                 2  accepted_by_A         False
+       10            Jersey Shopping       curious                 2  accepted_by_A         False
+       11     Live Football Coverage  enthusiastic                 2  accepted_by_A         False
+llm: Qwen/Qwen3-1.7B 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e bfloat16 batch 16 | prompt 1.2 | stats {'calls': 3, 'prompts': 35, 'seconds': 20.503126621246338, 'tokens_out': 3819, 'truncated': 0} | min 0.8
+>>> /usr/bin/python3 -u code/05-analysis-pipeline.py --stage taxonomy --bin 1
+2026-10-25 15:27:14,350 | INFO | === stage taxonomy, bin 1 === args: {'stage': 'taxonomy', 'bin': 1, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': False, 'taxonomy_protocol': None, 'assign_batch': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 15:27:20,683 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-25 15:27:20,814 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-25 15:27:21,363 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B "HTTP/1.1 200 OK"
+2026-10-25 15:27:23,683 | INFO | LLM loaded: Qwen/Qwen3-1.7B (revision 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e) on cuda, bfloat16, batch 16, greedy decoding
+2026-10-25 15:27:23,701 | INFO | taxonomy bin 1 (two-step): 12 topics (0 merged away by overrides), 1 topic(s) per assignment item
+2026-10-25 15:27:48,496 | INFO | LLM: 1 prompt(s) in 24.8s (24.8 s/prompt; cap 4000 tokens)
+2026-10-25 15:28:19,064 | INFO | LLM: 1 prompt(s) in 30.6s (30.6 s/prompt; cap 4000 tokens)
+2026-10-25 15:28:19,064 | INFO | define: round 1 done — 0/1 items resolved
+2026-10-25 15:28:49,604 | INFO | LLM: 1 prompt(s) in 30.5s (30.5 s/prompt; cap 4000 tokens)
+2026-10-25 15:28:49,605 | INFO | define: round 2 done — 1/1 items resolved
+2026-10-25 15:28:49,612 | INFO | taxonomy bin 1: step 1 done — 9 categories defined [identical, 2 round(s)]
+2026-10-25 15:28:56,991 | INFO | LLM: 12 prompt(s) in 7.3s (0.6 s/prompt; cap 800 tokens)
+2026-10-25 15:29:03,160 | INFO | LLM: 1 prompt(s) in 6.2s (6.2 s/prompt; cap 800 tokens)
+2026-10-25 15:29:10,452 | INFO | LLM: 12 prompt(s) in 7.3s (0.6 s/prompt; cap 800 tokens)
+2026-10-25 15:29:16,657 | INFO | LLM: 1 prompt(s) in 6.2s (6.2 s/prompt; cap 800 tokens)
+2026-10-25 15:29:16,658 | INFO | assign: round 1 done — 11/12 items resolved
+2026-10-25 15:29:17,753 | INFO | LLM: 1 prompt(s) in 1.1s (1.1 s/prompt; cap 800 tokens)
+2026-10-25 15:29:17,754 | INFO | assign: round 2 done — 12/12 items resolved
+2026-10-25 15:29:17,755 | INFO | taxonomy bin 1: step 2 done — 12/12 topics assigned by the agents over 12 item(s) (modes {'identical': 11, 'accepted_by_A': 1}), 0 placed by repair
+2026-10-25 15:29:17,787 | INFO | taxonomy bin 1: 6 categories [identical, 2 round(s)], 0 topics repaired, 0 unplaced, 0 answer(s) salvaged -> /content/drive/MyDrive/fifa-communities/results/bin-1/categories.csv
+2026-10-25 15:29:18,494 | WARNING | report for bin 1 skipped: unsupported operand type(s) for +: 'int' and 'datetime.datetime'
+<<< exit 0 after 2.1 min
+taxonomy bin 1: protocol two_step | definitions debate: identical, 2 round(s), needs_review False
+  categories defined 9 -> final 6 | dropped (no topic assigned): ['cat_2', 'cat_4', 'cat_7'] | cleanup: None
+  assignment items 12 | modes {'identical': 11, 'accepted_by_A': 1} | items contested 1
+  topics assigned by the agents 12, placed by the repair 0, unplaced 0 | answers salvaged 0
+category_id                            name tone_category  n_topics  n_posts   share
+      cat_1 World Cup & Tournament Coverage       excited         4     1713 0.51831
+      cat_3        Refereeing & Rule Issues      critical         2      543 0.16430
+      cat_5                 Injury & Health         other         1      165 0.04992
+      cat_6   Cultural & Historical Context         other         1      184 0.05567
+      cat_8          Merchandise & Shopping       curious         1      129 0.03903
+      cat_9        Live Football & Coverage  enthusiastic         3      571 0.17277
+taxonomy config: {'n_categories_defined': 9, 'n_categories': 6, 'n_items': 12, 'assignment_agreement_modes': {'identical': 11, 'accepted_by_A': 1}, 'n_repaired': 0, 'n_unplaced': 0, 'n_answers_salvaged': 0, 'elapsed_min': 2.1}
+>>> /usr/bin/python3 -u code/05-analysis-pipeline.py --stage sentiment --years 2010
+2026-10-25 15:29:23,637 | INFO | === stage sentiment === args: {'stage': 'sentiment', 'bin': None, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': [2010], 'out_root': None, 'allow_partial': False, 'force': False, 'taxonomy_protocol': None, 'assign_batch': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 15:29:26,305 | INFO | sentiment: 2010 scored 13638 posts (2281 with body) -> /content/drive/MyDrive/fifa-communities/analysis/sentiment/2010.csv
+2026-10-25 15:29:26,370 | INFO | sentiment: 13638 posts -> /content/drive/MyDrive/fifa-communities/analysis/sentiment.csv
+2026-10-25 15:29:26,976 | INFO | sentiment: validation sample of 299 posts (12 strata) -> /content/drive/MyDrive/fifa-communities/analysis/sentiment_validation_sample.csv
+<<< exit 0 after 0.1 min
+>>> /usr/bin/python3 -u code/05-analysis-pipeline.py --stage collect --allow-partial
+2026-10-25 15:29:27,576 | INFO | === stage collect === args: {'stage': 'collect', 'bin': None, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': True, 'force': False, 'taxonomy_protocol': None, 'assign_batch': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 15:29:41,442 | INFO | S5: post_variables.csv 1302021 rows; bins complete [1]; sentiment 13638; complete=False
+<<< exit 0 after 0.2 min
+{
+ "n_posts": 1302021,
+ "bins_complete": [
+  1
+ ],
+ "complete": false,
+ "n_with_sentiment": 13638,
+ "n_with_topic": 9809,
+ "n_with_category": 3305,
+ "errors": []
+}
+Pass 1 complete — open /content/drive/MyDrive/fifa-communities/results/bin-1/report.html (on Drive) and compare with the local dry run.
+repository at commit d1a4c09131553db48765a0dff810f92e9981dc2c
+yearly files on the local disk: 17 | total GB: 1.93
+effective paths of the program: {
+ "PIPELINE_ROOT": "/content/drive/MyDrive/fifa-communities",
+ "YEARLY_DIR": "/content/data/yearly datasets",
+ "ANALYSIS_DATA_DIR": "/content/drive/MyDrive/fifa-communities/analysis",
+ "ANALYSIS_DIR": "/content/drive/MyDrive/fifa-communities/results",
+ "EMBED_CACHE_DIR": "/content/drive/MyDrive/fifa-communities/embeddings",
+ "LLM_CACHE_DIR": "/content/hf-cache"
+}
+>>> /usr/bin/python3 -u code/tests/test_pipeline_units.py
+[PASS] test_paths_and_tones
+[PASS] test_bin_boundaries
+guard: topic count 10 outside (50, 100) after 1 trial(s); keeping min_cluster_size=25 (flagged)
+[PASS] test_guard
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1792943067.110253   12718 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1792943069.597765   12718 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+[PASS] test_frozen_components_in_bertopic
+[PASS] test_json_and_validation
+[PASS] test_identity_and_partition
+[PASS] test_repair_partition
+[PASS] test_overrides
+[PASS] test_debate_modes
+[PASS] test_labelling_resume_and_outputs
+[PASS] test_taxonomy_small_and_repair
+[PASS] test_taxonomy_chunking
+bin 1: topic_category_overrides names topic 7, which has no category row
+bin 1: topic_category_overrides for topic 1 ignored — the topic was merged into 0
+S5 check failed: bin 1: category ids not in categories.csv
+[PASS] test_collect_partial
+[PASS] test_sentiment_labels
+[PASS] test_salvage_json
+taxonomy bin 1: no agreed category definitions — all 4 topics unplaced
+[PASS] test_taxonomy_empty_is_not_fatal
+[PASS] test_two_step_validators
+[PASS] test_salvage_assignments_and_truncated_definitions
+[PASS] test_taxonomy_two_step
+[PASS] test_taxonomy_two_step_cap
+
+20/20 checks passed
+<<< exit 0 after 0.4 min
+>>> /usr/bin/python3 -u code/05-analysis-pipeline.py --stage report --bin 1
+2026-10-25 15:45:00,971 | INFO | === stage report, bin 1 === args: {'stage': 'report', 'bin': 1, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': False, 'taxonomy_protocol': None, 'assign_batch': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 15:45:01,965 | INFO | report written: /content/drive/MyDrive/fifa-communities/results/bin-1/report.html
+<<< exit 0 after 0.0 min
+report: /content/drive/MyDrive/fifa-communities/results/bin-1/report.html
+>>> /usr/bin/python3 -u code/05-analysis-pipeline.py --stage embed --bin 1
+2026-10-25 15:49:43,086 | INFO | === stage embed, bin 1 === args: {'stage': 'embed', 'bin': 1, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': False, 'taxonomy_protocol': None, 'assign_batch': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 15:49:46,309 | INFO | bin 1: 10002 documents from years [2010]
+2026-10-25 15:49:46,355 | INFO | embeddings: cache hit 2010.npz (13638 docs)
+<<< exit 0 after 0.1 min
+>>> /usr/bin/python3 -u -m cuml.accel code/05-analysis-pipeline.py --stage topics --bin 1
+2026-10-25 15:49:49,476 | INFO | === stage topics, bin 1 === args: {'stage': 'topics', 'bin': 1, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': False, 'taxonomy_protocol': None, 'assign_batch': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 15:49:49,477 | INFO | topics: bin 1 already modelled (/content/drive/MyDrive/fifa-communities/results/bin-1/documents.csv); use --force
+<<< exit 0 after 0.1 min
+{
+ "n_documents": 10002,
+ "n_modelled": 9809,
+ "n_topics_raw": 65,
+ "outlier_share_raw": 0.348,
+ "elapsed_min": 1.8
+}
+backend: {'backend': 'cuml', 'cuml_accel': True, 'cuml_version': '26.06.00', 'umap_class': 'umap.UMAP', 'hdbscan_class': 'hdbscan.HDBSCAN'}
+guard: {'min_cluster_size': 25, 'n_topics': 65, 'trials': [{'min_cluster_size': 25, 'n_topics': 65, 'outlier_share': 0.348}], 'converged': True, 'enabled': True}
+calibration candidates (T, n reassigned): [(0.5428, 1707), (0.5789, 1198), (0.6173, 684)]
+report: /content/drive/MyDrive/fifa-communities/results/bin-1/report.html
+>>> /usr/bin/python3 -u code/05-analysis-pipeline.py --stage label --bin 1 --max-topics 12
+2026-10-25 15:49:52,554 | INFO | === stage label, bin 1 === args: {'stage': 'label', 'bin': 1, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 12, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': False, 'taxonomy_protocol': None, 'assign_batch': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 15:49:54,294 | INFO | bin 1: 10002 documents from years [2010]
+2026-10-25 15:50:00,657 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-25 15:50:00,765 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-25 15:50:01,304 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B "HTTP/1.1 200 OK"
+2026-10-25 15:50:03,489 | INFO | LLM loaded: Qwen/Qwen3-1.7B (revision 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e) on cuda, bfloat16, batch 16, greedy decoding
+2026-10-25 15:50:03,496 | INFO | labelling bin 1: 12 topics, 12 already done, 0 to do
+2026-10-25 15:50:03,504 | INFO | labelling bin 1: 12 topics labelled, 0 need review -> /content/drive/MyDrive/fifa-communities/results/bin-1/topics_labelled.csv
+2026-10-25 15:50:04,310 | INFO | report written: /content/drive/MyDrive/fifa-communities/results/bin-1/report.html
+<<< exit 0 after 0.2 min
+ topic_id                       name tone_category  round_iterations agreement_mode  needs_review
+        0 World Cup 2010 Predictions       excited                 1      identical         False
+        1     Transfer Window Rumors       excited                 2  accepted_by_A         False
+        2          Refereeing Issues      critical                 2  accepted_by_A         False
+        3       Arsenal Match Thread  enthusiastic                 2  accepted_by_A         False
+        4             Best Goal Ever         other                 2  accepted_by_A         False
+        5    Messi & Maradona Legacy         other                 2  accepted_by_A         False
+        6        Streaming Solutions    frustrated                 2  accepted_by_A         False
+        7             Injury Updates         other                 2  accepted_by_A         False
+        8            World Cup Humor         other                 2  accepted_by_A         False
+        9            Manchester City      critical                 2  accepted_by_A         False
+       10            Jersey Shopping       curious                 2  accepted_by_A         False
+       11     Live Football Coverage  enthusiastic                 2  accepted_by_A         False
+llm: Qwen/Qwen3-1.7B 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e bfloat16 batch 16 | prompt 1.2 | stats {'calls': 0, 'prompts': 0, 'seconds': 0.0, 'tokens_out': 0, 'truncated': 0} | min 0.2
+>>> /usr/bin/python3 -u code/05-analysis-pipeline.py --stage taxonomy --bin 1
+2026-10-25 15:50:10,012 | INFO | === stage taxonomy, bin 1 === args: {'stage': 'taxonomy', 'bin': 1, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': False, 'taxonomy_protocol': None, 'assign_batch': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 15:50:10,017 | INFO | taxonomy: bin 1 already has categories.csv (protocol two_step); use --force
+<<< exit 0 after 0.0 min
+taxonomy bin 1: protocol two_step | definitions debate: identical, 2 round(s), needs_review False
+  categories defined 9 -> final 6 | dropped (no topic assigned): ['cat_2', 'cat_4', 'cat_7'] | cleanup: None
+  assignment items 12 | modes {'identical': 11, 'accepted_by_A': 1} | items contested 1
+  topics assigned by the agents 12, placed by the repair 0, unplaced 0 | answers salvaged 0
+category_id                            name tone_category  n_topics  n_posts   share
+      cat_1 World Cup & Tournament Coverage       excited         4     1713 0.51831
+      cat_3        Refereeing & Rule Issues      critical         2      543 0.16430
+      cat_5                 Injury & Health         other         1      165 0.04992
+      cat_6   Cultural & Historical Context         other         1      184 0.05567
+      cat_8          Merchandise & Shopping       curious         1      129 0.03903
+      cat_9        Live Football & Coverage  enthusiastic         3      571 0.17277
+taxonomy config: {'n_categories_defined': 9, 'n_categories': 6, 'n_items': 12, 'assignment_agreement_modes': {'identical': 11, 'accepted_by_A': 1}, 'n_repaired': 0, 'n_unplaced': 0, 'n_answers_salvaged': 0, 'elapsed_min': 2.1}
+report: /content/drive/MyDrive/fifa-communities/results/bin-1/report.html
+>>> /usr/bin/python3 -u code/05-analysis-pipeline.py --stage sentiment --years 2010
+2026-10-25 15:50:17,184 | INFO | === stage sentiment === args: {'stage': 'sentiment', 'bin': None, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': [2010], 'out_root': None, 'allow_partial': False, 'force': False, 'taxonomy_protocol': None, 'assign_batch': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 15:50:18,085 | INFO | sentiment: 13638 posts -> /content/drive/MyDrive/fifa-communities/analysis/sentiment.csv
+2026-10-25 15:50:18,695 | INFO | sentiment: validation sample of 299 posts (12 strata) -> /content/drive/MyDrive/fifa-communities/analysis/sentiment_validation_sample.csv
+<<< exit 0 after 0.0 min
+>>> /usr/bin/python3 -u code/05-analysis-pipeline.py --stage collect --allow-partial
+2026-10-25 15:50:19,287 | INFO | === stage collect === args: {'stage': 'collect', 'bin': None, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': True, 'force': False, 'taxonomy_protocol': None, 'assign_batch': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 15:50:33,333 | INFO | S5: post_variables.csv 1302021 rows; bins complete [1]; sentiment 13638; complete=False
+<<< exit 0 after 0.3 min
+{
+ "n_posts": 1302021,
+ "bins_complete": [
+  1
+ ],
+ "complete": false,
+ "n_with_sentiment": 13638,
+ "n_with_topic": 9809,
+ "n_with_category": 3305,
+ "errors": []
+}
+report: /content/drive/MyDrive/fifa-communities/results/bin-1/report.html
+Pass 1 complete — open /content/drive/MyDrive/fifa-communities/results/bin-1/report.html (download it from Drive, or render it here with IPython.display.HTML) and compare with the local dry run.
+>>> /usr/bin/python3 -u code/05-analysis-pipeline.py --stage label --bin 1
+2026-10-25 15:54:49,389 | INFO | === stage label, bin 1 === args: {'stage': 'label', 'bin': 1, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': False, 'taxonomy_protocol': None, 'assign_batch': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 15:54:51,117 | INFO | bin 1: 10002 documents from years [2010]
+2026-10-25 15:54:57,520 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-25 15:54:57,630 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-25 15:54:58,172 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B "HTTP/1.1 200 OK"
+2026-10-25 15:55:00,339 | INFO | LLM loaded: Qwen/Qwen3-1.7B (revision 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e) on cuda, bfloat16, batch 16, greedy decoding
+2026-10-25 15:55:00,345 | INFO | labelling bin 1: 65 topics, 12 already done, 53 to do
+2026-10-25 15:55:09,334 | INFO | LLM: 16 prompt(s) in 8.8s (0.6 s/prompt; cap 600 tokens)
+2026-10-25 15:55:18,518 | INFO | LLM: 16 prompt(s) in 9.1s (0.6 s/prompt; cap 600 tokens)
+2026-10-25 15:55:26,120 | INFO | LLM: 16 prompt(s) in 7.5s (0.5 s/prompt; cap 600 tokens)
+2026-10-25 15:55:32,450 | INFO | LLM: 5 prompt(s) in 6.3s (1.3 s/prompt; cap 600 tokens)
+2026-10-25 15:55:40,903 | INFO | LLM: 16 prompt(s) in 8.4s (0.5 s/prompt; cap 600 tokens)
+2026-10-25 15:55:51,158 | INFO | LLM: 16 prompt(s) in 10.2s (0.6 s/prompt; cap 600 tokens)
+2026-10-25 15:55:59,562 | INFO | LLM: 16 prompt(s) in 8.3s (0.5 s/prompt; cap 600 tokens)
+2026-10-25 15:56:05,936 | INFO | LLM: 5 prompt(s) in 6.4s (1.3 s/prompt; cap 600 tokens)
+2026-10-25 15:56:05,941 | INFO | label: round 1 done — 0/53 items resolved
+2026-10-25 15:56:14,051 | INFO | LLM: 16 prompt(s) in 8.0s (0.5 s/prompt; cap 600 tokens)
+2026-10-25 15:56:24,394 | INFO | LLM: 16 prompt(s) in 10.3s (0.6 s/prompt; cap 600 tokens)
+2026-10-25 15:56:32,957 | INFO | LLM: 16 prompt(s) in 8.5s (0.5 s/prompt; cap 600 tokens)
+2026-10-25 15:56:39,466 | INFO | LLM: 5 prompt(s) in 6.5s (1.3 s/prompt; cap 600 tokens)
+2026-10-25 15:56:39,485 | INFO | topic 12: American Soccer Interest [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,492 | INFO | topic 13: FIFA Fantasy Leagues [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,498 | INFO | topic 14: US vs England [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,504 | INFO | topic 16: Squad Analysis [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,511 | INFO | topic 17: World Cup Ads [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,517 | INFO | topic 18: World Cup Anthem & Chant [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,523 | INFO | topic 19: Managerial Changes [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,529 | INFO | topic 20: Mondiali 2010 [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,535 | INFO | topic 21: Terry & Rooney Controversy [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,541 | INFO | topic 22: UEFA Champions League Live [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,547 | INFO | topic 23: World Cup Highlights [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,553 | INFO | topic 24: MLS Support [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,573 | INFO | topic 25: Goal Celebrations [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,579 | INFO | topic 26: Vuvuzela Noise [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,585 | INFO | topic 27: French Football Crisis [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,591 | INFO | topic 28: Psychic Octopus Predictions [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,597 | INFO | topic 29: Coaching & Development [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,603 | INFO | topic 30: Sevilla vs Barcelona [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,609 | INFO | topic 31: Landon Donovan & Football Stars [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,615 | INFO | topic 32: World Cup Highlights [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,621 | INFO | topic 34: North Korea Football [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,627 | INFO | topic 35: MLS Week 15 [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,633 | INFO | topic 36: World Cup Commentators [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,639 | INFO | topic 37: Vuvuzela Controversy [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,659 | INFO | topic 38: Inter vs Roma [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,665 | INFO | topic 39: Fabregas Transfer Saga [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,671 | INFO | topic 40: Jabulani Ball Discussion [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,677 | INFO | topic 41: Soccer News Aggregator [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,683 | INFO | topic 42: Mourinho Analysis [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,690 | INFO | topic 44: Team Crests [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,697 | INFO | topic 45: CONCACAF Champions League [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,704 | INFO | topic 46: EPL Team Support [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,710 | INFO | topic 47: World Cup 2010 [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,716 | INFO | topic 48: Copa Libertadores Highlights [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,722 | INFO | topic 49: Portsmouth Crisis [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,729 | INFO | topic 50: Germany vs England Rivalry [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,749 | INFO | topic 51: UEFA Champions League [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,755 | INFO | topic 52: Italy World Cup Elimination [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,762 | INFO | topic 53: World Cup Live Streaming [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,769 | INFO | topic 54: Transfer News [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,775 | INFO | topic 55: Zonal Marking Analysis [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,782 | INFO | topic 56: World Cup Match Viewing [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,788 | INFO | topic 57: Mourinho Real Madrid [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,794 | INFO | topic 58: USMNT coaching debate [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,800 | INFO | topic 59: NSFW Fan Culture [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,806 | INFO | topic 60: Sex Scandal [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,812 | INFO | topic 61: World Cup Prep [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,819 | INFO | topic 62: Togo Football Ban [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,837 | INFO | topic 63: EPL Standings & Predictions [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:39,843 | INFO | topic 64: Paraguayan Fan & World Cup Controversy [accepted_by_A, 2 round(s)]
+2026-10-25 15:56:48,151 | INFO | LLM: 3 prompt(s) in 8.3s (2.8 s/prompt; cap 600 tokens)
+2026-10-25 15:56:48,161 | INFO | topic 15: South Africa World Cup 2010 [accepted_by_B, 2 round(s)]
+2026-10-25 15:56:48,168 | INFO | topic 33: Capello England [accepted_by_B, 2 round(s)]
+2026-10-25 15:56:48,175 | INFO | topic 43: Rafa Benitez Inter Deal [accepted_by_B, 2 round(s)]
+2026-10-25 15:56:48,176 | INFO | label: round 2 done — 53/53 items resolved
+2026-10-25 15:56:48,188 | INFO | labelling bin 1: 65 topics labelled, 0 need review -> /content/drive/MyDrive/fifa-communities/results/bin-1/topics_labelled.csv
+2026-10-25 15:56:49,004 | INFO | report written: /content/drive/MyDrive/fifa-communities/results/bin-1/report.html
+<<< exit 0 after 2.0 min
+65 topics | needs_review 0 (0%) | modes {'accepted_by_A': 61, 'accepted_by_B': 3, 'identical': 1} | rounds {1: 1, 2: 64}
+>>> /usr/bin/python3 -u code/05-analysis-pipeline.py --stage taxonomy --bin 1 --force
+2026-10-25 15:56:50,982 | INFO | === stage taxonomy, bin 1 === args: {'stage': 'taxonomy', 'bin': 1, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': True, 'taxonomy_protocol': None, 'assign_batch': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 15:56:50,986 | INFO | taxonomy: --force removed the step-1 checkpoint taxonomy_definitions.json (definitions will be debated again)
+2026-10-25 15:56:57,355 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-25 15:56:57,465 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-25 15:56:58,013 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B "HTTP/1.1 200 OK"
+2026-10-25 15:57:00,181 | INFO | LLM loaded: Qwen/Qwen3-1.7B (revision 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e) on cuda, bfloat16, batch 16, greedy decoding
+2026-10-25 15:57:00,199 | INFO | taxonomy bin 1 (two-step): 65 topics (0 merged away by overrides), 1 topic(s) per assignment item
+2026-10-25 15:59:38,247 | INFO | LLM: 1 prompt(s) in 158.0s (158.0 s/prompt; cap 4000 tokens)
+2026-10-25 16:02:15,980 | INFO | LLM: 1 prompt(s) in 157.7s (157.7 s/prompt; cap 4000 tokens)
+2026-10-25 16:04:54,077 | INFO | LLM: 1 prompt(s) in 158.1s (158.1 s/prompt; cap 4000 tokens)
+2026-10-25 16:04:54,080 | INFO | define: round 1 done — 0/1 items resolved
+2026-10-25 16:07:18,207 | INFO | LLM: 1 prompt(s) in 144.1s (144.1 s/prompt; cap 4000 tokens)
+2026-10-25 16:07:18,211 | INFO | define: round 2 done — 1/1 items resolved
+2026-10-25 16:07:18,221 | INFO | taxonomy bin 1: step 1 done — 35 categories defined [accepted_by_A, 2 round(s)]; cleanup {'merged_same_name': {'cat_23': 'cat_21', 'cat_32': 'cat_21'}, 'renumbered': {'cat_24': 'cat_23', 'cat_25': 'cat_24', 'cat_26': 'cat_25', 'cat_27': 'cat_26', 'cat_28': 'cat_27', 'cat_29': 'cat_28', 'cat_30': 'cat_29', 'cat_31': 'cat_30', 'cat_33': 'cat_31', 'cat_34': 'cat_32', 'cat_35': 'cat_33', 'cat_36': 'cat_34', 'cat_37': 'cat_35'}, 'filled_from_duplicate': [], 'still_empty': []}
+2026-10-25 16:07:47,751 | INFO | LLM: 16 prompt(s) in 29.4s (1.8 s/prompt; cap 800 tokens)
+2026-10-25 16:08:17,393 | INFO | LLM: 16 prompt(s) in 29.5s (1.8 s/prompt; cap 800 tokens)
+2026-10-25 16:08:19,835 | INFO | LLM: 16 prompt(s) in 2.3s (0.1 s/prompt; cap 800 tokens)
+2026-10-25 16:08:22,188 | INFO | LLM: 16 prompt(s) in 2.2s (0.1 s/prompt; cap 800 tokens)
+2026-10-25 16:08:23,412 | INFO | LLM: 1 prompt(s) in 1.2s (1.2 s/prompt; cap 800 tokens)
+2026-10-25 16:08:52,370 | INFO | LLM: 3 prompt(s) in 28.9s (9.6 s/prompt; cap 800 tokens)
+2026-10-25 16:09:22,005 | INFO | LLM: 16 prompt(s) in 29.5s (1.8 s/prompt; cap 800 tokens)
+2026-10-25 16:09:37,630 | INFO | LLM: 16 prompt(s) in 15.5s (1.0 s/prompt; cap 800 tokens)
+2026-10-25 16:09:39,974 | INFO | LLM: 16 prompt(s) in 2.2s (0.1 s/prompt; cap 800 tokens)
+2026-10-25 16:09:42,420 | INFO | LLM: 16 prompt(s) in 2.3s (0.1 s/prompt; cap 800 tokens)
+2026-10-25 16:09:43,644 | INFO | LLM: 1 prompt(s) in 1.2s (1.2 s/prompt; cap 800 tokens)
+2026-10-25 16:10:12,573 | INFO | LLM: 3 prompt(s) in 28.9s (9.6 s/prompt; cap 800 tokens)
+2026-10-25 16:10:12,575 | INFO | assign: round 1 done — 57/65 items resolved
+2026-10-25 16:10:14,427 | INFO | LLM: 8 prompt(s) in 1.8s (0.2 s/prompt; cap 800 tokens)
+2026-10-25 16:10:14,429 | INFO | assign: round 2 done — 65/65 items resolved
+2026-10-25 16:10:14,431 | INFO | taxonomy bin 1: step 2 done — 64/65 topics assigned by the agents over 65 item(s) (modes {'identical': 57, 'accepted_by_A': 8}), 1 placed by repair
+2026-10-25 16:10:14,482 | INFO | taxonomy bin 1: 27 categories [accepted_by_A, 2 round(s)], 1 topics repaired, 0 unplaced, 4 answer(s) salvaged -> /content/drive/MyDrive/fifa-communities/results/bin-1/categories.csv
+2026-10-25 16:10:15,291 | INFO | report written: /content/drive/MyDrive/fifa-communities/results/bin-1/report.html
+<<< exit 0 after 13.4 min
+taxonomy bin 1: protocol two_step | definitions debate: accepted_by_A, 2 round(s), needs_review False
+  categories defined 35 -> final 27 | dropped (no topic assigned): ['cat_20', 'cat_21', 'cat_23', 'cat_26', 'cat_28', 'cat_29', 'cat_31', 'cat_35'] | cleanup: {'merged_same_name': {'cat_23': 'cat_21', 'cat_32': 'cat_21'}, 'renumbered': {'cat_24': 'cat_23', 'cat_25': 'cat_24', 'cat_26': 'cat_25', 'cat_27': 'cat_26', 'cat_28': 'cat_27', 'cat_29': 'cat_28', 'cat_30': 'cat_29', 'cat_31': 'cat_30', 'cat_33': 'cat_31', 'cat_34': 'cat_32', 'cat_35': 'cat_33', 'cat_36': 'cat_34', 'cat_37': 'cat_35'}, 'filled_from_duplicate': [], 'still_empty': []}
+  assignment items 65 | modes {'identical': 57, 'accepted_by_A': 8} | items contested 8
+  topics assigned by the agents 64, placed by the repair 1, unplaced 0 | answers salvaged 4
+category_id                                         name tone_category  n_topics  n_posts   share
+      cat_1             World Cup Predictions & Analysis       excited        13     1440 0.22518
+      cat_2            Transfer Rumors & Player Signings  enthusiastic         2      467 0.07303
+      cat_3                     Refereeing & Rule Issues      critical         2      410 0.06411
+      cat_4        Arsenal & Liverpool Match Discussions  enthusiastic         2      317 0.04957
+      cat_5             Iconic Goals & Memorable Moments         other         2      286 0.04472
+      cat_6         Football Legacy & Historical Context         other         1      184 0.02877
+      cat_7                    Streaming & Access Issues    frustrated         1      168 0.02627
+      cat_8                     Injury & Health Concerns         other         1      165 0.02580
+      cat_9           World Cup Humor & Cultural Content         other         1      163 0.02549
+     cat_10           Manchester City & Financial Issues      critical         1      162 0.02533
+     cat_11                Jersey & Clothing Discussions       curious         3      306 0.04785
+     cat_12           Live Football Coverage & Streaming  enthusiastic         4      214 0.03346
+     cat_13                American Soccer & Fan Culture  enthusiastic         1      121 0.01892
+     cat_14                     Fantasy Football Leagues  enthusiastic         1      118 0.01845
+     cat_15              US vs England Match Discussions    frustrated         1      115 0.01798
+     cat_16                  South Africa World Cup 2010       excited        10      469 0.07334
+     cat_17              Squad Analysis & Team Formation         other         6      394 0.06161
+     cat_18             World Cup Advertising & Branding  enthusiastic         1       96 0.01501
+     cat_19                   World Cup Anthems & Chants  enthusiastic         1       92 0.01439
+     cat_22                   UEFA Champions League Live       excited         1       38 0.00594
+     cat_24            Goal Celebrations & Fan Reactions  enthusiastic         2      146 0.02283
+     cat_25                  Vuvuzela Noise & Its Impact    frustrated         2      129 0.02017
+     cat_27 Paul the Octopus Predictions & Controversies         angry         1       69 0.01079
+     cat_30              Landon Donovan & Football Stars      positive         1       63 0.00985
+     cat_32      North Korea Football & Cultural Aspects      critical         1       59 0.00923
+     cat_33                 MLS Week 15 & Match Previews       excited         2      146 0.02283
+     cat_34        World Cup Commentators & Their Impact      critical         1       58 0.00907
+report: /content/drive/MyDrive/fifa-communities/results/bin-1/report.html
+>>> /usr/bin/python3 -u code/05-analysis-pipeline.py --stage collect --allow-partial
+2026-10-25 16:10:17,297 | INFO | === stage collect === args: {'stage': 'collect', 'bin': None, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': True, 'force': False, 'taxonomy_protocol': None, 'assign_batch': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 16:10:31,377 | INFO | S5: post_variables.csv 1302021 rows; bins complete [1]; sentiment 13638; complete=False
+<<< exit 0 after 0.3 min
+=== STOP POINT of the test batch: run the hand-back cell in section 5 ===

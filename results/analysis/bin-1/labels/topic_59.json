@@ -1,0 +1,186 @@
+{
+ "period_bin": 1,
+ "topic_id": 59,
+ "keywords": "goal nsfw, female fans, larissa riquelme, women world, socceroos, hottest, cup vote, naked, footballers, reporter sara, prostitutes, newcastle, fans world, wags, bastian schweinsteiger",
+ "n_sample_posts": 29,
+ "sample_ids": [
+  "cgccb",
+  "d7g4e",
+  "cm1s2",
+  "cisrp",
+  "ce4kf",
+  "bmcz5",
+  "bkskx",
+  "amply",
+  "ceh4j",
+  "cd0l3",
+  "d52l9",
+  "cjl3e",
+  "cn7qn",
+  "bd4ow",
+  "cnj14",
+  "cvitu",
+  "caagt",
+  "b1h94",
+  "ct2ne",
+  "ckcq0",
+  "cdech",
+  "axb0h",
+  "d0dgf",
+  "chyze",
+  "cibva",
+  "cn7nj",
+  "cu6bl",
+  "ceu51",
+  "aovor"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.2",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "NSFW Fan Culture",
+  "purpose": "Explore and discuss non-consensual or explicit fan behavior and imagery in football",
+  "emotion_tone": "critical",
+  "description": "Posts discussing NSFW content related to female fans, footballers, and fan culture, including naked individuals, bodypainting, and explicit imagery.",
+  "inclusion_cues": [
+   "naked female fans",
+   "NSFW fan imagery",
+   "bodypainted fans",
+   "explicit fan content",
+   "NSFW footballer images",
+   "explicit fan behavior"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "NSFW Fan Culture",
+    "purpose": "Explore and discuss non-consensual or explicit fan behavior and imagery",
+    "emotion_tone": "critical",
+    "description": "Posts discussing explicit or NSFW fan behavior, including naked fans, bodypainted girls, and explicit images of footballers and reporters",
+    "inclusion_cues": [
+     "naked female fans",
+     "bodypainted topless girls",
+     "explicit images of footballers",
+     "NSFW fan behavior",
+     "explicit images of reporters"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "NSFW Fan Culture",
+    "purpose": "Explore and discuss non-consensual or explicit fan behavior and imagery in football",
+    "emotion_tone": "critical",
+    "description": "Posts discussing NSFW content related to female fans, footballers, and fan culture, including naked individuals, bodypainting, and explicit imagery.",
+    "inclusion_cues": [
+     "naked female fans",
+     "NSFW fan imagery",
+     "bodypainted fans",
+     "explicit fan content",
+     "NSFW footballer images",
+     "explicit fan behavior"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: goal nsfw, female fans, larissa riquelme, women world, socceroos, hottest, cup vote, naked, footballers, reporter sara, prostitutes, newcastle, fans world, wags, bastian schweinsteiger\nPosts (one per line, title first):\n- China’s World Cup contribution: (PICS) slightly nsfw-ish\n- Naked Female Streaker Scores a Soccer Goal! NSFW video WTF\n- The girls of the World Cup (from a Spanish website) NSFW-ish\n- Which country has the most attractive female supporters? / Personally i'd say Brazil or Portugal, though Larissa Riquelme supporting Paraquay was undoubtedly stunning!\n- Who are the hottest WAGs (wives and girlfriends) of the World Cup? / My vote : Bethany Dempsey (mildy NSFW)\n- Top XI Female Footballers\n- Damn, I should have played soccer. Check out these SI swimsuit pics of Bastian Schweinsteiger's wife (NSFW)\n- Naked Girls with soccer uniform bodypainted on them\n- German World Cup starlets looking to catch Socceroos on the hop\n- World Cup babes. (NSFW)\n- Women's World Cup 2011 and Soccer News\n- Ladies of the Nations (NSFW)\n- Hottest Girls of World Cup 2010\n- Prostitutes expected to invade world cup\n- Female Fans of the World Cup :)\n- St Pauli as you've never seen St. Pauli before. (Or ever will again.) Pretty in pink.\n- Americans: Bethany Dempsey needs your vote in the WAG World Cup.\n- Female referee Amy Fearn makes football history\n- 'The Away Girlz'\n- Just taken right now, so guys, who would Vote for?\n- r/Soccer, I am disappointed. All this time you've been talking about the players. What about the fans? Which country has the hottest fans? Bonus Points (We'll call them F.A.P.S.) for pictures\n- Daughter of former Man City, Newcastle and Wigan player found dead.\n- Glamour girls testing out new soccer ball is strangely arousing (video)\n- Sexy Fans World Cup 2010\n- Gorgeous Girls of World Cup 2010 (pics)\n- Beach Volleyball Cheerleaders So Cute\n- Sexy Sports Reporter Sara Carbonero\n- Hot Babes in this sweat soccer photo shoot\n- Football rocks - bodypainted topless girls\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"NSFW Fan Culture\", \"purpose\": \"Explore and discuss non-consensual or explicit fan behavior and imagery\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing explicit or NSFW fan behavior, including naked fans, bodypainted girls, and explicit images of footballers and reporters\", \"inclusion_cues\": [\"naked female fans\", \"bodypainted topless girls\", \"explicit images of footballers\", \"NSFW fan behavior\", \"explicit images of reporters\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "NSFW Fan Culture",
+      "purpose": "Explore and discuss non-consensual or explicit fan behavior and imagery",
+      "emotion_tone": "critical",
+      "description": "Posts discussing explicit or NSFW fan behavior, including naked fans, bodypainted girls, and explicit images of footballers and reporters",
+      "inclusion_cues": [
+       "naked female fans",
+       "bodypainted topless girls",
+       "explicit images of footballers",
+       "NSFW fan behavior",
+       "explicit images of reporters"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 117,
+   "seed": 2249282841,
+   "seconds": 0.47
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: goal nsfw, female fans, larissa riquelme, women world, socceroos, hottest, cup vote, naked, footballers, reporter sara, prostitutes, newcastle, fans world, wags, bastian schweinsteiger\nPosts (one per line, title first):\n- China’s World Cup contribution: (PICS) slightly nsfw-ish\n- Naked Female Streaker Scores a Soccer Goal! NSFW video WTF\n- The girls of the World Cup (from a Spanish website) NSFW-ish\n- Which country has the most attractive female supporters? / Personally i'd say Brazil or Portugal, though Larissa Riquelme supporting Paraquay was undoubtedly stunning!\n- Who are the hottest WAGs (wives and girlfriends) of the World Cup? / My vote : Bethany Dempsey (mildy NSFW)\n- Top XI Female Footballers\n- Damn, I should have played soccer. Check out these SI swimsuit pics of Bastian Schweinsteiger's wife (NSFW)\n- Naked Girls with soccer uniform bodypainted on them\n- German World Cup starlets looking to catch Socceroos on the hop\n- World Cup babes. (NSFW)\n- Women's World Cup 2011 and Soccer News\n- Ladies of the Nations (NSFW)\n- Hottest Girls of World Cup 2010\n- Prostitutes expected to invade world cup\n- Female Fans of the World Cup :)\n- St Pauli as you've never seen St. Pauli before. (Or ever will again.) Pretty in pink.\n- Americans: Bethany Dempsey needs your vote in the WAG World Cup.\n- Female referee Amy Fearn makes football history\n- 'The Away Girlz'\n- Just taken right now, so guys, who would Vote for?\n- r/Soccer, I am disappointed. All this time you've been talking about the players. What about the fans? Which country has the hottest fans? Bonus Points (We'll call them F.A.P.S.) for pictures\n- Daughter of former Man City, Newcastle and Wigan player found dead.\n- Glamour girls testing out new soccer ball is strangely arousing (video)\n- Sexy Fans World Cup 2010\n- Gorgeous Girls of World Cup 2010 (pics)\n- Beach Volleyball Cheerleaders So Cute\n- Sexy Sports Reporter Sara Carbonero\n- Hot Babes in this sweat soccer photo shoot\n- Football rocks - bodypainted topless girls\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"NSFW Fan Culture\", \"purpose\": \"Explore and discuss non-consensual or explicit fan behavior and imagery in football\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing NSFW content related to female fans, footballers, and fan culture, including naked individuals, bodypainting, and explicit imagery.\", \"inclusion_cues\": [\"naked female fans\", \"NSFW fan imagery\", \"bodypainted fans\", \"explicit fan content\", \"NSFW footballer images\", \"explicit fan behavior\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "NSFW Fan Culture",
+      "purpose": "Explore and discuss non-consensual or explicit fan behavior and imagery in football",
+      "emotion_tone": "critical",
+      "description": "Posts discussing NSFW content related to female fans, footballers, and fan culture, including naked individuals, bodypainting, and explicit imagery.",
+      "inclusion_cues": [
+       "naked female fans",
+       "NSFW fan imagery",
+       "bodypainted fans",
+       "explicit fan content",
+       "NSFW footballer images",
+       "explicit fan behavior"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 123,
+   "seed": 842561291,
+   "seconds": 0.52
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: goal nsfw, female fans, larissa riquelme, women world, socceroos, hottest, cup vote, naked, footballers, reporter sara, prostitutes, newcastle, fans world, wags, bastian schweinsteiger\nPosts (one per line, title first):\n- China’s World Cup contribution: (PICS) slightly nsfw-ish\n- Naked Female Streaker Scores a Soccer Goal! NSFW video WTF\n- The girls of the World Cup (from a Spanish website) NSFW-ish\n- Which country has the most attractive female supporters? / Personally i'd say Brazil or Portugal, though Larissa Riquelme supporting Paraquay was undoubtedly stunning!\n- Who are the hottest WAGs (wives and girlfriends) of the World Cup? / My vote : Bethany Dempsey (mildy NSFW)\n- Top XI Female Footballers\n- Damn, I should have played soccer. Check out these SI swimsuit pics of Bastian Schweinsteiger's wife (NSFW)\n- Naked Girls with soccer uniform bodypainted on them\n- German World Cup starlets looking to catch Socceroos on the hop\n- World Cup babes. (NSFW)\n- Women's World Cup 2011 and Soccer News\n- Ladies of the Nations (NSFW)\n- Hottest Girls of World Cup 2010\n- Prostitutes expected to invade world cup\n- Female Fans of the World Cup :)\n- St Pauli as you've never seen St. Pauli before. (Or ever will again.) Pretty in pink.\n- Americans: Bethany Dempsey needs your vote in the WAG World Cup.\n- Female referee Amy Fearn makes football history\n- 'The Away Girlz'\n- Just taken right now, so guys, who would Vote for?\n- r/Soccer, I am disappointed. All this time you've been talking about the players. What about the fans? Which country has the hottest fans? Bonus Points (We'll call them F.A.P.S.) for pictures\n- Daughter of former Man City, Newcastle and Wigan player found dead.\n- Glamour girls testing out new soccer ball is strangely arousing (video)\n- Sexy Fans World Cup 2010\n- Gorgeous Girls of World Cup 2010 (pics)\n- Beach Volleyball Cheerleaders So Cute\n- Sexy Sports Reporter Sara Carbonero\n- Hot Babes in this sweat soccer photo shoot\n- Football rocks - bodypainted topless girls\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"NSFW Fan Culture\", \"purpose\": \"Explore and discuss non-consensual or explicit fan behavior and imagery\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing explicit or NSFW fan behavior, including naked fans, bodypainted girls, and explicit images of footballers and reporters\", \"inclusion_cues\": [\"naked female fans\", \"bodypainted topless girls\", \"explicit images of footballers\", \"NSFW fan behavior\", \"explicit images of reporters\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"NSFW Fan Culture\", \"purpose\": \"Explore and discuss non-consensual or explicit fan behavior and imagery in football\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing NSFW content related to female fans, footballers, and fan culture, including naked individuals, bodypainting, and explicit imagery.\", \"inclusion_cues\": [\"naked female fans\", \"NSFW fan imagery\", \"bodypainted fans\", \"explicit fan content\", \"NSFW footballer images\", \"explicit fan behavior\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"NSFW Fan Culture\", \"purpose\": \"Explore and discuss non-consensual or explicit fan behavior and imagery in football\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing NSFW content related to female fans, footballers, and fan culture, including naked individuals, bodypainting, and explicit imagery.\", \"inclusion_cues\": [\"naked female fans\", \"NSFW fan imagery\", \"bodypainted fans\", \"explicit fan content\", \"NSFW footballer images\", \"explicit fan behavior\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 122,
+   "seed": 2203276884,
+   "seconds": 0.53
+  }
+ ]
+}

@@ -1,0 +1,429 @@
+{
+ "topics": {
+  "period_bin": 1,
+  "period_type": "tournament",
+  "start": "2010-01-01",
+  "end": "2010-09-30",
+  "n_documents": 3000,
+  "n_modelled": 2945,
+  "n_too_short": 55,
+  "debug_max_docs": 3000,
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "device": "mps",
+  "backend": {
+   "backend": "cpu",
+   "cuml_accel": false,
+   "cuml_version": null,
+   "umap_class": "umap.umap_.UMAP",
+   "hdbscan_class": "hdbscan.hdbscan_.HDBSCAN"
+  },
+  "guard": {
+   "min_cluster_size": 25,
+   "n_topics": 2,
+   "trials": [
+    {
+     "min_cluster_size": 25,
+     "n_topics": 2,
+     "outlier_share": 0.0156
+    }
+   ],
+   "converged": false,
+   "enabled": false
+  },
+  "n_topics_raw": 2,
+  "outlier_share_raw": 0.0156,
+  "outlier_threshold": null,
+  "outlier_share_final": 0.0156,
+  "n_reassigned": 0,
+  "calibration": [
+   {
+    "quantile": 0.5,
+    "threshold": 0.2616,
+    "n_outliers": 46,
+    "n_reassigned_at_T": 23,
+    "share_outliers_remaining": 0.0078
+   },
+   {
+    "quantile": 0.65,
+    "threshold": 0.3425,
+    "n_outliers": 46,
+    "n_reassigned_at_T": 16,
+    "share_outliers_remaining": 0.0102
+   },
+   {
+    "quantile": 0.8,
+    "threshold": 0.3954,
+    "n_outliers": 46,
+    "n_reassigned_at_T": 10,
+    "share_outliers_remaining": 0.0122
+   }
+  ],
+  "elapsed_min": 0.6,
+  "run_at": "2026-10-23T12:06:52",
+  "versions": {
+   "python": "3.14.4",
+   "bertopic": "0.17.4",
+   "sentence-transformers": "6.1.0",
+   "torch": "2.14.1",
+   "transformers": "5.19.0",
+   "umap-learn": "0.5.12",
+   "hdbscan": "0.8.44",
+   "scikit-learn": "1.9.1",
+   "vaderSentiment": "3.3.2",
+   "pandas": "3.0.6",
+   "numpy": "2.5.4",
+   "torch_cuda": null,
+   "gpu": null,
+   "pip_freeze": [
+    "Jinja2==3.1.6",
+    "MarkupSafe==3.0.4",
+    "PyYAML==6.0.3",
+    "Pygments==2.21.0",
+    "accelerate==1.15.0",
+    "annotated-doc==0.0.5",
+    "anyio==4.15.1",
+    "bertopic==0.17.4",
+    "certifi==2026.7.22",
+    "charset-normalizer==3.5.2",
+    "click==8.5.0",
+    "cloudpickle==3.1.2",
+    "filelock==4.1.1",
+    "fsspec==2026.9.0",
+    "h11==0.16.0",
+    "hdbscan==0.8.44",
+    "hf-xet==1.7.0",
+    "httpcore==1.0.9",
+    "httpx==0.28.1",
+    "huggingface_hub==1.33.0",
+    "idna==3.20",
+    "joblib==1.6.0",
+    "llvmlite==0.50.0",
+    "markdown-it-py==4.2.0",
+    "mdurl==0.1.2",
+    "mpmath==1.3.0",
+    "narwhals==2.27.1",
+    "networkx==3.7",
+    "numba==0.68.0",
+    "numpy==2.5.4",
+    "packaging==26.3",
+    "pandas==3.0.6",
+    "pip==26.2.1",
+    "plotly==7.1.0",
+    "psutil==7.2.2",
+    "pyarrow==26.0.0",
+    "pynndescent==0.6.0",
+    "python-dateutil==2.9.0.post0",
+    "regex==2026.9.29",
+    "requests==2.34.2",
+    "rich==15.0.0",
+    "safetensors==0.8.0",
+    "scikit-learn==1.9.1",
+    "scipy==1.18.1",
+    "sentence-transformers==6.1.0",
+    "setuptools==84.0.0",
+    "shellingham==1.5.4",
+    "six==1.17.0",
+    "sympy==1.14.0",
+    "threadpoolctl==3.7.0",
+    "tokenizers==0.23.3",
+    "torch==2.14.1",
+    "tqdm==4.70.1",
+    "transformers==5.19.0",
+    "typer==0.27.3",
+    "typing_extensions==4.16.0",
+    "umap-learn==0.5.12",
+    "urllib3==2.8.0",
+    "vaderSentiment==3.3.2",
+    "wheel==0.48.0"
+   ]
+  },
+  "prompts": {
+   "prompt_version": "1.1",
+   "agents": [
+    "Analyst A",
+    "Analyst B"
+   ],
+   "lenses": {
+    "Analyst A": "Start from the distinctive keywords, then check them against the posts.",
+    "Analyst B": "Start from reading the posts, then check them against the keywords."
+   },
+   "system_label": "You are {agent_name}, a discourse analyst studying posts from the football community r/soccer.\n{lens}\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user_label": "Keywords: {keywords}\nPosts (one per line, title first):\n{posts}\nOutput schema:\n{{\"decision\": \"revise\",\n \"categories\": [\n  {{\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}}\n ]}}\nRules: exactly one category; name short (2\u20136 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3\u20136 inclusion cues.",
+   "system_taxonomy": "You are {agent_name}, a discourse analyst studying posts from the football community r/soccer.\n{lens}\nBuild a discourse taxonomy from the items. Use the keywords and the labelled sample of each item.\nReturn JSON only; no prose or markdown.",
+   "user_taxonomy": "Items: the {n_topics} topics found in r/soccer posts between {start} and {end}, one per line:\ntopic_id | name | emotion_tone | keywords | description\n{topic_lines}\nOutput schema:\n{{\"decision\": \"revise\",\n \"categories\": [\n  {{\"id\": \"cat_1\", \"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\",\n   \"inclusion_cues\": [\"...\"], \"topics\": [topic_id, ...]}}\n ]}}\nRules: keep category names short and non-overlapping; capture both communicative purpose and emotional tone.\nThere is no minimum or maximum number of categories: group topics into one category only if they are sufficiently\nsimilar; every topic_id must appear in exactly one category.",
+   "user_revision": "Your previous answer:\n{mine}\nYour peer's latest answer:\n{peer}\nIf the peer's answer is at least as good as yours, return {{\"decision\": \"accept\"}} and nothing else.\nOtherwise return {{\"decision\": \"revise\", \"categories\": [...]}} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "user_repair": "Your previous answer could not be used: {error}\nReturn the corrected answer with the same schema. JSON only; no prose or markdown."
+  },
+  "config": {
+   "BODY_MAX_CHARS": 1000,
+   "MIN_TOKENS": 3,
+   "COLUMNS_KEPT": [
+    "id",
+    "created_datetime",
+    "year",
+    "post_type",
+    "lang",
+    "author",
+    "link_flair_text",
+    "num_comments",
+    "score",
+    "domain",
+    "is_self"
+   ],
+   "WORLD_CUPS": {
+    "2010": [
+     "2010-06-11",
+     "2010-07-11"
+    ],
+    "2014": [
+     "2014-06-12",
+     "2014-07-13"
+    ],
+    "2018": [
+     "2018-06-14",
+     "2018-07-15"
+    ],
+    "2022": [
+     "2022-11-20",
+     "2022-12-18"
+    ],
+    "2026": [
+     "2026-06-11",
+     "2026-07-19"
+    ]
+   },
+   "WINDOW_MONTHS": 2,
+   "ERAS": {
+    "2010": [
+     2010,
+     2011,
+     2012,
+     2013
+    ],
+    "2014": [
+     2014,
+     2015,
+     2016,
+     2017
+    ],
+    "2018": [
+     2018,
+     2019,
+     2020,
+     2021
+    ],
+    "2022": [
+     2022,
+     2023,
+     2024,
+     2025
+    ],
+    "2026": [
+     2026
+    ]
+   },
+   "EMBEDDING_MODEL": "sentence-transformers/all-MiniLM-L6-v2",
+   "EMBEDDING_MODEL_HQ": "sentence-transformers/all-mpnet-base-v2",
+   "EMBEDDING_BATCH_SIZE": 256,
+   "EMBEDDING_MAX_SEQ_LENGTH": 256,
+   "SEED": 42,
+   "UMAP_PARAMS": {
+    "n_neighbors": 15,
+    "n_components": 5,
+    "min_dist": 0.0,
+    "metric": "cosine",
+    "random_state": 42
+   },
+   "HDBSCAN_MIN_CLUSTER_FRACTION": 0.0025,
+   "HDBSCAN_MIN_CLUSTER_FLOOR": 15,
+   "HDBSCAN_MIN_SAMPLES": 10,
+   "NGRAM_RANGE": [
+    1,
+    2
+   ],
+   "TOP_N_WORDS": 15,
+   "MMR_DIVERSITY": 0.3,
+   "MAX_TOPICS_BEFORE_REDUCE": 60,
+   "REDUCE_OUTLIERS": true,
+   "N_REPRESENTATIVE_DOCS": 5,
+   "EXTRA_STOPWORDS": [
+    "thread",
+    "match thread",
+    "post match",
+    "pre match",
+    "discussion",
+    "daily discussion",
+    "amp",
+    "http",
+    "https",
+    "www",
+    "com",
+    "html",
+    "reddit",
+    "redd",
+    "imgur",
+    "youtube",
+    "youtu",
+    "twitter",
+    "streamable",
+    "gfycat",
+    "edit",
+    "deleted",
+    "removed",
+    "vs",
+    "soccer"
+   ],
+   "TIME_BIN": {
+    "year": "M",
+    "era": "M",
+    "window": "W"
+   },
+   "ERA_MERGE_MIN_SIMILARITY": 0.85,
+   "LLM_MODEL": "Qwen/Qwen3-1.7B",
+   "LLM_MODEL_LARGE": "Qwen/Qwen3-4B",
+   "LLM_MODEL_ALT": "microsoft/Phi-4-mini-instruct",
+   "LLM_MAX_NEW_TOKENS": 500,
+   "LLM_TEMPERATURE": 0,
+   "LLM_SAMPLE_POSTS": 40,
+   "LLM_MAX_TURNS": 3,
+   "LLM_AGENTS": [
+    "Analyst A",
+    "Analyst B"
+   ],
+   "TONE_SET": [
+    "positive",
+    "negative",
+    "neutral",
+    "mixed",
+    "excited",
+    "enthusiastic",
+    "frustrated",
+    "angry",
+    "anxious",
+    "sad",
+    "humorous",
+    "critical",
+    "supportive",
+    "curious",
+    "cautious"
+   ],
+   "SENTIMENT_POS_THRESHOLD": 0.05,
+   "SENTIMENT_NEG_THRESHOLD": -0.05,
+   "PERIOD_BINS": [
+    {
+     "bin": 1,
+     "start": "2010-01-01",
+     "end": "2010-09-30",
+     "period_type": "tournament",
+     "world_cup": 2010
+    },
+    {
+     "bin": 2,
+     "start": "2010-10-01",
+     "end": "2014-01-31",
+     "period_type": "interim",
+     "world_cup": null
+    },
+    {
+     "bin": 3,
+     "start": "2014-02-01",
+     "end": "2014-09-30",
+     "period_type": "tournament",
+     "world_cup": 2014
+    },
+    {
+     "bin": 4,
+     "start": "2014-10-01",
+     "end": "2018-01-31",
+     "period_type": "interim",
+     "world_cup": null
+    },
+    {
+     "bin": 5,
+     "start": "2018-02-01",
+     "end": "2018-09-30",
+     "period_type": "tournament",
+     "world_cup": 2018
+    },
+    {
+     "bin": 6,
+     "start": "2018-10-01",
+     "end": "2022-06-30",
+     "period_type": "interim",
+     "world_cup": null
+    },
+    {
+     "bin": 7,
+     "start": "2022-07-01",
+     "end": "2023-02-28",
+     "period_type": "tournament",
+     "world_cup": 2022
+    },
+    {
+     "bin": 8,
+     "start": "2023-03-01",
+     "end": "2026-01-31",
+     "period_type": "interim",
+     "world_cup": null
+    },
+    {
+     "bin": 9,
+     "start": "2026-02-01",
+     "end": "2026-07-31",
+     "period_type": "tournament",
+     "world_cup": 2026
+    }
+   ],
+   "PERIOD_BIN_EXPECTED_N": {
+    "1": 10002,
+    "2": 186988,
+    "3": 83147,
+    "4": 331216,
+    "5": 88648,
+    "6": 305653,
+    "7": 41438,
+    "8": 217303,
+    "9": 37626
+   },
+   "BIN_TIME_BIN": {
+    "tournament": "W",
+    "interim": "M"
+   },
+   "ANALYSIS_EMBEDDING_MODEL": "sentence-transformers/all-mpnet-base-v2",
+   "BIN_MIN_CLUSTER_FRACTION": 0.0025,
+   "BIN_MIN_CLUSTER_FLOOR": 25,
+   "TOPIC_COUNT_RANGE": [
+    50,
+    100
+   ],
+   "GUARD_MAX_TRIALS": 4,
+   "GUARD_STEP": 1.5,
+   "OUTLIER_STRATEGY": "embeddings",
+   "OUTLIER_THRESHOLD": {},
+   "OUTLIER_CALIBRATION_QUANTILES": [
+    0.5,
+    0.65,
+    0.8
+   ],
+   "OUTLIER_SAMPLE_PER_CANDIDATE": 100,
+   "LLM_REVISION": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+   "LLM_SAMPLING_SEEDED": false,
+   "LLM_SAMPLING_TEMPERATURE": 0.7,
+   "LLM_BATCH_SIZE": {
+    "cuda": 16,
+    "mps": 4,
+    "cpu": 1
+   },
+   "MAX_ROUNDS": 5,
+   "LLM_MAX_NEW_TOKENS_LABEL": 600,
+   "LLM_MAX_NEW_TOKENS_TAXONOMY": 8000,
+   "LLM_POST_MAX_CHARS": 300,
+   "TAXONOMY_MAX_ITEMS": 100,
+   "TAXONOMY_CHUNK_SIZE": 80,
+   "TAXONOMY_KEYWORDS_PER_TOPIC": 8,
+   "SENTIMENT_TEXT": "title",
+   "SENTIMENT_VALIDATION_SAMPLE": 300,
+   "SENTIMENT_DECIMALS": 4
+  }
+ }
+}

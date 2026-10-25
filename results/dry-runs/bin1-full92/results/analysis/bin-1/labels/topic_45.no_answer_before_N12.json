@@ -1,0 +1,155 @@
+{
+ "period_bin": 1,
+ "topic_id": 45,
+ "keywords": "live football, arsenal live, chelsea live, tottenham live, match liverpool, match chelsea, burnley live, match tottenham, liverpool live, portsmouth live, fulham live, everton live, bolton live, blackburn live, leeds utd",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "akof4",
+  "akyjt",
+  "aok06",
+  "ako9u",
+  "at8om",
+  "akyor",
+  "az3li",
+  "at7z9",
+  "akot9",
+  "c6sgt",
+  "ayro7",
+  "ayrd7",
+  "ayr5s",
+  "at8ea",
+  "azvfd",
+  "ayrrd",
+  "ayrfs",
+  "am90h",
+  "ap688",
+  "at8i3",
+  "azws1",
+  "akovh",
+  "at82a",
+  "akymj",
+  "ayrm0",
+  "at84m",
+  "aojw2",
+  "ayr9y",
+  "ako27",
+  "b5f7t",
+  "b7d2x",
+  "akohu",
+  "akyri",
+  "bqf4z",
+  "b4ox2",
+  "akokp",
+  "anq38",
+  "aojnc",
+  "at8ks",
+  "c1o8v"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "mps",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 4,
+ "prompt_version": "1.1",
+ "agreed": false,
+ "agreement_mode": "no_answer",
+ "round_iterations": 1,
+ "needs_review": true,
+ "label": {
+  "name": "Live Football Matches",
+  "purpose": "Promote live football matches",
+  "emotion_tone": "Excitement",
+  "description": "Posts about live football matches, including teams, venues, and event details",
+  "inclusion_cues": [
+   "LIVE FOOTBALL (SOCCER)",
+   "Enjoy The Full Match",
+   "Match Live",
+   "Full Match"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Live Football Matches",
+    "purpose": "Promote live football matches",
+    "emotion_tone": "Excitement",
+    "description": "Posts about live football matches, including teams, venues, and event details",
+    "inclusion_cues": [
+     "LIVE FOOTBALL (SOCCER)",
+     "Enjoy The Full Match",
+     "Match Live",
+     "Full Match"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": null,
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: live football, arsenal live, chelsea live, tottenham live, match liverpool, match chelsea, burnley live, match tottenham, liverpool live, portsmouth live, fulham live, everton live, bolton live, blackburn live, leeds utd\nPosts (one per line, title first):\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Millwall vs Derby Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between West Ham vs Arsenal Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Birmingham vs Nottm Fores Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Portsmouth vs Coventry Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Man Utd vs Hull Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Sheff Utd vs QPR Live\n- Enjoy the full match between Chelsea vs Arsenal Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Preston vs Chelsea Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Bolton vs Lincoln City Live\n- The most important match this weekend isn't the Champions league final, it is Cardiff City vs. Blackpool\n- Enjoy the full match between Man Utd vs Portsmouth Live\n- Enjoy The Full Match Between Swansea vs Preston Live\n- Enjoy The Full Match Between Motherwell vs Hamilton Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Everton vs Birmingham Live\n- Enjoy the full match between Portsmouth vs Sunderland Live\n- Enjoy the full match between Liverpool vs Everton Live\n- Enjoy The Full Match Between Plymouth vs West Brom Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Manchester City vs Manchester United Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Liverpool vs Reading Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Aston Villa vs Brighton Live\n- Enjoy Bolton vs Manchester City live coverage on pc\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Accrington Stanley vs Gillingham Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Reading vs Burnley Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Tranmere vs Wolverhampton Live\n- Enjoy the full match between Bolton vs Fulham Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Tottenham vs Leeds Utd Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Coventry v Portsmouth Live\n- Enjoy The Full Match Between Sheff Utd vs Derby Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Southampton vs Luton Live\n- Enjoy the full match between Man U vs West Ham Live\n- Enjoy the full match between Liverpool vs Blackburn Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Middlesbrough vs Man City Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Man Utd vs Leeds United Live\n- Chelsea vs Bolton Live\n- Enjoy the full match between Wigan vs Tottenham Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Fulham vs Swindon Live\n- LIVE FOOTBALL (SOCCER): Enjoy the full match between West Ham vs Wolves Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Derby vs Millwall Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Accring Stan vs Fulham Live\n- What is the game to watch tomorrow? / Every single team in the EPL is playing tomorrow and they all start at 1600 BST. I'm personally going to try and watch Liverpool and hopefully the streams for it will be less choppy and blurry since I assume everyone will want to see the United and Chelsea games\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Live Football Matches\", \"purpose\": \"Promote live football matches\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts about live football matches, including teams, venues, and event details\", \"inclusion_cues\": [\"LIVE FOOTBALL (SOCCER)\", \"Enjoy The Full Match\", \"Match Live\", \"Full Match\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Live Football Matches",
+      "purpose": "Promote live football matches",
+      "emotion_tone": "Excitement",
+      "description": "Posts about live football matches, including teams, venues, and event details",
+      "inclusion_cues": [
+       "LIVE FOOTBALL (SOCCER)",
+       "Enjoy The Full Match",
+       "Match Live",
+       "Full Match"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 90,
+   "seed": 4229902812,
+   "seconds": 306.69
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: live football, arsenal live, chelsea live, tottenham live, match liverpool, match chelsea, burnley live, match tottenham, liverpool live, portsmouth live, fulham live, everton live, bolton live, blackburn live, leeds utd\nPosts (one per line, title first):\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Millwall vs Derby Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between West Ham vs Arsenal Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Birmingham vs Nottm Fores Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Portsmouth vs Coventry Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Man Utd vs Hull Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Sheff Utd vs QPR Live\n- Enjoy the full match between Chelsea vs Arsenal Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Preston vs Chelsea Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Bolton vs Lincoln City Live\n- The most important match this weekend isn't the Champions league final, it is Cardiff City vs. Blackpool\n- Enjoy the full match between Man Utd vs Portsmouth Live\n- Enjoy The Full Match Between Swansea vs Preston Live\n- Enjoy The Full Match Between Motherwell vs Hamilton Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Everton vs Birmingham Live\n- Enjoy the full match between Portsmouth vs Sunderland Live\n- Enjoy the full match between Liverpool vs Everton Live\n- Enjoy The Full Match Between Plymouth vs West Brom Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Manchester City vs Manchester United Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Liverpool vs Reading Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Aston Villa vs Brighton Live\n- Enjoy Bolton vs Manchester City live coverage on pc\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Accrington Stanley vs Gillingham Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Reading vs Burnley Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Tranmere vs Wolverhampton Live\n- Enjoy the full match between Bolton vs Fulham Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Tottenham vs Leeds Utd Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Coventry v Portsmouth Live\n- Enjoy The Full Match Between Sheff Utd vs Derby Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Southampton vs Luton Live\n- Enjoy the full match between Man U vs West Ham Live\n- Enjoy the full match between Liverpool vs Blackburn Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Middlesbrough vs Man City Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Man Utd vs Leeds United Live\n- Chelsea vs Bolton Live\n- Enjoy the full match between Wigan vs Tottenham Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Fulham vs Swindon Live\n- LIVE FOOTBALL (SOCCER): Enjoy the full match between West Ham vs Wolves Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Derby vs Millwall Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Accring Stan vs Fulham Live\n- What is the game to watch tomorrow? / Every single team in the EPL is playing tomorrow and they all start at 1600 BST. I'm personally going to try and watch Liverpool and hopefully the streams for it will be less choppy and blurry since I assume everyone will want to see the United and Chelsea games\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Live Football Matches\", \"purpose\": \"Promote live football matches\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts about live football matches, including teams, venues, and event details\", \"inclusion_cues\": [\"LIVE FOOTBALL (SOCCER)\", \"Enjoy The Full Match\", \"Match liverpool\", \"Match chelsea\", \"Burnley live\", \"Match tottenham\", \"Liverpool live\", \"Portsmouth live\", \"Fulham live\", \"Everton live\", \"Bolton live\", \"Blackburn live\", \"Leeds utd\"]}]}}",
+   "parsed": null,
+   "error": "'inclusion_cues' must list 1-10 short cues (got 13)",
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 140,
+   "seed": 901272716,
+   "seconds": 10.79
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": true,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: live football, arsenal live, chelsea live, tottenham live, match liverpool, match chelsea, burnley live, match tottenham, liverpool live, portsmouth live, fulham live, everton live, bolton live, blackburn live, leeds utd\nPosts (one per line, title first):\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Millwall vs Derby Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between West Ham vs Arsenal Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Birmingham vs Nottm Fores Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Portsmouth vs Coventry Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Man Utd vs Hull Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Sheff Utd vs QPR Live\n- Enjoy the full match between Chelsea vs Arsenal Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Preston vs Chelsea Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Bolton vs Lincoln City Live\n- The most important match this weekend isn't the Champions league final, it is Cardiff City vs. Blackpool\n- Enjoy the full match between Man Utd vs Portsmouth Live\n- Enjoy The Full Match Between Swansea vs Preston Live\n- Enjoy The Full Match Between Motherwell vs Hamilton Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Everton vs Birmingham Live\n- Enjoy the full match between Portsmouth vs Sunderland Live\n- Enjoy the full match between Liverpool vs Everton Live\n- Enjoy The Full Match Between Plymouth vs West Brom Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Manchester City vs Manchester United Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Liverpool vs Reading Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Aston Villa vs Brighton Live\n- Enjoy Bolton vs Manchester City live coverage on pc\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Accrington Stanley vs Gillingham Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Reading vs Burnley Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Tranmere vs Wolverhampton Live\n- Enjoy the full match between Bolton vs Fulham Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Tottenham vs Leeds Utd Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Coventry v Portsmouth Live\n- Enjoy The Full Match Between Sheff Utd vs Derby Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Southampton vs Luton Live\n- Enjoy the full match between Man U vs West Ham Live\n- Enjoy the full match between Liverpool vs Blackburn Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Middlesbrough vs Man City Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Man Utd vs Leeds United Live\n- Chelsea vs Bolton Live\n- Enjoy the full match between Wigan vs Tottenham Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Fulham vs Swindon Live\n- LIVE FOOTBALL (SOCCER): Enjoy the full match between West Ham vs Wolves Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Derby vs Millwall Live\n- LIVE FOOTBALL (SOCCER): Enjoy The Full Match Between Accring Stan vs Fulham Live\n- What is the game to watch tomorrow? / Every single team in the EPL is playing tomorrow and they all start at 1600 BST. I'm personally going to try and watch Liverpool and hopefully the streams for it will be less choppy and blurry since I assume everyone will want to see the United and Chelsea games\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer could not be used: 'inclusion_cues' must list 1-10 short cues (got 13)\nReturn the corrected answer with the same schema. JSON only; no prose or markdown.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Live Football Matches\", \"purpose\": \"Promote live football matches\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts about live football matches, including teams, venues, and event details\", \"inclusion_cues\": [\"Live football matches\", \"Teams and venues\", \"Event details\", \"Match coverage\", \"Sports enthusiasts\", \"Event excitement\", \"Live streaming\", \"Match highlights\", \"Team predictions\", \"Event dates\", \"Match coverage availability\"]}]}",
+   "parsed": null,
+   "error": "'inclusion_cues' must list 1-10 short cues (got 11)",
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 113,
+   "seed": 3280905146,
+   "seconds": 11.32
+  }
+ ]
+}

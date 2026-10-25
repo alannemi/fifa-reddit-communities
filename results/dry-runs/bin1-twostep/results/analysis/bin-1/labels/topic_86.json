@@ -1,0 +1,195 @@
+{
+ "period_bin": 1,
+ "topic_id": 86,
+ "keywords": "announcer, commentator, commentators, football commentary, commentary, broadcaster, martin tyler, ian, andres, rene higuita, freeman, trevor, alexi lalas, shaun, tackles",
+ "n_sample_posts": 28,
+ "sample_ids": [
+  "ce08n",
+  "chgw3",
+  "cg6an",
+  "cmlvq",
+  "cewfs",
+  "c1nhk",
+  "c75s0",
+  "cm4cq",
+  "c3jje",
+  "ct7ep",
+  "cmqlz",
+  "dcvah",
+  "b0jdt",
+  "cpqum",
+  "btaqr",
+  "cbl1a",
+  "c0zpi",
+  "dfb8g",
+  "ci3jx",
+  "bpcpc",
+  "bq3ug",
+  "dijmi",
+  "cp323",
+  "bubqy",
+  "cb70n",
+  "cjhgg",
+  "ci9lk",
+  "ci4mt"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "mps",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 4,
+ "prompt_version": "1.1",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Football Commentary Analysts",
+  "purpose": "Identify and categorize football commentary voices and analysts",
+  "emotion_tone": "critical and enthusiastic",
+  "description": "Posts discussing football commentators, their styles, and their impact on the game, with a focus on notable names and their roles in broadcasting.",
+  "inclusion_cues": [
+   "Morgan Freeman's sexy voice",
+   "Martin Tyler's commentary",
+   "Ian Darke's entertainment value",
+   "Alexi Lalas' analysis",
+   "Rene Higuita's irritating commentary",
+   "Edson Buddle's social media presence"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Commentators",
+    "purpose": "Identify and categorize football commentary voices and analysts",
+    "emotion_tone": "critical and enthusiastic",
+    "description": "Posts discussing football commentators, their styles, and their impact on the game, with a mix of admiration and criticism.",
+    "inclusion_cues": [
+     "Martin Tyler",
+     "Ian Darke",
+     "Alexi Lalas",
+     "Rene Higuita",
+     "Shaun",
+     "Trevor",
+     "Alesi Lalas",
+     "Reyne Higuita",
+     "Edson Buddle",
+     "Dhani Jones"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Football Commentary Analysts",
+    "purpose": "Identify and categorize football commentary voices and analysts",
+    "emotion_tone": "critical and enthusiastic",
+    "description": "Posts discussing football commentators, their styles, and their impact on the game, with a focus on notable names and their roles in broadcasting.",
+    "inclusion_cues": [
+     "Morgan Freeman's sexy voice",
+     "Martin Tyler's commentary",
+     "Ian Darke's entertainment value",
+     "Alexi Lalas' analysis",
+     "Rene Higuita's irritating commentary",
+     "Edson Buddle's social media presence"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: announcer, commentator, commentators, football commentary, commentary, broadcaster, martin tyler, ian, andres, rene higuita, freeman, trevor, alexi lalas, shaun, tackles\nPosts (one per line, title first):\n- Morgan Freeman's sexy voice to be used in USA bid for World Cup 2018/2022\n- The only sound worse than that of vuvuzelas = the voice of John Harkes / Honestly, what qualifies him for that job? He obviously lacks knowledge of the sport, and is yet to master English. Every time Martin Tyler says something clever or tries to make a conversation he always finds something stupid \n- Good job, ESPN analysts / Ruud Guillit, Steve Mcmanamanmanaman, Shaun Bartlett, guy who manages Wigan, and even Alexi Lalas have been great analysts. Ruud especially, man the dutch are silly Also: Martin Tyler is the greatest play by play commentator ever\n- Ian Darke: Best announcer... or bestest announcer? / Seriously. Love this guy. Easily the most entertaining and excitable announcer I've ever heard. Thank you ESPN for bringing him on board. Bring him back in 2014.\n- Who are the commentators for the World Cup? And why has my google-fu failed so miserably at finding this out? / There are a couple guys in particular I like, and of course a couple I don't. Like the NFL commentator they chose to as the \"on site peanut gallery\" in the US ENG match. Ugh. poorly done. \n- DeMarcus Beasley: Smooth Talker or Bumbling Idiot\n- Ray Hudson - The most awesomest english commentator, this is the guy ESPN should have gotten for the WC\n- The Most Excited Commentators In The History Of Excited Commentators\n- Call me biased...\n- Huseklepp showing off his lobbing skills.\n- \"Can futbol announcer Andres Cantor make any sport exciting?\"\n- Completely unbiased commentary.\n- A Voice to Match the Action: BBC vet Arlo White to succeed Kevin Calabro as Sounders FC play-by-play broadcaster\n- Edson Buddle at the ESPY's\n- Edson Buddle: Living Up to his Name\n- Extremely calm commentator ...\n- Worst commentators ever\n- Balon d'Or frontrunners. Agree or disagree?\n- Rene Higuita goal & worlds most irritating commentator.\n- The A-Z of Football Commentary\n- Edson Buddle, Social Media Guru?\n- British announcer Ian Darke hired as lead ESPN lead voice.\n- 10 Favourite British Announcer Calls During The World Cup\n- Why Edson Buddle deserves a USMNT callup, with poll\n- Dhani Jones, Cincinnati Bengals Linebacker and host of \"Dhani Tackles The Globe\" Talks Soccer and The World Cup\n- Football commentary done good - Netherlands - Argentina: Bergkamp Goal 1998\n- \"I can't believe I have a HD wide-screen TV and we're listening to the match on a wind-up radio. God bless Trevor Baylis\"\n- Stewie Griffin as Announcer at World Cup 2010\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Commentators\", \"purpose\": \"Identify and categorize football commentary voices and analysts\", \"emotion_tone\": \"critical and enthusiastic\", \"description\": \"Posts discussing football commentators, their styles, and their impact on the game, with a mix of admiration and criticism.\", \"inclusion_cues\": [\"Martin Tyler\", \"Ian Darke\", \"Alexi Lalas\", \"Rene Higuita\", \"Shaun\", \"Trevor\", \"Alesi Lalas\", \"Reyne Higuita\", \"Edson Buddle\", \"Dhani Jones\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Commentators",
+      "purpose": "Identify and categorize football commentary voices and analysts",
+      "emotion_tone": "critical and enthusiastic",
+      "description": "Posts discussing football commentators, their styles, and their impact on the game, with a mix of admiration and criticism.",
+      "inclusion_cues": [
+       "Martin Tyler",
+       "Ian Darke",
+       "Alexi Lalas",
+       "Rene Higuita",
+       "Shaun",
+       "Trevor",
+       "Alesi Lalas",
+       "Reyne Higuita",
+       "Edson Buddle",
+       "Dhani Jones"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 135,
+   "seed": 671574603,
+   "seconds": 11.04
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: announcer, commentator, commentators, football commentary, commentary, broadcaster, martin tyler, ian, andres, rene higuita, freeman, trevor, alexi lalas, shaun, tackles\nPosts (one per line, title first):\n- Morgan Freeman's sexy voice to be used in USA bid for World Cup 2018/2022\n- The only sound worse than that of vuvuzelas = the voice of John Harkes / Honestly, what qualifies him for that job? He obviously lacks knowledge of the sport, and is yet to master English. Every time Martin Tyler says something clever or tries to make a conversation he always finds something stupid \n- Good job, ESPN analysts / Ruud Guillit, Steve Mcmanamanmanaman, Shaun Bartlett, guy who manages Wigan, and even Alexi Lalas have been great analysts. Ruud especially, man the dutch are silly Also: Martin Tyler is the greatest play by play commentator ever\n- Ian Darke: Best announcer... or bestest announcer? / Seriously. Love this guy. Easily the most entertaining and excitable announcer I've ever heard. Thank you ESPN for bringing him on board. Bring him back in 2014.\n- Who are the commentators for the World Cup? And why has my google-fu failed so miserably at finding this out? / There are a couple guys in particular I like, and of course a couple I don't. Like the NFL commentator they chose to as the \"on site peanut gallery\" in the US ENG match. Ugh. poorly done. \n- DeMarcus Beasley: Smooth Talker or Bumbling Idiot\n- Ray Hudson - The most awesomest english commentator, this is the guy ESPN should have gotten for the WC\n- The Most Excited Commentators In The History Of Excited Commentators\n- Call me biased...\n- Huseklepp showing off his lobbing skills.\n- \"Can futbol announcer Andres Cantor make any sport exciting?\"\n- Completely unbiased commentary.\n- A Voice to Match the Action: BBC vet Arlo White to succeed Kevin Calabro as Sounders FC play-by-play broadcaster\n- Edson Buddle at the ESPY's\n- Edson Buddle: Living Up to his Name\n- Extremely calm commentator ...\n- Worst commentators ever\n- Balon d'Or frontrunners. Agree or disagree?\n- Rene Higuita goal & worlds most irritating commentator.\n- The A-Z of Football Commentary\n- Edson Buddle, Social Media Guru?\n- British announcer Ian Darke hired as lead ESPN lead voice.\n- 10 Favourite British Announcer Calls During The World Cup\n- Why Edson Buddle deserves a USMNT callup, with poll\n- Dhani Jones, Cincinnati Bengals Linebacker and host of \"Dhani Tackles The Globe\" Talks Soccer and The World Cup\n- Football commentary done good - Netherlands - Argentina: Bergkamp Goal 1998\n- \"I can't believe I have a HD wide-screen TV and we're listening to the match on a wind-up radio. God bless Trevor Baylis\"\n- Stewie Griffin as Announcer at World Cup 2010\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Football Commentary Analysts\", \"purpose\": \"Identify and categorize football commentary voices and analysts\", \"emotion_tone\": \"critical and enthusiastic\", \"description\": \"Posts discussing football commentators, their styles, and their impact on the game, with a focus on notable names and their roles in broadcasting.\", \"inclusion_cues\": [\"Morgan Freeman's sexy voice\", \"Martin Tyler's commentary\", \"Ian Darke's entertainment value\", \"Alexi Lalas' analysis\", \"Rene Higuita's irritating commentary\", \"Edson Buddle's social media presence\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Football Commentary Analysts",
+      "purpose": "Identify and categorize football commentary voices and analysts",
+      "emotion_tone": "critical and enthusiastic",
+      "description": "Posts discussing football commentators, their styles, and their impact on the game, with a focus on notable names and their roles in broadcasting.",
+      "inclusion_cues": [
+       "Morgan Freeman's sexy voice",
+       "Martin Tyler's commentary",
+       "Ian Darke's entertainment value",
+       "Alexi Lalas' analysis",
+       "Rene Higuita's irritating commentary",
+       "Edson Buddle's social media presence"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 135,
+   "seed": 3817060976,
+   "seconds": 12.14
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: announcer, commentator, commentators, football commentary, commentary, broadcaster, martin tyler, ian, andres, rene higuita, freeman, trevor, alexi lalas, shaun, tackles\nPosts (one per line, title first):\n- Morgan Freeman's sexy voice to be used in USA bid for World Cup 2018/2022\n- The only sound worse than that of vuvuzelas = the voice of John Harkes / Honestly, what qualifies him for that job? He obviously lacks knowledge of the sport, and is yet to master English. Every time Martin Tyler says something clever or tries to make a conversation he always finds something stupid \n- Good job, ESPN analysts / Ruud Guillit, Steve Mcmanamanmanaman, Shaun Bartlett, guy who manages Wigan, and even Alexi Lalas have been great analysts. Ruud especially, man the dutch are silly Also: Martin Tyler is the greatest play by play commentator ever\n- Ian Darke: Best announcer... or bestest announcer? / Seriously. Love this guy. Easily the most entertaining and excitable announcer I've ever heard. Thank you ESPN for bringing him on board. Bring him back in 2014.\n- Who are the commentators for the World Cup? And why has my google-fu failed so miserably at finding this out? / There are a couple guys in particular I like, and of course a couple I don't. Like the NFL commentator they chose to as the \"on site peanut gallery\" in the US ENG match. Ugh. poorly done. \n- DeMarcus Beasley: Smooth Talker or Bumbling Idiot\n- Ray Hudson - The most awesomest english commentator, this is the guy ESPN should have gotten for the WC\n- The Most Excited Commentators In The History Of Excited Commentators\n- Call me biased...\n- Huseklepp showing off his lobbing skills.\n- \"Can futbol announcer Andres Cantor make any sport exciting?\"\n- Completely unbiased commentary.\n- A Voice to Match the Action: BBC vet Arlo White to succeed Kevin Calabro as Sounders FC play-by-play broadcaster\n- Edson Buddle at the ESPY's\n- Edson Buddle: Living Up to his Name\n- Extremely calm commentator ...\n- Worst commentators ever\n- Balon d'Or frontrunners. Agree or disagree?\n- Rene Higuita goal & worlds most irritating commentator.\n- The A-Z of Football Commentary\n- Edson Buddle, Social Media Guru?\n- British announcer Ian Darke hired as lead ESPN lead voice.\n- 10 Favourite British Announcer Calls During The World Cup\n- Why Edson Buddle deserves a USMNT callup, with poll\n- Dhani Jones, Cincinnati Bengals Linebacker and host of \"Dhani Tackles The Globe\" Talks Soccer and The World Cup\n- Football commentary done good - Netherlands - Argentina: Bergkamp Goal 1998\n- \"I can't believe I have a HD wide-screen TV and we're listening to the match on a wind-up radio. God bless Trevor Baylis\"\n- Stewie Griffin as Announcer at World Cup 2010\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Commentators\", \"purpose\": \"Identify and categorize football commentary voices and analysts\", \"emotion_tone\": \"critical and enthusiastic\", \"description\": \"Posts discussing football commentators, their styles, and their impact on the game, with a mix of admiration and criticism.\", \"inclusion_cues\": [\"Martin Tyler\", \"Ian Darke\", \"Alexi Lalas\", \"Rene Higuita\", \"Shaun\", \"Trevor\", \"Alesi Lalas\", \"Reyne Higuita\", \"Edson Buddle\", \"Dhani Jones\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Football Commentary Analysts\", \"purpose\": \"Identify and categorize football commentary voices and analysts\", \"emotion_tone\": \"critical and enthusiastic\", \"description\": \"Posts discussing football commentators, their styles, and their impact on the game, with a focus on notable names and their roles in broadcasting.\", \"inclusion_cues\": [\"Morgan Freeman's sexy voice\", \"Martin Tyler's commentary\", \"Ian Darke's entertainment value\", \"Alexi Lalas' analysis\", \"Rene Higuita's irritating commentary\", \"Edson Buddle's social media presence\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Football Commentators\", \"purpose\": \"Identify and categorize football commentary voices and analysts\", \"emotion_tone\": \"critical and enthusiastic\", \"description\": \"Posts discussing football commentators, their styles, and their impact on the game, with a mix of admiration and criticism.\", \"inclusion_cues\": [\"Martin Tyler\", \"Ian Darke\", \"Alexi Lalas\", \"Rene Higuita\", \"Shaun\", \"Trevor\", \"Alesi Lalas\", \"Reyne Higuita\", \"Edson Buddle\", \"Dhani Jones\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 134,
+   "seed": 1786838080,
+   "seconds": 6.73
+  }
+ ]
+}

@@ -133,6 +133,7 @@ cp "data/yearly datasets/soccer.data.cleaned-2010.csv" "$OUT/r-mini/data/yearly 
 TAG_IN_ROOT=$OUT/r-mini TAG_OUT_ROOT=$OUT/r-out TAG_ALLOW_PARTIAL=1 Rscript code/06-tag-corpus.R
 TAG_IN_ROOT=$OUT/r-mini TAG_OUT_ROOT=$OUT/r-out TAG_ANALYSIS_DIR=$OUT/results/analysis Rscript code/07-validate-analysis.R
 ```
-The dry runs of sessions 05–07 are under `results/dry-runs/` (gitignored): `bin1-full` (12 labelled topics), `bin1-full92`
+The dry runs of sessions 05–07 are under `results/dry-runs/` (their pipeline outputs are tracked since 2026-10-25; the
+join tables, the R mini-corpus copies and the caches are not — `results/README.md`): `bin1-full` (12 labelled topics), `bin1-full92`
 (all 92 topics; the single-prompt taxonomy that led to D5), `bin1-twostep` (stopped after round 1 of the definitions
 debate), `h7-bin1` (session 07: S1 + S2 after the harmonization, identical UMAP array and HDBSCAN labels).

@@ -1,0 +1,187 @@
+{
+ "period_bin": 1,
+ "topic_id": 84,
+ "keywords": "scottish cup, celtic, scottish football, scottish premier, rangers, scots, dundee united, glasgow, british team, league trophy, goal season, relegated, dundee, football league, team win",
+ "n_sample_posts": 28,
+ "sample_ids": [
+  "bntr2",
+  "broxl",
+  "c03ud",
+  "btnw0",
+  "d86w2",
+  "deb28",
+  "demhe",
+  "d1cvp",
+  "bvy7r",
+  "c1g8h",
+  "c0is5",
+  "ddnoq",
+  "akfa8",
+  "bp7fp",
+  "cqoc6",
+  "cqkx3",
+  "cj9qg",
+  "ce9io",
+  "cec0v",
+  "bw6jn",
+  "bqe0d",
+  "cqbcm",
+  "de0gy",
+  "c4m1t",
+  "ddd9m",
+  "c0zga",
+  "c45ja",
+  "c3hfe"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "mps",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 4,
+ "prompt_version": "1.1",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Scottish Cup",
+  "purpose": "Cup competitions in Scotland",
+  "emotion_tone": "Excitement",
+  "description": "Posts about Scottish Cup finals, relegation, and team wins",
+  "inclusion_cues": [
+   "Falkirk relegated",
+   "Dundee United victorious",
+   "Celtic triumphed",
+   "Rangers win 53rd title"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Scottish Cup",
+    "purpose": "Cup competitions",
+    "emotion_tone": "enthusiastic",
+    "description": "Posts about Scottish cup competitions, team wins, and related events",
+    "inclusion_cues": [
+     "Celtic",
+     "Rangers",
+     "Dundee United",
+     "Falkirk",
+     "Scottish Premier League",
+     "Scottish cup final",
+     "goal season",
+     "relegated",
+     "team win"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Scottish Cup",
+    "purpose": "Cup competitions in Scotland",
+    "emotion_tone": "Excitement",
+    "description": "Posts about Scottish Cup finals, relegation, and team wins",
+    "inclusion_cues": [
+     "Falkirk relegated",
+     "Dundee United victorious",
+     "Celtic triumphed",
+     "Rangers win 53rd title"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: scottish cup, celtic, scottish football, scottish premier, rangers, scots, dundee united, glasgow, british team, league trophy, goal season, relegated, dundee, football league, team win\nPosts (one per line, title first):\n- Celtic fans threaten to boycott away games in protest against the Scottish Football Association's disciplinary system.\n- Rangers dominate Scottish 'Player of the Year' Award, all 4 nominees owned by the club.\n- Celtic triumphed in the final Old Firm game of the season as Rangers sustained a first derby defeat in over a year.\n- David Weir (who turns 40 in 3 weeks) wins Scottish Premier League footballer of the year; Walter Smith wins manager award.\n- Celtic – 42 Scottish league titles, and the first British team to win the European Cup in 1967 - now trapped in the boom-bust cycle of Champions' League TV money\n- Rangers fan talking about their behaviour ahead of last night's game\n- Scotland's faiths come together\n- Scotland ehm...brilliant tactics against Sweden (and Ibra) found in the locker room after the game.\n- Rangers win 53rd Scottish title\n- Kilmarnock 0-0 Falkirk (Falkirk relegated, I'm heartbroken Reddit)\n- Rangers chairman wants revamped SPL to reflect status of Old Firm\n- Putting the Football League Trophy out of its misery - Johnstones Paint no more\n- Freeze hits Scottish games again\n- Falkirk score THE goal of the season (I'm biased)\n- Fans stay at home as Man U beats Celtic\n- United Youngsters overcome Celtic in Toronto\n- For those of you new to soccer, you need to see Celtic's \"You'll Never Walk Alone\"\n- And who says us Scots are Anti English? (Spotted in Tesco toy aisle today)\n- As A Scotsman, I just punched the ceiling as America scored / USA USA USA USA USA USA USA USA USA USA USA USA USA USA!!!!!!!\n- One of the oldest football derbies to be played in USA. Rangers v Celtic\n- Rangers call for end of Scottish Premier League split\n- \"Aging Scots\" taking over Boro?\n- r/Soccer, help me settle an argument. / Celtic FC. is it (seltic) or (keltic)?\n- Dundee United victorious in 2nd EVER Scottish cup final!\n- Are Rangers and Celtic retarding players development?\n- Falkirk warn relegation from SPL would cost club £2m :'(\n- \"We're leaving for Glasgow straight after training\" - will the tiny Ross County win the Scottish cup?\n- Darren Barr backs Falkirk to make quick return to SPL (while be bogs off to Hearts!)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Scottish Cup\", \"purpose\": \"Cup competitions\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts about Scottish cup competitions, team wins, and related events\", \"inclusion_cues\": [\"Celtic\", \"Rangers\", \"Dundee United\", \"Falkirk\", \"Scottish Premier League\", \"Scottish cup final\", \"goal season\", \"relegated\", \"team win\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Scottish Cup",
+      "purpose": "Cup competitions",
+      "emotion_tone": "enthusiastic",
+      "description": "Posts about Scottish cup competitions, team wins, and related events",
+      "inclusion_cues": [
+       "Celtic",
+       "Rangers",
+       "Dundee United",
+       "Falkirk",
+       "Scottish Premier League",
+       "Scottish cup final",
+       "goal season",
+       "relegated",
+       "team win"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 108,
+   "seed": 2885442658,
+   "seconds": 11.04
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: scottish cup, celtic, scottish football, scottish premier, rangers, scots, dundee united, glasgow, british team, league trophy, goal season, relegated, dundee, football league, team win\nPosts (one per line, title first):\n- Celtic fans threaten to boycott away games in protest against the Scottish Football Association's disciplinary system.\n- Rangers dominate Scottish 'Player of the Year' Award, all 4 nominees owned by the club.\n- Celtic triumphed in the final Old Firm game of the season as Rangers sustained a first derby defeat in over a year.\n- David Weir (who turns 40 in 3 weeks) wins Scottish Premier League footballer of the year; Walter Smith wins manager award.\n- Celtic – 42 Scottish league titles, and the first British team to win the European Cup in 1967 - now trapped in the boom-bust cycle of Champions' League TV money\n- Rangers fan talking about their behaviour ahead of last night's game\n- Scotland's faiths come together\n- Scotland ehm...brilliant tactics against Sweden (and Ibra) found in the locker room after the game.\n- Rangers win 53rd Scottish title\n- Kilmarnock 0-0 Falkirk (Falkirk relegated, I'm heartbroken Reddit)\n- Rangers chairman wants revamped SPL to reflect status of Old Firm\n- Putting the Football League Trophy out of its misery - Johnstones Paint no more\n- Freeze hits Scottish games again\n- Falkirk score THE goal of the season (I'm biased)\n- Fans stay at home as Man U beats Celtic\n- United Youngsters overcome Celtic in Toronto\n- For those of you new to soccer, you need to see Celtic's \"You'll Never Walk Alone\"\n- And who says us Scots are Anti English? (Spotted in Tesco toy aisle today)\n- As A Scotsman, I just punched the ceiling as America scored / USA USA USA USA USA USA USA USA USA USA USA USA USA USA!!!!!!!\n- One of the oldest football derbies to be played in USA. Rangers v Celtic\n- Rangers call for end of Scottish Premier League split\n- \"Aging Scots\" taking over Boro?\n- r/Soccer, help me settle an argument. / Celtic FC. is it (seltic) or (keltic)?\n- Dundee United victorious in 2nd EVER Scottish cup final!\n- Are Rangers and Celtic retarding players development?\n- Falkirk warn relegation from SPL would cost club £2m :'(\n- \"We're leaving for Glasgow straight after training\" - will the tiny Ross County win the Scottish cup?\n- Darren Barr backs Falkirk to make quick return to SPL (while be bogs off to Hearts!)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Scottish Cup\", \"purpose\": \"Cup competitions in Scotland\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts about Scottish Cup finals, relegation, and team wins\", \"inclusion_cues\": [\"Falkirk relegated\", \"Dundee United victorious\", \"Celtic triumphed\", \"Rangers win 53rd title\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Scottish Cup",
+      "purpose": "Cup competitions in Scotland",
+      "emotion_tone": "Excitement",
+      "description": "Posts about Scottish Cup finals, relegation, and team wins",
+      "inclusion_cues": [
+       "Falkirk relegated",
+       "Dundee United victorious",
+       "Celtic triumphed",
+       "Rangers win 53rd title"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 94,
+   "seed": 4148446693,
+   "seconds": 12.14
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: scottish cup, celtic, scottish football, scottish premier, rangers, scots, dundee united, glasgow, british team, league trophy, goal season, relegated, dundee, football league, team win\nPosts (one per line, title first):\n- Celtic fans threaten to boycott away games in protest against the Scottish Football Association's disciplinary system.\n- Rangers dominate Scottish 'Player of the Year' Award, all 4 nominees owned by the club.\n- Celtic triumphed in the final Old Firm game of the season as Rangers sustained a first derby defeat in over a year.\n- David Weir (who turns 40 in 3 weeks) wins Scottish Premier League footballer of the year; Walter Smith wins manager award.\n- Celtic – 42 Scottish league titles, and the first British team to win the European Cup in 1967 - now trapped in the boom-bust cycle of Champions' League TV money\n- Rangers fan talking about their behaviour ahead of last night's game\n- Scotland's faiths come together\n- Scotland ehm...brilliant tactics against Sweden (and Ibra) found in the locker room after the game.\n- Rangers win 53rd Scottish title\n- Kilmarnock 0-0 Falkirk (Falkirk relegated, I'm heartbroken Reddit)\n- Rangers chairman wants revamped SPL to reflect status of Old Firm\n- Putting the Football League Trophy out of its misery - Johnstones Paint no more\n- Freeze hits Scottish games again\n- Falkirk score THE goal of the season (I'm biased)\n- Fans stay at home as Man U beats Celtic\n- United Youngsters overcome Celtic in Toronto\n- For those of you new to soccer, you need to see Celtic's \"You'll Never Walk Alone\"\n- And who says us Scots are Anti English? (Spotted in Tesco toy aisle today)\n- As A Scotsman, I just punched the ceiling as America scored / USA USA USA USA USA USA USA USA USA USA USA USA USA USA!!!!!!!\n- One of the oldest football derbies to be played in USA. Rangers v Celtic\n- Rangers call for end of Scottish Premier League split\n- \"Aging Scots\" taking over Boro?\n- r/Soccer, help me settle an argument. / Celtic FC. is it (seltic) or (keltic)?\n- Dundee United victorious in 2nd EVER Scottish cup final!\n- Are Rangers and Celtic retarding players development?\n- Falkirk warn relegation from SPL would cost club £2m :'(\n- \"We're leaving for Glasgow straight after training\" - will the tiny Ross County win the Scottish cup?\n- Darren Barr backs Falkirk to make quick return to SPL (while be bogs off to Hearts!)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Scottish Cup\", \"purpose\": \"Cup competitions\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts about Scottish cup competitions, team wins, and related events\", \"inclusion_cues\": [\"Celtic\", \"Rangers\", \"Dundee United\", \"Falkirk\", \"Scottish Premier League\", \"Scottish cup final\", \"goal season\", \"relegated\", \"team win\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Scottish Cup\", \"purpose\": \"Cup competitions in Scotland\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts about Scottish Cup finals, relegation, and team wins\", \"inclusion_cues\": [\"Falkirk relegated\", \"Dundee United victorious\", \"Celtic triumphed\", \"Rangers win 53rd title\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Scottish Cup\", \"purpose\": \"Cup competitions in Scotland\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts about Scottish Cup finals, relegation, and team wins\", \"inclusion_cues\": [\"Falkirk relegated\", \"Dundee United victorious\", \"Celtic triumphed\", \"Rangers win 53rd title\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 93,
+   "seed": 2108924161,
+   "seconds": 6.73
+  }
+ ]
+}

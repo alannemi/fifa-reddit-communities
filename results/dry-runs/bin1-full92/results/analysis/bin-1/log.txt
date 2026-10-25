@@ -1,0 +1,392 @@
+2026-10-23 12:10:14,424 | INFO | === stage topics, bin 1 === args: {'stage': 'topics', 'bin': 1, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-MiniLM-L6-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': 'results/dry-runs/bin1-full', 'allow_partial': False, 'force': False}
+2026-10-23 12:10:21,402 | INFO | topics: bin 1 on backend cpu ({'backend': 'cpu', 'cuml_accel': False, 'cuml_version': None, 'umap_class': 'umap.umap_.UMAP', 'hdbscan_class': 'hdbscan.hdbscan_.HDBSCAN'})
+2026-10-23 12:10:22,399 | INFO | bin 1: 10002 documents from years [2010]
+2026-10-23 12:10:22,416 | INFO | embeddings: cache hit 2010.npz (13638 docs)
+2026-10-23 12:10:49,427 | INFO | UMAP: 9809 x 384 -> 5 dims in 0.4 min
+2026-10-23 12:10:49,673 | INFO | guard: min_cluster_size=25 -> 92 topics, 35.9 % outliers
+2026-10-23 12:10:53,277 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-23 12:10:53,277 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-23 12:10:53,285 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22 "HTTP/1.1 200 OK"
+2026-10-23 12:10:53,320 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-23 12:10:53,328 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22fd1b291129c607e5d49799f87cb219b27f98acdf%22 "HTTP/1.1 200 OK"
+2026-10-23 12:10:53,329 | INFO | Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.
+2026-10-23 12:10:53,360 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-23 12:10:53,370 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22fd1b291129c607e5d49799f87cb219b27f98acdf%22 "HTTP/1.1 200 OK"
+2026-10-23 12:10:53,402 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-10-23 12:10:53,412 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2FREADME.md=&etag=%2244af2e3b0fa3a0b6239e48422972bf755f28fde0%22 "HTTP/1.1 200 OK"
+2026-10-23 12:10:53,451 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-23 12:10:53,461 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22 "HTTP/1.1 200 OK"
+2026-10-23 12:10:53,494 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-23 12:10:53,551 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/sentence_bert_config.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fsentence_bert_config.json=&etag=%2259d594003bf59880a884c574bf88ef7555bb0202%22 "HTTP/1.1 200 OK"
+2026-10-23 12:10:53,593 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-10-23 12:10:53,631 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-10-23 12:10:53,680 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-10-23 12:10:53,801 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-10-23 12:10:53,843 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-23 12:10:53,877 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-23 12:10:53,941 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-23 12:10:53,950 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/1_Pooling%2Fconfig.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2F1_Pooling%2Fconfig.json=&etag=%22d1514c3162bbe87b343f565fadc62e6c06f04f03%22 "HTTP/1.1 200 OK"
+2026-10-23 12:10:53,985 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/2_Normalize/config.json "HTTP/1.1 404 Not Found"
+2026-10-23 12:10:54,021 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-10-23 12:11:02,771 | INFO | BERTopic renumbered 35 topic id(s) (ties in size): {14: 15, 15: 14, 20: 21, 21: 20, 34: 35, 35: 34, 37: 38, 38: 37, 40: 41, 41: 40}
+2026-10-23 12:12:09,194 | INFO | report written: /Users/alannemirovski/Library/CloudStorage/Dropbox/Research/fifa-reddit-communities/results/dry-runs/bin1-full/results/analysis/bin-1/report.html
+2026-10-23 12:12:09,195 | INFO | topics: bin 1 done in 1.9 min — 92 topics, 35.9 % raw outliers, T=None -> /Users/alannemirovski/Library/CloudStorage/Dropbox/Research/fifa-reddit-communities/results/dry-runs/bin1-full/results/analysis/bin-1
+2026-10-23 12:12:11,207 | INFO | === stage reassign, bin 1 === args: {'stage': 'reassign', 'bin': 1, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-MiniLM-L6-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': 0.5, 'years': None, 'out_root': 'results/dry-runs/bin1-full', 'allow_partial': False, 'force': False}
+2026-10-23 12:12:13,104 | INFO | bin 1: 10002 documents from years [2010]
+2026-10-23 12:12:22,818 | INFO | No device provided, using mps
+2026-10-23 12:12:22,918 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-23 12:12:22,927 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:22,940 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:22,972 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-23 12:12:22,972 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-23 12:12:22,981 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22fd1b291129c607e5d49799f87cb219b27f98acdf%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:22,991 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22fd1b291129c607e5d49799f87cb219b27f98acdf%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:22,992 | INFO | Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.
+2026-10-23 12:12:23,021 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-23 12:12:23,030 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22fd1b291129c607e5d49799f87cb219b27f98acdf%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:23,065 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-10-23 12:12:23,075 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2FREADME.md=&etag=%2244af2e3b0fa3a0b6239e48422972bf755f28fde0%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:23,089 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2FREADME.md=&etag=%2244af2e3b0fa3a0b6239e48422972bf755f28fde0%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:23,124 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-23 12:12:23,134 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:23,166 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-23 12:12:23,175 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/sentence_bert_config.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fsentence_bert_config.json=&etag=%2259d594003bf59880a884c574bf88ef7555bb0202%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:23,207 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/sentence_bert_config.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fsentence_bert_config.json=&etag=%2259d594003bf59880a884c574bf88ef7555bb0202%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:23,242 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-10-23 12:12:23,291 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-10-23 12:12:23,326 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-23 12:12:23,336 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2F1110a243fdf4706b3f48f1d95db1a4f5529b4d41%2Fconfig.json=&etag=%2272b987fd805cfa2b58c4c8c952b274a11bfd5a00%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:23,351 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2F1110a243fdf4706b3f48f1d95db1a4f5529b4d41%2Fconfig.json=&etag=%2272b987fd805cfa2b58c4c8c952b274a11bfd5a00%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:23,399 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-10-23 12:12:23,456 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/model.safetensors "HTTP/1.1 302 Found"
+2026-10-23 12:12:23,610 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/xet-read-token/1110a243fdf4706b3f48f1d95db1a4f5529b4d41 "HTTP/1.1 200 OK"
+2026-10-23 12:12:26,169 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-10-23 12:12:26,203 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/processor_config.json "HTTP/1.1 404 Not Found"
+2026-10-23 12:12:26,235 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-10-23 12:12:26,268 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-10-23 12:12:26,297 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-23 12:12:26,306 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2F1110a243fdf4706b3f48f1d95db1a4f5529b4d41%2Ftokenizer_config.json=&etag=%22c79f2b6a0cea6f4b564fed1938984bace9d30ff0%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:26,316 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer_config.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2F1110a243fdf4706b3f48f1d95db1a4f5529b4d41%2Ftokenizer_config.json=&etag=%22c79f2b6a0cea6f4b564fed1938984bace9d30ff0%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:26,355 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-23 12:12:26,391 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-23 12:12:26,421 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-10-23 12:12:26,430 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/vocab.txt?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2F1110a243fdf4706b3f48f1d95db1a4f5529b4d41%2Fvocab.txt=&etag=%22fb140275c155a9c7c5a3b3e0e77a9e839594a938%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:26,447 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/vocab.txt?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2F1110a243fdf4706b3f48f1d95db1a4f5529b4d41%2Fvocab.txt=&etag=%22fb140275c155a9c7c5a3b3e0e77a9e839594a938%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:26,488 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-23 12:12:26,499 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2F1110a243fdf4706b3f48f1d95db1a4f5529b4d41%2Ftokenizer.json=&etag=%22cb202bfe2e3c98645018a6d12f182a434c9d3e02%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:26,526 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/tokenizer.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2F1110a243fdf4706b3f48f1d95db1a4f5529b4d41%2Ftokenizer.json=&etag=%22cb202bfe2e3c98645018a6d12f182a434c9d3e02%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:26,581 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/added_tokens.json "HTTP/1.1 404 Not Found"
+2026-10-23 12:12:26,614 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/special_tokens_map.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-23 12:12:26,624 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/special_tokens_map.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2F1110a243fdf4706b3f48f1d95db1a4f5529b4d41%2Fspecial_tokens_map.json=&etag=%22e7b0375001f109a6b8873d756ad4f7bbb15fbaa5%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:26,636 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/special_tokens_map.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2F1110a243fdf4706b3f48f1d95db1a4f5529b4d41%2Fspecial_tokens_map.json=&etag=%22e7b0375001f109a6b8873d756ad4f7bbb15fbaa5%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:26,672 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-10-23 12:12:26,732 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-23 12:12:26,751 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/1_Pooling%2Fconfig.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2F1_Pooling%2Fconfig.json=&etag=%22d1514c3162bbe87b343f565fadc62e6c06f04f03%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:26,763 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/1_Pooling%2Fconfig.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2F1_Pooling%2Fconfig.json=&etag=%22d1514c3162bbe87b343f565fadc62e6c06f04f03%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:26,803 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/2_Normalize/config.json "HTTP/1.1 404 Not Found"
+2026-10-23 12:12:26,839 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-10-23 12:12:27,085 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-23 12:12:27,095 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:27,129 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-23 12:12:27,138 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22fd1b291129c607e5d49799f87cb219b27f98acdf%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:27,138 | INFO | Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.
+2026-10-23 12:12:27,171 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-23 12:12:27,180 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/config_sentence_transformers.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22fd1b291129c607e5d49799f87cb219b27f98acdf%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:27,215 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-10-23 12:12:27,224 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2FREADME.md=&etag=%2244af2e3b0fa3a0b6239e48422972bf755f28fde0%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:27,255 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-23 12:12:27,265 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/modules.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:27,297 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-23 12:12:27,307 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/sentence_bert_config.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2Fsentence_bert_config.json=&etag=%2259d594003bf59880a884c574bf88ef7555bb0202%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:27,340 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-10-23 12:12:27,379 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-10-23 12:12:27,420 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-10-23 12:12:27,499 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-10-23 12:12:27,538 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-23 12:12:27,577 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-23 12:12:27,637 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-23 12:12:27,646 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/1_Pooling%2Fconfig.json?%2Fsentence-transformers%2Fall-MiniLM-L6-v2%2Fresolve%2Fmain%2F1_Pooling%2Fconfig.json=&etag=%22d1514c3162bbe87b343f565fadc62e6c06f04f03%22 "HTTP/1.1 200 OK"
+2026-10-23 12:12:27,679 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/2_Normalize/config.json "HTTP/1.1 404 Not Found"
+2026-10-23 12:12:27,743 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-10-23 12:12:29,178 | INFO | report written: /Users/alannemirovski/Library/CloudStorage/Dropbox/Research/fifa-reddit-communities/results/dry-runs/bin1-full/results/analysis/bin-1/report.html
+2026-10-23 12:12:29,179 | INFO | reassign: bin 1 at T=0.5000 -> 2151 reassigned, 14.0 % outliers remain
+2026-10-23 12:12:30,971 | INFO | === stage label, bin 1 === args: {'stage': 'label', 'bin': 1, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 12, 'outlier_threshold': None, 'years': None, 'out_root': 'results/dry-runs/bin1-full', 'allow_partial': False, 'force': False}
+2026-10-23 12:12:31,958 | INFO | bin 1: 10002 documents from years [2010]
+2026-10-23 12:12:36,690 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-23 12:12:36,728 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-23 12:12:36,995 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B "HTTP/1.1 200 OK"
+2026-10-23 12:12:42,935 | INFO | LLM loaded: Qwen/Qwen3-1.7B (revision 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e) on mps, bfloat16, batch 4, greedy decoding
+2026-10-23 12:12:42,995 | INFO | labelling bin 1: 12 topics, 0 already done, 12 to do
+2026-10-23 12:13:12,501 | INFO | LLM: 4 prompt(s) in 29.4s (7.4 s/prompt; cap 600 tokens)
+2026-10-23 12:13:48,479 | INFO | LLM: 4 prompt(s) in 35.9s (9.0 s/prompt; cap 600 tokens)
+2026-10-23 12:14:20,450 | INFO | LLM: 4 prompt(s) in 31.9s (8.0 s/prompt; cap 600 tokens)
+2026-10-23 12:14:49,688 | INFO | LLM: 4 prompt(s) in 29.2s (7.3 s/prompt; cap 600 tokens)
+2026-10-23 12:15:26,623 | INFO | LLM: 4 prompt(s) in 36.9s (9.2 s/prompt; cap 600 tokens)
+2026-10-23 12:15:57,429 | INFO | LLM: 4 prompt(s) in 30.8s (7.7 s/prompt; cap 600 tokens)
+2026-10-23 12:15:57,433 | INFO | topic 9: World Cup Pics [identical, 1 round(s)]
+2026-10-23 12:15:57,433 | INFO | label: round 1 done — 1/12 items resolved
+2026-10-23 12:16:29,248 | INFO | LLM: 4 prompt(s) in 31.8s (7.9 s/prompt; cap 600 tokens)
+2026-10-23 12:17:14,303 | INFO | LLM: 4 prompt(s) in 45.0s (11.3 s/prompt; cap 600 tokens)
+2026-10-23 12:17:43,614 | INFO | LLM: 3 prompt(s) in 29.3s (9.8 s/prompt; cap 600 tokens)
+2026-10-23 12:18:07,790 | INFO | LLM: 3 prompt(s) in 24.2s (8.1 s/prompt; cap 600 tokens)
+2026-10-23 12:18:07,794 | INFO | topic 1: World Cup Predictions [stalemate, 2 round(s)] NEEDS REVIEW
+2026-10-23 12:18:07,794 | INFO | topic 2: EPL Support [accepted_by_A, 2 round(s)]
+2026-10-23 12:18:07,795 | INFO | topic 3: World Cup Match Predictions [accepted_by_A, 2 round(s)]
+2026-10-23 12:18:07,795 | INFO | topic 4: FIFA Livestream Matches [accepted_by_A, 2 round(s)]
+2026-10-23 12:18:07,796 | INFO | topic 5: World Cup Streaming [accepted_by_A, 2 round(s)]
+2026-10-23 12:18:07,796 | INFO | topic 6: Vuvuzela Complaints [accepted_by_A, 2 round(s)]
+2026-10-23 12:18:07,797 | INFO | topic 7: American Football Interest [accepted_by_A, 2 round(s)]
+2026-10-23 12:18:07,797 | INFO | topic 8: Referee Criticism [identical, 2 round(s)]
+2026-10-23 12:18:07,798 | INFO | topic 10: Real Madrid Transfer Rumors [accepted_by_A, 2 round(s)]
+2026-10-23 12:18:27,929 | INFO | LLM: 2 prompt(s) in 20.1s (10.1 s/prompt; cap 600 tokens)
+2026-10-23 12:18:38,599 | INFO | LLM: 1 prompt(s) in 10.7s (10.7 s/prompt; cap 600 tokens)
+2026-10-23 12:18:38,602 | INFO | topic 11: jersey [accepted_by_B, 2 round(s)]
+2026-10-23 12:18:38,603 | INFO | label: round 2 done — 11/12 items resolved
+2026-10-23 12:18:50,665 | INFO | LLM: 1 prompt(s) in 12.1s (12.1 s/prompt; cap 600 tokens)
+2026-10-23 12:18:50,668 | INFO | topic 0: Arsenal vs Liverpool [accepted_by_A, 3 round(s)]
+2026-10-23 12:18:50,668 | INFO | label: round 3 done — 12/12 items resolved
+2026-10-23 12:18:50,735 | INFO | labelling bin 1: 12 topics labelled, 1 need review -> /Users/alannemirovski/Library/CloudStorage/Dropbox/Research/fifa-reddit-communities/results/dry-runs/bin1-full/results/analysis/bin-1/topics_labelled.csv
+2026-10-23 12:18:51,410 | INFO | report written: /Users/alannemirovski/Library/CloudStorage/Dropbox/Research/fifa-reddit-communities/results/dry-runs/bin1-full/results/analysis/bin-1/report.html
+2026-10-23 12:18:53,414 | INFO | === stage taxonomy, bin 1 === args: {'stage': 'taxonomy', 'bin': 1, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': 'results/dry-runs/bin1-full', 'allow_partial': False, 'force': False}
+2026-10-23 12:18:58,658 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-23 12:18:58,699 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-23 12:18:58,963 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B "HTTP/1.1 200 OK"
+2026-10-23 12:19:04,221 | INFO | LLM loaded: Qwen/Qwen3-1.7B (revision 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e) on mps, bfloat16, batch 4, greedy decoding
+2026-10-23 12:19:04,268 | INFO | taxonomy bin 1: 12 topics (0 merged away by overrides)
+2026-10-23 12:20:08,109 | INFO | LLM: 1 prompt(s) in 63.8s (63.8 s/prompt; cap 8000 tokens)
+2026-10-23 12:21:26,053 | INFO | LLM: 1 prompt(s) in 77.9s (77.9 s/prompt; cap 8000 tokens)
+2026-10-23 12:22:43,176 | INFO | LLM: 1 prompt(s) in 77.1s (77.1 s/prompt; cap 8000 tokens)
+2026-10-23 12:24:03,345 | INFO | LLM: 1 prompt(s) in 80.2s (80.2 s/prompt; cap 8000 tokens)
+2026-10-23 12:24:03,347 | INFO | taxonomy: round 1 done — 1/1 items resolved
+2026-10-23 12:24:03,347 | INFO | taxonomy: round 2 done — 1/1 items resolved
+2026-10-23 12:24:03,355 | INFO | taxonomy bin 1: 0 categories [no_answer, 1 round(s)], 0 topics repaired, 12 unplaced -> /Users/alannemirovski/Library/CloudStorage/Dropbox/Research/fifa-reddit-communities/results/dry-runs/bin1-full/results/analysis/bin-1/categories.csv
+2026-10-23 12:24:03,832 | INFO | report written: /Users/alannemirovski/Library/CloudStorage/Dropbox/Research/fifa-reddit-communities/results/dry-runs/bin1-full/results/analysis/bin-1/report.html
+2026-10-23 12:27:26,907 | INFO | === stage taxonomy, bin 1 === args: {'stage': 'taxonomy', 'bin': 1, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': 'results/dry-runs/bin1-full', 'allow_partial': False, 'force': True}
+2026-10-23 12:27:31,142 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-23 12:27:31,180 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-23 12:27:31,448 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B "HTTP/1.1 200 OK"
+2026-10-23 12:27:37,557 | INFO | LLM loaded: Qwen/Qwen3-1.7B (revision 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e) on mps, bfloat16, batch 4, greedy decoding
+2026-10-23 12:27:37,608 | INFO | taxonomy bin 1: 12 topics (0 merged away by overrides)
+2026-10-23 12:28:41,583 | INFO | LLM: 1 prompt(s) in 63.9s (63.9 s/prompt; cap 8000 tokens)
+2026-10-23 12:29:49,814 | INFO | LLM: 1 prompt(s) in 68.2s (68.2 s/prompt; cap 8000 tokens)
+2026-10-23 12:31:09,126 | INFO | LLM: 1 prompt(s) in 79.3s (79.3 s/prompt; cap 8000 tokens)
+2026-10-23 12:31:46,263 | INFO | LLM: 1 prompt(s) in 37.1s (37.1 s/prompt; cap 8000 tokens)
+2026-10-23 12:31:46,264 | INFO | taxonomy: round 1 done — 0/1 items resolved
+2026-10-23 12:33:20,193 | INFO | LLM: 1 prompt(s) in 93.9s (93.9 s/prompt; cap 8000 tokens)
+2026-10-23 12:33:58,065 | INFO | LLM: 1 prompt(s) in 37.9s (37.9 s/prompt; cap 8000 tokens)
+2026-10-23 12:33:58,066 | INFO | taxonomy: round 2 done — 1/1 items resolved
+2026-10-23 12:33:58,080 | INFO | taxonomy bin 1: 6 categories [identical, 2 round(s)], 1 topics repaired, 0 unplaced -> /Users/alannemirovski/Library/CloudStorage/Dropbox/Research/fifa-reddit-communities/results/dry-runs/bin1-full/results/analysis/bin-1/categories.csv
+2026-10-23 12:33:58,553 | INFO | report written: /Users/alannemirovski/Library/CloudStorage/Dropbox/Research/fifa-reddit-communities/results/dry-runs/bin1-full/results/analysis/bin-1/report.html
+2026-10-23 12:34:06,890 | INFO | === stage report, bin 1 === args: {'stage': 'report', 'bin': 1, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': 'results/dry-runs/bin1-full', 'allow_partial': False, 'force': False}
+2026-10-23 12:34:07,188 | INFO | report written: /Users/alannemirovski/Library/CloudStorage/Dropbox/Research/fifa-reddit-communities/results/dry-runs/bin1-full/results/analysis/bin-1/report.html
+2026-10-23 12:38:08,013 | INFO | === stage label, bin 1 === args: {'stage': 'label', 'bin': 1, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': 'results/dry-runs/bin1-full92', 'allow_partial': False, 'force': False}
+2026-10-23 12:38:09,080 | INFO | bin 1: 10002 documents from years [2010]
+2026-10-23 12:38:14,171 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-23 12:38:14,211 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-23 12:38:14,497 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B "HTTP/1.1 200 OK"
+2026-10-23 12:38:21,449 | INFO | LLM loaded: Qwen/Qwen3-1.7B (revision 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e) on mps, bfloat16, batch 4, greedy decoding
+2026-10-23 12:38:21,499 | INFO | labelling bin 1: 92 topics, 12 already done, 80 to do
+2026-10-23 12:39:07,617 | INFO | LLM: 4 prompt(s) in 46.0s (11.5 s/prompt; cap 600 tokens)
+2026-10-23 12:39:45,912 | INFO | LLM: 4 prompt(s) in 38.3s (9.6 s/prompt; cap 600 tokens)
+2026-10-23 12:43:43,975 | INFO | LLM: 4 prompt(s) in 238.0s (59.5 s/prompt; cap 600 tokens)
+2026-10-23 12:56:18,236 | INFO | LLM: 4 prompt(s) in 754.2s (188.6 s/prompt; cap 600 tokens)
+2026-10-23 12:57:08,734 | INFO | LLM: 4 prompt(s) in 50.5s (12.6 s/prompt; cap 600 tokens)
+2026-10-23 12:58:00,595 | INFO | LLM: 4 prompt(s) in 51.8s (13.0 s/prompt; cap 600 tokens)
+2026-10-23 12:58:59,016 | INFO | LLM: 4 prompt(s) in 58.4s (14.6 s/prompt; cap 600 tokens)
+2026-10-23 13:03:37,580 | INFO | LLM: 4 prompt(s) in 278.5s (69.6 s/prompt; cap 600 tokens)
+2026-10-23 13:24:04,351 | INFO | LLM: 4 prompt(s) in 1226.8s (306.7 s/prompt; cap 600 tokens)
+2026-10-23 13:27:13,031 | INFO | LLM: 4 prompt(s) in 188.7s (47.2 s/prompt; cap 600 tokens)
+2026-10-23 13:32:02,077 | INFO | LLM: 4 prompt(s) in 289.0s (72.3 s/prompt; cap 600 tokens)
+2026-10-23 13:32:30,969 | INFO | LLM: 4 prompt(s) in 28.8s (7.2 s/prompt; cap 600 tokens)
+2026-10-23 13:33:02,792 | INFO | LLM: 4 prompt(s) in 31.8s (7.9 s/prompt; cap 600 tokens)
+2026-10-23 13:33:31,151 | INFO | LLM: 4 prompt(s) in 28.3s (7.1 s/prompt; cap 600 tokens)
+2026-10-23 13:33:56,728 | INFO | LLM: 4 prompt(s) in 25.6s (6.4 s/prompt; cap 600 tokens)
+2026-10-23 13:34:22,341 | INFO | LLM: 4 prompt(s) in 25.6s (6.4 s/prompt; cap 600 tokens)
+2026-10-23 13:34:48,476 | INFO | LLM: 4 prompt(s) in 26.1s (6.5 s/prompt; cap 600 tokens)
+2026-10-23 13:35:25,928 | INFO | LLM: 4 prompt(s) in 37.4s (9.4 s/prompt; cap 600 tokens)
+2026-10-23 13:36:10,165 | INFO | LLM: 4 prompt(s) in 44.2s (11.0 s/prompt; cap 600 tokens)
+2026-10-23 13:36:41,803 | INFO | LLM: 4 prompt(s) in 31.6s (7.9 s/prompt; cap 600 tokens)
+2026-10-23 13:37:13,216 | INFO | LLM: 4 prompt(s) in 31.4s (7.8 s/prompt; cap 600 tokens)
+2026-10-23 13:37:42,184 | INFO | LLM: 4 prompt(s) in 28.9s (7.2 s/prompt; cap 600 tokens)
+2026-10-23 13:38:15,521 | INFO | LLM: 3 prompt(s) in 33.3s (11.1 s/prompt; cap 600 tokens)
+2026-10-23 13:38:59,254 | INFO | LLM: 4 prompt(s) in 43.7s (10.9 s/prompt; cap 600 tokens)
+2026-10-23 13:39:35,125 | INFO | LLM: 4 prompt(s) in 35.8s (9.0 s/prompt; cap 600 tokens)
+2026-10-23 13:39:58,677 | INFO | LLM: 4 prompt(s) in 23.5s (5.9 s/prompt; cap 600 tokens)
+2026-10-23 13:40:27,290 | INFO | LLM: 4 prompt(s) in 28.6s (7.1 s/prompt; cap 600 tokens)
+2026-10-23 13:41:01,272 | INFO | LLM: 4 prompt(s) in 34.0s (8.5 s/prompt; cap 600 tokens)
+2026-10-23 13:41:31,368 | INFO | LLM: 4 prompt(s) in 30.1s (7.5 s/prompt; cap 600 tokens)
+2026-10-23 13:42:09,032 | INFO | LLM: 4 prompt(s) in 37.6s (9.4 s/prompt; cap 600 tokens)
+2026-10-23 13:42:41,017 | INFO | LLM: 4 prompt(s) in 32.0s (8.0 s/prompt; cap 600 tokens)
+2026-10-23 13:43:24,221 | INFO | LLM: 4 prompt(s) in 43.2s (10.8 s/prompt; cap 600 tokens)
+2026-10-23 13:43:48,406 | INFO | LLM: 4 prompt(s) in 24.2s (6.0 s/prompt; cap 600 tokens)
+2026-10-23 13:44:16,128 | INFO | LLM: 4 prompt(s) in 27.7s (6.9 s/prompt; cap 600 tokens)
+2026-10-23 13:44:40,751 | INFO | LLM: 4 prompt(s) in 24.6s (6.2 s/prompt; cap 600 tokens)
+2026-10-23 13:45:05,981 | INFO | LLM: 4 prompt(s) in 25.2s (6.3 s/prompt; cap 600 tokens)
+2026-10-23 13:45:32,533 | INFO | LLM: 4 prompt(s) in 26.5s (6.6 s/prompt; cap 600 tokens)
+2026-10-23 13:50:02,839 | INFO | LLM: 4 prompt(s) in 270.3s (67.6 s/prompt; cap 600 tokens)
+2026-10-23 13:50:31,456 | INFO | LLM: 4 prompt(s) in 28.6s (7.1 s/prompt; cap 600 tokens)
+2026-10-23 13:50:56,821 | INFO | LLM: 4 prompt(s) in 25.3s (6.3 s/prompt; cap 600 tokens)
+2026-10-23 13:51:24,706 | INFO | LLM: 4 prompt(s) in 27.9s (7.0 s/prompt; cap 600 tokens)
+2026-10-23 13:52:13,309 | INFO | LLM: 4 prompt(s) in 48.6s (12.1 s/prompt; cap 600 tokens)
+2026-10-23 13:52:56,803 | INFO | LLM: 4 prompt(s) in 43.4s (10.9 s/prompt; cap 600 tokens)
+2026-10-23 13:53:41,875 | INFO | LLM: 4 prompt(s) in 45.0s (11.3 s/prompt; cap 600 tokens)
+2026-10-23 13:54:27,198 | INFO | LLM: 4 prompt(s) in 45.3s (11.3 s/prompt; cap 600 tokens)
+2026-10-23 13:54:56,962 | INFO | LLM: 4 prompt(s) in 29.7s (7.4 s/prompt; cap 600 tokens)
+2026-10-23 13:55:18,437 | INFO | LLM: 2 prompt(s) in 21.5s (10.7 s/prompt; cap 600 tokens)
+2026-10-23 13:55:18,449 | INFO | topic 17: — [no_answer, 1 round(s)] NEEDS REVIEW
+2026-10-23 13:55:18,450 | INFO | topic 19: West Ham Bid [identical, 1 round(s)]
+2026-10-23 13:55:18,451 | INFO | topic 21: Mondiali 2010 [identical, 1 round(s)]
+2026-10-23 13:55:18,452 | INFO | topic 25: — [no_answer, 1 round(s)] NEEDS REVIEW
+2026-10-23 13:55:18,452 | INFO | topic 27: MLS Support [no_answer, 1 round(s)] NEEDS REVIEW
+2026-10-23 13:55:18,453 | INFO | topic 33: — [no_answer, 1 round(s)] NEEDS REVIEW
+2026-10-23 13:55:18,454 | INFO | topic 38: Live Streaming EPL Matches [identical, 1 round(s)]
+2026-10-23 13:55:18,455 | INFO | topic 39: — [no_answer, 1 round(s)] NEEDS REVIEW
+2026-10-23 13:55:18,455 | INFO | topic 40: Man Utd Manager [no_answer, 1 round(s)] NEEDS REVIEW
+2026-10-23 13:55:18,456 | INFO | topic 45: Live Football Matches [no_answer, 1 round(s)] NEEDS REVIEW
+2026-10-23 13:55:18,456 | INFO | topic 47: Champions League Preview [identical, 1 round(s)]
+2026-10-23 13:55:18,457 | INFO | topic 49: — [no_answer, 1 round(s)] NEEDS REVIEW
+2026-10-23 13:55:18,458 | INFO | topic 52: — [no_answer, 1 round(s)] NEEDS REVIEW
+2026-10-23 13:55:18,459 | INFO | topic 66: — [no_answer, 1 round(s)] NEEDS REVIEW
+2026-10-23 13:55:18,459 | INFO | topic 71: — [no_answer, 1 round(s)] NEEDS REVIEW
+2026-10-23 13:55:18,461 | INFO | topic 88: Youth Soccer Development [no_answer, 1 round(s)] NEEDS REVIEW
+2026-10-23 13:55:18,461 | INFO | label: round 1 done — 16/80 items resolved
+2026-10-23 13:56:19,512 | INFO | LLM: 4 prompt(s) in 61.0s (15.2 s/prompt; cap 600 tokens)
+2026-10-23 13:57:16,518 | INFO | LLM: 4 prompt(s) in 56.9s (14.2 s/prompt; cap 600 tokens)
+2026-10-23 13:58:04,505 | INFO | LLM: 4 prompt(s) in 47.9s (12.0 s/prompt; cap 600 tokens)
+2026-10-23 13:58:43,452 | INFO | LLM: 4 prompt(s) in 38.9s (9.7 s/prompt; cap 600 tokens)
+2026-10-23 13:59:32,563 | INFO | LLM: 4 prompt(s) in 49.1s (12.3 s/prompt; cap 600 tokens)
+2026-10-23 14:00:18,940 | INFO | LLM: 4 prompt(s) in 46.3s (11.6 s/prompt; cap 600 tokens)
+2026-10-23 14:00:51,908 | INFO | LLM: 4 prompt(s) in 32.9s (8.2 s/prompt; cap 600 tokens)
+2026-10-23 14:01:23,272 | INFO | LLM: 4 prompt(s) in 31.3s (7.8 s/prompt; cap 600 tokens)
+2026-10-23 14:01:51,269 | INFO | LLM: 4 prompt(s) in 28.0s (7.0 s/prompt; cap 600 tokens)
+2026-10-23 14:02:21,592 | INFO | LLM: 4 prompt(s) in 30.3s (7.6 s/prompt; cap 600 tokens)
+2026-10-23 14:02:50,236 | INFO | LLM: 4 prompt(s) in 28.6s (7.2 s/prompt; cap 600 tokens)
+2026-10-23 14:03:22,011 | INFO | LLM: 4 prompt(s) in 31.8s (7.9 s/prompt; cap 600 tokens)
+2026-10-23 14:03:56,063 | INFO | LLM: 4 prompt(s) in 34.0s (8.5 s/prompt; cap 600 tokens)
+2026-10-23 14:04:28,174 | INFO | LLM: 4 prompt(s) in 32.1s (8.0 s/prompt; cap 600 tokens)
+2026-10-23 14:04:55,136 | INFO | LLM: 4 prompt(s) in 26.9s (6.7 s/prompt; cap 600 tokens)
+2026-10-23 14:05:29,406 | INFO | LLM: 4 prompt(s) in 34.2s (8.6 s/prompt; cap 600 tokens)
+2026-10-23 14:05:29,418 | INFO | topic 12: Spain World Cup Victory [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,419 | INFO | topic 13: Landon Donovan & Everton [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,420 | INFO | topic 14: Netherlands Win [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,421 | INFO | topic 15: FIFA & Soccer Simulations [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,422 | INFO | topic 16: 2010 World Cup South Africa [identical, 2 round(s)]
+2026-10-23 14:05:29,424 | INFO | topic 18: football news [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,424 | INFO | topic 20: Mourinho Real Madrid [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,425 | INFO | topic 22: FIFA World Cup Live Streaming [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,426 | INFO | topic 23: Maradona Legacy [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,426 | INFO | topic 24: World Cup Commercial Analysis [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,427 | INFO | topic 26: World Cup Anthem [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,427 | INFO | topic 28: France Team Issues [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,428 | INFO | topic 29: MLS Match Preview [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,429 | INFO | topic 31: Octopus Predictions [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,430 | INFO | topic 32: Capello England [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,430 | INFO | topic 34: Serie A Derbies [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,431 | INFO | topic 35: UEFA Champions League Live Streaming [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,432 | INFO | topic 36: Wayne Rooney [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,432 | INFO | topic 37: Barça vs Sevilla Match [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,433 | INFO | topic 41: Fabregas Transfer Controversy [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,433 | INFO | topic 42: North Korea Football [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,434 | INFO | topic 43: Messi's Dominance [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,434 | INFO | topic 44: UEFA Champions League [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,434 | INFO | topic 46: Jabulani & Ball Issues [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,435 | INFO | topic 48: Ronaldo Phenomenon [identical, 2 round(s)]
+2026-10-23 14:05:29,435 | INFO | topic 50: Chelsea transfers [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,436 | INFO | topic 51: greatest goal [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,436 | INFO | topic 53: World Cup Bid [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,437 | INFO | topic 54: Zidane & Football Video [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,437 | INFO | topic 55: USA vs Ghana [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,437 | INFO | topic 56: Man City Fan [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,438 | INFO | topic 57: Beckham [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,438 | INFO | topic 58: Van Der Vaart & Van Persie [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,438 | INFO | topic 59: Red Bulls Henry Signing [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,439 | INFO | topic 60: Terry Affair [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,439 | INFO | topic 61: World Cup 2010 Roster Discussion [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,440 | INFO | topic 62: Gerrard and Lampard Controversy [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,440 | INFO | topic 63: Drogba Injury & World Cup [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,441 | INFO | topic 64: injury tracking [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,441 | INFO | topic 65: Pompey Crisis [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,442 | INFO | topic 67: Copa Libertadores [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,442 | INFO | topic 68: Mexico WC [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,443 | INFO | topic 69: Liverpool Sale [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,443 | INFO | topic 70: Raul Transfer [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,443 | INFO | topic 72: World Cup Replays [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,444 | INFO | topic 73: Loan Deals and Transfer News [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,444 | INFO | topic 74: Red Card Policy [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,445 | INFO | topic 75: USA pride [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,445 | INFO | topic 76: Goal Statistics [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,445 | INFO | topic 77: Bob Bradley [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,446 | INFO | topic 78: Liverpool Manager Transition [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,446 | INFO | topic 79: Robinho AC Milan Signings [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,447 | INFO | topic 81: Group A Match Predictions [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,447 | INFO | topic 82: Arjen Robben Injury & Dutch Football [identical, 2 round(s)]
+2026-10-23 14:05:29,447 | INFO | topic 83: Wenger's Influence [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,448 | INFO | topic 84: Scottish Cup [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,448 | INFO | topic 85: Fulham Europa League Final [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,449 | INFO | topic 86: Football Commentary Analysts [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,449 | INFO | topic 87: Team Crests [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,450 | INFO | topic 89: Argentina World Cup Momentum [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,450 | INFO | topic 90: Aston Villa Manager Transition [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:29,451 | INFO | topic 91: Franck Ribery Sex Scandal [accepted_by_A, 2 round(s)]
+2026-10-23 14:05:51,423 | INFO | LLM: 2 prompt(s) in 22.0s (11.0 s/prompt; cap 600 tokens)
+2026-10-23 14:05:51,426 | INFO | topic 30: Rafa Benitez Transfer [accepted_by_B, 2 round(s)]
+2026-10-23 14:05:51,426 | INFO | topic 80: Craziest Football Moments [accepted_by_B, 2 round(s)]
+2026-10-23 14:05:51,427 | INFO | label: round 2 done — 80/80 items resolved
+2026-10-23 14:05:51,626 | INFO | labelling bin 1: 92 topics labelled, 13 need review -> /Users/alannemirovski/Library/CloudStorage/Dropbox/Research/fifa-reddit-communities/results/dry-runs/bin1-full92/results/analysis/bin-1/topics_labelled.csv
+2026-10-23 14:05:52,906 | INFO | report written: /Users/alannemirovski/Library/CloudStorage/Dropbox/Research/fifa-reddit-communities/results/dry-runs/bin1-full92/results/analysis/bin-1/report.html
+2026-10-23 14:05:56,934 | INFO | === stage taxonomy, bin 1 === args: {'stage': 'taxonomy', 'bin': 1, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': 'results/dry-runs/bin1-full92', 'allow_partial': False, 'force': True}
+2026-10-23 14:06:02,037 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-23 14:06:02,077 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-23 14:06:02,347 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B "HTTP/1.1 200 OK"
+2026-10-23 14:06:06,899 | INFO | LLM loaded: Qwen/Qwen3-1.7B (revision 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e) on mps, bfloat16, batch 4, greedy decoding
+2026-10-23 14:06:06,942 | INFO | taxonomy bin 1: 92 topics (0 merged away by overrides)
+2026-10-23 14:22:55,465 | INFO | LLM: 1 prompt(s) in 1008.4s (1008.4 s/prompt; cap 8000 tokens)
+2026-10-23 14:30:46,070 | INFO | LLM: 1 prompt(s) in 470.5s (470.5 s/prompt; cap 8000 tokens)
+2026-10-23 14:47:22,234 | INFO | LLM: 1 prompt(s) in 996.1s (996.1 s/prompt; cap 8000 tokens)
+2026-10-23 14:53:12,284 | INFO | LLM: 1 prompt(s) in 350.0s (350.0 s/prompt; cap 8000 tokens)
+2026-10-23 14:53:12,291 | INFO | taxonomy: round 1 done — 0/1 items resolved
+2026-10-23 15:17:49,799 | INFO | LLM: 1 prompt(s) in 1477.4s (1477.4 s/prompt; cap 8000 tokens)
+2026-10-23 15:34:42,148 | INFO | LLM: 1 prompt(s) in 1012.3s (1012.3 s/prompt; cap 8000 tokens)
+2026-10-23 15:42:15,639 | INFO | LLM: 1 prompt(s) in 453.4s (453.4 s/prompt; cap 8000 tokens)
+2026-10-23 15:44:53,838 | INFO | LLM: 1 prompt(s) in 158.2s (158.2 s/prompt; cap 8000 tokens)
+2026-10-23 15:44:53,842 | INFO | taxonomy: round 2 done — 1/1 items resolved
+2026-10-23 15:44:54,061 | INFO | taxonomy bin 1: 4 categories [identical, 2 round(s)], 23 topics repaired, 0 unplaced -> /Users/alannemirovski/Library/CloudStorage/Dropbox/Research/fifa-reddit-communities/results/dry-runs/bin1-full92/results/analysis/bin-1/categories.csv
+2026-10-23 15:44:55,462 | INFO | report written: /Users/alannemirovski/Library/CloudStorage/Dropbox/Research/fifa-reddit-communities/results/dry-runs/bin1-full92/results/analysis/bin-1/report.html
+2026-10-23 15:45:06,304 | INFO | === stage report, bin 1 === args: {'stage': 'report', 'bin': 1, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': 'results/dry-runs/bin1-full92', 'allow_partial': False, 'force': False}
+2026-10-23 15:45:06,599 | INFO | report written: /Users/alannemirovski/Library/CloudStorage/Dropbox/Research/fifa-reddit-communities/results/dry-runs/bin1-full92/results/analysis/bin-1/report.html
+2026-10-23 15:48:11,791 | INFO | === stage label, bin 1 === args: {'stage': 'label', 'bin': 1, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': 'results/dry-runs/bin1-full92', 'allow_partial': False, 'force': False}
+2026-10-23 15:48:12,783 | INFO | bin 1: 10002 documents from years [2010]
+2026-10-23 15:48:17,087 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-23 15:48:17,128 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-23 15:48:17,400 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B "HTTP/1.1 200 OK"
+2026-10-23 15:48:22,589 | INFO | LLM loaded: Qwen/Qwen3-1.7B (revision 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e) on mps, bfloat16, batch 4, greedy decoding
+2026-10-23 15:48:22,610 | INFO | labelling bin 1: 92 topics, 80 already done, 12 to do
+2026-10-23 15:48:58,678 | INFO | LLM: 4 prompt(s) in 36.0s (9.0 s/prompt; cap 600 tokens)
+2026-10-23 15:49:27,980 | INFO | LLM: 4 prompt(s) in 29.3s (7.3 s/prompt; cap 600 tokens)
+2026-10-23 15:50:14,574 | INFO | LLM: 4 prompt(s) in 46.6s (11.6 s/prompt; cap 600 tokens)
+2026-10-23 15:50:27,224 | INFO | LLM: 1 prompt(s) in 12.6s (12.6 s/prompt; cap 600 tokens)
+2026-10-23 15:50:59,225 | INFO | LLM: 4 prompt(s) in 32.0s (8.0 s/prompt; cap 600 tokens)
+2026-10-23 15:51:33,001 | INFO | LLM: 4 prompt(s) in 33.8s (8.4 s/prompt; cap 600 tokens)
+2026-10-23 15:52:10,541 | INFO | LLM: 4 prompt(s) in 37.5s (9.4 s/prompt; cap 600 tokens)
+2026-10-23 15:52:22,185 | INFO | LLM: 1 prompt(s) in 11.6s (11.6 s/prompt; cap 600 tokens)
+2026-10-23 15:52:22,189 | INFO | topic 25: Torres' Stay at Liverpool [no_answer, 1 round(s)] NEEDS REVIEW
+2026-10-23 15:52:22,191 | INFO | topic 45: Live Football Matches [identical, 1 round(s)]
+2026-10-23 15:52:22,191 | INFO | label: round 1 done — 2/12 items resolved
+2026-10-23 15:52:55,891 | INFO | LLM: 4 prompt(s) in 33.7s (8.4 s/prompt; cap 600 tokens)
+2026-10-23 15:53:27,202 | INFO | LLM: 4 prompt(s) in 31.3s (7.8 s/prompt; cap 600 tokens)
+2026-10-23 15:53:49,797 | INFO | LLM: 2 prompt(s) in 22.6s (11.3 s/prompt; cap 600 tokens)
+2026-10-23 15:53:49,799 | INFO | topic 17: Favourite Footballers [accepted_by_A, 2 round(s)]
+2026-10-23 15:53:49,800 | INFO | topic 27: MLS Support [accepted_by_A, 2 round(s)]
+2026-10-23 15:53:49,800 | INFO | topic 33: Fan Reactions [accepted_by_A, 2 round(s)]
+2026-10-23 15:53:49,801 | INFO | topic 39: Italian Football Critique [accepted_by_A, 2 round(s)]
+2026-10-23 15:53:49,801 | INFO | topic 40: Man Utd Manager [identical, 2 round(s)]
+2026-10-23 15:53:49,802 | INFO | topic 49: Free Kick Analysis [accepted_by_A, 2 round(s)]
+2026-10-23 15:53:49,802 | INFO | topic 52: Injury Cluster [accepted_by_A, 2 round(s)]
+2026-10-23 15:53:49,803 | INFO | topic 66: Offside Rule [accepted_by_A, 2 round(s)]
+2026-10-23 15:53:49,803 | INFO | topic 71: Goal Celebration [accepted_by_A, 2 round(s)]
+2026-10-23 15:53:49,803 | INFO | topic 88: Youth Soccer Development [accepted_by_A, 2 round(s)]
+2026-10-23 15:53:49,803 | INFO | label: round 2 done — 12/12 items resolved
+2026-10-23 15:53:49,822 | INFO | labelling bin 1: 92 topics labelled, 2 need review -> /Users/alannemirovski/Library/CloudStorage/Dropbox/Research/fifa-reddit-communities/results/dry-runs/bin1-full92/results/analysis/bin-1/topics_labelled.csv
+2026-10-23 15:53:50,414 | INFO | report written: /Users/alannemirovski/Library/CloudStorage/Dropbox/Research/fifa-reddit-communities/results/dry-runs/bin1-full92/results/analysis/bin-1/report.html
+2026-10-23 15:53:58,983 | INFO | === stage report, bin 1 === args: {'stage': 'report', 'bin': 1, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': 'results/dry-runs/bin1-full92', 'allow_partial': False, 'force': False}
+2026-10-23 15:53:59,281 | INFO | report written: /Users/alannemirovski/Library/CloudStorage/Dropbox/Research/fifa-reddit-communities/results/dry-runs/bin1-full92/results/analysis/bin-1/report.html

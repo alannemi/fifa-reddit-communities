@@ -1,0 +1,12 @@
+=== 2026-10-24 15:26:50 start two-step taxonomy ===
+2026-10-24 15:26:51,280 | INFO | === stage taxonomy, bin 1 === args: {'stage': 'taxonomy', 'bin': 1, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': 'results/dry-runs/bin1-twostep', 'allow_partial': False, 'force': True, 'taxonomy_protocol': None, 'assign_batch': None}
+2026-10-24 15:26:57,322 | INFO | HTTP Request: GET https://huggingface.co/api/agent-harnesses "HTTP/1.1 200 OK"
+2026-10-24 15:26:57,480 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-24 15:26:57,580 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-24 15:26:57,943 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B "HTTP/1.1 200 OK"
+2026-10-24 15:27:05,180 | INFO | LLM loaded: Qwen/Qwen3-1.7B (revision 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e) on mps, bfloat16, batch 4, greedy decoding
+2026-10-24 15:27:05,357 | INFO | taxonomy bin 1 (two-step): 92 topics (0 merged away by overrides), 1 topic(s) per assignment item
+2026-10-24 15:29:27,866 | INFO | LLM: 1 prompt(s) in 142.4s (142.4 s/prompt; cap 4000 tokens)
+2026-10-24 15:33:48,012 | INFO | LLM: 1 prompt(s) in 260.1s (260.1 s/prompt; cap 4000 tokens)
+2026-10-24 15:33:48,017 | INFO | define: round 1 done — 0/1 items resolved
+=== 2026-10-24 15:37:41 TAXONOMY FAILED — stopped by the author's decision (2026-10-24): the local dry run moves to Colab ===

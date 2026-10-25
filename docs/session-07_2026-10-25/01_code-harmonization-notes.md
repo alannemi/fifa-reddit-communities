@@ -128,7 +128,10 @@ finds the helper file from `--file=` (Rscript) or from the working directory (RS
 `git rm`: `code/05-topic-model.py`, `code/05b-topic-model-colab.ipynb`, `code/topicmodel/label.py`; `git rm --cached`
 (files stay on disk): `data/jsonl_to_csv.py`, `data/data-inspection.R` (H6). `git mv`: the four renames of H5. The local
 embedding cache moved from `results/topic-models/embeddings/` to `results/embeddings/` (`mv`; gitignored; `.gitignore`
-follows, and its redundant `/data/analysis/sentiment/` line is gone).
+follows, and its redundant `/data/analysis/sentiment/` line is gone). Later the same day, at the author's request, the
+pipeline outputs of the local dry runs (`results/dry-runs/*/results/analysis/`, the collect sidecars, the sentiment
+validation samples, the logs; ≈ 30 MB) were tracked; the join tables, the R mini-corpus copies of the 2010 file and the
+caches stay ignored (`results/README.md`).
 
 ## 7. What did not change
 

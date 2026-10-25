@@ -1,0 +1,196 @@
+{
+ "period_bin": 1,
+ "topic_id": 56,
+ "keywords": "manchester city, manchester united, city fan, man city, united fc, city champions, birmingham manchester, united, united football, city team, madrid fans, liverpool football, barcelona real, league year, city sign",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "dca9m",
+  "bz245",
+  "ct9h5",
+  "ctjnu",
+  "ctnug",
+  "c96yp",
+  "bufzh",
+  "ce9so",
+  "co6vt",
+  "bpk80",
+  "di2xe",
+  "db3au",
+  "c0jcw",
+  "bpg48",
+  "bqzit",
+  "d0akw",
+  "d0zfu",
+  "c8uxg",
+  "cla70",
+  "am647",
+  "bjgh1",
+  "beqmu",
+  "dd3rm",
+  "db1ld",
+  "de4d6",
+  "cjs29",
+  "cv1gg",
+  "c0vez",
+  "db521",
+  "c5rzr",
+  "cq9b0",
+  "cxm3m",
+  "ctjd8",
+  "bwq0e",
+  "bntyv",
+  "dd86h",
+  "d7jsf",
+  "bs15j",
+  "cnqf8",
+  "awjze"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "mps",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 4,
+ "prompt_version": "1.1",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Man City Fan",
+  "purpose": "Identify and categorize fans of Manchester City",
+  "emotion_tone": "supportive",
+  "description": "Posts expressing loyalty, pride, and enthusiasm for Manchester City, including fan experiences, team dynamics, and fan culture.",
+  "inclusion_cues": [
+   "Manchester City fan",
+   "Man City team",
+   "City fans",
+   "Man City supporters",
+   "City champions"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Man City Fan",
+    "purpose": "Identify and categorize fans of Manchester City",
+    "emotion_tone": "supportive",
+    "description": "Posts expressing loyalty, pride, and enthusiasm for Manchester City, including fan experiences, team dynamics, and fan culture.",
+    "inclusion_cues": [
+     "Manchester City fan",
+     "Man City supporters",
+     "City fans",
+     "Man City team",
+     "City team",
+     "Man City supporters"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Man City Fan",
+    "purpose": "Identify and categorize fans of Manchester City",
+    "emotion_tone": "supportive",
+    "description": "Posts expressing loyalty, pride, and enthusiasm for Manchester City, including fan experiences, team dynamics, and fan culture.",
+    "inclusion_cues": [
+     "Manchester City fan",
+     "Man City team",
+     "City fans",
+     "Man City supporters",
+     "City champions"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: manchester city, manchester united, city fan, man city, united fc, city champions, birmingham manchester, united, united football, city team, madrid fans, liverpool football, barcelona real, league year, city sign\nPosts (one per line, title first):\n- Study says Barcelona and Real Madrid have the most fans in Europe. Manchester United languishing in third place. Where the hell are St. Pauli?\n- Here is my defense for Manchester City once and for all. / To start things off there are going to be plenty of grammar mistakes in the following paragraphs. I feel like every thread i go into i have to defend them in some way, so im going to just lay out as much as i can in here and then just talk a\n- Manchester City surprise New York pick-up games - Not a fan of City, but digging this type of viral marketing...\n- I am a Man City fan, and have been all my life. / My father has been a Manchester City fan for most of his life, and by default, I was one at birth. I hear by exclude myself from the Manchester City band wagon that might be rolling around the corner soon.\n- Does anybody else hope that Manchester City does dismally this coming year? / I just keep reading about these huge, ridiculously expensive transfers and hope (even though it is not likely) that it will blow up in their faces.\n- South Ayrshire Council marks centenary of Ayr United Football Club\n- Manchester United Named World’s Most Valuable Club By Business Magazine\n- Manchester United Song.\n- Manchester United readies for North American tour\n- Is it safe to say manchester city will be in the champions league next year?\n- This is why balance in spending is a good thing, no matter how many billions you spend, and why Man City will NEVER be Man U.\n- More unrest for Manchester City.\n- Spare a thought for the Man City fan with THAT tattoo\n- Man City S - ! Birmingham\n- To any Man City fans in the USA\n- Manchester City Football Club Football Club?\n- Red Men: Liverpool Football Club, the Biography by John Williams.\n- Man City target Real duo\n- Manchester City are building the largest private collection of defensive midfielders in Europe.\n- Man City announce biggest loss (92.6 million pounds) in English history\n- CSI: Birmingham (my 1st submission)\n- The forgotten story of ... When Anfield was Manchester United's home ground\n- Man City: The Movie!\n- Manchester City: The Movie\n- Where does Stoke City's Money Come From?\n- Anyone going to catch Manchester United when they come to the U.S.?\n- Man City Sign Jesus Christ\n- Manchester United States - Canada - Mexico Tour\n- Anatomy of a Man City Fan\n- Manchester United play cowboys at a party?\n- Is Manchester City's Strategy Fair Play?\n- Manchester United Pre-Season Wrap-Up\n- So Yaya Touré, what is it about Man City's billionaires that attracts?\n- Manchester City make Fulop approach\n- Manchester United FC 2010\n- Scholes \"United won't let City get on top\"\n- Wikipedia ahead of the news? Defour to Manchester United.\n- \"In over 23 years at United it is the first time we have played City when they have a chance of actually achieving something\"\n- Manchester United squad for Pre-Season USA and Canada Tour\n- Manchester City team-mates show support for Wayne Bridge with 'Team Bridge' shirts\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Man City Fan\", \"purpose\": \"Identify and categorize fans of Manchester City\", \"emotion_tone\": \"supportive\", \"description\": \"Posts expressing loyalty, pride, and enthusiasm for Manchester City, including fan experiences, team dynamics, and fan culture.\", \"inclusion_cues\": [\"Manchester City fan\", \"Man City supporters\", \"City fans\", \"Man City team\", \"City team\", \"Man City supporters\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Man City Fan",
+      "purpose": "Identify and categorize fans of Manchester City",
+      "emotion_tone": "supportive",
+      "description": "Posts expressing loyalty, pride, and enthusiasm for Manchester City, including fan experiences, team dynamics, and fan culture.",
+      "inclusion_cues": [
+       "Manchester City fan",
+       "Man City supporters",
+       "City fans",
+       "Man City team",
+       "City team",
+       "Man City supporters"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 105,
+   "seed": 176555333,
+   "seconds": 7.2
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: manchester city, manchester united, city fan, man city, united fc, city champions, birmingham manchester, united, united football, city team, madrid fans, liverpool football, barcelona real, league year, city sign\nPosts (one per line, title first):\n- Study says Barcelona and Real Madrid have the most fans in Europe. Manchester United languishing in third place. Where the hell are St. Pauli?\n- Here is my defense for Manchester City once and for all. / To start things off there are going to be plenty of grammar mistakes in the following paragraphs. I feel like every thread i go into i have to defend them in some way, so im going to just lay out as much as i can in here and then just talk a\n- Manchester City surprise New York pick-up games - Not a fan of City, but digging this type of viral marketing...\n- I am a Man City fan, and have been all my life. / My father has been a Manchester City fan for most of his life, and by default, I was one at birth. I hear by exclude myself from the Manchester City band wagon that might be rolling around the corner soon.\n- Does anybody else hope that Manchester City does dismally this coming year? / I just keep reading about these huge, ridiculously expensive transfers and hope (even though it is not likely) that it will blow up in their faces.\n- South Ayrshire Council marks centenary of Ayr United Football Club\n- Manchester United Named World’s Most Valuable Club By Business Magazine\n- Manchester United Song.\n- Manchester United readies for North American tour\n- Is it safe to say manchester city will be in the champions league next year?\n- This is why balance in spending is a good thing, no matter how many billions you spend, and why Man City will NEVER be Man U.\n- More unrest for Manchester City.\n- Spare a thought for the Man City fan with THAT tattoo\n- Man City S - ! Birmingham\n- To any Man City fans in the USA\n- Manchester City Football Club Football Club?\n- Red Men: Liverpool Football Club, the Biography by John Williams.\n- Man City target Real duo\n- Manchester City are building the largest private collection of defensive midfielders in Europe.\n- Man City announce biggest loss (92.6 million pounds) in English history\n- CSI: Birmingham (my 1st submission)\n- The forgotten story of ... When Anfield was Manchester United's home ground\n- Man City: The Movie!\n- Manchester City: The Movie\n- Where does Stoke City's Money Come From?\n- Anyone going to catch Manchester United when they come to the U.S.?\n- Man City Sign Jesus Christ\n- Manchester United States - Canada - Mexico Tour\n- Anatomy of a Man City Fan\n- Manchester United play cowboys at a party?\n- Is Manchester City's Strategy Fair Play?\n- Manchester United Pre-Season Wrap-Up\n- So Yaya Touré, what is it about Man City's billionaires that attracts?\n- Manchester City make Fulop approach\n- Manchester United FC 2010\n- Scholes \"United won't let City get on top\"\n- Wikipedia ahead of the news? Defour to Manchester United.\n- \"In over 23 years at United it is the first time we have played City when they have a chance of actually achieving something\"\n- Manchester United squad for Pre-Season USA and Canada Tour\n- Manchester City team-mates show support for Wayne Bridge with 'Team Bridge' shirts\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Man City Fan\", \"purpose\": \"Identify and categorize fans of Manchester City\", \"emotion_tone\": \"supportive\", \"description\": \"Posts expressing loyalty, pride, and enthusiasm for Manchester City, including fan experiences, team dynamics, and fan culture.\", \"inclusion_cues\": [\"Manchester City fan\", \"Man City team\", \"City fans\", \"Man City supporters\", \"City champions\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Man City Fan",
+      "purpose": "Identify and categorize fans of Manchester City",
+      "emotion_tone": "supportive",
+      "description": "Posts expressing loyalty, pride, and enthusiasm for Manchester City, including fan experiences, team dynamics, and fan culture.",
+      "inclusion_cues": [
+       "Manchester City fan",
+       "Man City team",
+       "City fans",
+       "Man City supporters",
+       "City champions"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 100,
+   "seed": 2670384673,
+   "seconds": 6.15
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: manchester city, manchester united, city fan, man city, united fc, city champions, birmingham manchester, united, united football, city team, madrid fans, liverpool football, barcelona real, league year, city sign\nPosts (one per line, title first):\n- Study says Barcelona and Real Madrid have the most fans in Europe. Manchester United languishing in third place. Where the hell are St. Pauli?\n- Here is my defense for Manchester City once and for all. / To start things off there are going to be plenty of grammar mistakes in the following paragraphs. I feel like every thread i go into i have to defend them in some way, so im going to just lay out as much as i can in here and then just talk a\n- Manchester City surprise New York pick-up games - Not a fan of City, but digging this type of viral marketing...\n- I am a Man City fan, and have been all my life. / My father has been a Manchester City fan for most of his life, and by default, I was one at birth. I hear by exclude myself from the Manchester City band wagon that might be rolling around the corner soon.\n- Does anybody else hope that Manchester City does dismally this coming year? / I just keep reading about these huge, ridiculously expensive transfers and hope (even though it is not likely) that it will blow up in their faces.\n- South Ayrshire Council marks centenary of Ayr United Football Club\n- Manchester United Named World’s Most Valuable Club By Business Magazine\n- Manchester United Song.\n- Manchester United readies for North American tour\n- Is it safe to say manchester city will be in the champions league next year?\n- This is why balance in spending is a good thing, no matter how many billions you spend, and why Man City will NEVER be Man U.\n- More unrest for Manchester City.\n- Spare a thought for the Man City fan with THAT tattoo\n- Man City S - ! Birmingham\n- To any Man City fans in the USA\n- Manchester City Football Club Football Club?\n- Red Men: Liverpool Football Club, the Biography by John Williams.\n- Man City target Real duo\n- Manchester City are building the largest private collection of defensive midfielders in Europe.\n- Man City announce biggest loss (92.6 million pounds) in English history\n- CSI: Birmingham (my 1st submission)\n- The forgotten story of ... When Anfield was Manchester United's home ground\n- Man City: The Movie!\n- Manchester City: The Movie\n- Where does Stoke City's Money Come From?\n- Anyone going to catch Manchester United when they come to the U.S.?\n- Man City Sign Jesus Christ\n- Manchester United States - Canada - Mexico Tour\n- Anatomy of a Man City Fan\n- Manchester United play cowboys at a party?\n- Is Manchester City's Strategy Fair Play?\n- Manchester United Pre-Season Wrap-Up\n- So Yaya Touré, what is it about Man City's billionaires that attracts?\n- Manchester City make Fulop approach\n- Manchester United FC 2010\n- Scholes \"United won't let City get on top\"\n- Wikipedia ahead of the news? Defour to Manchester United.\n- \"In over 23 years at United it is the first time we have played City when they have a chance of actually achieving something\"\n- Manchester United squad for Pre-Season USA and Canada Tour\n- Manchester City team-mates show support for Wayne Bridge with 'Team Bridge' shirts\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Man City Fan\", \"purpose\": \"Identify and categorize fans of Manchester City\", \"emotion_tone\": \"supportive\", \"description\": \"Posts expressing loyalty, pride, and enthusiasm for Manchester City, including fan experiences, team dynamics, and fan culture.\", \"inclusion_cues\": [\"Manchester City fan\", \"Man City supporters\", \"City fans\", \"Man City team\", \"City team\", \"Man City supporters\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Man City Fan\", \"purpose\": \"Identify and categorize fans of Manchester City\", \"emotion_tone\": \"supportive\", \"description\": \"Posts expressing loyalty, pride, and enthusiasm for Manchester City, including fan experiences, team dynamics, and fan culture.\", \"inclusion_cues\": [\"Manchester City fan\", \"Man City team\", \"City fans\", \"Man City supporters\", \"City champions\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Man City Fan\", \"purpose\": \"Identify and categorize fans of Manchester City\", \"emotion_tone\": \"supportive\", \"description\": \"Posts expressing loyalty, pride, and enthusiasm for Manchester City, including fan experiences, team dynamics, and fan culture.\", \"inclusion_cues\": [\"Manchester City fan\", \"Man City team\", \"City fans\", \"Man City supporters\", \"City champions\"]]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 413)",
+   "n_tokens": 99,
+   "seed": 2875667167,
+   "seconds": 7.83
+  }
+ ]
+}

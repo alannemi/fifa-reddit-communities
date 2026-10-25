@@ -46,7 +46,8 @@ fifa-reddit-communities/
 ├── results/analysis/             ← the analytical pipeline's outputs: bin-1 … bin-9/ (topics, labels, taxonomy,
 │                                    transcripts, config.json, report.html) + topic_labels_all_bins.csv etc.
 ├── results/embeddings/           ← the sentence-embedding cache per year (gitignored, regenerable)
-├── results/dry-runs/             ← local dry runs of 05 (gitignored)
+├── results/dry-runs/             ← local dry runs of 05 (their pipeline outputs are tracked; join tables,
+│                                    corpus copies and caches are not — see results/README.md)
 ├── docs/                         ← documentation by working session (what was found, decided, run)
 │   ├── README.md                     index of sessions
 │   ├── codebook.css                  styling for the codebook PDF

@@ -14,5 +14,13 @@
 __pycache__/
 *.pyc
 .DS_Store
-# ---- analytical pipeline ----
-/results/dry-runs/
+# ---- local dry runs (results/dry-runs/<name>/): the pipeline outputs are tracked (results/analysis/ of each run,
+#      the collect sidecar, the sentiment validation sample, the logs); the join tables (period_bins, sentiment,
+#      post_variables: regenerable, 23-33 MB each), the R mini-corpus copies of a yearly file and the caches are not ----
+/results/dry-runs/*/data/analysis/*.csv
+!/results/dry-runs/*/data/analysis/period_bins_summary.csv
+!/results/dry-runs/*/data/analysis/sentiment_validation_sample.csv
+/results/dry-runs/*/data/analysis/sentiment/
+/results/dry-runs/*/r-mini/
+/results/dry-runs/*/r-out/
+/results/dry-runs/*/r-out2/

@@ -1,0 +1,176 @@
+{
+ "period_bin": 1,
+ "topic_id": 89,
+ "keywords": "watching argentina, argentina win, argentina, argentina germany, germany argentina, cup argentina, argentinian, germany game, argentinian redditors, uruguay germany, final match, winning goal, maradona crazy, world champions, 2010 football",
+ "n_sample_posts": 25,
+ "sample_ids": [
+  "cksi3",
+  "ce3n0",
+  "cjlmz",
+  "cc3ix",
+  "cmw47",
+  "cjqtm",
+  "clngm",
+  "c322r",
+  "cg7p5",
+  "cfx6g",
+  "ckur8",
+  "ckn76",
+  "clxmq",
+  "db1cf",
+  "cglbu",
+  "df8vb",
+  "chhn9",
+  "clnvk",
+  "cm01i",
+  "cjwg0",
+  "co9u6",
+  "cloh8",
+  "clnf9",
+  "c8455",
+  "cl4m5"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "mps",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 4,
+ "prompt_version": "1.1",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Argentina World Cup Momentum",
+  "purpose": "Highlight Argentina's World Cup performance and fan sentiment",
+  "emotion_tone": "Excitement, pride, nostalgia",
+  "description": "Posts discussing Argentina's World Cup journey, fan support, and emotional reactions to their performance against Germany and other teams.",
+  "inclusion_cues": [
+   "Argentina vs Germany quarter-final",
+   "World Cup momentum",
+   "Fan support for Argentina",
+   "Emotional reactions to Argentina's performance"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Argentina World Cup Fever",
+    "purpose": "Express excitement and anticipation for Argentina's World Cup performance",
+    "emotion_tone": "enthusiastic",
+    "description": "Posts discussing Argentina's World Cup prospects, fan support, and emotional reactions to potential victories",
+    "inclusion_cues": [
+     "Argentina vs Germany",
+     "World Cup fever",
+     "Maradona crazy",
+     "Winning goal",
+     "Argentinian redditors"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Argentina World Cup Momentum",
+    "purpose": "Highlight Argentina's World Cup performance and fan sentiment",
+    "emotion_tone": "Excitement, pride, nostalgia",
+    "description": "Posts discussing Argentina's World Cup journey, fan support, and emotional reactions to their performance against Germany and other teams.",
+    "inclusion_cues": [
+     "Argentina vs Germany quarter-final",
+     "World Cup momentum",
+     "Fan support for Argentina",
+     "Emotional reactions to Argentina's performance"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: watching argentina, argentina win, argentina, argentina germany, germany argentina, cup argentina, argentinian, germany game, argentinian redditors, uruguay germany, final match, winning goal, maradona crazy, world champions, 2010 football\nPosts (one per line, title first):\n- This gets me absolutely pumped for the GERMANY - ARGENTINA quarter final. 2006 Shootout.\n- Can I get drunk watching Argentina, go to a funeral, then bail after the service for USA/Eng? / Seriously. Moral crisis or rhetorical question?\n- So... an Argentina v Germany QUARTER-final match... / That's going to sting one country a lot.\n- Argentina saga continues: Carlos Bilardo (general manager & coach in '86): \"If Argentina win the World Cup I'll let whoever scores the winning goal do me up the arse.\"\n- Why Argentina failed? | FIFA World Cup 2010 « Football tactics, formations, reviews by Joseph Amrith Raj\n- This guy is the reason why Argentina will win the World Cup.\n- This must be how all Argentinians must be feeling!\n- Brazil stay focused - Argentina look muddled\n- Are Argentina the new Brazil?\n- I'm an arrogant argentinean that thinks we're gonna win at LEAST by a two goal difference.\n- Podolski - please give us some of this against Argentina\n- This article explains why it would be spectacular if Thomas Mueller lit Argentina up when they meet\n- Made in Argentina....\n- Argentina become Unofficial Football World Champions.\n- This is how Argentina's team trains\n- For the first time in over a decade Argentina has become the main provider of professional footballers worldwide.\n- Does anyone else hope that Argentina goes on to win the title just to watch Maradona go crazy ?\n- This sums up the Argentina vs Germany game\n- Argentinian unconditional support\n- To all you Argentinian Redditors. This is a bumper sticker I made for a friend. Enjoy\n- Uruguay vs Germany Review [2-3]| Octopus gets it right again!\n- Germany show Argentina the door\n- Apparently, despite being massacred Argentina still moves on!!! YES!\n- Argentina leads the way in World Cup hotel demands\n- \"They are impulsive, temperamental and they don't know how to lose.\" Lahm about argentinians.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Argentina World Cup Fever\", \"purpose\": \"Express excitement and anticipation for Argentina's World Cup performance\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts discussing Argentina's World Cup prospects, fan support, and emotional reactions to potential victories\", \"inclusion_cues\": [\"Argentina vs Germany\", \"World Cup fever\", \"Maradona crazy\", \"Winning goal\", \"Argentinian redditors\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Argentina World Cup Fever",
+      "purpose": "Express excitement and anticipation for Argentina's World Cup performance",
+      "emotion_tone": "enthusiastic",
+      "description": "Posts discussing Argentina's World Cup prospects, fan support, and emotional reactions to potential victories",
+      "inclusion_cues": [
+       "Argentina vs Germany",
+       "World Cup fever",
+       "Maradona crazy",
+       "Winning goal",
+       "Argentinian redditors"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 104,
+   "seed": 2750322739,
+   "seconds": 7.9
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: watching argentina, argentina win, argentina, argentina germany, germany argentina, cup argentina, argentinian, germany game, argentinian redditors, uruguay germany, final match, winning goal, maradona crazy, world champions, 2010 football\nPosts (one per line, title first):\n- This gets me absolutely pumped for the GERMANY - ARGENTINA quarter final. 2006 Shootout.\n- Can I get drunk watching Argentina, go to a funeral, then bail after the service for USA/Eng? / Seriously. Moral crisis or rhetorical question?\n- So... an Argentina v Germany QUARTER-final match... / That's going to sting one country a lot.\n- Argentina saga continues: Carlos Bilardo (general manager & coach in '86): \"If Argentina win the World Cup I'll let whoever scores the winning goal do me up the arse.\"\n- Why Argentina failed? | FIFA World Cup 2010 « Football tactics, formations, reviews by Joseph Amrith Raj\n- This guy is the reason why Argentina will win the World Cup.\n- This must be how all Argentinians must be feeling!\n- Brazil stay focused - Argentina look muddled\n- Are Argentina the new Brazil?\n- I'm an arrogant argentinean that thinks we're gonna win at LEAST by a two goal difference.\n- Podolski - please give us some of this against Argentina\n- This article explains why it would be spectacular if Thomas Mueller lit Argentina up when they meet\n- Made in Argentina....\n- Argentina become Unofficial Football World Champions.\n- This is how Argentina's team trains\n- For the first time in over a decade Argentina has become the main provider of professional footballers worldwide.\n- Does anyone else hope that Argentina goes on to win the title just to watch Maradona go crazy ?\n- This sums up the Argentina vs Germany game\n- Argentinian unconditional support\n- To all you Argentinian Redditors. This is a bumper sticker I made for a friend. Enjoy\n- Uruguay vs Germany Review [2-3]| Octopus gets it right again!\n- Germany show Argentina the door\n- Apparently, despite being massacred Argentina still moves on!!! YES!\n- Argentina leads the way in World Cup hotel demands\n- \"They are impulsive, temperamental and they don't know how to lose.\" Lahm about argentinians.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Argentina World Cup Momentum\", \"purpose\": \"Highlight Argentina's World Cup performance and fan sentiment\", \"emotion_tone\": \"Excitement, pride, nostalgia\", \"description\": \"Posts discussing Argentina's World Cup journey, fan support, and emotional reactions to their performance against Germany and other teams.\", \"inclusion_cues\": [\"Argentina vs Germany quarter-final\", \"World Cup momentum\", \"Fan support for Argentina\", \"Emotional reactions to Argentina's performance\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Argentina World Cup Momentum",
+      "purpose": "Highlight Argentina's World Cup performance and fan sentiment",
+      "emotion_tone": "Excitement, pride, nostalgia",
+      "description": "Posts discussing Argentina's World Cup journey, fan support, and emotional reactions to their performance against Germany and other teams.",
+      "inclusion_cues": [
+       "Argentina vs Germany quarter-final",
+       "World Cup momentum",
+       "Fan support for Argentina",
+       "Emotional reactions to Argentina's performance"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 110,
+   "seed": 3289488824,
+   "seconds": 10.86
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: watching argentina, argentina win, argentina, argentina germany, germany argentina, cup argentina, argentinian, germany game, argentinian redditors, uruguay germany, final match, winning goal, maradona crazy, world champions, 2010 football\nPosts (one per line, title first):\n- This gets me absolutely pumped for the GERMANY - ARGENTINA quarter final. 2006 Shootout.\n- Can I get drunk watching Argentina, go to a funeral, then bail after the service for USA/Eng? / Seriously. Moral crisis or rhetorical question?\n- So... an Argentina v Germany QUARTER-final match... / That's going to sting one country a lot.\n- Argentina saga continues: Carlos Bilardo (general manager & coach in '86): \"If Argentina win the World Cup I'll let whoever scores the winning goal do me up the arse.\"\n- Why Argentina failed? | FIFA World Cup 2010 « Football tactics, formations, reviews by Joseph Amrith Raj\n- This guy is the reason why Argentina will win the World Cup.\n- This must be how all Argentinians must be feeling!\n- Brazil stay focused - Argentina look muddled\n- Are Argentina the new Brazil?\n- I'm an arrogant argentinean that thinks we're gonna win at LEAST by a two goal difference.\n- Podolski - please give us some of this against Argentina\n- This article explains why it would be spectacular if Thomas Mueller lit Argentina up when they meet\n- Made in Argentina....\n- Argentina become Unofficial Football World Champions.\n- This is how Argentina's team trains\n- For the first time in over a decade Argentina has become the main provider of professional footballers worldwide.\n- Does anyone else hope that Argentina goes on to win the title just to watch Maradona go crazy ?\n- This sums up the Argentina vs Germany game\n- Argentinian unconditional support\n- To all you Argentinian Redditors. This is a bumper sticker I made for a friend. Enjoy\n- Uruguay vs Germany Review [2-3]| Octopus gets it right again!\n- Germany show Argentina the door\n- Apparently, despite being massacred Argentina still moves on!!! YES!\n- Argentina leads the way in World Cup hotel demands\n- \"They are impulsive, temperamental and they don't know how to lose.\" Lahm about argentinians.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Argentina World Cup Fever\", \"purpose\": \"Express excitement and anticipation for Argentina's World Cup performance\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts discussing Argentina's World Cup prospects, fan support, and emotional reactions to potential victories\", \"inclusion_cues\": [\"Argentina vs Germany\", \"World Cup fever\", \"Maradona crazy\", \"Winning goal\", \"Argentinian redditors\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Argentina World Cup Momentum\", \"purpose\": \"Highlight Argentina's World Cup performance and fan sentiment\", \"emotion_tone\": \"Excitement, pride, nostalgia\", \"description\": \"Posts discussing Argentina's World Cup journey, fan support, and emotional reactions to their performance against Germany and other teams.\", \"inclusion_cues\": [\"Argentina vs Germany quarter-final\", \"World Cup momentum\", \"Fan support for Argentina\", \"Emotional reactions to Argentina's performance\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Argentina World Cup Fever\", \"purpose\": \"Express excitement and anticipation for Argentina's World Cup performance\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts discussing Argentina's World Cup prospects, fan support, and emotional reactions to potential victories\", \"inclusion_cues\": [\"Argentina vs Germany\", \"World Cup fever\", \"Maradona crazy\", \"Winning goal\", \"Argentinian redditors\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 103,
+   "seed": 1229286983,
+   "seconds": 8.56
+  }
+ ]
+}

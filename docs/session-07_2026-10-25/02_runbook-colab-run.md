@@ -28,9 +28,12 @@ the GitHub repository) and run cells 0.1–0.4.
   `PIPELINE_ROOT` to the Drive folder and `PIPELINE_YEARLY_DIR` to the local copy, and **prints the program's effective
   paths** — check that `ANALYSIS_DIR` ends in `fifa-communities/results`, `ANALYSIS_DATA_DIR` in `fifa-communities/analysis`,
   `YEARLY_DIR` in `/content/data/yearly datasets` (flag F34).
-* **0.3** must print `pip check: OK`, the GPU name, `cuml <version>` and the pins (bertopic 0.17.4, umap 0.5.12, hdbscan 0.8.44,
-  sentence-transformers 6.1.0); if `pip check` lists a broken requirement, install **that one package** explicitly and re-run
-  the cell (never a plain `pip install -r requirements-topicmodel.txt`). Record the resolved versions in the run log.
+* **0.3** must print the GPU name, `cuml <version>`, the pins (bertopic 0.17.4, umap 0.5.12, hdbscan 0.8.44,
+  sentence-transformers 6.1.0) and `pip check (pipeline stack): OK`. A `pip check` complaint about Colab's own image — on
+  2026-10-25 "ipython 7.34.0 requires jedi, which is not installed" — is benign (fix with `pip install jedi` or ignore);
+  a complaint naming a package of the pipeline stack stops the cell: install **that one package** explicitly and re-run
+  (never a plain `pip install -r requirements-topicmodel.txt`). Record the resolved versions in the run log (first run:
+  A100-SXM4-80GB, torch 2.11.0+cu130, CUDA 13.0, cuML 26.06.00).
 * **0.4** runs the 20 unit checks on the Colab machine.
 
 ## 2. S0 on Colab (cell 1)

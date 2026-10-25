@@ -160,8 +160,8 @@ keywords → keyword re-ranking. No topic count is imposed; the number of topics
 | UMAP | `n_neighbors=15, n_components=5, min_dist=0.0, metric="cosine", random_state=42` | BERTopic defaults, seeded |
 | UMAP, how it is run | **fitted once per bin** on the 768-d embeddings; the 5-d result is saved (`umap_5d.npy`) and wrapped in a `FrozenUMAP` object (`fit` is a no-op, `transform` returns the saved array) that BERTopic uses as its `umap_model`; the 768-d embeddings are still what BERTopic receives | BERTopic refits UMAP on every `fit_transform`; freezing it makes the topic-count guard cheap and keeps topic embeddings in the 768-d space, which the keyword re-ranking and the outlier step need |
 | HDBSCAN `min_cluster_size` | start at `max(25, round(0.0025 × n_modelled))` (0.25 % of the bin, floor 25), then the **topic-count guard** (§6.2) | a relative rule keeps topic *counts* comparable across bins that differ 33× in size |
-| HDBSCAN `min_samples` | 10 | the setting approved and tested in session 02; revisited only if the large-bin gate (§12) shows > 45 % raw outliers |
-| HDBSCAN other | `metric="euclidean"`, `cluster_selection_method="eom"`, `prediction_data=True` | standard |
+| HDBSCAN `min_samples` | 10 (`HDBSCAN_MIN_SAMPLES`) | the setting approved and tested in session 02; revisited only if the large-bin gate (§12) shows > 45 % raw outliers — since 2026-10-25 this and the three settings below may be one value or a dict by period type (`config.setting()`), the bins differing by an order of magnitude in size |
+| HDBSCAN other | `metric="euclidean"`, `cluster_selection_method="eom"` (`HDBSCAN_SELECTION_METHOD`), `cluster_selection_epsilon` 0 (`HDBSCAN_EPSILON`), `prediction_data=True` | standard; the two settings exist for the gate decision; the values in force are recorded per bin in `config.json → topics.hdbscan` |
 | Keywords: vectorizer | `CountVectorizer(ngram_range=(1,2), min_df=2, stop_words=English + EXTRA_STOPWORDS)`; `EXTRA_STOPWORDS` = the session-02 scaffolding list (`thread`, `match thread`, `post match`, `amp`, `http`, `reddit`, `imgur`, `youtube`, `twitter`, `streamable`, `edit`, `deleted`, `removed`, …) **plus** `vs`, `soccer` (F11) | stop-words affect only the keyword descriptions, never the documents or embeddings |
 | Keywords: weighting | c-TF-IDF with `reduce_frequent_words=True`; `top_n_words=15`; representation chain KeyBERTInspired (30 candidates) → MaximalMarginalRelevance (`diversity=0.3`, 15 words) | readable, non-redundant keywords |
 | Keywords: which posts | computed from **cluster members only** (posts assigned by HDBSCAN), not from reassigned outliers | the description stays pure; reassigned posts count towards prevalence only |
@@ -582,7 +582,10 @@ the effective settings, guard trials, backend, CUDA/cuML versions, `pip freeze`,
    Spain's win, Paul the octopus).
 2. **Large-bin gate (bin 4 or 6).** Raw outlier share ≤ 45 %, guard converges within four trials, most topics
    assigned by the agents in S3b step 2 (few `repaired`); otherwise revisit `min_samples` and the topic range before the
-   other bins.
+   other bins. Diagnostic (2026-10-25): `--stage grid --bin N` refits HDBSCAN over `HDBSCAN_GRID` on the bin's cached UMAP array
+   (`hdbscan_grid.csv`: topics, outlier share, largest cluster per setting); the decision is applied with `--stage topics --force
+   --keep-umap`. **First attempt, bin 4 (2026-10-25): guard 820 → 2 topics, 547 → 74 topics with 56.2 % raw outliers — failed on
+   the outlier share; decision pending** (`../session-08_2026-10-25/00_colab-run-log.md` §8).
 3. **Outlier threshold.** `T` from the similarity quantiles + the 100-post human check, on bin 1 and the large bin.
 4. **Agents.** Round distribution and `agreement_mode` counts; `needs_review` ≤ 15 % of topics; greedy versus
    seeded-sampling comparison on bin 1 (dropped 2026-10-25, §14); 20 topics read by a co-author against their posts; optional relabel of bin 1

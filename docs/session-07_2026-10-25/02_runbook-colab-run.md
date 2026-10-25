@@ -109,6 +109,11 @@ agents (`n_repaired` small, `n_unplaced` 0).
 **Decision to record if the gate fails:** `HDBSCAN_MIN_SAMPLES` and/or `TOPIC_COUNT_RANGE`, with the evidence (trials, outlier
 share), before any other bin is run. If a bin collapses at the floor of 25 (dry-run finding D1): a lower `MIN_CLUSTER_FLOOR`
 for tournament bins or `cluster_selection_method = "leaf"` — the author decides.
+**First attempt (2026-10-25): failed** — 331,216 posts, guard 820 → 2 topics, 547 → 74 topics, **56.2 % raw outliers**, 6.5 min on
+cuML. Procedure: cell 3.3b (`--stage grid --bin 4`: HDBSCAN over `HDBSCAN_GRID` on the cached UMAP array, minutes) → the author
+chooses `HDBSCAN_MIN_SAMPLES` / `HDBSCAN_SELECTION_METHOD` / `HDBSCAN_EPSILON` / `TOPIC_COUNT_RANGE`, one value or a dict by period
+type, records it in design §14, commits → cell 3.3c (`topics --force --keep-umap`, the gate checks, label, taxonomy). A setting that
+applies to every bin means re-clustering and relabelling bin 1 before its review starts (minutes on the A100; no review lost yet).
 
 ## 8. Bins 2–9
 Cell 3.5: embed + topics → label → review → taxonomy → review → reassign with the fixed `T`. Each bin's `config.json` is the

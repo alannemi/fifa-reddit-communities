@@ -179,3 +179,33 @@ paper's manual merge. Asking step 1 for broader categories would be a prompt cha
    six flagged topics, then 1 and 46) → `collect`. The outlier calibration samples of bin 1 (`belongs`) in the same session.
 3. Large-bin gate on bin 4 (cell 3.3), `T` from the samples of bins 1 and 4 (cell 3.4), bins 2–9 (cell 3.5 with its two review
    pauses), sentiment + the 300-post hand-coded sample, collect, hand-back of all bins, S6 locally, codebook v3.0 final.
+
+## 8. Large-bin gate (bin 4, interim Oct 2014 – Jan 2018, 331,216 posts) — first attempt failed on the outlier share
+
+Cell 3.3, 2026-10-25 (after the D6 re-run). cuML backend; embeddings for 2014–2018 cached; UMAP + the guard 6.5 min.
+
+| Guard trial | `min_cluster_size` | Topics | Raw outliers |
+|---|---|---|---|
+| 1 (0.25 % of the modelled posts) | 820 | 2 | 1.2 % |
+| 2 (÷ 1.5) | 547 | **74** (in range → converged) | **56.2 %** |
+
+The guard converged, so the topic count is fine; the gate failed on the second criterion (raw outliers ≤ 45 %, design §12.2),
+and the cell stopped before labelling, as designed. Reading: with `min_samples` 10 and EOM selection, the condensed tree of
+this three-year bin has two giant clusters near the root (trial 1) and, one step down, 74 clusters that cover only 44 % of the
+posts. Bin 1 had 35 % raw outliers at the floor size of 25.
+
+**What was added for the decision (same day, unit checks 21/21):** `--stage grid --bin N` (notebook cell 3.3b) refits HDBSCAN
+on the cached UMAP array over `config.HDBSCAN_GRID` — `min_cluster_size` × {1, 0.67, 0.5} of the guard's 547, `min_samples`
+{10, 5, 3}, selection {eom, leaf} — and writes `bin-4/hdbscan_grid.csv` (topics, outlier share, largest cluster, median size
+per setting). The clustering settings (`HDBSCAN_MIN_SAMPLES`, `HDBSCAN_SELECTION_METHOD`, `HDBSCAN_EPSILON`,
+`TOPIC_COUNT_RANGE`) may now be one value for every bin or a dict by period type; the values in force are recorded per bin
+(`config.json → topics.hdbscan`). `--stage topics --force --keep-umap` (cell 3.3c) applies a decision without recomputing UMAP.
+Verified locally on the bin-1 dry run: the default setting reproduces 92 topics / 35.9 % exactly; `min_samples` 5 gives 98 topics
+/ 32.5 %.
+
+**Decision pending (author):** the setting for the interim bins — and whether it applies to every bin (then bin 1 is
+re-clustered and relabelled, minutes, before its review) or by period type (bin 1 stays). Options, to be read off the grid:
+lower `min_samples` (fewer points declared noise at the same cluster count); `leaf` selection; a wider topic range for the
+interim bins (e.g. 50–150, smaller clusters, fewer outliers — a change to design §6.2); `epsilon` > 0 (merges micro-clusters);
+or accepting > 45 % raw outliers for the interim bins and letting the D3 reassignment carry more weight.
+

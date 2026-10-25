@@ -196,6 +196,10 @@ def stage_topics(args, paths: Paths, b: int):
     bdir = paths.bin_dir(b)
     if (bdir / "documents.csv").exists() and not args.force:
         log.info("topics: bin %d already modelled (%s); use --force", b, bdir / "documents.csv"); return
+    if (bdir / "documents.csv").exists():                               # --force: a refit renumbers the topics, so the
+        retired = tagging.retire_label_outputs(bdir, paths.analysis / "stale")   # previous labels/reviews must not be resumed
+        if retired:
+            log.warning("topics: bin %d is re-clustered; the label and review outputs of the previous clustering were moved to %s", b, retired)
     t0 = time.time()
     device = embed.get_device(args.device)
     backend = M.detect_backend()

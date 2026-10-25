@@ -286,3 +286,36 @@ reach the samples too (a merged-away topic carries its target's name, as the pos
 Bin 1's three files in `results/analysis/bin-1/` were updated locally from its 65 labels; the copies on Drive get the column
 the next time `review_pack(1)` or `stage('--stage label --bin 1')` runs there; bins 2–9 get it inside cell 3.5. Unit checks
 12/12 (the sample writer and the annotation covered in the frozen-components and collect tests).
+
+## 12. The run of bins 2–9 started: the gate stopped the loop at bin 3 (2026-10-25, 18:49–18:59 UTC)
+
+Cell 3.5 began with bin 3 (the 2014 World Cup period, 83,147 documents, 81,634 modelled), the first bin in the author's order.
+UMAP and HDBSCAN on cuML; the guard converged on its first trial: `min_cluster_size` 25 → **474 topics**, inside the D8 target of
+408–612; **raw outlier share 45.79 %**, so the gate (≤ 45 %, design §12.2) failed by 0.8 points and the loop stopped before the
+labelling. Cell 3.3 run afterwards with `GATE_BIN = 3` changed nothing: the topics stage is skipped for a bin that is already
+modelled, and the same assertion failed on the same numbers (the diagnostic for a failed gate is cell 3.3b, the grid). The
+8.2 minutes went to the representation step (keyword re-ranking of 474 topics), not to the clustering (seconds).
+
+Calibration table of bin 3 (`results/bin-3/outlier_calibration/calibration_table.csv`): 37,383 outliers; the three candidate
+thresholds 0.6009 / 0.6362 / 0.6755 would reassign 18,696 / 13,102 / 7,481 of them, leaving **22.9 / 29.7 / 36.6 %** of the
+modelled posts as outliers after D3. Bin 1's candidates were 0.5428 / 0.5789 / 0.6173 (34.8 % raw outliers).
+
+**Reading.** The gate was written to catch a pathological clustering (bin 4's first attempt: 74 topics and 56 % outliers). Bin 3
+is not that case: the topic count sits in the target on the first trial and the overshoot is 0.8 points; the final outlier
+share is set by `T`, not by this number alone. The clustering settings are the same as bin 1's (`min_samples` 10, eom), and a
+tournament-bin setting that differs from bin 1's would mean re-clustering and relabelling bin 1 before its review is used.
+
+**Options for the author.** (a) Run the grid on bin 3 (cell 3.3b with `GATE_BIN = 3`; 24 HDBSCAN fits on the cached UMAP
+array, minutes) to see whether `min_samples` 5 or 3, or `leaf`, keeps the topic count in 408–612 with fewer outliers; adopt a
+setting only if the gain is clear, since it would apply to bin 1 too. (b) Accept 45.8 % for bin 3 and raise the gate's
+tolerance for bins whose guard converged (for instance to 50 %), recorded as a decision in design §14. The assistant's
+recommendation is (a) as information, then (b) unless the grid shows a clearly better setting. **Decision pending.** Until it
+is taken, cell 3.5 stops at bin 3 again; the gate value lives in the notebook (cells 3.3, 3.3c, 3.5).
+
+**Safeguard added the same evening (approved by the author).** `--stage topics --force` on a bin that is already modelled now
+moves the previous clustering's `labels/`, `labels.jsonl`, `topics_labelled.csv`, `topic_overrides.csv`, `review_pack.md`,
+`REVIEW_READY.txt` and `outlier_calibration/` into `results/stale/bin-N_<timestamp>/` (Drive: `MyDrive/fifa-communities/results/stale/`)
+before refitting; nothing is deleted and the hand-back zips do not include it. Reason: `run_labelling` resumes from
+`labels.jsonl` by topic id and every refit renumbers the topics, so a labelled bin that was re-clustered would have received
+its old labels on unrelated topics. No bin was in that state (bin 4 stopped at the gate before labelling; bin 1 is not
+re-clustered). Unit checks 12/12 (`retire_label_outputs` covered in the labelling test).

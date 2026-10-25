@@ -19,9 +19,11 @@ S5 may run before all bins exist (refinement N6): columns stay empty for bins wi
 `bins_complete`, and 06-tag-corpus.R refuses a partial write-back outside a dry run.
 """
 from __future__ import annotations
+import datetime as dt
 import hashlib
 import json
 import logging
+import shutil
 from pathlib import Path
 
 import numpy as np
@@ -59,6 +61,29 @@ def _int_str(x) -> str:
 
 
 CALIBRATION_NAME_COLUMN = "nearest_topic_name"
+# Outputs that belong to one clustering of a bin and must not survive a refit: the later stages resume from them
+# (run_labelling reads labels.jsonl by topic id, and every refit renumbers the topics) or reviewers fill them in.
+STALE_ON_REFIT = ["labels", "labels.jsonl", "topics_labelled.csv", "topic_overrides.csv", "review_pack.md",
+                  "REVIEW_READY.txt", "outlier_calibration"]
+
+
+def retire_label_outputs(bin_dir: Path, stale_root: Path) -> Path | None:
+    """Before a bin is re-clustered (`--stage topics --force`): move the outputs of the previous clustering listed in
+    STALE_ON_REFIT into `stale_root/<bin>_<timestamp>/` — nothing is deleted, and the bin folder keeps only what the new
+    clustering writes. Returns the folder, or None when there was nothing to move. Why: stale labels keyed by old topic
+    ids would be attached to unrelated new topics on resume (found 2026-10-25; safeguard approved by the author)."""
+    present = [bin_dir / n for n in STALE_ON_REFIT if (bin_dir / n).exists()]
+    if not present:
+        return None
+    dest = stale_root / f"{bin_dir.name}_{dt.datetime.now():%Y-%m-%dT%H-%M-%S}"
+    dest.mkdir(parents=True, exist_ok=True)
+    for p in present:
+        shutil.move(str(p), str(dest / p.name))
+    (dest / "README.txt").write_text(
+        f"Outputs of {bin_dir} from a clustering that was superseded on {dt.datetime.now().isoformat(timespec='seconds')}\n"
+        f"(the bin was re-clustered with --stage topics --force). Kept as a record; the pipeline never reads this folder.\n"
+        f"Moved: {', '.join(p.name for p in present)}\n", encoding="utf-8")
+    return dest
 
 
 def topic_names(bin_dir: Path) -> dict[int, str]:

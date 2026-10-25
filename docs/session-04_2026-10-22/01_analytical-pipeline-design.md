@@ -596,7 +596,11 @@ the effective settings, guard trials, backend, CUDA/cuML versions, `pip freeze`,
    trials; otherwise revisit `min_samples`, the selection method or epsilon before the other bins. Diagnostic (2026-10-25): `--stage grid --bin N` refits HDBSCAN over `HDBSCAN_GRID` on the bin's cached UMAP array
    (`hdbscan_grid.csv`: topics, outlier share, largest cluster per setting); the decision is applied with `--stage topics --force
    --keep-umap`. **First attempt, bin 4 (2026-10-25): guard 820 → 2 topics, 547 → 74 topics with 56.2 % raw outliers — failed on
-   the outlier share; decision pending** (`../session-08_2026-10-25/00_colab-run-log.md` §8).
+   the outlier share; decision pending** (`../session-08_2026-10-25/00_colab-run-log.md` §8). **Bin 3 under D8 (2026-10-25,
+   cell 3.5): 474 topics at `min_cluster_size` 25, inside the target 408–612, 45.8 % raw outliers — failed on the outlier share
+   by 0.8 points; decision pending** (run log §12: grid, or a 50 % tolerance for bins whose guard converged). A refit with
+   `--force` moves the previous clustering's labels, review files and calibration samples to `results/stale/bin-N_<timestamp>/`
+   (2026-10-25; nothing deleted), since the label stage resumes by topic id and a refit renumbers the topics.
 3. **Outlier threshold.** `T` from the similarity quantiles + the 100-post human check, on bin 1 and the large bin.
 4. **Agents.** Round distribution and `agreement_mode` counts; `needs_review` ≤ 15 % of topics; greedy versus
    seeded-sampling comparison on bin 1 (dropped 2026-10-25, §14); 20 topics read by a co-author against their posts; optional relabel of bin 1

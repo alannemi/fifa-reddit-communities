@@ -303,6 +303,23 @@ def test_labelling_resume_and_outputs():
         assert rec["sample_ids"][0] == "p5" and "ITEMS" not in rec["transcript"][0]["user"] and "Keywords: k1" in rec["transcript"][0]["user"]
         cols = pd.read_csv(tmp / "topics_labelled.csv").columns
         assert "n_total" not in cols and "name" in cols and "round_iterations" in cols
+        # a refit retires the previous clustering's labels, review files and calibration samples (nothing deleted), so a
+        # resume cannot attach old labels to renumbered topics; labelling then starts from scratch
+        (tmp / "outlier_calibration").mkdir(); (tmp / "outlier_calibration" / "sample_T0.5000.csv").write_text("id\n", encoding="utf-8")
+        (tmp / "REVIEW_READY.txt").write_text("x", encoding="utf-8")
+        stale = Path(tempfile.mkdtemp())
+        try:
+            dest = T.retire_label_outputs(tmp, stale)
+            assert dest is not None and dest.parent == stale and dest.name.startswith(tmp.name + "_")
+            assert not any((tmp / n).exists() for n in T.STALE_ON_REFIT)
+            assert (dest / "labels" / "topic_0.json").exists() and (dest / "labels.jsonl").exists() and (dest / "topics_labelled.csv").exists()
+            assert (dest / "topic_overrides.csv").exists() and (dest / "outlier_calibration" / "sample_T0.5000.csv").exists() and (dest / "README.txt").exists()
+            assert T.retire_label_outputs(tmp, stale) is None
+            n_before = len(llm.calls)
+            out4 = G.run_labelling(tmp, 1, docs, topics, llm)
+            assert out4["topic_id"].tolist() == [0, 1, 2] and len(llm.calls) > n_before and (tmp / "labels.jsonl").exists()
+        finally:
+            shutil.rmtree(stale)
     finally:
         shutil.rmtree(tmp)
 

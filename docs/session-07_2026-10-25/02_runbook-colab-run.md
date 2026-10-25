@@ -97,13 +97,17 @@ cell 3.3b (`--stage grid --bin 4`: HDBSCAN over `HDBSCAN_GRID` — `min_cluster_
 eom/leaf — on the cached UMAP array, minutes) → the author chooses `HDBSCAN_MIN_SAMPLES` / `HDBSCAN_SELECTION_METHOD` /
 `HDBSCAN_EPSILON`, one value or a dict by period type, records it in design §14, commits → cell 3.3c (`topics --force
 --keep-umap`, the gate checks, label). A setting that applies to every bin means re-clustering and relabelling bin 1 before
-its review is used.
+its review is used. Any refit with `--force` first moves the bin's previous labels, review files and calibration samples to
+`results/stale/bin-N_<timestamp>/` (nothing deleted; not part of the hand-back), because the label stage resumes by topic id
+and a refit renumbers the topics (safeguard of 2026-10-25).
 
 ## 8. Bins 2–9 — one bin at a time, review as you go
 Cell 3.5 runs the tournament bins first (3, 5, 7, 9 — small, minutes to label each), then the interim bins (2, 4, 6, 8 — about
 an hour of labelling each; author's order, 2026-10-25), and finishes each bin before starting the next: embed → topics (a bin clustered before D8 is refitted on its cached UMAP
 array) → the gate (raw outliers ≤ 45 %, guard converged; **the loop stops at the first bin that fails** — cell 3.3b's grid with
-`GATE_BIN = N`, the author's setting, then re-run 3.5: finished bins are skipped) → label (resumable) → `review_pack.md` →
+`GATE_BIN = N`, the author's setting, then re-run 3.5: finished bins are skipped; first run, 2026-10-25: bin 3 stopped the loop
+at 45.8 % with 474 topics inside its target — decision pending, `../session-08_2026-10-25/00_colab-run-log.md` §12) → label
+(resumable) → `review_pack.md` →
 a per-bin hand-back zip in `handback/` → the flag **`results/bin-N/REVIEW_READY.txt`** on Drive (written by the pipeline when
 every topic of the bin is labelled; `status.json` beside it holds the numbers) and the log line "bin N READY FOR REVIEW".
 `--stage status` (cell 3.6, or locally) prints one row per bin. The co-authors review a finished bin (§6) while the GPU works

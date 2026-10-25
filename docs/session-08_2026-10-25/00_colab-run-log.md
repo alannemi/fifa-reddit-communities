@@ -383,7 +383,7 @@ review-pack script reads a global name that is not defined — the class of defe
 review pack, four calibration samples (names written in) and the 474 transcripts are in `results/analysis/bin-3/`. Bin 1's
 tier-updated `documents.csv`, `topics.csv`, `topics_over_time.csv`, `config.json`, `status.json` and four-band calibration table were
 pulled file by file through the Drive connector (its 10 MB limit rules out the zips); its new 35th-percentile sample
-(`sample_T0.4971.csv`) still has to come from Drive by hand. A co-author's review of bin 1's labels arrived on GitHub the same
+(`sample_T0.4971.csv`) still had to come from Drive by hand — **done later the same evening without the connector**: the four bands were regenerated locally with the pipeline's own `calibration_samples` from the committed nearest-topic table (same seed, same inputs); the three bands already in the repository came out byte-identical to the committed files, and the fourth matches Drive's copy in size (22,948 bytes), first and last row. Bin 1's post-D9 `outlier_nearest.csv` (five columns), `report.html` and `report.md` were fetched from Drive the same way as the larger files (saved tool results, decoded locally), so every bin-1 file in the repository now equals its Drive copy. A co-author's review of bin 1's labels arrived on GitHub the same
 evening (`results/analysis/manual review/BIN1_topics_labelled_TP:BA.csv`, commit `f938c69b`) — hence the rule: pull and merge
 before every commit. Local `collect --allow-partial` rebuilt `topic_labels_all_bins.csv` with bins 1 and 3 (539 topics).
 

@@ -275,3 +275,14 @@ bin clustered before D8 on its cached UMAP array) → the gate, which stops the 
 section 5's cell uses the same `handback()` helper for a chosen set of bins. Unit checks 12/12 (`write_status`,
 `status_table` covered in the collect test).
 
+## 11. Topic names in the outlier judgement samples (author's request, 2026-10-25, late evening)
+
+The co-authors judge the outlier samples (`outlier_calibration/sample_T<value>.csv`, design §6.3) against the nearest topic,
+which the files identified by id and keywords only. The author asked for the topic's name as well. Since the samples are
+written at stage S2, before any label exists, the label stage now writes the agreed name into every sample file as
+`nearest_topic_name` (right after `nearest_topic`; `tagging.annotate_calibration_samples`), keeping rows, order and anything
+already filled in; `08-review-pack.py pack` refreshes the column, so a co-author's renames and merges in `topic_overrides.csv`
+reach the samples too (a merged-away topic carries its target's name, as the posts will). Stage S2 writes the column empty.
+Bin 1's three files in `results/analysis/bin-1/` were updated locally from its 65 labels; the copies on Drive get the column
+the next time `review_pack(1)` or `stage('--stage label --bin 1')` runs there; bins 2–9 get it inside cell 3.5. Unit checks
+12/12 (the sample writer and the annotation covered in the frozen-components and collect tests).

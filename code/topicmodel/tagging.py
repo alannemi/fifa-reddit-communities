@@ -58,6 +58,47 @@ def _int_str(x) -> str:
     return str(int(float(x)))
 
 
+CALIBRATION_NAME_COLUMN = "nearest_topic_name"
+
+
+def topic_names(bin_dir: Path) -> dict[int, str]:
+    """{topic_id: name} of a labelled bin as the posts will carry it: the analysts' agreed names with the co-authors'
+    renames applied, a merged-away topic carrying its target's name (the rule of collect). Empty while unlabelled."""
+    p = bin_dir / "topics_labelled.csv"
+    if not p.exists():
+        return {}
+    labelled = _read(p)
+    if labelled.empty or "topic_id" not in labelled.columns:
+        return {}
+    labels, merges = apply_topic_overrides(labelled, read_overrides(bin_dir / "topic_overrides.csv"))
+    names = dict(zip(labels["topic_id"].astype(int), labels["name"]))
+    for old, new in merges.items():
+        names[int(old)] = names.get(int(new), "")
+    return names
+
+
+def annotate_calibration_samples(bin_dir: Path) -> int:
+    """Write the nearest topic's name into every outlier_calibration/sample_T*.csv (column `nearest_topic_name`, right
+    after `nearest_topic`) so the co-authors judge against a name, not only an id (author's request, 2026-10-25). Rows,
+    their order and anything already filled in (`belongs`, `notes`) are kept; re-running refreshes the names (renames and
+    merges from topic_overrides.csv included). Returns the number of files written: 0 while the bin is unlabelled."""
+    names = topic_names(bin_dir)
+    cdir = bin_dir / "outlier_calibration"
+    if not names or not cdir.is_dir():
+        return 0
+    n = 0
+    for p in sorted(cdir.glob("sample_T*.csv")):
+        s = _read(p)
+        if s.empty or "nearest_topic" not in s.columns:
+            continue
+        s[CALIBRATION_NAME_COLUMN] = [names.get(int(t), "") if str(t).strip() else "" for t in s["nearest_topic"]]
+        cols = [c for c in s.columns if c != CALIBRATION_NAME_COLUMN]
+        i = cols.index("nearest_topic") + 1
+        s[cols[:i] + [CALIBRATION_NAME_COLUMN] + cols[i:]].to_csv(p, index=False)
+        n += 1
+    return n
+
+
 def bin_state(bin_dir: Path) -> str:
     """missing -> topics (modelled, not labelled) -> labelled (= complete for a bin since D7)."""
     if (bin_dir / "topics_labelled.csv").exists():

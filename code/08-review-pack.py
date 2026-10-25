@@ -6,7 +6,8 @@ results/analysis/bin-N/, but the 40 sample posts each topic was labelled from li
 (labels/topic_<id>.json), which nobody should read raw. This script renders everything a reviewer needs into one Markdown
 file and validates what the reviewer filled in before it goes back to Drive / Colab.
 
-  python code/08-review-pack.py pack  --bin 1        -> results/analysis/bin-1/review_pack.md
+  python code/08-review-pack.py pack  --bin 1        -> results/analysis/bin-1/review_pack.md, and the nearest topic's name
+                                                       written into outlier_calibration/sample_T*.csv (nearest_topic_name)
   python code/08-review-pack.py check --bin 1        -> validates topic_overrides.csv (ids exist, no merge cycles)
   --analysis-dir <folder>   the folder that holds bin-N/ (default results/analysis; a hand-back or a dry run works too)
 
@@ -158,6 +159,10 @@ def main() -> int:
     if a.action == "pack":
         dest = build_pack(bdir, a.bin)
         print(f"review pack written: {dest} ({dest.stat().st_size / 1e3:.0f} kB)")
+        sys.path.insert(0, str(ROOT / "code"))
+        from topicmodel import tagging                       # the pipeline's own helper, so the rule is written once
+        n = tagging.annotate_calibration_samples(bdir)
+        print(f"nearest_topic_name written into {n} outlier calibration sample file(s) in {bdir / 'outlier_calibration'}")
         return 0
     return 1 if check_overrides(bdir) else 0
 

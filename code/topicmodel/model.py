@@ -306,18 +306,23 @@ def calibration_table(nearest: pd.DataFrame, n_modelled: int) -> pd.DataFrame:
 
 
 def calibration_samples(nearest: pd.DataFrame, titles: dict, keywords_of: dict, table: pd.DataFrame,
-                        n: int = C.OUTLIER_SAMPLE_PER_CANDIDATE) -> dict[float, pd.DataFrame]:
+                        n: int = C.OUTLIER_SAMPLE_PER_CANDIDATE, names_of: dict | None = None) -> dict[float, pd.DataFrame]:
     """One judgement sample per candidate threshold: posts whose similarity lies in the band between that
     candidate and the next higher one (so the sample shows what lowering the threshold to T would add).
+    `nearest_topic_name` is the nearest topic's agreed name (`names_of`); at stage S2 no labels exist yet, so the column
+    is empty and the label stage fills it in (tagging.annotate_calibration_samples; author's request, 2026-10-25).
     Column `belongs` is left blank for the co-author (yes / no)."""
     out = {}
+    names_of = names_of or {}
     ths = table["threshold"].tolist()
     for i, T in enumerate(ths):
         hi = ths[i + 1] if i + 1 < len(ths) else 1.01
         band = nearest[(nearest["similarity"] >= T) & (nearest["similarity"] < hi)]
         samp = band.sample(min(n, len(band)), random_state=C.SEED) if len(band) else band
         out[T] = pd.DataFrame({"id": samp["id"], "title": [titles.get(i, "")[:200] for i in samp["id"]],
-                               "nearest_topic": samp["nearest_topic"], "nearest_topic_keywords": [keywords_of.get(int(t), "") for t in samp["nearest_topic"]],
+                               "nearest_topic": samp["nearest_topic"],
+                               "nearest_topic_name": [names_of.get(int(t), "") for t in samp["nearest_topic"]],
+                               "nearest_topic_keywords": [keywords_of.get(int(t), "") for t in samp["nearest_topic"]],
                                "similarity": samp["similarity"], "candidate_threshold": T, "band_upper": hi if hi <= 1 else "",
                                "belongs": "", "notes": ""})
     return out

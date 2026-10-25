@@ -66,8 +66,9 @@ refinement is moot (0 % flagged). **Done for bin 1 on 2026-10-25** (`../session-
 
 ## 5. Outlier threshold `T` — gate 3 (§12.3)
 `results/bin-1/outlier_calibration/calibration_table.csv` lists the candidate thresholds (50th / 65th / 80th percentile of
-outlier-to-nearest-topic similarity); `sample_T<value>.csv` gives 100 posts per candidate with the nearest topic's keywords;
-a co-author fills `belongs` (yes/no). Repeat on the large bin of step 7 before fixing `T`. Then set
+outlier-to-nearest-topic similarity); `sample_T<value>.csv` gives 100 posts per candidate with the nearest topic's id, name
+(`nearest_topic_name`, written in by the label stage and refreshed by `08-review-pack.py pack`) and keywords; a co-author
+fills `belongs` (yes/no). Repeat on the large bin of step 7 before fixing `T`. Then set
 `OUTLIER_THRESHOLD = {"default": T}` (or per bin) in `code/topicmodel/config.py`, commit, and run
 `--stage reassign --bin N --outlier-threshold T` (cell 3.4; seconds per bin; rewrites sizes, prevalence and the report,
 never `topic_id_raw`, keywords or labels).

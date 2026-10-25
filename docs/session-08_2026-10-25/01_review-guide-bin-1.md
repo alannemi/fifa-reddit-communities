@@ -71,19 +71,21 @@ chain (A → B, B → C) is allowed and resolves to C. A merged topic cannot als
 
 3,414 posts of bin 1 fit no cluster. The design re-attaches an outlier to its nearest topic when the similarity between them
 is at least a threshold `T`, to be chosen from three candidates. Each `sample_T<value>.csv` holds 100 outlier posts whose
-similarity lies just above that candidate, with the nearest topic's keywords:
+similarity lies just above that candidate, with the nearest topic's id, name and keywords:
 
 | Column | Meaning |
 |---|---|
 | `id`, `title` | the post |
-| `nearest_topic`, `nearest_topic_keywords` | the topic it would join |
+| `nearest_topic`, `nearest_topic_name`, `nearest_topic_keywords` | the topic it would join: its id, its agreed name (as in the review pack) and its keywords |
 | `similarity`, `candidate_threshold`, `band_upper` | where the post sits relative to the candidate threshold |
 | **`belongs`** | your judgement: `yes` if the post belongs with that topic, `no` if not |
 | `notes` | optional |
 
 Fill `belongs` for all 100 rows of all three files (300 judgements, about an hour). The threshold is set where the yes answers
 clearly dominate; the same files exist for the large bin 4 and both are needed before `T` is fixed. Two coders would allow an
-agreement figure for the codebook.
+agreement figure for the codebook. The names are the analysts' agreed names at the time the files were written; if you finish
+the topic file (§3) first, Alan refreshes them with your renames (`python code/08-review-pack.py pack --bin 1` rewrites the
+name column and keeps everything you filled in).
 
 ## 5. Checking and handing over
 

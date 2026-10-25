@@ -363,6 +363,8 @@ def stage_label(args, paths: Paths, b: int):
                                                       "keywords": str}, keep_default_na=False)
     llm = get_llm(args)
     labelled = G.run_labelling(bdir, b, md, topics, llm, max_topics=args.max_topics)
+    n_samp = tagging.annotate_calibration_samples(bdir)      # the nearest topic's name beside its id in the judgement samples
+    log.info("label: nearest_topic_name written into %d outlier calibration sample file(s)", n_samp)
     update_config(bdir, "label", {**llm.describe(), "prompt_version": P.PROMPT_VERSION, "n_topics_labelled": int(len(labelled)),
                                   "n_needs_review": int(labelled["needs_review"].sum()) if len(labelled) else 0,
                                   "agreement_modes": labelled["agreement_mode"].value_counts().to_dict() if len(labelled) else {},

@@ -155,6 +155,15 @@ def test_frozen_components_in_bertopic():
     assert (ass[:10] == "outlier").all() and not np.isnan(sim[:10]).any()
     tbl = M.calibration_table(near, len(docs))
     assert list(tbl["quantile"]) == list(C.OUTLIER_CALIBRATION_QUANTILES)
+    # the judgement samples: one per candidate band; the nearest topic's name beside its id (empty until the bin is labelled)
+    near2 = pd.DataFrame({"id": [f"o{i}" for i in range(20)], "nearest_topic": [0] * 10 + [1] * 10, "similarity": np.linspace(0.3, 0.9, 20).round(4)})
+    tbl2 = M.calibration_table(near2, 100)
+    samp = M.calibration_samples(near2, {f"o{i}": f"title {i}" for i in range(20)}, {0: "a, b", 1: "c, d"}, tbl2, n=5, names_of={1: "Topic one"})
+    assert list(samp) == tbl2["threshold"].tolist() and all(len(x) > 0 for x in samp.values())
+    for x in samp.values():
+        assert list(x.columns)[:5] == ["id", "title", "nearest_topic", "nearest_topic_name", "nearest_topic_keywords"] and (x["belongs"] == "").all()
+        assert all(nm == ("Topic one" if t == 1 else "") for t, nm in zip(x["nearest_topic"], x["nearest_topic_name"]))
+    assert all((x["nearest_topic_name"] == "").all() for x in M.calibration_samples(near2, {}, {}, tbl2, n=5).values())
     docs_df = pd.DataFrame({"id": ids, "title": docs, "post_type": "regular", "lang": "en", "num_comments": "3"})
     tt = M.topic_table(bt, docs_df, topics, tid, rep)
     assert set(tt["topic_id"]) == {-1, 0, 1, 2} and tt.loc[tt["topic_id"] == 0, "n_cluster"].iloc[0] == 110
@@ -317,6 +326,15 @@ def test_collect_partial():
                       "needs_review": [False, True], "analyst_a_final": ["{}", "{}"], "analyst_b_final": ["{}", "{}"], "llm_model": ["stub"] * 2, "llm_revision": ["", ""],
                       "prompt_version": ["1.4"] * 2, "decoding": ["greedy"] * 2}).to_csv(b / "topics_labelled.csv", index=False)
         pd.DataFrame({"topic_id": [1], "name": ["One"], "needs_review": [True], "final_name": ["One (final)"], "merge_into": [""], "notes": [""]}).to_csv(b / "topic_overrides.csv", index=False)
+        # the outlier judgement samples get the nearest topic's name (renames applied); filled cells survive; idempotent
+        (b / "outlier_calibration").mkdir()
+        pd.DataFrame({"id": ["p4", "p9"], "title": ["t4", "t9"], "nearest_topic": [1, 0], "nearest_topic_keywords": ["c, d", "a, b"], "similarity": [0.55, 0.57],
+                      "candidate_threshold": [0.5, 0.5], "band_upper": ["", ""], "belongs": ["yes", ""], "notes": ["", ""]}).to_csv(b / "outlier_calibration" / "sample_T0.5000.csv", index=False)
+        assert T.topic_names(b) == {0: "Zero", 1: "One (final)"} and T.topic_names(an / "bin-2") == {} and T.annotate_calibration_samples(an / "bin-2") == 0
+        assert T.annotate_calibration_samples(b) == 1 and T.annotate_calibration_samples(b) == 1
+        cs = pd.read_csv(b / "outlier_calibration" / "sample_T0.5000.csv", dtype=str, keep_default_na=False)
+        assert list(cs.columns) == ["id", "title", "nearest_topic", "nearest_topic_name", "nearest_topic_keywords", "similarity", "candidate_threshold", "band_upper", "belongs", "notes"]
+        assert cs["nearest_topic_name"].tolist() == ["One (final)", "Zero"] and cs["belongs"].tolist() == ["yes", ""] and cs["similarity"].tolist() == ["0.55", "0.57"]
         side = T.collect(an, ad, allow_partial=True, run_info={})
         pv = pd.read_csv(ad / "post_variables.csv", dtype=str, keep_default_na=False)
         assert list(pv.columns) == T.POST_COLUMNS + T.AUDIT_COLUMNS and len(pv) == 10 and "category_id" not in pv.columns
@@ -340,6 +358,9 @@ def test_collect_partial():
         xw.loc[0, "chapter_theme"] = "Match talk"; xw.to_csv(an / "topic_crosswalk.csv", index=False)     # a filled crosswalk is kept
         # a topic merge: 1 into 0 -> the four posts carry topic 0, the label row of 1 disappears, the mean covers four posts
         pd.DataFrame({"topic_id": [1], "name": ["One"], "needs_review": [True], "final_name": [""], "merge_into": ["0"], "notes": [""]}).to_csv(b / "topic_overrides.csv", index=False)
+        assert T.topic_names(b) == {0: "Zero", 1: "Zero"} and T.annotate_calibration_samples(b) == 1     # a merged-away topic carries its target's name
+        cs = pd.read_csv(b / "outlier_calibration" / "sample_T0.5000.csv", dtype=str, keep_default_na=False)
+        assert cs["nearest_topic_name"].tolist() == ["Zero", "Zero"] and list(cs.columns).count("nearest_topic_name") == 1 and cs["belongs"].tolist() == ["yes", ""]
         side = T.collect(an, ad, allow_partial=True, run_info={})
         pv = pd.read_csv(ad / "post_variables.csv", dtype=str, keep_default_na=False)
         assert pv["topic_id"].tolist()[:4] == ["0"] * 4 and pv["topic_id_raw"].tolist()[2] == "1" and side["errors"] == []

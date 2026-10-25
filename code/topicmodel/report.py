@@ -47,8 +47,13 @@ def write_report(run_dir, meta: dict, topics: pd.DataFrame, tot: pd.DataFrame, s
     tt = tot[tot["topic_id"].isin(top)].merge(t[["topic_id", "label"]], on="topic_id")
     fig = px.line(tt, x="period", y="n_docs", color="label", title="Topic prevalence over time (12 largest topics)")
     if markers:
+        # A shape + an annotation, not fig.add_vline(): with a datetime position and an annotation, add_vline fails on
+        # plotly 5.x ("unsupported operand type(s) for +: 'int' and 'datetime.datetime'"; Colab ships 5.24.1, first Colab
+        # run 2026-10-25). Date axes accept ISO strings in every plotly version.
         for name, day in markers.items():
-            fig.add_vline(x=pd.Timestamp(day).to_pydatetime(), line_dash="dash", annotation_text=name)
+            x = pd.Timestamp(day).strftime("%Y-%m-%d")
+            fig.add_shape(type="line", x0=x, x1=x, y0=0, y1=1, yref="paper", line={"dash": "dash", "color": "#52606d"})
+            fig.add_annotation(x=x, y=1, yref="paper", text=name, showarrow=False, yanchor="bottom", font={"size": 11})
     parts.append(_fig_html(fig))
     # 3. sentiment by topic
     st = sent_topic[sent_topic["topic_id"] != -1].merge(t[["topic_id", "label"]], on="topic_id")

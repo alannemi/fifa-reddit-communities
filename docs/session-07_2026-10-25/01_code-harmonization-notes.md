@@ -92,7 +92,8 @@ explains a value (8,000 tokens ← review R2; salvage ← N11; floor 25 ← desi
 
 ## 4. The notebook `05b-analysis-pipeline-colab.ipynb` (28 cells, regenerated)
 
-Generated with a stdlib script kept in the session scratchpad (`build_05b_notebook.py`; nbformat 4.5, validated with
+Generated once with a stdlib script kept in the session scratchpad (`build_05b_notebook.py` — stale since the in-place fixes of the
+first Colab run, see the addendum to §8; the committed notebook is the source; nbformat 4.5, validated with
 `nbformat.validate`, every code cell parsed). Cells: header with the Drive layout table → 0.1 mount, assert the 17 files,
 create `analysis/ results/ embeddings/ hf-cache/ logs/ handback/ comparisons/`, open the session log → 0.2 clone/pull the
 repository, copy the CSVs to `/content/data/yearly datasets`, set `PIPELINE_ROOT`, `PIPELINE_YEARLY_DIR`, print and assert the
@@ -167,6 +168,15 @@ the file and Drive's FUSE mount returns garbage for such reads (the embed stage,
 it fine). `config.py` gained the override `PIPELINE_HF_CACHE_DIR`, the notebook sets it to `/content/hf-cache` (weights
 re-downloaded per session), and the Drive folder `hf-cache/` of layout H2 is unused — a refinement of H2 for the author's
 record (flag F39). Embeddings, results and join tables on Drive are ordinary reads and writes and are not affected.
+(4) Pass 1 (cells 2.1–2.4) then ran to completion, but `results/bin-1/` on Drive held no `report.html`: the report writer
+is presentation only and never fails a stage — it logs `report for bin 1 skipped: <reason>` to `results/bin-1/log.txt` and
+the stage goes on — and under Colab's plotly 5.24.1 `fig.add_vline()` with a datetime position and an annotation raises
+`unsupported operand type(s) for +: 'int' and 'datetime.datetime'` (an upstream defect of plotly 5.x; the local environment
+has 7.1.0, where every dry run rendered). The kick-off / final markers are now a shape plus an annotation on an ISO date,
+which renders under 5.24.1 and 7.1.0 (verified on the h7 dry-run tables in a scratch environment with plotly 5.24.1), and
+the notebook asserts the report's presence after every rendering stage (`report_ok()`; flag F40). The three earlier fixes
+had been applied to the notebook file in place, so the session's generator script went stale and the committed notebook
+is the source from here on; the execution outputs that VS Code had saved into the committed file were stripped.
 
 ## 9. The approved plan (2026-10-25)
 

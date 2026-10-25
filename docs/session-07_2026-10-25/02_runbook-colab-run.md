@@ -50,6 +50,11 @@ check `cuml_accel`, `umap_class`, and that the command was prefixed with `python
 `n_topics_raw` within 50–100, `outlier_share_raw` (session-05 dry run: 35.9 % with MiniLM). Open `results/bin-1/report.html`:
 the 2010 themes must be visible (vuvuzelas, Jabulani, Lampard's goal, Suárez's handball, Spain's win, Paul the octopus).
 Pass 1 also labels the 12 largest topics, runs the two-step taxonomy over them, scores 2010 and collects (partial).
+The report (`report.html` + `report.md`) is re-rendered after topics, reassign, label and taxonomy; Drive's web view does not
+render HTML, so download the file or show it in the notebook (`IPython.display.HTML(open(path).read())`). The writer never
+fails a stage: if the file is missing, `results/bin-1/log.txt` holds `report for bin 1 skipped: <reason>` (first run,
+2026-10-25: a plotly 5.24.1 defect in `add_vline`, fixed the same day); after a fix, `stage('--stage report --bin 1')`
+re-renders in seconds. The notebook now asserts the report after every rendering stage (`report_ok()`).
 
 ## 4. Pass 2, cell 3.1 — bin 1 in full — gate 4 (§12.4) — **stop point of the test batch**
 `needs_review` ≤ 15 % of topics (local dry run: 2.2 %); the `agreement_mode` and `round_iterations` distributions

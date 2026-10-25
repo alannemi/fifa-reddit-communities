@@ -1,0 +1,194 @@
+{
+ "period_bin": 3,
+ "topic_id": 134,
+ "keywords": "google doodle, cup google, google maps, google world, game google, todays google, match google, penalty google, really cool, cup easter, cup klose, click country, wc goal, sturridge dance, interactive world",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "2albrg",
+  "28bt9r",
+  "2akuyt",
+  "28sjv8",
+  "2a7t7k",
+  "27geas",
+  "2a671o",
+  "2a971u",
+  "2a73fn",
+  "2alw46",
+  "28bz1w",
+  "29l5lz",
+  "2amhf4",
+  "29q0mh",
+  "28c1kl",
+  "2a6edr",
+  "29tbta",
+  "1y6f2x",
+  "2a81a8",
+  "27yq7a",
+  "29r62t",
+  "2a6p1u",
+  "28t97j",
+  "2a681q",
+  "28uue5",
+  "2ak6br",
+  "2a6hrv",
+  "28wd0i",
+  "27zl43",
+  "2a481i",
+  "2ak68j",
+  "29wg7s",
+  "28tiin",
+  "29tbuc",
+  "21dmfj",
+  "2aj1g5",
+  "28dyky",
+  "2a802b",
+  "28uv5j",
+  "27ytl7"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "World Cup Doodles",
+  "purpose": "Promote football events and engage fans",
+  "emotion_tone": "enthusiastic",
+  "description": "Posts about Google Doodles related to World Cup matches, celebrations, and interactive features.",
+  "inclusion_cues": [
+   "Google Doodle for the World Cup Final",
+   "Klose Google Doodle",
+   "Interactive World Cup Final Google Doodle",
+   "Today's Google Doodle",
+   "Google's clever banner for the USA vs Belgium game"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "World Cup Doodles",
+    "purpose": "Promote football events and engage fans",
+    "emotion_tone": "enthusiastic",
+    "description": "Posts about Google Doodles related to World Cup matches, celebrations, and interactive features.",
+    "inclusion_cues": [
+     "Google Doodle for the World Cup Final",
+     "Klose Google Doodle",
+     "Interactive World Cup Final Doodle",
+     "Today's Google Doodle",
+     "Google's World Cup Final Doodle"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "World Cup Doodles",
+    "purpose": "Promote football events and engage fans",
+    "emotion_tone": "enthusiastic",
+    "description": "Posts about Google Doodles related to World Cup matches, celebrations, and interactive features.",
+    "inclusion_cues": [
+     "Google Doodle for the World Cup Final",
+     "Klose Google Doodle",
+     "Interactive World Cup Final Google Doodle",
+     "Today's Google Doodle",
+     "Google's clever banner for the USA vs Belgium game"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: google doodle, cup google, google maps, google world, game google, todays google, match google, penalty google, really cool, cup easter, cup klose, click country, wc goal, sturridge dance, interactive world\nPosts (one per line, title first):\n- Google Doodle for the World Cup Final\n- Check out the Google Doodle!\n- The Google Doodle for the 2014 World Cup Final\n- Klose Google Doodle\n- Google doodle on google.de\n- Finish Downloading SmartDraw\n- New Google Doodle for Brazil v Germany\n- Today's Google Doodle\n- Google Doodle Fails at Goal Line Technology\n- Google's World Cup Final Doodle\n- The Google Doodles are really cool\n- Google's clever banner for the USA vs Belgium game.\n- Google Doodle for World Cup Final\n- Google doodle's take on Robben's penalty.\n- Google's new artwork for the USA vs Ghana game\n- Miroslav Klose Google Doodle\n- Today's Doodle for the France vs Germany match\n- Microsoft Taps DocuSign To Let you digitally Sign and Send Documents in Office 365\n- German doodle after they made their way in to the finals.\n- Todays Google Doodle\n- Used Google+' #PaintArgentina feature to #PaintMaradona\n- new Doodle celebrates Kloses 16. WC goal\n- Google celebrates Klose's 15th goal in the World Cup..\n- Google doodle for Brazil - Germany game\n- today's google doodle - office people can relate\n- New interactive World Cup Final Google Doodle allows you to click on a country's flag to see their fan\n- Accurate google doodle mod of the first half\n- just another Google Easter Egg\n- Niger's flag is displayed instead of Nigeria's during the World Cup opening ceremony\n- Today's Google Doodle is pretty much what we're all thinking...\n- Google's interactive World Cup doodle\n- Google's doodle for those of us watching the ARG-BEL match in the middle of a hurricane :)\n- Google's Portugal - USA doodle is hilarious.\n- Today's Doodle for the France vs Germany match\n- TIL Google Has Changed Profile Images to reflect how the season is going\n- Google's doodle for the third place Brazil-Holland game\n- Cute post Algeria-Belgium Google Doodle.\n- Wanted to check the google doodle for today's match when...\n- todays google doodle - office people can relate\n- Google's Tiny tribute to the World Cup (sorry for size).\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"World Cup Doodles\", \"purpose\": \"Promote football events and engage fans\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts about Google Doodles related to World Cup matches, celebrations, and interactive features.\", \"inclusion_cues\": [\"Google Doodle for the World Cup Final\", \"Klose Google Doodle\", \"Interactive World Cup Final Doodle\", \"Today's Google Doodle\", \"Google's World Cup Final Doodle\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "World Cup Doodles",
+      "purpose": "Promote football events and engage fans",
+      "emotion_tone": "enthusiastic",
+      "description": "Posts about Google Doodles related to World Cup matches, celebrations, and interactive features.",
+      "inclusion_cues": [
+       "Google Doodle for the World Cup Final",
+       "Klose Google Doodle",
+       "Interactive World Cup Final Doodle",
+       "Today's Google Doodle",
+       "Google's World Cup Final Doodle"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 113,
+   "seed": 3720457778,
+   "seconds": 0.51
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: google doodle, cup google, google maps, google world, game google, todays google, match google, penalty google, really cool, cup easter, cup klose, click country, wc goal, sturridge dance, interactive world\nPosts (one per line, title first):\n- Google Doodle for the World Cup Final\n- Check out the Google Doodle!\n- The Google Doodle for the 2014 World Cup Final\n- Klose Google Doodle\n- Google doodle on google.de\n- Finish Downloading SmartDraw\n- New Google Doodle for Brazil v Germany\n- Today's Google Doodle\n- Google Doodle Fails at Goal Line Technology\n- Google's World Cup Final Doodle\n- The Google Doodles are really cool\n- Google's clever banner for the USA vs Belgium game.\n- Google Doodle for World Cup Final\n- Google doodle's take on Robben's penalty.\n- Google's new artwork for the USA vs Ghana game\n- Miroslav Klose Google Doodle\n- Today's Doodle for the France vs Germany match\n- Microsoft Taps DocuSign To Let you digitally Sign and Send Documents in Office 365\n- German doodle after they made their way in to the finals.\n- Todays Google Doodle\n- Used Google+' #PaintArgentina feature to #PaintMaradona\n- new Doodle celebrates Kloses 16. WC goal\n- Google celebrates Klose's 15th goal in the World Cup..\n- Google doodle for Brazil - Germany game\n- today's google doodle - office people can relate\n- New interactive World Cup Final Google Doodle allows you to click on a country's flag to see their fan\n- Accurate google doodle mod of the first half\n- just another Google Easter Egg\n- Niger's flag is displayed instead of Nigeria's during the World Cup opening ceremony\n- Today's Google Doodle is pretty much what we're all thinking...\n- Google's interactive World Cup doodle\n- Google's doodle for those of us watching the ARG-BEL match in the middle of a hurricane :)\n- Google's Portugal - USA doodle is hilarious.\n- Today's Doodle for the France vs Germany match\n- TIL Google Has Changed Profile Images to reflect how the season is going\n- Google's doodle for the third place Brazil-Holland game\n- Cute post Algeria-Belgium Google Doodle.\n- Wanted to check the google doodle for today's match when...\n- todays google doodle - office people can relate\n- Google's Tiny tribute to the World Cup (sorry for size).\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"World Cup Doodles\", \"purpose\": \"Promote football events and engage fans\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts about Google Doodles related to World Cup matches, celebrations, and interactive features.\", \"inclusion_cues\": [\"Google Doodle for the World Cup Final\", \"Klose Google Doodle\", \"Interactive World Cup Final Google Doodle\", \"Today's Google Doodle\", \"Google's clever banner for the USA vs Belgium game\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "World Cup Doodles",
+      "purpose": "Promote football events and engage fans",
+      "emotion_tone": "enthusiastic",
+      "description": "Posts about Google Doodles related to World Cup matches, celebrations, and interactive features.",
+      "inclusion_cues": [
+       "Google Doodle for the World Cup Final",
+       "Klose Google Doodle",
+       "Interactive World Cup Final Google Doodle",
+       "Today's Google Doodle",
+       "Google's clever banner for the USA vs Belgium game"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 117,
+   "seed": 3334057024,
+   "seconds": 0.54
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: google doodle, cup google, google maps, google world, game google, todays google, match google, penalty google, really cool, cup easter, cup klose, click country, wc goal, sturridge dance, interactive world\nPosts (one per line, title first):\n- Google Doodle for the World Cup Final\n- Check out the Google Doodle!\n- The Google Doodle for the 2014 World Cup Final\n- Klose Google Doodle\n- Google doodle on google.de\n- Finish Downloading SmartDraw\n- New Google Doodle for Brazil v Germany\n- Today's Google Doodle\n- Google Doodle Fails at Goal Line Technology\n- Google's World Cup Final Doodle\n- The Google Doodles are really cool\n- Google's clever banner for the USA vs Belgium game.\n- Google Doodle for World Cup Final\n- Google doodle's take on Robben's penalty.\n- Google's new artwork for the USA vs Ghana game\n- Miroslav Klose Google Doodle\n- Today's Doodle for the France vs Germany match\n- Microsoft Taps DocuSign To Let you digitally Sign and Send Documents in Office 365\n- German doodle after they made their way in to the finals.\n- Todays Google Doodle\n- Used Google+' #PaintArgentina feature to #PaintMaradona\n- new Doodle celebrates Kloses 16. WC goal\n- Google celebrates Klose's 15th goal in the World Cup..\n- Google doodle for Brazil - Germany game\n- today's google doodle - office people can relate\n- New interactive World Cup Final Google Doodle allows you to click on a country's flag to see their fan\n- Accurate google doodle mod of the first half\n- just another Google Easter Egg\n- Niger's flag is displayed instead of Nigeria's during the World Cup opening ceremony\n- Today's Google Doodle is pretty much what we're all thinking...\n- Google's interactive World Cup doodle\n- Google's doodle for those of us watching the ARG-BEL match in the middle of a hurricane :)\n- Google's Portugal - USA doodle is hilarious.\n- Today's Doodle for the France vs Germany match\n- TIL Google Has Changed Profile Images to reflect how the season is going\n- Google's doodle for the third place Brazil-Holland game\n- Cute post Algeria-Belgium Google Doodle.\n- Wanted to check the google doodle for today's match when...\n- todays google doodle - office people can relate\n- Google's Tiny tribute to the World Cup (sorry for size).\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"World Cup Doodles\", \"purpose\": \"Promote football events and engage fans\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts about Google Doodles related to World Cup matches, celebrations, and interactive features.\", \"inclusion_cues\": [\"Google Doodle for the World Cup Final\", \"Klose Google Doodle\", \"Interactive World Cup Final Doodle\", \"Today's Google Doodle\", \"Google's World Cup Final Doodle\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"World Cup Doodles\", \"purpose\": \"Promote football events and engage fans\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts about Google Doodles related to World Cup matches, celebrations, and interactive features.\", \"inclusion_cues\": [\"Google Doodle for the World Cup Final\", \"Klose Google Doodle\", \"Interactive World Cup Final Google Doodle\", \"Today's Google Doodle\", \"Google's clever banner for the USA vs Belgium game\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"World Cup Doodles\", \"purpose\": \"Promote football events and engage fans\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts about Google Doodles related to World Cup matches, celebrations, and interactive features.\", \"inclusion_cues\": [\"Google Doodle for the World Cup Final\", \"Klose Google Doodle\", \"Interactive World Cup Final Google Doodle\", \"Today's Google Doodle\", \"Google's clever banner for the USA vs Belgium game\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 116,
+   "seed": 1620512089,
+   "seconds": 0.51
+  }
+ ]
+}

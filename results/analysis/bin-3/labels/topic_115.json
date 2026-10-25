@@ -1,0 +1,189 @@
+{
+ "period_bin": 3,
+ "topic_id": 115,
+ "keywords": "shaw injured, luke shaw, shaw, shaw southampton, shaw come, southampton defender, united luke, rumour manchester, united getting, defender starts, southampton, southampton reject, united reportedly, signs manchester, united transfers",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "2965vc",
+  "296cck",
+  "2dg4ga",
+  "2dgeim",
+  "1zro11",
+  "27vx6f",
+  "1z3byw",
+  "2965sk",
+  "2dgfi2",
+  "25b48y",
+  "1ztze2",
+  "296cdb",
+  "297coc",
+  "263qe8",
+  "2bxoqj",
+  "29s3nb",
+  "298pnp",
+  "297pqn",
+  "25awqq",
+  "25civm",
+  "298hmh",
+  "2dsv4x",
+  "298h3o",
+  "295m8w",
+  "26ea3b",
+  "298pvt",
+  "296c8k",
+  "1zxhku",
+  "25ayir",
+  "27og60",
+  "261hbc",
+  "2dgdva",
+  "25e62k",
+  "298h5c",
+  "29ffc3",
+  "25ayk9",
+  "26byml",
+  "296bqn",
+  "26w4lw",
+  "2dgp8o"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Luke Shaw Transfer Rumours",
+  "purpose": "Tracking transfer rumors involving Luke Shaw",
+  "emotion_tone": "Excited",
+  "description": "Posts discussing rumors about Luke Shaw's transfer to Manchester United, including medicals, bids, and transfer negotiations",
+  "inclusion_cues": [
+   "Luke Shaw to have medical at Manchester United",
+   "Manchester United make £27m bid for Luke Shaw",
+   "Luke Shaw changes Twitter account to Man United player",
+   "Southampton reject United's £27m bid for Luke Shaw"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Shaw Transfer Rumours",
+    "purpose": "Tracking transfer speculation involving Luke Shaw",
+    "emotion_tone": "Excited",
+    "description": "Posts discussing transfer rumors, medicals, and potential signings of Southampton defender Luke Shaw",
+    "inclusion_cues": [
+     "Luke Shaw medical at Manchester United",
+     "Man Utd bid for Shaw",
+     "Shaw signs for Manchester United",
+     "Shaw out for weeks with injury"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Luke Shaw Transfer Rumours",
+    "purpose": "Tracking transfer rumors involving Luke Shaw",
+    "emotion_tone": "Excited",
+    "description": "Posts discussing rumors about Luke Shaw's transfer to Manchester United, including medicals, bids, and transfer negotiations",
+    "inclusion_cues": [
+     "Luke Shaw to have medical at Manchester United",
+     "Manchester United make £27m bid for Luke Shaw",
+     "Luke Shaw changes Twitter account to Man United player",
+     "Southampton reject United's £27m bid for Luke Shaw"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: shaw injured, luke shaw, shaw, shaw southampton, shaw come, southampton defender, united luke, rumour manchester, united getting, defender starts, southampton, southampton reject, united reportedly, signs manchester, united transfers\nPosts (one per line, title first):\n- Confirmed that Southampton Luke Shaw is due to have a medical at Manchester United\n- Luke Shaw to have medical at Man U \"very soon\".\n- \"Luke Shaw is set to be out for a month\"\n- Luke Shaw out for 4 weeks\n- It's not Luke Shaw!\n- Luke Shaw Agrees United Deal!\n- Luke Shaw receives his first England call up\n- Luke Shaw to have medical at Manchester United [BBC]\n- BBC Sport - Manchester United: Luke Shaw out for weeks with hamstring injury\n- Manchester United submit £27m bid for Southampton youngster Luke Shaw [Sky Sports News]\n- Robbie Earle: Ryan Shawcross playing for wrong club if he wants England call-up\n- Luke Shaw expected to have Manchester United medical soon\n- Man United bid for Shaw\n- BBC reports Shaw to United is a done deal\n- Luke Shaw replied to Football Funnys' photo insulting him\n- Southampton replace Luke Shaw with another academy player Matt Targett\n- [Official] Luke Shaw signs for Manchester United\n- Transfer news: Manchester United agree fee for Southampton left-back Luke Shaw\n- Man United make £27m offer for Luke Shaw\n- Manchester United transfers: Luke Shaw to sign for £25million with only personal terms to be agreed with.\n- Luke shaw announces via twitter that hes now a Utd player.\n- Luke Shaw shutting up the press.\n- SSN: Luke Shaw signs 5 year deal at Manchster United\n- Paul Scholes has warned against Manchester United spending £34million on Luke Shaw, as he believes it forces other clubs to go abroad to buy cheap imports, which reduces chances of young English talent breaking through.\n- Luke Shaw changes twitter to LukeShaw3. What does this mean?\n- Manchester United sign Luke Shaw\n- Southampton’s Luke Shaw set for medical at Manchester United\n- [Rumour] Manchester City to battle Manchester United for £50mill Luke Shaw and Ross Barkley\n- BREAKING-Man Utd make £27m bid for Southampton's Luke Shaw\n- Luke Shaw told Southampton he wanted join Man. Utd. on the last day of the season\n- Luke Shaw's Manchester United transfer moves closer as Southampton defender starts house-hunting\n- Luke Shaw out for weeks with hamstring injury\n- Southampton reject United's £27m bid for Luke Shaw\n- Luke Shaw changes his Twitter account to Man United player...\n- Sammy Lee turns down Brighton in favour of being Southampton assistant manager\n- Manchester United make bid for Luke Shaw\n- Luke Shaw considers options after deal to Manchester United stalls\n- Luke Shaw arrives at Carrington for Manchester United medical\n- Talks between Manchester United and SouthHampton FC for Luke Shaw to resume (BBC SPORT)\n- Luke Shaw to miss start of season\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Shaw Transfer Rumours\", \"purpose\": \"Tracking transfer speculation involving Luke Shaw\", \"emotion_tone\": \"Excited\", \"description\": \"Posts discussing transfer rumors, medicals, and potential signings of Southampton defender Luke Shaw\", \"inclusion_cues\": [\"Luke Shaw medical at Manchester United\", \"Man Utd bid for Shaw\", \"Shaw signs for Manchester United\", \"Shaw out for weeks with injury\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Shaw Transfer Rumours",
+      "purpose": "Tracking transfer speculation involving Luke Shaw",
+      "emotion_tone": "Excited",
+      "description": "Posts discussing transfer rumors, medicals, and potential signings of Southampton defender Luke Shaw",
+      "inclusion_cues": [
+       "Luke Shaw medical at Manchester United",
+       "Man Utd bid for Shaw",
+       "Shaw signs for Manchester United",
+       "Shaw out for weeks with injury"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 103,
+   "seed": 1343115602,
+   "seconds": 1.78
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: shaw injured, luke shaw, shaw, shaw southampton, shaw come, southampton defender, united luke, rumour manchester, united getting, defender starts, southampton, southampton reject, united reportedly, signs manchester, united transfers\nPosts (one per line, title first):\n- Confirmed that Southampton Luke Shaw is due to have a medical at Manchester United\n- Luke Shaw to have medical at Man U \"very soon\".\n- \"Luke Shaw is set to be out for a month\"\n- Luke Shaw out for 4 weeks\n- It's not Luke Shaw!\n- Luke Shaw Agrees United Deal!\n- Luke Shaw receives his first England call up\n- Luke Shaw to have medical at Manchester United [BBC]\n- BBC Sport - Manchester United: Luke Shaw out for weeks with hamstring injury\n- Manchester United submit £27m bid for Southampton youngster Luke Shaw [Sky Sports News]\n- Robbie Earle: Ryan Shawcross playing for wrong club if he wants England call-up\n- Luke Shaw expected to have Manchester United medical soon\n- Man United bid for Shaw\n- BBC reports Shaw to United is a done deal\n- Luke Shaw replied to Football Funnys' photo insulting him\n- Southampton replace Luke Shaw with another academy player Matt Targett\n- [Official] Luke Shaw signs for Manchester United\n- Transfer news: Manchester United agree fee for Southampton left-back Luke Shaw\n- Man United make £27m offer for Luke Shaw\n- Manchester United transfers: Luke Shaw to sign for £25million with only personal terms to be agreed with.\n- Luke shaw announces via twitter that hes now a Utd player.\n- Luke Shaw shutting up the press.\n- SSN: Luke Shaw signs 5 year deal at Manchster United\n- Paul Scholes has warned against Manchester United spending £34million on Luke Shaw, as he believes it forces other clubs to go abroad to buy cheap imports, which reduces chances of young English talent breaking through.\n- Luke Shaw changes twitter to LukeShaw3. What does this mean?\n- Manchester United sign Luke Shaw\n- Southampton’s Luke Shaw set for medical at Manchester United\n- [Rumour] Manchester City to battle Manchester United for £50mill Luke Shaw and Ross Barkley\n- BREAKING-Man Utd make £27m bid for Southampton's Luke Shaw\n- Luke Shaw told Southampton he wanted join Man. Utd. on the last day of the season\n- Luke Shaw's Manchester United transfer moves closer as Southampton defender starts house-hunting\n- Luke Shaw out for weeks with hamstring injury\n- Southampton reject United's £27m bid for Luke Shaw\n- Luke Shaw changes his Twitter account to Man United player...\n- Sammy Lee turns down Brighton in favour of being Southampton assistant manager\n- Manchester United make bid for Luke Shaw\n- Luke Shaw considers options after deal to Manchester United stalls\n- Luke Shaw arrives at Carrington for Manchester United medical\n- Talks between Manchester United and SouthHampton FC for Luke Shaw to resume (BBC SPORT)\n- Luke Shaw to miss start of season\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Luke Shaw Transfer Rumours\", \"purpose\": \"Tracking transfer rumors involving Luke Shaw\", \"emotion_tone\": \"Excited\", \"description\": \"Posts discussing rumors about Luke Shaw's transfer to Manchester United, including medicals, bids, and transfer negotiations\", \"inclusion_cues\": [\"Luke Shaw to have medical at Manchester United\", \"Manchester United make £27m bid for Luke Shaw\", \"Luke Shaw changes Twitter account to Man United player\", \"Southampton reject United's £27m bid for Luke Shaw\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Luke Shaw Transfer Rumours",
+      "purpose": "Tracking transfer rumors involving Luke Shaw",
+      "emotion_tone": "Excited",
+      "description": "Posts discussing rumors about Luke Shaw's transfer to Manchester United, including medicals, bids, and transfer negotiations",
+      "inclusion_cues": [
+       "Luke Shaw to have medical at Manchester United",
+       "Manchester United make £27m bid for Luke Shaw",
+       "Luke Shaw changes Twitter account to Man United player",
+       "Southampton reject United's £27m bid for Luke Shaw"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 124,
+   "seed": 3654324905,
+   "seconds": 0.56
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: shaw injured, luke shaw, shaw, shaw southampton, shaw come, southampton defender, united luke, rumour manchester, united getting, defender starts, southampton, southampton reject, united reportedly, signs manchester, united transfers\nPosts (one per line, title first):\n- Confirmed that Southampton Luke Shaw is due to have a medical at Manchester United\n- Luke Shaw to have medical at Man U \"very soon\".\n- \"Luke Shaw is set to be out for a month\"\n- Luke Shaw out for 4 weeks\n- It's not Luke Shaw!\n- Luke Shaw Agrees United Deal!\n- Luke Shaw receives his first England call up\n- Luke Shaw to have medical at Manchester United [BBC]\n- BBC Sport - Manchester United: Luke Shaw out for weeks with hamstring injury\n- Manchester United submit £27m bid for Southampton youngster Luke Shaw [Sky Sports News]\n- Robbie Earle: Ryan Shawcross playing for wrong club if he wants England call-up\n- Luke Shaw expected to have Manchester United medical soon\n- Man United bid for Shaw\n- BBC reports Shaw to United is a done deal\n- Luke Shaw replied to Football Funnys' photo insulting him\n- Southampton replace Luke Shaw with another academy player Matt Targett\n- [Official] Luke Shaw signs for Manchester United\n- Transfer news: Manchester United agree fee for Southampton left-back Luke Shaw\n- Man United make £27m offer for Luke Shaw\n- Manchester United transfers: Luke Shaw to sign for £25million with only personal terms to be agreed with.\n- Luke shaw announces via twitter that hes now a Utd player.\n- Luke Shaw shutting up the press.\n- SSN: Luke Shaw signs 5 year deal at Manchster United\n- Paul Scholes has warned against Manchester United spending £34million on Luke Shaw, as he believes it forces other clubs to go abroad to buy cheap imports, which reduces chances of young English talent breaking through.\n- Luke Shaw changes twitter to LukeShaw3. What does this mean?\n- Manchester United sign Luke Shaw\n- Southampton’s Luke Shaw set for medical at Manchester United\n- [Rumour] Manchester City to battle Manchester United for £50mill Luke Shaw and Ross Barkley\n- BREAKING-Man Utd make £27m bid for Southampton's Luke Shaw\n- Luke Shaw told Southampton he wanted join Man. Utd. on the last day of the season\n- Luke Shaw's Manchester United transfer moves closer as Southampton defender starts house-hunting\n- Luke Shaw out for weeks with hamstring injury\n- Southampton reject United's £27m bid for Luke Shaw\n- Luke Shaw changes his Twitter account to Man United player...\n- Sammy Lee turns down Brighton in favour of being Southampton assistant manager\n- Manchester United make bid for Luke Shaw\n- Luke Shaw considers options after deal to Manchester United stalls\n- Luke Shaw arrives at Carrington for Manchester United medical\n- Talks between Manchester United and SouthHampton FC for Luke Shaw to resume (BBC SPORT)\n- Luke Shaw to miss start of season\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Shaw Transfer Rumours\", \"purpose\": \"Tracking transfer speculation involving Luke Shaw\", \"emotion_tone\": \"Excited\", \"description\": \"Posts discussing transfer rumors, medicals, and potential signings of Southampton defender Luke Shaw\", \"inclusion_cues\": [\"Luke Shaw medical at Manchester United\", \"Man Utd bid for Shaw\", \"Shaw signs for Manchester United\", \"Shaw out for weeks with injury\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Luke Shaw Transfer Rumours\", \"purpose\": \"Tracking transfer rumors involving Luke Shaw\", \"emotion_tone\": \"Excited\", \"description\": \"Posts discussing rumors about Luke Shaw's transfer to Manchester United, including medicals, bids, and transfer negotiations\", \"inclusion_cues\": [\"Luke Shaw to have medical at Manchester United\", \"Manchester United make £27m bid for Luke Shaw\", \"Luke Shaw changes Twitter account to Man United player\", \"Southampton reject United's £27m bid for Luke Shaw\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Luke Shaw Transfer Rumours\", \"purpose\": \"Tracking transfer rumors involving Luke Shaw\", \"emotion_tone\": \"Excited\", \"description\": \"Posts discussing rumors about Luke Shaw's transfer to Manchester United, including medicals, bids, and transfer negotiations\", \"inclusion_cues\": [\"Luke Shaw to have medical at Manchester United\", \"Manchester United make £27m bid for Luke Shaw\", \"Luke Shaw changes Twitter account to Man United player\", \"Southampton reject United's £27m bid for Luke Shaw\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 123,
+   "seed": 876075581,
+   "seconds": 0.51
+  }
+ ]
+}

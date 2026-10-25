@@ -1,0 +1,214 @@
+{
+ "period_bin": 3,
+ "topic_id": 20,
+ "keywords": "miley, miley cyrus, katy perry, nicki, leaked, lindsay, ellen, kate, celebrity, celebs, oscar selfie, girls, porn, hottest, snapchats",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "27js9f",
+  "26di6q",
+  "26jkby",
+  "26fekb",
+  "26jkby",
+  "26d90x",
+  "28dcyn",
+  "28uosi",
+  "28g9es",
+  "26m1cq",
+  "2928s2",
+  "2759zo",
+  "266jar",
+  "27gqfw",
+  "24xpta",
+  "2769tx",
+  "2959tu",
+  "28mool",
+  "27k9i8",
+  "25teep",
+  "1y984p",
+  "2a6um9",
+  "2h9pba",
+  "2730pk",
+  "26fb90",
+  "26jnok",
+  "28givo",
+  "291tit",
+  "26fc6g",
+  "299518",
+  "26dn10",
+  "2804wm",
+  "27ef63",
+  "27vm7w",
+  "27cojj",
+  "295po4",
+  "27gehz",
+  "26ddni",
+  "2h9lcv",
+  "1y90l6"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "celebrity_photos",
+  "purpose": "exposure of celebrity content",
+  "emotion_tone": "enthusiastic",
+  "description": "Posts about leaked celebrity selfies, racy content, and related topics",
+  "inclusion_cues": [
+   "leaked",
+   "snapchats",
+   "selfies",
+   "celebs",
+   "hottest",
+   "girls",
+   "porn",
+   "oscar selfie",
+   "kate",
+   "miley"
+  ],
+  "n_cues_given": 19
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "celebrity_photos",
+    "purpose": "analyze posts about leaked celebrity selfies and related content",
+    "emotion_tone": "enthusiastic, curious, slightly controversial",
+    "description": "Posts discussing leaked celebrity selfies, including Miley Cyrus, Katya Perry, Lindsay Lohan, and others, with a focus on their aesthetic appeal and emotional impact.",
+    "inclusion_cues": [
+     "leaked",
+     "selfies",
+     "celebs",
+     "hottest",
+     "snapchats",
+     "porn"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "celebrity_photos",
+    "purpose": "exposure of celebrity content",
+    "emotion_tone": "enthusiastic",
+    "description": "Posts about leaked celebrity selfies, racy content, and related topics",
+    "inclusion_cues": [
+     "leaked",
+     "snapchats",
+     "selfies",
+     "celebs",
+     "hottest",
+     "girls",
+     "porn",
+     "oscar selfie",
+     "kate",
+     "miley"
+    ],
+    "n_cues_given": 19
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: miley, miley cyrus, katy perry, nicki, leaked, lindsay, ellen, kate, celebrity, celebs, oscar selfie, girls, porn, hottest, snapchats\nPosts (one per line, title first):\n- Miley Cyrus Takes It Up A Level!\n- Miley Cyrus opened her leg\n- Miley Cyrus opened her legs\n- ,: Miley Cyrus opened her legs\n- Miley Cyrus opened her legs\n- Jennette McCurdy's Racy Selfies Leaked!\n- pants that are see through!\n- Hottest Leaked Snapchats Ever ...\n- These leaked work selfies are the hottest we've ever seen\n- KALEY CUOCO & RYAN SWEETING The pretty pair head out for a Memorial Day party! - World's Most Beautiful Celebrity\n- This 11 Year Old Girl is Getting Married!\n- Behind the scenes celeb\n- These family guy photos are hilarious\n- Bad Reasons to Break Up\n- unlock her legs\n- This 11 Year Old Girl is Getting Married!\n- 10 Things Guys Hate In Bed!\n- Hilarious Wedding Photobombs!\n- The Most Unfortunate Photo Timing Ever\n- Why Everyone Loves Scarlett Johansson\n- Dream catcher tattoo, gorgeous picture of Miley\n- tumblr user uselessgirlrage wins the internet (NSFW) (crosspost to r/BDSM)\n- You may have made a mistake here, Facebook 'Trending News'...\n- Facebook Girls vs. Reality\n- Celebs Who Got Overweight\n- ,: Why Everyone Loves Scarlett Johansson\n- WTF?! Walmart Moms are Crazy!\n- Kate Upton's Hottest Pictures of 2014\n- ,: Most Embarrassing Selfies of Kim Kardashian\n- Celebs You Never Knew Were Gay Bashers\n- Guys love Yoga . . . . pants that are see through!\n- The Most Ironic Mugshots Ever! ...\n- Bella Thorne amazingly beautiful\n- Natural Private Parts\n- Anyone a KICKTV Fan? If yes, here's Layla Anna Lee's FHM Photo Shoot.\n- WTF Wedding Photos\n- Shocking Celebrity Transformations!\n- What! Emma Watson Is That Sexy?\n- Facebook knows something we don't...\n- Wow! Lindsay Lohan\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"celebrity_photos\", \"purpose\": \"analyze posts about leaked celebrity selfies and related content\", \"emotion_tone\": \"enthusiastic, curious, slightly controversial\", \"description\": \"Posts discussing leaked celebrity selfies, including Miley Cyrus, Katya Perry, Lindsay Lohan, and others, with a focus on their aesthetic appeal and emotional impact.\", \"inclusion_cues\": [\"leaked\", \"selfies\", \"celebs\", \"hottest\", \"snapchats\", \"porn\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "celebrity_photos",
+      "purpose": "analyze posts about leaked celebrity selfies and related content",
+      "emotion_tone": "enthusiastic, curious, slightly controversial",
+      "description": "Posts discussing leaked celebrity selfies, including Miley Cyrus, Katya Perry, Lindsay Lohan, and others, with a focus on their aesthetic appeal and emotional impact.",
+      "inclusion_cues": [
+       "leaked",
+       "selfies",
+       "celebs",
+       "hottest",
+       "snapchats",
+       "porn"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 120,
+   "seed": 3893965067,
+   "seconds": 0.64
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: miley, miley cyrus, katy perry, nicki, leaked, lindsay, ellen, kate, celebrity, celebs, oscar selfie, girls, porn, hottest, snapchats\nPosts (one per line, title first):\n- Miley Cyrus Takes It Up A Level!\n- Miley Cyrus opened her leg\n- Miley Cyrus opened her legs\n- ,: Miley Cyrus opened her legs\n- Miley Cyrus opened her legs\n- Jennette McCurdy's Racy Selfies Leaked!\n- pants that are see through!\n- Hottest Leaked Snapchats Ever ...\n- These leaked work selfies are the hottest we've ever seen\n- KALEY CUOCO & RYAN SWEETING The pretty pair head out for a Memorial Day party! - World's Most Beautiful Celebrity\n- This 11 Year Old Girl is Getting Married!\n- Behind the scenes celeb\n- These family guy photos are hilarious\n- Bad Reasons to Break Up\n- unlock her legs\n- This 11 Year Old Girl is Getting Married!\n- 10 Things Guys Hate In Bed!\n- Hilarious Wedding Photobombs!\n- The Most Unfortunate Photo Timing Ever\n- Why Everyone Loves Scarlett Johansson\n- Dream catcher tattoo, gorgeous picture of Miley\n- tumblr user uselessgirlrage wins the internet (NSFW) (crosspost to r/BDSM)\n- You may have made a mistake here, Facebook 'Trending News'...\n- Facebook Girls vs. Reality\n- Celebs Who Got Overweight\n- ,: Why Everyone Loves Scarlett Johansson\n- WTF?! Walmart Moms are Crazy!\n- Kate Upton's Hottest Pictures of 2014\n- ,: Most Embarrassing Selfies of Kim Kardashian\n- Celebs You Never Knew Were Gay Bashers\n- Guys love Yoga . . . . pants that are see through!\n- The Most Ironic Mugshots Ever! ...\n- Bella Thorne amazingly beautiful\n- Natural Private Parts\n- Anyone a KICKTV Fan? If yes, here's Layla Anna Lee's FHM Photo Shoot.\n- WTF Wedding Photos\n- Shocking Celebrity Transformations!\n- What! Emma Watson Is That Sexy?\n- Facebook knows something we don't...\n- Wow! Lindsay Lohan\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"celebrity_photos\", \"purpose\": \"exposure of celebrity content\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts about leaked celebrity selfies, racy content, and related topics\", \"inclusion_cues\": [\"leaked\", \"snapchats\", \"selfies\", \"celebs\", \"hottest\", \"girls\", \"porn\", \"oscar selfie\", \"kate\", \"miley\", \"lindsay\", \"ellen\", \"kate\", \"celebrity\", \"family guy\", \"yoga\", \"miley cyrus\", \"katy perry\", \"nicki\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "celebrity_photos",
+      "purpose": "exposure of celebrity content",
+      "emotion_tone": "enthusiastic",
+      "description": "Posts about leaked celebrity selfies, racy content, and related topics",
+      "inclusion_cues": [
+       "leaked",
+       "snapchats",
+       "selfies",
+       "celebs",
+       "hottest",
+       "girls",
+       "porn",
+       "oscar selfie",
+       "kate",
+       "miley"
+      ],
+      "n_cues_given": 19
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 148,
+   "seed": 2643688827,
+   "seconds": 0.58
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: miley, miley cyrus, katy perry, nicki, leaked, lindsay, ellen, kate, celebrity, celebs, oscar selfie, girls, porn, hottest, snapchats\nPosts (one per line, title first):\n- Miley Cyrus Takes It Up A Level!\n- Miley Cyrus opened her leg\n- Miley Cyrus opened her legs\n- ,: Miley Cyrus opened her legs\n- Miley Cyrus opened her legs\n- Jennette McCurdy's Racy Selfies Leaked!\n- pants that are see through!\n- Hottest Leaked Snapchats Ever ...\n- These leaked work selfies are the hottest we've ever seen\n- KALEY CUOCO & RYAN SWEETING The pretty pair head out for a Memorial Day party! - World's Most Beautiful Celebrity\n- This 11 Year Old Girl is Getting Married!\n- Behind the scenes celeb\n- These family guy photos are hilarious\n- Bad Reasons to Break Up\n- unlock her legs\n- This 11 Year Old Girl is Getting Married!\n- 10 Things Guys Hate In Bed!\n- Hilarious Wedding Photobombs!\n- The Most Unfortunate Photo Timing Ever\n- Why Everyone Loves Scarlett Johansson\n- Dream catcher tattoo, gorgeous picture of Miley\n- tumblr user uselessgirlrage wins the internet (NSFW) (crosspost to r/BDSM)\n- You may have made a mistake here, Facebook 'Trending News'...\n- Facebook Girls vs. Reality\n- Celebs Who Got Overweight\n- ,: Why Everyone Loves Scarlett Johansson\n- WTF?! Walmart Moms are Crazy!\n- Kate Upton's Hottest Pictures of 2014\n- ,: Most Embarrassing Selfies of Kim Kardashian\n- Celebs You Never Knew Were Gay Bashers\n- Guys love Yoga . . . . pants that are see through!\n- The Most Ironic Mugshots Ever! ...\n- Bella Thorne amazingly beautiful\n- Natural Private Parts\n- Anyone a KICKTV Fan? If yes, here's Layla Anna Lee's FHM Photo Shoot.\n- WTF Wedding Photos\n- Shocking Celebrity Transformations!\n- What! Emma Watson Is That Sexy?\n- Facebook knows something we don't...\n- Wow! Lindsay Lohan\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"celebrity_photos\", \"purpose\": \"analyze posts about leaked celebrity selfies and related content\", \"emotion_tone\": \"enthusiastic, curious, slightly controversial\", \"description\": \"Posts discussing leaked celebrity selfies, including Miley Cyrus, Katya Perry, Lindsay Lohan, and others, with a focus on their aesthetic appeal and emotional impact.\", \"inclusion_cues\": [\"leaked\", \"selfies\", \"celebs\", \"hottest\", \"snapchats\", \"porn\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"celebrity_photos\", \"purpose\": \"exposure of celebrity content\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts about leaked celebrity selfies, racy content, and related topics\", \"inclusion_cues\": [\"leaked\", \"snapchats\", \"selfies\", \"celebs\", \"hottest\", \"girls\", \"porn\", \"oscar selfie\", \"kate\", \"miley\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"celebrity_photos\", \"purpose\": \"analysis of leaked celebrity content and related posts\", \"emotion_tone\": \"enthusiastic, curious, slightly controversial\", \"description\": \"Posts discussing leaked celebrity selfies, racy content, and related topics, focusing on their aesthetic appeal and emotional impact.\", \"inclusion_cues\": [\"leaked\", \"snapchats\", \"selfies\", \"celebs\", \"hottest\", \"girls\", \"porn\", \"oscar selfie\", \"kate\", \"miley\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 124,
+   "seed": 1143634629,
+   "seconds": 0.72
+  }
+ ]
+}

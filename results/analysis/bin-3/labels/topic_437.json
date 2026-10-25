@@ -1,0 +1,181 @@
+{
+ "period_bin": 3,
+ "topic_id": 437,
+ "keywords": "adidas win, adidas nike, nike adidas, adidas, cup adidas, adidas really, cup nike, adidas world, best nike, like adidas, adidas puma, video adidas, arsenal germany, players sponsored, biggest match",
+ "n_sample_posts": 27,
+ "sample_ids": [
+  "2bdwc7",
+  "26dd9e",
+  "27t90w",
+  "23c6sn",
+  "26nu1s",
+  "2920u2",
+  "2cc9on",
+  "2c5y87",
+  "2975dt",
+  "2dwhfi",
+  "26shfc",
+  "215h6u",
+  "2afvy6",
+  "26lm20",
+  "2a6wu7",
+  "1wtonx",
+  "25y7ar",
+  "2ad1y6",
+  "26o6x6",
+  "1xg6qr",
+  "21fepg",
+  "25nbd9",
+  "26nl5z",
+  "29zk8l",
+  "2a79za",
+  "2hbj7m",
+  "24v4cy"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Brand vs Brand Matchup",
+  "purpose": "Analyzing the competitive dynamics between football brands' sponsored teams",
+  "emotion_tone": "analytical",
+  "description": "Posts discussing hypothetical matches between Nike, Adidas, Puma, and other brands' sponsored teams, focusing on player matchups and brand rivalry.",
+  "inclusion_cues": [
+   "Brand vs Brand Matchup",
+   "Sponsored Team Analysis",
+   "Brand Rivalry Discussion",
+   "Player Sponsorship Comparison",
+   "World Cup Context"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "brand rivalry",
+    "purpose": "analyze the competitive dynamics between football brands",
+    "emotion_tone": "competitive",
+    "description": "Posts discussing the rivalry between Nike, Adidas, and Puma in football, including their sponsored players and marketing strategies",
+    "inclusion_cues": [
+     "Nike vs Adidas",
+     "Adidas vs Nike",
+     "Puma's role",
+     "brand sponsorship",
+     "marketing strategies"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Brand vs Brand Matchup",
+    "purpose": "Analyzing the competitive dynamics between football brands' sponsored teams",
+    "emotion_tone": "analytical",
+    "description": "Posts discussing hypothetical matches between Nike, Adidas, Puma, and other brands' sponsored teams, focusing on player matchups and brand rivalry.",
+    "inclusion_cues": [
+     "Brand vs Brand Matchup",
+     "Sponsored Team Analysis",
+     "Brand Rivalry Discussion",
+     "Player Sponsorship Comparison",
+     "World Cup Context"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: adidas win, adidas nike, nike adidas, adidas, cup adidas, adidas really, cup nike, adidas world, best nike, like adidas, adidas puma, video adidas, arsenal germany, players sponsored, biggest match\nPosts (one per line, title first):\n- Whose team would win in a match between the big sporting brands (Nike, Adidas, Puma,..)? / Feel free to post your own teams for each one.\n- Who would win - Nike XI or Adidas XI? / I realise this is ridiculously hypothetical, but both World Cup adverts have got me thinking. If a Nike XI (containing the likes of Rooney, Ronaldo etc) were to play an Adidas XI (with Messi, Suarez etc), who would win?\n- Adidas FC vs. Nike FC / Was just thinking, imagine if every year there would be a brand classico between Adidas and Nike, with the players they each have sponsored. Who are the players sponsored under each brand? Name your starting 11 for each side, and who do you think would win?\n- Nike/Adidas starting XI?? / Saw this video on youtube recently, and I thought it would be fun to ask what the best starting XI of only Nike sponsored athletes would be? What would an Adidas XI look like? Puma? Other companies? How would these teams fare against one another? (Edit: rewording)\n- Adidas vs Nike vs Puma / I thought it would be cool if these three sportswear companies decided to hold a round-robin charity tournament featuring their sponsored players. Here are the teams I made for each! --- **Adidas:** *4-1-3-2* GK: Manuel Neuer - F.C. Bayern München/Germany - LB: David Alaba -\n- Adidas really had some foresight in their marketing\n- Adidas stock drops 15% in one day -YTD down 39%\n- Cristiano Ronaldo and Xabi Alonso debate Nike vs. Adidas -- what are your thoughts /r/soccer?\n- Adidas pays tribute to Spanish golden generation - video\n- Puma's disastrous marketing campaign\n- Nike and Adidas get personal in battle over soccer World Cup\n- TIL that Adidas and Puma were established by two German brothers, after the split of a shoe factory\n- Adidas is guaranteed its 6th World Cup champion [Spanish]\n- Adidas marketing team for soccer are trolls\n- Nike, Official Jinxer of the World Cup\n- Cristiano and Xabi Alonso talk about shoes\n- The biggest match up of the World Cup: Nike vs Adidas?\n- Adidas Gaining The Edge, As Nike Leaves Manchester United Behind\n- Nike is embarrassing themselves with posts like this.\n- TIL Adidas will cancel deal with a player if he belongs to any organisation which represents the principles of Scientology\n- Adidas is fumbling the #Messi370 cleat promotion.\n- World Cup Shootout: Can Nike Beat Adidas at Soccer?\n- Nike and Adidas get personal in battle over World Cup\n- Adidas and Nike: The battle for Messi and Cristiano\n- Nike risked everything and have no players left...\n- What is your best Nike or Adidas eleven and who would win in a match.\n- 40 years later, Adidas tries to take on Cruyff again\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"brand rivalry\", \"purpose\": \"analyze the competitive dynamics between football brands\", \"emotion_tone\": \"competitive\", \"description\": \"Posts discussing the rivalry between Nike, Adidas, and Puma in football, including their sponsored players and marketing strategies\", \"inclusion_cues\": [\"Nike vs Adidas\", \"Adidas vs Nike\", \"Puma's role\", \"brand sponsorship\", \"marketing strategies\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "brand rivalry",
+      "purpose": "analyze the competitive dynamics between football brands",
+      "emotion_tone": "competitive",
+      "description": "Posts discussing the rivalry between Nike, Adidas, and Puma in football, including their sponsored players and marketing strategies",
+      "inclusion_cues": [
+       "Nike vs Adidas",
+       "Adidas vs Nike",
+       "Puma's role",
+       "brand sponsorship",
+       "marketing strategies"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 98,
+   "seed": 1929280037,
+   "seconds": 0.52
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: adidas win, adidas nike, nike adidas, adidas, cup adidas, adidas really, cup nike, adidas world, best nike, like adidas, adidas puma, video adidas, arsenal germany, players sponsored, biggest match\nPosts (one per line, title first):\n- Whose team would win in a match between the big sporting brands (Nike, Adidas, Puma,..)? / Feel free to post your own teams for each one.\n- Who would win - Nike XI or Adidas XI? / I realise this is ridiculously hypothetical, but both World Cup adverts have got me thinking. If a Nike XI (containing the likes of Rooney, Ronaldo etc) were to play an Adidas XI (with Messi, Suarez etc), who would win?\n- Adidas FC vs. Nike FC / Was just thinking, imagine if every year there would be a brand classico between Adidas and Nike, with the players they each have sponsored. Who are the players sponsored under each brand? Name your starting 11 for each side, and who do you think would win?\n- Nike/Adidas starting XI?? / Saw this video on youtube recently, and I thought it would be fun to ask what the best starting XI of only Nike sponsored athletes would be? What would an Adidas XI look like? Puma? Other companies? How would these teams fare against one another? (Edit: rewording)\n- Adidas vs Nike vs Puma / I thought it would be cool if these three sportswear companies decided to hold a round-robin charity tournament featuring their sponsored players. Here are the teams I made for each! --- **Adidas:** *4-1-3-2* GK: Manuel Neuer - F.C. Bayern München/Germany - LB: David Alaba -\n- Adidas really had some foresight in their marketing\n- Adidas stock drops 15% in one day -YTD down 39%\n- Cristiano Ronaldo and Xabi Alonso debate Nike vs. Adidas -- what are your thoughts /r/soccer?\n- Adidas pays tribute to Spanish golden generation - video\n- Puma's disastrous marketing campaign\n- Nike and Adidas get personal in battle over soccer World Cup\n- TIL that Adidas and Puma were established by two German brothers, after the split of a shoe factory\n- Adidas is guaranteed its 6th World Cup champion [Spanish]\n- Adidas marketing team for soccer are trolls\n- Nike, Official Jinxer of the World Cup\n- Cristiano and Xabi Alonso talk about shoes\n- The biggest match up of the World Cup: Nike vs Adidas?\n- Adidas Gaining The Edge, As Nike Leaves Manchester United Behind\n- Nike is embarrassing themselves with posts like this.\n- TIL Adidas will cancel deal with a player if he belongs to any organisation which represents the principles of Scientology\n- Adidas is fumbling the #Messi370 cleat promotion.\n- World Cup Shootout: Can Nike Beat Adidas at Soccer?\n- Nike and Adidas get personal in battle over World Cup\n- Adidas and Nike: The battle for Messi and Cristiano\n- Nike risked everything and have no players left...\n- What is your best Nike or Adidas eleven and who would win in a match.\n- 40 years later, Adidas tries to take on Cruyff again\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Brand vs Brand Matchup\", \"purpose\": \"Analyzing the competitive dynamics between football brands' sponsored teams\", \"emotion_tone\": \"analytical\", \"description\": \"Posts discussing hypothetical matches between Nike, Adidas, Puma, and other brands' sponsored teams, focusing on player matchups and brand rivalry.\", \"inclusion_cues\": [\"Brand vs Brand Matchup\", \"Sponsored Team Analysis\", \"Brand Rivalry Discussion\", \"Player Sponsorship Comparison\", \"World Cup Context\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Brand vs Brand Matchup",
+      "purpose": "Analyzing the competitive dynamics between football brands' sponsored teams",
+      "emotion_tone": "analytical",
+      "description": "Posts discussing hypothetical matches between Nike, Adidas, Puma, and other brands' sponsored teams, focusing on player matchups and brand rivalry.",
+      "inclusion_cues": [
+       "Brand vs Brand Matchup",
+       "Sponsored Team Analysis",
+       "Brand Rivalry Discussion",
+       "Player Sponsorship Comparison",
+       "World Cup Context"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 116,
+   "seed": 2097681493,
+   "seconds": 0.62
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: adidas win, adidas nike, nike adidas, adidas, cup adidas, adidas really, cup nike, adidas world, best nike, like adidas, adidas puma, video adidas, arsenal germany, players sponsored, biggest match\nPosts (one per line, title first):\n- Whose team would win in a match between the big sporting brands (Nike, Adidas, Puma,..)? / Feel free to post your own teams for each one.\n- Who would win - Nike XI or Adidas XI? / I realise this is ridiculously hypothetical, but both World Cup adverts have got me thinking. If a Nike XI (containing the likes of Rooney, Ronaldo etc) were to play an Adidas XI (with Messi, Suarez etc), who would win?\n- Adidas FC vs. Nike FC / Was just thinking, imagine if every year there would be a brand classico between Adidas and Nike, with the players they each have sponsored. Who are the players sponsored under each brand? Name your starting 11 for each side, and who do you think would win?\n- Nike/Adidas starting XI?? / Saw this video on youtube recently, and I thought it would be fun to ask what the best starting XI of only Nike sponsored athletes would be? What would an Adidas XI look like? Puma? Other companies? How would these teams fare against one another? (Edit: rewording)\n- Adidas vs Nike vs Puma / I thought it would be cool if these three sportswear companies decided to hold a round-robin charity tournament featuring their sponsored players. Here are the teams I made for each! --- **Adidas:** *4-1-3-2* GK: Manuel Neuer - F.C. Bayern München/Germany - LB: David Alaba -\n- Adidas really had some foresight in their marketing\n- Adidas stock drops 15% in one day -YTD down 39%\n- Cristiano Ronaldo and Xabi Alonso debate Nike vs. Adidas -- what are your thoughts /r/soccer?\n- Adidas pays tribute to Spanish golden generation - video\n- Puma's disastrous marketing campaign\n- Nike and Adidas get personal in battle over soccer World Cup\n- TIL that Adidas and Puma were established by two German brothers, after the split of a shoe factory\n- Adidas is guaranteed its 6th World Cup champion [Spanish]\n- Adidas marketing team for soccer are trolls\n- Nike, Official Jinxer of the World Cup\n- Cristiano and Xabi Alonso talk about shoes\n- The biggest match up of the World Cup: Nike vs Adidas?\n- Adidas Gaining The Edge, As Nike Leaves Manchester United Behind\n- Nike is embarrassing themselves with posts like this.\n- TIL Adidas will cancel deal with a player if he belongs to any organisation which represents the principles of Scientology\n- Adidas is fumbling the #Messi370 cleat promotion.\n- World Cup Shootout: Can Nike Beat Adidas at Soccer?\n- Nike and Adidas get personal in battle over World Cup\n- Adidas and Nike: The battle for Messi and Cristiano\n- Nike risked everything and have no players left...\n- What is your best Nike or Adidas eleven and who would win in a match.\n- 40 years later, Adidas tries to take on Cruyff again\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"brand rivalry\", \"purpose\": \"analyze the competitive dynamics between football brands\", \"emotion_tone\": \"competitive\", \"description\": \"Posts discussing the rivalry between Nike, Adidas, and Puma in football, including their sponsored players and marketing strategies\", \"inclusion_cues\": [\"Nike vs Adidas\", \"Adidas vs Nike\", \"Puma's role\", \"brand sponsorship\", \"marketing strategies\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Brand vs Brand Matchup\", \"purpose\": \"Analyzing the competitive dynamics between football brands' sponsored teams\", \"emotion_tone\": \"analytical\", \"description\": \"Posts discussing hypothetical matches between Nike, Adidas, Puma, and other brands' sponsored teams, focusing on player matchups and brand rivalry.\", \"inclusion_cues\": [\"Brand vs Brand Matchup\", \"Sponsored Team Analysis\", \"Brand Rivalry Discussion\", \"Player Sponsorship Comparison\", \"World Cup Context\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Brand vs Brand Matchup\", \"purpose\": \"Analyzing the competitive dynamics between football brands' sponsored teams\", \"emotion_tone\": \"analytical\", \"description\": \"Posts discussing hypothetical matches between Nike, Adidas, Puma, and other brands' sponsored teams, focusing on player matchups and brand rivalry.\", \"inclusion_cues\": [\"Brand vs Brand Matchup\", \"Sponsored Team Analysis\", \"Brand Rivalry Discussion\", \"Player Sponsorship Comparison\", \"World Cup Context\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 115,
+   "seed": 496774315,
+   "seconds": 0.57
+  }
+ ]
+}

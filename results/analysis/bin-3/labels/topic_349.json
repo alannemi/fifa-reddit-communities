@@ -1,0 +1,165 @@
+{
+ "period_bin": 3,
+ "topic_id": 349,
+ "keywords": "best goals, goals fifa, goals 10, wc goals, 2014 goals, goals 2010, 20 goals, goals tournament, cup goals, goals 90, fifa 2014, goals favorite, header goals, greatest players, players fifa",
+ "n_sample_posts": 34,
+ "sample_ids": [
+  "27i9rp",
+  "27z59u",
+  "25n6tz",
+  "2an5zi",
+  "2hx1bh",
+  "2gw041",
+  "2a2gna",
+  "27b784",
+  "2ari1c",
+  "26ruzu",
+  "227d2r",
+  "24zlpx",
+  "2766x7",
+  "264ndo",
+  "29ltzm",
+  "2713up",
+  "27xw29",
+  "2ba9la",
+  "299exj",
+  "2divzi",
+  "1ztmvz",
+  "27s5q0",
+  "274d83",
+  "2atlqn",
+  "2att0o",
+  "298v59",
+  "293g4o",
+  "29bx6g",
+  "270vyq",
+  "1zqmyh",
+  "2aybbk",
+  "2amhh0",
+  "2e00n4",
+  "28l98c"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "identical",
+ "round_iterations": 1,
+ "needs_review": false,
+ "label": {
+  "name": "World Cup Goals",
+  "purpose": "List of top goals from World Cup tournaments",
+  "emotion_tone": "excited",
+  "description": "Posts discussing the best goals from World Cup tournaments, including 2014, 2010, and historical events.",
+  "inclusion_cues": [
+   "Top 10 goals of the tournament",
+   "2014 World Cup goals",
+   "2010 World Cup best goals",
+   "Top 15 World Cup goals ever"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "World Cup Goals",
+    "purpose": "List of top goals from World Cup tournaments",
+    "emotion_tone": "excited",
+    "description": "Posts discussing the best goals from World Cup tournaments, including 2014, 2010, and historical events.",
+    "inclusion_cues": [
+     "Top 10 goals of the tournament",
+     "2014 World Cup goals",
+     "2010 World Cup best goals",
+     "Top 15 World Cup goals ever"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "World Cup Goals",
+    "purpose": "List of top goals from World Cup tournaments",
+    "emotion_tone": "excited",
+    "description": "Posts discussing the best goals from World Cup tournaments, including 2014, 2010, and historical events.",
+    "inclusion_cues": [
+     "Top 10 goals of the tournament",
+     "2014 World Cup goals",
+     "2010 World Cup best goals",
+     "Top 15 World Cup goals ever"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: best goals, goals fifa, goals 10, wc goals, 2014 goals, goals 2010, 20 goals, goals tournament, cup goals, goals 90, fifa 2014, goals favorite, header goals, greatest players, players fifa\nPosts (one per line, title first):\n- List of top all-time scorers by country (only the national teams participating in the 2014 World Cup)\n- Top 10 Goals of 10 Greatest Players in FIFA 2014 Squad\n- Top 10 Goals: FIFA U-17 World Cup UAE 2013\n- What are your top 10 goals of the tournament? / 1 being the best, of course, and 10 being the worst (of the best)\n- r/soccer - I challenge you! / r/soccer - I challenge you! What are the 10 most important goals ever scored? It could be important because it won a World Cup. It could be important because it was a legend's first/last. It could be a piece of absolute individual brilliance. It could be a historic club\n- These Are 10 INSANE Header GOALS. My FAVORITE #10.\n- Best Top 10 Goals in Fifa World Cup 2014\n- Sit back and enjoy - Top 15 World Cup goals ever!\n- Top 10 Goals of the 2014 World Cup\n- Top 20 World Cup Goals ever\n- Top 10 World Cup Goals. Do you agree? If not, which ones do you consider better?\n- 2010 World Cup Best Goals!!! Gets you in the mood for the World Cup!!!\n- Best goals of 2010 World Cup - to remember what we're in for.\n- Get pumped for the 2014 WC with the top goals from 2010!\n- Top 10 Goals from World Cup Group Stage\n- Top 10 Stoppage Time Goals Ever! Sit back and enjoy\n- 2010 World Cup Best Goals. What to Expect.\n- Top 15 goals of the World Cup\n- Now that the group stages are over what are your top 5 goals and top 3 games thus far?\n- Top 30 Goals of the World Cup 2014\n- No 3 is definitely my fav! :) But No 5 doesn't deserve to be even in the top 100! x-(\n- Less than 2 days to go, not excited yet? Watch this. Best World Cup Goals 1970-2010\n- The Best 100 World Cup Goals\n- Top 30 Goals World Cup 2014\n- World Cup 2014 Best Goals...in a flipbook!\n- Top 10 Goals of the World Cup so Far. Share your Favorites in the comments.\n- The list of hat-trick scorers at the 2014 World Cup now looks like this...\n- Top 5 goals in the group phase\n- Top 10 Injury Time Goals Ever\n- Top 10 Goals international friendly matches\n- Top Worldcup 2014 Goals\n- World Cup top 20 Goals\n- 10 Great Goals from the 90's\n- Top 10 goals of the tournament so far. [GIFs]\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"World Cup Goals\", \"purpose\": \"List of top goals from World Cup tournaments\", \"emotion_tone\": \"excited\", \"description\": \"Posts discussing the best goals from World Cup tournaments, including 2014, 2010, and historical events.\", \"inclusion_cues\": [\"Top 10 goals of the tournament\", \"2014 World Cup goals\", \"2010 World Cup best goals\", \"Top 15 World Cup goals ever\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "World Cup Goals",
+      "purpose": "List of top goals from World Cup tournaments",
+      "emotion_tone": "excited",
+      "description": "Posts discussing the best goals from World Cup tournaments, including 2014, 2010, and historical events.",
+      "inclusion_cues": [
+       "Top 10 goals of the tournament",
+       "2014 World Cup goals",
+       "2010 World Cup best goals",
+       "Top 15 World Cup goals ever"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 119,
+   "seed": 1682420649,
+   "seconds": 0.58
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: best goals, goals fifa, goals 10, wc goals, 2014 goals, goals 2010, 20 goals, goals tournament, cup goals, goals 90, fifa 2014, goals favorite, header goals, greatest players, players fifa\nPosts (one per line, title first):\n- List of top all-time scorers by country (only the national teams participating in the 2014 World Cup)\n- Top 10 Goals of 10 Greatest Players in FIFA 2014 Squad\n- Top 10 Goals: FIFA U-17 World Cup UAE 2013\n- What are your top 10 goals of the tournament? / 1 being the best, of course, and 10 being the worst (of the best)\n- r/soccer - I challenge you! / r/soccer - I challenge you! What are the 10 most important goals ever scored? It could be important because it won a World Cup. It could be important because it was a legend's first/last. It could be a piece of absolute individual brilliance. It could be a historic club\n- These Are 10 INSANE Header GOALS. My FAVORITE #10.\n- Best Top 10 Goals in Fifa World Cup 2014\n- Sit back and enjoy - Top 15 World Cup goals ever!\n- Top 10 Goals of the 2014 World Cup\n- Top 20 World Cup Goals ever\n- Top 10 World Cup Goals. Do you agree? If not, which ones do you consider better?\n- 2010 World Cup Best Goals!!! Gets you in the mood for the World Cup!!!\n- Best goals of 2010 World Cup - to remember what we're in for.\n- Get pumped for the 2014 WC with the top goals from 2010!\n- Top 10 Goals from World Cup Group Stage\n- Top 10 Stoppage Time Goals Ever! Sit back and enjoy\n- 2010 World Cup Best Goals. What to Expect.\n- Top 15 goals of the World Cup\n- Now that the group stages are over what are your top 5 goals and top 3 games thus far?\n- Top 30 Goals of the World Cup 2014\n- No 3 is definitely my fav! :) But No 5 doesn't deserve to be even in the top 100! x-(\n- Less than 2 days to go, not excited yet? Watch this. Best World Cup Goals 1970-2010\n- The Best 100 World Cup Goals\n- Top 30 Goals World Cup 2014\n- World Cup 2014 Best Goals...in a flipbook!\n- Top 10 Goals of the World Cup so Far. Share your Favorites in the comments.\n- The list of hat-trick scorers at the 2014 World Cup now looks like this...\n- Top 5 goals in the group phase\n- Top 10 Injury Time Goals Ever\n- Top 10 Goals international friendly matches\n- Top Worldcup 2014 Goals\n- World Cup top 20 Goals\n- 10 Great Goals from the 90's\n- Top 10 goals of the tournament so far. [GIFs]\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"World Cup Goals\", \"purpose\": \"List of top goals from World Cup tournaments\", \"emotion_tone\": \"excited\", \"description\": \"Posts discussing the best goals from World Cup tournaments, including 2014, 2010, and historical events.\", \"inclusion_cues\": [\"Top 10 goals of the tournament\", \"2014 World Cup goals\", \"2010 World Cup best goals\", \"Top 15 World Cup goals ever\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "World Cup Goals",
+      "purpose": "List of top goals from World Cup tournaments",
+      "emotion_tone": "excited",
+      "description": "Posts discussing the best goals from World Cup tournaments, including 2014, 2010, and historical events.",
+      "inclusion_cues": [
+       "Top 10 goals of the tournament",
+       "2014 World Cup goals",
+       "2010 World Cup best goals",
+       "Top 15 World Cup goals ever"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 119,
+   "seed": 1256548592,
+   "seconds": 0.52
+  }
+ ]
+}

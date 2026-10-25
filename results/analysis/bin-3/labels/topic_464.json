@@ -1,0 +1,191 @@
+{
+ "period_bin": 3,
+ "topic_id": 464,
+ "keywords": "win usa, team usa, usa victory, cup america, believe win, game portugal, win chant, football believe, win fan, usa good, usa player, lost final, getting goals, today feel, wc year",
+ "n_sample_posts": 25,
+ "sample_ids": [
+  "29kk97",
+  "28tty6",
+  "27jykm",
+  "29rjx6",
+  "27wqln",
+  "29nvbs",
+  "29lprb",
+  "28bpfu",
+  "28umw4",
+  "29lm5k",
+  "29684q",
+  "295n93",
+  "29lnvy",
+  "29dwca",
+  "28sao4",
+  "29lm9a",
+  "29lo48",
+  "29l7gq",
+  "28bd3h",
+  "28uia0",
+  "2dd39y",
+  "29lop1",
+  "28tqxb",
+  "29ci74",
+  "29kt0f"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "USA Victory",
+  "purpose": "Celebrate USA's victory in football",
+  "emotion_tone": "positive, enthusiastic",
+  "description": "Posts expressing belief in USA's victory, celebration of USA's performance, and support for the team",
+  "inclusion_cues": [
+   "I believe that we will win!",
+   "TEAM USA VICTORY UPVOTE PARTY!!!!!",
+   "Well Done USA!!!!",
+   "USA ANDVANCE UPVOTE THREAD!",
+   "Win or lose, USA USA USA!!!!!!!!!!!!!!"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "USA Victory",
+    "purpose": "Celebrate USA's success in football",
+    "emotion_tone": "positive, enthusiastic",
+    "description": "Posts expressing belief in USA's victory, celebration of team success, and emotional support for the USA team",
+    "inclusion_cues": [
+     "win usa",
+     "team usa",
+     "usa victory",
+     "belief win",
+     "game portugal",
+     "win chant",
+     "football believe",
+     "win fan",
+     "usa good",
+     "usa player"
+    ],
+    "n_cues_given": 14
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "USA Victory",
+    "purpose": "Celebrate USA's victory in football",
+    "emotion_tone": "positive, enthusiastic",
+    "description": "Posts expressing belief in USA's victory, celebration of USA's performance, and support for the team",
+    "inclusion_cues": [
+     "I believe that we will win!",
+     "TEAM USA VICTORY UPVOTE PARTY!!!!!",
+     "Well Done USA!!!!",
+     "USA ANDVANCE UPVOTE THREAD!",
+     "Win or lose, USA USA USA!!!!!!!!!!!!!!"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: win usa, team usa, usa victory, cup america, believe win, game portugal, win chant, football believe, win fan, usa good, usa player, lost final, getting goals, today feel, wc year\nPosts (one per line, title first):\n- I believe that we will win! Go USA - feeling the vibes here in California\n- For bud and country! I BELIEVE THAT WE WILL WIN! USA!\n- I Believe That We Will Win ! - USA Player Alejandro Bedoya Leads FC Nantes\n- Do you 'feel' the world cup in your country? / Reason I'm asking is that I don't feel the world cup spirit at all in Germany. I remember 2010 when Waka Waka was played everywhere and everybody was talking about the wc, but this year it doesn't even come close.\n- I hate this game (rant) / I'm sorry, I know this whole sub is in full World Cup mode but I just have to vent. Today my team, Huracán, sealed its fate and will remain in second division. We lost a final, once again, like in 2011, like in 2009, like in 1994, like in 1986. And I just hate this game. I \n- I give a standing ovation to team USA!\n- USA friends, you guys did put a good fight. However...\n- TEAM USA VICTORY UPVOTE PARTY!!!!!\n- How every U.S. fan felt after yesterday's game against Portugal\n- Well Done USA!!!!\n- USA ANDVANCE UPVOTE THREAD!\n- I BELIEVE THAT WE WILL WIN!\n- Win or lose, USA USA USA!!!!!!!!!!!!!!\n- World Cup: How America Watched the U.S. vs. Germany Match\n- I believe that we will win chant.\n- Well it was a good run! Great job USA Soccer.\n- I believe that we've lost. Good show. See you all again in 4 years.\n- Go USA! Motivation!\n- The Yanks will have revenge. [OC]\n- \"I believe that we will win\" makes me cringe :/ / It's buildup is slower that an AVB-managed attack.\n- The estionans sure are getting some goals for their money today...\n- Wow USA. You just gave us a fantastic game of football.\n- Go USA. For bud and country!\n- WE BELIEVE THAT WE WILL WIN.\n- \"I BELIEVE THAT WE WILL WIN!\"\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"USA Victory\", \"purpose\": \"Celebrate USA's success in football\", \"emotion_tone\": \"positive, enthusiastic\", \"description\": \"Posts expressing belief in USA's victory, celebration of team success, and emotional support for the USA team\", \"inclusion_cues\": [\"win usa\", \"team usa\", \"usa victory\", \"belief win\", \"game portugal\", \"win chant\", \"football believe\", \"win fan\", \"usa good\", \"usa player\", \"lost final\", \"getting goals\", \"today feel\", \"wc year\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "USA Victory",
+      "purpose": "Celebrate USA's success in football",
+      "emotion_tone": "positive, enthusiastic",
+      "description": "Posts expressing belief in USA's victory, celebration of team success, and emotional support for the USA team",
+      "inclusion_cues": [
+       "win usa",
+       "team usa",
+       "usa victory",
+       "belief win",
+       "game portugal",
+       "win chant",
+       "football believe",
+       "win fan",
+       "usa good",
+       "usa player"
+      ],
+      "n_cues_given": 14
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 130,
+   "seed": 3322079475,
+   "seconds": 0.75
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: win usa, team usa, usa victory, cup america, believe win, game portugal, win chant, football believe, win fan, usa good, usa player, lost final, getting goals, today feel, wc year\nPosts (one per line, title first):\n- I believe that we will win! Go USA - feeling the vibes here in California\n- For bud and country! I BELIEVE THAT WE WILL WIN! USA!\n- I Believe That We Will Win ! - USA Player Alejandro Bedoya Leads FC Nantes\n- Do you 'feel' the world cup in your country? / Reason I'm asking is that I don't feel the world cup spirit at all in Germany. I remember 2010 when Waka Waka was played everywhere and everybody was talking about the wc, but this year it doesn't even come close.\n- I hate this game (rant) / I'm sorry, I know this whole sub is in full World Cup mode but I just have to vent. Today my team, Huracán, sealed its fate and will remain in second division. We lost a final, once again, like in 2011, like in 2009, like in 1994, like in 1986. And I just hate this game. I \n- I give a standing ovation to team USA!\n- USA friends, you guys did put a good fight. However...\n- TEAM USA VICTORY UPVOTE PARTY!!!!!\n- How every U.S. fan felt after yesterday's game against Portugal\n- Well Done USA!!!!\n- USA ANDVANCE UPVOTE THREAD!\n- I BELIEVE THAT WE WILL WIN!\n- Win or lose, USA USA USA!!!!!!!!!!!!!!\n- World Cup: How America Watched the U.S. vs. Germany Match\n- I believe that we will win chant.\n- Well it was a good run! Great job USA Soccer.\n- I believe that we've lost. Good show. See you all again in 4 years.\n- Go USA! Motivation!\n- The Yanks will have revenge. [OC]\n- \"I believe that we will win\" makes me cringe :/ / It's buildup is slower that an AVB-managed attack.\n- The estionans sure are getting some goals for their money today...\n- Wow USA. You just gave us a fantastic game of football.\n- Go USA. For bud and country!\n- WE BELIEVE THAT WE WILL WIN.\n- \"I BELIEVE THAT WE WILL WIN!\"\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"USA Victory\", \"purpose\": \"Celebrate USA's victory in football\", \"emotion_tone\": \"positive, enthusiastic\", \"description\": \"Posts expressing belief in USA's victory, celebration of USA's performance, and support for the team\", \"inclusion_cues\": [\"I believe that we will win!\", \"TEAM USA VICTORY UPVOTE PARTY!!!!!\", \"Well Done USA!!!!\", \"USA ANDVANCE UPVOTE THREAD!\", \"Win or lose, USA USA USA!!!!!!!!!!!!!!\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "USA Victory",
+      "purpose": "Celebrate USA's victory in football",
+      "emotion_tone": "positive, enthusiastic",
+      "description": "Posts expressing belief in USA's victory, celebration of USA's performance, and support for the team",
+      "inclusion_cues": [
+       "I believe that we will win!",
+       "TEAM USA VICTORY UPVOTE PARTY!!!!!",
+       "Well Done USA!!!!",
+       "USA ANDVANCE UPVOTE THREAD!",
+       "Win or lose, USA USA USA!!!!!!!!!!!!!!"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 120,
+   "seed": 1052990836,
+   "seconds": 0.87
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: win usa, team usa, usa victory, cup america, believe win, game portugal, win chant, football believe, win fan, usa good, usa player, lost final, getting goals, today feel, wc year\nPosts (one per line, title first):\n- I believe that we will win! Go USA - feeling the vibes here in California\n- For bud and country! I BELIEVE THAT WE WILL WIN! USA!\n- I Believe That We Will Win ! - USA Player Alejandro Bedoya Leads FC Nantes\n- Do you 'feel' the world cup in your country? / Reason I'm asking is that I don't feel the world cup spirit at all in Germany. I remember 2010 when Waka Waka was played everywhere and everybody was talking about the wc, but this year it doesn't even come close.\n- I hate this game (rant) / I'm sorry, I know this whole sub is in full World Cup mode but I just have to vent. Today my team, Huracán, sealed its fate and will remain in second division. We lost a final, once again, like in 2011, like in 2009, like in 1994, like in 1986. And I just hate this game. I \n- I give a standing ovation to team USA!\n- USA friends, you guys did put a good fight. However...\n- TEAM USA VICTORY UPVOTE PARTY!!!!!\n- How every U.S. fan felt after yesterday's game against Portugal\n- Well Done USA!!!!\n- USA ANDVANCE UPVOTE THREAD!\n- I BELIEVE THAT WE WILL WIN!\n- Win or lose, USA USA USA!!!!!!!!!!!!!!\n- World Cup: How America Watched the U.S. vs. Germany Match\n- I believe that we will win chant.\n- Well it was a good run! Great job USA Soccer.\n- I believe that we've lost. Good show. See you all again in 4 years.\n- Go USA! Motivation!\n- The Yanks will have revenge. [OC]\n- \"I believe that we will win\" makes me cringe :/ / It's buildup is slower that an AVB-managed attack.\n- The estionans sure are getting some goals for their money today...\n- Wow USA. You just gave us a fantastic game of football.\n- Go USA. For bud and country!\n- WE BELIEVE THAT WE WILL WIN.\n- \"I BELIEVE THAT WE WILL WIN!\"\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"USA Victory\", \"purpose\": \"Celebrate USA's success in football\", \"emotion_tone\": \"positive, enthusiastic\", \"description\": \"Posts expressing belief in USA's victory, celebration of team success, and emotional support for the USA team\", \"inclusion_cues\": [\"win usa\", \"team usa\", \"usa victory\", \"belief win\", \"game portugal\", \"win chant\", \"football believe\", \"win fan\", \"usa good\", \"usa player\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"USA Victory\", \"purpose\": \"Celebrate USA's victory in football\", \"emotion_tone\": \"positive, enthusiastic\", \"description\": \"Posts expressing belief in USA's victory, celebration of USA's performance, and support for the team\", \"inclusion_cues\": [\"I believe that we will win!\", \"TEAM USA VICTORY UPVOTE PARTY!!!!!\", \"Well Done USA!!!!\", \"USA ANDVANCE UPVOTE THREAD!\", \"Win or lose, USA USA USA!!!!!!!!!!!!!!\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"USA Victory\", \"purpose\": \"Celebrate USA's victory in football\", \"emotion_tone\": \"positive, enthusiastic\", \"description\": \"Posts expressing belief in USA's victory, celebration of USA's performance, and support for the team\", \"inclusion_cues\": [\"I believe that we will win!\", \"TEAM USA VICTORY UPVOTE PARTY!!!!!\", \"Well Done USA!!!!\", \"USA ANDVANCE UPVOTE THREAD!\", \"Win or lose, USA USA USA!!!!!!!!!!!!!!\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 119,
+   "seed": 2897044837,
+   "seconds": 0.71
+  }
+ ]
+}

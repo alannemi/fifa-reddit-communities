@@ -1,0 +1,176 @@
+{
+ "period_bin": 3,
+ "topic_id": 439,
+ "keywords": "supporters scottish, fans scottish, uruguayan fans, rangers supporters, england supporters, uruguay crowd, goal scotland, fan england, irish fan, fan celtic, supporting uruguay, fans supporting, scot, celtic rangers, england spot",
+ "n_sample_posts": 27,
+ "sample_ids": [
+  "28l6cm",
+  "28ltk6",
+  "28l5kn",
+  "28n1iv",
+  "28qzxu",
+  "28mkn5",
+  "2fv2s5",
+  "281rc4",
+  "28nmd1",
+  "28lamg",
+  "29x8lo",
+  "21r878",
+  "28l3nu",
+  "28lcvq",
+  "24h8pf",
+  "28l27h",
+  "2fr73s",
+  "24tccp",
+  "28mplm",
+  "215bx1",
+  "2gvwh6",
+  "28mupv",
+  "28l4tw",
+  "28n0pk",
+  "28l1gw",
+  "28lee8",
+  "28l1rs"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Scottish Football Supporters",
+  "purpose": "Highlight Scottish fans' involvement in international matches and their interactions with other nationalities",
+  "emotion_tone": "positive, enthusiastic",
+  "description": "Posts about Scottish fans celebrating with Uruguay or England fans, showing their support for their team and the nationalities they interact with",
+  "inclusion_cues": [
+   "Scotland fan in Jimmy Wig and team strip",
+   "Uruguay fans at England's 2-1 defeat",
+   "Scottish fans supporting their team at the Uruguay vs England game",
+   "Scottish fan celebrating with Uruguay fans in the stadium after Suarez's goal"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Scottish Football Supporters",
+    "purpose": "Capturing the interaction and sentiment of Scottish fans in football matches",
+    "emotion_tone": "positive, enthusiastic",
+    "description": "Posts involving Scottish fans celebrating or supporting other teams, including Uruguay and England, in football matches.",
+    "inclusion_cues": [
+     "Scottish fans supporting Uruguay",
+     "Scottish fans celebrating with Uruguay fans",
+     "Scottish fans supporting England",
+     "Scottish fans in matches against Uruguay and England"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Scottish Football Supporters",
+    "purpose": "Highlight Scottish fans' involvement in international matches and their interactions with other nationalities",
+    "emotion_tone": "positive, enthusiastic",
+    "description": "Posts about Scottish fans celebrating with Uruguay or England fans, showing their support for their team and the nationalities they interact with",
+    "inclusion_cues": [
+     "Scotland fan in Jimmy Wig and team strip",
+     "Uruguay fans at England's 2-1 defeat",
+     "Scottish fans supporting their team at the Uruguay vs England game",
+     "Scottish fan celebrating with Uruguay fans in the stadium after Suarez's goal"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: supporters scottish, fans scottish, uruguayan fans, rangers supporters, england supporters, uruguay crowd, goal scotland, fan england, irish fan, fan celtic, supporting uruguay, fans supporting, scot, celtic rangers, england spot\nPosts (one per line, title first):\n- Scotland fan in Jimmy wig and team strip, waving Scottish flag, goes mental among Uruguayans\n- Scottish fan celebrating with Uruguay fans in the stadium after Suarez's goal\n- A lone Scotland fan celebrating in the middle of Uruguay fans ;-)\n- One of the \"Uruguay\" fans at the England v Uruguay game looked a bit strange.\n- A lot of England supporters don't seem to understand why some Scottish fans support England's opposition, here's an explanation. / This might be surprising but inherently Scottish fans are supporters of the England team. We are after all one nation and work together on many things. So you may ask, w\n- Scotland fan spotted supporting Uruguay at England's 2-1 defeat\n- English fans express their love for Scotland in Basel\n- Gerard Butler tells Seth Meyers how it feels to be a Scottish football fan.\n- At least one man from the UK in the stadium that night was happy.\n- Scottish Fans supporting their team at the Uruguay vs England game\n- One lone Irish fan in a sea of Dutch.\n- Cops describe Celtic-Motherwell match violence as 'war zone'\n- A man in a Scotland strip celebrating Suarez's second goal\n- Lone Scotland fan celebrating with the Uruguayan fans in their victory over England.\n- Scottish Premier League - 8,000 fans turn Celtic-Rangers U17 match into disgrace\n- Scotland fan singing with the Urugayuan fans as they beat England\n- Kevin Großkreutz praising the atmosphere from the Scottish fans tonight\n- Celtic fans attacked by a gang of Rangers supporters\n- BBC:World Cup 2014: Scotland fan celebrates in Uruguay crowd - he looks so happy\n- Hilarious footage of Scotland fans 'invading' the Faroe Islands after a long ferry trip\n- Pro-Unionist football fans line Glasgow with violence as trouble rises within the City\n- England fans unamused by Scottish supporter cheering with Uruguay\n- Scottish fan at the England game\n- Mystery Scot who cheered Uruguay goal against England named\n- Uruguay and Scotland fans celebrate together\n- Scottish guy celebrating with the Uruguayans against England\n- Spot the Scot\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Scottish Football Supporters\", \"purpose\": \"Capturing the interaction and sentiment of Scottish fans in football matches\", \"emotion_tone\": \"positive, enthusiastic\", \"description\": \"Posts involving Scottish fans celebrating or supporting other teams, including Uruguay and England, in football matches.\", \"inclusion_cues\": [\"Scottish fans supporting Uruguay\", \"Scottish fans celebrating with Uruguay fans\", \"Scottish fans supporting England\", \"Scottish fans in matches against Uruguay and England\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Scottish Football Supporters",
+      "purpose": "Capturing the interaction and sentiment of Scottish fans in football matches",
+      "emotion_tone": "positive, enthusiastic",
+      "description": "Posts involving Scottish fans celebrating or supporting other teams, including Uruguay and England, in football matches.",
+      "inclusion_cues": [
+       "Scottish fans supporting Uruguay",
+       "Scottish fans celebrating with Uruguay fans",
+       "Scottish fans supporting England",
+       "Scottish fans in matches against Uruguay and England"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 112,
+   "seed": 2370035591,
+   "seconds": 0.52
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: supporters scottish, fans scottish, uruguayan fans, rangers supporters, england supporters, uruguay crowd, goal scotland, fan england, irish fan, fan celtic, supporting uruguay, fans supporting, scot, celtic rangers, england spot\nPosts (one per line, title first):\n- Scotland fan in Jimmy wig and team strip, waving Scottish flag, goes mental among Uruguayans\n- Scottish fan celebrating with Uruguay fans in the stadium after Suarez's goal\n- A lone Scotland fan celebrating in the middle of Uruguay fans ;-)\n- One of the \"Uruguay\" fans at the England v Uruguay game looked a bit strange.\n- A lot of England supporters don't seem to understand why some Scottish fans support England's opposition, here's an explanation. / This might be surprising but inherently Scottish fans are supporters of the England team. We are after all one nation and work together on many things. So you may ask, w\n- Scotland fan spotted supporting Uruguay at England's 2-1 defeat\n- English fans express their love for Scotland in Basel\n- Gerard Butler tells Seth Meyers how it feels to be a Scottish football fan.\n- At least one man from the UK in the stadium that night was happy.\n- Scottish Fans supporting their team at the Uruguay vs England game\n- One lone Irish fan in a sea of Dutch.\n- Cops describe Celtic-Motherwell match violence as 'war zone'\n- A man in a Scotland strip celebrating Suarez's second goal\n- Lone Scotland fan celebrating with the Uruguayan fans in their victory over England.\n- Scottish Premier League - 8,000 fans turn Celtic-Rangers U17 match into disgrace\n- Scotland fan singing with the Urugayuan fans as they beat England\n- Kevin Großkreutz praising the atmosphere from the Scottish fans tonight\n- Celtic fans attacked by a gang of Rangers supporters\n- BBC:World Cup 2014: Scotland fan celebrates in Uruguay crowd - he looks so happy\n- Hilarious footage of Scotland fans 'invading' the Faroe Islands after a long ferry trip\n- Pro-Unionist football fans line Glasgow with violence as trouble rises within the City\n- England fans unamused by Scottish supporter cheering with Uruguay\n- Scottish fan at the England game\n- Mystery Scot who cheered Uruguay goal against England named\n- Uruguay and Scotland fans celebrate together\n- Scottish guy celebrating with the Uruguayans against England\n- Spot the Scot\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Scottish Football Supporters\", \"purpose\": \"Highlight Scottish fans' involvement in international matches and their interactions with other nationalities\", \"emotion_tone\": \"positive, enthusiastic\", \"description\": \"Posts about Scottish fans celebrating with Uruguay or England fans, showing their support for their team and the nationalities they interact with\", \"inclusion_cues\": [\"Scotland fan in Jimmy Wig and team strip\", \"Uruguay fans at England's 2-1 defeat\", \"Scottish fans supporting their team at the Uruguay vs England game\", \"Scottish fan celebrating with Uruguay fans in the stadium after Suarez's goal\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Scottish Football Supporters",
+      "purpose": "Highlight Scottish fans' involvement in international matches and their interactions with other nationalities",
+      "emotion_tone": "positive, enthusiastic",
+      "description": "Posts about Scottish fans celebrating with Uruguay or England fans, showing their support for their team and the nationalities they interact with",
+      "inclusion_cues": [
+       "Scotland fan in Jimmy Wig and team strip",
+       "Uruguay fans at England's 2-1 defeat",
+       "Scottish fans supporting their team at the Uruguay vs England game",
+       "Scottish fan celebrating with Uruguay fans in the stadium after Suarez's goal"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 140,
+   "seed": 198093360,
+   "seconds": 0.62
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: supporters scottish, fans scottish, uruguayan fans, rangers supporters, england supporters, uruguay crowd, goal scotland, fan england, irish fan, fan celtic, supporting uruguay, fans supporting, scot, celtic rangers, england spot\nPosts (one per line, title first):\n- Scotland fan in Jimmy wig and team strip, waving Scottish flag, goes mental among Uruguayans\n- Scottish fan celebrating with Uruguay fans in the stadium after Suarez's goal\n- A lone Scotland fan celebrating in the middle of Uruguay fans ;-)\n- One of the \"Uruguay\" fans at the England v Uruguay game looked a bit strange.\n- A lot of England supporters don't seem to understand why some Scottish fans support England's opposition, here's an explanation. / This might be surprising but inherently Scottish fans are supporters of the England team. We are after all one nation and work together on many things. So you may ask, w\n- Scotland fan spotted supporting Uruguay at England's 2-1 defeat\n- English fans express their love for Scotland in Basel\n- Gerard Butler tells Seth Meyers how it feels to be a Scottish football fan.\n- At least one man from the UK in the stadium that night was happy.\n- Scottish Fans supporting their team at the Uruguay vs England game\n- One lone Irish fan in a sea of Dutch.\n- Cops describe Celtic-Motherwell match violence as 'war zone'\n- A man in a Scotland strip celebrating Suarez's second goal\n- Lone Scotland fan celebrating with the Uruguayan fans in their victory over England.\n- Scottish Premier League - 8,000 fans turn Celtic-Rangers U17 match into disgrace\n- Scotland fan singing with the Urugayuan fans as they beat England\n- Kevin Großkreutz praising the atmosphere from the Scottish fans tonight\n- Celtic fans attacked by a gang of Rangers supporters\n- BBC:World Cup 2014: Scotland fan celebrates in Uruguay crowd - he looks so happy\n- Hilarious footage of Scotland fans 'invading' the Faroe Islands after a long ferry trip\n- Pro-Unionist football fans line Glasgow with violence as trouble rises within the City\n- England fans unamused by Scottish supporter cheering with Uruguay\n- Scottish fan at the England game\n- Mystery Scot who cheered Uruguay goal against England named\n- Uruguay and Scotland fans celebrate together\n- Scottish guy celebrating with the Uruguayans against England\n- Spot the Scot\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Scottish Football Supporters\", \"purpose\": \"Capturing the interaction and sentiment of Scottish fans in football matches\", \"emotion_tone\": \"positive, enthusiastic\", \"description\": \"Posts involving Scottish fans celebrating or supporting other teams, including Uruguay and England, in football matches.\", \"inclusion_cues\": [\"Scottish fans supporting Uruguay\", \"Scottish fans celebrating with Uruguay fans\", \"Scottish fans supporting England\", \"Scottish fans in matches against Uruguay and England\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Scottish Football Supporters\", \"purpose\": \"Highlight Scottish fans' involvement in international matches and their interactions with other nationalities\", \"emotion_tone\": \"positive, enthusiastic\", \"description\": \"Posts about Scottish fans celebrating with Uruguay or England fans, showing their support for their team and the nationalities they interact with\", \"inclusion_cues\": [\"Scotland fan in Jimmy Wig and team strip\", \"Uruguay fans at England's 2-1 defeat\", \"Scottish fans supporting their team at the Uruguay vs England game\", \"Scottish fan celebrating with Uruguay fans in the stadium after Suarez's goal\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Scottish Football Supporters\", \"purpose\": \"Highlight Scottish fans' involvement in international matches and their interactions with other nationalities\", \"emotion_tone\": \"positive, enthusiastic\", \"description\": \"Posts about Scottish fans celebrating with Uruguay or England fans, showing their support for their team and the nationalities they interact with\", \"inclusion_cues\": [\"Scotland fan in Jimmy Wig and team strip\", \"Uruguay fans at England's 2-1 defeat\", \"Scottish fans supporting their team at the Uruguay vs England game\", \"Scottish fan celebrating with Uruguay fans in the stadium after Suarez's goal\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 139,
+   "seed": 2363923847,
+   "seconds": 0.57
+  }
+ ]
+}

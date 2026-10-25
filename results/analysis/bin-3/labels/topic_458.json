@@ -1,0 +1,210 @@
+{
+ "period_bin": 3,
+ "topic_id": 458,
+ "keywords": "resemblance, look alike, think mario, alike, think diego, think brazil, does messi, think michael, gaal look, niko kovac, looked familiar, look like, ronaldinho suarez, exactly like, schürrle does",
+ "n_sample_posts": 26,
+ "sample_ids": [
+  "28ebf9",
+  "29cl7r",
+  "29cq4l",
+  "28widn",
+  "285n56",
+  "260k58",
+  "2f5qae",
+  "2as9z8",
+  "2gdhaz",
+  "29uuoe",
+  "1xpsh7",
+  "27zms8",
+  "280anj",
+  "2889r7",
+  "1wv8yl",
+  "28irri",
+  "29cvtr",
+  "25vclq",
+  "2alph8",
+  "2as55e",
+  "29ior6",
+  "28xhn6",
+  "2arwvm",
+  "286ivo",
+  "292ifi",
+  "29wn5u"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Look Alike Mentions",
+  "purpose": "Identify and categorize posts discussing resemblance or look alike in football players",
+  "emotion_tone": "curious, amused, nostalgic",
+  "description": "Posts discussing resemblance or look alike between football players, including comparisons to celebrities or fictional characters",
+  "inclusion_cues": [
+   "look alike",
+   "think mario",
+   "think diego",
+   "think brazil",
+   "does messi",
+   "think michael",
+   "gaal look",
+   "niko kovac",
+   "looked familiar",
+   "look like"
+  ],
+  "n_cues_given": 13
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Look Alike",
+    "purpose": "Identify players or coaches who resemble others",
+    "emotion_tone": "curious",
+    "description": "Posts discussing resemblance or look alike between players/coaches and others",
+    "inclusion_cues": [
+     "look like",
+     "think mario",
+     "think diego",
+     "think brazil",
+     "look familiar",
+     "look like",
+     "exactly like",
+     "does messi",
+     "think michael",
+     "gaal look"
+    ],
+    "n_cues_given": 16
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Look Alike Mentions",
+    "purpose": "Identify and categorize posts discussing resemblance or look alike in football players",
+    "emotion_tone": "curious, amused, nostalgic",
+    "description": "Posts discussing resemblance or look alike between football players, including comparisons to celebrities or fictional characters",
+    "inclusion_cues": [
+     "look alike",
+     "think mario",
+     "think diego",
+     "think brazil",
+     "does messi",
+     "think michael",
+     "gaal look",
+     "niko kovac",
+     "looked familiar",
+     "look like"
+    ],
+    "n_cues_given": 13
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: resemblance, look alike, think mario, alike, think diego, think brazil, does messi, think michael, gaal look, niko kovac, looked familiar, look like, ronaldinho suarez, exactly like, schürrle does\nPosts (one per line, title first):\n- Anyone else think Brazil's Marcelo looks a lot like Eric André?\n- Mario Yepes looks like Keegan Michael Key from Key and Peel\n- Mario Yepes (Colombia) looks like Keegan Michael Key from Key and Peel\n- The head coach for Croatia, Niko Kovac, looks a lot like Keanu Reeves\n- While watching Uruguay playing Costa Rica in the world cup, I can not get one thing out of my head...I think Diego Lugano looks like Robert Downey Jr. (Iron Man).\n- Doesn't Van Gaal look like Chandler Bing?\n- DAE think Michael Dawson looks like Feathers McGraw?\n- This guy is Mario Götze's Doppelgänger. Seriously.\n- Is it just me or does Daley Blint _NOT_ look like Man u material.\n- James Rodriguez looks like Emilia Clarke/Daenerys Targaryen/Khaleesi from Game of Thrones?\n- Suarez Look alike\n- David Luiz kind of reminds me of my friends dog Floyd\n- Suits him better.\n- Benzema looks like Shia LaBeouf\n- Sergio Ramos looks like a cross between a bull terrier and that kid from Home Improvement...\n- Is it just me or does the mexico coach look like nathan fillion in peter griffin's body?\n- David Luiz looks like sideshow Bob\n- Does anyone else see a resemblance between California Chrome and Ronaldinho?\n- Do you also think that Joachim Löw looks like a thin Hitler without a mustache?\n- So my friend looks exactly like André Schürrle.\n- Anyone else think that Schurrle looks like Steve the Pirate?\n- Does Messi look like Al Bundy from Married With Children?\n- Does anybody else think Mario Götze looks like Wilfred?\n- Anyone else think Didier Drogba looks like a white walker from Game of Thrones?\n- David Luiz looks like Side Show Bob\n- I knew Kevin De Bruyne looked familiar!\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Look Alike\", \"purpose\": \"Identify players or coaches who resemble others\", \"emotion_tone\": \"curious\", \"description\": \"Posts discussing resemblance or look alike between players/coaches and others\", \"inclusion_cues\": [\"look like\", \"think mario\", \"think diego\", \"think brazil\", \"look familiar\", \"look like\", \"exactly like\", \"does messi\", \"think michael\", \"gaal look\", \"niko kovac\", \"looked familiar\", \"look like\", \"ronaldinho suarez\", \"exactly like\", \"schürrle does\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Look Alike",
+      "purpose": "Identify players or coaches who resemble others",
+      "emotion_tone": "curious",
+      "description": "Posts discussing resemblance or look alike between players/coaches and others",
+      "inclusion_cues": [
+       "look like",
+       "think mario",
+       "think diego",
+       "think brazil",
+       "look familiar",
+       "look like",
+       "exactly like",
+       "does messi",
+       "think michael",
+       "gaal look"
+      ],
+      "n_cues_given": 16
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 146,
+   "seed": 3020442656,
+   "seconds": 0.48
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: resemblance, look alike, think mario, alike, think diego, think brazil, does messi, think michael, gaal look, niko kovac, looked familiar, look like, ronaldinho suarez, exactly like, schürrle does\nPosts (one per line, title first):\n- Anyone else think Brazil's Marcelo looks a lot like Eric André?\n- Mario Yepes looks like Keegan Michael Key from Key and Peel\n- Mario Yepes (Colombia) looks like Keegan Michael Key from Key and Peel\n- The head coach for Croatia, Niko Kovac, looks a lot like Keanu Reeves\n- While watching Uruguay playing Costa Rica in the world cup, I can not get one thing out of my head...I think Diego Lugano looks like Robert Downey Jr. (Iron Man).\n- Doesn't Van Gaal look like Chandler Bing?\n- DAE think Michael Dawson looks like Feathers McGraw?\n- This guy is Mario Götze's Doppelgänger. Seriously.\n- Is it just me or does Daley Blint _NOT_ look like Man u material.\n- James Rodriguez looks like Emilia Clarke/Daenerys Targaryen/Khaleesi from Game of Thrones?\n- Suarez Look alike\n- David Luiz kind of reminds me of my friends dog Floyd\n- Suits him better.\n- Benzema looks like Shia LaBeouf\n- Sergio Ramos looks like a cross between a bull terrier and that kid from Home Improvement...\n- Is it just me or does the mexico coach look like nathan fillion in peter griffin's body?\n- David Luiz looks like sideshow Bob\n- Does anyone else see a resemblance between California Chrome and Ronaldinho?\n- Do you also think that Joachim Löw looks like a thin Hitler without a mustache?\n- So my friend looks exactly like André Schürrle.\n- Anyone else think that Schurrle looks like Steve the Pirate?\n- Does Messi look like Al Bundy from Married With Children?\n- Does anybody else think Mario Götze looks like Wilfred?\n- Anyone else think Didier Drogba looks like a white walker from Game of Thrones?\n- David Luiz looks like Side Show Bob\n- I knew Kevin De Bruyne looked familiar!\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Look Alike Mentions\", \"purpose\": \"Identify and categorize posts discussing resemblance or look alike in football players\", \"emotion_tone\": \"curious, amused, nostalgic\", \"description\": \"Posts discussing resemblance or look alike between football players, including comparisons to celebrities or fictional characters\", \"inclusion_cues\": [\"look alike\", \"think mario\", \"think diego\", \"think brazil\", \"does messi\", \"think michael\", \"gaal look\", \"niko kovac\", \"looked familiar\", \"look like\", \"ronaldinho suarez\", \"exactly like\", \"schürrle does\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Look Alike Mentions",
+      "purpose": "Identify and categorize posts discussing resemblance or look alike in football players",
+      "emotion_tone": "curious, amused, nostalgic",
+      "description": "Posts discussing resemblance or look alike between football players, including comparisons to celebrities or fictional characters",
+      "inclusion_cues": [
+       "look alike",
+       "think mario",
+       "think diego",
+       "think brazil",
+       "does messi",
+       "think michael",
+       "gaal look",
+       "niko kovac",
+       "looked familiar",
+       "look like"
+      ],
+      "n_cues_given": 13
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 150,
+   "seed": 579541499,
+   "seconds": 0.68
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: resemblance, look alike, think mario, alike, think diego, think brazil, does messi, think michael, gaal look, niko kovac, looked familiar, look like, ronaldinho suarez, exactly like, schürrle does\nPosts (one per line, title first):\n- Anyone else think Brazil's Marcelo looks a lot like Eric André?\n- Mario Yepes looks like Keegan Michael Key from Key and Peel\n- Mario Yepes (Colombia) looks like Keegan Michael Key from Key and Peel\n- The head coach for Croatia, Niko Kovac, looks a lot like Keanu Reeves\n- While watching Uruguay playing Costa Rica in the world cup, I can not get one thing out of my head...I think Diego Lugano looks like Robert Downey Jr. (Iron Man).\n- Doesn't Van Gaal look like Chandler Bing?\n- DAE think Michael Dawson looks like Feathers McGraw?\n- This guy is Mario Götze's Doppelgänger. Seriously.\n- Is it just me or does Daley Blint _NOT_ look like Man u material.\n- James Rodriguez looks like Emilia Clarke/Daenerys Targaryen/Khaleesi from Game of Thrones?\n- Suarez Look alike\n- David Luiz kind of reminds me of my friends dog Floyd\n- Suits him better.\n- Benzema looks like Shia LaBeouf\n- Sergio Ramos looks like a cross between a bull terrier and that kid from Home Improvement...\n- Is it just me or does the mexico coach look like nathan fillion in peter griffin's body?\n- David Luiz looks like sideshow Bob\n- Does anyone else see a resemblance between California Chrome and Ronaldinho?\n- Do you also think that Joachim Löw looks like a thin Hitler without a mustache?\n- So my friend looks exactly like André Schürrle.\n- Anyone else think that Schurrle looks like Steve the Pirate?\n- Does Messi look like Al Bundy from Married With Children?\n- Does anybody else think Mario Götze looks like Wilfred?\n- Anyone else think Didier Drogba looks like a white walker from Game of Thrones?\n- David Luiz looks like Side Show Bob\n- I knew Kevin De Bruyne looked familiar!\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Look Alike\", \"purpose\": \"Identify players or coaches who resemble others\", \"emotion_tone\": \"curious\", \"description\": \"Posts discussing resemblance or look alike between players/coaches and others\", \"inclusion_cues\": [\"look like\", \"think mario\", \"think diego\", \"think brazil\", \"look familiar\", \"look like\", \"exactly like\", \"does messi\", \"think michael\", \"gaal look\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Look Alike Mentions\", \"purpose\": \"Identify and categorize posts discussing resemblance or look alike in football players\", \"emotion_tone\": \"curious, amused, nostalgic\", \"description\": \"Posts discussing resemblance or look alike between football players, including comparisons to celebrities or fictional characters\", \"inclusion_cues\": [\"look alike\", \"think mario\", \"think diego\", \"think brazil\", \"does messi\", \"think michael\", \"gaal look\", \"niko kovac\", \"looked familiar\", \"look like\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Look Alike Mentions\", \"purpose\": \"Identify and categorize posts discussing resemblance or look alike in football players\", \"emotion_tone\": \"curious, amused, nostalgic\", \"description\": \"Posts discussing resemblance or look alike between football players, including comparisons to celebrities or fictional characters\", \"inclusion_cues\": [\"look alike\", \"think mario\", \"think diego\", \"think brazil\", \"does messi\", \"think michael\", \"gaal look\", \"niko kovac\", \"looked familiar\", \"look like\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 130,
+   "seed": 189605785,
+   "seconds": 0.71
+  }
+ ]
+}

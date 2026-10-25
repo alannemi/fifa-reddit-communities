@@ -1,0 +1,180 @@
+{
+ "period_bin": 3,
+ "topic_id": 411,
+ "keywords": "bundesliga bayern, wins bundesliga, record bayern, bundesliga champions, finals bayern, won bundesliga, goals bayern, bayern 19, bayern borussia, bundesliga title, bayern won, official bayern, munich bundesliga, games bundesliga, 14 bundesliga",
+ "n_sample_posts": 29,
+ "sample_ids": [
+  "21zbvh",
+  "21crpl",
+  "21crdx",
+  "1zwtwx",
+  "21g7kz",
+  "20zjsx",
+  "25tcbd",
+  "1zwd6n",
+  "1xg5uz",
+  "20hz7m",
+  "1ypy5q",
+  "21crfl",
+  "21cric",
+  "21creh",
+  "20t1rq",
+  "258li6",
+  "21crf3",
+  "21cro8",
+  "21cx0l",
+  "21b8bl",
+  "25tchv",
+  "21crsl",
+  "1z77d7",
+  "20ibaj",
+  "21crzx",
+  "21crh8",
+  "21crgl",
+  "2chy9v",
+  "21crl0"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Bundesliga Champions",
+  "purpose": "Highlight Bayern Munich's Bundesliga title win",
+  "emotion_tone": "Excitement",
+  "description": "Posts about Bayern Munich's Bundesliga title, including their record-breaking run, wins, and historical significance",
+  "inclusion_cues": [
+   "Bayern Munich win the Bundesliga",
+   "Bundesliga title",
+   "Bundesliga champions",
+   "Bundesliga record"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Bundesliga Champions",
+    "purpose": "Highlight Bayern Munich's Bundesliga title and success",
+    "emotion_tone": "Excitement",
+    "description": "Posts about Bayern Munich winning the Bundesliga, including records, unbeaten runs, and historical significance",
+    "inclusion_cues": [
+     "Bayern Munich wins the Bundesliga",
+     "Bundesliga title",
+     "Unbeaten run",
+     "Record set",
+     "Champions of the Bundesliga"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Bundesliga Champions",
+    "purpose": "Highlight Bayern Munich's Bundesliga title win",
+    "emotion_tone": "Excitement",
+    "description": "Posts about Bayern Munich's Bundesliga title, including their record-breaking run, wins, and historical significance",
+    "inclusion_cues": [
+     "Bayern Munich win the Bundesliga",
+     "Bundesliga title",
+     "Bundesliga champions",
+     "Bundesliga record"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: bundesliga bayern, wins bundesliga, record bayern, bundesliga champions, finals bayern, won bundesliga, goals bayern, bayern 19, bayern borussia, bundesliga title, bayern won, official bayern, munich bundesliga, games bundesliga, 14 bundesliga\nPosts (one per line, title first):\n- Bayern have now scored in 61 successive games but this was the first time in 18 matches outside Munich when they have not won, and only the second occasion out of 25 when they have not managed at least two goals.\n- Official: Bayern München wins Bundesliga for the 24th time\n- FC Bayern München wins the Bundesliga for the 24th time!\n- Bayern have now matched Arsenal (03/04) and Juventus (11/12) for 49 domestic games unbeaten - 10 more games to beat AC Milan's (91/93) 58 game big league record\n- Bayern's Championship in Perspective / Comparing Bayern winning with 7 games to spare to other sports: Equivalent to an MLB team clinching the best record in the regular season with 37 games to spare, essentially on or around August 18th in a regular season that lasts till September 30th Equivalent \n- Bayern get the free ticket to the semi finals\n- Bayern win the DFB-Pokal\n- Bayern set new Bundesliga record with 16 wins in a row\n- After a 2-0 win over Hannover, Schalke joins Bayern as the only teams to win all three of their games this year / Table: Bayern 56 pts Leverkusen 43 pts Dortmund 39 pts Schalke 37 pts Gladbach 33 pts\n- Bayern Munich extend unbeaten run to 50 games. Beating Arsenal's record.\n- After 22 matchdays Bayern is now 19 points in front of 2nd place Leverkusen\n- After only 27 matches, Bayern Munich claim Bundesliga title\n- Bayern Munich are the 2013–14 Bundesliga Champions.\n- FC Bayern Munich crowned record-early champions of the Bundesliga!\n- If Bayern wins on Saturday and Schalke and Dortmund lose, this would be the fastest Bundesliga won ever (26 rounds). Bayern would beat their record from last year (took them 28 rounds)!\n- Bayern, Borussia Dortmund win, Hamburg playoff bound\n- FC Bayern München have clinched the 2013-2014 Bundesliga / With the 3-1 win over Hertha Berlin today, the winners of the 2013-2014 Bundesliga is decided.\n- Bayern Munich win their 23rd Bundesliga title\n- Bayern Munich Celebrate Bundesliga Title\n- With a win agains Berlin today, Bayern München could become the earliest Bundesliga Champion of all times! (Matchday 27)\n- Bayern win the DFB-Pokal\n- Bayern Munchen has conquered the Bundesliga!!\n- Bayern Munich 'not sorry' for Bundesliga dominance\n- Bayern Munich are undefeated in 50 games in the Bundesliga and sit 23 points ahead of 2nd.\n- FC Bayern have won The Bundesliga\n- BAYERN MUNICH ARE BUNDESLIGA CHAMPIONS!!\n- FC Bayern wins German Bundesliga.\n- 2nd German Bundesliga doesn't need any winners\n- FC Bayern Munich are Bundesliga champions\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bundesliga Champions\", \"purpose\": \"Highlight Bayern Munich's Bundesliga title and success\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts about Bayern Munich winning the Bundesliga, including records, unbeaten runs, and historical significance\", \"inclusion_cues\": [\"Bayern Munich wins the Bundesliga\", \"Bundesliga title\", \"Unbeaten run\", \"Record set\", \"Champions of the Bundesliga\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Bundesliga Champions",
+      "purpose": "Highlight Bayern Munich's Bundesliga title and success",
+      "emotion_tone": "Excitement",
+      "description": "Posts about Bayern Munich winning the Bundesliga, including records, unbeaten runs, and historical significance",
+      "inclusion_cues": [
+       "Bayern Munich wins the Bundesliga",
+       "Bundesliga title",
+       "Unbeaten run",
+       "Record set",
+       "Champions of the Bundesliga"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 107,
+   "seed": 4144074867,
+   "seconds": 0.55
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: bundesliga bayern, wins bundesliga, record bayern, bundesliga champions, finals bayern, won bundesliga, goals bayern, bayern 19, bayern borussia, bundesliga title, bayern won, official bayern, munich bundesliga, games bundesliga, 14 bundesliga\nPosts (one per line, title first):\n- Bayern have now scored in 61 successive games but this was the first time in 18 matches outside Munich when they have not won, and only the second occasion out of 25 when they have not managed at least two goals.\n- Official: Bayern München wins Bundesliga for the 24th time\n- FC Bayern München wins the Bundesliga for the 24th time!\n- Bayern have now matched Arsenal (03/04) and Juventus (11/12) for 49 domestic games unbeaten - 10 more games to beat AC Milan's (91/93) 58 game big league record\n- Bayern's Championship in Perspective / Comparing Bayern winning with 7 games to spare to other sports: Equivalent to an MLB team clinching the best record in the regular season with 37 games to spare, essentially on or around August 18th in a regular season that lasts till September 30th Equivalent \n- Bayern get the free ticket to the semi finals\n- Bayern win the DFB-Pokal\n- Bayern set new Bundesliga record with 16 wins in a row\n- After a 2-0 win over Hannover, Schalke joins Bayern as the only teams to win all three of their games this year / Table: Bayern 56 pts Leverkusen 43 pts Dortmund 39 pts Schalke 37 pts Gladbach 33 pts\n- Bayern Munich extend unbeaten run to 50 games. Beating Arsenal's record.\n- After 22 matchdays Bayern is now 19 points in front of 2nd place Leverkusen\n- After only 27 matches, Bayern Munich claim Bundesliga title\n- Bayern Munich are the 2013–14 Bundesliga Champions.\n- FC Bayern Munich crowned record-early champions of the Bundesliga!\n- If Bayern wins on Saturday and Schalke and Dortmund lose, this would be the fastest Bundesliga won ever (26 rounds). Bayern would beat their record from last year (took them 28 rounds)!\n- Bayern, Borussia Dortmund win, Hamburg playoff bound\n- FC Bayern München have clinched the 2013-2014 Bundesliga / With the 3-1 win over Hertha Berlin today, the winners of the 2013-2014 Bundesliga is decided.\n- Bayern Munich win their 23rd Bundesliga title\n- Bayern Munich Celebrate Bundesliga Title\n- With a win agains Berlin today, Bayern München could become the earliest Bundesliga Champion of all times! (Matchday 27)\n- Bayern win the DFB-Pokal\n- Bayern Munchen has conquered the Bundesliga!!\n- Bayern Munich 'not sorry' for Bundesliga dominance\n- Bayern Munich are undefeated in 50 games in the Bundesliga and sit 23 points ahead of 2nd.\n- FC Bayern have won The Bundesliga\n- BAYERN MUNICH ARE BUNDESLIGA CHAMPIONS!!\n- FC Bayern wins German Bundesliga.\n- 2nd German Bundesliga doesn't need any winners\n- FC Bayern Munich are Bundesliga champions\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bundesliga Champions\", \"purpose\": \"Highlight Bayern Munich's Bundesliga title win\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts about Bayern Munich's Bundesliga title, including their record-breaking run, wins, and historical significance\", \"inclusion_cues\": [\"Bayern Munich win the Bundesliga\", \"Bundesliga title\", \"Bundesliga champions\", \"Bundesliga record\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Bundesliga Champions",
+      "purpose": "Highlight Bayern Munich's Bundesliga title win",
+      "emotion_tone": "Excitement",
+      "description": "Posts about Bayern Munich's Bundesliga title, including their record-breaking run, wins, and historical significance",
+      "inclusion_cues": [
+       "Bayern Munich win the Bundesliga",
+       "Bundesliga title",
+       "Bundesliga champions",
+       "Bundesliga record"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 104,
+   "seed": 3716729945,
+   "seconds": 0.57
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: bundesliga bayern, wins bundesliga, record bayern, bundesliga champions, finals bayern, won bundesliga, goals bayern, bayern 19, bayern borussia, bundesliga title, bayern won, official bayern, munich bundesliga, games bundesliga, 14 bundesliga\nPosts (one per line, title first):\n- Bayern have now scored in 61 successive games but this was the first time in 18 matches outside Munich when they have not won, and only the second occasion out of 25 when they have not managed at least two goals.\n- Official: Bayern München wins Bundesliga for the 24th time\n- FC Bayern München wins the Bundesliga for the 24th time!\n- Bayern have now matched Arsenal (03/04) and Juventus (11/12) for 49 domestic games unbeaten - 10 more games to beat AC Milan's (91/93) 58 game big league record\n- Bayern's Championship in Perspective / Comparing Bayern winning with 7 games to spare to other sports: Equivalent to an MLB team clinching the best record in the regular season with 37 games to spare, essentially on or around August 18th in a regular season that lasts till September 30th Equivalent \n- Bayern get the free ticket to the semi finals\n- Bayern win the DFB-Pokal\n- Bayern set new Bundesliga record with 16 wins in a row\n- After a 2-0 win over Hannover, Schalke joins Bayern as the only teams to win all three of their games this year / Table: Bayern 56 pts Leverkusen 43 pts Dortmund 39 pts Schalke 37 pts Gladbach 33 pts\n- Bayern Munich extend unbeaten run to 50 games. Beating Arsenal's record.\n- After 22 matchdays Bayern is now 19 points in front of 2nd place Leverkusen\n- After only 27 matches, Bayern Munich claim Bundesliga title\n- Bayern Munich are the 2013–14 Bundesliga Champions.\n- FC Bayern Munich crowned record-early champions of the Bundesliga!\n- If Bayern wins on Saturday and Schalke and Dortmund lose, this would be the fastest Bundesliga won ever (26 rounds). Bayern would beat their record from last year (took them 28 rounds)!\n- Bayern, Borussia Dortmund win, Hamburg playoff bound\n- FC Bayern München have clinched the 2013-2014 Bundesliga / With the 3-1 win over Hertha Berlin today, the winners of the 2013-2014 Bundesliga is decided.\n- Bayern Munich win their 23rd Bundesliga title\n- Bayern Munich Celebrate Bundesliga Title\n- With a win agains Berlin today, Bayern München could become the earliest Bundesliga Champion of all times! (Matchday 27)\n- Bayern win the DFB-Pokal\n- Bayern Munchen has conquered the Bundesliga!!\n- Bayern Munich 'not sorry' for Bundesliga dominance\n- Bayern Munich are undefeated in 50 games in the Bundesliga and sit 23 points ahead of 2nd.\n- FC Bayern have won The Bundesliga\n- BAYERN MUNICH ARE BUNDESLIGA CHAMPIONS!!\n- FC Bayern wins German Bundesliga.\n- 2nd German Bundesliga doesn't need any winners\n- FC Bayern Munich are Bundesliga champions\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bundesliga Champions\", \"purpose\": \"Highlight Bayern Munich's Bundesliga title and success\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts about Bayern Munich winning the Bundesliga, including records, unbeaten runs, and historical significance\", \"inclusion_cues\": [\"Bayern Munich wins the Bundesliga\", \"Bundesliga title\", \"Unbeaten run\", \"Record set\", \"Champions of the Bundesliga\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bundesliga Champions\", \"purpose\": \"Highlight Bayern Munich's Bundesliga title win\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts about Bayern Munich's Bundesliga title, including their record-breaking run, wins, and historical significance\", \"inclusion_cues\": [\"Bayern Munich win the Bundesliga\", \"Bundesliga title\", \"Bundesliga champions\", \"Bundesliga record\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Bundesliga Champions\", \"purpose\": \"Highlight Bayern Munich's Bundesliga title and success\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts about Bayern Munich's Bundesliga title, including their record-breaking run, wins, and historical significance\", \"inclusion_cues\": [\"Bayern Munich win the Bundesliga\", \"Bundesliga title\", \"Bundesliga champions\", \"Bundesliga record\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 104,
+   "seed": 3906179704,
+   "seconds": 0.58
+  }
+ ]
+}

@@ -1,0 +1,190 @@
+{
+ "period_bin": 3,
+ "topic_id": 351,
+ "keywords": "united contract, chelsea contract, contract extension, contract chelsea, contract manchester, rooney new, united rooney, chelsea deal, year contract, rooney set, united wayne, john terry, new contract, terry chelsea, stay chelsea",
+ "n_sample_posts": 34,
+ "sample_ids": [
+  "1yk6t7",
+  "1yk9qk",
+  "25gc6f",
+  "1yk6s5",
+  "1yly1l",
+  "1y3i2d",
+  "25gflh",
+  "1y1zyd",
+  "1ypcm5",
+  "1yk5us",
+  "1y0tst",
+  "25g8ra",
+  "25gdil",
+  "23gzzg",
+  "1yj3v7",
+  "1yk6ce",
+  "1ytcc2",
+  "1yluhd",
+  "25g8w4",
+  "1yk7vg",
+  "25gewr",
+  "27uh5d",
+  "1yrx4x",
+  "1ymees",
+  "1yk64o",
+  "1y283k",
+  "1yj4n8",
+  "25itqa",
+  "1ycp4d",
+  "1z2pn4",
+  "1y20re",
+  "1x67wt",
+  "1yfk8z",
+  "1y22mi"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Contract Extensions",
+  "purpose": "Discussing new contracts for players with clubs",
+  "emotion_tone": "positive",
+  "description": "Posts about player contract extensions, including details on duration, salary, and future plans",
+  "inclusion_cues": [
+   "Wayne Rooney agrees 4-year contract extension",
+   "John Terry agrees one-year Chelsea contract extension",
+   "Rooney's new contract is worth the same £250,000 a week",
+   "Rooney extends his contract",
+   "Rooney signs new Manchester United contract"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "contract extensions",
+    "purpose": "discussing new contracts for players",
+    "emotion_tone": "positive",
+    "description": "Posts about player contract extensions, including terms, durations, and implications for clubs and players",
+    "inclusion_cues": [
+     "Wayne Rooney agrees 4-year contract extension",
+     "John Terry agrees one-year Chelsea contract extension",
+     "Rooney's new contract is worth the same £250,000 a week",
+     "Wayne Rooney to sign new contract at Manchester United 300k a week 4 and a half years",
+     "Rooney extends his contract",
+     "John Terry signs new deal at Chelsea"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Contract Extensions",
+    "purpose": "Discussing new contracts for players with clubs",
+    "emotion_tone": "positive",
+    "description": "Posts about player contract extensions, including details on duration, salary, and future plans",
+    "inclusion_cues": [
+     "Wayne Rooney agrees 4-year contract extension",
+     "John Terry agrees one-year Chelsea contract extension",
+     "Rooney's new contract is worth the same £250,000 a week",
+     "Rooney extends his contract",
+     "Rooney signs new Manchester United contract"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: united contract, chelsea contract, contract extension, contract chelsea, contract manchester, rooney new, united rooney, chelsea deal, year contract, rooney set, united wayne, john terry, new contract, terry chelsea, stay chelsea\nPosts (one per line, title first):\n- Wayne Rooney agrees 4-year contract extension\n- Wayne Rooney signs contract extension with Manchester United\n- John Terry agrees one-year Chelsea contract extension\n- Wayne Rooney signs contract extension with Manchester United and to become a club ambassador when he retires\n- Rooney's new contract is worth the same £250,000 a week as his current one but his agent and the club are working out how he could use United's global sales team to boost his own personal sponsorship deals.\n- Wayne Rooney to sign new contract at Manchester United 300k a week 4 and a half years.\n- John Terry signs one-year extension\n- Sky Sources: Wayne Rooney yet to sign contract extension with Manchester United.\n- Evra justifies Rooney's £300,000-a-week deal\n- [OFFICIAL] Rooney Announces Contract Extention\n- Wayne Rooney to stay at Manchester United until 2018 in £70.2 million deal\n- John Terry to stay at Chelsea\n- BBC Sport - John Terry: Chelsea captain signs new one-year deal\n- John Terry's future in doubt as club offer just one-year deal and a massive pay-cut\n- Rooney agrees five-and-a-half year deal\n- Official - Rooney Signs new contract\n- Nooruddean Choudry: Wayne Rooney may have a new deal but he will not be loved at Old Trafford\n- Rooney's contract is the same 250,000/week but includes during Man Utd's global power to increase his personal sponsorships\n- John Terry signs new deal at Chelsea.\n- Rooney extends his contract\n- John Terry agrees to a 1-year extension on his contract with Chelsea\n- Luke Shaw getting £160,000-a-week?\n- Rooney signs new Manchester United contract\n- Rooney hopes new deal sparks Manchester United\n- Rooney Announces Contract Extension\n- [BBC] Wayne Rooney set to sign a new five-and-a-half-year contract with Manchester United this week\n- Rooney agrees a new contract with Manchester United\n- John Terry 'delighted' with one-year contact extension at Chelsea\n- Wayne Rooney to be offered a £70m contract?\n- Marina Hyde on Rooney's new contract\n- Rooney signs £70m deal to stay at United for life!\n- Captain John Terry deserves a new Chelsea deal\n- Wayne Rooney contract talks being held up by image rights, but striker expected to sign contract extension\n- Manchester United claim that Wayne Rooney hasn't signed any new contract yet, contrary to earlier reports.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"contract extensions\", \"purpose\": \"discussing new contracts for players\", \"emotion_tone\": \"positive\", \"description\": \"Posts about player contract extensions, including terms, durations, and implications for clubs and players\", \"inclusion_cues\": [\"Wayne Rooney agrees 4-year contract extension\", \"John Terry agrees one-year Chelsea contract extension\", \"Rooney's new contract is worth the same £250,000 a week\", \"Wayne Rooney to sign new contract at Manchester United 300k a week 4 and a half years\", \"Rooney extends his contract\", \"John Terry signs new deal at Chelsea\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "contract extensions",
+      "purpose": "discussing new contracts for players",
+      "emotion_tone": "positive",
+      "description": "Posts about player contract extensions, including terms, durations, and implications for clubs and players",
+      "inclusion_cues": [
+       "Wayne Rooney agrees 4-year contract extension",
+       "John Terry agrees one-year Chelsea contract extension",
+       "Rooney's new contract is worth the same £250,000 a week",
+       "Wayne Rooney to sign new contract at Manchester United 300k a week 4 and a half years",
+       "Rooney extends his contract",
+       "John Terry signs new deal at Chelsea"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 151,
+   "seed": 458683813,
+   "seconds": 0.58
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: united contract, chelsea contract, contract extension, contract chelsea, contract manchester, rooney new, united rooney, chelsea deal, year contract, rooney set, united wayne, john terry, new contract, terry chelsea, stay chelsea\nPosts (one per line, title first):\n- Wayne Rooney agrees 4-year contract extension\n- Wayne Rooney signs contract extension with Manchester United\n- John Terry agrees one-year Chelsea contract extension\n- Wayne Rooney signs contract extension with Manchester United and to become a club ambassador when he retires\n- Rooney's new contract is worth the same £250,000 a week as his current one but his agent and the club are working out how he could use United's global sales team to boost his own personal sponsorship deals.\n- Wayne Rooney to sign new contract at Manchester United 300k a week 4 and a half years.\n- John Terry signs one-year extension\n- Sky Sources: Wayne Rooney yet to sign contract extension with Manchester United.\n- Evra justifies Rooney's £300,000-a-week deal\n- [OFFICIAL] Rooney Announces Contract Extention\n- Wayne Rooney to stay at Manchester United until 2018 in £70.2 million deal\n- John Terry to stay at Chelsea\n- BBC Sport - John Terry: Chelsea captain signs new one-year deal\n- John Terry's future in doubt as club offer just one-year deal and a massive pay-cut\n- Rooney agrees five-and-a-half year deal\n- Official - Rooney Signs new contract\n- Nooruddean Choudry: Wayne Rooney may have a new deal but he will not be loved at Old Trafford\n- Rooney's contract is the same 250,000/week but includes during Man Utd's global power to increase his personal sponsorships\n- John Terry signs new deal at Chelsea.\n- Rooney extends his contract\n- John Terry agrees to a 1-year extension on his contract with Chelsea\n- Luke Shaw getting £160,000-a-week?\n- Rooney signs new Manchester United contract\n- Rooney hopes new deal sparks Manchester United\n- Rooney Announces Contract Extension\n- [BBC] Wayne Rooney set to sign a new five-and-a-half-year contract with Manchester United this week\n- Rooney agrees a new contract with Manchester United\n- John Terry 'delighted' with one-year contact extension at Chelsea\n- Wayne Rooney to be offered a £70m contract?\n- Marina Hyde on Rooney's new contract\n- Rooney signs £70m deal to stay at United for life!\n- Captain John Terry deserves a new Chelsea deal\n- Wayne Rooney contract talks being held up by image rights, but striker expected to sign contract extension\n- Manchester United claim that Wayne Rooney hasn't signed any new contract yet, contrary to earlier reports.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Contract Extensions\", \"purpose\": \"Discussing new contracts for players with clubs\", \"emotion_tone\": \"positive\", \"description\": \"Posts about player contract extensions, including details on duration, salary, and future plans\", \"inclusion_cues\": [\"Wayne Rooney agrees 4-year contract extension\", \"John Terry agrees one-year Chelsea contract extension\", \"Rooney's new contract is worth the same £250,000 a week\", \"Rooney extends his contract\", \"Rooney signs new Manchester United contract\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Contract Extensions",
+      "purpose": "Discussing new contracts for players with clubs",
+      "emotion_tone": "positive",
+      "description": "Posts about player contract extensions, including details on duration, salary, and future plans",
+      "inclusion_cues": [
+       "Wayne Rooney agrees 4-year contract extension",
+       "John Terry agrees one-year Chelsea contract extension",
+       "Rooney's new contract is worth the same £250,000 a week",
+       "Rooney extends his contract",
+       "Rooney signs new Manchester United contract"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 126,
+   "seed": 2788020506,
+   "seconds": 0.52
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: united contract, chelsea contract, contract extension, contract chelsea, contract manchester, rooney new, united rooney, chelsea deal, year contract, rooney set, united wayne, john terry, new contract, terry chelsea, stay chelsea\nPosts (one per line, title first):\n- Wayne Rooney agrees 4-year contract extension\n- Wayne Rooney signs contract extension with Manchester United\n- John Terry agrees one-year Chelsea contract extension\n- Wayne Rooney signs contract extension with Manchester United and to become a club ambassador when he retires\n- Rooney's new contract is worth the same £250,000 a week as his current one but his agent and the club are working out how he could use United's global sales team to boost his own personal sponsorship deals.\n- Wayne Rooney to sign new contract at Manchester United 300k a week 4 and a half years.\n- John Terry signs one-year extension\n- Sky Sources: Wayne Rooney yet to sign contract extension with Manchester United.\n- Evra justifies Rooney's £300,000-a-week deal\n- [OFFICIAL] Rooney Announces Contract Extention\n- Wayne Rooney to stay at Manchester United until 2018 in £70.2 million deal\n- John Terry to stay at Chelsea\n- BBC Sport - John Terry: Chelsea captain signs new one-year deal\n- John Terry's future in doubt as club offer just one-year deal and a massive pay-cut\n- Rooney agrees five-and-a-half year deal\n- Official - Rooney Signs new contract\n- Nooruddean Choudry: Wayne Rooney may have a new deal but he will not be loved at Old Trafford\n- Rooney's contract is the same 250,000/week but includes during Man Utd's global power to increase his personal sponsorships\n- John Terry signs new deal at Chelsea.\n- Rooney extends his contract\n- John Terry agrees to a 1-year extension on his contract with Chelsea\n- Luke Shaw getting £160,000-a-week?\n- Rooney signs new Manchester United contract\n- Rooney hopes new deal sparks Manchester United\n- Rooney Announces Contract Extension\n- [BBC] Wayne Rooney set to sign a new five-and-a-half-year contract with Manchester United this week\n- Rooney agrees a new contract with Manchester United\n- John Terry 'delighted' with one-year contact extension at Chelsea\n- Wayne Rooney to be offered a £70m contract?\n- Marina Hyde on Rooney's new contract\n- Rooney signs £70m deal to stay at United for life!\n- Captain John Terry deserves a new Chelsea deal\n- Wayne Rooney contract talks being held up by image rights, but striker expected to sign contract extension\n- Manchester United claim that Wayne Rooney hasn't signed any new contract yet, contrary to earlier reports.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"contract extensions\", \"purpose\": \"discussing new contracts for players\", \"emotion_tone\": \"positive\", \"description\": \"Posts about player contract extensions, including terms, durations, and implications for clubs and players\", \"inclusion_cues\": [\"Wayne Rooney agrees 4-year contract extension\", \"John Terry agrees one-year Chelsea contract extension\", \"Rooney's new contract is worth the same £250,000 a week\", \"Wayne Rooney to sign new contract at Manchester United 300k a week 4 and a half years\", \"Rooney extends his contract\", \"John Terry signs new deal at Chelsea\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Contract Extensions\", \"purpose\": \"Discussing new contracts for players with clubs\", \"emotion_tone\": \"positive\", \"description\": \"Posts about player contract extensions, including details on duration, salary, and future plans\", \"inclusion_cues\": [\"Wayne Rooney agrees 4-year contract extension\", \"John Terry agrees one-year Chelsea contract extension\", \"Rooney's new contract is worth the same £250,000 a week\", \"Rooney extends his contract\", \"Rooney signs new Manchester United contract\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Contract Extensions\", \"purpose\": \"Discussing new contracts for players with clubs\", \"emotion_tone\": \"positive\", \"description\": \"Posts about player contract extensions, including details on duration, salary, and future plans\", \"inclusion_cues\": [\"Wayne Rooney agrees 4-year contract extension\", \"John Terry agrees one-year Chelsea contract extension\", \"Rooney's new contract is worth the same £250,000 a week\", \"Rooney extends his contract\", \"Rooney signs new Manchester United contract\"]]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 535)",
+   "n_tokens": 125,
+   "seed": 1397009069,
+   "seconds": 0.61
+  }
+ ]
+}

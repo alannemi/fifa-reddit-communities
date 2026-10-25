@@ -1,0 +1,189 @@
+{
+ "period_bin": 3,
+ "topic_id": 449,
+ "keywords": "transfer news, transfer rumours, transfer rumors, transfer rumor, summer transfers, news rumours, summer transfer, transfers, transfer window, relegations promotions, relegations, transfer season, leagues clubs, promoted relegated, popular leagues",
+ "n_sample_posts": 26,
+ "sample_ids": [
+  "23n3rs",
+  "25fv80",
+  "2aflki",
+  "254zuh",
+  "2bhcag",
+  "26rcj0",
+  "26ryom",
+  "29i7go",
+  "27a2uc",
+  "26pb3z",
+  "2523hd",
+  "293z0j",
+  "23gkua",
+  "29s0ao",
+  "22wdc3",
+  "2e0kr5",
+  "2af4gs",
+  "2b7wz2",
+  "2a170w",
+  "2716q0",
+  "2670cw",
+  "29ujji",
+  "2a5mr0",
+  "25e6s8",
+  "290gsp",
+  "2alnq7"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Transfer Thread",
+  "purpose": "Provide a dedicated space for discussing transfer news and rumors",
+  "emotion_tone": "Excitement and anticipation",
+  "description": "A sticky post or thread that updates with the latest transfer news and rumors, fostering community engagement and keeping fans informed.",
+  "inclusion_cues": [
+   "Transfer news",
+   "Rumors",
+   "Summer transfers",
+   "Relegations/promotions",
+   "Official transfers",
+   "Fan engagement"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Transfer Thread",
+    "purpose": "Provide a centralized hub for transfer news and rumors",
+    "emotion_tone": "excitement",
+    "description": "A dedicated thread for discussing and tracking transfers, rumors, and updates in the football community.",
+    "inclusion_cues": [
+     "transfer news",
+     "transfer rumors",
+     "summer transfers",
+     "transfer window",
+     "leagues clubs",
+     "promoted relegated",
+     "stickied post",
+     "transfer thread"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Transfer Thread",
+    "purpose": "Provide a dedicated space for discussing transfer news and rumors",
+    "emotion_tone": "Excitement and anticipation",
+    "description": "A sticky post or thread that updates with the latest transfer news and rumors, fostering community engagement and keeping fans informed.",
+    "inclusion_cues": [
+     "Transfer news",
+     "Rumors",
+     "Summer transfers",
+     "Relegations/promotions",
+     "Official transfers",
+     "Fan engagement"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: transfer news, transfer rumours, transfer rumors, transfer rumor, summer transfers, news rumours, summer transfer, transfers, transfer window, relegations promotions, relegations, transfer season, leagues clubs, promoted relegated, popular leagues\nPosts (one per line, title first):\n- Can we have a sticked post for relegations and promotions? / A post that gets updated with news everytime a club gets promoted or relegated from the popular leagues to keep the people informed.\n- Transfer/rumor-thread? / A lot of rumors are flying around already. Is it to early with a transfer/rumor-thread? I don't know how to make on personally, and it might be to early, but it would be a nice way to keep updated on current events.\n- BPL news site? / I'm an American looking for a site/sites that will give me information on news and transfer rumours surrounding the BPL. The American perspective is very foggy.\n- Q: Transfer post? / I haven't been around for long, so my apologies if I missed something very obvious. But, since the season is ending and clubs are completing transfers, is there a place (post) where all transfers are listed? I would like to see a overview of all leagues or clubs or something, and\n- Is there a sub for just transfer news? / If not there should be, as i'm unable to find one. I would of thought there'd be one laid dormant from previous years as the deadline day draws to an end or is /r/soccer the best. I just wanna feel more spoilt as I really do relish transfer news and rumours.\n- [Meta] Is there a transfer rumors subreddit? / If not, do people need one? All [rumors] would be there and all [official] would stay on /r/soccer\n- Could the mods, or someone else who is willing, put up a stickied post containing all the purchased/sold players in the summer transfer window?\n- With all the WC madness haven't we forgotten the summer transfer window thread?\n- Don't upvote, but is there a sub dedicated to transfer rumours and gossip?\n- Can we have a stickied post of all the transfers?\n- Transfer rumor subreddits? / Are any subreddits just for transfer rumors?\n- I'm as excited about the World Cup as the next guy, but is there any chance we could start a transfer rumor thread?\n- What is the best website for up-to-date Transfer Rumours? / As the title says :) specifically looking for BPL rumours. Even more specifically, Manchester United transfer rumours :)\n- Transfer Thread? / Since the the new transfer season has started already, is there going to be a transfer thread?\n- Is there any subreddits regarding transfer rumours? / I've searched 'transferrumours' and 'transfers' but none seem to be in use anymore!\n- What is your favorite site for transfer rumors?\n- [META] Can we have a sticky transfer thread again?\n- Any chance we can limit transfer news to official moves only? / There's three articles in the top ten about James Rodriguez being in an airport in Madrid.\n- Request: Summer Transfer Window Thread\n- What is the best website for transfer news? / Any help? I'm tired of seeing Arsenal make a bid for a player and nothing happening.\n- Is there a subreddit just for transfer rumours? / dont know if im being thick and cant find one, does anyone know of any?\n- Follow for instant transfer updates and news.\n- [Request] Can we get a transfer sticky like we had in January\n- Request: Can we have a summer transfers megathread stickied?\n- Is there a subreddit for transfer news?\n- Best site for transfer news?\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Transfer Thread\", \"purpose\": \"Provide a centralized hub for transfer news and rumors\", \"emotion_tone\": \"excitement\", \"description\": \"A dedicated thread for discussing and tracking transfers, rumors, and updates in the football community.\", \"inclusion_cues\": [\"transfer news\", \"transfer rumors\", \"summer transfers\", \"transfer window\", \"leagues clubs\", \"promoted relegated\", \"stickied post\", \"transfer thread\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Transfer Thread",
+      "purpose": "Provide a centralized hub for transfer news and rumors",
+      "emotion_tone": "excitement",
+      "description": "A dedicated thread for discussing and tracking transfers, rumors, and updates in the football community.",
+      "inclusion_cues": [
+       "transfer news",
+       "transfer rumors",
+       "summer transfers",
+       "transfer window",
+       "leagues clubs",
+       "promoted relegated",
+       "stickied post",
+       "transfer thread"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 107,
+   "seed": 4270751218,
+   "seconds": 0.48
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: transfer news, transfer rumours, transfer rumors, transfer rumor, summer transfers, news rumours, summer transfer, transfers, transfer window, relegations promotions, relegations, transfer season, leagues clubs, promoted relegated, popular leagues\nPosts (one per line, title first):\n- Can we have a sticked post for relegations and promotions? / A post that gets updated with news everytime a club gets promoted or relegated from the popular leagues to keep the people informed.\n- Transfer/rumor-thread? / A lot of rumors are flying around already. Is it to early with a transfer/rumor-thread? I don't know how to make on personally, and it might be to early, but it would be a nice way to keep updated on current events.\n- BPL news site? / I'm an American looking for a site/sites that will give me information on news and transfer rumours surrounding the BPL. The American perspective is very foggy.\n- Q: Transfer post? / I haven't been around for long, so my apologies if I missed something very obvious. But, since the season is ending and clubs are completing transfers, is there a place (post) where all transfers are listed? I would like to see a overview of all leagues or clubs or something, and\n- Is there a sub for just transfer news? / If not there should be, as i'm unable to find one. I would of thought there'd be one laid dormant from previous years as the deadline day draws to an end or is /r/soccer the best. I just wanna feel more spoilt as I really do relish transfer news and rumours.\n- [Meta] Is there a transfer rumors subreddit? / If not, do people need one? All [rumors] would be there and all [official] would stay on /r/soccer\n- Could the mods, or someone else who is willing, put up a stickied post containing all the purchased/sold players in the summer transfer window?\n- With all the WC madness haven't we forgotten the summer transfer window thread?\n- Don't upvote, but is there a sub dedicated to transfer rumours and gossip?\n- Can we have a stickied post of all the transfers?\n- Transfer rumor subreddits? / Are any subreddits just for transfer rumors?\n- I'm as excited about the World Cup as the next guy, but is there any chance we could start a transfer rumor thread?\n- What is the best website for up-to-date Transfer Rumours? / As the title says :) specifically looking for BPL rumours. Even more specifically, Manchester United transfer rumours :)\n- Transfer Thread? / Since the the new transfer season has started already, is there going to be a transfer thread?\n- Is there any subreddits regarding transfer rumours? / I've searched 'transferrumours' and 'transfers' but none seem to be in use anymore!\n- What is your favorite site for transfer rumors?\n- [META] Can we have a sticky transfer thread again?\n- Any chance we can limit transfer news to official moves only? / There's three articles in the top ten about James Rodriguez being in an airport in Madrid.\n- Request: Summer Transfer Window Thread\n- What is the best website for transfer news? / Any help? I'm tired of seeing Arsenal make a bid for a player and nothing happening.\n- Is there a subreddit just for transfer rumours? / dont know if im being thick and cant find one, does anyone know of any?\n- Follow for instant transfer updates and news.\n- [Request] Can we get a transfer sticky like we had in January\n- Request: Can we have a summer transfers megathread stickied?\n- Is there a subreddit for transfer news?\n- Best site for transfer news?\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Transfer Thread\", \"purpose\": \"Provide a dedicated space for discussing transfer news and rumors\", \"emotion_tone\": \"Excitement and anticipation\", \"description\": \"A sticky post or thread that updates with the latest transfer news and rumors, fostering community engagement and keeping fans informed.\", \"inclusion_cues\": [\"Transfer news\", \"Rumors\", \"Summer transfers\", \"Relegations/promotions\", \"Official transfers\", \"Fan engagement\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Transfer Thread",
+      "purpose": "Provide a dedicated space for discussing transfer news and rumors",
+      "emotion_tone": "Excitement and anticipation",
+      "description": "A sticky post or thread that updates with the latest transfer news and rumors, fostering community engagement and keeping fans informed.",
+      "inclusion_cues": [
+       "Transfer news",
+       "Rumors",
+       "Summer transfers",
+       "Relegations/promotions",
+       "Official transfers",
+       "Fan engagement"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 108,
+   "seed": 3949445462,
+   "seconds": 0.68
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: transfer news, transfer rumours, transfer rumors, transfer rumor, summer transfers, news rumours, summer transfer, transfers, transfer window, relegations promotions, relegations, transfer season, leagues clubs, promoted relegated, popular leagues\nPosts (one per line, title first):\n- Can we have a sticked post for relegations and promotions? / A post that gets updated with news everytime a club gets promoted or relegated from the popular leagues to keep the people informed.\n- Transfer/rumor-thread? / A lot of rumors are flying around already. Is it to early with a transfer/rumor-thread? I don't know how to make on personally, and it might be to early, but it would be a nice way to keep updated on current events.\n- BPL news site? / I'm an American looking for a site/sites that will give me information on news and transfer rumours surrounding the BPL. The American perspective is very foggy.\n- Q: Transfer post? / I haven't been around for long, so my apologies if I missed something very obvious. But, since the season is ending and clubs are completing transfers, is there a place (post) where all transfers are listed? I would like to see a overview of all leagues or clubs or something, and\n- Is there a sub for just transfer news? / If not there should be, as i'm unable to find one. I would of thought there'd be one laid dormant from previous years as the deadline day draws to an end or is /r/soccer the best. I just wanna feel more spoilt as I really do relish transfer news and rumours.\n- [Meta] Is there a transfer rumors subreddit? / If not, do people need one? All [rumors] would be there and all [official] would stay on /r/soccer\n- Could the mods, or someone else who is willing, put up a stickied post containing all the purchased/sold players in the summer transfer window?\n- With all the WC madness haven't we forgotten the summer transfer window thread?\n- Don't upvote, but is there a sub dedicated to transfer rumours and gossip?\n- Can we have a stickied post of all the transfers?\n- Transfer rumor subreddits? / Are any subreddits just for transfer rumors?\n- I'm as excited about the World Cup as the next guy, but is there any chance we could start a transfer rumor thread?\n- What is the best website for up-to-date Transfer Rumours? / As the title says :) specifically looking for BPL rumours. Even more specifically, Manchester United transfer rumours :)\n- Transfer Thread? / Since the the new transfer season has started already, is there going to be a transfer thread?\n- Is there any subreddits regarding transfer rumours? / I've searched 'transferrumours' and 'transfers' but none seem to be in use anymore!\n- What is your favorite site for transfer rumors?\n- [META] Can we have a sticky transfer thread again?\n- Any chance we can limit transfer news to official moves only? / There's three articles in the top ten about James Rodriguez being in an airport in Madrid.\n- Request: Summer Transfer Window Thread\n- What is the best website for transfer news? / Any help? I'm tired of seeing Arsenal make a bid for a player and nothing happening.\n- Is there a subreddit just for transfer rumours? / dont know if im being thick and cant find one, does anyone know of any?\n- Follow for instant transfer updates and news.\n- [Request] Can we get a transfer sticky like we had in January\n- Request: Can we have a summer transfers megathread stickied?\n- Is there a subreddit for transfer news?\n- Best site for transfer news?\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Transfer Thread\", \"purpose\": \"Provide a centralized hub for transfer news and rumors\", \"emotion_tone\": \"excitement\", \"description\": \"A dedicated thread for discussing and tracking transfers, rumors, and updates in the football community.\", \"inclusion_cues\": [\"transfer news\", \"transfer rumors\", \"summer transfers\", \"transfer window\", \"leagues clubs\", \"promoted relegated\", \"stickied post\", \"transfer thread\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Transfer Thread\", \"purpose\": \"Provide a dedicated space for discussing transfer news and rumors\", \"emotion_tone\": \"Excitement and anticipation\", \"description\": \"A sticky post or thread that updates with the latest transfer news and rumors, fostering community engagement and keeping fans informed.\", \"inclusion_cues\": [\"Transfer news\", \"Rumors\", \"Summer transfers\", \"Relegations/promotions\", \"Official transfers\", \"Fan engagement\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Transfer Thread\", \"purpose\": \"Provide a centralized hub for transfer news and rumors\", \"emotion_tone\": \"Excitement and anticipation\", \"description\": \"A dedicated thread for discussing and tracking transfers, rumors, and updates in the football community, with a focus on keeping fans informed and engaged.\", \"inclusion_cues\": [\"transfer news\", \"transfer rumors\", \"summer transfers\", \"relegations/promotions\", \"official transfers\", \"fan engagement\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 110,
+   "seed": 297870239,
+   "seconds": 0.57
+  }
+ ]
+}

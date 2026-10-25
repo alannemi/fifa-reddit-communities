@@ -1,0 +1,189 @@
+{
+ "period_bin": 3,
+ "topic_id": 380,
+ "keywords": "dundalk fined, uefa fines, banner bayern, uefa bans, uefa dundalk, partizan fans, uefa investigation, face uefa, hit uefa, madrid appeal, hajduk split, hajduk, anti semitic, israeli football, belgrade tottenham",
+ "n_sample_posts": 32,
+ "sample_ids": [
+  "2guw9m",
+  "2ed1qw",
+  "2082or",
+  "2em38o",
+  "2ed11l",
+  "27k1w5",
+  "2085t9",
+  "2edfcw",
+  "2d66rl",
+  "2gsm05",
+  "2dsw2n",
+  "218627",
+  "2f91k4",
+  "2gtamk",
+  "2182vm",
+  "2gu7tr",
+  "224c2t",
+  "1z78jo",
+  "218308",
+  "27dkqp",
+  "25is3j",
+  "2080uf",
+  "2dzqub",
+  "27lipo",
+  "237eje",
+  "20cp6w",
+  "1ywqpy",
+  "208a4j",
+  "25im0m",
+  "2085oy",
+  "1wzf6r",
+  "2espnt"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "UEFA fines for offensive banners",
+  "purpose": "Enforcement of UEFA rules against fan behavior",
+  "emotion_tone": "Critical",
+  "description": "Posts about UEFA fines for displaying offensive banners, including anti-Semitic, homophobic, and Nazi-related flags, with focus on disciplinary actions against clubs and fans.",
+  "inclusion_cues": [
+   "UEFA fines for Palestinian flag",
+   "anti-Semitic banner",
+   "homophobic banner",
+   "Nazi banner",
+   "offensive flag",
+   "stadium ban"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "UEFA fines for offensive banners",
+    "purpose": "Enforcement of UEFA rules against fan behavior",
+    "emotion_tone": "Critical",
+    "description": "Posts about UEFA fines for displaying offensive banners, including anti-Semitic, homophobic, and racist symbols, with focus on disciplinary actions against clubs and fans.",
+    "inclusion_cues": [
+     "UEFA fines",
+     "offensive banners",
+     "anti-Semitic",
+     "homophobic",
+     "racist symbols"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "UEFA fines for offensive banners",
+    "purpose": "Enforcement of UEFA rules against fan behavior",
+    "emotion_tone": "Critical",
+    "description": "Posts about UEFA fines for displaying offensive banners, including anti-Semitic, homophobic, and Nazi-related flags, with focus on disciplinary actions against clubs and fans.",
+    "inclusion_cues": [
+     "UEFA fines for Palestinian flag",
+     "anti-Semitic banner",
+     "homophobic banner",
+     "Nazi banner",
+     "offensive flag",
+     "stadium ban"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: dundalk fined, uefa fines, banner bayern, uefa bans, uefa dundalk, partizan fans, uefa investigation, face uefa, hit uefa, madrid appeal, hajduk split, hajduk, anti semitic, israeli football, belgrade tottenham\nPosts (one per line, title first):\n- Spurs coach Mauricio Pochettino describes Only Jews and Pussies (parody of Only Fools and Horses) banner flown at Partizan Belgrade vs Tottenham last night as \"disrespectful\".\n- Dundalk fined €18k for Palestine flag flown against Hajduk Split\n- Bayern Munich are facing disciplinary action over an illicit banner displayed by fans in their draw with Arsenal at the Allianz Arena.\n- Dundalk FC release statement condemning fans after receiving €18,000 fine by UEFA for flying Palestinian flag at Europa League Qualifier.\n- Irish club Dundalk FC fined €18,000 by UEFA for fan flying Palestinian flag. / Dundalk FC have been fined €18,000 by UEFA for a fan flying a Palestinian flag at a recent Europa League qualifying game at home to Hajduk Split. Posted by /u/gufcfan - > Dundalk FC can confirm that the club has been char\n- Houston stadium security detains soccer fan for waving Palestinian flag as \"racial slur\"\n- Bayern facing fine over homophobic banner unveiled during the Arsenal game - Telegraph\n- Irish football team fined €18,000 for Palestine flag by UEFA\n- Legia Warsa fans display Nazi banner\n- Antisemitic message during Partizan vs. Tottenham\n- Hearts fan does Nazi Salute before Edinburgh Derby\n- Bayern hit with partial stadium ban for Man Utd Game\n- Celtic and St Johnstone hit with UEFA fines after fans display Palistinian flags at Euro ties\n- Partizan fans display anti-Semitic banner\n- UEFA order Bayern to partially close Allianz Arena for Manchester United clash - Punishment for the homophobic banner against Arsenal\n- UEFA to investigate Spurs rage over anti-Semitic banner\n- Israeli football fans unfurl giant Walter White banner at a match. \"I'm not in danger, I'm the danger!\"\n- Fan fined for ripping up Koran pages at football match\n- Bayern Munich hit with partial stadium closure for homophobic banner\n- Mere Existence of Palestine Flag Deemed a “Threatening Racial Slur” by Houston Dynamo\n- Bayern Munich punishes makers of homophobic \"Gay Gunners\" banner\n- SkySportsNews: UEFA open disciplinary proceeding against Bayern Munich over offensive banner displayed in draw against Arsenal\n- UEFA bans Beşiktaş fans' banner for anarchism reference before key Arsenal game\n- UEFA close off two sections of the Santiago Bernabeu due to ‘nazi flag’, Real Madrid to appeal\n- Real Madrid fan section displaying swastika flag at tonights Clasico (Spanish)\n- Bayern Munich Face UEFA Investigation over 'Gay Gunners' Banner Aimed at Arsenal\n- Borussia Dortmund punish fan with stadium ban until 2020 for Nazi slogan\n- Bayern Munich face fine after fan displays homophobic sign during champions league game\n- Bayern Munich gets 10.000€ fine back from parents of fans after banner-incident (German link)\n- Bayern facing ban over homophobic banner during Arsenal game - Telegraph\n- Celtic not punished for 'offensive' banner\n- FC Bayern places all stadium bans on probation (german)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"UEFA fines for offensive banners\", \"purpose\": \"Enforcement of UEFA rules against fan behavior\", \"emotion_tone\": \"Critical\", \"description\": \"Posts about UEFA fines for displaying offensive banners, including anti-Semitic, homophobic, and racist symbols, with focus on disciplinary actions against clubs and fans.\", \"inclusion_cues\": [\"UEFA fines\", \"offensive banners\", \"anti-Semitic\", \"homophobic\", \"racist symbols\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "UEFA fines for offensive banners",
+      "purpose": "Enforcement of UEFA rules against fan behavior",
+      "emotion_tone": "Critical",
+      "description": "Posts about UEFA fines for displaying offensive banners, including anti-Semitic, homophobic, and racist symbols, with focus on disciplinary actions against clubs and fans.",
+      "inclusion_cues": [
+       "UEFA fines",
+       "offensive banners",
+       "anti-Semitic",
+       "homophobic",
+       "racist symbols"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 107,
+   "seed": 3656494741,
+   "seconds": 0.58
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: dundalk fined, uefa fines, banner bayern, uefa bans, uefa dundalk, partizan fans, uefa investigation, face uefa, hit uefa, madrid appeal, hajduk split, hajduk, anti semitic, israeli football, belgrade tottenham\nPosts (one per line, title first):\n- Spurs coach Mauricio Pochettino describes Only Jews and Pussies (parody of Only Fools and Horses) banner flown at Partizan Belgrade vs Tottenham last night as \"disrespectful\".\n- Dundalk fined €18k for Palestine flag flown against Hajduk Split\n- Bayern Munich are facing disciplinary action over an illicit banner displayed by fans in their draw with Arsenal at the Allianz Arena.\n- Dundalk FC release statement condemning fans after receiving €18,000 fine by UEFA for flying Palestinian flag at Europa League Qualifier.\n- Irish club Dundalk FC fined €18,000 by UEFA for fan flying Palestinian flag. / Dundalk FC have been fined €18,000 by UEFA for a fan flying a Palestinian flag at a recent Europa League qualifying game at home to Hajduk Split. Posted by /u/gufcfan - > Dundalk FC can confirm that the club has been char\n- Houston stadium security detains soccer fan for waving Palestinian flag as \"racial slur\"\n- Bayern facing fine over homophobic banner unveiled during the Arsenal game - Telegraph\n- Irish football team fined €18,000 for Palestine flag by UEFA\n- Legia Warsa fans display Nazi banner\n- Antisemitic message during Partizan vs. Tottenham\n- Hearts fan does Nazi Salute before Edinburgh Derby\n- Bayern hit with partial stadium ban for Man Utd Game\n- Celtic and St Johnstone hit with UEFA fines after fans display Palistinian flags at Euro ties\n- Partizan fans display anti-Semitic banner\n- UEFA order Bayern to partially close Allianz Arena for Manchester United clash - Punishment for the homophobic banner against Arsenal\n- UEFA to investigate Spurs rage over anti-Semitic banner\n- Israeli football fans unfurl giant Walter White banner at a match. \"I'm not in danger, I'm the danger!\"\n- Fan fined for ripping up Koran pages at football match\n- Bayern Munich hit with partial stadium closure for homophobic banner\n- Mere Existence of Palestine Flag Deemed a “Threatening Racial Slur” by Houston Dynamo\n- Bayern Munich punishes makers of homophobic \"Gay Gunners\" banner\n- SkySportsNews: UEFA open disciplinary proceeding against Bayern Munich over offensive banner displayed in draw against Arsenal\n- UEFA bans Beşiktaş fans' banner for anarchism reference before key Arsenal game\n- UEFA close off two sections of the Santiago Bernabeu due to ‘nazi flag’, Real Madrid to appeal\n- Real Madrid fan section displaying swastika flag at tonights Clasico (Spanish)\n- Bayern Munich Face UEFA Investigation over 'Gay Gunners' Banner Aimed at Arsenal\n- Borussia Dortmund punish fan with stadium ban until 2020 for Nazi slogan\n- Bayern Munich face fine after fan displays homophobic sign during champions league game\n- Bayern Munich gets 10.000€ fine back from parents of fans after banner-incident (German link)\n- Bayern facing ban over homophobic banner during Arsenal game - Telegraph\n- Celtic not punished for 'offensive' banner\n- FC Bayern places all stadium bans on probation (german)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"UEFA fines for offensive banners\", \"purpose\": \"Enforcement of UEFA rules against fan behavior\", \"emotion_tone\": \"Critical\", \"description\": \"Posts about UEFA fines for displaying offensive banners, including anti-Semitic, homophobic, and Nazi-related flags, with focus on disciplinary actions against clubs and fans.\", \"inclusion_cues\": [\"UEFA fines for Palestinian flag\", \"anti-Semitic banner\", \"homophobic banner\", \"Nazi banner\", \"offensive flag\", \"stadium ban\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "UEFA fines for offensive banners",
+      "purpose": "Enforcement of UEFA rules against fan behavior",
+      "emotion_tone": "Critical",
+      "description": "Posts about UEFA fines for displaying offensive banners, including anti-Semitic, homophobic, and Nazi-related flags, with focus on disciplinary actions against clubs and fans.",
+      "inclusion_cues": [
+       "UEFA fines for Palestinian flag",
+       "anti-Semitic banner",
+       "homophobic banner",
+       "Nazi banner",
+       "offensive flag",
+       "stadium ban"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 118,
+   "seed": 348879084,
+   "seconds": 0.51
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: dundalk fined, uefa fines, banner bayern, uefa bans, uefa dundalk, partizan fans, uefa investigation, face uefa, hit uefa, madrid appeal, hajduk split, hajduk, anti semitic, israeli football, belgrade tottenham\nPosts (one per line, title first):\n- Spurs coach Mauricio Pochettino describes Only Jews and Pussies (parody of Only Fools and Horses) banner flown at Partizan Belgrade vs Tottenham last night as \"disrespectful\".\n- Dundalk fined €18k for Palestine flag flown against Hajduk Split\n- Bayern Munich are facing disciplinary action over an illicit banner displayed by fans in their draw with Arsenal at the Allianz Arena.\n- Dundalk FC release statement condemning fans after receiving €18,000 fine by UEFA for flying Palestinian flag at Europa League Qualifier.\n- Irish club Dundalk FC fined €18,000 by UEFA for fan flying Palestinian flag. / Dundalk FC have been fined €18,000 by UEFA for a fan flying a Palestinian flag at a recent Europa League qualifying game at home to Hajduk Split. Posted by /u/gufcfan - > Dundalk FC can confirm that the club has been char\n- Houston stadium security detains soccer fan for waving Palestinian flag as \"racial slur\"\n- Bayern facing fine over homophobic banner unveiled during the Arsenal game - Telegraph\n- Irish football team fined €18,000 for Palestine flag by UEFA\n- Legia Warsa fans display Nazi banner\n- Antisemitic message during Partizan vs. Tottenham\n- Hearts fan does Nazi Salute before Edinburgh Derby\n- Bayern hit with partial stadium ban for Man Utd Game\n- Celtic and St Johnstone hit with UEFA fines after fans display Palistinian flags at Euro ties\n- Partizan fans display anti-Semitic banner\n- UEFA order Bayern to partially close Allianz Arena for Manchester United clash - Punishment for the homophobic banner against Arsenal\n- UEFA to investigate Spurs rage over anti-Semitic banner\n- Israeli football fans unfurl giant Walter White banner at a match. \"I'm not in danger, I'm the danger!\"\n- Fan fined for ripping up Koran pages at football match\n- Bayern Munich hit with partial stadium closure for homophobic banner\n- Mere Existence of Palestine Flag Deemed a “Threatening Racial Slur” by Houston Dynamo\n- Bayern Munich punishes makers of homophobic \"Gay Gunners\" banner\n- SkySportsNews: UEFA open disciplinary proceeding against Bayern Munich over offensive banner displayed in draw against Arsenal\n- UEFA bans Beşiktaş fans' banner for anarchism reference before key Arsenal game\n- UEFA close off two sections of the Santiago Bernabeu due to ‘nazi flag’, Real Madrid to appeal\n- Real Madrid fan section displaying swastika flag at tonights Clasico (Spanish)\n- Bayern Munich Face UEFA Investigation over 'Gay Gunners' Banner Aimed at Arsenal\n- Borussia Dortmund punish fan with stadium ban until 2020 for Nazi slogan\n- Bayern Munich face fine after fan displays homophobic sign during champions league game\n- Bayern Munich gets 10.000€ fine back from parents of fans after banner-incident (German link)\n- Bayern facing ban over homophobic banner during Arsenal game - Telegraph\n- Celtic not punished for 'offensive' banner\n- FC Bayern places all stadium bans on probation (german)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"UEFA fines for offensive banners\", \"purpose\": \"Enforcement of UEFA rules against fan behavior\", \"emotion_tone\": \"Critical\", \"description\": \"Posts about UEFA fines for displaying offensive banners, including anti-Semitic, homophobic, and racist symbols, with focus on disciplinary actions against clubs and fans.\", \"inclusion_cues\": [\"UEFA fines\", \"offensive banners\", \"anti-Semitic\", \"homophobic\", \"racist symbols\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"UEFA fines for offensive banners\", \"purpose\": \"Enforcement of UEFA rules against fan behavior\", \"emotion_tone\": \"Critical\", \"description\": \"Posts about UEFA fines for displaying offensive banners, including anti-Semitic, homophobic, and Nazi-related flags, with focus on disciplinary actions against clubs and fans.\", \"inclusion_cues\": [\"UEFA fines for Palestinian flag\", \"anti-Semitic banner\", \"homophobic banner\", \"Nazi banner\", \"offensive flag\", \"stadium ban\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"UEFA fines for offensive banners\", \"purpose\": \"Enforcement of UEFA rules against fan behavior\", \"emotion_tone\": \"Critical\", \"description\": \"Posts about UEFA fines for displaying offensive banners, including anti-Semitic, homophobic, and Nazi-related flags, with focus on disciplinary actions against clubs and fans.\", \"inclusion_cues\": [\"UEFA fines for Palestinian flag\", \"anti-Semitic banner\", \"homophobic banner\", \"Nazi banner\", \"offensive flag\", \"stadium ban\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 117,
+   "seed": 1168511366,
+   "seconds": 0.6
+  }
+ ]
+}

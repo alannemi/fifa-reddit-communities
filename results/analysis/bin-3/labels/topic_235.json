@@ -1,0 +1,202 @@
+{
+ "period_bin": 3,
+ "topic_id": 235,
+ "keywords": "john oliver, oliver fifa, fifa, brazil week, information fifa, wc fifa, fifa sepp, hate fifa, hbo, week tonight, colbert, cup watching, attenborough, beck, daily fantasy",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "28h634",
+  "28h634",
+  "28h634",
+  "28h634",
+  "28h634",
+  "27qghr",
+  "284myt",
+  "2apqkn",
+  "27q22l",
+  "26c0vr",
+  "27obl3",
+  "27pefj",
+  "28nd5c",
+  "27yx2h",
+  "27shhn",
+  "27sxyb",
+  "27q9nz",
+  "287qpb",
+  "27pzj9",
+  "283mhr",
+  "27sa7p",
+  "29tem4",
+  "28n8gc",
+  "27ujxw",
+  "28kg82",
+  "280uvv",
+  "27og4n",
+  "27vnt1",
+  "27q4jg",
+  "29io28",
+  "27syym",
+  "27ogyd",
+  "2825ns",
+  "27rxsa",
+  "281cnp",
+  "27ps3q",
+  "27ps08",
+  "27qkek",
+  "27rts1",
+  "28186y"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "FIFA Critique",
+  "purpose": "Critique of FIFA and World Cup governance",
+  "emotion_tone": "Critical, sarcastic, humorous",
+  "description": "Posts discussing John Oliver's critiques of FIFA, World Cup organization, and related topics",
+  "inclusion_cues": [
+   "FIFA and the World Cup",
+   "John Oliver on FIFA",
+   "Hate FIFA",
+   "FIFA sepp",
+   "WC FIFA",
+   "FIFA corruption",
+   "FIFA exploitation"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "FIFA Critique",
+    "purpose": "Critique of FIFA and World Cup governance",
+    "emotion_tone": "Critical, sarcastic, humorous",
+    "description": "Posts discussing John Oliver's critiques of FIFA, World Cup organization, and related topics",
+    "inclusion_cues": [
+     "FIFA",
+     "World Cup",
+     "John Oliver",
+     "hate FIFA",
+     "corrupted organization",
+     "exploitative organization"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "FIFA Critique",
+    "purpose": "Critique of FIFA and World Cup governance",
+    "emotion_tone": "Critical, sarcastic, humorous",
+    "description": "Posts discussing John Oliver's critiques of FIFA, World Cup organization, and related topics",
+    "inclusion_cues": [
+     "FIFA and the World Cup",
+     "John Oliver on FIFA",
+     "Hate FIFA",
+     "FIFA sepp",
+     "WC FIFA",
+     "FIFA corruption",
+     "FIFA exploitation"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: john oliver, oliver fifa, fifa, brazil week, information fifa, wc fifa, fifa sepp, hate fifa, hbo, week tonight, colbert, cup watching, attenborough, beck, daily fantasy\nPosts (one per line, title first):\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- John Oliver on the world cup\n- Segment from John Oliver's show: Jerome Valcke, Fuck that Guy!\n- \"Soccer is an organized religion and FIFA is its church.\" Brilliantly delivered piece on FIFA by John Oliver\n- Glenn Beck on soccer & the World Cup\n- John Oliver on WC 2014.\n- Full length John Oliver Rant about FIFA\n- Crazy Footballer Names: GQ Asks John Oliver If They're Real or Fake\n- John Oliver Is Psyched for the World Cup\n- John Oliver Explains The World Cup And FIFA To Americans (VIDEO)\n- John Oliver on how evil FIFA is (hilarious)\n- John Oliver explains the corrupted and exploitative organization that is FIFA.\n- After watching John Oliver's explanation of FIFA's suspect activities.\n- John Oliver Brilliantly Lays Out All The Reasons To Hate FIFA\n- Last Week Tonight w/John Oliver - Truth of the poorly-regulated FIFA and the World Cup\n- John Oliver Rips FIFA and Sepp Bladder for 13 Minutes [video at bottom of page]\n- Alan Davies on the USA at the World Cup\n- X-post from /r/videos - John Oliver takes his guess if crazy soccer names are real or fake\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- Crazy Soccer Names: Real or Fake with John Oliver\n- Stephen Colbert on the world cup\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- John Oliver blasts FIFA\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- World Cup 2014: David Attenborough of commentators and Hannibal Lecter of players\n- John Oliver's excitement for the World Cup is tempered by knowing information about FIFA\n- John Oliver on FIFA\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- John Oliver on World Cup 2010 (Daily Show)\n- John Oliver on what FIFA is and how it works - Hilarious!\n- John Oliver on FIFA and the World Cup -xpost /r/videos\n- John Oliver Explains How FIFA Will Ruin the World Cup and Screw Brazil - Must See\n- John Oliver Explains The World Cup And FIFA To Americans\n- Fantasy Football World Cup, The 'Brigitte Nielsen' episode - Part 01. I wish we had a TV show of this caliber today.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"FIFA Critique\", \"purpose\": \"Critique of FIFA and World Cup governance\", \"emotion_tone\": \"Critical, sarcastic, humorous\", \"description\": \"Posts discussing John Oliver's critiques of FIFA, World Cup organization, and related topics\", \"inclusion_cues\": [\"FIFA\", \"World Cup\", \"John Oliver\", \"hate FIFA\", \"corrupted organization\", \"exploitative organization\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "FIFA Critique",
+      "purpose": "Critique of FIFA and World Cup governance",
+      "emotion_tone": "Critical, sarcastic, humorous",
+      "description": "Posts discussing John Oliver's critiques of FIFA, World Cup organization, and related topics",
+      "inclusion_cues": [
+       "FIFA",
+       "World Cup",
+       "John Oliver",
+       "hate FIFA",
+       "corrupted organization",
+       "exploitative organization"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 102,
+   "seed": 1584725768,
+   "seconds": 0.49
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: john oliver, oliver fifa, fifa, brazil week, information fifa, wc fifa, fifa sepp, hate fifa, hbo, week tonight, colbert, cup watching, attenborough, beck, daily fantasy\nPosts (one per line, title first):\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- John Oliver on the world cup\n- Segment from John Oliver's show: Jerome Valcke, Fuck that Guy!\n- \"Soccer is an organized religion and FIFA is its church.\" Brilliantly delivered piece on FIFA by John Oliver\n- Glenn Beck on soccer & the World Cup\n- John Oliver on WC 2014.\n- Full length John Oliver Rant about FIFA\n- Crazy Footballer Names: GQ Asks John Oliver If They're Real or Fake\n- John Oliver Is Psyched for the World Cup\n- John Oliver Explains The World Cup And FIFA To Americans (VIDEO)\n- John Oliver on how evil FIFA is (hilarious)\n- John Oliver explains the corrupted and exploitative organization that is FIFA.\n- After watching John Oliver's explanation of FIFA's suspect activities.\n- John Oliver Brilliantly Lays Out All The Reasons To Hate FIFA\n- Last Week Tonight w/John Oliver - Truth of the poorly-regulated FIFA and the World Cup\n- John Oliver Rips FIFA and Sepp Bladder for 13 Minutes [video at bottom of page]\n- Alan Davies on the USA at the World Cup\n- X-post from /r/videos - John Oliver takes his guess if crazy soccer names are real or fake\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- Crazy Soccer Names: Real or Fake with John Oliver\n- Stephen Colbert on the world cup\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- John Oliver blasts FIFA\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- World Cup 2014: David Attenborough of commentators and Hannibal Lecter of players\n- John Oliver's excitement for the World Cup is tempered by knowing information about FIFA\n- John Oliver on FIFA\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- John Oliver on World Cup 2010 (Daily Show)\n- John Oliver on what FIFA is and how it works - Hilarious!\n- John Oliver on FIFA and the World Cup -xpost /r/videos\n- John Oliver Explains How FIFA Will Ruin the World Cup and Screw Brazil - Must See\n- John Oliver Explains The World Cup And FIFA To Americans\n- Fantasy Football World Cup, The 'Brigitte Nielsen' episode - Part 01. I wish we had a TV show of this caliber today.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"FIFA Critique\", \"purpose\": \"Critique of FIFA and World Cup governance\", \"emotion_tone\": \"Critical, sarcastic, humorous\", \"description\": \"Posts discussing John Oliver's critiques of FIFA, World Cup organization, and related topics\", \"inclusion_cues\": [\"FIFA and the World Cup\", \"John Oliver on FIFA\", \"Hate FIFA\", \"FIFA sepp\", \"WC FIFA\", \"FIFA corruption\", \"FIFA exploitation\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "FIFA Critique",
+      "purpose": "Critique of FIFA and World Cup governance",
+      "emotion_tone": "Critical, sarcastic, humorous",
+      "description": "Posts discussing John Oliver's critiques of FIFA, World Cup organization, and related topics",
+      "inclusion_cues": [
+       "FIFA and the World Cup",
+       "John Oliver on FIFA",
+       "Hate FIFA",
+       "FIFA sepp",
+       "WC FIFA",
+       "FIFA corruption",
+       "FIFA exploitation"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 114,
+   "seed": 3454707355,
+   "seconds": 0.51
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: john oliver, oliver fifa, fifa, brazil week, information fifa, wc fifa, fifa sepp, hate fifa, hbo, week tonight, colbert, cup watching, attenborough, beck, daily fantasy\nPosts (one per line, title first):\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- John Oliver on the world cup\n- Segment from John Oliver's show: Jerome Valcke, Fuck that Guy!\n- \"Soccer is an organized religion and FIFA is its church.\" Brilliantly delivered piece on FIFA by John Oliver\n- Glenn Beck on soccer & the World Cup\n- John Oliver on WC 2014.\n- Full length John Oliver Rant about FIFA\n- Crazy Footballer Names: GQ Asks John Oliver If They're Real or Fake\n- John Oliver Is Psyched for the World Cup\n- John Oliver Explains The World Cup And FIFA To Americans (VIDEO)\n- John Oliver on how evil FIFA is (hilarious)\n- John Oliver explains the corrupted and exploitative organization that is FIFA.\n- After watching John Oliver's explanation of FIFA's suspect activities.\n- John Oliver Brilliantly Lays Out All The Reasons To Hate FIFA\n- Last Week Tonight w/John Oliver - Truth of the poorly-regulated FIFA and the World Cup\n- John Oliver Rips FIFA and Sepp Bladder for 13 Minutes [video at bottom of page]\n- Alan Davies on the USA at the World Cup\n- X-post from /r/videos - John Oliver takes his guess if crazy soccer names are real or fake\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- Crazy Soccer Names: Real or Fake with John Oliver\n- Stephen Colbert on the world cup\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- John Oliver blasts FIFA\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- World Cup 2014: David Attenborough of commentators and Hannibal Lecter of players\n- John Oliver's excitement for the World Cup is tempered by knowing information about FIFA\n- John Oliver on FIFA\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- Last Week Tonight with John Oliver (HBO): FIFA and the World Cup\n- John Oliver on World Cup 2010 (Daily Show)\n- John Oliver on what FIFA is and how it works - Hilarious!\n- John Oliver on FIFA and the World Cup -xpost /r/videos\n- John Oliver Explains How FIFA Will Ruin the World Cup and Screw Brazil - Must See\n- John Oliver Explains The World Cup And FIFA To Americans\n- Fantasy Football World Cup, The 'Brigitte Nielsen' episode - Part 01. I wish we had a TV show of this caliber today.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"FIFA Critique\", \"purpose\": \"Critique of FIFA and World Cup governance\", \"emotion_tone\": \"Critical, sarcastic, humorous\", \"description\": \"Posts discussing John Oliver's critiques of FIFA, World Cup organization, and related topics\", \"inclusion_cues\": [\"FIFA\", \"World Cup\", \"John Oliver\", \"hate FIFA\", \"corrupted organization\", \"exploitative organization\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"FIFA Critique\", \"purpose\": \"Critique of FIFA and World Cup governance\", \"emotion_tone\": \"Critical, sarcastic, humorous\", \"description\": \"Posts discussing John Oliver's critiques of FIFA, World Cup organization, and related topics\", \"inclusion_cues\": [\"FIFA and the World Cup\", \"John Oliver on FIFA\", \"Hate FIFA\", \"FIFA sepp\", \"WC FIFA\", \"FIFA corruption\", \"FIFA exploitation\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"FIFA Critique\", \"purpose\": \"Critique of FIFA and World Cup governance\", \"emotion_tone\": \"Critical, sarcastic, humorous\", \"description\": \"Posts discussing John Oliver's critiques of FIFA, World Cup organization, and related topics\", \"inclusion_cues\": [\"FIFA and the World Cup\", \"John Oliver on FIFA\", \"Hate FIFA\", \"FIFA sepp\", \"WC FIFA\", \"FIFA corruption\", \"FIFA exploitation\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 113,
+   "seed": 3806885088,
+   "seconds": 0.64
+  }
+ ]
+}

@@ -1,0 +1,186 @@
+{
+ "period_bin": 3,
+ "topic_id": 307,
+ "keywords": "espn coverage, coverage espn, espn really, hate espn, fox sports, sports espn, espn fc, match espn, sportscenter, espn aims, bein sport, hours espn, try espn, barcelona espn, tennis match",
+ "n_sample_posts": 38,
+ "sample_ids": [
+  "24t7ti",
+  "2es8cd",
+  "27zgai",
+  "2a9xfg",
+  "2f7kvg",
+  "27pk9b",
+  "2agcif",
+  "28exww",
+  "28ldq4",
+  "224hbx",
+  "206msf",
+  "29cm4v",
+  "28wkoo",
+  "26e1po",
+  "1xg3kv",
+  "28hkcu",
+  "26zd0i",
+  "27h2bu",
+  "2e0mmd",
+  "24bmf8",
+  "28054j",
+  "27yad7",
+  "29issp",
+  "28eldu",
+  "28trnm",
+  "2ash8y",
+  "222whl",
+  "283gm5",
+  "29cquc",
+  "26einy",
+  "279i35",
+  "2ac9dc",
+  "2alu8s",
+  "2a6o03",
+  "28c39m",
+  "1zy8qy",
+  "2aa8f4",
+  "2a7f3r"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "ESPN Coverage Criticism",
+  "purpose": "Critique of ESPN's soccer coverage",
+  "emotion_tone": "Negative",
+  "description": "Posts expressing dissatisfaction with ESPN's soccer coverage, including criticism of specific programs, editing, and overall performance.",
+  "inclusion_cues": [
+   "ESPN coverage of the World Cup",
+   "Criticism of ESPN's soccer programming",
+   "Negative sentiment towards ESPN's sports coverage"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "ESPN Criticism",
+    "purpose": "Critique of ESPN's soccer coverage",
+    "emotion_tone": "Negative",
+    "description": "Posts expressing dissatisfaction with ESPN's soccer coverage, including specific complaints about coverage quality, commentary, and programming.",
+    "inclusion_cues": [
+     "ESPN coverage",
+     "hate espn",
+     "ESPN sucks at soccer",
+     "ESPN is missing information",
+     "ESPN failed attempt at talking about football"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "ESPN Coverage Criticism",
+    "purpose": "Critique of ESPN's soccer coverage",
+    "emotion_tone": "Negative",
+    "description": "Posts expressing dissatisfaction with ESPN's soccer coverage, including criticism of specific programs, editing, and overall performance.",
+    "inclusion_cues": [
+     "ESPN coverage of the World Cup",
+     "Criticism of ESPN's soccer programming",
+     "Negative sentiment towards ESPN's sports coverage"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: espn coverage, coverage espn, espn really, hate espn, fox sports, sports espn, espn fc, match espn, sportscenter, espn aims, bein sport, hours espn, try espn, barcelona espn, tennis match\nPosts (one per line, title first):\n- ESPN aims to make World Cup history in Brazil\n- I think Fox Sports saw Mathieu got a red and just made an assumption\n- The official complain about espn thread / ESPN has golf on and ESPN2 has sports center on 50 times in a row. I thought i heard about some tournament going on.\n- [USA] What did you think of ESPN coverage of the World Cup? / So as we get to the final 2 matches of the 2014 World Cup what did you think of ESPN coverage of the 2010 and 2014 World Cup? I personally enjoyed there coverage on the last 2. There was 1 or 2 commentator's that I did not like, but other\n- ESPN FC on Twitter: PROGRAM NOTE: ESPN FC TV, featuring @IanDarke, @Marcotti, @sidlowe, @CBurleyESPN and @SteveNicol61, can now be seen at midnight on ESPNews. / To the ESPN Ombudsman: @ESPN_Lipsyte ESPN Networks handling of bumped programming, in general, and ESPN FC TV and other soccer programming\n- ESPN sucks at soccer\n- After the stupid and very ESPN opening weekend, ESPN is about to send the World Cup off at the top of their game.\n- ESPN is just.... Ugh\n- Hate ESPN coverage? check these guys out\n- This is a joke...right ESPN?\n- ESPN is obviously a Bayern supporter!\n- I think ESPN is missing some information\n- Fox doesn’t need to be ready for the World Cup by 2018, they need to be ready now\n- Espn in a nutshell\n- ESPN should really wait until the end of the game...\n- Ouch, ESPN. That's a little harsh...\n- Really espn? Too many mistakes every day..\n- ESPN's amazing soccer coverage strikes again\n- What is with FS1's horrible editing?!\n- Getting real tired of ESPN\n- I'm waiting for a phone call from ESPN with a job offer any day now...\n- Anonymous threatens to destroy BeIn sports\n- Why the last priority on ESPN is soccer\n- ESPN posted this on their Facebook Page.\n- You suck, ESPN!\n- ESPN’s success with the World Cup came from emphasizing the world\n- Get your shit together ESPN\n- Well damn espn, NO NEED TO FUCKING SHOUT!\n- Thanks ESPN, I've been dying to know.\n- ESPN failed attempt at talking about football (soccer)\n- ESPN really needs to get their act together......\n- Why does Sportscenter even try?\n- Coverage from ESPN, it looks like they're talking about a car...\n- Jeeez CNN, take it down a notch.\n- ESPN is leaving behind a huge World Cup legacy for Fox\n- BeIn sport is so biased towards Barcelona\n- ESPN...how they view soccer is shameful.\n- CNN keeps it classy following Brazil's defeat...\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"ESPN Criticism\", \"purpose\": \"Critique of ESPN's soccer coverage\", \"emotion_tone\": \"Negative\", \"description\": \"Posts expressing dissatisfaction with ESPN's soccer coverage, including specific complaints about coverage quality, commentary, and programming.\", \"inclusion_cues\": [\"ESPN coverage\", \"hate espn\", \"ESPN sucks at soccer\", \"ESPN is missing information\", \"ESPN failed attempt at talking about football\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "ESPN Criticism",
+      "purpose": "Critique of ESPN's soccer coverage",
+      "emotion_tone": "Negative",
+      "description": "Posts expressing dissatisfaction with ESPN's soccer coverage, including specific complaints about coverage quality, commentary, and programming.",
+      "inclusion_cues": [
+       "ESPN coverage",
+       "hate espn",
+       "ESPN sucks at soccer",
+       "ESPN is missing information",
+       "ESPN failed attempt at talking about football"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 103,
+   "seed": 2153482878,
+   "seconds": 0.65
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: espn coverage, coverage espn, espn really, hate espn, fox sports, sports espn, espn fc, match espn, sportscenter, espn aims, bein sport, hours espn, try espn, barcelona espn, tennis match\nPosts (one per line, title first):\n- ESPN aims to make World Cup history in Brazil\n- I think Fox Sports saw Mathieu got a red and just made an assumption\n- The official complain about espn thread / ESPN has golf on and ESPN2 has sports center on 50 times in a row. I thought i heard about some tournament going on.\n- [USA] What did you think of ESPN coverage of the World Cup? / So as we get to the final 2 matches of the 2014 World Cup what did you think of ESPN coverage of the 2010 and 2014 World Cup? I personally enjoyed there coverage on the last 2. There was 1 or 2 commentator's that I did not like, but other\n- ESPN FC on Twitter: PROGRAM NOTE: ESPN FC TV, featuring @IanDarke, @Marcotti, @sidlowe, @CBurleyESPN and @SteveNicol61, can now be seen at midnight on ESPNews. / To the ESPN Ombudsman: @ESPN_Lipsyte ESPN Networks handling of bumped programming, in general, and ESPN FC TV and other soccer programming\n- ESPN sucks at soccer\n- After the stupid and very ESPN opening weekend, ESPN is about to send the World Cup off at the top of their game.\n- ESPN is just.... Ugh\n- Hate ESPN coverage? check these guys out\n- This is a joke...right ESPN?\n- ESPN is obviously a Bayern supporter!\n- I think ESPN is missing some information\n- Fox doesn’t need to be ready for the World Cup by 2018, they need to be ready now\n- Espn in a nutshell\n- ESPN should really wait until the end of the game...\n- Ouch, ESPN. That's a little harsh...\n- Really espn? Too many mistakes every day..\n- ESPN's amazing soccer coverage strikes again\n- What is with FS1's horrible editing?!\n- Getting real tired of ESPN\n- I'm waiting for a phone call from ESPN with a job offer any day now...\n- Anonymous threatens to destroy BeIn sports\n- Why the last priority on ESPN is soccer\n- ESPN posted this on their Facebook Page.\n- You suck, ESPN!\n- ESPN’s success with the World Cup came from emphasizing the world\n- Get your shit together ESPN\n- Well damn espn, NO NEED TO FUCKING SHOUT!\n- Thanks ESPN, I've been dying to know.\n- ESPN failed attempt at talking about football (soccer)\n- ESPN really needs to get their act together......\n- Why does Sportscenter even try?\n- Coverage from ESPN, it looks like they're talking about a car...\n- Jeeez CNN, take it down a notch.\n- ESPN is leaving behind a huge World Cup legacy for Fox\n- BeIn sport is so biased towards Barcelona\n- ESPN...how they view soccer is shameful.\n- CNN keeps it classy following Brazil's defeat...\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"ESPN Coverage Criticism\", \"purpose\": \"Critique of ESPN's soccer coverage\", \"emotion_tone\": \"Negative\", \"description\": \"Posts expressing dissatisfaction with ESPN's soccer coverage, including criticism of specific programs, editing, and overall performance.\", \"inclusion_cues\": [\"ESPN coverage of the World Cup\", \"Criticism of ESPN's soccer programming\", \"Negative sentiment towards ESPN's sports coverage\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "ESPN Coverage Criticism",
+      "purpose": "Critique of ESPN's soccer coverage",
+      "emotion_tone": "Negative",
+      "description": "Posts expressing dissatisfaction with ESPN's soccer coverage, including criticism of specific programs, editing, and overall performance.",
+      "inclusion_cues": [
+       "ESPN coverage of the World Cup",
+       "Criticism of ESPN's soccer programming",
+       "Negative sentiment towards ESPN's sports coverage"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 99,
+   "seed": 4081067497,
+   "seconds": 0.67
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: espn coverage, coverage espn, espn really, hate espn, fox sports, sports espn, espn fc, match espn, sportscenter, espn aims, bein sport, hours espn, try espn, barcelona espn, tennis match\nPosts (one per line, title first):\n- ESPN aims to make World Cup history in Brazil\n- I think Fox Sports saw Mathieu got a red and just made an assumption\n- The official complain about espn thread / ESPN has golf on and ESPN2 has sports center on 50 times in a row. I thought i heard about some tournament going on.\n- [USA] What did you think of ESPN coverage of the World Cup? / So as we get to the final 2 matches of the 2014 World Cup what did you think of ESPN coverage of the 2010 and 2014 World Cup? I personally enjoyed there coverage on the last 2. There was 1 or 2 commentator's that I did not like, but other\n- ESPN FC on Twitter: PROGRAM NOTE: ESPN FC TV, featuring @IanDarke, @Marcotti, @sidlowe, @CBurleyESPN and @SteveNicol61, can now be seen at midnight on ESPNews. / To the ESPN Ombudsman: @ESPN_Lipsyte ESPN Networks handling of bumped programming, in general, and ESPN FC TV and other soccer programming\n- ESPN sucks at soccer\n- After the stupid and very ESPN opening weekend, ESPN is about to send the World Cup off at the top of their game.\n- ESPN is just.... Ugh\n- Hate ESPN coverage? check these guys out\n- This is a joke...right ESPN?\n- ESPN is obviously a Bayern supporter!\n- I think ESPN is missing some information\n- Fox doesn’t need to be ready for the World Cup by 2018, they need to be ready now\n- Espn in a nutshell\n- ESPN should really wait until the end of the game...\n- Ouch, ESPN. That's a little harsh...\n- Really espn? Too many mistakes every day..\n- ESPN's amazing soccer coverage strikes again\n- What is with FS1's horrible editing?!\n- Getting real tired of ESPN\n- I'm waiting for a phone call from ESPN with a job offer any day now...\n- Anonymous threatens to destroy BeIn sports\n- Why the last priority on ESPN is soccer\n- ESPN posted this on their Facebook Page.\n- You suck, ESPN!\n- ESPN’s success with the World Cup came from emphasizing the world\n- Get your shit together ESPN\n- Well damn espn, NO NEED TO FUCKING SHOUT!\n- Thanks ESPN, I've been dying to know.\n- ESPN failed attempt at talking about football (soccer)\n- ESPN really needs to get their act together......\n- Why does Sportscenter even try?\n- Coverage from ESPN, it looks like they're talking about a car...\n- Jeeez CNN, take it down a notch.\n- ESPN is leaving behind a huge World Cup legacy for Fox\n- BeIn sport is so biased towards Barcelona\n- ESPN...how they view soccer is shameful.\n- CNN keeps it classy following Brazil's defeat...\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"ESPN Criticism\", \"purpose\": \"Critique of ESPN's soccer coverage\", \"emotion_tone\": \"Negative\", \"description\": \"Posts expressing dissatisfaction with ESPN's soccer coverage, including specific complaints about coverage quality, commentary, and programming.\", \"inclusion_cues\": [\"ESPN coverage\", \"hate espn\", \"ESPN sucks at soccer\", \"ESPN is missing information\", \"ESPN failed attempt at talking about football\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"ESPN Coverage Criticism\", \"purpose\": \"Critique of ESPN's soccer coverage\", \"emotion_tone\": \"Negative\", \"description\": \"Posts expressing dissatisfaction with ESPN's soccer coverage, including criticism of specific programs, editing, and overall performance.\", \"inclusion_cues\": [\"ESPN coverage of the World Cup\", \"Criticism of ESPN's soccer programming\", \"Negative sentiment towards ESPN's sports coverage\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"ESPN Soccer Coverage Criticism\", \"purpose\": \"Critique of ESPN's soccer coverage\", \"emotion_tone\": \"Negative\", \"description\": \"Posts expressing dissatisfaction with ESPN's soccer coverage, including criticism of specific programs, editing, and overall performance.\", \"inclusion_cues\": [\"ESPN coverage of the World Cup\", \"Criticism of ESPN's soccer programming\", \"Negative sentiment towards ESPN's sports coverage\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 99,
+   "seed": 4223878947,
+   "seconds": 0.68
+  }
+ ]
+}

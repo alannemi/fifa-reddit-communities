@@ -1,0 +1,203 @@
+{
+ "period_bin": 3,
+ "topic_id": 470,
+ "keywords": "footballer dies, fenerbahce match, djurgården fans, supporter football, match abandoned, fenerbahce, fan died, brazilian fan, fans demanding, swedish league, stormed field, helsingborg djurgården, footballer chelsea, cardiac arrest, tragedy",
+ "n_sample_posts": 25,
+ "sample_ids": [
+  "2h7nwe",
+  "2033gk",
+  "2033ab",
+  "21qwze",
+  "21qxec",
+  "2h4uz5",
+  "21s0pk",
+  "2g0oxz",
+  "21qx5i",
+  "21rmmd",
+  "21qxdr",
+  "22771t",
+  "29e7pw",
+  "2g0xng",
+  "28gssl",
+  "29eawc",
+  "24y1og",
+  "2h4svz",
+  "21r3oa",
+  "2h49pb",
+  "21qxdk",
+  "2h5mzp",
+  "21rhxl",
+  "29fq6s",
+  "21s3a5"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Fan Tragedy",
+  "purpose": "Report and document football-related tragedies",
+  "emotion_tone": "tragic",
+  "description": "Posts about fans dying or being injured during football matches, including cardiac arrest, heart attacks, and violent incidents.",
+  "inclusion_cues": [
+   "footballer dies",
+   "fan died",
+   "match abandoned",
+   "supporter football",
+   "tragedy",
+   "cardiac arrest",
+   "heart attack",
+   "fan died",
+   "swedish league",
+   "stormed field"
+  ],
+  "n_cues_given": 20
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Fan Tragedy",
+    "purpose": "Report and document football-related tragedies",
+    "emotion_tone": "grief and shock",
+    "description": "Posts about fans dying or being injured during football matches, including cardiac arrest, heart attacks, and violent incidents.",
+    "inclusion_cues": [
+     "footballer dies",
+     "fan died",
+     "match abandoned",
+     "supporter football",
+     "cardiac arrest",
+     "tragedy",
+     "death of fan",
+     "supporter killed"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Fan Tragedy",
+    "purpose": "Report and document football-related tragedies",
+    "emotion_tone": "tragic",
+    "description": "Posts about fans dying or being injured during football matches, including cardiac arrest, heart attacks, and violent incidents.",
+    "inclusion_cues": [
+     "footballer dies",
+     "fan died",
+     "match abandoned",
+     "supporter football",
+     "tragedy",
+     "cardiac arrest",
+     "heart attack",
+     "fan died",
+     "swedish league",
+     "stormed field"
+    ],
+    "n_cues_given": 20
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: footballer dies, fenerbahce match, djurgården fans, supporter football, match abandoned, fenerbahce, fan died, brazilian fan, fans demanding, swedish league, stormed field, helsingborg djurgården, footballer chelsea, cardiac arrest, tragedy\nPosts (one per line, title first):\n- Premier League - Young Chelsea fan 'dies of heart attack after Lampard goal'\n- Emenike flops after getting hit by object thrown by angry Trabzonspor fans demanding justice for the Fenerbahce match fixing case\n- Emenike flops after he gets hit by object thrown by angry fans Trabzonspor fans demanding justice for the Fenerbahce match fixing case\n- [Swedish] Helsingborg - Djurgården game abandoned after Djurgården fans rush the field when the news regarding the death of one of their fans\n- Djurgårdensupporter dead after being hit by a bottle before the Allsvenskan premiere. / Here's an article in swedish. The game between Djurgården and Helsingborg was aborted after Djurgården fans stormed the field after rumours about the death started to flourish.\n- Ugandan Footballer/Chelsea-Fan dies of heart failure after witnessing Lampard's equalizer.\n- Football supporter killed at the first game of the season in Helsingborg, Sweden.\n- Football fan dies after argument between City and United\n- Djurgården supporter beaten to death\n- A Swedish football match is abandoned after a fan dies from injuries sustained en route to the game in Helsingborg.\n- Djurgården supporter dead after supporter clash before premier match in Allsvenskan between HIF-DIF\n- Swedish football support got killed, this is how they tribute him\n- Brazil fan dies of a heart attack during tense penalty shootout against Chile\n- Man dies after argument over Manchester City and Manchester United\n- Belgian supporter climbs a statue to celebrate Belgium's victory and falls to his death.\n- Brazil fan dies of a heart attack during penalty shootout against Chile\n- Manchester United Fan Suffers Cardiac Arrest At Old Trafford During Hull Game\n- Chelsea fan allegedly dies of shock following Lampard's goal\n- Tragedy: Fan died of a suspected heart attack in the stands in Sassuolo v Roma\n- Death by Lampard: Ugandan Footballer dies upon Manchester City Equaliser\n- Tragic start of the swedish football season, a supporter has died in a fight before the match / Currently I have no english source to give you, so right now only this:\n- Chelsea fan suddenly dies of heart failure after Lampard's equaliser\n- Swedish league match abandoned after death of Djurgarden fan in assault\n- Brazilian fan dies from heart attack during Brazil v. Chile match\n- The site of the killed Djurgården supporter\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Fan Tragedy\", \"purpose\": \"Report and document football-related tragedies\", \"emotion_tone\": \"grief and shock\", \"description\": \"Posts about fans dying or being injured during football matches, including cardiac arrest, heart attacks, and violent incidents.\", \"inclusion_cues\": [\"footballer dies\", \"fan died\", \"match abandoned\", \"supporter football\", \"cardiac arrest\", \"tragedy\", \"death of fan\", \"supporter killed\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Fan Tragedy",
+      "purpose": "Report and document football-related tragedies",
+      "emotion_tone": "grief and shock",
+      "description": "Posts about fans dying or being injured during football matches, including cardiac arrest, heart attacks, and violent incidents.",
+      "inclusion_cues": [
+       "footballer dies",
+       "fan died",
+       "match abandoned",
+       "supporter football",
+       "cardiac arrest",
+       "tragedy",
+       "death of fan",
+       "supporter killed"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 114,
+   "seed": 2717391666,
+   "seconds": 0.75
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: footballer dies, fenerbahce match, djurgården fans, supporter football, match abandoned, fenerbahce, fan died, brazilian fan, fans demanding, swedish league, stormed field, helsingborg djurgården, footballer chelsea, cardiac arrest, tragedy\nPosts (one per line, title first):\n- Premier League - Young Chelsea fan 'dies of heart attack after Lampard goal'\n- Emenike flops after getting hit by object thrown by angry Trabzonspor fans demanding justice for the Fenerbahce match fixing case\n- Emenike flops after he gets hit by object thrown by angry fans Trabzonspor fans demanding justice for the Fenerbahce match fixing case\n- [Swedish] Helsingborg - Djurgården game abandoned after Djurgården fans rush the field when the news regarding the death of one of their fans\n- Djurgårdensupporter dead after being hit by a bottle before the Allsvenskan premiere. / Here's an article in swedish. The game between Djurgården and Helsingborg was aborted after Djurgården fans stormed the field after rumours about the death started to flourish.\n- Ugandan Footballer/Chelsea-Fan dies of heart failure after witnessing Lampard's equalizer.\n- Football supporter killed at the first game of the season in Helsingborg, Sweden.\n- Football fan dies after argument between City and United\n- Djurgården supporter beaten to death\n- A Swedish football match is abandoned after a fan dies from injuries sustained en route to the game in Helsingborg.\n- Djurgården supporter dead after supporter clash before premier match in Allsvenskan between HIF-DIF\n- Swedish football support got killed, this is how they tribute him\n- Brazil fan dies of a heart attack during tense penalty shootout against Chile\n- Man dies after argument over Manchester City and Manchester United\n- Belgian supporter climbs a statue to celebrate Belgium's victory and falls to his death.\n- Brazil fan dies of a heart attack during penalty shootout against Chile\n- Manchester United Fan Suffers Cardiac Arrest At Old Trafford During Hull Game\n- Chelsea fan allegedly dies of shock following Lampard's goal\n- Tragedy: Fan died of a suspected heart attack in the stands in Sassuolo v Roma\n- Death by Lampard: Ugandan Footballer dies upon Manchester City Equaliser\n- Tragic start of the swedish football season, a supporter has died in a fight before the match / Currently I have no english source to give you, so right now only this:\n- Chelsea fan suddenly dies of heart failure after Lampard's equaliser\n- Swedish league match abandoned after death of Djurgarden fan in assault\n- Brazilian fan dies from heart attack during Brazil v. Chile match\n- The site of the killed Djurgården supporter\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Fan Tragedy\", \"purpose\": \"Report and document football-related tragedies\", \"emotion_tone\": \"tragic\", \"description\": \"Posts about fans dying or being injured during football matches, including cardiac arrest, heart attacks, and violent incidents.\", \"inclusion_cues\": [\"footballer dies\", \"fan died\", \"match abandoned\", \"supporter football\", \"tragedy\", \"cardiac arrest\", \"heart attack\", \"fan died\", \"swedish league\", \"stormed field\", \"supporter dead\", \"death of fan\", \"brazilian fan\", \"fans demanding\", \"helsingborg djurgården\", \"footballer chelsea\", \"fenerbahce\", \"fenerbahce match\", \"djurgården fans\", \"allsvenskan\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Fan Tragedy",
+      "purpose": "Report and document football-related tragedies",
+      "emotion_tone": "tragic",
+      "description": "Posts about fans dying or being injured during football matches, including cardiac arrest, heart attacks, and violent incidents.",
+      "inclusion_cues": [
+       "footballer dies",
+       "fan died",
+       "match abandoned",
+       "supporter football",
+       "tragedy",
+       "cardiac arrest",
+       "heart attack",
+       "fan died",
+       "swedish league",
+       "stormed field"
+      ],
+      "n_cues_given": 20
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 181,
+   "seed": 1098531191,
+   "seconds": 0.87
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: footballer dies, fenerbahce match, djurgården fans, supporter football, match abandoned, fenerbahce, fan died, brazilian fan, fans demanding, swedish league, stormed field, helsingborg djurgården, footballer chelsea, cardiac arrest, tragedy\nPosts (one per line, title first):\n- Premier League - Young Chelsea fan 'dies of heart attack after Lampard goal'\n- Emenike flops after getting hit by object thrown by angry Trabzonspor fans demanding justice for the Fenerbahce match fixing case\n- Emenike flops after he gets hit by object thrown by angry fans Trabzonspor fans demanding justice for the Fenerbahce match fixing case\n- [Swedish] Helsingborg - Djurgården game abandoned after Djurgården fans rush the field when the news regarding the death of one of their fans\n- Djurgårdensupporter dead after being hit by a bottle before the Allsvenskan premiere. / Here's an article in swedish. The game between Djurgården and Helsingborg was aborted after Djurgården fans stormed the field after rumours about the death started to flourish.\n- Ugandan Footballer/Chelsea-Fan dies of heart failure after witnessing Lampard's equalizer.\n- Football supporter killed at the first game of the season in Helsingborg, Sweden.\n- Football fan dies after argument between City and United\n- Djurgården supporter beaten to death\n- A Swedish football match is abandoned after a fan dies from injuries sustained en route to the game in Helsingborg.\n- Djurgården supporter dead after supporter clash before premier match in Allsvenskan between HIF-DIF\n- Swedish football support got killed, this is how they tribute him\n- Brazil fan dies of a heart attack during tense penalty shootout against Chile\n- Man dies after argument over Manchester City and Manchester United\n- Belgian supporter climbs a statue to celebrate Belgium's victory and falls to his death.\n- Brazil fan dies of a heart attack during penalty shootout against Chile\n- Manchester United Fan Suffers Cardiac Arrest At Old Trafford During Hull Game\n- Chelsea fan allegedly dies of shock following Lampard's goal\n- Tragedy: Fan died of a suspected heart attack in the stands in Sassuolo v Roma\n- Death by Lampard: Ugandan Footballer dies upon Manchester City Equaliser\n- Tragic start of the swedish football season, a supporter has died in a fight before the match / Currently I have no english source to give you, so right now only this:\n- Chelsea fan suddenly dies of heart failure after Lampard's equaliser\n- Swedish league match abandoned after death of Djurgarden fan in assault\n- Brazilian fan dies from heart attack during Brazil v. Chile match\n- The site of the killed Djurgården supporter\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Fan Tragedy\", \"purpose\": \"Report and document football-related tragedies\", \"emotion_tone\": \"grief and shock\", \"description\": \"Posts about fans dying or being injured during football matches, including cardiac arrest, heart attacks, and violent incidents.\", \"inclusion_cues\": [\"footballer dies\", \"fan died\", \"match abandoned\", \"supporter football\", \"cardiac arrest\", \"tragedy\", \"death of fan\", \"supporter killed\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Fan Tragedy\", \"purpose\": \"Report and document football-related tragedies\", \"emotion_tone\": \"tragic\", \"description\": \"Posts about fans dying or being injured during football matches, including cardiac arrest, heart attacks, and violent incidents.\", \"inclusion_cues\": [\"footballer dies\", \"fan died\", \"match abandoned\", \"supporter football\", \"tragedy\", \"cardiac arrest\", \"heart attack\", \"fan died\", \"swedish league\", \"stormed field\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Fan Tragedy\", \"purpose\": \"Report and document football-related tragedies\", \"emotion_tone\": \"tragic\", \"description\": \"Posts about fans dying or being injured during football matches, including cardiac arrest, heart attacks, and violent incidents.\", \"inclusion_cues\": [\"footballer dies\", \"fan died\", \"match abandoned\", \"supporter football\", \"cardiac arrest\", \"heart attack\", \"tragedy\", \"swedish league\", \"stormed field\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 115,
+   "seed": 1607714893,
+   "seconds": 1.81
+  }
+ ]
+}

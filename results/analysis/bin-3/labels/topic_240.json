@@ -1,0 +1,194 @@
+{
+ "period_bin": 3,
+ "topic_id": 240,
+ "keywords": "ferdinand leaving, ferdinand join, leave united, qpr signing, signs qpr, sign qpr, lampard rio, leaving manchester, united moyes, united offered, join qpr, ham qpr, qpr harry, redknapp confirms, utd summer",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "25dz9e",
+  "25e3ez",
+  "25duy1",
+  "25dvtk",
+  "29r30q",
+  "2azduv",
+  "27mmry",
+  "2ey097",
+  "2azd93",
+  "25dy63",
+  "25e10p",
+  "2az6v9",
+  "27vv41",
+  "28wrsy",
+  "29rxld",
+  "1xmeui",
+  "26ief7",
+  "26jfwo",
+  "26mir6",
+  "28xmvi",
+  "2alwfd",
+  "1xo2ur",
+  "25dz5o",
+  "25iroj",
+  "25dv4i",
+  "2ay0l0",
+  "27vv4c",
+  "25dvvx",
+  "28ygtz",
+  "27gh2b",
+  "28wskx",
+  "2d8nhq",
+  "25dz9c",
+  "25fd2k",
+  "29r3d6",
+  "2ayxui",
+  "2ai1np",
+  "21l0qe",
+  "2ays49",
+  "29r318"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Ferdinand QPR Move",
+  "purpose": "Tracking Rio Ferdinand's transfer to QPR",
+  "emotion_tone": "positive",
+  "description": "Posts related to Rio Ferdinand's potential or confirmed move to QPR, including contract offers, medicals, and transfer rumors.",
+  "inclusion_cues": [
+   "Rio Ferdinand to leave Manchester United",
+   "QPR set to sign Rio Ferdinand",
+   "Harry Redknapp confirms QPR signing",
+   "Ferdinand signs for QPR",
+   "Ferdinand passes medicals for QPR move"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Ferdinand QPR Move",
+    "purpose": "Tracking Rio Ferdinand's transfer to QPR",
+    "emotion_tone": "positive",
+    "description": "Posts about Rio Ferdinand's potential or confirmed move to QPR, including contract offers, medicals, and club announcements.",
+    "inclusion_cues": [
+     "Rio Ferdinand to leave Manchester United",
+     "QPR set to sign Rio Ferdinand",
+     "Harry Redknapp confirms QPR signing",
+     "Ferdinand signs for QPR",
+     "Ferdinand passes medicals and is officially a QPR player"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Ferdinand QPR Move",
+    "purpose": "Tracking Rio Ferdinand's transfer to QPR",
+    "emotion_tone": "positive",
+    "description": "Posts related to Rio Ferdinand's potential or confirmed move to QPR, including contract offers, medicals, and transfer rumors.",
+    "inclusion_cues": [
+     "Rio Ferdinand to leave Manchester United",
+     "QPR set to sign Rio Ferdinand",
+     "Harry Redknapp confirms QPR signing",
+     "Ferdinand signs for QPR",
+     "Ferdinand passes medicals for QPR move"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: ferdinand leaving, ferdinand join, leave united, qpr signing, signs qpr, sign qpr, lampard rio, leaving manchester, united moyes, united offered, join qpr, ham qpr, qpr harry, redknapp confirms, utd summer\nPosts (one per line, title first):\n- Official. Rio Ferdinand will leave Manchester United\n- Rio Ferdinand to leave Manchester United\n- Rio Ferdinand to leave Manchester United after not being offered a new contract\n- Rio Ferdinand is to leave Manchester United after not being offered a new contract\n- Harry Redknapp confirms QPR are set to sign Rio Ferdinand\n- Rio Ferdinand signs for QPR\n- QPR consider move for Rio Ferdinand and make him clubs highest paid player\n- Harry Redknapp to sign two-year contract extension at QPR\n- Rio Ferdinand signs one-year contract at QPR\n- BBC - Ferdinand to leave Man Utd in summer\n- Rio to leave United - Official Manchester United Website\n- Rio Ferdinand set to have a medical with QPR\n- English defender Ferdinand signs a contract with Utd\n- Rio Ferdinand reportedly agrees move to QPR.\n- QPR set to announce the signing of Rio Ferdinand and have bid accepted for Cardiff's Steven Caulker.\n- David Moyes has dismissed reports that Rio Ferdinand will miss a club trip to Dubai amid claims the defender is set to retire\n- Football transfer rumours: QPR to sign Rio Ferdinand and Frank Lampard?\n- Rio Ferdinand is considering a move to QPR\n- Harry Redknapp says \"no chance\" of QPR signing Ferdinand or Lampard\n- Yahoo reports that Rio Ferdinand is moving to QPR\n- Rio Ferdinand signs for Easy Jet F.C.\n- Moyes says Ferdinand won't retire at end of season\n- Rio to leave United\n- Steve Bruce could make summer move for Rio Ferdinand\n- [Article - Daily Mail] Rio Ferdinand leaves Man United after not being offered a new contract.\n- Rio Ferdinand undergoing medical ahead of joining QPR\n- Photo confirmation of Anton Ferdinand signing for Police United in Thailand.\n- Rio Ferdinand to leave Manchester United in summer\n- Rio Ferdinand has agreed a deal to join newly-promoted QPR\n- Rio Ferdinand has turned down a contract offer from Aston Villa.\n- Rio Ferdinand to join QPR\n- Reading announce the signing of Anton Ferdinand\n- Rio to leave United - Official Manchester United Website\n- Rio Ferninand steps down from Manchester United\n- Rio Ferdinand set to sign for QPR, confirms Harry Redknapp.\n- Rio Ferdinand passes medical before QPR move\n- Harry signs Rio - Darren Farley\n- Rio Ferdinand afraid to leave house due to 'embarrassing' Manchester United\n- Rio Ferdinand has passed his medicals and is officially a QPR player.\n- Harry Redknapp confirms the club is going to sign Rio Ferdinand\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Ferdinand QPR Move\", \"purpose\": \"Tracking Rio Ferdinand's transfer to QPR\", \"emotion_tone\": \"positive\", \"description\": \"Posts about Rio Ferdinand's potential or confirmed move to QPR, including contract offers, medicals, and club announcements.\", \"inclusion_cues\": [\"Rio Ferdinand to leave Manchester United\", \"QPR set to sign Rio Ferdinand\", \"Harry Redknapp confirms QPR signing\", \"Ferdinand signs for QPR\", \"Ferdinand passes medicals and is officially a QPR player\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Ferdinand QPR Move",
+      "purpose": "Tracking Rio Ferdinand's transfer to QPR",
+      "emotion_tone": "positive",
+      "description": "Posts about Rio Ferdinand's potential or confirmed move to QPR, including contract offers, medicals, and club announcements.",
+      "inclusion_cues": [
+       "Rio Ferdinand to leave Manchester United",
+       "QPR set to sign Rio Ferdinand",
+       "Harry Redknapp confirms QPR signing",
+       "Ferdinand signs for QPR",
+       "Ferdinand passes medicals and is officially a QPR player"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 130,
+   "seed": 1775688572,
+   "seconds": 0.54
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: ferdinand leaving, ferdinand join, leave united, qpr signing, signs qpr, sign qpr, lampard rio, leaving manchester, united moyes, united offered, join qpr, ham qpr, qpr harry, redknapp confirms, utd summer\nPosts (one per line, title first):\n- Official. Rio Ferdinand will leave Manchester United\n- Rio Ferdinand to leave Manchester United\n- Rio Ferdinand to leave Manchester United after not being offered a new contract\n- Rio Ferdinand is to leave Manchester United after not being offered a new contract\n- Harry Redknapp confirms QPR are set to sign Rio Ferdinand\n- Rio Ferdinand signs for QPR\n- QPR consider move for Rio Ferdinand and make him clubs highest paid player\n- Harry Redknapp to sign two-year contract extension at QPR\n- Rio Ferdinand signs one-year contract at QPR\n- BBC - Ferdinand to leave Man Utd in summer\n- Rio to leave United - Official Manchester United Website\n- Rio Ferdinand set to have a medical with QPR\n- English defender Ferdinand signs a contract with Utd\n- Rio Ferdinand reportedly agrees move to QPR.\n- QPR set to announce the signing of Rio Ferdinand and have bid accepted for Cardiff's Steven Caulker.\n- David Moyes has dismissed reports that Rio Ferdinand will miss a club trip to Dubai amid claims the defender is set to retire\n- Football transfer rumours: QPR to sign Rio Ferdinand and Frank Lampard?\n- Rio Ferdinand is considering a move to QPR\n- Harry Redknapp says \"no chance\" of QPR signing Ferdinand or Lampard\n- Yahoo reports that Rio Ferdinand is moving to QPR\n- Rio Ferdinand signs for Easy Jet F.C.\n- Moyes says Ferdinand won't retire at end of season\n- Rio to leave United\n- Steve Bruce could make summer move for Rio Ferdinand\n- [Article - Daily Mail] Rio Ferdinand leaves Man United after not being offered a new contract.\n- Rio Ferdinand undergoing medical ahead of joining QPR\n- Photo confirmation of Anton Ferdinand signing for Police United in Thailand.\n- Rio Ferdinand to leave Manchester United in summer\n- Rio Ferdinand has agreed a deal to join newly-promoted QPR\n- Rio Ferdinand has turned down a contract offer from Aston Villa.\n- Rio Ferdinand to join QPR\n- Reading announce the signing of Anton Ferdinand\n- Rio to leave United - Official Manchester United Website\n- Rio Ferninand steps down from Manchester United\n- Rio Ferdinand set to sign for QPR, confirms Harry Redknapp.\n- Rio Ferdinand passes medical before QPR move\n- Harry signs Rio - Darren Farley\n- Rio Ferdinand afraid to leave house due to 'embarrassing' Manchester United\n- Rio Ferdinand has passed his medicals and is officially a QPR player.\n- Harry Redknapp confirms the club is going to sign Rio Ferdinand\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Ferdinand QPR Move\", \"purpose\": \"Tracking Rio Ferdinand's transfer to QPR\", \"emotion_tone\": \"positive\", \"description\": \"Posts related to Rio Ferdinand's potential or confirmed move to QPR, including contract offers, medicals, and transfer rumors.\", \"inclusion_cues\": [\"Rio Ferdinand to leave Manchester United\", \"QPR set to sign Rio Ferdinand\", \"Harry Redknapp confirms QPR signing\", \"Ferdinand signs for QPR\", \"Ferdinand passes medicals for QPR move\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Ferdinand QPR Move",
+      "purpose": "Tracking Rio Ferdinand's transfer to QPR",
+      "emotion_tone": "positive",
+      "description": "Posts related to Rio Ferdinand's potential or confirmed move to QPR, including contract offers, medicals, and transfer rumors.",
+      "inclusion_cues": [
+       "Rio Ferdinand to leave Manchester United",
+       "QPR set to sign Rio Ferdinand",
+       "Harry Redknapp confirms QPR signing",
+       "Ferdinand signs for QPR",
+       "Ferdinand passes medicals for QPR move"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 128,
+   "seed": 3240697112,
+   "seconds": 0.62
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: ferdinand leaving, ferdinand join, leave united, qpr signing, signs qpr, sign qpr, lampard rio, leaving manchester, united moyes, united offered, join qpr, ham qpr, qpr harry, redknapp confirms, utd summer\nPosts (one per line, title first):\n- Official. Rio Ferdinand will leave Manchester United\n- Rio Ferdinand to leave Manchester United\n- Rio Ferdinand to leave Manchester United after not being offered a new contract\n- Rio Ferdinand is to leave Manchester United after not being offered a new contract\n- Harry Redknapp confirms QPR are set to sign Rio Ferdinand\n- Rio Ferdinand signs for QPR\n- QPR consider move for Rio Ferdinand and make him clubs highest paid player\n- Harry Redknapp to sign two-year contract extension at QPR\n- Rio Ferdinand signs one-year contract at QPR\n- BBC - Ferdinand to leave Man Utd in summer\n- Rio to leave United - Official Manchester United Website\n- Rio Ferdinand set to have a medical with QPR\n- English defender Ferdinand signs a contract with Utd\n- Rio Ferdinand reportedly agrees move to QPR.\n- QPR set to announce the signing of Rio Ferdinand and have bid accepted for Cardiff's Steven Caulker.\n- David Moyes has dismissed reports that Rio Ferdinand will miss a club trip to Dubai amid claims the defender is set to retire\n- Football transfer rumours: QPR to sign Rio Ferdinand and Frank Lampard?\n- Rio Ferdinand is considering a move to QPR\n- Harry Redknapp says \"no chance\" of QPR signing Ferdinand or Lampard\n- Yahoo reports that Rio Ferdinand is moving to QPR\n- Rio Ferdinand signs for Easy Jet F.C.\n- Moyes says Ferdinand won't retire at end of season\n- Rio to leave United\n- Steve Bruce could make summer move for Rio Ferdinand\n- [Article - Daily Mail] Rio Ferdinand leaves Man United after not being offered a new contract.\n- Rio Ferdinand undergoing medical ahead of joining QPR\n- Photo confirmation of Anton Ferdinand signing for Police United in Thailand.\n- Rio Ferdinand to leave Manchester United in summer\n- Rio Ferdinand has agreed a deal to join newly-promoted QPR\n- Rio Ferdinand has turned down a contract offer from Aston Villa.\n- Rio Ferdinand to join QPR\n- Reading announce the signing of Anton Ferdinand\n- Rio to leave United - Official Manchester United Website\n- Rio Ferninand steps down from Manchester United\n- Rio Ferdinand set to sign for QPR, confirms Harry Redknapp.\n- Rio Ferdinand passes medical before QPR move\n- Harry signs Rio - Darren Farley\n- Rio Ferdinand afraid to leave house due to 'embarrassing' Manchester United\n- Rio Ferdinand has passed his medicals and is officially a QPR player.\n- Harry Redknapp confirms the club is going to sign Rio Ferdinand\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Ferdinand QPR Move\", \"purpose\": \"Tracking Rio Ferdinand's transfer to QPR\", \"emotion_tone\": \"positive\", \"description\": \"Posts about Rio Ferdinand's potential or confirmed move to QPR, including contract offers, medicals, and club announcements.\", \"inclusion_cues\": [\"Rio Ferdinand to leave Manchester United\", \"QPR set to sign Rio Ferdinand\", \"Harry Redknapp confirms QPR signing\", \"Ferdinand signs for QPR\", \"Ferdinand passes medicals and is officially a QPR player\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Ferdinand QPR Move\", \"purpose\": \"Tracking Rio Ferdinand's transfer to QPR\", \"emotion_tone\": \"positive\", \"description\": \"Posts related to Rio Ferdinand's potential or confirmed move to QPR, including contract offers, medicals, and transfer rumors.\", \"inclusion_cues\": [\"Rio Ferdinand to leave Manchester United\", \"QPR set to sign Rio Ferdinand\", \"Harry Redknapp confirms QPR signing\", \"Ferdinand signs for QPR\", \"Ferdinand passes medicals for QPR move\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Ferdinand QPR Move\", \"purpose\": \"Tracking Rio Ferdinand's transfer to QPR\", \"emotion_tone\": \"positive\", \"description\": \"Posts about Rio Ferdinand's potential or confirmed move to QPR, including contract offers, medicals, and transfer rumors.\", \"inclusion_cues\": [\"Rio Ferdinand to leave Manchester United\", \"QPR set to sign Rio Ferdinand\", \"Harry Redknapp confirms QPR signing\", \"Ferdinand signs for QPR\", \"Ferdinand passes medicals for QPR move\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 126,
+   "seed": 2093975840,
+   "seconds": 0.64
+  }
+ ]
+}

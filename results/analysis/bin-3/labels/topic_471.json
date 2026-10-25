@@ -1,0 +1,184 @@
+{
+ "period_bin": 3,
+ "topic_id": 471,
+ "keywords": "cup squads, wc squads, cup rosters, squads announced, lineups teams, rosters squad, formations teams, position costa, qualifying uefa, wc qualification, wc started, rica navas, wikipedia list, italy buffon, pirlo motta",
+ "n_sample_posts": 25,
+ "sample_ids": [
+  "2ej812",
+  "2887sw",
+  "26v5gw",
+  "25gzfn",
+  "28o9tz",
+  "227d7s",
+  "25fy8w",
+  "25eswr",
+  "267wfq",
+  "28eh2w",
+  "2alhji",
+  "1zjt2c",
+  "281yss",
+  "201kjk",
+  "25fzia",
+  "27ua9k",
+  "28ljth",
+  "277x0g",
+  "280j15",
+  "27vwgk",
+  "257c6l",
+  "25dglt",
+  "22jh6j",
+  "250pdm",
+  "277m5d"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "wc_squads",
+  "purpose": "Provide access to and comparison of World Cup national team squads",
+  "emotion_tone": "inquisitive",
+  "description": "Focuses on gathering and sharing information about World Cup squads, including rosters, formations, and player comparisons.",
+  "inclusion_cues": [
+   "World Cup squads",
+   "squad comparisons",
+   "player positions",
+   "qualifying teams",
+   "roster lists",
+   "formation data"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "wc_squads",
+    "purpose": "Provide access to World Cup squads and related information",
+    "emotion_tone": "inquisitive",
+    "description": "Focuses on gathering and sharing information about World Cup national team squads, including rosters, formations, and historical data.",
+    "inclusion_cues": [
+     "World Cup squads",
+     "squad announcements",
+     "formation data",
+     "qualifying teams",
+     "player comparisons",
+     "roster lists"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "wc_squads",
+    "purpose": "Provide access to and comparison of World Cup national team squads",
+    "emotion_tone": "inquisitive",
+    "description": "Focuses on gathering and sharing information about World Cup squads, including rosters, formations, and player comparisons.",
+    "inclusion_cues": [
+     "World Cup squads",
+     "squad comparisons",
+     "player positions",
+     "qualifying teams",
+     "roster lists",
+     "formation data"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: cup squads, wc squads, cup rosters, squads announced, lineups teams, rosters squad, formations teams, position costa, qualifying uefa, wc qualification, wc started, rica navas, wikipedia list, italy buffon, pirlo motta\nPosts (one per line, title first):\n- Websites for Starting XI? / Hey guys, I was wondering if anyone knew of a good website that has the starting squads (projected or past) along with subs, formation, etc. So far Google-searching has been unsuccessful. Thanks!\n- Is there a resource out there that lists each nation's squad as a function of year? I know wiki provides the current nation's squad, but I want to be able to compare/examine teams' changes in personnel. Cheers and thanks!\n- /r/soccer, is there any site where i can see the starting lineups of the Teams participating in the WC? / I started a Fantasy Football League for the World Cup with my friends. So i need to know which players are starting for their National Teams and which not. Is there any Site that displays their \n- Does anyone know where I can get average position formations for teams involved in 2014 South American World Cup Qualifying? / UEFA do superb average position diagrams for their Champions League games (link below) and I was wondering if any one knew where I could obtain these same sorts of things fo\n- [Meta] Can game threads list the starting formation instead of just a list of players? / Game threads usually list the starting 11s like this: Italy[4] : Buffon, Barzagli, Chiellini, Darmian, Abate, De Rossi, Pirlo, Motta, Marchisio, Candreva, Balotelli Costa Rica[5] : Navas, Umana, Diaz, Durate, Ga\n- I need list of every player used in WC qualification for the final 32 teams. Anyone know where to find it? / for anyone looking - I found this\n- A list of every WC-Squad? Here you go!\n- Is there a possibility for a thread of World Cup Rosters?\n- Rosters for all would cup squads\n- Great resource for comparing the world cup squads\n- Want to see FIFA's VVIP list for the World Cup Final?\n- Is there a place where I can find all the announced squads for the upcoming friendlies? / Or do I just have to look them all up individually?\n- Good source for finding announced or likely Starting 11 for WC teams? / Anyone know one?\n- [PES] How can i update my squads?\n- Wikipedia has a list of all the World Cup squads that have been announced\n- World Cup Rosters Visualized\n- Can anyone get me the roster for the USWNT game that is happening right now against France?\n- Request: Full list of world cup rosters\n- Visual Squad Lists for all 32 countries at the World Cup (Click on Balls to see)\n- WC Rosters / Squad Numbers?\n- [Discussion] List of World Cup squads named so far\n- Can we have a stickied thread with all confirmed World Cup squads?\n- (Groups C & D) Players from same club who play against each other in the Group Stages of the World Cup.\n- WC Squads / Can we have a pinned post to show which countries have announced their WC2014 squad?\n- I compared the 17-man squad of the Panini Sticker Album with the actual World Cup squads.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"wc_squads\", \"purpose\": \"Provide access to World Cup squads and related information\", \"emotion_tone\": \"inquisitive\", \"description\": \"Focuses on gathering and sharing information about World Cup national team squads, including rosters, formations, and historical data.\", \"inclusion_cues\": [\"World Cup squads\", \"squad announcements\", \"formation data\", \"qualifying teams\", \"player comparisons\", \"roster lists\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "wc_squads",
+      "purpose": "Provide access to World Cup squads and related information",
+      "emotion_tone": "inquisitive",
+      "description": "Focuses on gathering and sharing information about World Cup national team squads, including rosters, formations, and historical data.",
+      "inclusion_cues": [
+       "World Cup squads",
+       "squad announcements",
+       "formation data",
+       "qualifying teams",
+       "player comparisons",
+       "roster lists"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 108,
+   "seed": 2358381333,
+   "seconds": 0.75
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: cup squads, wc squads, cup rosters, squads announced, lineups teams, rosters squad, formations teams, position costa, qualifying uefa, wc qualification, wc started, rica navas, wikipedia list, italy buffon, pirlo motta\nPosts (one per line, title first):\n- Websites for Starting XI? / Hey guys, I was wondering if anyone knew of a good website that has the starting squads (projected or past) along with subs, formation, etc. So far Google-searching has been unsuccessful. Thanks!\n- Is there a resource out there that lists each nation's squad as a function of year? I know wiki provides the current nation's squad, but I want to be able to compare/examine teams' changes in personnel. Cheers and thanks!\n- /r/soccer, is there any site where i can see the starting lineups of the Teams participating in the WC? / I started a Fantasy Football League for the World Cup with my friends. So i need to know which players are starting for their National Teams and which not. Is there any Site that displays their \n- Does anyone know where I can get average position formations for teams involved in 2014 South American World Cup Qualifying? / UEFA do superb average position diagrams for their Champions League games (link below) and I was wondering if any one knew where I could obtain these same sorts of things fo\n- [Meta] Can game threads list the starting formation instead of just a list of players? / Game threads usually list the starting 11s like this: Italy[4] : Buffon, Barzagli, Chiellini, Darmian, Abate, De Rossi, Pirlo, Motta, Marchisio, Candreva, Balotelli Costa Rica[5] : Navas, Umana, Diaz, Durate, Ga\n- I need list of every player used in WC qualification for the final 32 teams. Anyone know where to find it? / for anyone looking - I found this\n- A list of every WC-Squad? Here you go!\n- Is there a possibility for a thread of World Cup Rosters?\n- Rosters for all would cup squads\n- Great resource for comparing the world cup squads\n- Want to see FIFA's VVIP list for the World Cup Final?\n- Is there a place where I can find all the announced squads for the upcoming friendlies? / Or do I just have to look them all up individually?\n- Good source for finding announced or likely Starting 11 for WC teams? / Anyone know one?\n- [PES] How can i update my squads?\n- Wikipedia has a list of all the World Cup squads that have been announced\n- World Cup Rosters Visualized\n- Can anyone get me the roster for the USWNT game that is happening right now against France?\n- Request: Full list of world cup rosters\n- Visual Squad Lists for all 32 countries at the World Cup (Click on Balls to see)\n- WC Rosters / Squad Numbers?\n- [Discussion] List of World Cup squads named so far\n- Can we have a stickied thread with all confirmed World Cup squads?\n- (Groups C & D) Players from same club who play against each other in the Group Stages of the World Cup.\n- WC Squads / Can we have a pinned post to show which countries have announced their WC2014 squad?\n- I compared the 17-man squad of the Panini Sticker Album with the actual World Cup squads.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"wc_squads\", \"purpose\": \"Provide access to and comparison of World Cup national team squads\", \"emotion_tone\": \"inquisitive\", \"description\": \"Focuses on gathering and sharing information about World Cup squads, including rosters, formations, and player comparisons.\", \"inclusion_cues\": [\"World Cup squads\", \"squad comparisons\", \"player positions\", \"qualifying teams\", \"roster lists\", \"formation data\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "wc_squads",
+      "purpose": "Provide access to and comparison of World Cup national team squads",
+      "emotion_tone": "inquisitive",
+      "description": "Focuses on gathering and sharing information about World Cup squads, including rosters, formations, and player comparisons.",
+      "inclusion_cues": [
+       "World Cup squads",
+       "squad comparisons",
+       "player positions",
+       "qualifying teams",
+       "roster lists",
+       "formation data"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 108,
+   "seed": 1459886175,
+   "seconds": 0.87
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: cup squads, wc squads, cup rosters, squads announced, lineups teams, rosters squad, formations teams, position costa, qualifying uefa, wc qualification, wc started, rica navas, wikipedia list, italy buffon, pirlo motta\nPosts (one per line, title first):\n- Websites for Starting XI? / Hey guys, I was wondering if anyone knew of a good website that has the starting squads (projected or past) along with subs, formation, etc. So far Google-searching has been unsuccessful. Thanks!\n- Is there a resource out there that lists each nation's squad as a function of year? I know wiki provides the current nation's squad, but I want to be able to compare/examine teams' changes in personnel. Cheers and thanks!\n- /r/soccer, is there any site where i can see the starting lineups of the Teams participating in the WC? / I started a Fantasy Football League for the World Cup with my friends. So i need to know which players are starting for their National Teams and which not. Is there any Site that displays their \n- Does anyone know where I can get average position formations for teams involved in 2014 South American World Cup Qualifying? / UEFA do superb average position diagrams for their Champions League games (link below) and I was wondering if any one knew where I could obtain these same sorts of things fo\n- [Meta] Can game threads list the starting formation instead of just a list of players? / Game threads usually list the starting 11s like this: Italy[4] : Buffon, Barzagli, Chiellini, Darmian, Abate, De Rossi, Pirlo, Motta, Marchisio, Candreva, Balotelli Costa Rica[5] : Navas, Umana, Diaz, Durate, Ga\n- I need list of every player used in WC qualification for the final 32 teams. Anyone know where to find it? / for anyone looking - I found this\n- A list of every WC-Squad? Here you go!\n- Is there a possibility for a thread of World Cup Rosters?\n- Rosters for all would cup squads\n- Great resource for comparing the world cup squads\n- Want to see FIFA's VVIP list for the World Cup Final?\n- Is there a place where I can find all the announced squads for the upcoming friendlies? / Or do I just have to look them all up individually?\n- Good source for finding announced or likely Starting 11 for WC teams? / Anyone know one?\n- [PES] How can i update my squads?\n- Wikipedia has a list of all the World Cup squads that have been announced\n- World Cup Rosters Visualized\n- Can anyone get me the roster for the USWNT game that is happening right now against France?\n- Request: Full list of world cup rosters\n- Visual Squad Lists for all 32 countries at the World Cup (Click on Balls to see)\n- WC Rosters / Squad Numbers?\n- [Discussion] List of World Cup squads named so far\n- Can we have a stickied thread with all confirmed World Cup squads?\n- (Groups C & D) Players from same club who play against each other in the Group Stages of the World Cup.\n- WC Squads / Can we have a pinned post to show which countries have announced their WC2014 squad?\n- I compared the 17-man squad of the Panini Sticker Album with the actual World Cup squads.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"wc_squads\", \"purpose\": \"Provide access to World Cup squads and related information\", \"emotion_tone\": \"inquisitive\", \"description\": \"Focuses on gathering and sharing information about World Cup national team squads, including rosters, formations, and historical data.\", \"inclusion_cues\": [\"World Cup squads\", \"squad announcements\", \"formation data\", \"qualifying teams\", \"player comparisons\", \"roster lists\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"wc_squads\", \"purpose\": \"Provide access to and comparison of World Cup national team squads\", \"emotion_tone\": \"inquisitive\", \"description\": \"Focuses on gathering and sharing information about World Cup squads, including rosters, formations, and player comparisons.\", \"inclusion_cues\": [\"World Cup squads\", \"squad comparisons\", \"player positions\", \"qualifying teams\", \"roster lists\", \"formation data\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"wc_squads\", \"purpose\": \"Provide access to and comparison of World Cup national team squads\", \"emotion_tone\": \"inquisitive\", \"description\": \"Focuses on gathering and sharing information about World Cup squads, including rosters, formations, and player comparisons.\", \"inclusion_cues\": [\"World Cup squads\", \"squad comparisons\", \"player positions\", \"qualifying teams\", \"roster lists\", \"formation data\"]]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 447)",
+   "n_tokens": 107,
+   "seed": 3045750876,
+   "seconds": 1.81
+  }
+ ]
+}

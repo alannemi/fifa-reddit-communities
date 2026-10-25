@@ -1,0 +1,195 @@
+{
+ "period_bin": 3,
+ "topic_id": 168,
+ "keywords": "dutch newspaper, newspaper headlines, headline bbc, headlines, sun newspaper, belgian newspaper, daily mail, irish times, newspaper, worst newspaper, article, today news, newspaper telegraaf, journalism ve, belgian papers",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "2a8bi1",
+  "27160h",
+  "28zw1b",
+  "21nbv1",
+  "28ay8f",
+  "23iuql",
+  "22xef1",
+  "1wrmi3",
+  "2a9iwv",
+  "29ioq1",
+  "282ugs",
+  "227wj0",
+  "28mvll",
+  "24b6ch",
+  "2a9c43",
+  "2clb2h",
+  "27giqg",
+  "1y6pxw",
+  "28jnyi",
+  "2bdid8",
+  "296ec5",
+  "2envo2",
+  "23dvzf",
+  "28mhxq",
+  "28g5na",
+  "22r9fx",
+  "27m8js",
+  "24o522",
+  "24cmsh",
+  "27vaxc",
+  "2a8d38",
+  "2cn5g9",
+  "2512mr",
+  "23723v",
+  "2a4kk2",
+  "2a6toe",
+  "29979i",
+  "29k96f",
+  "2987ey",
+  "2awg63"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Dutch Newspaper Headlines",
+  "purpose": "Analysis of headlines from Dutch newspapers",
+  "emotion_tone": "Critical",
+  "description": "Posts discussing headlines from Dutch newspapers, including 'De Telegraaf', 'Daily Mail', and 'Belgian papers', with emphasis on quality, content, and emotional tone.",
+  "inclusion_cues": [
+   "Front page of Dutch newspaper 'De Telegraaf' today",
+   "Headlines from Belgian papers this morning",
+   "The Sun's despicable frontage cover today",
+   "The quality of English press is shown once more...",
+   "Worst headline ever",
+   "This is the worst article I have ever read"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Dutch Newspaper Headlines",
+    "purpose": "Analyzing headlines from Dutch newspapers",
+    "emotion_tone": "Critical",
+    "description": "Posts discussing Dutch newspaper headlines, including the De Telegraaf, and their quality or content",
+    "inclusion_cues": [
+     "De Telegraaf front page",
+     "Dutch newspaper headlines",
+     "Critical analysis of headlines",
+     "Dutch newspaper content"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Dutch Newspaper Headlines",
+    "purpose": "Analysis of headlines from Dutch newspapers",
+    "emotion_tone": "Critical",
+    "description": "Posts discussing headlines from Dutch newspapers, including 'De Telegraaf', 'Daily Mail', and 'Belgian papers', with emphasis on quality, content, and emotional tone.",
+    "inclusion_cues": [
+     "Front page of Dutch newspaper 'De Telegraaf' today",
+     "Headlines from Belgian papers this morning",
+     "The Sun's despicable frontage cover today",
+     "The quality of English press is shown once more...",
+     "Worst headline ever",
+     "This is the worst article I have ever read"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: dutch newspaper, newspaper headlines, headline bbc, headlines, sun newspaper, belgian newspaper, daily mail, irish times, newspaper, worst newspaper, article, today news, newspaper telegraaf, journalism ve, belgian papers\nPosts (one per line, title first):\n- Front page of Dutch newspaper 'De Telegraaf' today\n- Good article explaining The Times allegations and what will ensue following the recent alleged revelations\n- Foreshadowing article headline in the Irish Times newspaper.\n- Local Austin Texas Paper pulled a cruel prank with the cover of their weekly edition Date April-1-2014.\n- BILD(german newspaper)with a ridiculous headline\n- mirror.co.uk need to work on their headlines\n- - The Washington Post\n- The Independent's report on City's facing threat of expulsion from Europe (More in depth than the Mail's IMO)\n- De Telegraph today's frontpage (Will be?)\n- Front page of a local Cancún newspaper today\n- this article is everything thats wrong with everything\n- I understand homerism but this is just ridiculous (Yahoo US headline)\n- The quality of English press is shown once more...\n- Tomorrow's Newcastle Evening Chronicle Front Page: P45DUE.\n- This was in a local newspaper a few days before... feeling depressed by my country's knowledge...\n- An article on the Metro website, with a link to a tweet from 'The Metro sucks ass'\n- This week's edition of The Economist (article links in comments).\n- English Journalism: You've heard the quotes, now here's the most extravagant headline\n- Front cover of MARCA after Spanish elimination\n- AS Frontpage: James will be presented today\n- This is perhaps the most idiotic article about anything that I have ever read\n- A collection of headlines you thought you'd never see\n- Richard Key's latest blog post - total garbage\n- The Sun's despicable frontage cover today.\n- The headlines from Belgian papers this morning.\n- Surprised this article did not cite reddit.\n- The Sun newspaper just posted this..\n- Today's top 5 news on Marca.com (eng version)\n- That headline by Daily Mail!\n- Private Eye Front Cover. 13th-26th June 2014\n- Can someone translate what this OGlobo article says, or, where to find the whole article\n- MARCA doing a 180: just days after pleading for iker, here is tomorrow's cover\n- This morning's back pages of the newspapers.\n- Interesting Sardar Azmoun ESPN article.\n- Front cover of MARCA today\n- Is there any way at all to get a copy of today's Marca? I'd love to get my hands on their Don Alfredo special.\n- This is the worst article I have ever read\n- Worst headline ever.\n- The back of today's newspaper\n- What is the most interesting article you've read on this sub?\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Dutch Newspaper Headlines\", \"purpose\": \"Analyzing headlines from Dutch newspapers\", \"emotion_tone\": \"Critical\", \"description\": \"Posts discussing Dutch newspaper headlines, including the De Telegraaf, and their quality or content\", \"inclusion_cues\": [\"De Telegraaf front page\", \"Dutch newspaper headlines\", \"Critical analysis of headlines\", \"Dutch newspaper content\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Dutch Newspaper Headlines",
+      "purpose": "Analyzing headlines from Dutch newspapers",
+      "emotion_tone": "Critical",
+      "description": "Posts discussing Dutch newspaper headlines, including the De Telegraaf, and their quality or content",
+      "inclusion_cues": [
+       "De Telegraaf front page",
+       "Dutch newspaper headlines",
+       "Critical analysis of headlines",
+       "Dutch newspaper content"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 97,
+   "seed": 2232208065,
+   "seconds": 0.51
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: dutch newspaper, newspaper headlines, headline bbc, headlines, sun newspaper, belgian newspaper, daily mail, irish times, newspaper, worst newspaper, article, today news, newspaper telegraaf, journalism ve, belgian papers\nPosts (one per line, title first):\n- Front page of Dutch newspaper 'De Telegraaf' today\n- Good article explaining The Times allegations and what will ensue following the recent alleged revelations\n- Foreshadowing article headline in the Irish Times newspaper.\n- Local Austin Texas Paper pulled a cruel prank with the cover of their weekly edition Date April-1-2014.\n- BILD(german newspaper)with a ridiculous headline\n- mirror.co.uk need to work on their headlines\n- - The Washington Post\n- The Independent's report on City's facing threat of expulsion from Europe (More in depth than the Mail's IMO)\n- De Telegraph today's frontpage (Will be?)\n- Front page of a local Cancún newspaper today\n- this article is everything thats wrong with everything\n- I understand homerism but this is just ridiculous (Yahoo US headline)\n- The quality of English press is shown once more...\n- Tomorrow's Newcastle Evening Chronicle Front Page: P45DUE.\n- This was in a local newspaper a few days before... feeling depressed by my country's knowledge...\n- An article on the Metro website, with a link to a tweet from 'The Metro sucks ass'\n- This week's edition of The Economist (article links in comments).\n- English Journalism: You've heard the quotes, now here's the most extravagant headline\n- Front cover of MARCA after Spanish elimination\n- AS Frontpage: James will be presented today\n- This is perhaps the most idiotic article about anything that I have ever read\n- A collection of headlines you thought you'd never see\n- Richard Key's latest blog post - total garbage\n- The Sun's despicable frontage cover today.\n- The headlines from Belgian papers this morning.\n- Surprised this article did not cite reddit.\n- The Sun newspaper just posted this..\n- Today's top 5 news on Marca.com (eng version)\n- That headline by Daily Mail!\n- Private Eye Front Cover. 13th-26th June 2014\n- Can someone translate what this OGlobo article says, or, where to find the whole article\n- MARCA doing a 180: just days after pleading for iker, here is tomorrow's cover\n- This morning's back pages of the newspapers.\n- Interesting Sardar Azmoun ESPN article.\n- Front cover of MARCA today\n- Is there any way at all to get a copy of today's Marca? I'd love to get my hands on their Don Alfredo special.\n- This is the worst article I have ever read\n- Worst headline ever.\n- The back of today's newspaper\n- What is the most interesting article you've read on this sub?\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Dutch Newspaper Headlines\", \"purpose\": \"Analysis of headlines from Dutch newspapers\", \"emotion_tone\": \"Critical\", \"description\": \"Posts discussing headlines from Dutch newspapers, including 'De Telegraaf', 'Daily Mail', and 'Belgian papers', with emphasis on quality, content, and emotional tone.\", \"inclusion_cues\": [\"Front page of Dutch newspaper 'De Telegraaf' today\", \"Headlines from Belgian papers this morning\", \"The Sun's despicable frontage cover today\", \"The quality of English press is shown once more...\", \"Worst headline ever\", \"This is the worst article I have ever read\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Dutch Newspaper Headlines",
+      "purpose": "Analysis of headlines from Dutch newspapers",
+      "emotion_tone": "Critical",
+      "description": "Posts discussing headlines from Dutch newspapers, including 'De Telegraaf', 'Daily Mail', and 'Belgian papers', with emphasis on quality, content, and emotional tone.",
+      "inclusion_cues": [
+       "Front page of Dutch newspaper 'De Telegraaf' today",
+       "Headlines from Belgian papers this morning",
+       "The Sun's despicable frontage cover today",
+       "The quality of English press is shown once more...",
+       "Worst headline ever",
+       "This is the worst article I have ever read"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 150,
+   "seed": 2071411344,
+   "seconds": 0.59
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: dutch newspaper, newspaper headlines, headline bbc, headlines, sun newspaper, belgian newspaper, daily mail, irish times, newspaper, worst newspaper, article, today news, newspaper telegraaf, journalism ve, belgian papers\nPosts (one per line, title first):\n- Front page of Dutch newspaper 'De Telegraaf' today\n- Good article explaining The Times allegations and what will ensue following the recent alleged revelations\n- Foreshadowing article headline in the Irish Times newspaper.\n- Local Austin Texas Paper pulled a cruel prank with the cover of their weekly edition Date April-1-2014.\n- BILD(german newspaper)with a ridiculous headline\n- mirror.co.uk need to work on their headlines\n- - The Washington Post\n- The Independent's report on City's facing threat of expulsion from Europe (More in depth than the Mail's IMO)\n- De Telegraph today's frontpage (Will be?)\n- Front page of a local Cancún newspaper today\n- this article is everything thats wrong with everything\n- I understand homerism but this is just ridiculous (Yahoo US headline)\n- The quality of English press is shown once more...\n- Tomorrow's Newcastle Evening Chronicle Front Page: P45DUE.\n- This was in a local newspaper a few days before... feeling depressed by my country's knowledge...\n- An article on the Metro website, with a link to a tweet from 'The Metro sucks ass'\n- This week's edition of The Economist (article links in comments).\n- English Journalism: You've heard the quotes, now here's the most extravagant headline\n- Front cover of MARCA after Spanish elimination\n- AS Frontpage: James will be presented today\n- This is perhaps the most idiotic article about anything that I have ever read\n- A collection of headlines you thought you'd never see\n- Richard Key's latest blog post - total garbage\n- The Sun's despicable frontage cover today.\n- The headlines from Belgian papers this morning.\n- Surprised this article did not cite reddit.\n- The Sun newspaper just posted this..\n- Today's top 5 news on Marca.com (eng version)\n- That headline by Daily Mail!\n- Private Eye Front Cover. 13th-26th June 2014\n- Can someone translate what this OGlobo article says, or, where to find the whole article\n- MARCA doing a 180: just days after pleading for iker, here is tomorrow's cover\n- This morning's back pages of the newspapers.\n- Interesting Sardar Azmoun ESPN article.\n- Front cover of MARCA today\n- Is there any way at all to get a copy of today's Marca? I'd love to get my hands on their Don Alfredo special.\n- This is the worst article I have ever read\n- Worst headline ever.\n- The back of today's newspaper\n- What is the most interesting article you've read on this sub?\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Dutch Newspaper Headlines\", \"purpose\": \"Analyzing headlines from Dutch newspapers\", \"emotion_tone\": \"Critical\", \"description\": \"Posts discussing Dutch newspaper headlines, including the De Telegraaf, and their quality or content\", \"inclusion_cues\": [\"De Telegraaf front page\", \"Dutch newspaper headlines\", \"Critical analysis of headlines\", \"Dutch newspaper content\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Dutch Newspaper Headlines\", \"purpose\": \"Analysis of headlines from Dutch newspapers\", \"emotion_tone\": \"Critical\", \"description\": \"Posts discussing headlines from Dutch newspapers, including 'De Telegraaf', 'Daily Mail', and 'Belgian papers', with emphasis on quality, content, and emotional tone.\", \"inclusion_cues\": [\"Front page of Dutch newspaper 'De Telegraaf' today\", \"Headlines from Belgian papers this morning\", \"The Sun's despicable frontage cover today\", \"The quality of English press is shown once more...\", \"Worst headline ever\", \"This is the worst article I have ever read\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Dutch Newspaper Headlines\", \"purpose\": \"Analysis of headlines from Dutch newspapers\", \"emotion_tone\": \"Critical\", \"description\": \"Posts discussing headlines from Dutch newspapers, including 'De Telegraaf', 'Daily Mail', and 'Belgian papers', with emphasis on quality, content, and emotional tone.\", \"inclusion_cues\": [\"Front page of Dutch newspaper 'De Telegraaf' today\", \"Headlines from Belgian papers this morning\", \"The Sun's despicable frontage cover today\", \"The quality of English press is shown once more...\", \"Worst headline ever\", \"This is the worst article I have ever read\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 149,
+   "seed": 942136117,
+   "seconds": 0.5
+  }
+ ]
+}

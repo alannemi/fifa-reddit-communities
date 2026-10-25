@@ -1230,7 +1230,7 @@
    "user_repair": "Your previous answer could not be used: {error}\nReturn the corrected answer with the same schema. JSON only; no prose or markdown."
   }
  },
- "updated": "2026-10-25T17:22:21",
+ "updated": "2026-10-25T20:02:52",
  "taxonomy": {
   "llm_model": "Qwen/Qwen3-1.7B",
   "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
@@ -1333,5 +1333,50 @@
    "user_revision": "Your previous answer:\n{mine}\nYour peer's latest answer:\n{peer}\nIf the peer's answer is at least as good as yours, return {{\"decision\": \"accept\"}} and nothing else.\nOtherwise return {{\"decision\": \"revise\", \"{answer_key}\": [...]}} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
    "user_repair": "Your previous answer could not be used: {error}\nReturn the corrected answer with the same schema. JSON only; no prose or markdown."
   }
+ },
+ "reassign": {
+  "outlier_threshold": 0.4971,
+  "outlier_quantile": 0.35,
+  "single_threshold": 0.6173,
+  "single_quantile": 0.8,
+  "n_reassigned": 681,
+  "n_dual": 1537,
+  "outlier_share_final": 0.1219,
+  "calibration": [
+   {
+    "quantile": 0.35,
+    "threshold": 0.4971,
+    "role": "T (reassignment floor)",
+    "n_outliers": 3414,
+    "n_reassigned_at_T": 2220,
+    "share_outliers_remaining": 0.1217
+   },
+   {
+    "quantile": 0.5,
+    "threshold": 0.5428,
+    "role": "",
+    "n_outliers": 3414,
+    "n_reassigned_at_T": 1707,
+    "share_outliers_remaining": 0.174
+   },
+   {
+    "quantile": 0.65,
+    "threshold": 0.5789,
+    "role": "",
+    "n_outliers": 3414,
+    "n_reassigned_at_T": 1198,
+    "share_outliers_remaining": 0.2259
+   },
+   {
+    "quantile": 0.8,
+    "threshold": 0.6173,
+    "role": "C (single-topic floor)",
+    "n_outliers": 3414,
+    "n_reassigned_at_T": 684,
+    "share_outliers_remaining": 0.2783
+   }
+  ],
+  "elapsed_min": 0.8,
+  "run_at": "2026-10-25T20:02:52"
  }
 }

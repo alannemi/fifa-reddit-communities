@@ -1,0 +1,183 @@
+{
+ "period_bin": 3,
+ "topic_id": 413,
+ "keywords": "free kick, spurs pitch, corner kick, invade pitch, pitch free, player pitch, tottenham match, eriksen free, ham tottenham, fulham fan, ham spurs, kick spurs, kick hilarious, played spurs, invader real",
+ "n_sample_posts": 29,
+ "sample_ids": [
+  "2dq65p",
+  "2dvfwz",
+  "2dq867",
+  "2dq5i5",
+  "2dw4pk",
+  "2dqwu6",
+  "21qy0j",
+  "2am1k6",
+  "2f6fu5",
+  "1zzhum",
+  "28hptx",
+  "2dz1rh",
+  "2am5nb",
+  "258d3x",
+  "2dqw0e",
+  "2egrmm",
+  "2am2pp",
+  "2aqvwf",
+  "2dq8vf",
+  "29lpaa",
+  "2gz55r",
+  "2f7ieu",
+  "2alyvz",
+  "2alyls",
+  "2dr0xe",
+  "2dq87h",
+  "2f6naw",
+  "2f7kdr",
+  "29lfe1"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Pitch Invader",
+  "purpose": "Reporting and documenting pitch invader incidents",
+  "emotion_tone": "Hilarious and humorous",
+  "description": "Posts about pitch invaders taking free kicks, invading the pitch, and related incidents in football matches",
+  "inclusion_cues": [
+   "Pitch invader takes free kick",
+   "West Ham vs. Tottenham match",
+   "Hilarious pitch invader",
+   "Player pitch invasion",
+   "Free kick incident"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Pitch Invader",
+    "purpose": "Football fan attempting to invade pitch during match",
+    "emotion_tone": "Hilarious, humorous, slightly frustrated",
+    "description": "Posts about a fan attempting to invade the pitch during a football match, often resulting in humorous or comedic situations.",
+    "inclusion_cues": [
+     "Pitch invader takes free kick",
+     "Hilarious pitch invader",
+     "Pitch invader tries to kiss player",
+     "Pitch invader in court",
+     "Pitch invader nears cup"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Pitch Invader",
+    "purpose": "Reporting and documenting pitch invader incidents",
+    "emotion_tone": "Hilarious and humorous",
+    "description": "Posts about pitch invaders taking free kicks, invading the pitch, and related incidents in football matches",
+    "inclusion_cues": [
+     "Pitch invader takes free kick",
+     "West Ham vs. Tottenham match",
+     "Hilarious pitch invader",
+     "Player pitch invasion",
+     "Free kick incident"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: free kick, spurs pitch, corner kick, invade pitch, pitch free, player pitch, tottenham match, eriksen free, ham tottenham, fulham fan, ham spurs, kick spurs, kick hilarious, played spurs, invader real\nPosts (one per line, title first):\n- Pitch Invader takes Spurs' Free Kick\n- Premier League pitch invader Jordan Dunn has no regrets after taking free-kick as West Ham played Spurs\n- Pitch Invader manages to take free kick in the West Ham vs. Tottenham match.\n- Pitch invader takes free-kick in West Ham vs. Tottenham\n- Pitch invader takes a free kick during West Ham-Tottenham match\n- Hilarious pitch invader at Real Madrid - Fiorentina friendly\n- A partially blind Fulham fan offers the lineman his stick\n- Pitch invader tries to kiss Höwedes\n- West Ham/Tottenham pitch invader 'bent it like Beckham'\n- Franck Ribery gives pitch invader his jersey\n- The fan who was Planning to Invade the pitch - Fake.\n- West Ham fan takes free kick Vs Spurs\n- Field invader tries to kiss player\n- A pitch invader nearly in tears approaches Zanetti who talks and walks him off the pitch.\n- Pitch invader impersonating Cristiano Ronaldo [Real Madrid-Fiorentina]\n- Pitch invader interrupts Barca vs. Elche\n- Pitch invader tries to kiss Höwedes\n- Pitch invader, during final match. Tried to kiss Höwedes\n- West Ham Idiot Runs Length Of Pitch, Takes Free Kick For Spurs\n- Photo of happy pitch invader.\n- Partizan's Lazovic gets rid of pitch invader by giving shirt after Spurs draw\n- Premier League pitch invader in court: \"Were you intending to take the free kick?\" Dunn replied: \"No. All I was going to do was run and as I was running I just saw the ball there so I thought I would just kick it.\"\n- The pitch invader in today's final does not look comfortable.\n- The pitch invader today came THIS close to grabbing the cup.\n- Pitch invader in full Real Madrid uniform trying to blend in during a corner kick.\n- Pitch invader takes Christian Eriksen's free-kick...and nearly scores\n- The pitch invader that took a free kick in the West Ham - Spurs clash last month has been fined £305\n- Judge's sentencing remarks to drunken West Ham fan who ran on the pitch to take free kick: \"to borrow a phrase, you did bend it like Beckham. Regrettably it was about 30mph slower than David Beckham... The professional footballer who followed you did not do any better.\"\n- Klinsmann reaction to pitch invader\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Pitch Invader\", \"purpose\": \"Football fan attempting to invade pitch during match\", \"emotion_tone\": \"Hilarious, humorous, slightly frustrated\", \"description\": \"Posts about a fan attempting to invade the pitch during a football match, often resulting in humorous or comedic situations.\", \"inclusion_cues\": [\"Pitch invader takes free kick\", \"Hilarious pitch invader\", \"Pitch invader tries to kiss player\", \"Pitch invader in court\", \"Pitch invader nears cup\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Pitch Invader",
+      "purpose": "Football fan attempting to invade pitch during match",
+      "emotion_tone": "Hilarious, humorous, slightly frustrated",
+      "description": "Posts about a fan attempting to invade the pitch during a football match, often resulting in humorous or comedic situations.",
+      "inclusion_cues": [
+       "Pitch invader takes free kick",
+       "Hilarious pitch invader",
+       "Pitch invader tries to kiss player",
+       "Pitch invader in court",
+       "Pitch invader nears cup"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 121,
+   "seed": 2507900688,
+   "seconds": 0.55
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: free kick, spurs pitch, corner kick, invade pitch, pitch free, player pitch, tottenham match, eriksen free, ham tottenham, fulham fan, ham spurs, kick spurs, kick hilarious, played spurs, invader real\nPosts (one per line, title first):\n- Pitch Invader takes Spurs' Free Kick\n- Premier League pitch invader Jordan Dunn has no regrets after taking free-kick as West Ham played Spurs\n- Pitch Invader manages to take free kick in the West Ham vs. Tottenham match.\n- Pitch invader takes free-kick in West Ham vs. Tottenham\n- Pitch invader takes a free kick during West Ham-Tottenham match\n- Hilarious pitch invader at Real Madrid - Fiorentina friendly\n- A partially blind Fulham fan offers the lineman his stick\n- Pitch invader tries to kiss Höwedes\n- West Ham/Tottenham pitch invader 'bent it like Beckham'\n- Franck Ribery gives pitch invader his jersey\n- The fan who was Planning to Invade the pitch - Fake.\n- West Ham fan takes free kick Vs Spurs\n- Field invader tries to kiss player\n- A pitch invader nearly in tears approaches Zanetti who talks and walks him off the pitch.\n- Pitch invader impersonating Cristiano Ronaldo [Real Madrid-Fiorentina]\n- Pitch invader interrupts Barca vs. Elche\n- Pitch invader tries to kiss Höwedes\n- Pitch invader, during final match. Tried to kiss Höwedes\n- West Ham Idiot Runs Length Of Pitch, Takes Free Kick For Spurs\n- Photo of happy pitch invader.\n- Partizan's Lazovic gets rid of pitch invader by giving shirt after Spurs draw\n- Premier League pitch invader in court: \"Were you intending to take the free kick?\" Dunn replied: \"No. All I was going to do was run and as I was running I just saw the ball there so I thought I would just kick it.\"\n- The pitch invader in today's final does not look comfortable.\n- The pitch invader today came THIS close to grabbing the cup.\n- Pitch invader in full Real Madrid uniform trying to blend in during a corner kick.\n- Pitch invader takes Christian Eriksen's free-kick...and nearly scores\n- The pitch invader that took a free kick in the West Ham - Spurs clash last month has been fined £305\n- Judge's sentencing remarks to drunken West Ham fan who ran on the pitch to take free kick: \"to borrow a phrase, you did bend it like Beckham. Regrettably it was about 30mph slower than David Beckham... The professional footballer who followed you did not do any better.\"\n- Klinsmann reaction to pitch invader\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Pitch Invader\", \"purpose\": \"Reporting and documenting pitch invader incidents\", \"emotion_tone\": \"Hilarious and humorous\", \"description\": \"Posts about pitch invaders taking free kicks, invading the pitch, and related incidents in football matches\", \"inclusion_cues\": [\"Pitch invader takes free kick\", \"West Ham vs. Tottenham match\", \"Hilarious pitch invader\", \"Player pitch invasion\", \"Free kick incident\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Pitch Invader",
+      "purpose": "Reporting and documenting pitch invader incidents",
+      "emotion_tone": "Hilarious and humorous",
+      "description": "Posts about pitch invaders taking free kicks, invading the pitch, and related incidents in football matches",
+      "inclusion_cues": [
+       "Pitch invader takes free kick",
+       "West Ham vs. Tottenham match",
+       "Hilarious pitch invader",
+       "Player pitch invasion",
+       "Free kick incident"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 108,
+   "seed": 3659401820,
+   "seconds": 0.57
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: free kick, spurs pitch, corner kick, invade pitch, pitch free, player pitch, tottenham match, eriksen free, ham tottenham, fulham fan, ham spurs, kick spurs, kick hilarious, played spurs, invader real\nPosts (one per line, title first):\n- Pitch Invader takes Spurs' Free Kick\n- Premier League pitch invader Jordan Dunn has no regrets after taking free-kick as West Ham played Spurs\n- Pitch Invader manages to take free kick in the West Ham vs. Tottenham match.\n- Pitch invader takes free-kick in West Ham vs. Tottenham\n- Pitch invader takes a free kick during West Ham-Tottenham match\n- Hilarious pitch invader at Real Madrid - Fiorentina friendly\n- A partially blind Fulham fan offers the lineman his stick\n- Pitch invader tries to kiss Höwedes\n- West Ham/Tottenham pitch invader 'bent it like Beckham'\n- Franck Ribery gives pitch invader his jersey\n- The fan who was Planning to Invade the pitch - Fake.\n- West Ham fan takes free kick Vs Spurs\n- Field invader tries to kiss player\n- A pitch invader nearly in tears approaches Zanetti who talks and walks him off the pitch.\n- Pitch invader impersonating Cristiano Ronaldo [Real Madrid-Fiorentina]\n- Pitch invader interrupts Barca vs. Elche\n- Pitch invader tries to kiss Höwedes\n- Pitch invader, during final match. Tried to kiss Höwedes\n- West Ham Idiot Runs Length Of Pitch, Takes Free Kick For Spurs\n- Photo of happy pitch invader.\n- Partizan's Lazovic gets rid of pitch invader by giving shirt after Spurs draw\n- Premier League pitch invader in court: \"Were you intending to take the free kick?\" Dunn replied: \"No. All I was going to do was run and as I was running I just saw the ball there so I thought I would just kick it.\"\n- The pitch invader in today's final does not look comfortable.\n- The pitch invader today came THIS close to grabbing the cup.\n- Pitch invader in full Real Madrid uniform trying to blend in during a corner kick.\n- Pitch invader takes Christian Eriksen's free-kick...and nearly scores\n- The pitch invader that took a free kick in the West Ham - Spurs clash last month has been fined £305\n- Judge's sentencing remarks to drunken West Ham fan who ran on the pitch to take free kick: \"to borrow a phrase, you did bend it like Beckham. Regrettably it was about 30mph slower than David Beckham... The professional footballer who followed you did not do any better.\"\n- Klinsmann reaction to pitch invader\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Pitch Invader\", \"purpose\": \"Football fan attempting to invade pitch during match\", \"emotion_tone\": \"Hilarious, humorous, slightly frustrated\", \"description\": \"Posts about a fan attempting to invade the pitch during a football match, often resulting in humorous or comedic situations.\", \"inclusion_cues\": [\"Pitch invader takes free kick\", \"Hilarious pitch invader\", \"Pitch invader tries to kiss player\", \"Pitch invader in court\", \"Pitch invader nears cup\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Pitch Invader\", \"purpose\": \"Reporting and documenting pitch invader incidents\", \"emotion_tone\": \"Hilarious and humorous\", \"description\": \"Posts about pitch invaders taking free kicks, invading the pitch, and related incidents in football matches\", \"inclusion_cues\": [\"Pitch invader takes free kick\", \"West Ham vs. Tottenham match\", \"Hilarious pitch invader\", \"Player pitch invasion\", \"Free kick incident\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Pitch Invader\", \"purpose\": \"Football fan attempting to invade pitch during match\", \"emotion_tone\": \"Hilarious, humorous, slightly frustrated\", \"description\": \"Posts about a fan attempting to invade the pitch during a football match, often resulting in humorous or comedic situations.\", \"inclusion_cues\": [\"Pitch invader takes free kick\", \"Hilarious pitch invader\", \"Pitch invader tries to kiss player\", \"Pitch invader in court\", \"Pitch invader nears cup\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 120,
+   "seed": 267798993,
+   "seconds": 0.58
+  }
+ ]
+}

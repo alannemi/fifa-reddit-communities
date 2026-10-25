@@ -1,0 +1,188 @@
+{
+ "period_bin": 3,
+ "topic_id": 404,
+ "keywords": "colombia fans, colombian football, colombian fan, colombias, colombia colombia, beautiful colombian, colombian national, columbians going, happy argentina, colombian, fan brazilian, adios spana, bogota, wc14, team city",
+ "n_sample_posts": 29,
+ "sample_ids": [
+  "29yuu5",
+  "29zhyo",
+  "29z7w2",
+  "1wvh8e",
+  "27semy",
+  "29eoke",
+  "29v3t5",
+  "29iwdv",
+  "288u5o",
+  "29vv4o",
+  "28hw2m",
+  "29z28y",
+  "29gzuq",
+  "28l29u",
+  "28b83d",
+  "29d7i2",
+  "29ywa8",
+  "29cqnu",
+  "283e8a",
+  "287v7x",
+  "2aoram",
+  "2ampm7",
+  "29cytn",
+  "29e4nf",
+  "29jaku",
+  "2827qo",
+  "29z926",
+  "29533j",
+  "28qb8a"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Colombian Football",
+  "purpose": "Celebrate and discuss Colombian football and its fans",
+  "emotion_tone": "Positive, enthusiastic",
+  "description": "Posts about Colombian football, fans, and their experiences during the World Cup, including welcoming the national team, fan reactions, and cultural aspects",
+  "inclusion_cues": [
+   "Colombian players",
+   "Colombian national team",
+   "Colombian fans",
+   "World Cup celebrations",
+   "Cultural pride",
+   "Fan reactions"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Colombian Football",
+    "purpose": "Celebrate and discuss Colombian football and its fans",
+    "emotion_tone": "Positive, enthusiastic",
+    "description": "Posts about Colombian football, fans, and their experiences during the World Cup, including celebrations, fan reactions, and cultural aspects",
+    "inclusion_cues": [
+     "Colombian players",
+     "Colombian national team",
+     "Colombian fans",
+     "World Cup celebrations",
+     "Colombia",
+     "Colombian football"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Colombian Football",
+    "purpose": "Celebrate and discuss Colombian football and its fans",
+    "emotion_tone": "Positive, enthusiastic",
+    "description": "Posts about Colombian football, fans, and their experiences during the World Cup, including welcoming the national team, fan reactions, and cultural aspects",
+    "inclusion_cues": [
+     "Colombian players",
+     "Colombian national team",
+     "Colombian fans",
+     "World Cup celebrations",
+     "Cultural pride",
+     "Fan reactions"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: colombia fans, colombian football, colombian fan, colombias, colombia colombia, beautiful colombian, colombian national, columbians going, happy argentina, colombian, fan brazilian, adios spana, bogota, wc14, team city\nPosts (one per line, title first):\n- [streaming] A river of people is receiving Colombian players as heroes, more than 100 thousand people got up early to welcome them.\n- Over 90,000 people show in Simon Bolivar, Bogota, Colombia park to welcome home the Colombian national selection (x-post r/worldcup)\n- [Album] Colombia received its team as Champions. More than 100 thousand people got up early and went to say 'Thank you' to Pekerman and his 23 Players.\n- I just watched the 30 for 30 episode: The Two Escobars... The tears stung. / Wow. I'm utterly speechless. Andres seemed like an honest to goodness great guy. The passion showed by him and his teammates in this documentary almost make me want to go out and buy a soccer ball tomorrow and start playing\n- [WC14 Colombia Fans] ¿Quien va a seguir la seleccion en el Mundial? Who's traveling with the team around Brazil? / ¡No se si ya existira o que, pero necesitamos hacerla barra fuerte a nuestra seleccion en Brasil! ¿Existen canciones que podramos cantar todo el partido al estilo europeo? Si no invente\n- In today's news: Holland gifted game by referee, Dutch douche celebrates as if he had earned it\n- Beautiful Colombian fan!\n- This is how Costa Rican players reacted to the win against Greece (and going into the top 8 for the first time ever)\n- Presidential elections were held in Colombia today and many people voted for Jose Pekerman after 3-0 defeat of Greece\n- World Cup: The incredible story of Colombia’s return\n- Spanish fan showing how he feels... [snapchat from friend]\n- Colombia welcomes its heroes\n- Words of wisdom from Makélélé for the Columbians going up against Brazil (Put Subtitles on !)\n- Guest fan in amongst the Uruguayans tonight, rooting for the common cause....\n- Trolling some Argentina fans...\n- It's Colombia, not Columbia. Get it right people. / That is all.\n- People in Bogotá waiting for the arrival of Colombian national team.\n- REQUEST: image of the \"Adios Spana\" guy showing \"Adios Uruguay\" on his iPad this time\n- Lone Croatian Fan At A Brazilian Rally\n- As a Colombian watching the ESPN\n- Argentina's World Cup Team Is Welcomed Home\n- Colombias best moments\n- Let's take a moment to remember the second best thing to happen to Colombia today.\n- Unfortunately it's not just r/soccer who misspells Colombia...\n- How Mexicans are coping with Sundays loss. It still hurts. *spanish*\n- \"Netherlands are still the same team who will put a boot through your chest when the referee isn’t looking and then try it again right in front of him and dare him to produce a red card. Spoiler alert: he will.\"\n- Simón Bolívar Park in Bogotá welcomes back Colombia\n- The Brazilian Croatia Fan meets his idol Davor Suker\n- Happy Argentina fan.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Colombian Football\", \"purpose\": \"Celebrate and discuss Colombian football and its fans\", \"emotion_tone\": \"Positive, enthusiastic\", \"description\": \"Posts about Colombian football, fans, and their experiences during the World Cup, including celebrations, fan reactions, and cultural aspects\", \"inclusion_cues\": [\"Colombian players\", \"Colombian national team\", \"Colombian fans\", \"World Cup celebrations\", \"Colombia\", \"Colombian football\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Colombian Football",
+      "purpose": "Celebrate and discuss Colombian football and its fans",
+      "emotion_tone": "Positive, enthusiastic",
+      "description": "Posts about Colombian football, fans, and their experiences during the World Cup, including celebrations, fan reactions, and cultural aspects",
+      "inclusion_cues": [
+       "Colombian players",
+       "Colombian national team",
+       "Colombian fans",
+       "World Cup celebrations",
+       "Colombia",
+       "Colombian football"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 116,
+   "seed": 306495082,
+   "seconds": 0.55
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: colombia fans, colombian football, colombian fan, colombias, colombia colombia, beautiful colombian, colombian national, columbians going, happy argentina, colombian, fan brazilian, adios spana, bogota, wc14, team city\nPosts (one per line, title first):\n- [streaming] A river of people is receiving Colombian players as heroes, more than 100 thousand people got up early to welcome them.\n- Over 90,000 people show in Simon Bolivar, Bogota, Colombia park to welcome home the Colombian national selection (x-post r/worldcup)\n- [Album] Colombia received its team as Champions. More than 100 thousand people got up early and went to say 'Thank you' to Pekerman and his 23 Players.\n- I just watched the 30 for 30 episode: The Two Escobars... The tears stung. / Wow. I'm utterly speechless. Andres seemed like an honest to goodness great guy. The passion showed by him and his teammates in this documentary almost make me want to go out and buy a soccer ball tomorrow and start playing\n- [WC14 Colombia Fans] ¿Quien va a seguir la seleccion en el Mundial? Who's traveling with the team around Brazil? / ¡No se si ya existira o que, pero necesitamos hacerla barra fuerte a nuestra seleccion en Brasil! ¿Existen canciones que podramos cantar todo el partido al estilo europeo? Si no invente\n- In today's news: Holland gifted game by referee, Dutch douche celebrates as if he had earned it\n- Beautiful Colombian fan!\n- This is how Costa Rican players reacted to the win against Greece (and going into the top 8 for the first time ever)\n- Presidential elections were held in Colombia today and many people voted for Jose Pekerman after 3-0 defeat of Greece\n- World Cup: The incredible story of Colombia’s return\n- Spanish fan showing how he feels... [snapchat from friend]\n- Colombia welcomes its heroes\n- Words of wisdom from Makélélé for the Columbians going up against Brazil (Put Subtitles on !)\n- Guest fan in amongst the Uruguayans tonight, rooting for the common cause....\n- Trolling some Argentina fans...\n- It's Colombia, not Columbia. Get it right people. / That is all.\n- People in Bogotá waiting for the arrival of Colombian national team.\n- REQUEST: image of the \"Adios Spana\" guy showing \"Adios Uruguay\" on his iPad this time\n- Lone Croatian Fan At A Brazilian Rally\n- As a Colombian watching the ESPN\n- Argentina's World Cup Team Is Welcomed Home\n- Colombias best moments\n- Let's take a moment to remember the second best thing to happen to Colombia today.\n- Unfortunately it's not just r/soccer who misspells Colombia...\n- How Mexicans are coping with Sundays loss. It still hurts. *spanish*\n- \"Netherlands are still the same team who will put a boot through your chest when the referee isn’t looking and then try it again right in front of him and dare him to produce a red card. Spoiler alert: he will.\"\n- Simón Bolívar Park in Bogotá welcomes back Colombia\n- The Brazilian Croatia Fan meets his idol Davor Suker\n- Happy Argentina fan.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Colombian Football\", \"purpose\": \"Celebrate and discuss Colombian football and its fans\", \"emotion_tone\": \"Positive, enthusiastic\", \"description\": \"Posts about Colombian football, fans, and their experiences during the World Cup, including welcoming the national team, fan reactions, and cultural aspects\", \"inclusion_cues\": [\"Colombian players\", \"Colombian national team\", \"Colombian fans\", \"World Cup celebrations\", \"Cultural pride\", \"Fan reactions\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Colombian Football",
+      "purpose": "Celebrate and discuss Colombian football and its fans",
+      "emotion_tone": "Positive, enthusiastic",
+      "description": "Posts about Colombian football, fans, and their experiences during the World Cup, including welcoming the national team, fan reactions, and cultural aspects",
+      "inclusion_cues": [
+       "Colombian players",
+       "Colombian national team",
+       "Colombian fans",
+       "World Cup celebrations",
+       "Cultural pride",
+       "Fan reactions"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 117,
+   "seed": 2710348755,
+   "seconds": 0.57
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: colombia fans, colombian football, colombian fan, colombias, colombia colombia, beautiful colombian, colombian national, columbians going, happy argentina, colombian, fan brazilian, adios spana, bogota, wc14, team city\nPosts (one per line, title first):\n- [streaming] A river of people is receiving Colombian players as heroes, more than 100 thousand people got up early to welcome them.\n- Over 90,000 people show in Simon Bolivar, Bogota, Colombia park to welcome home the Colombian national selection (x-post r/worldcup)\n- [Album] Colombia received its team as Champions. More than 100 thousand people got up early and went to say 'Thank you' to Pekerman and his 23 Players.\n- I just watched the 30 for 30 episode: The Two Escobars... The tears stung. / Wow. I'm utterly speechless. Andres seemed like an honest to goodness great guy. The passion showed by him and his teammates in this documentary almost make me want to go out and buy a soccer ball tomorrow and start playing\n- [WC14 Colombia Fans] ¿Quien va a seguir la seleccion en el Mundial? Who's traveling with the team around Brazil? / ¡No se si ya existira o que, pero necesitamos hacerla barra fuerte a nuestra seleccion en Brasil! ¿Existen canciones que podramos cantar todo el partido al estilo europeo? Si no invente\n- In today's news: Holland gifted game by referee, Dutch douche celebrates as if he had earned it\n- Beautiful Colombian fan!\n- This is how Costa Rican players reacted to the win against Greece (and going into the top 8 for the first time ever)\n- Presidential elections were held in Colombia today and many people voted for Jose Pekerman after 3-0 defeat of Greece\n- World Cup: The incredible story of Colombia’s return\n- Spanish fan showing how he feels... [snapchat from friend]\n- Colombia welcomes its heroes\n- Words of wisdom from Makélélé for the Columbians going up against Brazil (Put Subtitles on !)\n- Guest fan in amongst the Uruguayans tonight, rooting for the common cause....\n- Trolling some Argentina fans...\n- It's Colombia, not Columbia. Get it right people. / That is all.\n- People in Bogotá waiting for the arrival of Colombian national team.\n- REQUEST: image of the \"Adios Spana\" guy showing \"Adios Uruguay\" on his iPad this time\n- Lone Croatian Fan At A Brazilian Rally\n- As a Colombian watching the ESPN\n- Argentina's World Cup Team Is Welcomed Home\n- Colombias best moments\n- Let's take a moment to remember the second best thing to happen to Colombia today.\n- Unfortunately it's not just r/soccer who misspells Colombia...\n- How Mexicans are coping with Sundays loss. It still hurts. *spanish*\n- \"Netherlands are still the same team who will put a boot through your chest when the referee isn’t looking and then try it again right in front of him and dare him to produce a red card. Spoiler alert: he will.\"\n- Simón Bolívar Park in Bogotá welcomes back Colombia\n- The Brazilian Croatia Fan meets his idol Davor Suker\n- Happy Argentina fan.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Colombian Football\", \"purpose\": \"Celebrate and discuss Colombian football and its fans\", \"emotion_tone\": \"Positive, enthusiastic\", \"description\": \"Posts about Colombian football, fans, and their experiences during the World Cup, including celebrations, fan reactions, and cultural aspects\", \"inclusion_cues\": [\"Colombian players\", \"Colombian national team\", \"Colombian fans\", \"World Cup celebrations\", \"Colombia\", \"Colombian football\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Colombian Football\", \"purpose\": \"Celebrate and discuss Colombian football and its fans\", \"emotion_tone\": \"Positive, enthusiastic\", \"description\": \"Posts about Colombian football, fans, and their experiences during the World Cup, including welcoming the national team, fan reactions, and cultural aspects\", \"inclusion_cues\": [\"Colombian players\", \"Colombian national team\", \"Colombian fans\", \"World Cup celebrations\", \"Cultural pride\", \"Fan reactions\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Colombian Football\", \"purpose\": \"Celebrate and discuss Colombian football and its fans\", \"emotion_tone\": \"Positive, enthusiastic\", \"description\": \"Posts about Colombian football, fans, and their experiences during the World Cup, including welcoming the national team, fan reactions, and cultural aspects\", \"inclusion_cues\": [\"Colombian players\", \"Colombian national team\", \"Colombian fans\", \"World Cup celebrations\", \"Cultural pride\", \"Fan reactions\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 116,
+   "seed": 687867557,
+   "seconds": 0.58
+  }
+ ]
+}

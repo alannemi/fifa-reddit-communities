@@ -1,0 +1,184 @@
+{
+ "period_bin": 3,
+ "topic_id": 397,
+ "keywords": "arrests fifa, fifa executive, tickets fifa, ticket scandal, ticket scams, head fifa, fifa financial, fifa partner, fifa vp, member fifa, arrested money, fifa match, fifa asks, looks fifa, money laundering",
+ "n_sample_posts": 30,
+ "sample_ids": [
+  "2a35ku",
+  "2a39ia",
+  "2a395p",
+  "2ad96q",
+  "2ahbbl",
+  "2a30gc",
+  "29t0fw",
+  "2aehmx",
+  "2afj88",
+  "29w767",
+  "2a1sxt",
+  "2gjtzw",
+  "2a2yok",
+  "2fn9h1",
+  "2fncv3",
+  "22fn0z",
+  "2a2zch",
+  "2gkgyw",
+  "2aehl4",
+  "2fo1y8",
+  "2adkd1",
+  "29t0gx",
+  "2a2t4f",
+  "29qy26",
+  "29t0ia",
+  "2a1yrx",
+  "2a4g5n",
+  "29ugw0",
+  "2a5ico",
+  "2fpws8"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "FIFA Ticket Scandal",
+  "purpose": "Report on FIFA-related ticket scams and arrests",
+  "emotion_tone": "Concerned",
+  "description": "Posts discussing arrests of FIFA officials, ticket scalping, and financial investigations related to FIFA.",
+  "inclusion_cues": [
+   "FIFA hospitality partner arrested",
+   "Ray Whelan arrested",
+   "ticket scalping scandal",
+   "money laundering",
+   "FIFA financial probe"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "FIFA Ticket Scandal",
+    "purpose": "Report on FIFA-related ticket scams and arrests",
+    "emotion_tone": "Concerned",
+    "description": "Posts about FIFA executives, ticket scalping, arrests, and financial investigations related to the World Cup ticket scandal",
+    "inclusion_cues": [
+     "FIFA hospitality partner arrested",
+     "Ray Whelan arrested",
+     "ticket scams",
+     "money laundering",
+     "FIFA financial probe"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "FIFA Ticket Scandal",
+    "purpose": "Report on FIFA-related ticket scams and arrests",
+    "emotion_tone": "Concerned",
+    "description": "Posts discussing arrests of FIFA officials, ticket scalping, and financial investigations related to FIFA.",
+    "inclusion_cues": [
+     "FIFA hospitality partner arrested",
+     "Ray Whelan arrested",
+     "ticket scalping scandal",
+     "money laundering",
+     "FIFA financial probe"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: arrests fifa, fifa executive, tickets fifa, ticket scandal, ticket scams, head fifa, fifa financial, fifa partner, fifa vp, member fifa, arrested money, fifa match, fifa asks, looks fifa, money laundering\nPosts (one per line, title first):\n- Director of FIFA hospitality partner arrested in WorldCup ticket scalping bust\n- Reports are coming in that FIFA Match Hospitality CEO - Ray Whelan - has been arrested in a huge police raid in Rio in relation to ticket scalping\n- Director of FIFA hospitality partner arrested in World Cup ticket scalping bust.\n- Ray Whelan, head of Fifa partner Match Hospitality, has fled to escape arrest in Rio over alleged illegal World Cup ticket sales\n- Ray Whelan, head of Fifa partner Match Hospitality, has fled to escape arrest in Rio over alleged illegal World Cup ticket sales, Brazilian police say.\n- World Cup tickets official Raymond Whelan arrested\n- FIFA official linked to arrest of ticket tcalping tyndicate in Brasil who sold as much as $100M worth of tickets\n- Whelan 'flees arrest' in ticket scandal. Considered a fugitive in Brazil.\n- FIFA Hospitality Director is running from police for ticket scams\n- Scalping ring probe looks 'to someone from FIFA'\n- Scalpers: Police awaits brazilian Justice to grant application for temporary detention of a member of FIFA (in portuguese)\n- FIFA finance watchdog member temporarily suspended during probe\n- FIFA official arrested in ticketing scandal\n- Man whose job it is to help oversee financial probity at FIFA is arrested for suspected corruption and money laundering\n- Member of Fifa’s financial watchdog arrested on suspicion of corruption and money-laundering\n- Ex soccer chief detained on suspicion of fraud\n- World Cup hospitality packages blocked amid scalping probe\n- Fifa says a member of its financial watchdog has been suspended pending a corruption inquiry centred on the Cayman Islands.\n- Whelan 'flees arrest' in ticket scandal | Video |\n- FIFA official arrested for money laundering\n- World Cup ticket scam: Ray Whelan declared a fugitive\n- FIFA official linked to arrest of ticket scalping tyndicate in Brasil who sold as much as $100M worth of tickets\n- Brazillian police arrests FIFA executive for participation in ticket selling mafia.(link in PT-BR)\n- World Cup tickets: Brazil police bust 'touting gang'\n- FIFA official linked to arrest of ticket scalping syndicate in Brasil who sold as much as $100M worth of tickets\n- FIFA says that handed phone list to the Federal Police, which could solve the ticket mafia case.\n- Fifa partner CEO Ray Whelan arrested over ticket scam\n- Son of FIFA VP admits ticket sales\n- Head Of FIFA Corporate Partner Arrested In Ticket-Scalping Sting\n- FIFA asks arrested finance watchdog member for explanation\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"FIFA Ticket Scandal\", \"purpose\": \"Report on FIFA-related ticket scams and arrests\", \"emotion_tone\": \"Concerned\", \"description\": \"Posts about FIFA executives, ticket scalping, arrests, and financial investigations related to the World Cup ticket scandal\", \"inclusion_cues\": [\"FIFA hospitality partner arrested\", \"Ray Whelan arrested\", \"ticket scams\", \"money laundering\", \"FIFA financial probe\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "FIFA Ticket Scandal",
+      "purpose": "Report on FIFA-related ticket scams and arrests",
+      "emotion_tone": "Concerned",
+      "description": "Posts about FIFA executives, ticket scalping, arrests, and financial investigations related to the World Cup ticket scandal",
+      "inclusion_cues": [
+       "FIFA hospitality partner arrested",
+       "Ray Whelan arrested",
+       "ticket scams",
+       "money laundering",
+       "FIFA financial probe"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 104,
+   "seed": 1268452063,
+   "seconds": 0.76
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: arrests fifa, fifa executive, tickets fifa, ticket scandal, ticket scams, head fifa, fifa financial, fifa partner, fifa vp, member fifa, arrested money, fifa match, fifa asks, looks fifa, money laundering\nPosts (one per line, title first):\n- Director of FIFA hospitality partner arrested in WorldCup ticket scalping bust\n- Reports are coming in that FIFA Match Hospitality CEO - Ray Whelan - has been arrested in a huge police raid in Rio in relation to ticket scalping\n- Director of FIFA hospitality partner arrested in World Cup ticket scalping bust.\n- Ray Whelan, head of Fifa partner Match Hospitality, has fled to escape arrest in Rio over alleged illegal World Cup ticket sales\n- Ray Whelan, head of Fifa partner Match Hospitality, has fled to escape arrest in Rio over alleged illegal World Cup ticket sales, Brazilian police say.\n- World Cup tickets official Raymond Whelan arrested\n- FIFA official linked to arrest of ticket tcalping tyndicate in Brasil who sold as much as $100M worth of tickets\n- Whelan 'flees arrest' in ticket scandal. Considered a fugitive in Brazil.\n- FIFA Hospitality Director is running from police for ticket scams\n- Scalping ring probe looks 'to someone from FIFA'\n- Scalpers: Police awaits brazilian Justice to grant application for temporary detention of a member of FIFA (in portuguese)\n- FIFA finance watchdog member temporarily suspended during probe\n- FIFA official arrested in ticketing scandal\n- Man whose job it is to help oversee financial probity at FIFA is arrested for suspected corruption and money laundering\n- Member of Fifa’s financial watchdog arrested on suspicion of corruption and money-laundering\n- Ex soccer chief detained on suspicion of fraud\n- World Cup hospitality packages blocked amid scalping probe\n- Fifa says a member of its financial watchdog has been suspended pending a corruption inquiry centred on the Cayman Islands.\n- Whelan 'flees arrest' in ticket scandal | Video |\n- FIFA official arrested for money laundering\n- World Cup ticket scam: Ray Whelan declared a fugitive\n- FIFA official linked to arrest of ticket scalping tyndicate in Brasil who sold as much as $100M worth of tickets\n- Brazillian police arrests FIFA executive for participation in ticket selling mafia.(link in PT-BR)\n- World Cup tickets: Brazil police bust 'touting gang'\n- FIFA official linked to arrest of ticket scalping syndicate in Brasil who sold as much as $100M worth of tickets\n- FIFA says that handed phone list to the Federal Police, which could solve the ticket mafia case.\n- Fifa partner CEO Ray Whelan arrested over ticket scam\n- Son of FIFA VP admits ticket sales\n- Head Of FIFA Corporate Partner Arrested In Ticket-Scalping Sting\n- FIFA asks arrested finance watchdog member for explanation\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"FIFA Ticket Scandal\", \"purpose\": \"Report on FIFA-related ticket scams and arrests\", \"emotion_tone\": \"Concerned\", \"description\": \"Posts discussing arrests of FIFA officials, ticket scalping, and financial investigations related to FIFA.\", \"inclusion_cues\": [\"FIFA hospitality partner arrested\", \"Ray Whelan arrested\", \"ticket scalping scandal\", \"money laundering\", \"FIFA financial probe\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "FIFA Ticket Scandal",
+      "purpose": "Report on FIFA-related ticket scams and arrests",
+      "emotion_tone": "Concerned",
+      "description": "Posts discussing arrests of FIFA officials, ticket scalping, and financial investigations related to FIFA.",
+      "inclusion_cues": [
+       "FIFA hospitality partner arrested",
+       "Ray Whelan arrested",
+       "ticket scalping scandal",
+       "money laundering",
+       "FIFA financial probe"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 102,
+   "seed": 2702399096,
+   "seconds": 0.76
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: arrests fifa, fifa executive, tickets fifa, ticket scandal, ticket scams, head fifa, fifa financial, fifa partner, fifa vp, member fifa, arrested money, fifa match, fifa asks, looks fifa, money laundering\nPosts (one per line, title first):\n- Director of FIFA hospitality partner arrested in WorldCup ticket scalping bust\n- Reports are coming in that FIFA Match Hospitality CEO - Ray Whelan - has been arrested in a huge police raid in Rio in relation to ticket scalping\n- Director of FIFA hospitality partner arrested in World Cup ticket scalping bust.\n- Ray Whelan, head of Fifa partner Match Hospitality, has fled to escape arrest in Rio over alleged illegal World Cup ticket sales\n- Ray Whelan, head of Fifa partner Match Hospitality, has fled to escape arrest in Rio over alleged illegal World Cup ticket sales, Brazilian police say.\n- World Cup tickets official Raymond Whelan arrested\n- FIFA official linked to arrest of ticket tcalping tyndicate in Brasil who sold as much as $100M worth of tickets\n- Whelan 'flees arrest' in ticket scandal. Considered a fugitive in Brazil.\n- FIFA Hospitality Director is running from police for ticket scams\n- Scalping ring probe looks 'to someone from FIFA'\n- Scalpers: Police awaits brazilian Justice to grant application for temporary detention of a member of FIFA (in portuguese)\n- FIFA finance watchdog member temporarily suspended during probe\n- FIFA official arrested in ticketing scandal\n- Man whose job it is to help oversee financial probity at FIFA is arrested for suspected corruption and money laundering\n- Member of Fifa’s financial watchdog arrested on suspicion of corruption and money-laundering\n- Ex soccer chief detained on suspicion of fraud\n- World Cup hospitality packages blocked amid scalping probe\n- Fifa says a member of its financial watchdog has been suspended pending a corruption inquiry centred on the Cayman Islands.\n- Whelan 'flees arrest' in ticket scandal | Video |\n- FIFA official arrested for money laundering\n- World Cup ticket scam: Ray Whelan declared a fugitive\n- FIFA official linked to arrest of ticket scalping tyndicate in Brasil who sold as much as $100M worth of tickets\n- Brazillian police arrests FIFA executive for participation in ticket selling mafia.(link in PT-BR)\n- World Cup tickets: Brazil police bust 'touting gang'\n- FIFA official linked to arrest of ticket scalping syndicate in Brasil who sold as much as $100M worth of tickets\n- FIFA says that handed phone list to the Federal Police, which could solve the ticket mafia case.\n- Fifa partner CEO Ray Whelan arrested over ticket scam\n- Son of FIFA VP admits ticket sales\n- Head Of FIFA Corporate Partner Arrested In Ticket-Scalping Sting\n- FIFA asks arrested finance watchdog member for explanation\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"FIFA Ticket Scandal\", \"purpose\": \"Report on FIFA-related ticket scams and arrests\", \"emotion_tone\": \"Concerned\", \"description\": \"Posts about FIFA executives, ticket scalping, arrests, and financial investigations related to the World Cup ticket scandal\", \"inclusion_cues\": [\"FIFA hospitality partner arrested\", \"Ray Whelan arrested\", \"ticket scams\", \"money laundering\", \"FIFA financial probe\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"FIFA Ticket Scandal\", \"purpose\": \"Report on FIFA-related ticket scams and arrests\", \"emotion_tone\": \"Concerned\", \"description\": \"Posts discussing arrests of FIFA officials, ticket scalping, and financial investigations related to FIFA.\", \"inclusion_cues\": [\"FIFA hospitality partner arrested\", \"Ray Whelan arrested\", \"ticket scalping scandal\", \"money laundering\", \"FIFA financial probe\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"FIFA Ticket Scandal\", \"purpose\": \"Report on FIFA-related ticket scams and arrests\", \"emotion_tone\": \"Concerned\", \"description\": \"Posts discussing arrests of FIFA officials, ticket scalping, and financial investigations related to FIFA.\", \"inclusion_cues\": [\"FIFA hospitality partner arrested\", \"Ray Whelan arrested\", \"ticket scalping scandal\", \"money laundering\", \"FIFA financial probe\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 101,
+   "seed": 262184978,
+   "seconds": 0.57
+  }
+ ]
+}

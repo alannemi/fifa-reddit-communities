@@ -1,0 +1,187 @@
+{
+ "period_bin": 3,
+ "topic_id": 382,
+ "keywords": "tom finney, finney, sir tom, footballer dies, england winger, highest goalscorer, preston, fitting tribute, away aged, irish league, goalscorer, scored manchester, footballers time, legend sir, west ham",
+ "n_sample_posts": 33,
+ "sample_ids": [
+  "1xxoss",
+  "1xxk58",
+  "1xzh9a",
+  "1xxr8m",
+  "1xxr8m",
+  "25daoc",
+  "1xxjt5",
+  "25dic6",
+  "1xxr1i",
+  "25e2do",
+  "1xy68h",
+  "1xvloq",
+  "25dhul",
+  "22i9rc",
+  "25dmy5",
+  "1xvll7",
+  "25do2c",
+  "25d6xj",
+  "1xxp83",
+  "1xzxu8",
+  "25dwlz",
+  "25daln",
+  "246ase",
+  "1z3til",
+  "2441b0",
+  "1xxpwh",
+  "25djbx",
+  "2801xd",
+  "1xxlz3",
+  "25k9kw",
+  "25e0rm",
+  "25d5t9",
+  "1xxmwi"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Sir Tom Finney Tribute",
+  "purpose": "Honoring a footballer's legacy",
+  "emotion_tone": "respectful, somber",
+  "description": "Posts about Sir Tom Finney's death, tributes, and memorials related to his career and impact on football.",
+  "inclusion_cues": [
+   "Sir Tom Finney has passed away.",
+   "Preston players are wearing 'Finney' on the back of their shirts.",
+   "Sir Tom Finney: Former Preston and England winger dies at 91.",
+   "A fitting tribute to Preston's favourite son.",
+   "Tom Finney was buried today."
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Sir Tom Finney Tribute",
+    "purpose": "Honoring a football legend",
+    "emotion_tone": "respectful, somber",
+    "description": "Posts about Sir Tom Finney's passing, tributes, and memorials related to his legacy in football.",
+    "inclusion_cues": [
+     "Sir Tom Finney has passed away.",
+     "Preston players are wearing 'Finney' on shirts.",
+     "Former Preston and England winger dies at 91.",
+     "A fitting tribute to Preston's favourite son.",
+     "Tom Finney was buried today."
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Sir Tom Finney Tribute",
+    "purpose": "Honoring a footballer's legacy",
+    "emotion_tone": "respectful, somber",
+    "description": "Posts about Sir Tom Finney's death, tributes, and memorials related to his career and impact on football.",
+    "inclusion_cues": [
+     "Sir Tom Finney has passed away.",
+     "Preston players are wearing 'Finney' on the back of their shirts.",
+     "Sir Tom Finney: Former Preston and England winger dies at 91.",
+     "A fitting tribute to Preston's favourite son.",
+     "Tom Finney was buried today."
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: tom finney, finney, sir tom, footballer dies, england winger, highest goalscorer, preston, fitting tribute, away aged, irish league, goalscorer, scored manchester, footballers time, legend sir, west ham\nPosts (one per line, title first):\n- Sir Tom Finney has passed away.\n- Sir Tom Finney, one of the greatest footballers of all-time, has passed away aged 91.\n- Preston players are all wearing 'Finney' on the back of their shirts in honour of Sir Tom Finney, who passed away yesterday\n- Sir Tom Finney: Former Preston and England winger dies at 91\n- Sir Tom Finney: Former Preston and England winger dies at 91\n- From r/videos: Pretending to their Granny that Manchester City scored early on in yesterday's match\n- Reports that legend Sir Tom Finney has passed\n- Pretending to their Granny that Manchester City scored early on in yesterday's match - [0:15]\n- Tom Finney, former England and Preston footballer, dies aged 91\n- Pretending to their grandma that Manchester City scored early on in yesterday's match.\n- Tom Finney, former England and Preston footballer, dies aged 91\n- Jimmy Jones, the record holder for highest goalscorer in the Irish League in a single season with 74, dies aged 85\n- [X-Post /r/videos] Pretending to your nan that Man City have scored early on\n- West Ham Fan beat granddad in front of his two grandchildren on a train\n- Grandma loses it when grandkids trick her into thinking Man City scored\n- Jimmy Jones, the record holder for most goals scored in the Irish League in a single season at 74, dies aged 85\n- Man City supporting Grandmother gets tricked by her grandkids. Her reaction is amazing.\n- Kids pretend to Grandma that Man City had scored at the start of the West Ham match.\n- Preston North End confirms that Sir Tom Finney has passed away.\n- Sir Tom Finney: A fitting tribute to Preston's favourite son\n- Pretending to Grandma that Man City scored!\n- From r/videos: Pretending to their Granny that Manchester City scored early on in yesterday's match\n- Frustrating night for the Old Lady\n- Tom Finney was buried today. He never won the league or the FA cup. Does this mean that he wasn't a top top player?\n- Mourinho Celebrating their second goal. Furiously pounding the The Pensioners\n- Sir Tom Finney: Former Preston and England winger dies at 91\n- Manchester City Grandmother goes nuts after being fooled into thinking a goal was scored (cross post /r/videos)\n- Grandma's verdict: \"Scripted\".\n- Sir Tom Finney has passed away. [Link in thread]\n- Kids trick grandma into thinking Man City scored early against West Ham...\n- Fooling grandma into thinking City have scored\n- Kids pretend Man City scored early yesterday, Grandma goes crazy\n- RIP Sir Tom Finney\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Sir Tom Finney Tribute\", \"purpose\": \"Honoring a football legend\", \"emotion_tone\": \"respectful, somber\", \"description\": \"Posts about Sir Tom Finney's passing, tributes, and memorials related to his legacy in football.\", \"inclusion_cues\": [\"Sir Tom Finney has passed away.\", \"Preston players are wearing 'Finney' on shirts.\", \"Former Preston and England winger dies at 91.\", \"A fitting tribute to Preston's favourite son.\", \"Tom Finney was buried today.\"]]}]}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Sir Tom Finney Tribute",
+      "purpose": "Honoring a football legend",
+      "emotion_tone": "respectful, somber",
+      "description": "Posts about Sir Tom Finney's passing, tributes, and memorials related to his legacy in football.",
+      "inclusion_cues": [
+       "Sir Tom Finney has passed away.",
+       "Preston players are wearing 'Finney' on shirts.",
+       "Former Preston and England winger dies at 91.",
+       "A fitting tribute to Preston's favourite son.",
+       "Tom Finney was buried today."
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 501)",
+   "n_tokens": 131,
+   "seed": 385315726,
+   "seconds": 0.58
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: tom finney, finney, sir tom, footballer dies, england winger, highest goalscorer, preston, fitting tribute, away aged, irish league, goalscorer, scored manchester, footballers time, legend sir, west ham\nPosts (one per line, title first):\n- Sir Tom Finney has passed away.\n- Sir Tom Finney, one of the greatest footballers of all-time, has passed away aged 91.\n- Preston players are all wearing 'Finney' on the back of their shirts in honour of Sir Tom Finney, who passed away yesterday\n- Sir Tom Finney: Former Preston and England winger dies at 91\n- Sir Tom Finney: Former Preston and England winger dies at 91\n- From r/videos: Pretending to their Granny that Manchester City scored early on in yesterday's match\n- Reports that legend Sir Tom Finney has passed\n- Pretending to their Granny that Manchester City scored early on in yesterday's match - [0:15]\n- Tom Finney, former England and Preston footballer, dies aged 91\n- Pretending to their grandma that Manchester City scored early on in yesterday's match.\n- Tom Finney, former England and Preston footballer, dies aged 91\n- Jimmy Jones, the record holder for highest goalscorer in the Irish League in a single season with 74, dies aged 85\n- [X-Post /r/videos] Pretending to your nan that Man City have scored early on\n- West Ham Fan beat granddad in front of his two grandchildren on a train\n- Grandma loses it when grandkids trick her into thinking Man City scored\n- Jimmy Jones, the record holder for most goals scored in the Irish League in a single season at 74, dies aged 85\n- Man City supporting Grandmother gets tricked by her grandkids. Her reaction is amazing.\n- Kids pretend to Grandma that Man City had scored at the start of the West Ham match.\n- Preston North End confirms that Sir Tom Finney has passed away.\n- Sir Tom Finney: A fitting tribute to Preston's favourite son\n- Pretending to Grandma that Man City scored!\n- From r/videos: Pretending to their Granny that Manchester City scored early on in yesterday's match\n- Frustrating night for the Old Lady\n- Tom Finney was buried today. He never won the league or the FA cup. Does this mean that he wasn't a top top player?\n- Mourinho Celebrating their second goal. Furiously pounding the The Pensioners\n- Sir Tom Finney: Former Preston and England winger dies at 91\n- Manchester City Grandmother goes nuts after being fooled into thinking a goal was scored (cross post /r/videos)\n- Grandma's verdict: \"Scripted\".\n- Sir Tom Finney has passed away. [Link in thread]\n- Kids trick grandma into thinking Man City scored early against West Ham...\n- Fooling grandma into thinking City have scored\n- Kids pretend Man City scored early yesterday, Grandma goes crazy\n- RIP Sir Tom Finney\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Sir Tom Finney Tribute\", \"purpose\": \"Honoring a footballer's legacy\", \"emotion_tone\": \"respectful, somber\", \"description\": \"Posts about Sir Tom Finney's death, tributes, and memorials related to his career and impact on football.\", \"inclusion_cues\": [\"Sir Tom Finney has passed away.\", \"Preston players are wearing 'Finney' on the back of their shirts.\", \"Sir Tom Finney: Former Preston and England winger dies at 91.\", \"A fitting tribute to Preston's favourite son.\", \"Tom Finney was buried today.\"]}]}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Sir Tom Finney Tribute",
+      "purpose": "Honoring a footballer's legacy",
+      "emotion_tone": "respectful, somber",
+      "description": "Posts about Sir Tom Finney's death, tributes, and memorials related to his career and impact on football.",
+      "inclusion_cues": [
+       "Sir Tom Finney has passed away.",
+       "Preston players are wearing 'Finney' on the back of their shirts.",
+       "Sir Tom Finney: Former Preston and England winger dies at 91.",
+       "A fitting tribute to Preston's favourite son.",
+       "Tom Finney was buried today."
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 143,
+   "seed": 3555578601,
+   "seconds": 0.51
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: tom finney, finney, sir tom, footballer dies, england winger, highest goalscorer, preston, fitting tribute, away aged, irish league, goalscorer, scored manchester, footballers time, legend sir, west ham\nPosts (one per line, title first):\n- Sir Tom Finney has passed away.\n- Sir Tom Finney, one of the greatest footballers of all-time, has passed away aged 91.\n- Preston players are all wearing 'Finney' on the back of their shirts in honour of Sir Tom Finney, who passed away yesterday\n- Sir Tom Finney: Former Preston and England winger dies at 91\n- Sir Tom Finney: Former Preston and England winger dies at 91\n- From r/videos: Pretending to their Granny that Manchester City scored early on in yesterday's match\n- Reports that legend Sir Tom Finney has passed\n- Pretending to their Granny that Manchester City scored early on in yesterday's match - [0:15]\n- Tom Finney, former England and Preston footballer, dies aged 91\n- Pretending to their grandma that Manchester City scored early on in yesterday's match.\n- Tom Finney, former England and Preston footballer, dies aged 91\n- Jimmy Jones, the record holder for highest goalscorer in the Irish League in a single season with 74, dies aged 85\n- [X-Post /r/videos] Pretending to your nan that Man City have scored early on\n- West Ham Fan beat granddad in front of his two grandchildren on a train\n- Grandma loses it when grandkids trick her into thinking Man City scored\n- Jimmy Jones, the record holder for most goals scored in the Irish League in a single season at 74, dies aged 85\n- Man City supporting Grandmother gets tricked by her grandkids. Her reaction is amazing.\n- Kids pretend to Grandma that Man City had scored at the start of the West Ham match.\n- Preston North End confirms that Sir Tom Finney has passed away.\n- Sir Tom Finney: A fitting tribute to Preston's favourite son\n- Pretending to Grandma that Man City scored!\n- From r/videos: Pretending to their Granny that Manchester City scored early on in yesterday's match\n- Frustrating night for the Old Lady\n- Tom Finney was buried today. He never won the league or the FA cup. Does this mean that he wasn't a top top player?\n- Mourinho Celebrating their second goal. Furiously pounding the The Pensioners\n- Sir Tom Finney: Former Preston and England winger dies at 91\n- Manchester City Grandmother goes nuts after being fooled into thinking a goal was scored (cross post /r/videos)\n- Grandma's verdict: \"Scripted\".\n- Sir Tom Finney has passed away. [Link in thread]\n- Kids trick grandma into thinking Man City scored early against West Ham...\n- Fooling grandma into thinking City have scored\n- Kids pretend Man City scored early yesterday, Grandma goes crazy\n- RIP Sir Tom Finney\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Sir Tom Finney Tribute\", \"purpose\": \"Honoring a football legend\", \"emotion_tone\": \"respectful, somber\", \"description\": \"Posts about Sir Tom Finney's passing, tributes, and memorials related to his legacy in football.\", \"inclusion_cues\": [\"Sir Tom Finney has passed away.\", \"Preston players are wearing 'Finney' on shirts.\", \"Former Preston and England winger dies at 91.\", \"A fitting tribute to Preston's favourite son.\", \"Tom Finney was buried today.\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Sir Tom Finney Tribute\", \"purpose\": \"Honoring a footballer's legacy\", \"emotion_tone\": \"respectful, somber\", \"description\": \"Posts about Sir Tom Finney's death, tributes, and memorials related to his career and impact on football.\", \"inclusion_cues\": [\"Sir Tom Finney has passed away.\", \"Preston players are wearing 'Finney' on the back of their shirts.\", \"Sir Tom Finney: Former Preston and England winger dies at 91.\", \"A fitting tribute to Preston's favourite son.\", \"Tom Finney was buried today.\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Sir Tom Finney Tribute\", \"purpose\": \"Honoring a football legend\", \"emotion_tone\": \"respectful, somber\", \"description\": \"Posts about Sir Tom Finney's death, tributes, and memorials related to his career and impact on football.\", \"inclusion_cues\": [\"Sir Tom Finney has passed away.\", \"Preston players are wearing 'Finney' on the back of their shirts.\", \"Sir Tom Finney: Former Preston and England winger dies at 91.\", \"A fitting tribute to Preston's favourite son.\", \"Tom Finney was buried today.\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 140,
+   "seed": 2071959657,
+   "seconds": 0.6
+  }
+ ]
+}

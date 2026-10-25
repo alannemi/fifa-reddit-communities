@@ -46,7 +46,7 @@ bin 1 ≈ 49–74, bin 4 ≈ 1,650–2,480).
 ## 3. Pass 1 — bin 1 smoke test (cells 2.x) — gate 1 (design §12.1)
 `fifa-communities/results/bin-1/config.json → topics`: `backend.backend = "cuml"` (otherwise the accelerator did not engage:
 check `cuml_accel`, `umap_class`, and that the command was prefixed with `python -m cuml.accel`), `guard.converged` (the
-density target of D8), `n_topics_raw`, `outlier_share_raw`, `hdbscan` (the settings in force). First Colab run of bin 1
+density target of D8; `guard.floor_bound` when the floor already gives too few topics — accepted, D10), `n_topics_raw`, `outlier_share_raw`, `hdbscan` (the settings in force). First Colab run of bin 1
 (2026-10-25): 65 topics at `min_cluster_size` 25, 34.8 % raw outliers — inside 49–74, so bin 1 stands under D8. Open
 `results/bin-1/report.html`: the 2010 themes must be visible (vuvuzelas, Jabulani, Lampard's goal, Suárez's handball, Spain's
 win, Paul the octopus). Pass 1 also labels the 12 largest topics, scores 2010 and collects (partial). The report is
@@ -90,7 +90,7 @@ F44): a full read is not feasible there — the design's sample (20 topics again
 is the review; the author decides whether a larger sample is needed.
 
 ## 7. Large-bin gate — gate 2 (§12.2): bin 4 (331k posts) or bin 6 (306k)
-Cell 3.3 with `GATE_BIN = 4`: raw outlier share ≤ `OUTLIER_GATE` (0.45 in the design; 0.50 for a bin whose guard converged, proposed after bin 3 and pending the author's confirmation), guard converged (to the density target, within six trials), UMAP +
+Cell 3.3 with `GATE_BIN = 4`: raw outlier share ≤ `OUTLIER_GATE` (0.45 in the design; 0.50 for a bin whose guard converged, proposed after bin 3 and pending the author's confirmation), guard converged (to the density target, within six trials) or floor-bound (too few topics at the floor of 25 — accepted, decision D10 after bin 7), UMAP +
 HDBSCAN minutes on the GPU (≈ 1 h on CPU would mean the accelerator is off); then the labelling (≈ 1 h for ≈ 2,000 topics on the
 A100, resumable).
 **First attempt (2026-10-25, under the old 50–100 range):** 331,216 posts, guard 820 → 2 topics, 547 → 74 topics, **56.2 %
@@ -107,7 +107,7 @@ and a refit renumbers the topics (safeguard of 2026-10-25).
 ## 8. Bins 2–9 — one bin at a time, review as you go
 Cell 3.5 runs the tournament bins first (3, 5, 7, 9 — small, minutes to label each), then the interim bins (2, 4, 6, 8 — about
 an hour of labelling each; author's order, 2026-10-25), and finishes each bin before starting the next: embed → topics (a bin clustered before D8 is refitted on its cached UMAP
-array) → the gate (raw outliers ≤ `OUTLIER_GATE`, guard converged; **the loop stops at the first bin that fails** — cell 3.3b's grid with
+array) → the gate (raw outliers ≤ `OUTLIER_GATE`, guard converged or floor-bound; **the loop stops at the first bin that fails** — cell 3.3b's grid with
 `GATE_BIN = N`, the author's setting, then re-run 3.5: finished bins are skipped; first run, 2026-10-25: bin 3 stopped the loop
 at 45.8 % with 474 topics inside its target — decision pending, `../session-08_2026-10-25/00_colab-run-log.md` §12) → label
 (resumable) → `review_pack.md` →

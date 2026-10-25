@@ -114,8 +114,20 @@ def test_guard():
         return np.array([(i % 11) - 1 for i in range(len(X))])
     r = M.guard_min_cluster_size(X4, 4000, True, fit=stub3)
     assert not r["converged"] and r["min_cluster_size"] == C.MIN_CLUSTER_FLOOR
+    assert r["floor_bound"] is True and len(r["trials"]) == 1, r          # decision D10: too few topics at the floor -> floor-bound, one fit
+    r = M.guard_min_cluster_size(X4, 4000, True, fit=stub2)
+    assert r["floor_bound"] is False                                    # unconverged with too MANY topics is not floor-bound
     r = M.guard_min_cluster_size(X4, 4000, False, fit=stub2)   # disabled: one fit
-    assert len(r["trials"]) == 1 and r["enabled"] is False
+    assert len(r["trials"]) == 1 and r["enabled"] is False and r["floor_bound"] is False
+    # the guard state as the gate and `--stage status` read it (tagging.guard_state), incl. a config written before the key existed (bin 7)
+    from topicmodel import tagging as T
+    assert T.guard_state({"guard": {"converged": True, "enabled": True}}) == "converged"
+    assert T.guard_state({"guard": {"converged": False, "floor_bound": True, "enabled": True}}) == "floor-bound"
+    bin7 = {"hdbscan": {"min_cluster_floor": 25}, "guard": {"min_cluster_size": 25, "n_topics": 172, "target": [207, 310], "converged": False, "enabled": True}}
+    assert T.guard_state(bin7) == "floor-bound" and T.gate_ok(bin7 | {"outlier_share_raw": 0.356}, 0.50) is True
+    assert T.guard_state({"hdbscan": {"min_cluster_floor": 25}, "guard": {"min_cluster_size": 547, "n_topics": 74, "target": [1656, 2484], "converged": False, "enabled": True}}) == "unconverged"
+    assert T.guard_state({"guard": {"converged": False, "enabled": False}}) == "disabled" and T.guard_state({}) == "unknown"
+    assert T.gate_ok({"outlier_share_raw": 0.562, "guard": {"converged": True, "enabled": True}}, 0.50) is False
     # the gate diagnostic: HDBSCAN over the grid on the cached array (stub: topics = 6000 / mcs, fewer outliers with lower min_samples)
     def stub4(X, mcs, ms, method, eps):
         k = max(1, int(6000 / mcs)); n = len(X); n_out = int(n * ms / 20)

@@ -441,4 +441,10 @@ exception to the tournament setting. (c) `min_samples` 3 for every tournament bi
 The assistant recommends **(a)**: the guard did what D8 says ("never below the floor", keep the trial nearest the range); the
 shortfall is 17 % below the lower bound while the outlier share is the best of the large bins; one setting for every bin is easier
 to report than a per-bin `min_samples`; and the dual tier already carries the finer distinctions a smaller cluster size would
-make. **Decision pending (author).** Until it is taken, cell 3.5 stops at bin 7 again (bins 9, 2, 4, 6, 8 wait behind it).
+make. **Decision D10 (Alan Nemirovski, 2026-10-25, night): option (a).** Bin 7 stands as floor-bound: 172 topics, settings identical for
+every bin. Implementation the same evening (design v1.7, §6.2/§12.2/§14): the guard records `floor_bound = true` when it stops at the
+floor with too few topics (`converged` stays `false`, honestly); the notebook's `gate_ok` accepts a converged *or* floor-bound guard and
+derives the state from the recorded trial for a bin clustered before the key existed (bin 7's `config.json`); `--stage status` shows a
+`guard` column (`converged` / `floor-bound` / `unconverged`); unit check for both. Bin 7's clustering, tiers and calibration samples on
+Drive are untouched — re-running cell 3.5 skips embed and topics and goes to the labelling (172 topics, ≈ 7 min), the review pack and
+the hand-back, then on to bins 9, 2, 4, 6, 8.

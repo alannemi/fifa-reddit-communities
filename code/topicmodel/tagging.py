@@ -137,12 +137,40 @@ def bin_state(bin_dir: Path) -> str:
     return "missing"
 
 
+def guard_state(topics: dict) -> str:
+    """The density guard's state from a bin's `topics` section of config.json, as the notebook's gate and `--stage status` read it:
+    "converged" (the density target was reached), "floor-bound" (the floor min_cluster_size already gave too few topics — accepted,
+    decision D10, 2026-10-25), "unconverged" (flagged), "disabled" (debug subsample), "unknown" (no guard record). A bin clustered
+    before D10 has no `floor_bound` key (bin 7): the state is derived from the recorded trial."""
+    g = topics.get("guard") or {}
+    if not g:
+        return "unknown"
+    if g.get("converged"):
+        return "converged"
+    if not g.get("enabled", True):
+        return "disabled"
+    if "floor_bound" in g:
+        return "floor-bound" if g["floor_bound"] else "unconverged"
+    floor = (topics.get("hdbscan") or {}).get("min_cluster_floor", 25)
+    target = g.get("target") or [None, None]
+    if g.get("min_cluster_size") == floor and g.get("n_topics") is not None and target[0] is not None and g["n_topics"] < target[0]:
+        return "floor-bound"
+    return "unconverged"
+
+
+def gate_ok(topics: dict, outlier_gate: float) -> bool:
+    """The large-bin gate (design §12.2) on a bin's `topics` section: raw outlier share within the gate and a guard that converged
+    or is floor-bound (D10). The notebook's cell 0.4 carries the same rule."""
+    return float(topics["outlier_share_raw"]) <= float(outlier_gate) and guard_state(topics) in ("converged", "floor-bound")
+
+
 def bin_status(bin_dir: Path) -> dict:
     """Where one bin stands (for `--stage status`, the notebook and the REVIEW_READY flag): state, topics, labelled topics,
     whether the review can start (every topic labelled), whether the outlier threshold was applied."""
     st = {"bin": int(str(bin_dir.name).split("-")[-1]) if "-" in bin_dir.name else None, "state": bin_state(bin_dir),
           "n_modelled": None, "n_topics": None, "n_labelled": 0, "n_needs_review": None, "review_ready": False,
-          "reassigned": False, "outlier_threshold": None, "single_threshold": None, "n_dual": None, "topics_at": None, "labelled_at": None}
+          "reassigned": False, "outlier_threshold": None, "single_threshold": None, "n_dual": None, "guard": None, "topics_at": None,
+          "labelled_at": None}
     if st["state"] == "missing":
         return st
     cfg = {}
@@ -153,6 +181,7 @@ def bin_status(bin_dir: Path) -> dict:
             cfg = {}
     t = cfg.get("topics", {})
     st["n_modelled"] = t.get("n_modelled"); st["topics_at"] = t.get("run_at")
+    st["guard"] = guard_state(t) if t else None
     topics = _read(bin_dir / "topics.csv")
     if len(topics):
         st["n_topics"] = int((topics["topic_id"].astype(int) != -1).sum())
@@ -187,7 +216,7 @@ def write_status(bin_dir: Path) -> dict:
 def status_table(analysis_dir: Path) -> pd.DataFrame:
     """One row per bin 1–9 for `--stage status`."""
     rows = [bin_status(analysis_dir / f"bin-{b}") | {"bin": b} for b in range(1, 10)]
-    return pd.DataFrame(rows)[["bin", "state", "n_modelled", "n_topics", "n_labelled", "n_needs_review", "review_ready", "reassigned",
+    return pd.DataFrame(rows)[["bin", "state", "n_modelled", "n_topics", "guard", "n_labelled", "n_needs_review", "review_ready", "reassigned",
                                "outlier_threshold", "single_threshold", "n_dual", "labelled_at"]]
 
 

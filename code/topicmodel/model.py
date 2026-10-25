@@ -156,7 +156,8 @@ def guard_min_cluster_size(umap5d: np.ndarray, n_modelled: int, enabled: bool = 
     """Topic-density guard (design §6.2, decision D8): start at MIN_CLUSTER_FLOOR, then move ×1.5 / ÷1.5 and bisect
     between the bracketing values until the raw topic count lies in the bin's target range — TOPICS_PER_10K scaled to
     its modelled posts (config.target_topic_range) — within GUARD_MAX_TRIALS fits, never below the floor. Keeps the
-    trial nearest to the range; `converged` says whether it was reached. `fit` is injectable for tests."""
+    trial nearest to the range; `converged` says whether it was reached; `floor_bound` (decision D10, 2026-10-25) says the floor
+    itself gave too few topics, which the gate accepts. `fit` is injectable for tests."""
     lo, hi = C.target_topic_range(n_modelled)
     if fit is hdbscan_labels:
         fit = lambda X, m: hdbscan_labels(X, m, period_type=period_type)
@@ -199,9 +200,16 @@ def guard_min_cluster_size(umap5d: np.ndarray, n_modelled: int, enabled: bool = 
                 too_few = m
     lab, m, k = best
     conv = dist(k) == 0
-    if enabled and not conv:
+    # Decision D10 (Alan Nemirovski, 2026-10-25, bin 7): too FEW topics at the floor itself — the guard cannot go lower (the floor is a
+    # constraint of design §6.1, not a search bound), so the floor wins over the density target: the bin is "floor-bound", stands, and
+    # passes the gate; `converged` stays False, honestly.
+    floor_bound = bool(enabled and not conv and int(m) == int(C.MIN_CLUSTER_FLOOR) and k < lo)
+    if floor_bound:
+        log.warning("guard: %d topics at the floor min_cluster_size=%d, below the target %s — floor-bound (decision D10: the floor wins, the bin stands)", k, m, (lo, hi))
+    elif enabled and not conv:
         log.warning("guard: topic count %d outside %s after %d trial(s); keeping min_cluster_size=%d (flagged)", k, (lo, hi), len(trials), m)
-    return {"labels": lab, "min_cluster_size": int(m), "n_topics": k, "target": [int(lo), int(hi)], "trials": trials, "converged": conv, "enabled": enabled}
+    return {"labels": lab, "min_cluster_size": int(m), "n_topics": k, "target": [int(lo), int(hi)], "trials": trials, "converged": conv,
+            "floor_bound": floor_bound, "enabled": enabled}
 
 
 def renumber_by_size(labels: np.ndarray) -> tuple[np.ndarray, dict]:

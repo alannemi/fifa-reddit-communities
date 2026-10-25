@@ -1,4 +1,4 @@
-# Analytical pipeline design — period-binned topic modelling, two-agent labelling and sentiment (v1.6)
+# Analytical pipeline design — period-binned topic modelling, two-agent labelling and sentiment (v1.7)
 
 **Session 04, 2026-10-22/23 · FIFA Communities chapter, McGill University.**
 Decisions: Alan Nemirovski. Drafting and technical design: Claude. Brief: `00_brief.md`. Template method: the
@@ -29,7 +29,7 @@ pipeline and its code; every post carries its topic's corpus-wide key, agreed la
 `topic_tone`); the topic table carries the mean VADER score of the topic's posts (`mean_vader_sentiment`); the cross-bin
 comparison is a manual crosswalk of topics (§7.7, §9, F42–F44). **D8** — no fixed topic range per bin but a density of 50–75
 raw topics per 10,000 modelled posts, the guard searching the minimum cluster size from a floor of 25 (§6.2). §7.4 and the S3b
-texts of §7.6 are kept as the record of the superseded protocol (`../session-08_2026-10-25/00_colab-run-log.md` §9). **Version 1.6 (2026-10-25, night)** records decision **D9** (§6.3): tiered outlier reassignment by each bin's similarity quantiles — nearest topic at or above the 80th percentile, nearest plus second-nearest topic (`dual`) from the 35th, outlier below —, a dual post counted once in each of its two topics, five more analysis columns (15; 57 in the data files), and the 50 % gate tolerance for converged bins proposed after bin 3 (§12.2; `../session-08_2026-10-25/00_colab-run-log.md` §13).
+texts of §7.6 are kept as the record of the superseded protocol (`../session-08_2026-10-25/00_colab-run-log.md` §9). **Version 1.6 (2026-10-25, night)** records decision **D9** (§6.3): tiered outlier reassignment by each bin's similarity quantiles — nearest topic at or above the 80th percentile, nearest plus second-nearest topic (`dual`) from the 35th, outlier below —, a dual post counted once in each of its two topics, five more analysis columns (15; 57 in the data files), and the 50 % gate tolerance for converged bins proposed after bin 3 (§12.2; `../session-08_2026-10-25/00_colab-run-log.md` §13). **Version 1.7 (2026-10-25, night)** records decision D10: a bin whose floor cluster size already yields fewer topics than its density target is *floor-bound* and passes the gate (§6.2, §12.2, §14; first case bin 7, run log §14).
 
 ---
 
@@ -190,7 +190,11 @@ of 50–100 topics per bin served the taxonomy stage, which fed a bin's topics t
 Procedure: fit HDBSCAN on the frozen 5-d array at the floor `min_cluster_size` 25; record (`min_cluster_size`, `n_topics`,
 `outlier_share`); if `n_topics` is outside the bin's range, move ×1.5 / ÷1.5, then bisect between the bracketing values
 already tried; at most six fits (seconds each on the GPU); keep the value whose count is nearest to the range and flag the bin
-(`guard.converged = False`) if the range was not reached. All trials and the HDBSCAN settings in force (`min_samples`,
+(`guard.converged = False`) if the range was not reached. **Floor-bound bins (decision D10, 2026-10-25):** when the floor itself
+gives too *few* topics, the guard cannot move (the floor is a constraint of §6.1, not a search bound), so it stops after one trial
+with `converged = false` and `floor_bound = true`; the floor wins over the density target, the clustering stands and the gate
+(§12.2) accepts it. The topic count of such a bin falls short of 50 per 10,000 by design (bin 7: 172 topics, 41.5 per 10,000;
+`min_samples` 3 would have reached the target but would have been a per-bin exception to the tournament setting — declined). All trials and the HDBSCAN settings in force (`min_samples`,
 selection method, epsilon — one value or per period type, §6.1) are logged in `config.json`. The guard is disabled for
 debugging subsamples (`--max-docs`). A failed large-bin gate (§12.2) is diagnosed with `--stage grid` and applied with
 `--stage topics --force --keep-umap`.
@@ -617,7 +621,7 @@ the effective settings, guard trials, backend, CUDA/cuML versions, `pip freeze`,
    --keep-umap`. **First attempt, bin 4 (2026-10-25): guard 820 → 2 topics, 547 → 74 topics with 56.2 % raw outliers — failed on
    the outlier share; decision pending** (`../session-08_2026-10-25/00_colab-run-log.md` §8). **Bin 3 under D8 (2026-10-25,
    cell 3.5): 474 topics at `min_cluster_size` 25, inside the target 408–612, 45.8 % raw outliers — failed on the outlier share
-   by 0.8 points** (run log §12). **Bin 7 (2026-10-25, cell 3.5): 172 topics at the floor of 25, below the target 207–310 — the guard cannot go under the floor, so it stopped unconverged (35.6 % raw outliers, the lowest of the large bins); the local grid shows `min_samples` 3 would reach 223; decision pending** (run log §14). Tolerance since D9 (2026-10-25): the raw share only sizes the dual and outlier tiers, so the
+   by 0.8 points** (run log §12). **Bin 7 (2026-10-25, cell 3.5): 172 topics at the floor of 25, below the target 207–310 — the guard cannot go under the floor, so it stopped unconverged (35.6 % raw outliers, the lowest of the large bins); the local grid shows `min_samples` 3 would reach 223; **decision D10 (author, 2026-10-25): accepted as floor-bound** — the floor wins over the density target, the gate accepts `guard.floor_bound`, settings identical for every bin** (run log §14). Tolerance since D9 (2026-10-25): the raw share only sizes the dual and outlier tiers, so the
    notebook's gate constant `OUTLIER_GATE` is **0.50 for a bin whose guard converged** — proposed by the assistant after bin 3,
    pending the author's confirmation (§14). A refit with
    `--force` moves the previous clustering's labels, review files and calibration samples to `results/stale/bin-N_<timestamp>/`
@@ -696,6 +700,7 @@ the effective settings, guard trials, backend, CUDA/cuML versions, `pip freeze`,
 | **2026-10-25 D8** | Topic granularity | **No fixed topic range per bin: 50–75 raw topics per 10,000 modelled posts (`TOPICS_PER_10K`), the guard searching `min_cluster_size` from the floor of 25** (§6.2); the HDBSCAN settings may be set per period type (`config.setting()`) from the grid diagnostic | author's decision: topics should emerge from the volume of discussion; the fixed 50–100 range served the removed taxonomy stage |
 | **2026-10-25 H1–H7** | Code harmonization (session 07) | **H1** the session-02 exploratory tool removed entirely; **H2** flat, purpose-named Drive layout under `MyDrive/fifa-communities/`; **H3** Drive as the root for everything that persists, code cloned on the Colab machine, CSVs copied locally, no symlinks; **H4** shared R helper file `code/R/pipeline-utils.R`; **H5** scripts renumbered 06→05, 06b→05b, 07→06, 08→07; **H6** stale tracked copies under `data/` untracked; **H7** `03-data-validation.R` accepts the v3.0 spec now | `../session-07_2026-10-25/00_approvals.md` (defaults and flags F31–F38 there); no analytical change |
 | **2026-10-25 D9** | Outliers (replaces D3) | **Tiered reassignment by the bin's own similarity quantiles: ≥ 80th percentile → the nearest topic; 35th–80th → the nearest topic and the second-nearest as a second label (`dual`: `topic_uid_2`, `topic_name_2`, `topic_tone_2`, both similarities); < 35th → outlier. A dual post counts once in each of its two topics (`n_total = n_first + n_as_second`; shares may add up to more than 1). Applied by S2, re-applied by `reassign`; 15 analysis columns (57 in the data files). The 35th percentile stands until the coded samples show the admitted band's precision** | author: a conservative floor with a recorded hedge instead of a residual of a third of the posts; coverage comparable across bins (§6.3) |
+| **2026-10-25 D10** | Density guard at the floor (§6.2, §12.2) | **A bin whose floor `min_cluster_size` (25) already gives fewer topics than its density target is accepted as *floor-bound*: the floor wins over the density target, the clustering stands, `guard.floor_bound = true` is recorded and the gate passes (bin 7: 172 topics for a target of 207–310, 35.6 % raw outliers)** | author's decision on the assistant's recommendation: the guard did what D8 says (never below the floor); the shortfall is modest; one HDBSCAN setting for every bin is easier to report than a per-bin `min_samples`; the dual tier already carries the finer distinctions. Alternatives declined: `min_samples` 3 for bin 7 alone (223 topics) or for every tournament bin (re-cluster and relabel bins 1, 3, 5) |
 | 2026-10-25 gate tolerance | Large-bin gate (§12.2) | Raw outlier share ≤ 50 % for a bin whose guard converged (`OUTLIER_GATE` in the notebook; the design's 45 % stays the reference) — **proposed by the assistant after bin 3 (474 topics in target, 45.8 %), pending the author's confirmation** | under D9 the raw share only sizes the dual and outlier tiers |
 
 ## 15. Brief versus design

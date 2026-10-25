@@ -25,9 +25,13 @@ the GitHub repository) and run cells 0.1–0.4.
   (`MyDrive/fifa-communities/logs/colab_<date>.log`); every later cell writes into it. If `drive.mount` fails from the
   VS Code kernel (design §10 left this open), open the notebook at colab.research.google.com instead.
 * **0.2** clones the public repository on the Colab machine, copies the CSVs to `/content/data/yearly datasets`, sets
-  `PIPELINE_ROOT` to the Drive folder and `PIPELINE_YEARLY_DIR` to the local copy, and **prints the program's effective
-  paths** — check that `ANALYSIS_DIR` ends in `fifa-communities/results`, `ANALYSIS_DATA_DIR` in `fifa-communities/analysis`,
-  `YEARLY_DIR` in `/content/data/yearly datasets` (flag F34).
+  `PIPELINE_ROOT` to the Drive folder, `PIPELINE_YEARLY_DIR` to the local copy and `PIPELINE_HF_CACHE_DIR` to
+  `/content/hf-cache`, and **prints the program's effective paths** — check that `ANALYSIS_DIR` ends in
+  `fifa-communities/results`, `ANALYSIS_DATA_DIR` in `fifa-communities/analysis`, `YEARLY_DIR` in `/content/data/yearly
+  datasets`, `LLM_CACHE_DIR` in `/content/hf-cache` (flag F34). The model weights are re-downloaded every session (≈ 4 GB,
+  a few minutes): on the first Colab run (2026-10-25) the topics stage failed with `SafetensorError: header too large`
+  when it read the mpnet weights from `hf-cache/` on Drive — safetensors memory-maps the file and Drive's FUSE mount
+  cannot serve that — so the weights live on the local disk and the Drive folder `hf-cache/` is unused (delete it).
 * **0.3** must print the GPU name, `cuml <version>`, the pins (bertopic 0.17.4, umap 0.5.12, hdbscan 0.8.44,
   sentence-transformers 6.1.0) and `pip check (pipeline stack): OK`. A `pip check` complaint about Colab's own image — on
   2026-10-25 "ipython 7.34.0 requires jedi, which is not installed" — is benign (fix with `pip install jedi` or ignore);

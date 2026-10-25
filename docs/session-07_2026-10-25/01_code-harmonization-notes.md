@@ -156,7 +156,17 @@ the stop point of the test batch.
 | `03-data-validation.R` on the real corpus (28 checks, ≈ 5 min) | **28/28 PASS**; C4a reports `v2.1 spec (42 columns)`; `find_root` from the shared helper file |
 | `05b-analysis-pipeline-colab.ipynb` | `nbformat.validate` OK, 28 cells, unique ids, every code cell parses; no `fifa-reddit-communities` Drive path, symlink, `HF_HOME` or old script name |
 
-Nothing ran on Colab in this session; the test batch is the first step of `02_runbook-colab-run.md`.
+Nothing ran on Colab before these checks; the test batch is the first step of `02_runbook-colab-run.md`.
+
+**Addendum — first Colab run, later on 2026-10-25 (A100-SXM4-80GB, torch 2.11.0+cu130, CUDA 13.0, cuML 26.06.00).** Three
+defects surfaced in cells that had never executed before: (1) `pip check` reports a gap of the Colab image itself
+("ipython requires jedi"); cell 0.3 now flags only complaints that name the pipeline's packages. (2) `hdbscan` 0.8.44 has
+no `__version__` attribute; cell 0.3 reads the pins from the installed distributions. (3) The topics stage failed with
+`SafetensorError: header too large` when it loaded the mpnet weights from `hf-cache/` on Drive: safetensors memory-maps
+the file and Drive's FUSE mount returns garbage for such reads (the embed stage, which had downloaded the file, had used
+it fine). `config.py` gained the override `PIPELINE_HF_CACHE_DIR`, the notebook sets it to `/content/hf-cache` (weights
+re-downloaded per session), and the Drive folder `hf-cache/` of layout H2 is unused — a refinement of H2 for the author's
+record (flag F39). Embeddings, results and join tables on Drive are ordinary reads and writes and are not affected.
 
 ## 9. The approved plan (2026-10-25)
 

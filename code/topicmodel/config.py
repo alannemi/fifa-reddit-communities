@@ -23,7 +23,9 @@ from pathlib import Path
 # Unset: the repository layout (local work).  PIPELINE_ROOT=<folder>: the flat layout of the shared Google Drive
 # folder MyDrive/fifa-communities/, used by the Colab notebook (code/05b-analysis-pipeline-colab.ipynb).
 # PIPELINE_YEARLY_DIR overrides the input folder alone (on Colab the 17 CSVs are copied to the machine's local disk
-# for speed).  The stage program's --out-root option redirects the two OUTPUT folders for dry runs
+# for speed); PIPELINE_HF_CACHE_DIR overrides the model-weight cache alone (on Colab the weights must be on the local
+# disk: safetensors memory-maps them and Drive's FUSE mount returns garbage — "header too large" — for such reads).
+# The stage program's --out-root option redirects the two OUTPUT folders for dry runs
 # (repository-shaped: <out>/results/analysis and <out>/data/analysis) and wins over PIPELINE_ROOT for those two.
 #
 #   setting            repository layout (unset)    PIPELINE_ROOT=<R> (flat, Drive)                    holds
@@ -31,12 +33,12 @@ from pathlib import Path
 #   ANALYSIS_DATA_DIR  data/analysis                <R>/analysis                                       join tables by post id
 #   ANALYSIS_DIR       results/analysis             <R>/results                                        bin-N/ + aggregated tables
 #   EMBED_CACHE_DIR    results/embeddings           <R>/embeddings                                     <model-slug>/<year>.npz
-#   LLM_CACHE_DIR      .hf-cache                    <R>/hf-cache                                       Hugging Face weights
+#   LLM_CACHE_DIR      .hf-cache                    <R>/hf-cache  (or PIPELINE_HF_CACHE_DIR)             Hugging Face weights
 ROOT = Path(__file__).resolve().parents[2]        # the repository root (two levels above this file)
 YEARLY_FILE = "soccer.data.cleaned-{year}.csv"    # one cleaned file per calendar year (codebook §1)
 
 
-def resolve_paths(pipeline_root: str | None, yearly_dir: str | None = None) -> dict[str, Path]:
+def resolve_paths(pipeline_root: str | None, yearly_dir: str | None = None, hf_cache_dir: str | None = None) -> dict[str, Path]:
     """The five persisted paths for a root setting (pure function; the module constants below are one call of it)."""
     if pipeline_root:
         r = Path(pipeline_root).expanduser().resolve()
@@ -48,12 +50,15 @@ def resolve_paths(pipeline_root: str | None, yearly_dir: str | None = None) -> d
              "LLM_CACHE_DIR": ROOT / ".hf-cache"}
     if yearly_dir:
         p["YEARLY_DIR"] = Path(yearly_dir).expanduser().resolve()
+    if hf_cache_dir:
+        p["LLM_CACHE_DIR"] = Path(hf_cache_dir).expanduser().resolve()
     return p
 
 
 PIPELINE_ROOT = os.environ.get("PIPELINE_ROOT") or None
 PIPELINE_YEARLY_DIR = os.environ.get("PIPELINE_YEARLY_DIR") or None
-_paths = resolve_paths(PIPELINE_ROOT, PIPELINE_YEARLY_DIR)
+PIPELINE_HF_CACHE_DIR = os.environ.get("PIPELINE_HF_CACHE_DIR") or None
+_paths = resolve_paths(PIPELINE_ROOT, PIPELINE_YEARLY_DIR, PIPELINE_HF_CACHE_DIR)
 YEARLY_DIR = _paths["YEARLY_DIR"]
 ANALYSIS_DATA_DIR = _paths["ANALYSIS_DATA_DIR"]
 ANALYSIS_DIR = _paths["ANALYSIS_DIR"]

@@ -1,0 +1,211 @@
+{
+ "period_bin": 9,
+ "topic_id": 218,
+ "keywords": "post arsenal, goal post, post france, free kick, nicolas jackson, post manchester, bicycle kick, chelsea 71, portugal 75, ben slimane, 25 nicolas, kovacic, hits post, mo salah, ousmane",
+ "n_sample_posts": 27,
+ "sample_ids": [
+  "1r4pdzb",
+  "1smhdpq",
+  "1tu3dty",
+  "1u7nklf",
+  "1u7nklf",
+  "1tmf3d7",
+  "1tfpjk1",
+  "1s0vynt",
+  "1s6ipq2",
+  "1qt1kzy",
+  "1reqvvo",
+  "1u6s2ml",
+  "1s0yejo",
+  "1u7nkjv",
+  "1rtr4uu",
+  "1ukqwqb",
+  "1t2hfxn",
+  "1ulzjon",
+  "1tu39mu",
+  "1u6wyrp",
+  "1tmer2n",
+  "1t884bs",
+  "1sg50xi",
+  "1t84dh6",
+  "1uokf6z",
+  "1tetgrk",
+  "1ts6emc"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Goal Post Incidents",
+  "purpose": "Reporting of goal post or post-related incidents in football matches",
+  "emotion_tone": "Neutral/Annoyed",
+  "description": "Posts detailing incidents where a player's shot or kick hit the goal post or post, including free kicks, bicycle kicks, and other post-related events.",
+  "inclusion_cues": [
+   "hits the post",
+   "free kick",
+   "bicycle kick",
+   "goal post",
+   "post France",
+   "post manchester",
+   "chelsea 71",
+   "portugal 75",
+   "25 nicolas",
+   "kovacic"
+  ],
+  "n_cues_given": 13
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "post-related shots",
+    "purpose": "describe shots that hit the goal post",
+    "emotion_tone": "neutral",
+    "description": "Posts containing shots that hit the goal post, including free kicks, bicycle kicks, and other types of shots that result in a post being hit",
+    "inclusion_cues": [
+     "hits the post",
+     "goal post",
+     "free kick",
+     "bicycle kick",
+     "chelsea 71",
+     "portugal 75",
+     "25 nicolas",
+     "kovacic",
+     "hits post",
+     "mo salah"
+    ],
+    "n_cues_given": 11
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Goal Post Incidents",
+    "purpose": "Reporting of goal post or post-related incidents in football matches",
+    "emotion_tone": "Neutral/Annoyed",
+    "description": "Posts detailing incidents where a player's shot or kick hit the goal post or post, including free kicks, bicycle kicks, and other post-related events.",
+    "inclusion_cues": [
+     "hits the post",
+     "free kick",
+     "bicycle kick",
+     "goal post",
+     "post France",
+     "post manchester",
+     "chelsea 71",
+     "portugal 75",
+     "25 nicolas",
+     "kovacic"
+    ],
+    "n_cues_given": 13
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: post arsenal, goal post, post france, free kick, nicolas jackson, post manchester, bicycle kick, chelsea 71, portugal 75, ben slimane, 25 nicolas, kovacic, hits post, mo salah, ousmane\nPosts (one per line, title first):\n- Sammy Semenyo hits the post against Salford City F.C. 85'\n- Catamo hits the post against Arsenal 43'\n- Anis Ben Slimane Free kick hits the post against Austria 38'\n- Nicolas Jackson hits the post against France 25'\n- Nicolas Jackson hits the post against France 25'\n- Mo Salah hits the post 20'\n- Diogo Dalot hits the post against Nottingham 90+6'\n- Federico Valverde hits the goal post against Atletico Madrid.\n- Gonçalo Ramos hits the post vs Mexico\n- Sesko hits the post against Fulham 76'\n- Kenan Yıldız hits the post against Galatasaray 78'\n- Kevin De Bruyne hits the post from a free-kick against Egypt\n- Alvarez hits the post vs Real Madrid 81'\n- Nicolas Jackson hits the post against France 25'\n- Victor Osimhen's bicycle kick hits the crossbar!\n- Yoane Wissa hits the post against England 42'\n- Nahuel Molina (Atlético) shot on the post from almost 40 meters out vs Valencia 17'\n- Kovacic hits the post against Portugal 75'\n- Hannibal mejbri free kick hits the post vs Austria 18'\n- Manuel Ugarte hits the post against Saudi Arabia 60'\n- Gabriel Jesus hit the post against Crystal Palace 4'\n- Geertruida hit the post against Manchester United 71'\n- Ousmane Dembélé hits the post against Liverpool 87'\n- Dominik Szoboszlai hits the post against chelsea 71'\n- Nico O'Reilly hits the post against Mexico 49'\n- Kelechi Iheanacho hits the post vs Hearts 79'\n- Paris Saint-Germain hit the post against Arsenal 78'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"post-related shots\", \"purpose\": \"describe shots that hit the goal post\", \"emotion_tone\": \"neutral\", \"description\": \"Posts containing shots that hit the goal post, including free kicks, bicycle kicks, and other types of shots that result in a post being hit\", \"inclusion_cues\": [\"hits the post\", \"goal post\", \"free kick\", \"bicycle kick\", \"chelsea 71\", \"portugal 75\", \"25 nicolas\", \"kovacic\", \"hits post\", \"mo salah\", \"ousmane\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "post-related shots",
+      "purpose": "describe shots that hit the goal post",
+      "emotion_tone": "neutral",
+      "description": "Posts containing shots that hit the goal post, including free kicks, bicycle kicks, and other types of shots that result in a post being hit",
+      "inclusion_cues": [
+       "hits the post",
+       "goal post",
+       "free kick",
+       "bicycle kick",
+       "chelsea 71",
+       "portugal 75",
+       "25 nicolas",
+       "kovacic",
+       "hits post",
+       "mo salah"
+      ],
+      "n_cues_given": 11
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 135,
+   "seed": 2099781152,
+   "seconds": 0.5
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: post arsenal, goal post, post france, free kick, nicolas jackson, post manchester, bicycle kick, chelsea 71, portugal 75, ben slimane, 25 nicolas, kovacic, hits post, mo salah, ousmane\nPosts (one per line, title first):\n- Sammy Semenyo hits the post against Salford City F.C. 85'\n- Catamo hits the post against Arsenal 43'\n- Anis Ben Slimane Free kick hits the post against Austria 38'\n- Nicolas Jackson hits the post against France 25'\n- Nicolas Jackson hits the post against France 25'\n- Mo Salah hits the post 20'\n- Diogo Dalot hits the post against Nottingham 90+6'\n- Federico Valverde hits the goal post against Atletico Madrid.\n- Gonçalo Ramos hits the post vs Mexico\n- Sesko hits the post against Fulham 76'\n- Kenan Yıldız hits the post against Galatasaray 78'\n- Kevin De Bruyne hits the post from a free-kick against Egypt\n- Alvarez hits the post vs Real Madrid 81'\n- Nicolas Jackson hits the post against France 25'\n- Victor Osimhen's bicycle kick hits the crossbar!\n- Yoane Wissa hits the post against England 42'\n- Nahuel Molina (Atlético) shot on the post from almost 40 meters out vs Valencia 17'\n- Kovacic hits the post against Portugal 75'\n- Hannibal mejbri free kick hits the post vs Austria 18'\n- Manuel Ugarte hits the post against Saudi Arabia 60'\n- Gabriel Jesus hit the post against Crystal Palace 4'\n- Geertruida hit the post against Manchester United 71'\n- Ousmane Dembélé hits the post against Liverpool 87'\n- Dominik Szoboszlai hits the post against chelsea 71'\n- Nico O'Reilly hits the post against Mexico 49'\n- Kelechi Iheanacho hits the post vs Hearts 79'\n- Paris Saint-Germain hit the post against Arsenal 78'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Goal Post Incidents\", \"purpose\": \"Reporting of goal post or post-related incidents in football matches\", \"emotion_tone\": \"Neutral/Annoyed\", \"description\": \"Posts detailing incidents where a player's shot or kick hit the goal post or post, including free kicks, bicycle kicks, and other post-related events.\", \"inclusion_cues\": [\"hits the post\", \"free kick\", \"bicycle kick\", \"goal post\", \"post France\", \"post manchester\", \"chelsea 71\", \"portugal 75\", \"25 nicolas\", \"kovacic\", \"hits post\", \"mo salah\", \"ousmane\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Goal Post Incidents",
+      "purpose": "Reporting of goal post or post-related incidents in football matches",
+      "emotion_tone": "Neutral/Annoyed",
+      "description": "Posts detailing incidents where a player's shot or kick hit the goal post or post, including free kicks, bicycle kicks, and other post-related events.",
+      "inclusion_cues": [
+       "hits the post",
+       "free kick",
+       "bicycle kick",
+       "goal post",
+       "post France",
+       "post manchester",
+       "chelsea 71",
+       "portugal 75",
+       "25 nicolas",
+       "kovacic"
+      ],
+      "n_cues_given": 13
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 156,
+   "seed": 2923610091,
+   "seconds": 0.55
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: post arsenal, goal post, post france, free kick, nicolas jackson, post manchester, bicycle kick, chelsea 71, portugal 75, ben slimane, 25 nicolas, kovacic, hits post, mo salah, ousmane\nPosts (one per line, title first):\n- Sammy Semenyo hits the post against Salford City F.C. 85'\n- Catamo hits the post against Arsenal 43'\n- Anis Ben Slimane Free kick hits the post against Austria 38'\n- Nicolas Jackson hits the post against France 25'\n- Nicolas Jackson hits the post against France 25'\n- Mo Salah hits the post 20'\n- Diogo Dalot hits the post against Nottingham 90+6'\n- Federico Valverde hits the goal post against Atletico Madrid.\n- Gonçalo Ramos hits the post vs Mexico\n- Sesko hits the post against Fulham 76'\n- Kenan Yıldız hits the post against Galatasaray 78'\n- Kevin De Bruyne hits the post from a free-kick against Egypt\n- Alvarez hits the post vs Real Madrid 81'\n- Nicolas Jackson hits the post against France 25'\n- Victor Osimhen's bicycle kick hits the crossbar!\n- Yoane Wissa hits the post against England 42'\n- Nahuel Molina (Atlético) shot on the post from almost 40 meters out vs Valencia 17'\n- Kovacic hits the post against Portugal 75'\n- Hannibal mejbri free kick hits the post vs Austria 18'\n- Manuel Ugarte hits the post against Saudi Arabia 60'\n- Gabriel Jesus hit the post against Crystal Palace 4'\n- Geertruida hit the post against Manchester United 71'\n- Ousmane Dembélé hits the post against Liverpool 87'\n- Dominik Szoboszlai hits the post against chelsea 71'\n- Nico O'Reilly hits the post against Mexico 49'\n- Kelechi Iheanacho hits the post vs Hearts 79'\n- Paris Saint-Germain hit the post against Arsenal 78'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"post-related shots\", \"purpose\": \"describe shots that hit the goal post\", \"emotion_tone\": \"neutral\", \"description\": \"Posts containing shots that hit the goal post, including free kicks, bicycle kicks, and other types of shots that result in a post being hit\", \"inclusion_cues\": [\"hits the post\", \"goal post\", \"free kick\", \"bicycle kick\", \"chelsea 71\", \"portugal 75\", \"25 nicolas\", \"kovacic\", \"hits post\", \"mo salah\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Goal Post Incidents\", \"purpose\": \"Reporting of goal post or post-related incidents in football matches\", \"emotion_tone\": \"Neutral/Annoyed\", \"description\": \"Posts detailing incidents where a player's shot or kick hit the goal post or post, including free kicks, bicycle kicks, and other post-related events.\", \"inclusion_cues\": [\"hits the post\", \"free kick\", \"bicycle kick\", \"goal post\", \"post France\", \"post manchester\", \"chelsea 71\", \"portugal 75\", \"25 nicolas\", \"kovacic\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Goal Post Incidents\", \"purpose\": \"Reporting of goal post or post-related incidents in football matches\", \"emotion_tone\": \"Neutral/Annoyed\", \"description\": \"Posts detailing incidents where a player's shot or kick hit the goal post or post, including free kicks, bicycle kicks, and other post-related events.\", \"inclusion_cues\": [\"hits the post\", \"free kick\", \"bicycle kick\", \"goal post\", \"post France\", \"post manchester\", \"chelsea 71\", \"portugal 75\", \"25 nicolas\", \"kovacic\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 141,
+   "seed": 2414407193,
+   "seconds": 0.65
+  }
+ ]
+}

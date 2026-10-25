@@ -1,0 +1,188 @@
+{
+ "period_bin": 9,
+ "topic_id": 12,
+ "keywords": "cf montréal, miami fc, angeles fc, toronto fc, fc inter, fc cincinnati, vancouver whitecaps, jose earthquakes, fc denver, chicago stars, orlando city, portland timbers, dc united, red bulls, austin fc",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "1st7ga5",
+  "1t2a4ab",
+  "1v3wu1b",
+  "1v3wrrk",
+  "1v6na8z",
+  "1t7toaz",
+  "1st6hkm",
+  "1spbiqw",
+  "1tchwke",
+  "1sq9zhn",
+  "1t27m5f",
+  "1syjl86",
+  "1ru3qm4",
+  "1s0tcj8",
+  "1v43lp7",
+  "1v41pat",
+  "1scpur6",
+  "1s0tp9k",
+  "1tlsdqg",
+  "1s06isx",
+  "1sa2np7",
+  "1swmxo8",
+  "1scoq6j",
+  "1tmu4uu",
+  "1tg4ofs",
+  "1v6rhz3",
+  "1tseu3t",
+  "1uzj56n",
+  "1sj1e24",
+  "1rhmm5n",
+  "1s11j3u",
+  "1tffecu",
+  "1sitwtj",
+  "1rics3t",
+  "1t8pc47",
+  "1sfh6t0",
+  "1ruqcme",
+  "1t8uorg",
+  "1rwosdl",
+  "1tjvagm"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Inter Miami FC",
+  "purpose": "Match analysis and commentary",
+  "emotion_tone": "Excitement",
+  "description": "Posts discussing Inter Miami FC matches, including goals, line-ups, and commentary",
+  "inclusion_cues": [
+   "Inter Miami FC 0-0 Chicago Fire FC",
+   "Inter Miami FC 3 - [4] Orlando City",
+   "Inter Miami FC [2] - 0 Portland Timbers"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Soccer Match Threads",
+    "purpose": "Discuss ongoing football matches and player performances",
+    "emotion_tone": "Excited and competitive",
+    "description": "Posts about current soccer matches, player goals, assists, and team lineups",
+    "inclusion_cues": [
+     "Match Thread: ...",
+     "FC ... vs ...",
+     "... 0-0 ...",
+     "... 83' (great goal)",
+     "... 90+3' (great celebration)"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Inter Miami FC",
+    "purpose": "Match analysis and commentary",
+    "emotion_tone": "Excitement",
+    "description": "Posts discussing Inter Miami FC matches, including goals, line-ups, and commentary",
+    "inclusion_cues": [
+     "Inter Miami FC 0-0 Chicago Fire FC",
+     "Inter Miami FC 3 - [4] Orlando City",
+     "Inter Miami FC [2] - 0 Portland Timbers"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: cf montréal, miami fc, angeles fc, toronto fc, fc inter, fc cincinnati, vancouver whitecaps, jose earthquakes, fc denver, chicago stars, orlando city, portland timbers, dc united, red bulls, austin fc\nPosts (one per line, title first):\n- Real Salt Lake 0 - 2 Inter Miami FC - Luis Suarez 83' (great goal)\n- San Diego FC 2 - [1] Los Angeles FC - Denis Bouanga 82' - Assit Son Heung-min\n- Match Thread: FC Cincinnati vs Vancouver Whitecaps / # 7/22 - 7:30 PM EDT: FC Cincinnati 0-0 Vancouver Whitecaps * * * **Venue:** TQL Stadium * * * **LINE-UPS** **FC Cincinnati** Roman Celentano, Matt Miazga, Samuel Gidi, Miles Robinson, Obinna Nwobodo, Gerardo Valenzuela, Evander, Ender Echenique, \n- Match Thread: Inter Miami CF vs Chicago Fire FC / # 7/22 - 7:30 PM EDT: Inter Miami CF 0-0 Chicago Fire FC * * * **Venue:** Nu Stadium Auto-refreshing reddit comments link * * * **LINE-UPS** **Inter Miami CF** Rocco Ríos Novo, Micael, Ian Fray, Sergio Reguilón, Facundo Mura, Yannick Bright, Telasco \n- Match Thread: CF Montréal vs Inter Miami CF / # 7/25 - 7:30 PM EDT: CF Montréal 0-0 Inter Miami CF * * * **Venue:** Stade Saputo * * * **LINE-UPS** **CF Montréal** Sébastian Breza, Luca Petrasso, Efraín Morales, Brayan Vera, Dawid Bugaj, Matthew Longstaff, Samuel Piette, Daniel Ríos, Prince Owusu, H\n- Kailen Sheridan save vs. Barbra Banda / In today’s Orlando Pride-North Carolina Courage matchup\n- San Jose 0-1 Austin - Joseph Rosales 9'\n- Colorado Rapids 2-[3] Inter Miami - Lionel Messi 79'\n- DC United [1]-0 Chicago Fire - Tai Baribo 41'\n- LAFC 0-2 San Jose - Timo Werner 56'\n- Inter Miami 3 - [4] Orlando City - Tyrese Spicer 90+3'\n- Charlotte 0-2 Atlanta Utd - Cooper Sanchez 71'\n- LA Galaxy [1] - 2 Sporting Kansas City - Marco Reus 82'\n- New York City 2 - [2] Inter Miami - Lionel Messi 61' (Free-kick)\n- LAFC [3] - 0 Real Salt Lake - DeAndre Yedlin 68' OG (Son Heung-min cross)\n- LAFC [1] - 0 Real Salt Lake | Son Heung-min 12'\n- Red Bull New York [2]-1 FC Cincinnati - Emil Forsberg freekick 48'\n- New York City 2 - [3] Inter Miami - Micael 74'\n- Minnesota 0-1 Real Salt Lake - Zach Booth 22'\n- Nashville SC 3-0 Orlando City - Sam Surridge 55'\n- Richmond Kickers [1] - 0 Loudon FC Lucca Dourado 90+6' US Open Cup\n- LA Galaxy [1]-0 Real Salt Lake | Marco Reus free kick 9'\n- RB New York [1] - FC Cincinnati 0 - Julian Zakrzewski Hall 12’\n- Inter Miami [6]-4 Philadelphia Union - Rodrigo De Paul 90+3'\n- Inter Miami [2] - 0 Portland Timbers - German Berterame 42' (Messi great assist)\n- Los Angeles FC 1-0 Sporting KC - Son Heung-min 5'\n- Washington Spirit [1] - 0 Seattle Reign - Leicy Santos 17’\n- Nashville SC [1]-0 Atlanta United - Shakur Mohammed 79'\n- Spokane Velocity 2 - [1] Richmond Kickers 33' Tarik Pannholzer\n- Sporting KC [1] - 1 Columbus Crew - Dejan Joveljić 48' (Great Counter)\n- San Diego FC [1]-1 Real Salt Lake - Marcus Ingvartsen 27'\n- San Jose Earthquakes 2 - [3] FC Dallas - Sam Sarver 90+3' (great celebration)\n- Austin FC 0-2 Los Angeles Galaxy - Erik Thommy 78'\n- Philadelphia Union [1]-1 New York City - Indiana Vassilev penalty 89'\n- CF Montreal 1-0 Orlando City - Daniel Rios penalty 90'+4'\n- Los Angeles FC 2 - 0 Cruz Azul - David Martínez 39'\n- Vancouver Whitecaps 1-0 Minnesota - Sebastian Berhalter penalty 8'\n- FC Dallas [3] - 1 Real Salt Lake - Sam Sarver '90+2\n- Richmond Kickers [2] - 0 NOVA FC Lucca Dourado 88' US Open Cup (Great Goal)\n- Washington Spirit [1] - 0 CF Pachuca - Claudia Martinez 81’\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Soccer Match Threads\", \"purpose\": \"Discuss ongoing football matches and player performances\", \"emotion_tone\": \"Excited and competitive\", \"description\": \"Posts about current soccer matches, player goals, assists, and team lineups\", \"inclusion_cues\": [\"Match Thread: ...\", \"FC ... vs ...\", \"... 0-0 ...\", \"... 83' (great goal)\", \"... 90+3' (great celebration)\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Soccer Match Threads",
+      "purpose": "Discuss ongoing football matches and player performances",
+      "emotion_tone": "Excited and competitive",
+      "description": "Posts about current soccer matches, player goals, assists, and team lineups",
+      "inclusion_cues": [
+       "Match Thread: ...",
+       "FC ... vs ...",
+       "... 0-0 ...",
+       "... 83' (great goal)",
+       "... 90+3' (great celebration)"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 114,
+   "seed": 2799025316,
+   "seconds": 2.17
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: cf montréal, miami fc, angeles fc, toronto fc, fc inter, fc cincinnati, vancouver whitecaps, jose earthquakes, fc denver, chicago stars, orlando city, portland timbers, dc united, red bulls, austin fc\nPosts (one per line, title first):\n- Real Salt Lake 0 - 2 Inter Miami FC - Luis Suarez 83' (great goal)\n- San Diego FC 2 - [1] Los Angeles FC - Denis Bouanga 82' - Assit Son Heung-min\n- Match Thread: FC Cincinnati vs Vancouver Whitecaps / # 7/22 - 7:30 PM EDT: FC Cincinnati 0-0 Vancouver Whitecaps * * * **Venue:** TQL Stadium * * * **LINE-UPS** **FC Cincinnati** Roman Celentano, Matt Miazga, Samuel Gidi, Miles Robinson, Obinna Nwobodo, Gerardo Valenzuela, Evander, Ender Echenique, \n- Match Thread: Inter Miami CF vs Chicago Fire FC / # 7/22 - 7:30 PM EDT: Inter Miami CF 0-0 Chicago Fire FC * * * **Venue:** Nu Stadium Auto-refreshing reddit comments link * * * **LINE-UPS** **Inter Miami CF** Rocco Ríos Novo, Micael, Ian Fray, Sergio Reguilón, Facundo Mura, Yannick Bright, Telasco \n- Match Thread: CF Montréal vs Inter Miami CF / # 7/25 - 7:30 PM EDT: CF Montréal 0-0 Inter Miami CF * * * **Venue:** Stade Saputo * * * **LINE-UPS** **CF Montréal** Sébastian Breza, Luca Petrasso, Efraín Morales, Brayan Vera, Dawid Bugaj, Matthew Longstaff, Samuel Piette, Daniel Ríos, Prince Owusu, H\n- Kailen Sheridan save vs. Barbra Banda / In today’s Orlando Pride-North Carolina Courage matchup\n- San Jose 0-1 Austin - Joseph Rosales 9'\n- Colorado Rapids 2-[3] Inter Miami - Lionel Messi 79'\n- DC United [1]-0 Chicago Fire - Tai Baribo 41'\n- LAFC 0-2 San Jose - Timo Werner 56'\n- Inter Miami 3 - [4] Orlando City - Tyrese Spicer 90+3'\n- Charlotte 0-2 Atlanta Utd - Cooper Sanchez 71'\n- LA Galaxy [1] - 2 Sporting Kansas City - Marco Reus 82'\n- New York City 2 - [2] Inter Miami - Lionel Messi 61' (Free-kick)\n- LAFC [3] - 0 Real Salt Lake - DeAndre Yedlin 68' OG (Son Heung-min cross)\n- LAFC [1] - 0 Real Salt Lake | Son Heung-min 12'\n- Red Bull New York [2]-1 FC Cincinnati - Emil Forsberg freekick 48'\n- New York City 2 - [3] Inter Miami - Micael 74'\n- Minnesota 0-1 Real Salt Lake - Zach Booth 22'\n- Nashville SC 3-0 Orlando City - Sam Surridge 55'\n- Richmond Kickers [1] - 0 Loudon FC Lucca Dourado 90+6' US Open Cup\n- LA Galaxy [1]-0 Real Salt Lake | Marco Reus free kick 9'\n- RB New York [1] - FC Cincinnati 0 - Julian Zakrzewski Hall 12’\n- Inter Miami [6]-4 Philadelphia Union - Rodrigo De Paul 90+3'\n- Inter Miami [2] - 0 Portland Timbers - German Berterame 42' (Messi great assist)\n- Los Angeles FC 1-0 Sporting KC - Son Heung-min 5'\n- Washington Spirit [1] - 0 Seattle Reign - Leicy Santos 17’\n- Nashville SC [1]-0 Atlanta United - Shakur Mohammed 79'\n- Spokane Velocity 2 - [1] Richmond Kickers 33' Tarik Pannholzer\n- Sporting KC [1] - 1 Columbus Crew - Dejan Joveljić 48' (Great Counter)\n- San Diego FC [1]-1 Real Salt Lake - Marcus Ingvartsen 27'\n- San Jose Earthquakes 2 - [3] FC Dallas - Sam Sarver 90+3' (great celebration)\n- Austin FC 0-2 Los Angeles Galaxy - Erik Thommy 78'\n- Philadelphia Union [1]-1 New York City - Indiana Vassilev penalty 89'\n- CF Montreal 1-0 Orlando City - Daniel Rios penalty 90'+4'\n- Los Angeles FC 2 - 0 Cruz Azul - David Martínez 39'\n- Vancouver Whitecaps 1-0 Minnesota - Sebastian Berhalter penalty 8'\n- FC Dallas [3] - 1 Real Salt Lake - Sam Sarver '90+2\n- Richmond Kickers [2] - 0 NOVA FC Lucca Dourado 88' US Open Cup (Great Goal)\n- Washington Spirit [1] - 0 CF Pachuca - Claudia Martinez 81’\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Inter Miami FC\", \"purpose\": \"Match analysis and commentary\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts discussing Inter Miami FC matches, including goals, line-ups, and commentary\", \"inclusion_cues\": [\"Inter Miami FC 0-0 Chicago Fire FC\", \"Inter Miami FC 3 - [4] Orlando City\", \"Inter Miami FC [2] - 0 Portland Timbers\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Inter Miami FC",
+      "purpose": "Match analysis and commentary",
+      "emotion_tone": "Excitement",
+      "description": "Posts discussing Inter Miami FC matches, including goals, line-ups, and commentary",
+      "inclusion_cues": [
+       "Inter Miami FC 0-0 Chicago Fire FC",
+       "Inter Miami FC 3 - [4] Orlando City",
+       "Inter Miami FC [2] - 0 Portland Timbers"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 105,
+   "seed": 1390707364,
+   "seconds": 0.67
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: cf montréal, miami fc, angeles fc, toronto fc, fc inter, fc cincinnati, vancouver whitecaps, jose earthquakes, fc denver, chicago stars, orlando city, portland timbers, dc united, red bulls, austin fc\nPosts (one per line, title first):\n- Real Salt Lake 0 - 2 Inter Miami FC - Luis Suarez 83' (great goal)\n- San Diego FC 2 - [1] Los Angeles FC - Denis Bouanga 82' - Assit Son Heung-min\n- Match Thread: FC Cincinnati vs Vancouver Whitecaps / # 7/22 - 7:30 PM EDT: FC Cincinnati 0-0 Vancouver Whitecaps * * * **Venue:** TQL Stadium * * * **LINE-UPS** **FC Cincinnati** Roman Celentano, Matt Miazga, Samuel Gidi, Miles Robinson, Obinna Nwobodo, Gerardo Valenzuela, Evander, Ender Echenique, \n- Match Thread: Inter Miami CF vs Chicago Fire FC / # 7/22 - 7:30 PM EDT: Inter Miami CF 0-0 Chicago Fire FC * * * **Venue:** Nu Stadium Auto-refreshing reddit comments link * * * **LINE-UPS** **Inter Miami CF** Rocco Ríos Novo, Micael, Ian Fray, Sergio Reguilón, Facundo Mura, Yannick Bright, Telasco \n- Match Thread: CF Montréal vs Inter Miami CF / # 7/25 - 7:30 PM EDT: CF Montréal 0-0 Inter Miami CF * * * **Venue:** Stade Saputo * * * **LINE-UPS** **CF Montréal** Sébastian Breza, Luca Petrasso, Efraín Morales, Brayan Vera, Dawid Bugaj, Matthew Longstaff, Samuel Piette, Daniel Ríos, Prince Owusu, H\n- Kailen Sheridan save vs. Barbra Banda / In today’s Orlando Pride-North Carolina Courage matchup\n- San Jose 0-1 Austin - Joseph Rosales 9'\n- Colorado Rapids 2-[3] Inter Miami - Lionel Messi 79'\n- DC United [1]-0 Chicago Fire - Tai Baribo 41'\n- LAFC 0-2 San Jose - Timo Werner 56'\n- Inter Miami 3 - [4] Orlando City - Tyrese Spicer 90+3'\n- Charlotte 0-2 Atlanta Utd - Cooper Sanchez 71'\n- LA Galaxy [1] - 2 Sporting Kansas City - Marco Reus 82'\n- New York City 2 - [2] Inter Miami - Lionel Messi 61' (Free-kick)\n- LAFC [3] - 0 Real Salt Lake - DeAndre Yedlin 68' OG (Son Heung-min cross)\n- LAFC [1] - 0 Real Salt Lake | Son Heung-min 12'\n- Red Bull New York [2]-1 FC Cincinnati - Emil Forsberg freekick 48'\n- New York City 2 - [3] Inter Miami - Micael 74'\n- Minnesota 0-1 Real Salt Lake - Zach Booth 22'\n- Nashville SC 3-0 Orlando City - Sam Surridge 55'\n- Richmond Kickers [1] - 0 Loudon FC Lucca Dourado 90+6' US Open Cup\n- LA Galaxy [1]-0 Real Salt Lake | Marco Reus free kick 9'\n- RB New York [1] - FC Cincinnati 0 - Julian Zakrzewski Hall 12’\n- Inter Miami [6]-4 Philadelphia Union - Rodrigo De Paul 90+3'\n- Inter Miami [2] - 0 Portland Timbers - German Berterame 42' (Messi great assist)\n- Los Angeles FC 1-0 Sporting KC - Son Heung-min 5'\n- Washington Spirit [1] - 0 Seattle Reign - Leicy Santos 17’\n- Nashville SC [1]-0 Atlanta United - Shakur Mohammed 79'\n- Spokane Velocity 2 - [1] Richmond Kickers 33' Tarik Pannholzer\n- Sporting KC [1] - 1 Columbus Crew - Dejan Joveljić 48' (Great Counter)\n- San Diego FC [1]-1 Real Salt Lake - Marcus Ingvartsen 27'\n- San Jose Earthquakes 2 - [3] FC Dallas - Sam Sarver 90+3' (great celebration)\n- Austin FC 0-2 Los Angeles Galaxy - Erik Thommy 78'\n- Philadelphia Union [1]-1 New York City - Indiana Vassilev penalty 89'\n- CF Montreal 1-0 Orlando City - Daniel Rios penalty 90'+4'\n- Los Angeles FC 2 - 0 Cruz Azul - David Martínez 39'\n- Vancouver Whitecaps 1-0 Minnesota - Sebastian Berhalter penalty 8'\n- FC Dallas [3] - 1 Real Salt Lake - Sam Sarver '90+2\n- Richmond Kickers [2] - 0 NOVA FC Lucca Dourado 88' US Open Cup (Great Goal)\n- Washington Spirit [1] - 0 CF Pachuca - Claudia Martinez 81’\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Soccer Match Threads\", \"purpose\": \"Discuss ongoing football matches and player performances\", \"emotion_tone\": \"Excited and competitive\", \"description\": \"Posts about current soccer matches, player goals, assists, and team lineups\", \"inclusion_cues\": [\"Match Thread: ...\", \"FC ... vs ...\", \"... 0-0 ...\", \"... 83' (great goal)\", \"... 90+3' (great celebration)\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Inter Miami FC\", \"purpose\": \"Match analysis and commentary\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts discussing Inter Miami FC matches, including goals, line-ups, and commentary\", \"inclusion_cues\": [\"Inter Miami FC 0-0 Chicago Fire FC\", \"Inter Miami FC 3 - [4] Orlando City\", \"Inter Miami FC [2] - 0 Portland Timbers\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Inter Miami FC Match Analysis\", \"purpose\": \"Discuss Inter Miami FC matches and player performances\", \"emotion_tone\": \"Excitement and competitive\", \"description\": \"Posts about Inter Miami FC matches, including goals, line-ups, and commentary\", \"inclusion_cues\": [\"Inter Miami FC 0-0 Chicago Fire FC\", \"Inter Miami FC 3 - [4] Orlando City\", \"Inter Miami FC [2] - 0 Portland Timbers\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 112,
+   "seed": 2603421003,
+   "seconds": 0.71
+  }
+ ]
+}

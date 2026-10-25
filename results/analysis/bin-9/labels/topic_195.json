@@ -1,0 +1,183 @@
+{
+ "period_bin": 9,
+ "topic_id": 195,
+ "keywords": "standings md30, group standings, season standings, standings matchday, games turkish, league table, turkish süper, greek superleague, kurdish team, championship group, league championship, relegation battle, matchday eliteserien, eliteserien table, scorers list",
+ "n_sample_posts": 32,
+ "sample_ids": [
+  "1rysxee",
+  "1sr3mh1",
+  "1sr3mh1",
+  "1sr3mh1",
+  "1sr3mh1",
+  "1rcrguf",
+  "1t1syet",
+  "1ri7na3",
+  "1sq947r",
+  "1tgi7jv",
+  "1ri67bh",
+  "1to5v7r",
+  "1rv5tzd",
+  "1qtrpj5",
+  "1s19bue",
+  "1t2w2df",
+  "1rvp5zt",
+  "1sjnxqb",
+  "1sh3lxd",
+  "1rp7zvv",
+  "1sr0ohl",
+  "1v79lye",
+  "1sxdj8f",
+  "1sr0nfl",
+  "1sr3woi",
+  "1rc2cir",
+  "1skkekb",
+  "1rkvumb",
+  "1sdqmgq",
+  "1sjp5lf",
+  "1qzl0qx",
+  "1sr0occ"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Turkish Super League Standings",
+  "purpose": "Tracking standings in Turkish Super League after matchdays",
+  "emotion_tone": "informative",
+  "description": "Posts related to Turkish Super League standings after matchdays, including postponed games and relegation battles.",
+  "inclusion_cues": [
+   "Turkish Süper Lig standings after MD 27",
+   "Amed SK is promoted to Super Lig",
+   "Turkish Süper Lig standings after MD30",
+   "Super League top scorers list after MD 30"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Turkish Super League Standings",
+    "purpose": "Tracking standings in Turkish Super League after matchdays",
+    "emotion_tone": "informative",
+    "description": "Posts related to Turkish Super League standings after matchdays, including postponed games and relegation battles",
+    "inclusion_cues": [
+     "Turkish Süper Lig standings after MD 27",
+     "Amed SK is promoted to Super Lig",
+     "Turkish Süper Lig standings after MD30",
+     "Greek Superleague standings after Matchday 23",
+     "Super League top scorers list after MD 30"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Turkish Super League Standings",
+    "purpose": "Tracking standings in Turkish Super League after matchdays",
+    "emotion_tone": "informative",
+    "description": "Posts related to Turkish Super League standings after matchdays, including postponed games and relegation battles.",
+    "inclusion_cues": [
+     "Turkish Süper Lig standings after MD 27",
+     "Amed SK is promoted to Super Lig",
+     "Turkish Süper Lig standings after MD30",
+     "Super League top scorers list after MD 30"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: standings md30, group standings, season standings, standings matchday, games turkish, league table, turkish süper, greek superleague, kurdish team, championship group, league championship, relegation battle, matchday eliteserien, eliteserien table, scorers list\nPosts (one per line, title first):\n- Turkish Süper Lig standings after MD 27 / Göztepe-Galatasaray and Rizespor-Samsunspor were postponed due to European games.\n- Turkish Süper Lig standings after MD30\n- Turkish Süper Lig standings after MD30\n- Turkish Süper Lig standings after MD30\n- Turkish Süper Lig standings after MD30\n- Süper Lig table after matchday 23\n- Amed SK is promoted to Super Lig. First Kurdish team in Super Lig after decades.\n- Greek Superleague standings after Matchday 23\n- Super League top scorers list after MD 30.\n- Greek Super League Championship Round final table\n- Turkish Super League table after matchday 24.\n- Eliteserien table after matchday 10\n- Greek Superleague Regular season standings (after Matchday 25 out of 26)\n- Greek Superleague standings after Matchday 19\n- Greek Superleague after the completion of the Regular Season. Playoffs - Playouts to start in 2 weeks\n- Turkish Süper Lig standings after MD 32\n- Turkish Süper Lig standings after MD26\n- Turkish Super League table after MD 29.\n- Turkish Süper Lig standings after MD28\n- Greek Superleague standings after Regular Season Matchday 24/26\n- Turkish Süper Lig standings after MD30\n- Brack Super League table after matchday 1\n- Turkish Süper Lig standings after MD31 / 2 points in 3 games will make Gala champion. Relegation battle gets intense.\n- Turkish Süper Lig standings after MD30\n- Turkish 1. Lig standings after Matchday 36\n- Greek Superleague table after Matchday 22\n- Turkish 1. Lig (second tier) table after matchday 35\n- Greek Superleague table with the two postponed games completed and everyone now having 23 games played\n- Greek Superleague Championship Group standings after Matchday 1 out of 6\n- Turkish Super League table after MD 29.\n- Superleague Greece Standings after Matchday 20\n- Turkish Süper Lig standings after MD30\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Turkish Super League Standings\", \"purpose\": \"Tracking standings in Turkish Super League after matchdays\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to Turkish Super League standings after matchdays, including postponed games and relegation battles\", \"inclusion_cues\": [\"Turkish Süper Lig standings after MD 27\", \"Amed SK is promoted to Super Lig\", \"Turkish Süper Lig standings after MD30\", \"Greek Superleague standings after Matchday 23\", \"Super League top scorers list after MD 30\"]}]}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Turkish Super League Standings",
+      "purpose": "Tracking standings in Turkish Super League after matchdays",
+      "emotion_tone": "informative",
+      "description": "Posts related to Turkish Super League standings after matchdays, including postponed games and relegation battles",
+      "inclusion_cues": [
+       "Turkish Süper Lig standings after MD 27",
+       "Amed SK is promoted to Super Lig",
+       "Turkish Süper Lig standings after MD30",
+       "Greek Superleague standings after Matchday 23",
+       "Super League top scorers list after MD 30"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 136,
+   "seed": 537279488,
+   "seconds": 0.51
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: standings md30, group standings, season standings, standings matchday, games turkish, league table, turkish süper, greek superleague, kurdish team, championship group, league championship, relegation battle, matchday eliteserien, eliteserien table, scorers list\nPosts (one per line, title first):\n- Turkish Süper Lig standings after MD 27 / Göztepe-Galatasaray and Rizespor-Samsunspor were postponed due to European games.\n- Turkish Süper Lig standings after MD30\n- Turkish Süper Lig standings after MD30\n- Turkish Süper Lig standings after MD30\n- Turkish Süper Lig standings after MD30\n- Süper Lig table after matchday 23\n- Amed SK is promoted to Super Lig. First Kurdish team in Super Lig after decades.\n- Greek Superleague standings after Matchday 23\n- Super League top scorers list after MD 30.\n- Greek Super League Championship Round final table\n- Turkish Super League table after matchday 24.\n- Eliteserien table after matchday 10\n- Greek Superleague Regular season standings (after Matchday 25 out of 26)\n- Greek Superleague standings after Matchday 19\n- Greek Superleague after the completion of the Regular Season. Playoffs - Playouts to start in 2 weeks\n- Turkish Süper Lig standings after MD 32\n- Turkish Süper Lig standings after MD26\n- Turkish Super League table after MD 29.\n- Turkish Süper Lig standings after MD28\n- Greek Superleague standings after Regular Season Matchday 24/26\n- Turkish Süper Lig standings after MD30\n- Brack Super League table after matchday 1\n- Turkish Süper Lig standings after MD31 / 2 points in 3 games will make Gala champion. Relegation battle gets intense.\n- Turkish Süper Lig standings after MD30\n- Turkish 1. Lig standings after Matchday 36\n- Greek Superleague table after Matchday 22\n- Turkish 1. Lig (second tier) table after matchday 35\n- Greek Superleague table with the two postponed games completed and everyone now having 23 games played\n- Greek Superleague Championship Group standings after Matchday 1 out of 6\n- Turkish Super League table after MD 29.\n- Superleague Greece Standings after Matchday 20\n- Turkish Süper Lig standings after MD30\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Turkish Super League Standings\", \"purpose\": \"Tracking standings in Turkish Super League after matchdays\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to Turkish Super League standings after matchdays, including postponed games and relegation battles.\", \"inclusion_cues\": [\"Turkish Süper Lig standings after MD 27\", \"Amed SK is promoted to Super Lig\", \"Turkish Süper Lig standings after MD30\", \"Super League top scorers list after MD 30\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Turkish Super League Standings",
+      "purpose": "Tracking standings in Turkish Super League after matchdays",
+      "emotion_tone": "informative",
+      "description": "Posts related to Turkish Super League standings after matchdays, including postponed games and relegation battles.",
+      "inclusion_cues": [
+       "Turkish Süper Lig standings after MD 27",
+       "Amed SK is promoted to Super Lig",
+       "Turkish Süper Lig standings after MD30",
+       "Super League top scorers list after MD 30"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 124,
+   "seed": 2157854350,
+   "seconds": 0.59
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: standings md30, group standings, season standings, standings matchday, games turkish, league table, turkish süper, greek superleague, kurdish team, championship group, league championship, relegation battle, matchday eliteserien, eliteserien table, scorers list\nPosts (one per line, title first):\n- Turkish Süper Lig standings after MD 27 / Göztepe-Galatasaray and Rizespor-Samsunspor were postponed due to European games.\n- Turkish Süper Lig standings after MD30\n- Turkish Süper Lig standings after MD30\n- Turkish Süper Lig standings after MD30\n- Turkish Süper Lig standings after MD30\n- Süper Lig table after matchday 23\n- Amed SK is promoted to Super Lig. First Kurdish team in Super Lig after decades.\n- Greek Superleague standings after Matchday 23\n- Super League top scorers list after MD 30.\n- Greek Super League Championship Round final table\n- Turkish Super League table after matchday 24.\n- Eliteserien table after matchday 10\n- Greek Superleague Regular season standings (after Matchday 25 out of 26)\n- Greek Superleague standings after Matchday 19\n- Greek Superleague after the completion of the Regular Season. Playoffs - Playouts to start in 2 weeks\n- Turkish Süper Lig standings after MD 32\n- Turkish Süper Lig standings after MD26\n- Turkish Super League table after MD 29.\n- Turkish Süper Lig standings after MD28\n- Greek Superleague standings after Regular Season Matchday 24/26\n- Turkish Süper Lig standings after MD30\n- Brack Super League table after matchday 1\n- Turkish Süper Lig standings after MD31 / 2 points in 3 games will make Gala champion. Relegation battle gets intense.\n- Turkish Süper Lig standings after MD30\n- Turkish 1. Lig standings after Matchday 36\n- Greek Superleague table after Matchday 22\n- Turkish 1. Lig (second tier) table after matchday 35\n- Greek Superleague table with the two postponed games completed and everyone now having 23 games played\n- Greek Superleague Championship Group standings after Matchday 1 out of 6\n- Turkish Super League table after MD 29.\n- Superleague Greece Standings after Matchday 20\n- Turkish Süper Lig standings after MD30\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Turkish Super League Standings\", \"purpose\": \"Tracking standings in Turkish Super League after matchdays\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to Turkish Super League standings after matchdays, including postponed games and relegation battles\", \"inclusion_cues\": [\"Turkish Süper Lig standings after MD 27\", \"Amed SK is promoted to Super Lig\", \"Turkish Süper Lig standings after MD30\", \"Greek Superleague standings after Matchday 23\", \"Super League top scorers list after MD 30\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Turkish Super League Standings\", \"purpose\": \"Tracking standings in Turkish Super League after matchdays\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to Turkish Super League standings after matchdays, including postponed games and relegation battles.\", \"inclusion_cues\": [\"Turkish Süper Lig standings after MD 27\", \"Amed SK is promoted to Super Lig\", \"Turkish Süper Lig standings after MD30\", \"Super League top scorers list after MD 30\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Turkish Super League Standings\", \"purpose\": \"Tracking standings in Turkish Super League after matchdays\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to Turkish Super League standings after matchdays, including postponed games and relegation battles.\", \"inclusion_cues\": [\"Turkish Süper Lig standings after MD 27\", \"Amed SK is promoted to Super Lig\", \"Turkish Süper Lig standings after MD30\", \"Super League top scorers list after MD 30\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 122,
+   "seed": 3931951390,
+   "seconds": 0.48
+  }
+ ]
+}

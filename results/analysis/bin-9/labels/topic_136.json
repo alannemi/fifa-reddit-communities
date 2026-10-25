@@ -1,0 +1,203 @@
+{
+ "period_bin": 9,
+ "topic_id": 136,
+ "keywords": "nigeria zimbabwe, portugal nigeria, africa togo, jamaica nigeria, iran gambia, iran nigeria, nigeria terem, gambia omar, 90 portugal, angola mauritania, burkina faso, angola, equatorial guinea, guinea bissau, burundi",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "1tdrdz4",
+  "1toj40i",
+  "1s8zzhe",
+  "1ts83my",
+  "1tsafp5",
+  "1s47upp",
+  "1s49bo3",
+  "1s8pgnr",
+  "1s53592",
+  "1s8ozjd",
+  "1s8neg8",
+  "1u2dvnx",
+  "1s8pg4z",
+  "1s5euvg",
+  "1tpezez",
+  "1tynuff",
+  "1txub0m",
+  "1s8js9y",
+  "1ts9r5e",
+  "1s49j2a",
+  "1s5g319",
+  "1s5g9we",
+  "1s55rg7",
+  "1s7yep2",
+  "1s7sd0f",
+  "1txu7y9",
+  "1s5behz",
+  "1s59qxb",
+  "1v9j1u0",
+  "1s8nesq",
+  "1s7sdjf",
+  "1u187cg",
+  "1ts7v3k",
+  "1u188yx",
+  "1s7zcet",
+  "1toj3ke",
+  "1s598wz",
+  "1txx92n",
+  "1s48p65",
+  "1tph3f9"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Africa Football",
+  "purpose": "Coverage of African football matches and events",
+  "emotion_tone": "neutral",
+  "description": "Posts about African football matches, including teams from Nigeria, Zimbabwe, Portugal, Burkina Faso, Ghana, and others, with focus on results and commentary.",
+  "inclusion_cues": [
+   "Nigeria vs. Zimbabwe",
+   "Burkina Faso vs. Guinea Bissau",
+   "Jamaica vs. Nigeria",
+   "Djibouti vs. South Sudan",
+   "Burundi vs. Chad",
+   "Portugal vs. Nigeria",
+   "Equatorial Guinea vs. Madagascar",
+   "Angola vs. Mauritania"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Africa Football",
+    "purpose": "Coverage of African football matches and events",
+    "emotion_tone": "neutral",
+    "description": "Posts about African football matches, teams, and events, including results, player stats, and match highlights.",
+    "inclusion_cues": [
+     "Nigeria 2-0 Zimbabwe",
+     "Burkina Faso 1-0 Guinea Bissau",
+     "Equatorial Guinea 1-0 Madagascar",
+     "Benin 1-0 Niger",
+     "Djibouti 0-2 South Sudan"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Africa Football",
+    "purpose": "Coverage of African football matches and events",
+    "emotion_tone": "neutral",
+    "description": "Posts about African football matches, including teams from Nigeria, Zimbabwe, Portugal, Burkina Faso, Ghana, and others, with focus on results and commentary.",
+    "inclusion_cues": [
+     "Nigeria vs. Zimbabwe",
+     "Burkina Faso vs. Guinea Bissau",
+     "Jamaica vs. Nigeria",
+     "Djibouti vs. South Sudan",
+     "Burundi vs. Chad",
+     "Portugal vs. Nigeria",
+     "Equatorial Guinea vs. Madagascar",
+     "Angola vs. Mauritania"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: nigeria zimbabwe, portugal nigeria, africa togo, jamaica nigeria, iran gambia, iran nigeria, nigeria terem, gambia omar, 90 portugal, angola mauritania, burkina faso, angola, equatorial guinea, guinea bissau, burundi\nPosts (one per line, title first):\n- Al Hilal Omdurman Crowned Rwanda Premier League Champions Amid Sudan Conflict\n- Nigeria 2-0 Zimbabwe - Femi Azeez 63'\n- Burkina Faso 1-0 Guinea Bissau - Adamo Nagalo 85'\n- Jamaica 0-1 Nigeria - Alhassan Yusuf 3'\n- Jamaica 0-3 Nigeria - Alhassan Yusuf 90'+1'\n- Djibouti 0-1 South Sudan - Teng K. 31'\n- Djibouti 0-3 South Sudan - Peter Maker 66'\n- Burundi 4-0 Chad [8-0 on agg.] - Abdoul Karim 80'\n- Iran 0-1 Nigeria - Moses Simon 6'\n- Ethiopia 1-0 Sao Tome and Principe [4-0 on agg.] - Chernet Gugsa 7'\n- Burundi 1-0 Chad [5-0 on agg.] - Bienvenue Kanakimana 14'\n- Portugal [1] - [1] Nigeria - A. Adams 37'\n- Burundi 3-0 Chad [7-0 on agg.] - Jean Girumugisha 71'\n- Rwanda 1-0 Grenada - L-Jacque M. 45'+2'\n- Jamaica 1-0 India - Courtney Clarke 8'\n- Sierra Leone 1-0 Liberia - Abdoulie Jarjue Kabia 67'\n- Central Africa 1-0 Togo - Goduine Koyalipou 26'\n- Equatorial Guinea 1-0 Madagascar - Loren Zuniga 45'+3'\n- Jamaica 0-2 Nigeria - Terem Moffi 59'\n- Djibouti 0-4 South Sudan - Keer Majak 81'\n- Rwanda 3-0 Grenada - Djihad Bizimana 69'\n- Rwanda 4-0 Grenada - Hakim Sahabo 83'\n- Iran 0-2 Nigeria - Akor Adams 51'\n- Rwanda 1-0 Estonia - Abeddy Biramahire 30'\n- Grenada 0-1 Kenya - Austine Odhiambo 13'\n- Benin 1-0 Niger - Amiro Amadou 35'\n- Sao Tome and Principe 0-3 Ethiopia - Abel Yalew 78'\n- Benin 1-0 Liberia - Felipe Silva 85'\n- Nigeria 1 - [3] Malawi - Temwa Chawinga 90'+5\n- Burundi 2-0 Chad [6-0 on agg.] - Bienvenue Kanakimana 22'\n- Grenada 0-2 Kenya - Ryan Ogam 18'\n- Ethiopia 0-1 Malawi - Babatunde Adepoju 19'\n- Jamaica 0-1 Nigeria - Abdullahi Shehu 3'\n- Ethiopia 0-1 Malawi - Babatunde Adepoju 19'\n- Rwanda 2-0 Estonia - Leroy Mickels 51'\n- Nigeria 1-0 Zimbabwe - Femi Azeez 5'\n- Sao Tome and Principe 0-1 Ethiopia - Canaan Markneh 23'\n- Angola 1-0 Mauritania - Manuel Keliano 85'\n- Djibouti 0-2 South Sudan - Justin Bangasi 49'\n- Jamaica 2-0 India - Kaheim Dixon 78'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Africa Football\", \"purpose\": \"Coverage of African football matches and events\", \"emotion_tone\": \"neutral\", \"description\": \"Posts about African football matches, teams, and events, including results, player stats, and match highlights.\", \"inclusion_cues\": [\"Nigeria 2-0 Zimbabwe\", \"Burkina Faso 1-0 Guinea Bissau\", \"Equatorial Guinea 1-0 Madagascar\", \"Benin 1-0 Niger\", \"Djibouti 0-2 South Sudan\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Africa Football",
+      "purpose": "Coverage of African football matches and events",
+      "emotion_tone": "neutral",
+      "description": "Posts about African football matches, teams, and events, including results, player stats, and match highlights.",
+      "inclusion_cues": [
+       "Nigeria 2-0 Zimbabwe",
+       "Burkina Faso 1-0 Guinea Bissau",
+       "Equatorial Guinea 1-0 Madagascar",
+       "Benin 1-0 Niger",
+       "Djibouti 0-2 South Sudan"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 127,
+   "seed": 2555492402,
+   "seconds": 0.79
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: nigeria zimbabwe, portugal nigeria, africa togo, jamaica nigeria, iran gambia, iran nigeria, nigeria terem, gambia omar, 90 portugal, angola mauritania, burkina faso, angola, equatorial guinea, guinea bissau, burundi\nPosts (one per line, title first):\n- Al Hilal Omdurman Crowned Rwanda Premier League Champions Amid Sudan Conflict\n- Nigeria 2-0 Zimbabwe - Femi Azeez 63'\n- Burkina Faso 1-0 Guinea Bissau - Adamo Nagalo 85'\n- Jamaica 0-1 Nigeria - Alhassan Yusuf 3'\n- Jamaica 0-3 Nigeria - Alhassan Yusuf 90'+1'\n- Djibouti 0-1 South Sudan - Teng K. 31'\n- Djibouti 0-3 South Sudan - Peter Maker 66'\n- Burundi 4-0 Chad [8-0 on agg.] - Abdoul Karim 80'\n- Iran 0-1 Nigeria - Moses Simon 6'\n- Ethiopia 1-0 Sao Tome and Principe [4-0 on agg.] - Chernet Gugsa 7'\n- Burundi 1-0 Chad [5-0 on agg.] - Bienvenue Kanakimana 14'\n- Portugal [1] - [1] Nigeria - A. Adams 37'\n- Burundi 3-0 Chad [7-0 on agg.] - Jean Girumugisha 71'\n- Rwanda 1-0 Grenada - L-Jacque M. 45'+2'\n- Jamaica 1-0 India - Courtney Clarke 8'\n- Sierra Leone 1-0 Liberia - Abdoulie Jarjue Kabia 67'\n- Central Africa 1-0 Togo - Goduine Koyalipou 26'\n- Equatorial Guinea 1-0 Madagascar - Loren Zuniga 45'+3'\n- Jamaica 0-2 Nigeria - Terem Moffi 59'\n- Djibouti 0-4 South Sudan - Keer Majak 81'\n- Rwanda 3-0 Grenada - Djihad Bizimana 69'\n- Rwanda 4-0 Grenada - Hakim Sahabo 83'\n- Iran 0-2 Nigeria - Akor Adams 51'\n- Rwanda 1-0 Estonia - Abeddy Biramahire 30'\n- Grenada 0-1 Kenya - Austine Odhiambo 13'\n- Benin 1-0 Niger - Amiro Amadou 35'\n- Sao Tome and Principe 0-3 Ethiopia - Abel Yalew 78'\n- Benin 1-0 Liberia - Felipe Silva 85'\n- Nigeria 1 - [3] Malawi - Temwa Chawinga 90'+5\n- Burundi 2-0 Chad [6-0 on agg.] - Bienvenue Kanakimana 22'\n- Grenada 0-2 Kenya - Ryan Ogam 18'\n- Ethiopia 0-1 Malawi - Babatunde Adepoju 19'\n- Jamaica 0-1 Nigeria - Abdullahi Shehu 3'\n- Ethiopia 0-1 Malawi - Babatunde Adepoju 19'\n- Rwanda 2-0 Estonia - Leroy Mickels 51'\n- Nigeria 1-0 Zimbabwe - Femi Azeez 5'\n- Sao Tome and Principe 0-1 Ethiopia - Canaan Markneh 23'\n- Angola 1-0 Mauritania - Manuel Keliano 85'\n- Djibouti 0-2 South Sudan - Justin Bangasi 49'\n- Jamaica 2-0 India - Kaheim Dixon 78'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Africa Football\", \"purpose\": \"Coverage of African football matches and events\", \"emotion_tone\": \"neutral\", \"description\": \"Posts about African football matches, including teams from Nigeria, Zimbabwe, Portugal, Burkina Faso, Ghana, and others, with focus on results and commentary.\", \"inclusion_cues\": [\"Nigeria vs. Zimbabwe\", \"Burkina Faso vs. Guinea Bissau\", \"Jamaica vs. Nigeria\", \"Djibouti vs. South Sudan\", \"Burundi vs. Chad\", \"Portugal vs. Nigeria\", \"Equatorial Guinea vs. Madagascar\", \"Angola vs. Mauritania\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Africa Football",
+      "purpose": "Coverage of African football matches and events",
+      "emotion_tone": "neutral",
+      "description": "Posts about African football matches, including teams from Nigeria, Zimbabwe, Portugal, Burkina Faso, Ghana, and others, with focus on results and commentary.",
+      "inclusion_cues": [
+       "Nigeria vs. Zimbabwe",
+       "Burkina Faso vs. Guinea Bissau",
+       "Jamaica vs. Nigeria",
+       "Djibouti vs. South Sudan",
+       "Burundi vs. Chad",
+       "Portugal vs. Nigeria",
+       "Equatorial Guinea vs. Madagascar",
+       "Angola vs. Mauritania"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 151,
+   "seed": 469881750,
+   "seconds": 2.67
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: nigeria zimbabwe, portugal nigeria, africa togo, jamaica nigeria, iran gambia, iran nigeria, nigeria terem, gambia omar, 90 portugal, angola mauritania, burkina faso, angola, equatorial guinea, guinea bissau, burundi\nPosts (one per line, title first):\n- Al Hilal Omdurman Crowned Rwanda Premier League Champions Amid Sudan Conflict\n- Nigeria 2-0 Zimbabwe - Femi Azeez 63'\n- Burkina Faso 1-0 Guinea Bissau - Adamo Nagalo 85'\n- Jamaica 0-1 Nigeria - Alhassan Yusuf 3'\n- Jamaica 0-3 Nigeria - Alhassan Yusuf 90'+1'\n- Djibouti 0-1 South Sudan - Teng K. 31'\n- Djibouti 0-3 South Sudan - Peter Maker 66'\n- Burundi 4-0 Chad [8-0 on agg.] - Abdoul Karim 80'\n- Iran 0-1 Nigeria - Moses Simon 6'\n- Ethiopia 1-0 Sao Tome and Principe [4-0 on agg.] - Chernet Gugsa 7'\n- Burundi 1-0 Chad [5-0 on agg.] - Bienvenue Kanakimana 14'\n- Portugal [1] - [1] Nigeria - A. Adams 37'\n- Burundi 3-0 Chad [7-0 on agg.] - Jean Girumugisha 71'\n- Rwanda 1-0 Grenada - L-Jacque M. 45'+2'\n- Jamaica 1-0 India - Courtney Clarke 8'\n- Sierra Leone 1-0 Liberia - Abdoulie Jarjue Kabia 67'\n- Central Africa 1-0 Togo - Goduine Koyalipou 26'\n- Equatorial Guinea 1-0 Madagascar - Loren Zuniga 45'+3'\n- Jamaica 0-2 Nigeria - Terem Moffi 59'\n- Djibouti 0-4 South Sudan - Keer Majak 81'\n- Rwanda 3-0 Grenada - Djihad Bizimana 69'\n- Rwanda 4-0 Grenada - Hakim Sahabo 83'\n- Iran 0-2 Nigeria - Akor Adams 51'\n- Rwanda 1-0 Estonia - Abeddy Biramahire 30'\n- Grenada 0-1 Kenya - Austine Odhiambo 13'\n- Benin 1-0 Niger - Amiro Amadou 35'\n- Sao Tome and Principe 0-3 Ethiopia - Abel Yalew 78'\n- Benin 1-0 Liberia - Felipe Silva 85'\n- Nigeria 1 - [3] Malawi - Temwa Chawinga 90'+5\n- Burundi 2-0 Chad [6-0 on agg.] - Bienvenue Kanakimana 22'\n- Grenada 0-2 Kenya - Ryan Ogam 18'\n- Ethiopia 0-1 Malawi - Babatunde Adepoju 19'\n- Jamaica 0-1 Nigeria - Abdullahi Shehu 3'\n- Ethiopia 0-1 Malawi - Babatunde Adepoju 19'\n- Rwanda 2-0 Estonia - Leroy Mickels 51'\n- Nigeria 1-0 Zimbabwe - Femi Azeez 5'\n- Sao Tome and Principe 0-1 Ethiopia - Canaan Markneh 23'\n- Angola 1-0 Mauritania - Manuel Keliano 85'\n- Djibouti 0-2 South Sudan - Justin Bangasi 49'\n- Jamaica 2-0 India - Kaheim Dixon 78'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Africa Football\", \"purpose\": \"Coverage of African football matches and events\", \"emotion_tone\": \"neutral\", \"description\": \"Posts about African football matches, teams, and events, including results, player stats, and match highlights.\", \"inclusion_cues\": [\"Nigeria 2-0 Zimbabwe\", \"Burkina Faso 1-0 Guinea Bissau\", \"Equatorial Guinea 1-0 Madagascar\", \"Benin 1-0 Niger\", \"Djibouti 0-2 South Sudan\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Africa Football\", \"purpose\": \"Coverage of African football matches and events\", \"emotion_tone\": \"neutral\", \"description\": \"Posts about African football matches, including teams from Nigeria, Zimbabwe, Portugal, Burkina Faso, Ghana, and others, with focus on results and commentary.\", \"inclusion_cues\": [\"Nigeria vs. Zimbabwe\", \"Burkina Faso vs. Guinea Bissau\", \"Jamaica vs. Nigeria\", \"Djibouti vs. South Sudan\", \"Burundi vs. Chad\", \"Portugal vs. Nigeria\", \"Equatorial Guinea vs. Madagascar\", \"Angola vs. Mauritania\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Africa Football\", \"purpose\": \"Coverage of African football matches and events\", \"emotion_tone\": \"neutral\", \"description\": \"Posts about African football matches, including teams from Nigeria, Zimbabwe, Portugal, Burkina Faso, Ghana, and others, with focus on results and commentary.\", \"inclusion_cues\": [\"Nigeria vs. Zimbabwe\", \"Burkina Faso vs. Guinea Bissau\", \"Jamaica vs. Nigeria\", \"Djibouti vs. South Sudan\", \"Burundi vs. Chad\", \"Portugal vs. Nigeria\", \"Equatorial Guinea vs. Madagascar\", \"Angola vs. Mauritania\"]]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 564)",
+   "n_tokens": 150,
+   "seed": 1303092458,
+   "seconds": 0.84
+  }
+ ]
+}

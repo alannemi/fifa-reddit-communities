@@ -470,3 +470,13 @@ previous `llm_stats`, `elapsed_min` and `run_at` and adds `refreshed_at` (unit c
 back (`REVIEW_READY.txt` present; a refit removes the flag, so such a bin runs again); (3) one-off cell 3.4b restores the two `label`
 sections on Drive from the repository clone. Status.json on Drive for bins 3 and 5 still shows the no-op time as `labelled_at` until a
 stage next writes it; the repository copies are right.
+
+**Bin 9 handed back (2026-10-25, 21:55 UTC zip).** The 2026 World Cup period (1 February – 31 July 2026): 37,626 documents, 37,551
+modelled. The guard converged on its first trial (226 topics, target 188–282; `floor_bound: false` now recorded by the guard), 40.1 %
+raw outliers. Tiers T = 0.5608, C = 0.6861 → 3,015 reassigned, 6,780 dual, **14.0 % outliers left**. Embeddings for 2026 in 0.9 min,
+topics 5.4 min, labelling 9.9 min (48 LLM calls; 214 accepted by A, 8 identical, 3 accepted by B, 1 stalemate; no `no_answer`, every
+topic named). 1 flagged `needs_review`: topic 175 "Fallon D'Floor Nominations" (stalemate). Four calibration samples with names,
+`check --bin 9` clean. The combined topic table holds bins 1, 3, 5, 7, 9 (1,385 topics); the collect checks still report only bin 7's
+nameless topic 67 (F45). The four tournament bins of this run took 29, 29, 17 and 16 minutes end to end (bins 3 and 5 clustered
+≈ 85,000 posts each). The loop went straight on to **bin 2**, the first interim bin (October 2010 – January 2014) — this run started
+before the skip-and-restore commit `ab740195`, so cells 0.2 and 3.4b are still to be run once.

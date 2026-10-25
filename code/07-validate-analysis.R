@@ -5,8 +5,9 @@
 #
 # PURPOSE
 # -------
-# Independent checks that the tagged files (codebook v3.0: 42 original + 8
-# analysis columns) are complete, internally consistent, consistent with the
+# Independent checks that the tagged files (codebook v3.0: 42 original + 10
+# analysis columns; decision D7 of 2026-10-25 removed category_id and added
+# topic_uid / topic_name / topic_tone) are complete, internally consistent, consistent with the
 # pipeline's own tables, and that the 42 original columns are byte-identical to
 # what they were before tagging.  Every check prints PASS/FAIL; the script
 # stops with an error at the end if any check failed.  Nothing is modified.
@@ -15,16 +16,16 @@
 # --------------------
 #  A0  the period-bin table written by stage S0 (period_bins_summary.csv, when present) equals the bin table of design §4
 #  A1  row counts unchanged (per file, against the fingerprint taken by 06-tag-corpus.R)
-#  A2  column specification: master and yearly files = 42 + 8 columns in codebook order; side files 43
+#  A2  column specification: master and yearly files = 42 + 10 columns in codebook order; side files 43
 #  A3  period_bin matches the UTC calendar date of created_datetime (bin table of design §4)
 #  A4  every post has one bin in 1..9; bin sizes sum to the file; period_type consistent with the bin
 #  A5  topic_id exists in the bin's topics.csv (after overrides); -1 = outlier; empty = not modelled
-#  A6  category_id exists in the bin's categories.csv (after overrides); empty iff topic empty or -1
+#  A6  topic_uid = "<bin>-<topic_id>", topic_name and topic_tone present iff the post has a topic (not -1, not empty); names in labelled bins
 #  A7  topic_assignment consistent with topic_id (outlier <-> -1, not_modelled <-> empty, else cluster/reassigned);
 #      A7b rows without an assignment occur only in bins that have no model run yet (partial dry runs)
 #  A8  sentiment scores within [-1, 1] and label consistent with the +/-0.05 thresholds
 #  A9  the 42 original columns are unchanged (per-column xxhash64 equals the pre-write fingerprint)
-#  A10 master and post_variables.csv identical on the 8 columns
+#  A10 master and post_variables.csv identical on the 10 columns
 #  A11 yearly files equal the master's year subset on every column (per-column hashes)
 #  A12 the collection was complete (post_variables.json) — reported, not failed, for dry runs
 #
@@ -69,18 +70,13 @@ read_opt <- function(p) if (file.exists(p)) read_chr(p) else NULL
 bin_tables <- lapply(1:9, function(b) {
   d <- file.path(ANALYSIS_DIR, sprintf("bin-%d", b))
   tp <- read_opt(file.path(d, "topics.csv")); ov <- read_opt(file.path(d, "topic_overrides.csv"))
-  ct <- read_opt(file.path(d, "categories.csv")); cov <- read_opt(file.path(d, "category_overrides.csv"))
+  has_labels <- file.exists(file.path(d, "topics_labelled.csv"))
   topics <- if (is.null(tp)) NULL else {
     ids <- tp$topic_id
     if (!is.null(ov)) { mv <- ov[ov$merge_into != "", ]; ids <- setdiff(ids, mv$topic_id) }   # merged-away topics disappear
     ids
   }
-  cats <- if (is.null(ct)) NULL else {
-    ids <- ct$category_id
-    if (!is.null(cov)) { mv <- cov[cov$merge_into != "", ]; ids <- setdiff(ids, mv$category_id) }
-    ids
-  }
-  list(topics = topics, categories = cats)
+  list(topics = topics, has_labels = has_labels)
 })
 
 # ---------------------------------------------------------------------------
@@ -100,9 +96,9 @@ if (has_master) check("A1 master row count unchanged", nrow(m) == fp$files[["soc
 yrows_ok <- all(vapply(yearly, function(f) nrow(read_chr(f)) == fp$files[[basename(f)]]$n_rows, logical(1)))
 check("A1b yearly row counts unchanged", yrows_ok, sprintf("%d files", length(yearly)))
 expected_cols <- c(ORIGINAL_COLS, ANALYSIS_COLS)
-check("A2a master/yearly = 42 + 8 columns in codebook order", identical(names(m), expected_cols) && ncol(m) == N_ORIGINAL + 8)
+check("A2a master/yearly = 42 + 10 columns in codebook order", identical(names(m), expected_cols) && ncol(m) == N_ORIGINAL + 10)
 ycols_ok <- all(vapply(yearly, function(f) identical(names(read_csv(f, n_max = 0, col_types = cols(.default = col_character()), progress = FALSE)), expected_cols), logical(1)))
-check("A2b yearly files share the 50-column spec", ycols_ok)
+check("A2b yearly files share the 52-column spec", ycols_ok)
 side_files <- file.path(OUT_ROOT, "data", c("deleted_posts.csv", "removed_posts.csv", "bot_threads.csv", "promotional_posts.csv", "encoding_issue_posts.csv", "non_english_posts.csv"))
 if (all(file.exists(side_files))) {
   sok <- all(vapply(side_files, function(f) ncol(read_csv(f, n_max = 0, col_types = cols(.default = col_character()), progress = FALSE)) == N_ORIGINAL + 1, logical(1)))
@@ -122,29 +118,28 @@ check("A4c period_type consistent with the bin", all(m$period_type == BIN_TYPE[b
 # ---------------------------------------------------------------------------
 # A5–A8
 # ---------------------------------------------------------------------------
-tid <- m$topic_id; cid <- m$category_id; ass <- m$topic_assignment
+tid <- m$topic_id; tuid <- m$topic_uid; tname <- m$topic_name; ttone <- m$topic_tone; ass <- m$topic_assignment
 a5 <- TRUE; a6 <- TRUE; a5_detail <- c()
 for (b in 1:9) {
   rows <- which(b_file == b); if (!length(rows)) next
   bt <- bin_tables[[b]]
-  t_b <- tid[rows]; c_b <- cid[rows]
+  t_b <- tid[rows]
   if (is.null(bt$topics)) { if (any(t_b != "")) { a5 <- FALSE; a5_detail <- c(a5_detail, sprintf("bin %d tagged without topics.csv", b)) }; next }
   bad <- setdiff(unique(t_b[t_b != ""]), bt$topics)
   if (length(bad)) { a5 <- FALSE; a5_detail <- c(a5_detail, sprintf("bin %d: %d unknown topic ids", b, length(bad))) }
-  if (is.null(bt$categories)) { if (any(c_b != "")) a6 <- FALSE; next }
-  badc <- setdiff(unique(c_b[c_b != ""]), bt$categories)
-  if (length(badc)) a6 <- FALSE
-  if (any(c_b != "" & (t_b == "" | t_b == "-1"))) a6 <- FALSE
+  real <- t_b != "" & t_b != "-1"
+  if (!all(tuid[rows][real] == paste0(b, "-", t_b[real])) || any(tuid[rows][!real] != "")) a6 <- FALSE
+  if (isTRUE(bt$has_labels) && (!all((tname[rows] != "") == real) || !all((ttone[rows] != "") == real))) a6 <- FALSE
 }
 check("A5 topic_id valid for its bin", a5, paste(a5_detail, collapse = "; "))
-check("A6 category_id valid for its bin and empty for outliers / not modelled", a6)
+check("A6 topic_uid = bin-topic_id, topic_name / topic_tone present iff the post has a topic", a6)
 tagged <- ass != ""                      # rows of bins that have a model run (all rows once the collection is complete)
 check("A7 topic_assignment consistent with topic_id (tagged rows)",
       all((ass[tagged] == "outlier") == (tid[tagged] == "-1")) && all((ass[tagged] == "not_modelled") == (tid[tagged] == "")) &&
         all(ass[tagged] %in% c("cluster", "reassigned", "outlier", "not_modelled")), sprintf("%s tagged rows", format(sum(tagged), big.mark = ",")))
 untagged_bins <- unique(b_file[!tagged])
 check("A7b untagged rows occur only in bins without a model run",
-      all(tid[!tagged] == "" & cid[!tagged] == "") && all(vapply(untagged_bins, function(b) is.null(bin_tables[[b]]$topics), logical(1))),
+      all(tid[!tagged] == "") && all(vapply(untagged_bins, function(b) is.null(bin_tables[[b]]$topics), logical(1))),
       if (length(untagged_bins)) sprintf("untagged bins: %s", paste(untagged_bins, collapse = ",")) else "")
 s <- suppressWarnings(as.numeric(m$post_sentiment)); sf <- suppressWarnings(as.numeric(m$post_sentiment_full)); lab <- m$post_sentiment_label
 has_s <- m$post_sentiment != ""
@@ -162,7 +157,7 @@ if (has_master) {
 }
 j <- inner_join(m[, c("id", ANALYSIS_COLS)], pv[, c("id", ANALYSIS_COLS)], by = "id", suffix = c(".m", ".pv"))
 same8 <- all(vapply(ANALYSIS_COLS, function(cn) identical(j[[paste0(cn, ".m")]], j[[paste0(cn, ".pv")]]), logical(1)))
-check("A10 master and post_variables identical on the 8 columns", nrow(j) == nrow(m) && same8)
+check("A10 master and post_variables identical on the 10 columns", nrow(j) == nrow(m) && same8)
 a11 <- TRUE; a9y <- TRUE
 for (f in yearly) {
   y <- read_chr(f); yr <- sub(".*-([0-9]{4})\\.csv$", "\\1", f)

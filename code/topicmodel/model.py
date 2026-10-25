@@ -94,9 +94,10 @@ def fit_umap(emb: np.ndarray) -> np.ndarray:
 
 
 def hdbscan_settings(period_type: str | None = None) -> dict:
-    """The HDBSCAN choices and the guard's range in force for a bin of this period type (recorded in config.json)."""
+    """The HDBSCAN choices in force for a bin of this period type and the density target (recorded in config.json)."""
     return {"min_samples": int(C.setting(C.HDBSCAN_MIN_SAMPLES, period_type)), "method": C.setting(C.HDBSCAN_SELECTION_METHOD, period_type),
-            "epsilon": float(C.setting(C.HDBSCAN_EPSILON, period_type)), "topic_count_range": list(C.setting(C.TOPIC_COUNT_RANGE, period_type))}
+            "epsilon": float(C.setting(C.HDBSCAN_EPSILON, period_type)), "topics_per_10k": list(C.TOPICS_PER_10K),
+            "min_cluster_floor": int(C.MIN_CLUSTER_FLOOR)}
 
 
 def hdbscan_labels(umap5d: np.ndarray, min_cluster_size: int, min_samples: int | None = None, method: str | None = None,
@@ -123,18 +124,17 @@ def cluster_stats(labels: np.ndarray) -> dict:
             "median_size": int(np.median(sizes)) if len(lab) else 0}
 
 
-def hdbscan_grid(umap5d: np.ndarray, base_min_cluster_size: int, grid: dict | None = None, fit=hdbscan_labels,
-                 period_type: str | None = None) -> pd.DataFrame:
+def hdbscan_grid(umap5d: np.ndarray, grid: dict | None = None, fit=hdbscan_labels, period_type: str | None = None) -> pd.DataFrame:
     """The diagnostic of a failed large-bin gate (design §12.2): HDBSCAN refitted on the cached UMAP array over
-    config.HDBSCAN_GRID (min_cluster_size = factors of the guard's converged value, min_samples, selection method,
-    epsilon). One row per fit with the cluster statistics and whether the topic count lies in TOPIC_COUNT_RANGE.
+    config.HDBSCAN_GRID (min_cluster_size, min_samples, selection method, epsilon). One row per fit with the cluster
+    statistics and whether the topic count lies in the bin's density target (config.target_topic_range).
     `fit(umap5d, mcs, min_samples, method, epsilon)` is injectable for tests."""
     import time as _time
     g = {**C.HDBSCAN_GRID, **(grid or {})}
-    lo, hi = C.setting(C.TOPIC_COUNT_RANGE, period_type)
+    lo, hi = C.target_topic_range(len(umap5d))
     rows = []
-    for f in g["min_cluster_size_factor"]:
-        mcs = max(C.MIN_CLUSTER_FLOOR, int(round(base_min_cluster_size * float(f))))
+    for mcs in g["min_cluster_size"]:
+        mcs = int(mcs)
         for ms in g["min_samples"]:
             for method in g["method"]:
                 for eps in g["epsilon"]:
@@ -147,22 +147,17 @@ def hdbscan_grid(umap5d: np.ndarray, base_min_cluster_size: int, grid: dict | No
     return pd.DataFrame(rows)
 
 
-def start_min_cluster_size(n_modelled: int) -> int:
-    """The relative minimum topic size of design §6.1: MIN_CLUSTER_FRACTION of the modelled posts, floor MIN_CLUSTER_FLOOR."""
-    return max(C.MIN_CLUSTER_FLOOR, round(n_modelled * C.MIN_CLUSTER_FRACTION))
-
-
 def n_topics_of(labels: np.ndarray) -> int:
     return int(len(set(labels.tolist()) - {-1}))
 
 
 def guard_min_cluster_size(umap5d: np.ndarray, n_modelled: int, enabled: bool = True, fit=hdbscan_labels,
                            period_type: str | None = None) -> dict:
-    """Topic-count guard (design §6.2): start at the relative minimum, then move ×1.5 / ÷1.5 and bisect between
-    the bracketing values until the raw topic count lies in TOPIC_COUNT_RANGE (per period type if so configured);
-    at most GUARD_MAX_TRIALS fits; never below MIN_CLUSTER_FLOOR. Keeps the trial nearest to the range; `converged`
-    says whether it was reached. `fit` is injectable for tests."""
-    lo, hi = C.setting(C.TOPIC_COUNT_RANGE, period_type)
+    """Topic-density guard (design §6.2, decision D8): start at MIN_CLUSTER_FLOOR, then move ×1.5 / ÷1.5 and bisect
+    between the bracketing values until the raw topic count lies in the bin's target range — TOPICS_PER_10K scaled to
+    its modelled posts (config.target_topic_range) — within GUARD_MAX_TRIALS fits, never below the floor. Keeps the
+    trial nearest to the range; `converged` says whether it was reached. `fit` is injectable for tests."""
+    lo, hi = C.target_topic_range(n_modelled)
     if fit is hdbscan_labels:
         fit = lambda X, m: hdbscan_labels(X, m, period_type=period_type)
     trials = []
@@ -177,7 +172,7 @@ def guard_min_cluster_size(umap5d: np.ndarray, n_modelled: int, enabled: bool = 
     def dist(k):
         return 0 if lo <= k <= hi else (lo - k if k < lo else k - hi)
 
-    mcs = start_min_cluster_size(n_modelled)
+    mcs = int(C.MIN_CLUSTER_FLOOR)
     lab, k = run(mcs)
     best = (lab, mcs, k)
     if enabled and dist(k):

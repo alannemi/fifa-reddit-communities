@@ -31,22 +31,22 @@ fifa-reddit-communities/
 │   ├── 03-data-validation.R          28 consistency and fidelity checks
 │   ├── 04-render-codebook.R          codebook Markdown → PDF
 │   ├── 05-analysis-pipeline.py       THE ANALYTICAL PIPELINE: period bins → BERTopic per bin → two Qwen3-1.7B agents
-│   │                                  → VADER → post_variables.csv (stages: bins, embed, topics, reassign, label,
-│   │                                  taxonomy, sentiment, collect, report)
+│   │                                  → VADER → post_variables.csv (stages: bins, embed, topics, grid, reassign, label,
+│   │                                  sentiment, collect, report)
 │   ├── 05b-analysis-pipeline-colab.ipynb   orchestration of 05 on a Colab GPU (A100; cuML), rooted on the Drive
 │   │                                  folder MyDrive/fifa-communities/
-│   ├── 06-tag-corpus.R               stage S6: append the 8 analysis columns to the master and yearly files
+│   ├── 06-tag-corpus.R               stage S6: append the 10 analysis columns to the master and yearly files
 │   ├── 07-validate-analysis.R        13 check families on the tagged files (fingerprints of the original columns)
-│   ├── 08-review-pack.py             co-author review of a bin: review_pack.md (labels, categories, sample posts) and
-│   │                                  the check of the filled override files (guide: docs/session-08_2026-10-25/)
+│   ├── 08-review-pack.py             co-author review of a bin: review_pack.md (labels, both analysts, sample posts) and
+│   │                                  the check of the filled topic_overrides.csv (guide: docs/session-08_2026-10-25/)
 │   ├── R/pipeline-utils.R            helpers and column specifications shared by the R scripts 02, 03, 06, 07
 │   ├── topicmodel/                   the Python package behind 05 (config.py holds every setting and the path root;
 │   │                                  data, bins, embed, model, prompts, agents, sentiment, tagging, report)
-│   ├── tests/test_pipeline_units.py  20 unit checks that need no GPU and no language model
+│   ├── tests/test_pipeline_units.py  12 unit checks that need no GPU and no language model
 │   ├── requirements-topicmodel.txt   pinned Python environment (local)
 │   └── requirements-colab.txt        the few packages installed on top of Colab's RAPIDS stack
-├── results/analysis/             ← the analytical pipeline's outputs: bin-1 … bin-9/ (topics, labels, taxonomy,
-│                                    transcripts, config.json, report.html) + topic_labels_all_bins.csv etc.
+├── results/analysis/             ← the analytical pipeline's outputs: bin-1 … bin-9/ (topics, labels, transcripts,
+│                                    config.json, report.html, review_pack.md) + topic_labels_all_bins.csv, topic_crosswalk.csv
 ├── results/embeddings/           ← the sentence-embedding cache per year (gitignored, regenerable)
 ├── results/dry-runs/             ← local dry runs of 05 (their pipeline outputs are tracked; join tables,
 │                                    corpus copies and caches are not — see results/README.md)
@@ -106,16 +106,16 @@ retained share of posts drops from 2020 onwards (a metadata effect, not a collec
 `code/05-analysis-pipeline.py` (designed in session 04, implemented in session 05, one consolidated pipeline since
 session 07) turns the clean corpus into the chapter's analysis variables. One post = one document (title + up to 1,000 characters of body). The corpus is cut
 into **nine period bins** (five World Cup tournament periods, four interim periods; `period_bin`); for each bin a
-BERTopic model (mpnet sentence embeddings → UMAP → HDBSCAN with a 50–100-topic guard → c-TF-IDF keywords) assigns
-every post a `topic_id`; two Qwen3-1.7B "analyst" agents that must agree (multi-turn debate, at most five rounds)
-name and describe every topic (S3a) and then build each bin's discourse taxonomy in two steps — they first agree on the
-category definitions, then assign each topic to one category in its own debate (`category_id`, S3b; decision D5 of 2026-10-24);
-VADER scores every title (`post_sentiment`). Co-authors review the labels and taxonomies through editable override
-files before stage S6 (`code/06-tag-corpus.R`) appends the eight columns (codebook §4.9) to the master and yearly
-files. Design with every setting and its reason: `docs/session-04_2026-10-22/01_analytical-pipeline-design.md`;
+BERTopic model (mpnet sentence embeddings → UMAP → HDBSCAN with a topic-density guard of 50–75 topics per 10,000 posts,
+decision D8 → c-TF-IDF keywords) assigns every post a `topic_id`; two Qwen3-1.7B "analyst" agents that must agree
+(multi-turn debate, at most five rounds) name and describe every topic (S3a) — the individual topic is the unit of analysis
+(decision D7 of 2026-10-25; the earlier category layer was removed) and every post carries its topic's key, name and tone
+(`topic_uid`, `topic_name`, `topic_tone`); VADER scores every title (`post_sentiment`) and the topic table carries the mean per
+topic. Co-authors review the labels through one editable override file per bin before stage S6 (`code/06-tag-corpus.R`)
+appends the ten columns (codebook §4.9) to the master and yearly files. Design with every setting and its reason: `docs/session-04_2026-10-22/01_analytical-pipeline-design.md`;
 approvals and implementation notes: `docs/session-05_2026-10-23/`, `docs/session-06_2026-10-24/` (the two-step
-taxonomy protocol), `docs/session-07_2026-10-25/` (one pipeline, the Drive layout) and `docs/session-08_2026-10-25/` (the first
-Colab run of bin 1; decision D6: the assignment step works from a similarity-ranked shortlist of categories); how to run it: `memory/workflows.md`
+taxonomy protocol, superseded), `docs/session-07_2026-10-25/` (one pipeline, the Drive layout) and `docs/session-08_2026-10-25/`
+(the first Colab run of bin 1; decisions D7 and D8); how to run it: `memory/workflows.md`
 §7 and the runbook `docs/session-07_2026-10-25/02_runbook-colab-run.md`.
 
 Paths: locally the repository layout; on Colab the environment variable `PIPELINE_ROOT` re-roots everything that persists
@@ -136,17 +136,16 @@ Rscript code/03-data-validation.R
 # Python environment (one-time)
 python3 -m venv .venv && .venv/bin/pip install -r code/requirements-topicmodel.txt
 export TOKENIZERS_PARALLELISM=false
-.venv/bin/python code/tests/test_pipeline_units.py                       # 20 checks, no GPU needed
+.venv/bin/python code/tests/test_pipeline_units.py                       # 12 checks, no GPU needed
 
 # the analytical pipeline (full runs on Colab: code/05b-analysis-pipeline-colab.ipynb)
 .venv/bin/python code/05-analysis-pipeline.py --stage bins               # period_bin for every post (≈ 3 min)
 .venv/bin/python code/05-analysis-pipeline.py --stage embed --bin 1
 .venv/bin/python code/05-analysis-pipeline.py --stage topics --bin 1     # on Colab: python -m cuml.accel …
-.venv/bin/python code/05-analysis-pipeline.py --stage label --bin 1      # → review topic_overrides.csv
-.venv/bin/python code/05-analysis-pipeline.py --stage taxonomy --bin 1   # → review category_overrides.csv
+.venv/bin/python code/05-analysis-pipeline.py --stage label --bin 1      # → review topic_overrides.csv (code/08-review-pack.py)
 .venv/bin/python code/05-analysis-pipeline.py --stage sentiment
 .venv/bin/python code/05-analysis-pipeline.py --stage collect
-Rscript code/06-tag-corpus.R && Rscript code/07-validate-analysis.R      # stage S6 (gated on the reviews)
+Rscript code/06-tag-corpus.R && Rscript code/07-validate-analysis.R      # stage S6 (gated on the review)
 ```
 Full details, the local dry-run recipe and the Colab route: `memory/workflows.md` §7.
 

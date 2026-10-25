@@ -1,15 +1,15 @@
 #!/usr/bin/env python
 """
 FIFA COMMUNITIES CHAPTER
-5. ANALYTICAL PIPELINE — period bins → BERTopic per bin → two-agent labels and taxonomies → VADER → tagging
-=============================================================================================================
+5. ANALYTICAL PIPELINE — period bins → BERTopic per bin → two-agent topic labels → VADER → tagging
+=====================================================================================================
 
 PURPOSE
 -------
 Run the chapter's analytical pipeline stage by stage.  Design: docs/session-04_2026-10-22/01_analytical-pipeline-design.md
-(v1.2, decisions D1–D5).  Approvals: docs/session-05_2026-10-23/00_approvals.md (N1–N12, R1–R13),
-docs/session-06_2026-10-24/00_approvals.md (D5 two-step taxonomy, prompt v1.2), docs/session-07_2026-10-25/00_approvals.md
-(one pipeline, PIPELINE_ROOT).  Every stage is idempotent (it skips when its output exists; --force re-runs) and
+(v1.5, decisions D1–D8; since D7 of 2026-10-25 the unit of analysis is the individual BERTopic topic — no category layer).
+Approvals: docs/session-05_2026-10-23/00_approvals.md (N1–N12, R1–R13), docs/session-07_2026-10-25/00_approvals.md
+(one pipeline, PIPELINE_ROOT), docs/session-08_2026-10-25/00_colab-run-log.md (D7, D8).  Every stage is idempotent (it skips when its output exists; --force re-runs) and
 resumable; every bin writes config.json (effective settings and paths, guard trials, backend, versions, prompts) and
 log.txt next to its outputs.  The Colab notebook (code/05b-analysis-pipeline-colab.ipynb) only calls this program.
 
@@ -17,7 +17,7 @@ STAGES (design §3)                                            reads -> writes  
 ------------------                                            ---------------
   bins        S0 period_bin for every post                    yearly CSVs -> <tables>/period_bins.csv (+ summary)
   embed       S1 sentence embeddings, cached per year         yearly CSVs -> EMBED_CACHE_DIR/<model>/<year>.npz
-  topics      S2 BERTopic for one bin (frozen UMAP, guard)    S0, S1 -> <results>/bin-N/ (umap_5d.npy, hdbscan_labels_raw.npy,
+  topics      S2 BERTopic for one bin (frozen UMAP, D8 guard)    S0, S1 -> <results>/bin-N/ (umap_5d.npy, hdbscan_labels_raw.npy,
                                                               documents.csv, topics.csv, topics_over_time.csv, model/, outlier_nearest.csv,
                                                               outlier_calibration/, config.json, report.html)
   grid        diagnostic of a failed large-bin gate (§12.2):  bin-N/umap_5d.npy -> bin-N/hdbscan_grid.csv (one row per HDBSCAN
@@ -27,13 +27,10 @@ STAGES (design §3)                                            reads -> writes  
                                                               documents.csv, topics.csv, topics_over_time.csv, report.html
   label       S3a two-agent cluster labelling (resumable)     bin-N/ -> labels/topic_<id>.json, labels.jsonl, topics_labelled.csv,
                                                               topic_overrides.csv (template)   -> co-author review
-  taxonomy    S3b two-agent discourse taxonomy of the bin     topics_labelled + topic_overrides -> taxonomy.json, categories.csv,
-              (two-step protocol D5: definitions, then one   topic_categories.csv, taxonomy_definitions.json (checkpoint),
-              assignment debate per topic over a similarity- category_overrides.csv + topic_category_overrides.csv (templates) -> review
-              ranked shortlist of categories, D6; prompt v1.3)
   sentiment   S4 VADER per post (title; title + body)         yearly CSVs -> <tables>/sentiment.csv (+ validation sample)
-  collect     S5 post_variables.csv + aggregated tables       S0–S4 (+ overrides) -> <tables>/post_variables.csv (+ .json),
-                                                              <results>/topic_labels_all_bins.csv, categories_all_bins.csv
+  collect     S5 post_variables.csv + aggregated tables       S0–S4 (+ topic overrides) -> <tables>/post_variables.csv (+ .json),
+                                                              <results>/topic_labels_all_bins.csv (with mean_vader_sentiment),
+                                                              topic_crosswalk.csv (template)
   report      per-bin report.html (re-render)                 bin-N/ -> report.html
 S6 (append the eight columns to the master and yearly files) is code/06-tag-corpus.R + code/07-validate-analysis.R.
 
@@ -44,7 +41,6 @@ HOW TO RUN (repository root; local .venv, or Colab through the notebook)
   python code/05-analysis-pipeline.py --stage embed --bin 1
   python -m cuml.accel code/05-analysis-pipeline.py --stage topics --bin 1      # GPU UMAP/HDBSCAN on Colab; without the prefix on CPU
   python code/05-analysis-pipeline.py --stage label --bin 1
-  python code/05-analysis-pipeline.py --stage taxonomy --bin 1
   python code/05-analysis-pipeline.py --stage sentiment
   python code/05-analysis-pipeline.py --stage collect
 PATHS: by default the repository layout (data/yearly datasets, data/analysis, results/analysis, results/embeddings,
@@ -55,11 +51,8 @@ OPTIONS: --bin N | --bins 1-9   --device auto|cuda|mps|cpu   --embedding-model <
   --llm <hf id>   --sampling greedy|seeded   --max-docs N (mechanics test on a subsample; guard off)   --max-topics N
   --outlier-threshold T   --years 2010 2011   --out-root PATH (dry runs: writes <PATH>/results/analysis AND
   <PATH>/data/analysis; input and caches unchanged)   --allow-partial (collect)   --force
-  --keep-definitions (taxonomy with --force: keep the step-1 checkpoint and re-run the assignments only — the D6 re-run)
   --keep-umap (topics with --force: keep umap_5d.npy, refit HDBSCAN only — after a clustering decision)   --grid '<json>' (grid stage:
   override config.HDBSCAN_GRID, e.g. '{"min_samples": [5]}')
-  --taxonomy-protocol two_step|partition (default config.TAXONOMY_PROTOCOL; "partition" = the superseded v1.1 single prompt)
-  --assign-batch N (topics per assignment item; default config.TAXONOMY_ASSIGN_BATCH = 1)
 Local dry run on the full bin 1 (memory/workflows.md §7): --embedding-model sentence-transformers/all-MiniLM-L6-v2
   (= config.EMBEDDING_MODEL_DRY_RUN)  --out-root results/dry-runs/<name>
 """
@@ -83,7 +76,7 @@ from topicmodel import data, embed, bins as BINS, model as M, sentiment, report,
 from topicmodel import agents as G
 
 log = logging.getLogger("topicmodel")
-STAGES = ["bins", "embed", "topics", "grid", "reassign", "label", "taxonomy", "sentiment", "collect", "report"]
+STAGES = ["bins", "embed", "topics", "grid", "reassign", "label", "sentiment", "collect", "report"]
 
 
 # ---------------------------------------------------------------------------
@@ -240,7 +233,7 @@ def stage_topics(args, paths: Paths, b: int):
     calib = M.calibration_table(nearest, len(modelled))
     cdir = bdir / "outlier_calibration"; cdir.mkdir(exist_ok=True)
     calib.to_csv(cdir / "calibration_table.csv", index=False)
-    kw_of = {t: ", ".join(w for w, _ in (bt.get_topic(t) or [])[:C.TAXONOMY_KEYWORDS_PER_TOPIC]) for t in set(topics_raw.tolist()) - {-1}}
+    kw_of = {t: ", ".join(w for w, _ in (bt.get_topic(t) or [])[:C.SAMPLE_KEYWORDS]) for t in set(topics_raw.tolist()) - {-1}}
     titles = dict(zip(modelled["id"].astype(str), modelled["title"]))
     for T, samp in M.calibration_samples(nearest, titles, kw_of, calib).items():
         samp.to_csv(cdir / f"sample_T{T:.4f}.csv", index=False)
@@ -292,15 +285,14 @@ def stage_grid(args, paths: Paths, b: int):
         raise SystemExit(f"bin {b}: no umap_5d.npy — run --stage topics first")
     t0 = time.time()
     umap5d = np.load(bdir / "umap_5d.npy")
-    guard = read_config(bdir).get("topics", {}).get("guard", {})
-    base = int(guard.get("min_cluster_size") or M.start_min_cluster_size(len(umap5d)))
     grid = json.loads(args.grid) if args.grid else None
     ptype = BINS.bin_info(b)["period_type"]
-    log.info("grid: bin %d (%s), %d points, base min_cluster_size %d (the guard's), backend %s", b, ptype, len(umap5d), base, M.detect_backend()["backend"])
-    table = M.hdbscan_grid(umap5d, base, grid, period_type=ptype)
+    lo, hi = C.target_topic_range(len(umap5d))
+    log.info("grid: bin %d (%s), %d points, density target %d–%d topics, backend %s", b, ptype, len(umap5d), lo, hi, M.detect_backend()["backend"])
+    table = M.hdbscan_grid(umap5d, grid, period_type=ptype)
     table.to_csv(bdir / "hdbscan_grid.csv", index=False)
     log.info("grid: %d fits in %.1f min -> %s\n%s", len(table), (time.time() - t0) / 60, bdir / "hdbscan_grid.csv", table.to_string(index=False))
-    update_config(bdir, "grid", {"base_min_cluster_size": base, "grid": {**C.HDBSCAN_GRID, **(grid or {})}, "n_fits": int(len(table)),
+    update_config(bdir, "grid", {"target_topic_range": [lo, hi], "grid": {**C.HDBSCAN_GRID, **(grid or {})}, "n_fits": int(len(table)),
                                  "settings_in_force": M.hdbscan_settings(ptype),
                                  "backend": M.detect_backend(), "elapsed_min": round((time.time() - t0) / 60, 1),
                                  "run_at": dt.datetime.now().isoformat(timespec="seconds")})
@@ -341,7 +333,7 @@ def stage_reassign(args, paths: Paths, b: int):
 
 
 # ---------------------------------------------------------------------------
-# S3a / S3b
+# S3a
 # ---------------------------------------------------------------------------
 _LLM = None
 
@@ -376,58 +368,6 @@ def stage_label(args, paths: Paths, b: int):
     render_report(args, paths, b)
 
 
-def stage_taxonomy(args, paths: Paths, b: int):
-    bdir = paths.bin_dir(b)
-    if not (bdir / "topics_labelled.csv").exists():
-        raise SystemExit(f"bin {b}: run --stage label first")
-    ckpt = bdir / "taxonomy_definitions.json"
-    if (bdir / "categories.csv").exists() and not args.force:
-        prev = "?"
-        if (bdir / "taxonomy.json").exists():
-            prev = json.loads((bdir / "taxonomy.json").read_text(encoding="utf-8")).get("protocol", "partition (v1.1 output)")
-        log.info("taxonomy: bin %d already has categories.csv (protocol %s); use --force", b, prev); return
-    if args.force and ckpt.exists():
-        if args.keep_definitions:
-            log.info("taxonomy: --force with --keep-definitions keeps the step-1 checkpoint %s; only the assignments re-run (D6)", ckpt.name)
-        else:
-            ckpt.unlink()
-            log.info("taxonomy: --force removed the step-1 checkpoint %s (definitions will be debated again)", ckpt.name)
-    t0 = time.time()
-    te = np.load(bdir / "topic_embeddings.npy")
-    info = BINS.bin_info(b)
-    protocol = args.taxonomy_protocol or C.TAXONOMY_PROTOCOL
-    batch = args.assign_batch or C.TAXONOMY_ASSIGN_BATCH
-    llm = get_llm(args)
-    embed_texts = None
-    if protocol == "two_step" and C.TAXONOMY_SHORTLIST > 0:
-        # D6: the step-2 shortlist ranks the categories by the sentence embeddings of the category and topic lines
-        st = embed.load_embedding_model(args.embedding_model, embed.get_device(args.device))
-        embed_texts = lambda texts: st.encode(list(texts), batch_size=64, normalize_embeddings=True, show_progress_bar=False, convert_to_numpy=True)
-    cats = G.run_taxonomy(bdir, b, lambda t: te[int(t)], llm, str(info["start"]), str(info["end"]), protocol=protocol, assign_batch=batch,
-                          embed_texts=embed_texts)
-    tj = json.loads((bdir / "taxonomy.json").read_text(encoding="utf-8"))
-    items = tj.get("assignment_items") or []
-    update_config(bdir, "taxonomy", {**llm.describe(), "prompt_version": P.PROMPT_VERSION, "protocol": tj.get("protocol"),
-                                     "assign_batch": tj.get("assign_batch"),
-                                     "n_categories_defined": len(tj["categories_defined"]) if tj.get("categories_defined") is not None else None,
-                                     "n_categories": int(len(cats)), "categories_dropped_empty": tj.get("categories_dropped_empty"),
-                                     "definitions_cleanup": tj.get("definitions_cleanup"),
-                                     "agreement_mode": cats["agreement_mode"].iloc[0] if len(cats) else tj.get("agreement_mode"),
-                                     "round_iterations": int(cats["round_iterations"].iloc[0]) if len(cats) else tj.get("round_iterations"),
-                                     "needs_review": bool(cats["needs_review"].iloc[0]) if len(cats) else tj.get("needs_review"),
-                                     "n_repaired": int(cats["n_repaired"].sum()) if len(cats) else 0,
-                                     "n_unplaced": sum(v == "unplaced" for v in tj["category_assignment"].values()),
-                                     "n_items": len(items), "assignment_agreement_modes": dict(Counter(i["agreement_mode"] for i in items)),
-                                     "n_items_contested": sum(1 for i in items if i.get("n_contested")),
-                                     "n_answers_salvaged": tj.get("n_answers_salvaged"), "n_answers_cleaned": tj.get("n_answers_cleaned"),
-                                     "shortlist": tj.get("shortlist"), "text_embedding_model": args.embedding_model if embed_texts else None,
-                                     "token_budgets": {"define": C.LLM_MAX_NEW_TOKENS_DEFINE, "assign": C.LLM_MAX_NEW_TOKENS_ASSIGN,
-                                                       "partition": C.LLM_MAX_NEW_TOKENS_PARTITION},
-                                     "llm_stats": llm.stats, "elapsed_min": round((time.time() - t0) / 60, 1),
-                                     "run_at": dt.datetime.now().isoformat(timespec="seconds"), "prompts": P.stage_prompts("taxonomy")})
-    render_report(args, paths, b)
-
-
 # ---------------------------------------------------------------------------
 # S4 / S5 / report
 # ---------------------------------------------------------------------------
@@ -445,8 +385,8 @@ def stage_collect(args, paths: Paths):
 
 
 def render_report(args, paths: Paths, b: int):
-    """report.html / report.md of a bin from its tables (topics.csv + the labels and categories, when present);
-    re-rendered after every stage that changes them."""
+    """report.html / report.md of a bin from its tables (topics.csv + the labels, when present); re-rendered after every
+    stage that changes them."""
     bdir = paths.bin_dir(b)
     try:
         t = pd.read_csv(bdir / "topics.csv", keep_default_na=False)
@@ -454,15 +394,6 @@ def render_report(args, paths: Paths, b: int):
             lab = pd.read_csv(bdir / "topics_labelled.csv", keep_default_na=False)
             t = t.merge(lab[["topic_id", "name", "emotion_tone", "description", "needs_review"]], on="topic_id", how="left")
             t[["name", "emotion_tone", "description"]] = t[["name", "emotion_tone", "description"]].fillna("")
-        if (bdir / "topic_categories.csv").exists() and (bdir / "categories.csv").exists():
-            tc = pd.read_csv(bdir / "topic_categories.csv", keep_default_na=False)
-            try:
-                cats = pd.read_csv(bdir / "categories.csv", keep_default_na=False)
-            except pd.errors.EmptyDataError:
-                cats = pd.DataFrame(columns=["category_id", "name"])
-            t = t.merge(tc[["topic_id", "category_id"]], on="topic_id", how="left")
-            t["category_id"] = t["category_id"].fillna("")
-            t["category_name"] = t["category_id"].map(dict(zip(cats["category_id"], cats["name"]))).fillna("")
         tot = pd.read_csv(bdir / "topics_over_time.csv", parse_dates=["period"])
         docs = pd.read_csv(bdir / "documents.csv", dtype=str, keep_default_na=False)
         sent_path = paths.analysis_data / "sentiment.csv"
@@ -496,21 +427,18 @@ def main():
     p.add_argument("--years", type=int, nargs="*", help="sentiment: restrict to these years")
     p.add_argument("--out-root", default=None, help="dry runs: write <PATH>/results/analysis and <PATH>/data/analysis (input and caches unchanged)")
     p.add_argument("--allow-partial", action="store_true"); p.add_argument("--force", action="store_true")
-    p.add_argument("--keep-definitions", action="store_true"); p.add_argument("--keep-umap", action="store_true")
+    p.add_argument("--keep-umap", action="store_true")
     p.add_argument("--grid", default=None, help="grid stage: JSON overriding config.HDBSCAN_GRID keys")
-    p.add_argument("--taxonomy-protocol", default=None, choices=["two_step", "partition"],
-                   help="S3b protocol (default config.TAXONOMY_PROTOCOL; 'partition' = the superseded v1.1 single prompt)")
-    p.add_argument("--assign-batch", type=int, default=None, help="topics per assignment item (default config.TAXONOMY_ASSIGN_BATCH)")
     args = p.parse_args()
     os.environ.setdefault("HF_HOME", str(C.LLM_CACHE_DIR))   # every loader passes cache_dir explicitly; this keeps hub metadata there too
     paths = Paths(args.out_root)
-    per_bin = args.stage in ("embed", "topics", "grid", "reassign", "label", "taxonomy", "report")
+    per_bin = args.stage in ("embed", "topics", "grid", "reassign", "label", "report")
     if per_bin:
         for b in parse_bins(args):
             setup_logging(paths.bin_dir(b) / "log.txt")
             log.info("=== stage %s, bin %d === args: %s | paths: %s", args.stage, b, vars(args), paths.describe())
             {"embed": stage_embed, "topics": stage_topics, "grid": stage_grid, "reassign": stage_reassign, "label": stage_label,
-             "taxonomy": stage_taxonomy, "report": render_report}[args.stage](args, paths, b)
+             "report": render_report}[args.stage](args, paths, b)
     else:
         setup_logging(paths.analysis_data / "pipeline-log.txt")
         log.info("=== stage %s === args: %s | paths: %s", args.stage, vars(args), paths.describe())

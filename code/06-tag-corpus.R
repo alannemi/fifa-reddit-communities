@@ -5,9 +5,11 @@
 #
 # PURPOSE
 # -------
-# Append the eight analysis variables of codebook §4.9 (period_bin, period_type,
-# topic_id, topic_assignment, category_id, post_sentiment, post_sentiment_full,
-# post_sentiment_label) to the clean master `data/soccer_data.clean.csv` and to
+# Append the ten analysis variables of codebook §4.9 (period_bin, period_type,
+# topic_id, topic_uid, topic_name, topic_tone, topic_assignment, post_sentiment,
+# post_sentiment_full, post_sentiment_label; decision D7 of 2026-10-25 removed
+# category_id and put the topic's corpus-wide key, label and tone on every post)
+# to the clean master `data/soccer_data.clean.csv` and to
 # the 17 yearly files, from the join table `data/analysis/post_variables.csv`
 # written by stage S5 of code/05-analysis-pipeline.py.  Side files are not
 # analysed and stay untouched (43 columns).  Design: docs/session-04_2026-10-22/
@@ -25,7 +27,7 @@
 # 1. Fidelity: every column is read as character and written back verbatim;
 #    the new columns are appended after the existing 42, in codebook order.
 # 2. Gated: the script refuses to write unless post_variables.json says the
-#    collection is complete (all nine bins modelled, labelled and grouped;
+#    collection is complete (all nine bins modelled and labelled;
 #    sentiment for every post).  A partial table is accepted only for dry runs
 #    (TAG_ALLOW_PARTIAL=1) and only into a different output root.
 # 3. Nothing is lost: a per-column xxhash64 fingerprint of the 42 original
@@ -45,9 +47,9 @@
 #
 # OUTPUTS
 # -------
-#   <out>/data/soccer_data.clean.csv, <out>/data/yearly datasets/soccer.data.cleaned-YYYY.csv   (50 columns)
+#   <out>/data/soccer_data.clean.csv, <out>/data/yearly datasets/soccer.data.cleaned-YYYY.csv   (52 columns)
 #   <out>/data/data artefacts/tagging_fingerprint.json   per file: n_rows, per-column hashes of the 42 columns
-#   <out>/data/data artefacts/tagging_summary.csv        per file: rows, posts with topic / category / sentiment
+#   <out>/data/data artefacts/tagging_summary.csv        per file: rows, posts with topic / sentiment
 ##############################################################################
 
 suppressPackageStartupMessages({ library(readr); library(dplyr); library(jsonlite); library(digest) })
@@ -101,11 +103,11 @@ tag_file <- function(in_path, out_path, label) {
   if (!identical(tagged$id, d$id)) stop(label, ": join changed the row order")
   write_csv(tagged, out_path, na = "", progress = FALSE)
   summary_rows[[label]] <<- data.frame(file = label, n_rows = nrow(tagged),
-                                        n_with_topic = sum(tagged$topic_id != ""), n_with_category = sum(tagged$category_id != ""),
+                                        n_with_topic = sum(tagged$topic_id != ""),
                                         n_with_sentiment = sum(tagged$post_sentiment != ""), n_bins = length(unique(tagged$period_bin)))
   fingerprint[[label]] <<- fp
-  log_msg("%-32s %s rows -> %s (topic %s, category %s, sentiment %s)", label, format(nrow(tagged), big.mark = ","), out_path,
-          summary_rows[[label]]$n_with_topic, summary_rows[[label]]$n_with_category, summary_rows[[label]]$n_with_sentiment)
+  log_msg("%-32s %s rows -> %s (topic %s, sentiment %s)", label, format(nrow(tagged), big.mark = ","), out_path,
+          summary_rows[[label]]$n_with_topic, summary_rows[[label]]$n_with_sentiment)
   rm(d, tagged); invisible(gc())
 }
 

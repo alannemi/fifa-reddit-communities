@@ -2,18 +2,19 @@
 Stage S5 — collect every post's analysis variables and aggregate the topic labels (design §9.1, §7.7).
 ======================================================================================================
 Inputs (all join tables by post id):  data/analysis/period_bins.csv, data/analysis/sentiment.csv and, per bin,
-results/analysis/bin-N/{documents.csv, topics.csv, topics_labelled.csv, topic_overrides.csv, topic_categories.csv,
-categories.csv, category_overrides.csv, topic_category_overrides.csv}.  Overrides are applied here (never in place), so
-the agents' values stay auditable (`topic_id_raw`, `category_id_agent`, `name_agent`).  Order of the category
-overrides (F28, 2026-10-24): `category_id_agent` = the agents' value; then `final_category_id` moves of
-topic_category_overrides.csv on the topic that survives `merge_into`; then the category merges of
-category_overrides.csv; then topic lists and sizes are recomputed (a category emptied by moves stays with n_topics 0).
+results/analysis/bin-N/{documents.csv, topics.csv, topics_labelled.csv, topic_overrides.csv}.  The co-authors' topic
+overrides (renames, merges) are applied here (never in place), so the agents' values stay auditable (`topic_id_raw`,
+`name_agent`, `merged_from`).  Since decision D7 (2026-10-25) the unit of analysis is the individual BERTopic topic:
+there is no category layer.
 Outputs:
-  data/analysis/post_variables.csv (+ .json sidecar)  one row per clean post, the eight codebook §4.9 columns plus
-                                                       the two audit columns; the input of 06-tag-corpus.R
-  results/analysis/topic_labels_all_bins.csv           one row per topic cluster (the brief's "separate CSV")
-  results/analysis/categories_all_bins.csv             one row per category of each bin's taxonomy
-  results/analysis/category_crosswalk.csv              empty template for the manual cross-bin crosswalk (F4)
+  data/analysis/post_variables.csv (+ .json sidecar)  one row per clean post, the ten codebook §4.9 columns — incl. the
+                                                       corpus-wide topic key `topic_uid` ("<bin>-<topic_id>"), the topic's
+                                                       agreed label (`topic_name`) and controlled tone (`topic_tone`) after the
+                                                       overrides — plus the audit column topic_id_raw; the input of 06-tag-corpus.R
+  results/analysis/topic_labels_all_bins.csv           one row per topic (the brief's "separate CSV"), with the mean VADER
+                                                       score of the topic's posts (`mean_vader_sentiment`, author 2026-10-25)
+  results/analysis/topic_crosswalk.csv                 template for the co-authors' manual cross-bin crosswalk of topics
+                                                       to chapter themes (F4; kept once it has entries)
 S5 may run before all bins exist (refinement N6): columns stay empty for bins without outputs, the sidecar lists
 `bins_complete`, and 06-tag-corpus.R refuses a partial write-back outside a dry run.
 """
@@ -29,20 +30,18 @@ import pandas as pd
 from . import config as C
 from . import bins as BINS
 from . import sentiment as S
-from .agents import apply_topic_overrides, apply_category_overrides, read_overrides, read_final_categories, ASSIGN_COLS
+from .agents import apply_topic_overrides, read_overrides
 
 log = logging.getLogger("topicmodel")
 
-POST_COLUMNS = ["id", "period_bin", "period_type", "topic_id", "topic_assignment", "category_id",
-                "post_sentiment", "post_sentiment_full", "post_sentiment_label"]
-AUDIT_COLUMNS = ["topic_id_raw", "category_id_agent"]
-LABEL_COLUMNS = ["period_bin", "topic_id", "name", "purpose", "emotion_tone", "tone_category", "description",
+POST_COLUMNS = ["id", "period_bin", "period_type", "topic_id", "topic_uid", "topic_name", "topic_tone", "topic_assignment",
+                "post_sentiment", "post_sentiment_full", "post_sentiment_label"]   # topic_uid / topic_name / topic_tone: author, 2026-10-25
+AUDIT_COLUMNS = ["topic_id_raw"]
+LABEL_COLUMNS = ["period_bin", "topic_id", "topic_uid", "name", "purpose", "emotion_tone", "tone_category", "description",
                  "inclusion_cues", "round_iterations", "agreed", "agreement_mode", "needs_review", "analyst_a_final",
-                 "analyst_b_final", "category_id", "category_name", "category_assignment", *ASSIGN_COLS, "n_cluster", "n_total",
-                 "share", "keywords", "llm_model", "llm_revision", "prompt_version", "decoding", "name_agent", "merged_from"]
-CATEGORY_COLUMNS = ["period_bin", "category_id", "name", "purpose", "emotion_tone", "tone_category", "description",
-                    "inclusion_cues", "topic_ids", "n_topics", "n_posts", "share", "round_iterations", "agreed",
-                    "agreement_mode", "needs_review", "name_agent", "merged_from"]
+                 "analyst_b_final", "n_cluster", "n_total", "share", "mean_vader_sentiment", "n_posts_scored", "keywords",
+                 "llm_model", "llm_revision", "prompt_version", "decoding", "name_agent", "merged_from"]
+CROSSWALK_COLUMNS = ["period_bin", "period_type", "topic_id", "topic_uid", "name", "n_total", "chapter_theme", "notes"]
 
 
 def _read(p: Path) -> pd.DataFrame:
@@ -60,10 +59,7 @@ def _int_str(x) -> str:
 
 
 def bin_state(bin_dir: Path) -> str:
-    if (bin_dir / "categories.csv").exists() and (bin_dir / "topics_labelled.csv").exists():
-        if len(_read(bin_dir / "categories.csv")):
-            return "complete"
-        return "labelled"          # the taxonomy stage ran but produced no category (needs a re-run / review)
+    """missing -> topics (modelled, not labelled) -> labelled (= complete for a bin since D7)."""
     if (bin_dir / "topics_labelled.csv").exists():
         return "labelled"
     if (bin_dir / "documents.csv").exists():
@@ -72,15 +68,15 @@ def bin_state(bin_dir: Path) -> str:
 
 
 def load_bin_outputs(bin_dir: Path, b: int) -> dict:
-    """Everything S5 needs from one bin, with overrides applied. Returns dict(posts, labels, categories, state, merges)."""
+    """Everything S5 needs from one bin, with the topic overrides applied. Returns dict(posts, labels, topics, state, merges)."""
     state = bin_state(bin_dir)
     if state == "missing":
         return {"state": state}
     docs = _read(bin_dir / "documents.csv")
     topics = _read(bin_dir / "topics.csv")
-    out = {"state": state, "topic_merges": {}, "category_merges": {}}
-    labels = cats = tmap = None
-    if state in ("labelled", "complete"):
+    out = {"state": state, "topic_merges": {}}
+    labels = None
+    if state == "labelled":
         labelled = _read(bin_dir / "topics_labelled.csv")
         labels, merges = apply_topic_overrides(labelled, read_overrides(bin_dir / "topic_overrides.csv"))
         out["topic_merges"] = merges
@@ -101,56 +97,16 @@ def load_bin_outputs(bin_dir: Path, b: int) -> dict:
         labels["share"] = (labels["n_total"] / n_mod).round(5)
         labels["keywords"] = labels["topic_id"].map(kw).fillna(labels.get("keywords", ""))
         labels["merged_from"] = labels["topic_id"].map(lambda t: "|".join(merged_from.get(t, [])))
-    if state == "complete":
-        cats_raw = _read(bin_dir / "categories.csv")
-        tmap = _read(bin_dir / "topic_categories.csv")
-        cats, cmerges = apply_category_overrides(cats_raw, read_overrides(bin_dir / "category_overrides.csv"))
-        out["category_merges"] = cmerges
-        tmap["category_id_agent"] = tmap["category_id"]
-        # F28: topic-level moves (topic_category_overrides.csv) on the surviving topics, before the category merges
-        moves = read_final_categories(bin_dir / "topic_category_overrides.csv")
-        applied = {}
-        for t, cid in moves.items():
-            if t in merges:
-                log.warning("bin %d: topic_category_overrides for topic %d ignored — the topic was merged into %d", b, t, merges[t]); continue
-            sel = tmap["topic_id"].astype(int) == t
-            if not sel.any():
-                log.warning("bin %d: topic_category_overrides names topic %d, which has no category row", b, t); continue
-            tmap.loc[sel, "category_id"] = cid
-            applied[t] = cid
-        out["category_moves"] = applied
-        tmap["category_id"] = tmap["category_id"].map(lambda c: cmerges.get(c, c))
-        cmerged_from = {}
-        for old, new in cmerges.items():
-            cmerged_from.setdefault(new, []).append(old)
-        cats["merged_from"] = cats["category_id"].map(lambda c: "|".join(cmerged_from.get(c, [])))
-        # recompute topic lists / sizes after merges
-        grp = tmap.groupby("category_id")["topic_id"].apply(lambda s: "|".join(sorted(s, key=int)))
-        cats["topic_ids"] = cats["category_id"].map(grp).fillna("")
-        cats["n_topics"] = cats["topic_ids"].map(lambda s: len([x for x in s.split("|") if x]))
-        n_total_map = dict(zip(labels["topic_id"].astype(str), labels["n_total"])) if labels is not None else {}
-        cats["n_posts"] = cats["topic_ids"].map(lambda s: sum(n_total_map.get(x, 0) for x in s.split("|") if x))
-        cats["share"] = (cats["n_posts"] / max(1, sum(n_total_map.values()))).round(5)
-        # per topic: category after overrides
-        cat_of = dict(zip(tmap["topic_id"].astype(str), tmap["category_id"]))
-        cat_agent_of = dict(zip(tmap["topic_id"].astype(str), tmap["category_id_agent"]))
-        assign_of = dict(zip(tmap["topic_id"].astype(str), tmap["category_assignment"]))
-        name_of = dict(zip(cats["category_id"], cats["name"]))
-        labels["category_id"] = labels["topic_id"].astype(str).map(cat_of).fillna("")
-        labels["category_name"] = labels["category_id"].map(name_of).fillna("")
-        labels["category_assignment"] = labels["topic_id"].astype(str).map(assign_of).fillna("")
-        for k in ASSIGN_COLS:   # per-topic assignment debate (two-step protocol); empty for v1.1 outputs
-            m = dict(zip(tmap["topic_id"].astype(str), tmap[k])) if k in tmap.columns else {}
-            labels[k] = labels["topic_id"].astype(str).map(m).fillna("")
-        docs["category_id"] = docs["topic_id"].map(lambda t: cat_of.get(t, "") if t not in ("", "-1") else "")
-        docs["category_id_agent"] = docs["topic_id"].map(lambda t: cat_agent_of.get(t, "") if t not in ("", "-1") else "")
+        # the topic's label on every post of the topic (after renames and merges); empty for outliers and unmodelled posts
+        name_of = dict(zip(labels["topic_id"].astype(str), labels["name"]))
+        tone_of = dict(zip(labels["topic_id"].astype(str), labels["tone_category"])) if "tone_category" in labels.columns else {}
+        docs["topic_name"] = docs["topic_id"].map(lambda t: name_of.get(t, "") if t not in ("", "-1") else "")
+        docs["topic_tone"] = docs["topic_id"].map(lambda t: tone_of.get(t, "") if t not in ("", "-1") else "")
     else:
-        docs["category_id"] = ""; docs["category_id_agent"] = ""
-        if labels is not None:
-            labels["category_id"] = ""; labels["category_name"] = ""; labels["category_assignment"] = ""
-            for k in ASSIGN_COLS:
-                labels[k] = ""
-    out.update(posts=docs, labels=labels, categories=cats, topics=topics)
+        docs["topic_name"] = ""; docs["topic_tone"] = ""
+    # the corpus-wide topic key: "<period_bin>-<topic_id>" for posts with a topic (ids are bin-local; author, 2026-10-25)
+    docs["topic_uid"] = docs["topic_id"].map(lambda t: f"{b}-{t}" if t not in ("", "-1") else "")
+    out.update(posts=docs, labels=labels, topics=topics)
     return out
 
 
@@ -160,10 +116,17 @@ def _check(cond: bool, msg: str, errors: list):
         log.error("S5 check failed: %s", msg)
 
 
+def _template_is_filled(path: Path, columns: tuple[str, ...]) -> bool:
+    if not path.exists():
+        return False
+    old = pd.read_csv(path, dtype=str, keep_default_na=False)
+    return any(str(x).strip() for col in columns if col in old.columns for x in old[col])
+
+
 def collect(analysis_dir: Path, analysis_data_dir: Path, allow_partial: bool, run_info: dict) -> dict:
     pb = BINS.read_period_bins(analysis_data_dir)
     pb["period_bin"] = pb["period_bin"].astype(int)
-    errors, states, label_frames, cat_frames, post_frames = [], {}, [], [], []
+    errors, states, label_frames, post_frames = [], {}, [], []
     for b in range(1, 10):
         bdir = analysis_dir / f"bin-{b}"
         o = load_bin_outputs(bdir, b)
@@ -190,16 +153,12 @@ def collect(analysis_dir: Path, analysis_data_dir: Path, allow_partial: bool, ru
         ass = posts["topic_assignment"]
         _check(bool(((ass == "outlier") == (tid == "-1")).all()), f"bin {b}: topic_assignment 'outlier' inconsistent with topic_id -1", errors)
         _check(bool(((ass == "not_modelled") == (tid == "")).all()), f"bin {b}: topic_assignment 'not_modelled' inconsistent with empty topic_id", errors)
-        if o["state"] == "complete":
-            valid_cats = set(o["categories"]["category_id"])
-            cid = posts["category_id"]
-            _check(set(cid[cid != ""]) <= valid_cats, f"bin {b}: category ids not in categories.csv", errors)
-            cats = o["categories"].copy(); cats["period_bin"] = b
-            cat_frames.append(cats)
         if o["labels"] is not None:
             lab = o["labels"].copy(); lab["period_bin"] = b
             label_frames.append(lab)
-        post_frames.append(posts[["id", "topic_id_raw", "topic_id", "topic_assignment", "category_id", "category_id_agent"]])
+        _check(bool(((posts["topic_name"] != "") == (~posts["topic_id"].isin(["", "-1"]))).all()) or o["labels"] is None,
+               f"bin {b}: topic_name missing for posts with a topic", errors)
+        post_frames.append(posts[["id", "topic_id_raw", "topic_id", "topic_uid", "topic_name", "topic_tone", "topic_assignment", "period_bin_run"]])
 
     pv = pb.copy()
     if post_frames:
@@ -207,7 +166,7 @@ def collect(analysis_dir: Path, analysis_data_dir: Path, allow_partial: bool, ru
         _check(not allp["id"].duplicated().any(), "a post appears in more than one bin run", errors)
         pv = pv.merge(allp, on="id", how="left")
     else:
-        for c in ["topic_id_raw", "topic_id", "topic_assignment", "category_id", "category_id_agent"]:
+        for c in ["topic_id_raw", "topic_id", "topic_uid", "topic_name", "topic_tone", "topic_assignment", "period_bin_run"]:
             pv[c] = ""
     sent_path = analysis_data_dir / "sentiment.csv"
     if sent_path.exists():
@@ -228,14 +187,22 @@ def collect(analysis_dir: Path, analysis_data_dir: Path, allow_partial: bool, ru
         else: _check(False, msg, errors)
     _check(len(pv) == len(pb) and not pv["id"].duplicated().any(), "post_variables must hold every corpus id exactly once", errors)
 
-    bins_complete = [b for b, s in states.items() if s == "complete"]
+    bins_complete = [b for b, st in states.items() if st == "labelled"]
     complete = len(bins_complete) == 9 and n_sent == len(pb) and not errors
     if errors and not allow_partial:
         raise SystemExit("S5 collect: checks failed:\n  " + "\n  ".join(errors))
 
+    # the mean VADER score of each topic's posts (title score; after the topic overrides) — author's request, 2026-10-25
+    topic_sent = {}
+    if n_sent and post_frames:
+        sc = pd.to_numeric(pv["post_sentiment"], errors="coerce")
+        has = sc.notna() & (pv["topic_id"].fillna("") != "") & (pv["topic_id"].astype(str) != "-1")
+        g = pd.DataFrame({"b": pv.loc[has, "period_bin_run"].astype(int), "t": pv.loc[has, "topic_id"].astype(str), "s": sc[has]}).groupby(["b", "t"])["s"]
+        topic_sent = {k: (round(float(v), C.SENTIMENT_DECIMALS), int(n)) for k, v, n in zip(g.mean().index, g.mean().to_numpy(), g.size().to_numpy())}
+
     for c in ["topic_id", "topic_id_raw"]:
         pv[c] = pv[c].map(_int_str)
-    for c in ["topic_assignment", "category_id", "category_id_agent", "post_sentiment_label"]:
+    for c in ["topic_uid", "topic_name", "topic_tone", "topic_assignment", "post_sentiment_label"]:
         pv[c] = pv[c].fillna("")
     pv = pv[POST_COLUMNS + AUDIT_COLUMNS]
     analysis_data_dir.mkdir(parents=True, exist_ok=True)
@@ -243,30 +210,35 @@ def collect(analysis_dir: Path, analysis_data_dir: Path, allow_partial: bool, ru
 
     # aggregated tables
     analysis_dir.mkdir(parents=True, exist_ok=True)
+    n_topics = 0
     if label_frames:
         lab = pd.concat(label_frames, ignore_index=True)
+        keys = list(zip(lab["period_bin"].astype(int), lab["topic_id"].astype(str)))
+        lab["topic_uid"] = [f"{b_}-{t_}" for b_, t_ in keys]
+        lab["mean_vader_sentiment"] = [f"{topic_sent[k][0]:.{C.SENTIMENT_DECIMALS}f}" if k in topic_sent else "" for k in keys]
+        lab["n_posts_scored"] = [topic_sent[k][1] if k in topic_sent else "" for k in keys]
         for c in LABEL_COLUMNS:
             if c not in lab.columns: lab[c] = ""
         lab = lab[LABEL_COLUMNS].sort_values(["period_bin", "topic_id"])
         lab.to_csv(analysis_dir / "topic_labels_all_bins.csv", index=False)
-    if cat_frames:
-        cat = pd.concat(cat_frames, ignore_index=True)
-        for c in CATEGORY_COLUMNS:
-            if c not in cat.columns: cat[c] = ""
-        cat = cat[CATEGORY_COLUMNS].sort_values(["period_bin", "category_id"])
-        cat.to_csv(analysis_dir / "categories_all_bins.csv", index=False)
-        xw = analysis_dir / "category_crosswalk.csv"
-        if not xw.exists():
-            pd.DataFrame({"period_bin": cat["period_bin"], "category_id": cat["category_id"], "category_name": cat["name"],
-                          "chapter_theme": "", "notes": ""}).to_csv(xw, index=False)
-    taxonomy_version = hashlib.sha256("".join(
-        (analysis_dir / f"bin-{b}" / "categories.csv").read_text(encoding="utf-8") for b in bins_complete).encode()).hexdigest()[:12] if bins_complete else None
+        n_topics = int(len(lab))
+        # the manual cross-bin crosswalk of topics (F4): a template, kept once a co-author has filled it in
+        xw = analysis_dir / "topic_crosswalk.csv"
+        if _template_is_filled(xw, ("chapter_theme", "notes")):
+            log.warning("%s has entries and is kept; add rows for new bins by hand", xw.name)
+        else:
+            ptype = dict(zip(pb["period_bin"], pb["period_type"])) if "period_type" in pb.columns else {}
+            pd.DataFrame({"period_bin": lab["period_bin"], "period_type": lab["period_bin"].map(ptype).fillna(""),
+                          "topic_id": lab["topic_id"], "topic_uid": lab["topic_uid"], "name": lab["name"], "n_total": lab["n_total"],
+                          "chapter_theme": "", "notes": ""})[CROSSWALK_COLUMNS].to_csv(xw, index=False)
+    labels_version = hashlib.sha256("".join(
+        (analysis_dir / f"bin-{b}" / "topics_labelled.csv").read_text(encoding="utf-8") for b in bins_complete).encode()).hexdigest()[:12] if bins_complete else None
     sidecar = {"written": pd.Timestamp.utcnow().isoformat(timespec="seconds"), "n_posts": int(len(pv)),
                "bins_state": states, "bins_complete": bins_complete, "complete": complete, "n_with_sentiment": n_sent,
-               "n_with_topic": int((pv["topic_id"] != "").sum()), "n_with_category": int((pv["category_id"] != "").sum()),
-               "taxonomy_version": taxonomy_version, "columns": POST_COLUMNS, "audit_columns": AUDIT_COLUMNS,
+               "n_with_topic": int((pv["topic_id"] != "").sum()), "n_topics_labelled": n_topics,
+               "labels_version": labels_version, "columns": POST_COLUMNS, "audit_columns": AUDIT_COLUMNS,
                "errors": errors, **run_info}
     (analysis_data_dir / "post_variables.json").write_text(json.dumps(sidecar, indent=1, default=str), encoding="utf-8")
-    log.info("S5: post_variables.csv %d rows; bins complete %s; sentiment %d; complete=%s%s", len(pv), bins_complete, n_sent, complete,
-             f"; {len(errors)} check(s) failed (allowed by --allow-partial)" if errors else "")
+    log.info("S5: post_variables.csv %d rows; bins complete %s; %d topics; sentiment %d; complete=%s%s", len(pv), bins_complete, n_topics,
+             n_sent, complete, f"; {len(errors)} check(s) failed (allowed by --allow-partial)" if errors else "")
     return sidecar

@@ -23,7 +23,6 @@ import numpy as np
 import pandas as pd
 from . import config as C
 from . import data
-from . import model as M
 
 log = logging.getLogger("topicmodel")
 
@@ -106,7 +105,8 @@ def build_period_bins(out_dir: Path) -> pd.DataFrame:
         "share_lang_en": g["lang_en"].mean().round(4).to_numpy(),
         "n_title_short": g["title_short"].sum().to_numpy(),
     })
-    summ["min_cluster_size_start"] = [M.start_min_cluster_size(int(n)) for n in summ["n_posts"]]
+    tr = [C.target_topic_range(int(n)) for n in summ["n_posts"]]           # D8: 50–75 topics per 10,000 posts (approx., on n_posts)
+    summ["target_topics_min"] = [lo for lo, _ in tr]; summ["target_topics_max"] = [hi for _, hi in tr]
     summ["expected_n_design"] = summ["period_bin"].map(C.PERIOD_BIN_EXPECTED_N)
     summ.to_csv(out_dir / "period_bins_summary.csv", index=False)
 

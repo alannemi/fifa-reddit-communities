@@ -7,8 +7,9 @@ a setting without reading the pipeline code.  Nothing below is read from the env
 
 Design: docs/session-04_2026-10-22/01_analytical-pipeline-design.md (v1.2; decisions D1–D5 in §14, flags in §13).
 Approvals: docs/session-05_2026-10-23/00_approvals.md (N1–N12, R1–R13), docs/session-06_2026-10-24/00_approvals.md
-(D5 two-step taxonomy, prompt v1.2), docs/session-07_2026-10-25/00_approvals.md (one pipeline, PIPELINE_ROOT).
-Entry point: code/05-analysis-pipeline.py (stages bins, embed, topics, reassign, label, taxonomy, sentiment, collect,
+(D5, superseded), docs/session-07_2026-10-25/00_approvals.md (one pipeline, PIPELINE_ROOT), docs/session-08_2026-10-25/
+00_colab-run-log.md (D7: the topic is the unit of analysis; D8: the topic density).
+Entry point: code/05-analysis-pipeline.py (stages bins, embed, topics, grid, reassign, label, sentiment, collect,
 report).  Stage S6 (write-back into the data files) is code/06-tag-corpus.R + code/07-validate-analysis.R.
 """
 from __future__ import annotations
@@ -110,29 +111,31 @@ EMBEDDING_BATCH_SIZE = 256
 EMBEDDING_MAX_SEQ_LENGTH = 256   # tokens; title + 1,000 characters of body fit comfortably
 
 # ---------------------------------------------------------------------------
-# S2 — BERTopic per bin (design §6): frozen UMAP, HDBSCAN with the topic-count guard, c-TF-IDF keywords
+# S2 — BERTopic per bin (design §6): frozen UMAP, HDBSCAN with the topic-density guard (D8), c-TF-IDF keywords
 # ---------------------------------------------------------------------------
 SEED = 42                               # UMAP, post sampling and shuffles
 UMAP_PARAMS = dict(n_neighbors=15, n_components=5, min_dist=0.0, metric="cosine", random_state=SEED)
-MIN_CLUSTER_FRACTION = 0.0025           # starting HDBSCAN min_cluster_size = 0.25 % of the bin's modelled posts ...
-MIN_CLUSTER_FLOOR = 25                  # ... but never fewer than 25 (design §6.1; the guard never goes below it)
-# The four HDBSCAN / guard settings below accept either one value for every bin or a dict by period type, e.g.
+MIN_CLUSTER_FLOOR = 25                  # a topic holds at least 25 posts: the guard's starting min_cluster_size and its floor (design §6.1)
+# Topic granularity (decision D8, Alan Nemirovski, 2026-10-25): no fixed range per bin — the bins differ by a factor of 30 in
+# size — but a density of 50–75 raw topics per 10,000 modelled posts. target_topic_range(n) gives a bin's range; the guard
+# (design §6.2) moves min_cluster_size until the raw topic count falls inside it (bin 1: 9,809 posts -> 49–74 topics).
+TOPICS_PER_10K = (50, 75)
+GUARD_MAX_TRIALS = 6                    # at most six HDBSCAN fits on the frozen 5-d array (seconds each on the GPU)
+GUARD_STEP = 1.5                        # first move ×1.5 / ÷1.5, then bisection between the bracketing values
+# The three HDBSCAN settings below accept either one value for every bin or a dict by period type, e.g.
 # HDBSCAN_MIN_SAMPLES = {"tournament": 10, "interim": 5} — the decision space of a failed large-bin gate (design §12.2;
 # the interim bins are 20–30× larger and more heterogeneous than the tournament bins). Read through setting().
 HDBSCAN_MIN_SAMPLES = 10                # revisited only if the large-bin gate shows > 45 % raw outliers (design §12.2)
 HDBSCAN_SELECTION_METHOD = "eom"       # "eom" (excess of mass, the design's standard) or "leaf" (more, smaller clusters)
 HDBSCAN_EPSILON = 0.0                   # cluster_selection_epsilon in the 5-d UMAP space (0 = off); merges micro-clusters
-# Diagnostic for a failed large-bin gate (2026-10-25, bin 4: 74 topics but 56 % raw outliers): `--stage grid --bin N` refits
-# HDBSCAN on the bin's cached UMAP array over this grid and writes bin-N/hdbscan_grid.csv; the author then chooses the setting
-# (design §12.2). min_cluster_size values are factors of the guard's converged value; None = that value itself.
-HDBSCAN_GRID = {"min_cluster_size_factor": [1.0, 0.67, 0.5], "min_samples": [10, 5, 3], "method": ["eom", "leaf"], "epsilon": [0.0]}
-TOPIC_COUNT_RANGE = (50, 100)           # topic-count guard target: raw topics per bin (design §6.2); dict by period type allowed
-GUARD_MAX_TRIALS = 4                    # at most four HDBSCAN fits on the frozen 5-d array
-GUARD_STEP = 1.5                        # first move ×1.5 / ÷1.5, then bisection between the bracketing values
+# Diagnostic for a failed large-bin gate (2026-10-25, bin 4: 56 % raw outliers): `--stage grid --bin N` refits HDBSCAN on the
+# bin's cached UMAP array over this grid and writes bin-N/hdbscan_grid.csv; the author then chooses the setting (design §12.2).
+HDBSCAN_GRID = {"min_cluster_size": [25, 40, 60, 100], "min_samples": [10, 5, 3], "method": ["eom", "leaf"], "epsilon": [0.0]}
 NGRAM_RANGE = (1, 2)                    # keyword candidates: unigrams and bigrams
 TOP_N_WORDS = 15                        # keywords per topic
 MMR_DIVERSITY = 0.3                     # maximal-marginal-relevance re-ranking of the keywords
 N_REPRESENTATIVE_DOCS = 5               # representative posts per topic (BERTopic keeps 3 by default; review R3)
+SAMPLE_KEYWORDS = 8                     # keywords of the nearest topic shown in the outlier judgement samples
 # r/soccer and Reddit scaffolding removed ONLY from the keyword descriptions (never from the documents or the
 # embeddings); no football vocabulary is removed.  `vs` and `soccer` were added by design F11.
 EXTRA_STOPWORDS = [
@@ -169,31 +172,6 @@ LLM_JSON_SALVAGE = True                 # recover answers whose only defect is b
                                         # "salvage" in the transcript.  False = a second syntax failure is "no answer"
 
 # ---------------------------------------------------------------------------
-# S3b — discourse taxonomy protocol (decision D5, 2026-10-24, and D6, 2026-10-25; design §7.4 v1.4; prompt v1.3)
-# ---------------------------------------------------------------------------
-#   "two_step"  = the analysts first agree on the bin's category definitions (no topic ids), then assign the topics
-#                 to those categories, one debate item per TAXONOMY_ASSIGN_BATCH topics (1 = one debate per topic);
-#   "partition" = the superseded v1.1 single prompt (categories with explicit `topics` lists; chunking above
-#                 TAXONOMY_MAX_ITEMS), kept for comparison and replay of the session-05 dry run (flag F26).
-TAXONOMY_PROTOCOL = "two_step"
-TAXONOMY_ASSIGN_BATCH = 1               # topics per assignment prompt (author's decision 2026-10-24: one topic per item)
-TAXONOMY_KEYWORDS_PER_TOPIC = 8         # keywords per topic line shown to the analysts
-LLM_MAX_NEW_TOKENS_DEFINE = 4000        # step-1 answer (10–20 categories × ≈ 100 tokens, with margin)
-LLM_MAX_NEW_TOKENS_ASSIGN = 800         # step-2 answer (one {topic_id, category_id, category_name} triple per topic in the item)
-# Decision D6 (Alan Nemirovski, 2026-10-25, after the first Colab run of bin 1): with all 35 defined categories listed in
-# every assignment prompt, both analysts ignored the categories late in the list and agreed on the same wrong ids (8 of
-# the 35 categories stayed empty, ≈ 18 of 65 topics misplaced; agreement is no check on correctness when both analysts
-# are the same model). Step 2 therefore shows each topic only its most similar categories, most similar first — cosine
-# similarity of the sentence embeddings (EMBEDDING_MODEL) of the category line and the topic line as shown in the prompt —
-# and the answer names the category as well as its id (a mismatch is resolved in favour of the name).
-TAXONOMY_SHORTLIST = 10                 # candidate categories per topic (0 = the whole list, the v1.2 behaviour)
-TAXONOMY_REVIEW_RANK = 3                # a topic whose agreed category ranks worse than this by similarity is flagged
-                                        #   assignment_needs_review; the rank itself is recorded (assignment_similarity_rank)
-LLM_MAX_NEW_TOKENS_PARTITION = 8000     # partition protocol only (review finding R2 raised it from 4,000)
-TAXONOMY_MAX_ITEMS = 100                # partition protocol only: above this many topics the chunking fallback runs
-TAXONOMY_CHUNK_SIZE = 80                # partition protocol only
-
-# ---------------------------------------------------------------------------
 # Controlled tone vocabulary (design §7.3): the analysts' free-text emotion_tone is mapped to one category for counting
 # ---------------------------------------------------------------------------
 TONE_SET = ["positive", "negative", "neutral", "mixed", "excited", "enthusiastic", "frustrated",
@@ -218,6 +196,12 @@ SENTIMENT_VALIDATION_SAMPLE = 300       # hand-coding sample (stratified by bin 
 SENTIMENT_DECIMALS = 4
 
 
+
+
+def target_topic_range(n_modelled: int) -> tuple[int, int]:
+    """The raw topic count a bin should reach (decision D8): TOPICS_PER_10K scaled to its modelled posts."""
+    lo, hi = TOPICS_PER_10K
+    return max(1, round(n_modelled * lo / 10000)), max(1, round(n_modelled * hi / 10000))
 
 def setting(value, period_type: str | None = None):
     """A setting that may differ by period type: a plain value applies to every bin; a dict {"tournament": …, "interim": …}

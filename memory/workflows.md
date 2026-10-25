@@ -69,12 +69,13 @@ the exploratory tool of session 02; the period-bin pipeline of §7 superseded th
 session 07 (decision H1; code in git history up to commit `1ad6e489`). Their design and the 2010 test case remain in
 `docs/session-02_2026-10-13/` and `docs/session-03_2026-10-14/`.
 
-## 7. The analytical pipeline (period bins → BERTopic → two-agent labels and taxonomies → VADER → tagging)
+## 7. The analytical pipeline (period bins → BERTopic → two-agent topic labels → VADER → tagging)
 
 Design (settings, prompts, outputs, flags, decisions): `docs/session-04_2026-10-22/01_analytical-pipeline-design.md`.
-Approvals, implementation notes, dry-run log: `docs/session-05_2026-10-23/`; the two-step taxonomy protocol (decision D5,
-prompt v1.2): `docs/session-06_2026-10-24/`; the consolidated code, the path root and the Drive layout:
-`docs/session-07_2026-10-25/` (runbook for the Colab run: `02_runbook-colab-run.md`). Variables it adds: codebook §4.9.
+Approvals, implementation notes, dry-run log: `docs/session-05_2026-10-23/`; the two-step taxonomy protocol (D5, superseded):
+`docs/session-06_2026-10-24/`; the consolidated code, the path root and the Drive layout: `docs/session-07_2026-10-25/` (runbook
+for the Colab run: `02_runbook-colab-run.md`); the first Colab run and decisions D7 (the topic is the unit of analysis, no
+category layer) and D8 (topic density 50–75 per 10k posts): `docs/session-08_2026-10-25/`. Variables it adds: codebook §4.9.
 Program: `code/05-analysis-pipeline.py` (one `--stage` per call; every stage skips when its output exists, `--force`
 re-runs; per bin `config.json` + `log.txt`; every stage logs the effective paths). Package: `code/topicmodel/` (every
 setting in `config.py`).
@@ -90,30 +91,25 @@ the input and the caches alone. `HF_HOME` is set by the program to the model cac
 ```bash
 export TOKENIZERS_PARALLELISM=false
 P=.venv/bin/python; S=code/05-analysis-pipeline.py
-$P code/tests/test_pipeline_units.py                 # 20 unit checks (no GPU, no LLM), ~1 min
+$P code/tests/test_pipeline_units.py                 # 12 unit checks (no GPU, no LLM), ~1 min
 $P $S --stage bins                                   # S0: data/analysis/period_bins.csv (+ summary; checks Σ = 1,302,021)
 $P $S --stage embed --bin 1                          # S1: mpnet embeddings, cached per year (GPU)
 python -m cuml.accel $S --stage topics --bin 1       # S2: BERTopic per bin (GPU on Colab; same command without the prefix on CPU)
 $P $S --stage label --bin 1                          # S3a: two-agent cluster labelling (resumable via labels.jsonl)
 #   -> co-author review: results/analysis/bin-1/topics_labelled.csv, report.html -> fill topic_overrides.csv
-$P $S --stage taxonomy --bin 1                       # S3b two-step (D5): definitions debate, then one assignment debate per topic over
-#                                                       the topic's 10 most similar categories (D6, 2026-10-25); re-run with --force after
-#                                                       any S3a override (removes the step-1 checkpoint); --force --keep-definitions
-#                                                       re-runs the assignments alone
-#   -> co-author review: categories.csv -> fill category_overrides.csv (rename/merge) and topic_category_overrides.csv (move a topic)
 $P $S --stage reassign --bin 1 --outlier-threshold T # D3: apply the calibrated T (seconds; see outlier_calibration/)
 $P $S --stage sentiment                              # S4: data/analysis/sentiment.csv (+ sentiment_validation_sample.csv)
-$P $S --stage collect                                # S5: data/analysis/post_variables.csv (+ .json), topic_labels_all_bins.csv, categories_all_bins.csv
-Rscript code/06-tag-corpus.R && Rscript code/07-validate-analysis.R   # S6 (local): append the 8 columns (v3.0) + 13 check families
+$P $S --stage collect                                # S5: data/analysis/post_variables.csv (+ .json; topic_uid/topic_name/topic_tone per post),
+#                                                       topic_labels_all_bins.csv (with mean_vader_sentiment), topic_crosswalk.csv (template)
+Rscript code/06-tag-corpus.R && Rscript code/07-validate-analysis.R   # S6 (local): append the 10 columns (v3.0) + 13 check families
 $P code/08-review-pack.py pack --bin 1   # review_pack.md for the co-authors (after each hand-back); `check --bin 1` validates the
 #                                          filled override files before they go back to Drive (guide: docs/session-08_2026-10-25/01_...)
 ```
 Options: `--bins 1-9` (loop), `--device auto|cuda|mps|cpu`, `--embedding-model <id>` (default `config.EMBEDDING_MODEL` = mpnet),
 `--llm <id>`, `--sampling greedy|seeded`, `--max-topics N` (smoke test), `--years 2010 2011` (sentiment subset),
-`--allow-partial` (collect before all bins exist), `--taxonomy-protocol two_step|partition` (`partition` = the superseded
-v1.1 single prompt, for comparison/replay), `--assign-batch N` (topics per assignment item; default 1), `--max-docs N`
-(mechanics test on a subsample; guard off).
-Order matters: S3a review → S3b → overrides → S5 → S6; S6 refuses to write unless `post_variables.json` says `complete`.
+`--allow-partial` (collect before all bins exist), `--max-docs N` (mechanics test on a subsample; guard off), `--keep-umap`
+(topics with --force: refit HDBSCAN only), `--grid '<json>'` (grid stage).
+Order matters: S3a review (topic_overrides.csv) → S5 → S6; S6 refuses to write unless `post_variables.json` says `complete`.
 On Colab: `code/05b-analysis-pipeline-colab.ipynb` runs the same commands (A100 preferred; the code cloned from GitHub on
 the Colab machine, the CSVs copied to its local disk, every output written to `MyDrive/fifa-communities/` through
 `PIPELINE_ROOT`; the hand-back zip rebuilds the repository paths). Step by step: `docs/session-07_2026-10-25/02_runbook-colab-run.md`.
@@ -128,7 +124,6 @@ $P $S --stage embed --bin 1 --embedding-model $MINI --out-root $OUT
 $P $S --stage topics --bin 1 --embedding-model $MINI --out-root $OUT                     # 92 topics, 35.9 % raw outliers (2026-10-23 and 2026-10-25)
 $P $S --stage reassign --bin 1 --outlier-threshold 0.5 --embedding-model $MINI --out-root $OUT
 $P $S --stage label --bin 1 --out-root $OUT            # Qwen3-1.7B on MPS, batch 4; --max-topics 5 for a quick smoke test
-$P $S --stage taxonomy --bin 1 --out-root $OUT         # ≈ 1 h on the Mac for 92 topics (prefill of the long prompts), minutes on an A100
 $P $S --stage sentiment --years 2010 --out-root $OUT
 $P $S --stage collect --allow-partial --out-root $OUT
 # S6 on a mini corpus: the 2010 yearly file + the dry run's post_variables, written to a separate root
@@ -140,4 +135,6 @@ TAG_IN_ROOT=$OUT/r-mini TAG_OUT_ROOT=$OUT/r-out TAG_ANALYSIS_DIR=$OUT/results/an
 The dry runs of sessions 05–07 are under `results/dry-runs/` (their pipeline outputs are tracked since 2026-10-25; the
 join tables, the R mini-corpus copies and the caches are not — `results/README.md`): `bin1-full` (12 labelled topics), `bin1-full92`
 (all 92 topics; the single-prompt taxonomy that led to D5), `bin1-twostep` (stopped after round 1 of the definitions
-debate), `h7-bin1` (session 07: S1 + S2 after the harmonization, identical UMAP array and HDBSCAN labels).
+debate), `h7-bin1` (session 07: S1 + S2 after the harmonization, identical UMAP array and HDBSCAN labels), `d6-bin1` (the D6
+shortlist re-run of the taxonomy on the Colab outputs of bin 1). The taxonomy outputs in these folders are records of the
+superseded protocol (D7, 2026-10-25).

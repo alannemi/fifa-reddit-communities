@@ -1,4 +1,4 @@
-# Analytical pipeline design — period-binned topic modelling, two-agent labelling and sentiment (v1.4)
+# Analytical pipeline design — period-binned topic modelling, two-agent labelling and sentiment (v1.5)
 
 **Session 04, 2026-10-22/23 · FIFA Communities chapter, McGill University.**
 Decisions: Alan Nemirovski. Drafting and technical design: Claude. Brief: `00_brief.md`. Template method: the
@@ -23,7 +23,13 @@ October 2026 use the file names of their time. This document supersedes the *run
 assignment item lists only the topic's most similar categories, most similar first, the answer names the category as well
 as its id, and a topic whose agreed category ranks low by similarity is flagged (decision D6, §7.4; prompt v1.3, §7.6; flag
 F41) — with all 35 categories listed, both analysts had agreed on the same wrong ids for about 18 of 65 topics
-(`../session-08_2026-10-25/00_colab-run-log.md`).
+(`../session-08_2026-10-25/00_colab-run-log.md`). **Version 1.5 (2026-10-25, evening)** records two decisions of the author:
+**D7** — the unit of analysis is the individual BERTopic topic; the taxonomy stage S3b (D5, D6, N13) is removed from the
+pipeline and its code; every post carries its topic's corpus-wide key, agreed label and tone (`topic_uid`, `topic_name`,
+`topic_tone`); the topic table carries the mean VADER score of the topic's posts (`mean_vader_sentiment`); the cross-bin
+comparison is a manual crosswalk of topics (§7.7, §9, F42–F44). **D8** — no fixed topic range per bin but a density of 50–75
+raw topics per 10,000 modelled posts, the guard searching the minimum cluster size from a floor of 25 (§6.2). §7.4 and the S3b
+texts of §7.6 are kept as the record of the superseded protocol (`../session-08_2026-10-25/00_colab-run-log.md` §9).
 
 ---
 
@@ -44,14 +50,17 @@ F41) — with all 35 categories listed, both analysts had agreed on the same wro
 The pipeline turns the cleaned corpus (codebook v2.1: 1,302,021 r/soccer posts, 1 Jan 2010 – 31 Jul 2026, posts only,
 88 % title-only) into the inputs of the chapter's discourse analysis:
 
-1. **Per post** (appended to the master and yearly CSVs): the analysis period (`period_bin`), the BERTopic topic
-   (`topic_id`) and the discourse category (`category_id`) of the post, and its VADER sentiment (`post_sentiment`).
+1. **Per post** (appended to the master and yearly CSVs): the analysis period (`period_bin`), the BERTopic topic of the
+   post — its bin-local `topic_id`, its corpus-wide key `topic_uid`, its agreed label and tone `topic_name` / `topic_tone`
+   (D7, 2026-10-25) — and its VADER sentiment (`post_sentiment`).
 2. **Per topic** (one aggregated CSV, the brief's "separate CSV"): the two-agent label of every topic cluster
    (name, purpose, emotional tone, description, inclusion cues), how many debate rounds the agents needed
    (`round_iterations`), and the period bin.
-3. **Per period bin**: a discourse taxonomy (categories grouping similar topics), produced by the same two agents.
+3. ~~**Per period bin**: a discourse taxonomy (categories grouping similar topics)~~ — removed by decision D7 (2026-10-25):
+   the topic is the unit of analysis; the per-topic table adds the mean VADER score of the topic's posts, and a topic-level
+   crosswalk template serves the manual cross-bin comparison.
 
-Out of scope here (hooks left): the cross-period alignment of categories (a manual crosswalk, §13 F4), a political
+Out of scope here (hooks left): the cross-period alignment of topics (a manual crosswalk, §13 F4/F43), a political
 content layer (session 03 question, F15), and sentiment measures beyond VADER (F10).
 
 ## 2. Inputs and the unit of analysis
@@ -74,10 +83,11 @@ content layer (session 03 question, F15), and sentiment measures beyond VADER (F
 yearly CSVs ─► S0 period bins ─► S1 documents + sentence embeddings (cached per year)
             ─► S2 BERTopic, one model per bin (9 models): topic_id per post, keywords, sample posts
             ─► S3a two-agent cluster labelling (per topic)      ─► co-author review / topic_overrides.csv
-            ─► S3b two-agent discourse taxonomy (per bin)       ─► co-author review / category_overrides.csv
             ─► S4 VADER sentiment per post
-            ─► S5 collect: post_variables.csv (every post) + topic_labels_all_bins.csv + categories_all_bins.csv
-            ─► S6 write-back (local, R): master + yearly files gain 8 columns ─► codebook v3.0 ─► validation
+            ─► S5 collect: post_variables.csv (every post, with its topic's uid, label and tone) + topic_labels_all_bins.csv
+                           (with mean_vader_sentiment) + topic_crosswalk.csv (template)
+            ─► S6 write-back (local, R): master + yearly files gain 10 columns ─► codebook v3.0 ─► validation
+            (the S3b taxonomy stage of v1.0–v1.4 was removed by decision D7, 2026-10-25)
 ```
 
 | Stage | Reads | Writes | Where it runs |
@@ -86,14 +96,13 @@ yearly CSVs ─► S0 period bins ─► S1 documents + sentence embeddings (cac
 | S1 embed | yearly CSVs | `results/topic-models/embeddings/<model>/<year>.npz` | Colab GPU |
 | S2 topics | S0, S1 | `results/analysis/bin-N/` (§6.4) | Colab GPU (cuML) |
 | S3a label | S2 | `bin-N/labels/topic_<id>.json`, `labels.jsonl`, `topics_labelled.csv` | Colab GPU |
-| S3b taxonomy | S3a (+ overrides) | `bin-N/taxonomy.json`, `taxonomy_definitions.json` (step-1 checkpoint), `categories.csv`, `topic_categories.csv` | Colab GPU |
 | S4 sentiment | yearly CSVs | `data/analysis/sentiment.csv` (id, post_sentiment, post_sentiment_full, label) | CPU |
-| S5 collect | S0–S4 (+ overrides) | `data/analysis/post_variables.csv` (+ `.json` sidecar), `results/analysis/topic_labels_all_bins.csv`, `categories_all_bins.csv` | any |
+| S5 collect | S0–S4 (+ topic overrides) | `data/analysis/post_variables.csv` (+ `.json` sidecar), `results/analysis/topic_labels_all_bins.csv`, `topic_crosswalk.csv` | any |
 | S6 write-back | S5 | `data/soccer_data.clean.csv`, 17 yearly files (v3.0), validation report | local (R) |
 
-Dependency chain to respect: S3b consumes S3a's final names, so any S3a override requires re-running S3b; overrides
-are applied before S5; S6 runs only after the co-author review of S3a and S3b. One command-line program runs the
-stages (`python code/06-analysis-pipeline.py --stage {bins,embed,topics,label,taxonomy,sentiment,collect} --bin N`);
+Dependency chain to respect: the topic overrides are applied by S5; S6 runs only after the co-author review of S3a (since
+D7 there is no S3b). One command-line program runs the stages (`python code/05-analysis-pipeline.py --stage
+{bins,embed,topics,grid,reassign,label,sentiment,collect,report} --bin N`);
 every stage is idempotent (skips when its output exists) and resumable (the agent stage appends to `labels.jsonl`).
 The Colab notebook only orchestrates these commands. S6 is an R script using the same `readr::write_csv()` call as the
 cleaning pipeline, so the data files keep one writer and one format.
@@ -159,7 +168,7 @@ keywords → keyword re-ranking. No topic count is imposed; the number of topics
 |---|---|---|
 | UMAP | `n_neighbors=15, n_components=5, min_dist=0.0, metric="cosine", random_state=42` | BERTopic defaults, seeded |
 | UMAP, how it is run | **fitted once per bin** on the 768-d embeddings; the 5-d result is saved (`umap_5d.npy`) and wrapped in a `FrozenUMAP` object (`fit` is a no-op, `transform` returns the saved array) that BERTopic uses as its `umap_model`; the 768-d embeddings are still what BERTopic receives | BERTopic refits UMAP on every `fit_transform`; freezing it makes the topic-count guard cheap and keeps topic embeddings in the 768-d space, which the keyword re-ranking and the outlier step need |
-| HDBSCAN `min_cluster_size` | start at `max(25, round(0.0025 × n_modelled))` (0.25 % of the bin, floor 25), then the **topic-count guard** (§6.2) | a relative rule keeps topic *counts* comparable across bins that differ 33× in size |
+| HDBSCAN `min_cluster_size` | start at the floor of 25 posts (`MIN_CLUSTER_FLOOR`), then the **topic-density guard** (§6.2, decision D8) | a topic holds at least 25 posts; the guard sets the size so that the bin reaches 50–75 raw topics per 10,000 modelled posts (v1.0–v1.4: 0.25 % of the bin, floor 25, towards 50–100 topics per bin) |
 | HDBSCAN `min_samples` | 10 (`HDBSCAN_MIN_SAMPLES`) | the setting approved and tested in session 02; revisited only if the large-bin gate (§12) shows > 45 % raw outliers — since 2026-10-25 this and the three settings below may be one value or a dict by period type (`config.setting()`), the bins differing by an order of magnitude in size |
 | HDBSCAN other | `metric="euclidean"`, `cluster_selection_method="eom"` (`HDBSCAN_SELECTION_METHOD`), `cluster_selection_epsilon` 0 (`HDBSCAN_EPSILON`), `prediction_data=True` | standard; the two settings exist for the gate decision; the values in force are recorded per bin in `config.json → topics.hdbscan` |
 | Keywords: vectorizer | `CountVectorizer(ngram_range=(1,2), min_df=2, stop_words=English + EXTRA_STOPWORDS)`; `EXTRA_STOPWORDS` = the session-02 scaffolding list (`thread`, `match thread`, `post match`, `amp`, `http`, `reddit`, `imgur`, `youtube`, `twitter`, `streamable`, `edit`, `deleted`, `removed`, …) **plus** `vs`, `soccer` (F11) | stop-words affect only the keyword descriptions, never the documents or embeddings |
@@ -170,22 +179,25 @@ keywords → keyword re-ranking. No topic count is imposed; the number of topics
 | Topics over time | weekly bins for tournament periods, monthly for interim periods (`topics_over_time`, no global/evolution tuning) | matches the period length |
 | GPU | on Colab the stage runs under `python -m cuml.accel …` (NVIDIA RAPIDS cuML is pre-installed on Colab; its accelerator runs the unchanged `umap-learn`/`hdbscan` calls on the GPU); the program detects which backend actually ran and writes `backend: "cuml" | "cpu"` into `config.json`; the CPU path is the same code | the largest bins (≈ 330k × 768) take ≈ 1 h on CPU and minutes on an A100 |
 
-### 6.2 Topic-count guard
+### 6.2 Topic-density guard (decision D8, 2026-10-25; v1.0–v1.4: a topic-count guard towards 50–100 topics per bin)
 
-Target: **50–100 raw topics per bin** (before any outlier handling). Rationale: the taxonomy stage (§7.4) feeds all of
-a bin's topics to a 1.7-billion-parameter model in one prompt, which is reliable up to about 100 compact items; and a
-comparable number of topics per bin makes the per-bin taxonomies comparable in resolution.
+Target: **50–75 raw topics per 10,000 modelled posts** (`TOPICS_PER_10K`; before any outlier handling), scaled to each bin
+(`config.target_topic_range(n_modelled)`: bin 1 → 49–74, bin 4 → ≈ 1,650–2,480). Rationale (author, 2026-10-25): the topic is
+the unit of analysis (D7), so the number of distinct topics should follow the volume of discussion rather than be fixed per
+bin; a density keeps the granularity — posts per topic — comparable across bins that differ 33× in size. The earlier target
+of 50–100 topics per bin served the taxonomy stage, which fed a bin's topics to the 1.7B model in one prompt.
 
-Procedure: fit HDBSCAN on the frozen 5-d array with the starting `min_cluster_size`; record (`min_cluster_size`,
-`n_topics`); if `n_topics` is outside 50–100, bisect between the bracketing values already tried (initially ×1.5 or
-÷1.5), at most four HDBSCAN fits (seconds each on the frozen array); keep the value whose count is nearest to the
-range and flag the bin (`guard_converged = False`) if the range was not reached. All trials are logged in
-`config.json`. The guard is disabled for debugging subsamples (`--max-docs`), where small samples cannot reach the
-range.
+Procedure: fit HDBSCAN on the frozen 5-d array at the floor `min_cluster_size` 25; record (`min_cluster_size`, `n_topics`,
+`outlier_share`); if `n_topics` is outside the bin's range, move ×1.5 / ÷1.5, then bisect between the bracketing values
+already tried; at most six fits (seconds each on the GPU); keep the value whose count is nearest to the range and flag the bin
+(`guard.converged = False`) if the range was not reached. All trials and the HDBSCAN settings in force (`min_samples`,
+selection method, epsilon — one value or per period type, §6.1) are logged in `config.json`. The guard is disabled for
+debugging subsamples (`--max-docs`). A failed large-bin gate (§12.2) is diagnosed with `--stage grid` and applied with
+`--stage topics --force --keep-umap`.
 
-Consequence to keep in mind (F5): with a relative minimum, a topic in bin 1 has ≥ 25 posts and a topic in bin 4 ≥
-≈ 800; interim-period topics are broader themes, tournament-period topics are closer to events. Comparable counts,
-not comparable granularity.
+Consequence to keep in mind (F44): the interim bins will hold 1,000–2,500 topics each — a few posts short of a complete read
+by the co-authors; the review there is the design's sample plus the flagged topics. Labelling scales linearly (≈ 2 min per 65
+topics on the A100).
 
 ### 6.3 Outlier handling (decision D3: thresholded reassignment)
 
@@ -255,7 +267,11 @@ each post truncated to 300 characters) and must describe the cluster as **exactl
 critical, supportive, curious, cautious; stem-based mapper from session 02) as `tone_category`, so tones can be
 counted.
 
-### 7.4 Stage S3b — discourse taxonomy (per bin): the two-step protocol (v1.2, decision D5, 2026-10-24)
+### 7.4 Stage S3b — discourse taxonomy (per bin): the two-step protocol (v1.2, decision D5, 2026-10-24) — SUPERSEDED
+
+> **Removed by decision D7 (2026-10-25):** the pipeline has no taxonomy stage; the individual topic is the unit of analysis.
+> This section (D5, D6, N13 and §7.4.1) is kept as the record of the protocol that ran on bin 1 on 2026-10-25; its code is in
+> git history up to `d120990b`.
 
 Items are the bin's topics, one compact line each — `topic_id | agreed name | emotion_tone | 8 keywords |
 one-sentence description` (≈ 60 tokens per topic). The brief's rule applies: no minimum or maximum number of
@@ -358,7 +374,7 @@ carries its assignment debate's `assignment_round_iterations`, `assignment_agree
 usual path to agreement is an `accept` in round 2 (S3a dry run: 76 of 92 topics), so Analyst B's wording is adopted
 more often than Analyst A's.
 
-### 7.6 Prompt v1.2 (2026-10-24; logged verbatim in every run's `config.json`)
+### 7.6 Prompts (v1.4 since D7, 2026-10-25: the S3a and shared texts only; the S3b texts below are history; logged verbatim in every run's `config.json`)
 
 v1.2 = v1.1 with the two-step S3b texts (step 1 definitions, step 2 assignment) and the revision turn naming the
 stage's answer key; the S3a texts are byte-identical to v1.1 (approved as drafted, `../session-06_2026-10-24/00_approvals.md`
@@ -452,23 +468,18 @@ peer while preserving quality. Same schema. JSON only.
 * Per topic: `results/analysis/bin-N/labels/topic_<id>.json` — the agreed category, both analysts' final answers, the
   full transcript (every prompt and answer, decisions, seeds), `round_iterations`, `agreement_mode`; `labels.jsonl`
   (one line per topic, append-only, the resume file).
-* Per bin: `taxonomy.json` (the definitions debate and every assignment debate with their transcripts, the categories
-  defined and final, the repair log, `n_answers_salvaged`), `taxonomy_definitions.json` (step-1 checkpoint),
-  `categories.csv`, and `topic_categories.csv` (topic → category with `category_assignment` and the assignment-debate
-  columns of §7.4).
-* **`results/analysis/topic_labels_all_bins.csv`** — the brief's single aggregated CSV, one row per topic cluster:
-  `period_bin, topic_id, name, purpose, emotion_tone, tone_category, description, inclusion_cues, round_iterations,
-  agreed, agreement_mode, needs_review, analyst_a_final, analyst_b_final, category_id, category_name,
-  category_assignment, assignment_round_iterations, assignment_agreement_mode, assignment_contested,
-  assignment_needs_review, n_cluster, n_total, share, keywords, llm_model, llm_revision, prompt_version, decoding`
-  (+ `name_agent`, `merged_from` from the overrides).
-  (The S3a answer's `id`, always `cat_1`, is not carried: it would collide with the post `id`.)
-* `results/analysis/categories_all_bins.csv` — one row per S3b category: `period_bin, category_id, name, purpose,
-  emotion_tone, tone_category, description, inclusion_cues, topic_ids, n_topics, n_posts, share, round_iterations,
-  agreed, agreement_mode, needs_review`.
-* `topic_overrides.csv`, `category_overrides.csv`, `topic_category_overrides.csv` (topic → `final_category_id`,
-  F28) — editable decision files (applied before S5, in this order: topic merges, topic-level category moves on the
-  surviving topics, category merges).
+* **`results/analysis/topic_labels_all_bins.csv`** — the brief's single aggregated CSV, one row per topic cluster (D7):
+  `period_bin, topic_id, topic_uid, name, purpose, emotion_tone, tone_category, description, inclusion_cues,
+  round_iterations, agreed, agreement_mode, needs_review, analyst_a_final, analyst_b_final, n_cluster, n_total, share,
+  mean_vader_sentiment, n_posts_scored, keywords, llm_model, llm_revision, prompt_version, decoding` (+ `name_agent`,
+  `merged_from` from the overrides). `topic_uid` = `<period_bin>-<topic_id>`, unique across the corpus;
+  `mean_vader_sentiment` = the mean title compound score of the topic's posts after reassignment and overrides (author,
+  2026-10-25). (The S3a answer's `id`, always `cat_1`, is not carried: it would collide with the post `id`.)
+* `results/analysis/topic_crosswalk.csv` — template for the co-authors' manual cross-bin crosswalk of topics to chapter
+  themes (`period_bin, period_type, topic_id, topic_uid, name, n_total, chapter_theme, notes`; kept once it has entries; F43).
+* `topic_overrides.csv` (rename / merge topics) — the one editable decision file, applied by S5.
+* *(v1.0–v1.4, removed by D7: `taxonomy.json`, `categories.csv`, `topic_categories.csv`, `categories_all_bins.csv`,
+  `category_overrides.csv`, `topic_category_overrides.csv`, `category_crosswalk.csv`.)*
 
 ## 8. Stage S4 — sentiment (VADER)
 
@@ -495,25 +506,26 @@ else.
 
 ### 9.1 S5 collect (after the reviews and overrides)
 
-`data/analysis/post_variables.csv`, one row per post (1,302,021): `id, period_bin, period_type, topic_id,
-topic_assignment, category_id, post_sentiment, post_sentiment_full, post_sentiment_label`, plus audit columns
-`topic_id_raw` and `category_id_agent` (the pre-override category) that are **not** written to the master. A sidecar
-`post_variables.json` records the taxonomy version, the run ids and software versions. Checks: every corpus id present
+`data/analysis/post_variables.csv`, one row per post (1,302,021): `id, period_bin, period_type, topic_id, topic_uid,
+topic_name, topic_tone, topic_assignment, post_sentiment, post_sentiment_full, post_sentiment_label` (D7: the topic's
+corpus-wide key, agreed name and controlled tone on every post that has a topic; empty for outliers and unmodelled posts),
+plus the audit column `topic_id_raw` that is **not** written to the master. A sidecar `post_variables.json` records the
+labels version (a hash of the labelled topics), the run ids and software versions. Checks: every corpus id present
 once; ids valid for their bin; scores within range.
 
-### 9.2 S6 write-back (local, R; gated on the S3a/S3b review)
+### 9.2 S6 write-back (local, R; gated on the S3a review)
 
 `code/07-tag-corpus.R` left-joins `post_variables.csv` by `id` into `data/soccer_data.clean.csv` and the 17 yearly
-files, appending the **8 analysis columns** after the existing 42 (which stay byte-identical), with the same
+files, appending the **10 analysis columns** after the existing 42 (which stay byte-identical), with the same
 `readr::write_csv(na = "")` call as the cleaning pipeline. Side files are not analysed and keep their 43 columns.
 `code/08-validate-analysis.R` checks: row counts unchanged; every post has one bin consistent with its date; bin sizes
-sum to the corpus; `topic_id`/`category_id` exist in their bin's tables; `topic_assignment` consistent with `topic_id`;
+sum to the corpus; `topic_id` exists in its bin's table; `topic_uid`, `topic_name` and `topic_tone` present iff the post has a
+topic; `topic_assignment` consistent with `topic_id`;
 sentiment within [−1, 1] and labels consistent with the thresholds; the original 42 columns unchanged (hash); master
 and `post_variables.csv` identical on the new columns.
 
-**Keys.** `topic_id` and `category_id` are bin-local: the composite keys are (`period_bin`, `topic_id`) and
-(`period_bin`, `category_id`). `category_id` uses the agents' `cat_N` ids after overrides. The taxonomy version is
-recorded in the codebook's version row and the sidecar, not per row.
+**Keys.** `topic_id` is bin-local; the composite key is (`period_bin`, `topic_id`), carried on every post as `topic_uid` =
+`<period_bin>-<topic_id>`. The labels version is recorded in the codebook's version row and the sidecar, not per row.
 
 ### 9.3 File layout
 
@@ -580,18 +592,16 @@ the effective settings, guard trials, backend, CUDA/cuML versions, `pip freeze`,
 1. **Bin 1 (2010) end-to-end on Colab.** Compare with `results/topic-models/window-wc2010` and `year-2010`: the
    tournament's known themes must surface (vuvuzelas, Jabulani ball, Lampard's disallowed goal, Suárez handball,
    Spain's win, Paul the octopus).
-2. **Large-bin gate (bin 4 or 6).** Raw outlier share ≤ 45 %, guard converges within four trials, most topics
-   assigned by the agents in S3b step 2 (few `repaired`); otherwise revisit `min_samples` and the topic range before the
-   other bins. Diagnostic (2026-10-25): `--stage grid --bin N` refits HDBSCAN over `HDBSCAN_GRID` on the bin's cached UMAP array
+2. **Large-bin gate (bin 4 or 6).** Raw outlier share ≤ 45 %, guard converges (to the density target of D8) within six
+   trials; otherwise revisit `min_samples`, the selection method or epsilon before the other bins. Diagnostic (2026-10-25): `--stage grid --bin N` refits HDBSCAN over `HDBSCAN_GRID` on the bin's cached UMAP array
    (`hdbscan_grid.csv`: topics, outlier share, largest cluster per setting); the decision is applied with `--stage topics --force
    --keep-umap`. **First attempt, bin 4 (2026-10-25): guard 820 → 2 topics, 547 → 74 topics with 56.2 % raw outliers — failed on
    the outlier share; decision pending** (`../session-08_2026-10-25/00_colab-run-log.md` §8).
 3. **Outlier threshold.** `T` from the similarity quantiles + the 100-post human check, on bin 1 and the large bin.
 4. **Agents.** Round distribution and `agreement_mode` counts; `needs_review` ≤ 15 % of topics; greedy versus
    seeded-sampling comparison on bin 1 (dropped 2026-10-25, §14); 20 topics read by a co-author against their posts; optional relabel of bin 1
-   with Qwen3-4B (weights cached) to see what the larger model changes (dropped 2026-10-24, §14). Since D6: the distribution
-   of `assignment_similarity_rank` and the topics flagged by rank (`taxonomy.json → shortlist`), read by a co-author against
-   the category definitions — agreement between the two analysts is not a check on correctness (F41).
+   with Qwen3-4B (weights cached) to see what the larger model changes (dropped 2026-10-24, §14). (The D6 reading of the assignment ranks fell away with the taxonomy stage, D7; the lesson of F41 — agreement between
+   the two analysts is not a check on correctness — stands for the labels.)
 5. **Sentiment.** The 300-post hand-coded sample.
 6. **Automatic checks** per bin (counts, coverage, assignment coverage, ids valid) and the S6 validation script.
 
@@ -630,6 +640,9 @@ the effective settings, guard trials, backend, CUDA/cuML versions, `pip freeze`,
 | F29 | Complete transcripts of two debates per bin ≈ 1 MB of `taxonomy.json` per bin in git | accepted: the transcripts are the audit trail |
 | F30 | Assignment references are resolved leniently (names, bare numbers) and `null` counts as missing | recorded per answer (`resolved_from`); strictness is one function |
 | F41 (2026-10-25) | The two analysts are one model: with all 35 categories listed in every assignment prompt they agreed on the same wrong ids (first Colab run of bin 1: 8 defined categories empty, ≈ 18 of 65 topics misplaced, `needs_review` 0 %); agreement is no check on correctness | D6: a similarity-ranked shortlist per topic, `category_id` + `category_name` in the answer (the name wins a conflict), a rank-based review flag (`assignment_similarity_rank`, `TAXONOMY_REVIEW_RANK`); gate 4 reads the rank distribution; the co-author review starts with the flagged topics |
+| F42 (2026-10-25) | With the topic as the unit of analysis (D7) the chapter works with fine-grained topics — about 65 in bin 1 and 1,000–2,500 in each interim bin under D8 — instead of a dozen categories per bin | accepted by the author; the co-author review per bin is a sample plus the flagged topics; topic merges in `topic_overrides.csv` are the only consolidation |
+| F43 (2026-10-25) | The cross-bin comparison (F4) moves from categories to topics: the crosswalk maps hundreds of topics to chapter themes | `topic_crosswalk.csv` template written by S5 (one row per topic, kept once filled); filled only when the chapter's analysis needs it, by hand |
+| F44 (2026-10-25) | Under the density target the interim bins yield 1,000–2,500 topics: labelling ≈ 1 h per bin on the A100 (fine), but no complete human read | the design's sample (20 topics against their posts) plus every `needs_review` topic per bin; the author decides whether a larger sample is needed |
 
 ## 14. Decisions log (author: Alan Nemirovski, 2026-10-22)
 
@@ -654,6 +667,8 @@ the effective settings, guard trials, backend, CUDA/cuML versions, `pip freeze`,
 | **2026-10-25** | Greedy vs seeded sampling (F17, §12.4) | **Greedy decoding kept for every bin; the seeded-sampling comparison on bin 1 is dropped** (notebook cell 3.2 stays as an unused tool) | author's decision after Colab Pass 1 on bin 1 (65 topics, the 12 labelled topics sound): reproducible labels; the two lenses already give the second analyst a distinct view; the comparison would have cost a second labelling run of bin 1 |
 | **2026-10-25 D6** | S3b step 2 after the first full run of bin 1 on Colab | **Each assignment item lists only the topic's `TAXONOMY_SHORTLIST` (10) most similar categories, most similar first (sentence embeddings of the category and topic lines); the answer carries `category_id` + `category_name` (a mismatch is resolved in favour of the name); a topic whose agreed category ranks worse than `TAXONOMY_REVIEW_RANK` (3) is flagged `assignment_needs_review`**; prompt v1.3; `--force --keep-definitions` re-runs step 2 alone | with all 35 categories listed, both analysts ignored the late categories and agreed on the same wrong ids (8 empty categories, ≈ 18 of 65 topics misplaced — `../session-08_2026-10-25/00_colab-run-log.md`); alternatives declined: embedding-only assignment with the analysts confirming, a review flag alone, hand repair per bin |
 | 2026-10-25 N13 | Step-2 answers with extra pairs (a foreign or repeated topic id) or an id/name conflict | **Cleaned and recorded (`cleanup`), no repair turn**; the repair turn stays for a missing topic or an unresolvable reference | applied with D6 after its dry run on the Mac: 16 of 65 items had spent a repair turn on extras, 5 answers changed category in it (topic 18 from right to wrong) |
+| **2026-10-25 D7** | The unit of analysis | **The individual BERTopic topic, labelled by the two analysts (S3a). The taxonomy stage S3b (D5, D6, N13) is removed from the pipeline and its code**; every post carries `topic_uid` (`<bin>-<topic_id>`), `topic_name` and `topic_tone`; the topic table carries `mean_vader_sentiment` and `n_posts_scored`; the cross-bin comparison is a manual topic crosswalk (`topic_crosswalk.csv`); the one review file is `topic_overrides.csv`; the analysis columns are 10 (52 in the data files); the bin-1 taxonomy outputs of the day were removed from the live folder (git history keeps them) | author's decision after the first Colab run (`../session-08_2026-10-25/00_colab-run-log.md` §9): the chapter wants the fine-grained topics, not an aggregation; alternatives declined: keeping the taxonomy code switched off; VADER-only topic sentiment (the analysts' tone stays, the VADER mean is added) |
+| **2026-10-25 D8** | Topic granularity | **No fixed topic range per bin: 50–75 raw topics per 10,000 modelled posts (`TOPICS_PER_10K`), the guard searching `min_cluster_size` from the floor of 25** (§6.2); the HDBSCAN settings may be set per period type (`config.setting()`) from the grid diagnostic | author's decision: topics should emerge from the volume of discussion; the fixed 50–100 range served the removed taxonomy stage |
 | **2026-10-25 H1–H7** | Code harmonization (session 07) | **H1** the session-02 exploratory tool removed entirely; **H2** flat, purpose-named Drive layout under `MyDrive/fifa-communities/`; **H3** Drive as the root for everything that persists, code cloned on the Colab machine, CSVs copied locally, no symlinks; **H4** shared R helper file `code/R/pipeline-utils.R`; **H5** scripts renumbered 06→05, 06b→05b, 07→06, 08→07; **H6** stale tracked copies under `data/` untracked; **H7** `03-data-validation.R` accepts the v3.0 spec now | `../session-07_2026-10-25/00_approvals.md` (defaults and flags F31–F38 there); no analytical change |
 
 ## 15. Brief versus design

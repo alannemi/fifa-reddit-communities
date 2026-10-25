@@ -209,3 +209,59 @@ lower `min_samples` (fewer points declared noise at the same cluster count); `le
 interim bins (e.g. 50–150, smaller clusters, fewer outliers — a change to design §6.2); `epsilon` > 0 (merges micro-clusters);
 or accepting > 45 % raw outliers for the interim bins and letting the D3 reassignment carry more weight.
 
+## 9. Redesign of the back half of the pipeline (Alan Nemirovski, 2026-10-25, evening): decisions D7 and D8
+
+**The request.** One labelling pass instead of two: label the raw BERTopic topics (name and sentiment) and stop there —
+no second pass that aggregates topics into categories; the chapter's level of analysis is the individual topic. The five
+questions put to the author and his answers:
+
+| # | Question | Answer |
+|---|---|---|
+| 1 | Topic-level sentiment | the analysts' tone is sufficient; add the mean VADER compound score per topic as a variable (`mean_vader_sentiment`) |
+| 2 | Fate of the taxonomy code | remove it all; update the design document |
+| 3 | Cross-bin comparison | manual; a topic-level crosswalk template for the co-authors' reference |
+| 4 | Topic granularity | no preset range per bin; as many distinct topics as emerge — then refined to **≈ 50–75 topics per 10,000 posts** |
+| 5 | The bin-1 taxonomy relics | remove them |
+
+Two additions during the implementation: every post carries its topic's label (`topic_name`, `topic_tone`), and a topic id
+that is distinct across bins (`topic_uid` = `<period_bin>-<topic_id>`) as an additional variable.
+
+**Recorded as:** design v1.5 — **D7** (the topic is the unit of analysis; S3b removed; `topic_uid`/`topic_name`/`topic_tone`
+per post; `mean_vader_sentiment`; `topic_crosswalk.csv`) and **D8** (topic density `TOPICS_PER_10K = (50, 75)`, the guard
+searching `min_cluster_size` from the floor of 25), flags F42–F44; §7.4 and the S3b prompt texts kept as history.
+
+**What changed in the code (unit checks 12/12):**
+* removed: the taxonomy stage (`--stage taxonomy`, `--keep-definitions`, `--taxonomy-protocol`, `--assign-batch`), its
+  code in `agents.py` (definitions, assignment, shortlist, repair, category overrides), the S3b prompts (`prompts.py` is
+  v1.4: the S3a and shared texts), the taxonomy settings, the eight taxonomy unit checks; `TOPIC_COUNT_RANGE`,
+  `MIN_CLUSTER_FRACTION`, `start_min_cluster_size`;
+* changed: the guard targets `config.target_topic_range(n_modelled)` (bin 1 → 49–74; bin 4 → 1,656–2,484) from
+  `MIN_CLUSTER_FLOOR` with up to six fits; `HDBSCAN_GRID` lists absolute sizes (25/40/60/100); `period_bins_summary.csv`
+  shows each bin's target; `tagging.py` writes 10 analysis columns + `topic_id_raw`, `topic_labels_all_bins.csv` with
+  `topic_uid`, `mean_vader_sentiment`, `n_posts_scored`, and the `topic_crosswalk.csv` template (kept once filled); a bin is
+  complete when labelled; `report.py` without category columns; `08-review-pack.py` without the category sections, the
+  check covers `topic_overrides.csv` only;
+* R: `ANALYSIS_COLS` = 10 (52 columns in the data files); `07-validate-analysis.R` A6 now checks `topic_uid` = bin-topic
+  and that `topic_name`/`topic_tone` are present iff the post has a topic; `03` and `06` texts follow;
+* notebook: the taxonomy cells (2.3, 3.1b) and lines removed; the gate cells read the density target; the header updated;
+* documents: design v1.5, the runbook rewritten, the review guide rewritten (one pass), README, `memory/workflows.md`,
+  the codebook (§1 file table, §4.9 with the three new variables, limitation 10, §8.3, the version-3.0 row).
+
+**Verification.** `--stage collect --allow-partial` on the real bin-1 outputs: 1,302,021 rows, 6,395 posts of bin 1 with
+`topic_uid`/`topic_name`/`topic_tone` (the 9,809 modelled minus 3,414 raw outliers), 65 topics with `mean_vader_sentiment`
+between −0.43 and +0.36, the crosswalk template with 65 rows; the report re-rendered; `review_pack.md` regenerated.
+`06-tag-corpus.R` + `07-validate-analysis.R` on the mini 2010 corpus with the 92-topic dry run of bin 1 (scratch root):
+52 columns, **ALL CHECKS PASSED** (A6 included). The bin-1 taxonomy files were removed from `results/analysis/bin-1/` and
+the aggregated category tables from `results/analysis/` (commit history keeps them; the dry-run folders `bin1-*`, `d6-bin1`
+keep theirs as records of the superseded protocol).
+
+**State of bin 1 under D7/D8.** Its clustering stands: 65 topics at `min_cluster_size` 25 lie inside the new target
+(49–74), the labels stand, and the collect stage already carries them onto the posts. No re-run of bin 1 is needed.
+
+**Next.** (1) The co-author review of bin 1: one pass over `topic_overrides.csv` with the regenerated pack, plus the outlier
+samples. (2) The large-bin gate on bin 4 under D8: cell 3.3 again (`--stage topics --bin 4 --force --keep-umap` is what cell
+3.3c does; the guard now searches towards ≈ 1,650–2,480 topics from `min_cluster_size` 25, so the 56 % of the first attempt is
+not comparable); if the outlier share still exceeds 45 %, cell 3.3b's grid (25/40/60/100 × min_samples × eom/leaf) and the
+author's choice, possibly per period type. (3) Then `T`, bins 2–9, sentiment, collect, S6 — the runbook. Open for the
+author (F44): the size of the human review sample for bins with 1,000–2,500 topics.
+

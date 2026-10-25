@@ -377,3 +377,12 @@ by cell 3.5 anyway. Cell 3.5 then passed bin 3 through the gate (`OUTLIER_GATE` 
 taken the LLM loader (`_LLM`, `get_llm`) that sat between the two with it. Restored the same evening; a static check
 (`test_script_names_defined`, Python's `symtable`) now fails the unit checks when a function of the stage script or the
 review-pack script reads a global name that is not defined — the class of defect that only shows when a stage is reached.
+
+**Bin 3 handed back (2026-10-25, 20:26 UTC zip; committed `a5f4dc0e`).** 474 topics labelled in 16.2 min on the A100 (7 flagged
+`needs_review`; agreement modes: 431 accepted by A, 27 identical, 9 accepted by B, 6 stalemates, 1 no answer); the per-bin flag,
+review pack, four calibration samples (names written in) and the 474 transcripts are in `results/analysis/bin-3/`. Bin 1's
+tier-updated `documents.csv`, `topics.csv`, `topics_over_time.csv`, `config.json`, `status.json` and four-band calibration table were
+pulled file by file through the Drive connector (its 10 MB limit rules out the zips); its new 35th-percentile sample
+(`sample_T0.4971.csv`) still has to come from Drive by hand. A co-author's review of bin 1's labels arrived on GitHub the same
+evening (`results/analysis/manual review/BIN1_topics_labelled_TP:BA.csv`, commit `f938c69b`) — hence the rule: pull and merge
+before every commit. Local `collect --allow-partial` rebuilt `topic_labels_all_bins.csv` with bins 1 and 3 (539 topics).

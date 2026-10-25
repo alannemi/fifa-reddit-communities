@@ -1,0 +1,194 @@
+{
+ "period_bin": 7,
+ "topic_id": 157,
+ "keywords": "group standings, standings matchday, standings group, group stage, final standings, standings gameweek, standings, matchday group, cup group, gameweek group, fifa rankings, rankings, world cup, standing matchday, fifa",
+ "n_sample_posts": 28,
+ "sample_ids": [
+  "z2vttq",
+  "z203tv",
+  "z4nunh",
+  "z736xx",
+  "z5dj8k",
+  "zardbq",
+  "z5hqhb",
+  "z67rp7",
+  "z9zhug",
+  "z9329j",
+  "zb5fro",
+  "z78hnt",
+  "z78bav",
+  "z15j7r",
+  "z24wzn",
+  "z86745",
+  "z9stxf",
+  "z1a7wh",
+  "z864a2",
+  "z3ugfl",
+  "z7zffs",
+  "z8wo4d",
+  "z9zlod",
+  "z6ca41",
+  "z30ams",
+  "z3qe7i",
+  "z4jn98",
+  "z3ucvr"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "identical",
+ "round_iterations": 1,
+ "needs_review": false,
+ "label": {
+  "name": "Group Standings",
+  "purpose": "Tracking team positions in group stages",
+  "emotion_tone": "informative",
+  "description": "Posts related to group standings in football, including matchday and gameweek updates",
+  "inclusion_cues": [
+   "Group E standings after Matchday 1",
+   "Group C standings after Matchday 1",
+   "Group B standings after Matchday 2",
+   "Group G standings after Matchday 2",
+   "Group D standings after Matchday 2",
+   "Group H standings after matchday 3",
+   "Group C standing after Matchday 2",
+   "Group F standings after match day 2",
+   "Group E standings after matchday 3",
+   "Group C standings after matchday 3"
+  ],
+  "n_cues_given": 26
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Group Standings",
+    "purpose": "Tracking team positions in group stages",
+    "emotion_tone": "informative",
+    "description": "Posts related to group standings in football, including matchday and gameweek updates",
+    "inclusion_cues": [
+     "Group E standings after Matchday 1",
+     "Group C standings after Matchday 1",
+     "Group B standings after Matchday 2",
+     "Group G standings after Matchday 2",
+     "Group D standings after Matchday 2",
+     "Group H standings after matchday 3",
+     "Group C standing after Matchday 2",
+     "Group F standings after match day 2",
+     "Group E standings after matchday 3",
+     "Group C standings after matchday 3"
+    ],
+    "n_cues_given": 26
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Group Standings",
+    "purpose": "Tracking team positions in group stages",
+    "emotion_tone": "informative",
+    "description": "Posts related to group standings in football, including matchday and gameweek updates",
+    "inclusion_cues": [
+     "Group E standings after Matchday 1",
+     "Group C standings after Matchday 1",
+     "Group B standings after Matchday 2",
+     "Group G standings after Matchday 2",
+     "Group D standings after Matchday 2",
+     "Group H standings after matchday 3",
+     "Group C standing after Matchday 2",
+     "Group F standings after match day 2",
+     "Group E standings after matchday 3",
+     "Group C standings after matchday 3"
+    ],
+    "n_cues_given": 26
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: group standings, standings matchday, standings group, group stage, final standings, standings gameweek, standings, matchday group, cup group, gameweek group, fifa rankings, rankings, world cup, standing matchday, fifa\nPosts (one per line, title first):\n- Group E standings after Matchday 1\n- Group C standings after Matchday 1\n- Group B standings after Matchday 2\n- Group G standings after Matchday 2\n- Group D standings after Matchday 2\n- Group H standings after matchday 3\n- Group C standing after Matchday 2\n- Group F standings after match day 2.\n- Group E standings after matchday 3\n- Group C standings after matchday 3\n- Progression of standings through Group Stage and FIFA Rankings\n- All group standings after Matchday 2\n- Group H standings after match day 2\n- Group A standings after Matchday 1\n- Group D Standings after Matchday 1\n- [Official] USMNT advance out of Group B.\n- Group F standings after matchday 3\n- Group B standings after Matchday 1\n- Group B Standings after Matchday 3\n- [Official] Every Group's Standings After Gameweek 1\n- Group A final standings after Matchday 3\n- Group D standings after match day 3.\n- World Cup Group E, as it stood throughout Matchday 3\n- Group E standings after match day 2.\n- Group F standings after Matchday 1\n- Group H standings after Matchday 1\n- Group A standings after Matchday 2\n- Group G standings after Matchday 1.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Group Standings\", \"purpose\": \"Tracking team positions in group stages\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to group standings in football, including matchday and gameweek updates\", \"inclusion_cues\": [\"Group E standings after Matchday 1\", \"Group C standings after Matchday 1\", \"Group B standings after Matchday 2\", \"Group G standings after Matchday 2\", \"Group D standings after Matchday 2\", \"Group H standings after matchday 3\", \"Group C standing after Matchday 2\", \"Group F standings after match day 2\", \"Group E standings after matchday 3\", \"Group C standings after matchday 3\", \"Progression of standings through Group Stage and FIFA Rankings\", \"All group standings after Matchday 2\", \"Group H standings after match day 2\", \"Group A standings after Matchday 1\", \"Group D Standings after Matchday 1\", \"Group F standings after matchday 3\", \"Group B standings after Matchday 1\", \"Group B Standings after Matchday 3\", \"Group A final standings after Matchday 3\", \"Group D standings after match day 3\", \"World Cup Group E, as it stood throughout Matchday 3\", \"Group E standings after match day 2\", \"Group F standings after Matchday 1\", \"Group H standings after Matchday 1\", \"Group A standings after Matchday 2\", \"Group G standings after Matchday 1\"]}]}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Group Standings",
+      "purpose": "Tracking team positions in group stages",
+      "emotion_tone": "informative",
+      "description": "Posts related to group standings in football, including matchday and gameweek updates",
+      "inclusion_cues": [
+       "Group E standings after Matchday 1",
+       "Group C standings after Matchday 1",
+       "Group B standings after Matchday 2",
+       "Group G standings after Matchday 2",
+       "Group D standings after Matchday 2",
+       "Group H standings after matchday 3",
+       "Group C standing after Matchday 2",
+       "Group F standings after match day 2",
+       "Group E standings after matchday 3",
+       "Group C standings after matchday 3"
+      ],
+      "n_cues_given": 26
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 338,
+   "seed": 3662708175,
+   "seconds": 1.77
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: group standings, standings matchday, standings group, group stage, final standings, standings gameweek, standings, matchday group, cup group, gameweek group, fifa rankings, rankings, world cup, standing matchday, fifa\nPosts (one per line, title first):\n- Group E standings after Matchday 1\n- Group C standings after Matchday 1\n- Group B standings after Matchday 2\n- Group G standings after Matchday 2\n- Group D standings after Matchday 2\n- Group H standings after matchday 3\n- Group C standing after Matchday 2\n- Group F standings after match day 2.\n- Group E standings after matchday 3\n- Group C standings after matchday 3\n- Progression of standings through Group Stage and FIFA Rankings\n- All group standings after Matchday 2\n- Group H standings after match day 2\n- Group A standings after Matchday 1\n- Group D Standings after Matchday 1\n- [Official] USMNT advance out of Group B.\n- Group F standings after matchday 3\n- Group B standings after Matchday 1\n- Group B Standings after Matchday 3\n- [Official] Every Group's Standings After Gameweek 1\n- Group A final standings after Matchday 3\n- Group D standings after match day 3.\n- World Cup Group E, as it stood throughout Matchday 3\n- Group E standings after match day 2.\n- Group F standings after Matchday 1\n- Group H standings after Matchday 1\n- Group A standings after Matchday 2\n- Group G standings after Matchday 1.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Group Standings\", \"purpose\": \"Tracking team positions in group stages\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to group standings in football, including matchday and gameweek updates\", \"inclusion_cues\": [\"Group E standings after Matchday 1\", \"Group C standings after Matchday 1\", \"Group B standings after Matchday 2\", \"Group G standings after Matchday 2\", \"Group D standings after Matchday 2\", \"Group H standings after matchday 3\", \"Group C standing after Matchday 2\", \"Group F standings after match day 2\", \"Group E standings after matchday 3\", \"Group C standings after matchday 3\", \"Progression of standings through Group Stage and FIFA Rankings\", \"All group standings after Matchday 2\", \"Group H standings after match day 2\", \"Group A standings after Matchday 1\", \"Group D Standings after Matchday 1\", \"Group F standings after matchday 3\", \"Group B standings after Matchday 1\", \"Group B Standings after Matchday 3\", \"Group A final standings after Matchday 3\", \"Group D standings after match day 3\", \"World Cup Group E, as it stood throughout Matchday 3\", \"Group E standings after match day 2\", \"Group F standings after Matchday 1\", \"Group H standings after Matchday 1\", \"Group A standings after Matchday 2\", \"Group G standings after Matchday 1\"]}]}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Group Standings",
+      "purpose": "Tracking team positions in group stages",
+      "emotion_tone": "informative",
+      "description": "Posts related to group standings in football, including matchday and gameweek updates",
+      "inclusion_cues": [
+       "Group E standings after Matchday 1",
+       "Group C standings after Matchday 1",
+       "Group B standings after Matchday 2",
+       "Group G standings after Matchday 2",
+       "Group D standings after Matchday 2",
+       "Group H standings after matchday 3",
+       "Group C standing after Matchday 2",
+       "Group F standings after match day 2",
+       "Group E standings after matchday 3",
+       "Group C standings after matchday 3"
+      ],
+      "n_cues_given": 26
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 338,
+   "seed": 3881829985,
+   "seconds": 1.04
+  }
+ ]
+}

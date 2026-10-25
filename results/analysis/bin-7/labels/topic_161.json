@@ -1,0 +1,179 @@
+{
+ "period_bin": 7,
+ "topic_id": 161,
+ "keywords": "england u17, england sweden, 12 england, 10 england, 90 england, 53 england, england italy, georgia u17, england belgium, england spain, england austria, penalty 12, alessia russo, u17, u17 tyler",
+ "n_sample_posts": 27,
+ "sample_ids": [
+  "yfqrgy",
+  "w8su6x",
+  "vwr2dm",
+  "vwsieg",
+  "vwqyr9",
+  "ysmr4w",
+  "w8uaox",
+  "119b5xd",
+  "vsy1en",
+  "vwqwz0",
+  "116g8aq",
+  "ysmmn6",
+  "vwqnhl",
+  "yfra54",
+  "w3wwyu",
+  "w3xhgh",
+  "yfqk7x",
+  "xy83ui",
+  "xy87y7",
+  "w8u2q3",
+  "w8tksh",
+  "yslw0l",
+  "vwqrtv",
+  "xy80ot",
+  "ysl1wk",
+  "vws5ll",
+  "vwr3z3"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "England U17 Matches",
+  "purpose": "Reporting results of England U17 team matches",
+  "emotion_tone": "Excitement",
+  "description": "Posts about England U17 team results, including goals, players, and match details",
+  "inclusion_cues": [
+   "England U17",
+   "goal",
+   "player",
+   "match result",
+   "penalty"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "England U17",
+    "purpose": "U17 team matches",
+    "emotion_tone": "competitive",
+    "description": "Posts about England U17 team matches, including goals, players, and match outcomes",
+    "inclusion_cues": [
+     "England U17",
+     "goal",
+     "player",
+     "match outcome"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "England U17 Matches",
+    "purpose": "Reporting results of England U17 team matches",
+    "emotion_tone": "Excitement",
+    "description": "Posts about England U17 team results, including goals, players, and match details",
+    "inclusion_cues": [
+     "England U17",
+     "goal",
+     "player",
+     "match result",
+     "penalty"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: england u17, england sweden, 12 england, 10 england, 90 england, 53 england, england italy, georgia u17, england belgium, england spain, england austria, penalty 12, alessia russo, u17, u17 tyler\nPosts (one per line, title first):\n- England U17 [3]-1 Georgia U17 - Jimmy Morgan 28'\n- England W 1-0 Sweden W - Bethany Mead 34'\n- England W 5-0 Norway W - Bethany Mead 39'\n- England W 8-0 Norway W - Bethany Mead 81'\n- England W 4-0 Norway W - Bethany Mead 34'\n- England W 4-0 Japan W - Jessica Park 90'+1'\n- England W 4-0 Sweden W - Francesca Kirby 77'\n- England W [1] - 0 Belgium W - Chloe Kelly 12’\n- England W 1-0 Austria W - Bethany Mead 16'\n- England W [3] - 0 Norway W - Ellen White 29’\n- England W [1] - 0 Italy W - Rachel Daly 33’\n- England W 3-0 Japan W - Ella Ann Toone 77'\n- England W [1] - 0 Norway W - Georgia Stanway penalty 12’\n- England U17 [5]-1 Georgia U17 - Jimmy Morgan 57'\n- England W [1]-1 Spain W - Ella Ann Toone 84'\n- England W [2]-1 Spain W - Georgia Stanway 96'\n- England U17 1-0 Georgia U17 - Tyler Dibling 3'\n- England 1 - [1] USWNT | Sophia Smith 28'\n- England [2] - 1 USWNT | Georgia Stanway 33' (PK)\n- England W 3-0 Sweden W - Alessia Russo back-heel 68'\n- England W 2-0 Sweden W - Lucy Bronze 48'\n- England W 2-0 Japan W - Chloe Kelly 53'\n- England W [2] - 0 Norway W - Lauren Hemp 16’\n- England [1] - 0 USWNT | Lauren Hemp 10'\n- England W 1-0 Japan W - Rachel Daly 38'\n- England W 7-0 Norway W - Alessia Russo 66'\n- England W 6-0 Norway W - Ellen White 41'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"England U17\", \"purpose\": \"U17 team matches\", \"emotion_tone\": \"competitive\", \"description\": \"Posts about England U17 team matches, including goals, players, and match outcomes\", \"inclusion_cues\": [\"England U17\", \"goal\", \"player\", \"match outcome\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "England U17",
+      "purpose": "U17 team matches",
+      "emotion_tone": "competitive",
+      "description": "Posts about England U17 team matches, including goals, players, and match outcomes",
+      "inclusion_cues": [
+       "England U17",
+       "goal",
+       "player",
+       "match outcome"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 84,
+   "seed": 1928705995,
+   "seconds": 1.58
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: england u17, england sweden, 12 england, 10 england, 90 england, 53 england, england italy, georgia u17, england belgium, england spain, england austria, penalty 12, alessia russo, u17, u17 tyler\nPosts (one per line, title first):\n- England U17 [3]-1 Georgia U17 - Jimmy Morgan 28'\n- England W 1-0 Sweden W - Bethany Mead 34'\n- England W 5-0 Norway W - Bethany Mead 39'\n- England W 8-0 Norway W - Bethany Mead 81'\n- England W 4-0 Norway W - Bethany Mead 34'\n- England W 4-0 Japan W - Jessica Park 90'+1'\n- England W 4-0 Sweden W - Francesca Kirby 77'\n- England W [1] - 0 Belgium W - Chloe Kelly 12’\n- England W 1-0 Austria W - Bethany Mead 16'\n- England W [3] - 0 Norway W - Ellen White 29’\n- England W [1] - 0 Italy W - Rachel Daly 33’\n- England W 3-0 Japan W - Ella Ann Toone 77'\n- England W [1] - 0 Norway W - Georgia Stanway penalty 12’\n- England U17 [5]-1 Georgia U17 - Jimmy Morgan 57'\n- England W [1]-1 Spain W - Ella Ann Toone 84'\n- England W [2]-1 Spain W - Georgia Stanway 96'\n- England U17 1-0 Georgia U17 - Tyler Dibling 3'\n- England 1 - [1] USWNT | Sophia Smith 28'\n- England [2] - 1 USWNT | Georgia Stanway 33' (PK)\n- England W 3-0 Sweden W - Alessia Russo back-heel 68'\n- England W 2-0 Sweden W - Lucy Bronze 48'\n- England W 2-0 Japan W - Chloe Kelly 53'\n- England W [2] - 0 Norway W - Lauren Hemp 16’\n- England [1] - 0 USWNT | Lauren Hemp 10'\n- England W 1-0 Japan W - Rachel Daly 38'\n- England W 7-0 Norway W - Alessia Russo 66'\n- England W 6-0 Norway W - Ellen White 41'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"England U17 Matches\", \"purpose\": \"Reporting results of England U17 team matches\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts about England U17 team results, including goals, players, and match details\", \"inclusion_cues\": [\"England U17\", \"goal\", \"player\", \"match result\", \"penalty\"]}]}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "England U17 Matches",
+      "purpose": "Reporting results of England U17 team matches",
+      "emotion_tone": "Excitement",
+      "description": "Posts about England U17 team results, including goals, players, and match details",
+      "inclusion_cues": [
+       "England U17",
+       "goal",
+       "player",
+       "match result",
+       "penalty"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 94,
+   "seed": 1208124687,
+   "seconds": 1.55
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: england u17, england sweden, 12 england, 10 england, 90 england, 53 england, england italy, georgia u17, england belgium, england spain, england austria, penalty 12, alessia russo, u17, u17 tyler\nPosts (one per line, title first):\n- England U17 [3]-1 Georgia U17 - Jimmy Morgan 28'\n- England W 1-0 Sweden W - Bethany Mead 34'\n- England W 5-0 Norway W - Bethany Mead 39'\n- England W 8-0 Norway W - Bethany Mead 81'\n- England W 4-0 Norway W - Bethany Mead 34'\n- England W 4-0 Japan W - Jessica Park 90'+1'\n- England W 4-0 Sweden W - Francesca Kirby 77'\n- England W [1] - 0 Belgium W - Chloe Kelly 12’\n- England W 1-0 Austria W - Bethany Mead 16'\n- England W [3] - 0 Norway W - Ellen White 29’\n- England W [1] - 0 Italy W - Rachel Daly 33’\n- England W 3-0 Japan W - Ella Ann Toone 77'\n- England W [1] - 0 Norway W - Georgia Stanway penalty 12’\n- England U17 [5]-1 Georgia U17 - Jimmy Morgan 57'\n- England W [1]-1 Spain W - Ella Ann Toone 84'\n- England W [2]-1 Spain W - Georgia Stanway 96'\n- England U17 1-0 Georgia U17 - Tyler Dibling 3'\n- England 1 - [1] USWNT | Sophia Smith 28'\n- England [2] - 1 USWNT | Georgia Stanway 33' (PK)\n- England W 3-0 Sweden W - Alessia Russo back-heel 68'\n- England W 2-0 Sweden W - Lucy Bronze 48'\n- England W 2-0 Japan W - Chloe Kelly 53'\n- England W [2] - 0 Norway W - Lauren Hemp 16’\n- England [1] - 0 USWNT | Lauren Hemp 10'\n- England W 1-0 Japan W - Rachel Daly 38'\n- England W 7-0 Norway W - Alessia Russo 66'\n- England W 6-0 Norway W - Ellen White 41'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"England U17\", \"purpose\": \"U17 team matches\", \"emotion_tone\": \"competitive\", \"description\": \"Posts about England U17 team matches, including goals, players, and match outcomes\", \"inclusion_cues\": [\"England U17\", \"goal\", \"player\", \"match outcome\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"England U17 Matches\", \"purpose\": \"Reporting results of England U17 team matches\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts about England U17 team results, including goals, players, and match details\", \"inclusion_cues\": [\"England U17\", \"goal\", \"player\", \"match result\", \"penalty\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"England U17 Matches\", \"purpose\": \"Reporting results of England U17 team matches\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts about England U17 team results, including goals, players, and match details\", \"inclusion_cues\": [\"England U17\", \"goal\", \"player\", \"match result\", \"penalty\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 94,
+   "seed": 1015800724,
+   "seconds": 0.69
+  }
+ ]
+}

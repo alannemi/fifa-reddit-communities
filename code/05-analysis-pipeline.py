@@ -408,12 +408,14 @@ def stage_label(args, paths: Paths, b: int):
     labelled = G.run_labelling(bdir, b, md, topics, llm, max_topics=args.max_topics)
     n_samp = tagging.annotate_calibration_samples(bdir)      # the nearest topic's name beside its id in the judgement samples
     log.info("label: nearest_topic_name written into %d outlier calibration sample file(s)", n_samp)
-    update_config(bdir, "label", {**llm.describe(), "prompt_version": P.PROMPT_VERSION, "n_topics_labelled": int(len(labelled)),
-                                  "n_needs_review": int(labelled["needs_review"].sum()) if len(labelled) else 0,
-                                  "agreement_modes": labelled["agreement_mode"].value_counts().to_dict() if len(labelled) else {},
-                                  "round_iterations": labelled["round_iterations"].value_counts().sort_index().to_dict() if len(labelled) else {},
-                                  "llm_stats": llm.stats, "max_topics": args.max_topics, "elapsed_min": round((time.time() - t0) / 60, 1),
-                                  "run_at": dt.datetime.now().isoformat(timespec="seconds"), "prompts": P.stage_prompts("label")})
+    record = {**llm.describe(), "prompt_version": P.PROMPT_VERSION, "n_topics_labelled": int(len(labelled)),
+              "n_needs_review": int(labelled["needs_review"].sum()) if len(labelled) else 0,
+              "agreement_modes": labelled["agreement_mode"].value_counts().to_dict() if len(labelled) else {},
+              "round_iterations": labelled["round_iterations"].value_counts().sort_index().to_dict() if len(labelled) else {},
+              "llm_stats": llm.stats, "max_topics": args.max_topics, "elapsed_min": round((time.time() - t0) / 60, 1),
+              "run_at": dt.datetime.now().isoformat(timespec="seconds"), "prompts": P.stage_prompts("label")}
+    # a re-run with nothing left to label keeps the real run's statistics and time (tagging.merge_label_record, 2026-10-25)
+    update_config(bdir, "label", tagging.merge_label_record(read_config(bdir).get("label"), record))
     render_report(args, paths, b)
     tagging.write_status(bdir)
 

@@ -128,6 +128,14 @@ def test_guard():
     assert T.guard_state({"hdbscan": {"min_cluster_floor": 25}, "guard": {"min_cluster_size": 547, "n_topics": 74, "target": [1656, 2484], "converged": False, "enabled": True}}) == "unconverged"
     assert T.guard_state({"guard": {"converged": False, "enabled": False}}) == "disabled" and T.guard_state({}) == "unknown"
     assert T.gate_ok({"outlier_share_raw": 0.562, "guard": {"converged": True, "enabled": True}}, 0.50) is False
+    # the label record survives a re-run with nothing to do (bins 3 and 5 on Drive, 2026-10-25); a real run writes its own
+    real = {"llm_stats": {"calls": 92, "prompts": 1415, "seconds": 947.9, "tokens_out": 182029, "truncated": 5}, "elapsed_min": 16.2,
+            "run_at": "2026-10-25T20:26:18", "n_needs_review": 7}
+    noop = {"llm_stats": {"calls": 0, "prompts": 0, "seconds": 0.0, "tokens_out": 0, "truncated": 0}, "elapsed_min": 0.2,
+            "run_at": "2026-10-25T21:27:10", "n_needs_review": 7}
+    m = T.merge_label_record(real, noop)
+    assert m["llm_stats"]["calls"] == 92 and m["elapsed_min"] == 16.2 and m["run_at"] == "2026-10-25T20:26:18" and m["refreshed_at"] == "2026-10-25T21:27:10"
+    assert T.merge_label_record(None, noop) == noop and T.merge_label_record(real, real | {"run_at": "later"})["run_at"] == "later"
     # the gate diagnostic: HDBSCAN over the grid on the cached array (stub: topics = 6000 / mcs, fewer outliers with lower min_samples)
     def stub4(X, mcs, ms, method, eps):
         k = max(1, int(6000 / mcs)); n = len(X); n_out = int(n * ms / 20)

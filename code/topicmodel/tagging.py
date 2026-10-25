@@ -137,6 +137,18 @@ def bin_state(bin_dir: Path) -> str:
     return "missing"
 
 
+def merge_label_record(previous: dict | None, current: dict) -> dict:
+    """The `label` section of config.json after a label stage. A re-run with nothing left to label (every topic already in
+    labels.jsonl — cell 3.5 re-entered after a gate stop, 2026-10-25) must not replace the record of the real run with the no-op's
+    statistics (0 calls, 0.2 min): `llm_stats`, `elapsed_min` and `run_at` of the previous record are kept and `refreshed_at` says
+    when the counts were recomputed. A run that made LLM calls writes its own record."""
+    prev_calls = ((previous or {}).get("llm_stats") or {}).get("calls", 0)
+    if current.get("llm_stats", {}).get("calls", 0) == 0 and prev_calls:
+        kept = {k: previous[k] for k in ("llm_stats", "elapsed_min", "run_at") if k in previous}
+        return {**current, **kept, "refreshed_at": current.get("run_at")}
+    return current
+
+
 def guard_state(topics: dict) -> str:
     """The density guard's state from a bin's `topics` section of config.json, as the notebook's gate and `--stage status` read it:
     "converged" (the density target was reached), "floor-bound" (the floor min_cluster_size already gave too few topics — accepted,

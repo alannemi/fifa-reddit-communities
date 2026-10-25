@@ -1,0 +1,209 @@
+{
+ "period_bin": 7,
+ "topic_id": 168,
+ "keywords": "premiership table, league table, table matchweek, league week, gameweek 19, championship table, league teams, league current, efl league, premiership, season matchday, premier league, standings, scottish premiership, league goals",
+ "n_sample_posts": 25,
+ "sample_ids": [
+  "104bhqn",
+  "10jpiie",
+  "y5py8e",
+  "y5qyu8",
+  "y5ra8a",
+  "ynyvfg",
+  "10ujo0g",
+  "111n8a6",
+  "10cs9tq",
+  "10x83t6",
+  "zbkn4u",
+  "xhtdim",
+  "xu7vdn",
+  "10xciv1",
+  "yhn9cc",
+  "yu9na4",
+  "10x9lh8",
+  "y5p4ju",
+  "11cr8bm",
+  "10arazv",
+  "10ow8jj",
+  "zvmck3",
+  "yc924f",
+  "10qfli2",
+  "x0qak5"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Premiership Table",
+  "purpose": "Displaying the current standings of football leagues",
+  "emotion_tone": "informative",
+  "description": "Posts related to the current standings of football leagues, including matchweeks, gameweeks, and matchdays.",
+  "inclusion_cues": [
+   "Premier League Table after Gameweek 19",
+   "EFL League One table after game week 15",
+   "Premier League table after GW 15. (Including today’s scores)",
+   "Premier League table after week 22",
+   "English Premier League After Week 23",
+   "Premier League table after Matchweek 20",
+   "Premier League table after week 22",
+   "The Championship table going into the final month of the year. 12 teams are at the 27-33 point mark.",
+   "English Premier League table after match day 7, mostly.",
+   "Canadian Premier League current table"
+  ],
+  "n_cues_given": 21
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Premiership Table",
+    "purpose": "Displaying the current standings of a football league",
+    "emotion_tone": "informative",
+    "description": "Posts related to the current standings of the Premier League, EFL League One, EFL League Two, or Scottish Premiership, including gameweeks, matchweeks, and matchdays.",
+    "inclusion_cues": [
+     "Premier League Table after Gameweek 19",
+     "EFL League One table after game week 15",
+     "Premier League table after GW 15. (Including today’s scores)",
+     "Premier League table after week 22",
+     "English Premier League After Week 23",
+     "Premier League table after Matchweek 20",
+     "Premier League table after week 22",
+     "The Championship table going into the final month of the year. 12 teams are at the 27-33 point mark.",
+     "English Premier League table after match day 7, mostly.",
+     "Canadian Premier League current table"
+    ],
+    "n_cues_given": 21
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Premiership Table",
+    "purpose": "Displaying the current standings of football leagues",
+    "emotion_tone": "informative",
+    "description": "Posts related to the current standings of football leagues, including matchweeks, gameweeks, and matchdays.",
+    "inclusion_cues": [
+     "Premier League Table after Gameweek 19",
+     "EFL League One table after game week 15",
+     "Premier League table after GW 15. (Including today’s scores)",
+     "Premier League table after week 22",
+     "English Premier League After Week 23",
+     "Premier League table after Matchweek 20",
+     "Premier League table after week 22",
+     "The Championship table going into the final month of the year. 12 teams are at the 27-33 point mark.",
+     "English Premier League table after match day 7, mostly.",
+     "Canadian Premier League current table"
+    ],
+    "n_cues_given": 21
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: premiership table, league table, table matchweek, league week, gameweek 19, championship table, league teams, league current, efl league, premiership, season matchday, premier league, standings, scottish premiership, league goals\nPosts (one per line, title first):\n- Premier League Table after Gameweek 19\n- Premier League Table after Gameweek 21\n- Premier League table after Gameweek 11\n- EFL League One table after game week 15\n- EFL League Two table after game week 15\n- Premier League table after GW 15. (Including today’s scores)\n- Premier League table after week 22\n- English Premier League After Week 23\n- Premier League table after Matchweek 20\n- Premier League table after week 22\n- The Championship table going into the final month of the year. 12 teams are at the 27-33 point mark.\n- English Premier League table after match day 7, mostly.\n- Canadian Premier League current table\n- Premier League Table as of Feb 8th. (Teletext)\n- EFL Championship table after gameweek 18\n- Premier League table going into the World Cup break\n- Scottish Premiership table after Matchday 25\n- Points graph for Premier League's top 8 teams, in sea. 22/23 so far.\n- Premier League Table Match day 25.\n- [Premier League] Current top 8 teams results against each other\n- Hong Kong Premier League table halfway through the season, after matchday 9\n- [OC] All time Boxing Day Premier League table\n- Premier league game difficulty to date by team + next 5 games\n- Cymru Premier standings at the end of Phase 1 (league will now split in two for remainder of season)\n- [CrabStats] Premier League Goals & xG Tiers through Week 4\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Premiership Table\", \"purpose\": \"Displaying the current standings of a football league\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to the current standings of the Premier League, EFL League One, EFL League Two, or Scottish Premiership, including gameweeks, matchweeks, and matchdays.\", \"inclusion_cues\": [\"Premier League Table after Gameweek 19\", \"EFL League One table after game week 15\", \"Premier League table after GW 15. (Including today’s scores)\", \"Premier League table after week 22\", \"English Premier League After Week 23\", \"Premier League table after Matchweek 20\", \"Premier League table after week 22\", \"The Championship table going into the final month of the year. 12 teams are at the 27-33 point mark.\", \"English Premier League table after match day 7, mostly.\", \"Canadian Premier League current table\", \"Premier League Table as of Feb 8th. (Teletext)\", \"EFL Championship table after gameweek 18\", \"Premier League table going into the World Cup break\", \"Scottish Premiership table after Matchday 25\", \"Points graph for Premier League's top 8 teams, in sea. 22/23 so far.\", \"Premier League Table Match day 25\", \"Current top 8 teams results against each other\", \"Hong Kong Premier League table halfway through the season, after matchday 9\", \"OC All time Boxing Day Premier League table\", \"Premier league game difficulty to date by team + next 5 games\", \"Cymru Premier standings at the end of Phase 1 (league will now split in two for remainder of season)\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Premiership Table",
+      "purpose": "Displaying the current standings of a football league",
+      "emotion_tone": "informative",
+      "description": "Posts related to the current standings of the Premier League, EFL League One, EFL League Two, or Scottish Premiership, including gameweeks, matchweeks, and matchdays.",
+      "inclusion_cues": [
+       "Premier League Table after Gameweek 19",
+       "EFL League One table after game week 15",
+       "Premier League table after GW 15. (Including today’s scores)",
+       "Premier League table after week 22",
+       "English Premier League After Week 23",
+       "Premier League table after Matchweek 20",
+       "Premier League table after week 22",
+       "The Championship table going into the final month of the year. 12 teams are at the 27-33 point mark.",
+       "English Premier League table after match day 7, mostly.",
+       "Canadian Premier League current table"
+      ],
+      "n_cues_given": 21
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 396,
+   "seed": 1316659511,
+   "seconds": 1.58
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: premiership table, league table, table matchweek, league week, gameweek 19, championship table, league teams, league current, efl league, premiership, season matchday, premier league, standings, scottish premiership, league goals\nPosts (one per line, title first):\n- Premier League Table after Gameweek 19\n- Premier League Table after Gameweek 21\n- Premier League table after Gameweek 11\n- EFL League One table after game week 15\n- EFL League Two table after game week 15\n- Premier League table after GW 15. (Including today’s scores)\n- Premier League table after week 22\n- English Premier League After Week 23\n- Premier League table after Matchweek 20\n- Premier League table after week 22\n- The Championship table going into the final month of the year. 12 teams are at the 27-33 point mark.\n- English Premier League table after match day 7, mostly.\n- Canadian Premier League current table\n- Premier League Table as of Feb 8th. (Teletext)\n- EFL Championship table after gameweek 18\n- Premier League table going into the World Cup break\n- Scottish Premiership table after Matchday 25\n- Points graph for Premier League's top 8 teams, in sea. 22/23 so far.\n- Premier League Table Match day 25.\n- [Premier League] Current top 8 teams results against each other\n- Hong Kong Premier League table halfway through the season, after matchday 9\n- [OC] All time Boxing Day Premier League table\n- Premier league game difficulty to date by team + next 5 games\n- Cymru Premier standings at the end of Phase 1 (league will now split in two for remainder of season)\n- [CrabStats] Premier League Goals & xG Tiers through Week 4\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Premiership Table\", \"purpose\": \"Displaying the current standings of football leagues\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to the current standings of football leagues, including matchweeks, gameweeks, and matchdays.\", \"inclusion_cues\": [\"Premier League Table after Gameweek 19\", \"EFL League One table after game week 15\", \"Premier League table after GW 15. (Including today’s scores)\", \"Premier League table after week 22\", \"English Premier League After Week 23\", \"Premier League table after Matchweek 20\", \"Premier League table after week 22\", \"The Championship table going into the final month of the year. 12 teams are at the 27-33 point mark.\", \"English Premier League table after match day 7, mostly.\", \"Canadian Premier League current table\", \"Premier League Table as of Feb 8th. (Teletext)\", \"EFL Championship table after gameweek 18\", \"Premier League table going into the World Cup break\", \"Scottish Premiership table after Matchday 25\", \"Points graph for Premier League's top 8 teams, in sea. 22/23 so far.\", \"Premier League Table Match day 25\", \"Current top 8 teams results against each other\", \"Hong Kong Premier League table halfway through the season, after matchday 9\", \"OC All time Boxing Day Premier League table\", \"Premier league game difficulty to date by team + next 5 games\", \"Cymru Premier standings at the end of Phase 1 (league will now split in two for remainder of season)\"]}]}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Premiership Table",
+      "purpose": "Displaying the current standings of football leagues",
+      "emotion_tone": "informative",
+      "description": "Posts related to the current standings of football leagues, including matchweeks, gameweeks, and matchdays.",
+      "inclusion_cues": [
+       "Premier League Table after Gameweek 19",
+       "EFL League One table after game week 15",
+       "Premier League table after GW 15. (Including today’s scores)",
+       "Premier League table after week 22",
+       "English Premier League After Week 23",
+       "Premier League table after Matchweek 20",
+       "Premier League table after week 22",
+       "The Championship table going into the final month of the year. 12 teams are at the 27-33 point mark.",
+       "English Premier League table after match day 7, mostly.",
+       "Canadian Premier League current table"
+      ],
+      "n_cues_given": 21
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 380,
+   "seed": 3355338868,
+   "seconds": 1.55
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: premiership table, league table, table matchweek, league week, gameweek 19, championship table, league teams, league current, efl league, premiership, season matchday, premier league, standings, scottish premiership, league goals\nPosts (one per line, title first):\n- Premier League Table after Gameweek 19\n- Premier League Table after Gameweek 21\n- Premier League table after Gameweek 11\n- EFL League One table after game week 15\n- EFL League Two table after game week 15\n- Premier League table after GW 15. (Including today’s scores)\n- Premier League table after week 22\n- English Premier League After Week 23\n- Premier League table after Matchweek 20\n- Premier League table after week 22\n- The Championship table going into the final month of the year. 12 teams are at the 27-33 point mark.\n- English Premier League table after match day 7, mostly.\n- Canadian Premier League current table\n- Premier League Table as of Feb 8th. (Teletext)\n- EFL Championship table after gameweek 18\n- Premier League table going into the World Cup break\n- Scottish Premiership table after Matchday 25\n- Points graph for Premier League's top 8 teams, in sea. 22/23 so far.\n- Premier League Table Match day 25.\n- [Premier League] Current top 8 teams results against each other\n- Hong Kong Premier League table halfway through the season, after matchday 9\n- [OC] All time Boxing Day Premier League table\n- Premier league game difficulty to date by team + next 5 games\n- Cymru Premier standings at the end of Phase 1 (league will now split in two for remainder of season)\n- [CrabStats] Premier League Goals & xG Tiers through Week 4\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Premiership Table\", \"purpose\": \"Displaying the current standings of a football league\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to the current standings of the Premier League, EFL League One, EFL League Two, or Scottish Premiership, including gameweeks, matchweeks, and matchdays.\", \"inclusion_cues\": [\"Premier League Table after Gameweek 19\", \"EFL League One table after game week 15\", \"Premier League table after GW 15. (Including today’s scores)\", \"Premier League table after week 22\", \"English Premier League After Week 23\", \"Premier League table after Matchweek 20\", \"Premier League table after week 22\", \"The Championship table going into the final month of the year. 12 teams are at the 27-33 point mark.\", \"English Premier League table after match day 7, mostly.\", \"Canadian Premier League current table\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Premiership Table\", \"purpose\": \"Displaying the current standings of football leagues\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to the current standings of football leagues, including matchweeks, gameweeks, and matchdays.\", \"inclusion_cues\": [\"Premier League Table after Gameweek 19\", \"EFL League One table after game week 15\", \"Premier League table after GW 15. (Including today’s scores)\", \"Premier League table after week 22\", \"English Premier League After Week 23\", \"Premier League table after Matchweek 20\", \"Premier League table after week 22\", \"The Championship table going into the final month of the year. 12 teams are at the 27-33 point mark.\", \"English Premier League table after match day 7, mostly.\", \"Canadian Premier League current table\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Premiership Table\", \"purpose\": \"Displaying the current standings of football leagues\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to the current standings of football leagues, including matchweeks, gameweeks, and matchdays.\", \"inclusion_cues\": [\"Premier League Table after Gameweek 19\", \"EFL League One table after game week 15\", \"Premier League table after GW 15. (Including today’s scores)\", \"Premier League table after week 22\", \"English Premier League After Week 23\", \"Premier League table after Matchweek 20\", \"Premier League table after week 22\", \"The Championship table going into the final month of the year. 12 teams are at the 27-33 point mark.\", \"English Premier League table after match day 7, mostly.\", \"Canadian Premier League current table\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 209,
+   "seed": 2681779776,
+   "seconds": 0.69
+  }
+ ]
+}

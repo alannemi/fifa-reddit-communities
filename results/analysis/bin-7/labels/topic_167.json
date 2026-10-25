@@ -1,0 +1,172 @@
+{
+ "period_bin": 7,
+ "topic_id": 167,
+ "keywords": "uefa women, fifa women, women football, women team, women eredivisie, women champions, women cup, women nations, women euro, women match, national women, nations league, women pro, women professional, edition women",
+ "n_sample_posts": 25,
+ "sample_ids": [
+  "wgaw9m",
+  "wb65wc",
+  "xd7x8o",
+  "ykzuzl",
+  "wg5lq9",
+  "y2x91p",
+  "znbsb2",
+  "10k1czr",
+  "zxh5is",
+  "w2syfk",
+  "zds17e",
+  "x8uinj",
+  "znmjdw",
+  "w2aafy",
+  "xjx6hy",
+  "y75dl2",
+  "xpniih",
+  "y1yba0",
+  "10x3oln",
+  "10sf9ex",
+  "vthl6k",
+  "wk3m9z",
+  "z00t8z",
+  "vr5oaa",
+  "y80bt1"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Women's Football",
+  "purpose": "Highlighting women's football developments and competitions",
+  "emotion_tone": "positive",
+  "description": "Includes updates on women's leagues, tournaments, and initiatives related to women's football",
+  "inclusion_cues": [
+   "UEFA Women's Euro 2022",
+   "Women's Nations League",
+   "Women's Champions League",
+   "Women's Pro Soccer League"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Women's Euro",
+    "purpose": "Highlighting events and developments in the UEFA Women's Euro tournament",
+    "emotion_tone": "Excitement",
+    "description": "Posts related to the UEFA Women's Euro 2022 and 2023, including team selections, tournament formats, and event details",
+    "inclusion_cues": [
+     "UEFA Women's EURO 2022 Team of the Tournament",
+     "UEFA Women's Euro 2022 Quarter-finals",
+     "Women’s Euro 2022 Stats: The Group Stage Review"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Women's Football",
+    "purpose": "Highlighting women's football developments and competitions",
+    "emotion_tone": "positive",
+    "description": "Includes updates on women's leagues, tournaments, and initiatives related to women's football",
+    "inclusion_cues": [
+     "UEFA Women's Euro 2022",
+     "Women's Nations League",
+     "Women's Champions League",
+     "Women's Pro Soccer League"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: uefa women, fifa women, women football, women team, women eredivisie, women champions, women cup, women nations, women euro, women match, national women, nations league, women pro, women professional, edition women\nPosts (one per line, title first):\n- UEFA Women's EURO 2022 Team of the Tournament announced\n- [Areto Labs] In collaboration with @Team_Heroine, we've been analyzing the online hate against all players and teams playing in the UEFA Women's Euro 2022. Here is a sneak peek infographic of what we are observing so far.\n- [Sandra Riquelme on Relevo] UEFA working on plans to launch the Women's Nations League: dates yet to be decided but the tournament will have a similar format to the men's tournament\n- UEFA announces new women’s national team competition system: Women's Nations League and a new European Qualifiers for Women's Euro based on Nations League format\n- Ahead of the 150th anniversary of the national game and 50th anniversary of the first-ever official Scotland Women's match, the Scottish FA is proud to announce it will launch a new national women’s cup competition this season, with semi-finals and final taking place in 2023 at Hampden Park\n- [JoySportsGH] The Confederation of African Football (CAF) says clubs that featured in the maiden edition of the Women’s Champions League played for free\n- [FIFAcom] FIFA to introduce FIFA Women's Club World Cup and FIFA Women's Futsal World Cup\n- FC Utrecht Women enter Eredivisie starting in 23/24\n- AZ will return with a women's team starting in 23/24\n- Women’s Euro 2022 Stats: The Group Stage Review\n- Canada’s first women’s pro soccer league aiming to launch in 2025\n- FC Utrecht reestablishes women’s team starting from the 23/24 season for the first time since 2014\n- [FIFPRO] statement following today’s decisions by the FIFA Council concerning the international match calendars for men’s and women’s football.\n- UEFA Women's Euro 2022 Quarter-finals\n- England could have just six stadiums at Euro 2028 as Emirates and Anfield miss cut\n- UEFA Women's Champions League 2022-23 Matchday 1: 19.-20. October\n- Report: 2026 World Cup Final to be played at AT&T Stadium\n- Nordic nations make joint bid for women's Euro 2025\n- The WPSL Announces New Professional Division III Women’s Soccer League\n- Football Australia opens expressions of interest for National Second Tier Men's Competition\n- UEFA Women’s Euros | Every Winner, Every Year (1984-2022)\n- RFEF ANNOUNCEMENT | On various issues of the new women's professional competition\n- [De Volkskrant] Women's Eredivisie becomes part of professional football: 'We want to take women's football to a higher level'\n- [UEFA Women's EURO 2022] begins in 2 days!\n- THIS. IS. ELITE. | Welcome To The 2022-23 UEFA Women's Champions League Season\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Women's Euro\", \"purpose\": \"Highlighting events and developments in the UEFA Women's Euro tournament\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts related to the UEFA Women's Euro 2022 and 2023, including team selections, tournament formats, and event details\", \"inclusion_cues\": [\"UEFA Women's EURO 2022 Team of the Tournament\", \"UEFA Women's Euro 2022 Quarter-finals\", \"Women’s Euro 2022 Stats: The Group Stage Review\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Women's Euro",
+      "purpose": "Highlighting events and developments in the UEFA Women's Euro tournament",
+      "emotion_tone": "Excitement",
+      "description": "Posts related to the UEFA Women's Euro 2022 and 2023, including team selections, tournament formats, and event details",
+      "inclusion_cues": [
+       "UEFA Women's EURO 2022 Team of the Tournament",
+       "UEFA Women's Euro 2022 Quarter-finals",
+       "Women’s Euro 2022 Stats: The Group Stage Review"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 135,
+   "seed": 309478222,
+   "seconds": 1.58
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: uefa women, fifa women, women football, women team, women eredivisie, women champions, women cup, women nations, women euro, women match, national women, nations league, women pro, women professional, edition women\nPosts (one per line, title first):\n- UEFA Women's EURO 2022 Team of the Tournament announced\n- [Areto Labs] In collaboration with @Team_Heroine, we've been analyzing the online hate against all players and teams playing in the UEFA Women's Euro 2022. Here is a sneak peek infographic of what we are observing so far.\n- [Sandra Riquelme on Relevo] UEFA working on plans to launch the Women's Nations League: dates yet to be decided but the tournament will have a similar format to the men's tournament\n- UEFA announces new women’s national team competition system: Women's Nations League and a new European Qualifiers for Women's Euro based on Nations League format\n- Ahead of the 150th anniversary of the national game and 50th anniversary of the first-ever official Scotland Women's match, the Scottish FA is proud to announce it will launch a new national women’s cup competition this season, with semi-finals and final taking place in 2023 at Hampden Park\n- [JoySportsGH] The Confederation of African Football (CAF) says clubs that featured in the maiden edition of the Women’s Champions League played for free\n- [FIFAcom] FIFA to introduce FIFA Women's Club World Cup and FIFA Women's Futsal World Cup\n- FC Utrecht Women enter Eredivisie starting in 23/24\n- AZ will return with a women's team starting in 23/24\n- Women’s Euro 2022 Stats: The Group Stage Review\n- Canada’s first women’s pro soccer league aiming to launch in 2025\n- FC Utrecht reestablishes women’s team starting from the 23/24 season for the first time since 2014\n- [FIFPRO] statement following today’s decisions by the FIFA Council concerning the international match calendars for men’s and women’s football.\n- UEFA Women's Euro 2022 Quarter-finals\n- England could have just six stadiums at Euro 2028 as Emirates and Anfield miss cut\n- UEFA Women's Champions League 2022-23 Matchday 1: 19.-20. October\n- Report: 2026 World Cup Final to be played at AT&T Stadium\n- Nordic nations make joint bid for women's Euro 2025\n- The WPSL Announces New Professional Division III Women’s Soccer League\n- Football Australia opens expressions of interest for National Second Tier Men's Competition\n- UEFA Women’s Euros | Every Winner, Every Year (1984-2022)\n- RFEF ANNOUNCEMENT | On various issues of the new women's professional competition\n- [De Volkskrant] Women's Eredivisie becomes part of professional football: 'We want to take women's football to a higher level'\n- [UEFA Women's EURO 2022] begins in 2 days!\n- THIS. IS. ELITE. | Welcome To The 2022-23 UEFA Women's Champions League Season\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Women's Football\", \"purpose\": \"Highlighting women's football developments and competitions\", \"emotion_tone\": \"positive\", \"description\": \"Includes updates on women's leagues, tournaments, and initiatives related to women's football\", \"inclusion_cues\": [\"UEFA Women's Euro 2022\", \"Women's Nations League\", \"Women's Champions League\", \"Women's Pro Soccer League\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Women's Football",
+      "purpose": "Highlighting women's football developments and competitions",
+      "emotion_tone": "positive",
+      "description": "Includes updates on women's leagues, tournaments, and initiatives related to women's football",
+      "inclusion_cues": [
+       "UEFA Women's Euro 2022",
+       "Women's Nations League",
+       "Women's Champions League",
+       "Women's Pro Soccer League"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 100,
+   "seed": 3324338022,
+   "seconds": 1.55
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: uefa women, fifa women, women football, women team, women eredivisie, women champions, women cup, women nations, women euro, women match, national women, nations league, women pro, women professional, edition women\nPosts (one per line, title first):\n- UEFA Women's EURO 2022 Team of the Tournament announced\n- [Areto Labs] In collaboration with @Team_Heroine, we've been analyzing the online hate against all players and teams playing in the UEFA Women's Euro 2022. Here is a sneak peek infographic of what we are observing so far.\n- [Sandra Riquelme on Relevo] UEFA working on plans to launch the Women's Nations League: dates yet to be decided but the tournament will have a similar format to the men's tournament\n- UEFA announces new women’s national team competition system: Women's Nations League and a new European Qualifiers for Women's Euro based on Nations League format\n- Ahead of the 150th anniversary of the national game and 50th anniversary of the first-ever official Scotland Women's match, the Scottish FA is proud to announce it will launch a new national women’s cup competition this season, with semi-finals and final taking place in 2023 at Hampden Park\n- [JoySportsGH] The Confederation of African Football (CAF) says clubs that featured in the maiden edition of the Women’s Champions League played for free\n- [FIFAcom] FIFA to introduce FIFA Women's Club World Cup and FIFA Women's Futsal World Cup\n- FC Utrecht Women enter Eredivisie starting in 23/24\n- AZ will return with a women's team starting in 23/24\n- Women’s Euro 2022 Stats: The Group Stage Review\n- Canada’s first women’s pro soccer league aiming to launch in 2025\n- FC Utrecht reestablishes women’s team starting from the 23/24 season for the first time since 2014\n- [FIFPRO] statement following today’s decisions by the FIFA Council concerning the international match calendars for men’s and women’s football.\n- UEFA Women's Euro 2022 Quarter-finals\n- England could have just six stadiums at Euro 2028 as Emirates and Anfield miss cut\n- UEFA Women's Champions League 2022-23 Matchday 1: 19.-20. October\n- Report: 2026 World Cup Final to be played at AT&T Stadium\n- Nordic nations make joint bid for women's Euro 2025\n- The WPSL Announces New Professional Division III Women’s Soccer League\n- Football Australia opens expressions of interest for National Second Tier Men's Competition\n- UEFA Women’s Euros | Every Winner, Every Year (1984-2022)\n- RFEF ANNOUNCEMENT | On various issues of the new women's professional competition\n- [De Volkskrant] Women's Eredivisie becomes part of professional football: 'We want to take women's football to a higher level'\n- [UEFA Women's EURO 2022] begins in 2 days!\n- THIS. IS. ELITE. | Welcome To The 2022-23 UEFA Women's Champions League Season\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Women's Euro\", \"purpose\": \"Highlighting events and developments in the UEFA Women's Euro tournament\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts related to the UEFA Women's Euro 2022 and 2023, including team selections, tournament formats, and event details\", \"inclusion_cues\": [\"UEFA Women's EURO 2022 Team of the Tournament\", \"UEFA Women's Euro 2022 Quarter-finals\", \"Women’s Euro 2022 Stats: The Group Stage Review\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Women's Football\", \"purpose\": \"Highlighting women's football developments and competitions\", \"emotion_tone\": \"positive\", \"description\": \"Includes updates on women's leagues, tournaments, and initiatives related to women's football\", \"inclusion_cues\": [\"UEFA Women's Euro 2022\", \"Women's Nations League\", \"Women's Champions League\", \"Women's Pro Soccer League\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Women's Football\", \"purpose\": \"Highlighting women's football developments and competitions\", \"emotion_tone\": \"positive\", \"description\": \"Includes updates on women's leagues, tournaments, and initiatives related to women's football\", \"inclusion_cues\": [\"UEFA Women's Euro 2022\", \"Women's Nations League\", \"Women's Champions League\", \"Women's Pro Soccer League\"]]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 408)",
+   "n_tokens": 99,
+   "seed": 1962465451,
+   "seconds": 0.69
+  }
+ ]
+}

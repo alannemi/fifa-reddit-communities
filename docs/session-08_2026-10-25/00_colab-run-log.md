@@ -448,3 +448,25 @@ derives the state from the recorded trial for a bin clustered before the key exi
 `guard` column (`converged` / `floor-bound` / `unconverged`); unit check for both. Bin 7's clustering, tiers and calibration samples on
 Drive are untouched — re-running cell 3.5 skips embed and topics and goes to the labelling (172 topics, ≈ 7 min), the review pack and
 the hand-back, then on to bins 9, 2, 4, 6, 8.
+
+**Bin 7 handed back (2026-10-25, 21:38 UTC zip).** After the pull and the new gate, cell 3.5 passed bin 7 as floor-bound (the status
+line reads `guard: floor-bound`) and labelled its 172 topics in 10.5 min (longer than the 7 min estimated: 161 of the 172 debates
+went to a second round). 2 flagged `needs_review`: topic 60 "Monaco Goals" (stalemate) and **topic 67, which has no name at all** — both
+analysts' answers were cut off at the 600-token limit, the repair turn too, so the label stage recorded `no_answer`; their truncated
+answers both read "retirement announcements" (keywords: announces retirement, farewell match; 126 posts). Until the co-authors enter a
+`final_name` for topic 67 in `topic_overrides.csv`, the collect checks report `topic_name missing` for its posts (and `topic_name_2` for
+the dual posts that carry it second) — `--allow-partial` lets the combined table through (1,159 topics for bins 1, 3, 5, 7); the final
+collect would stop. Flag F45 (design §13): a topic whose two analysts both fail should not be left nameless. Agreement modes of bin 7:
+157 accepted by A, 11 identical, 2 accepted by B, 1 stalemate, 1 no answer. Tiers T = 0.5626, C = 0.6887 → 2,950 reassigned, 6,633 dual,
+12.5 % outliers left. The run went on to bin 9.
+
+**A side effect of re-running cell 3.5, found in the same hand-backs.** The loop re-entered the finished bins 3 and 5 (stages skipped,
+label stage "474 already done, 0 to do"), and the label stage **rewrote `config.json → label` with the no-op's statistics** — 0 LLM calls,
+0.2 min, `run_at` 21:27 — over the record of the real runs (92 and 87 calls, 16.2 and 16.9 min); it also produced a second review pack
+and hand-back zip for each (identical apart from that timestamp). The repository keeps the true records (commits `a5f4dc0e`, `dd868688`),
+so the new `config.json`, `status.json`, `review_pack.md`, `report.html` and `REVIEW_READY.txt` of bins 3 and 5 were **not** taken over;
+only their appended bin logs were. Fixes the same evening: (1) `tagging.merge_label_record` — a label stage that made no LLM call keeps the
+previous `llm_stats`, `elapsed_min` and `run_at` and adds `refreshed_at` (unit check); (2) cell 3.5 skips a bin that is labelled and handed
+back (`REVIEW_READY.txt` present; a refit removes the flag, so such a bin runs again); (3) one-off cell 3.4b restores the two `label`
+sections on Drive from the repository clone. Status.json on Drive for bins 3 and 5 still shows the no-op time as `labelled_at` until a
+stage next writes it; the repository copies are right.

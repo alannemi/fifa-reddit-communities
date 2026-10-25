@@ -1,0 +1,205 @@
+{
+ "period_bin": 7,
+ "topic_id": 30,
+ "keywords": "novgorod khimki, nizhny novgorod, moscow krasnodar, moscow arsen, novgorod, torpedo moscow, fk rostov, spartak moscow, cska moscow, dynamo moscow, dinamo moscow, spartak, rostov, zenit spartak, moscow sochi",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "x2hbc7",
+  "ysh7km",
+  "xaw7e1",
+  "ysfbok",
+  "x5or29",
+  "x2hyb5",
+  "wztk69",
+  "x5ud86",
+  "ynwlg4",
+  "ytcp48",
+  "xsy1hu",
+  "x2i5lf",
+  "xqgfp0",
+  "z2us5m",
+  "x5nbsg",
+  "wzubdr",
+  "x2eyyg",
+  "y821x5",
+  "xt0b27",
+  "xtuizy",
+  "ysgmyz",
+  "xsszpu",
+  "wngusq",
+  "xqfafq",
+  "wiluot",
+  "ymw8zg",
+  "x5sib1",
+  "xt1wbo",
+  "ymvdkf",
+  "wzxqmr",
+  "w1conl",
+  "ywz3ly",
+  "xqg33n",
+  "y5o85n",
+  "whqy2b",
+  "yciztt",
+  "xsxoi7",
+  "xqivdi",
+  "xeytsv",
+  "w17jog"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Moscow Clubs",
+  "purpose": "Matches involving Moscow-based teams",
+  "emotion_tone": "Competitive",
+  "description": "Posts about matches featuring teams from Moscow, including Lokomotiv Moscow, Spartak Moscow, CSKA Moscow, Zenit, and others",
+  "inclusion_cues": [
+   "Moscow",
+   "Lokomotiv Moscow",
+   "Spartak Moscow",
+   "CSKA Moscow",
+   "Zenit",
+   "Fakel Voronezh",
+   "Krasnodar",
+   "Ural",
+   "Sochi",
+   "Torpedo Moscow"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Krasnodar vs. Zenit",
+    "purpose": "League match",
+    "emotion_tone": "competitive",
+    "description": "Matches between Krasnodar and Zenit featuring high-scoring finishes and penalties",
+    "inclusion_cues": [
+     "Krasnodar 1-0 Zenit",
+     "Zenit 6-0 Sochi",
+     "Krasnodar [1]-1 Fakel Voronezh"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Moscow Clubs",
+    "purpose": "Matches involving Moscow-based teams",
+    "emotion_tone": "Competitive",
+    "description": "Posts about matches featuring teams from Moscow, including Lokomotiv Moscow, Spartak Moscow, CSKA Moscow, Zenit, and others",
+    "inclusion_cues": [
+     "Moscow",
+     "Lokomotiv Moscow",
+     "Spartak Moscow",
+     "CSKA Moscow",
+     "Zenit",
+     "Fakel Voronezh",
+     "Krasnodar",
+     "Ural",
+     "Sochi",
+     "Torpedo Moscow"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: novgorod khimki, nizhny novgorod, moscow krasnodar, moscow arsen, novgorod, torpedo moscow, fk rostov, spartak moscow, cska moscow, dynamo moscow, dinamo moscow, spartak, rostov, zenit spartak, moscow sochi\nPosts (one per line, title first):\n- Nizhny Novgorod 1-0 Lokomotiv Moscow - Viktor Aleksandrov 10'\n- Nizhny Novgorod 3-[1] Akhmat Grozny - Vladimir Iljin 73'\n- Akhmat Grozny [1]-1 Nizhny Novgorod - Yury Zhuravlev 59'\n- Nizhny Novgorod 1-0 Akhmat Grozny - Iaroslav Mikhailov 20'\n- Lokomotiv Moscow 0-1 Akhmat Grozny - Mohamed Konate 3'\n- Zenit 1-0 Fakel Voronezh - Mateo Cassierra 23'\n- Ural 0-2 Zenit - Andrey Mostovoy 55'\n- Spartak Moscow 1-[2] Zenit - Andrey Mostovoy 60'\n- FK Rostov 1-0 Dinamo Moscow - Kiril Shchetinin 66'\n- Lokomotiv Moscow 0-1 Spartak Moscow - Quincy Promes penalty 22'\n- Khimki [1]-2 CSKA Moscow - Butta Magomedov 88'\n- Zenit 2-0 Fakel Voronezh - Mateo Cassierra 33'\n- Khimki 0-4 Lokomotiv Moscow - Wilson Isidor 57'\n- Krasnodar 1-0 Lokomotiv Moscow - Ilzat Akhmetov 1'\n- Samara 0-1 CSKA Moscow - Jesus Medina 79'\n- Lokomotiv Moscow 2-[1] Orenburg - Vladimir Sychevoi 13'\n- Khimki 0-2 Krasnodar - Ilzat Akhmetov 40'\n- Orenburg [1]-1 Akhmat Grozny - Dmitriy Vorobyev penalty 20'\n- Lokomotiv Moscow 0-2 Ural - Aleksander Yushin 41'\n- Nizhny Novgorod 1-[1] Spartak Moscow - Shamar Nicholson 66'\n- Nizhny Novgorod 2-0 Akhmat Grozny - Timur Suleymanov 52'\n- Orenburg 1-0 Sochi - Timur Ayupov 3'\n- Zenit [1] - 0 CSKA Moscow - Malcom 45+2'\n- Khimki 0-1 Lokomotiv Moscow - Pedrinho 20'\n- Sochi 2-0 Nizhny Novgorod - Artur Yusupov 38'\n- Fakel Voronezh 1-[3] Krasnodar - Aleksey Ionov 62'\n- Spartak Moscow 1-0 Zenit - Alexander Sobolev 21'\n- Lokomotiv Moscow [2]-4 Ural - Ivan Ignatjev 90'+3'\n- Fakel Voronezh 1-[2] Krasnodar - Mihajlo Banjac penalty 43'\n- Torpedo Moscow 0-1 Krasnodar - Eduard Spertsyan 31'\n- Krasnodar [1]-1 Fakel Voronezh - Aleksey Ionov 24'\n- Fakel Voronezh 0-2 Zenit - Malcom 82'\n- Khimki 0-3 Lokomotiv Moscow - Pedrinho 50'\n- CSKA Moscow [2]-2 Spartak Moscow - Fedor Chalov 70'\n- CSKA Moscow 0-1 Fakel - Georgi Gongadze penalty 42'\n- Zenit 6-0 Sochi - Malcom 74'\n- Khimki 0-1 CSKA Moscow - Fedor Chalov 13'\n- CSKA Moscow 1-0 Sochi - Konstantin Kuchaev 23'\n- Spartak Moscow 1-0 Fakel Voronezh - Pavel Alekseevich Meleshin 4'\n- Torpedo Moscow 0-2 Sochi - Vladislav Sarveli 37'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Krasnodar vs. Zenit\", \"purpose\": \"League match\", \"emotion_tone\": \"competitive\", \"description\": \"Matches between Krasnodar and Zenit featuring high-scoring finishes and penalties\", \"inclusion_cues\": [\"Krasnodar 1-0 Zenit\", \"Zenit 6-0 Sochi\", \"Krasnodar [1]-1 Fakel Voronezh\"]}]}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Krasnodar vs. Zenit",
+      "purpose": "League match",
+      "emotion_tone": "competitive",
+      "description": "Matches between Krasnodar and Zenit featuring high-scoring finishes and penalties",
+      "inclusion_cues": [
+       "Krasnodar 1-0 Zenit",
+       "Zenit 6-0 Sochi",
+       "Krasnodar [1]-1 Fakel Voronezh"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 105,
+   "seed": 3227313605,
+   "seconds": 0.82
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: novgorod khimki, nizhny novgorod, moscow krasnodar, moscow arsen, novgorod, torpedo moscow, fk rostov, spartak moscow, cska moscow, dynamo moscow, dinamo moscow, spartak, rostov, zenit spartak, moscow sochi\nPosts (one per line, title first):\n- Nizhny Novgorod 1-0 Lokomotiv Moscow - Viktor Aleksandrov 10'\n- Nizhny Novgorod 3-[1] Akhmat Grozny - Vladimir Iljin 73'\n- Akhmat Grozny [1]-1 Nizhny Novgorod - Yury Zhuravlev 59'\n- Nizhny Novgorod 1-0 Akhmat Grozny - Iaroslav Mikhailov 20'\n- Lokomotiv Moscow 0-1 Akhmat Grozny - Mohamed Konate 3'\n- Zenit 1-0 Fakel Voronezh - Mateo Cassierra 23'\n- Ural 0-2 Zenit - Andrey Mostovoy 55'\n- Spartak Moscow 1-[2] Zenit - Andrey Mostovoy 60'\n- FK Rostov 1-0 Dinamo Moscow - Kiril Shchetinin 66'\n- Lokomotiv Moscow 0-1 Spartak Moscow - Quincy Promes penalty 22'\n- Khimki [1]-2 CSKA Moscow - Butta Magomedov 88'\n- Zenit 2-0 Fakel Voronezh - Mateo Cassierra 33'\n- Khimki 0-4 Lokomotiv Moscow - Wilson Isidor 57'\n- Krasnodar 1-0 Lokomotiv Moscow - Ilzat Akhmetov 1'\n- Samara 0-1 CSKA Moscow - Jesus Medina 79'\n- Lokomotiv Moscow 2-[1] Orenburg - Vladimir Sychevoi 13'\n- Khimki 0-2 Krasnodar - Ilzat Akhmetov 40'\n- Orenburg [1]-1 Akhmat Grozny - Dmitriy Vorobyev penalty 20'\n- Lokomotiv Moscow 0-2 Ural - Aleksander Yushin 41'\n- Nizhny Novgorod 1-[1] Spartak Moscow - Shamar Nicholson 66'\n- Nizhny Novgorod 2-0 Akhmat Grozny - Timur Suleymanov 52'\n- Orenburg 1-0 Sochi - Timur Ayupov 3'\n- Zenit [1] - 0 CSKA Moscow - Malcom 45+2'\n- Khimki 0-1 Lokomotiv Moscow - Pedrinho 20'\n- Sochi 2-0 Nizhny Novgorod - Artur Yusupov 38'\n- Fakel Voronezh 1-[3] Krasnodar - Aleksey Ionov 62'\n- Spartak Moscow 1-0 Zenit - Alexander Sobolev 21'\n- Lokomotiv Moscow [2]-4 Ural - Ivan Ignatjev 90'+3'\n- Fakel Voronezh 1-[2] Krasnodar - Mihajlo Banjac penalty 43'\n- Torpedo Moscow 0-1 Krasnodar - Eduard Spertsyan 31'\n- Krasnodar [1]-1 Fakel Voronezh - Aleksey Ionov 24'\n- Fakel Voronezh 0-2 Zenit - Malcom 82'\n- Khimki 0-3 Lokomotiv Moscow - Pedrinho 50'\n- CSKA Moscow [2]-2 Spartak Moscow - Fedor Chalov 70'\n- CSKA Moscow 0-1 Fakel - Georgi Gongadze penalty 42'\n- Zenit 6-0 Sochi - Malcom 74'\n- Khimki 0-1 CSKA Moscow - Fedor Chalov 13'\n- CSKA Moscow 1-0 Sochi - Konstantin Kuchaev 23'\n- Spartak Moscow 1-0 Fakel Voronezh - Pavel Alekseevich Meleshin 4'\n- Torpedo Moscow 0-2 Sochi - Vladislav Sarveli 37'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Moscow Clubs\", \"purpose\": \"Matches involving Moscow-based teams\", \"emotion_tone\": \"Competitive\", \"description\": \"Posts about matches featuring teams from Moscow, including Lokomotiv Moscow, Spartak Moscow, CSKA Moscow, Zenit, and others\", \"inclusion_cues\": [\"Moscow\", \"Lokomotiv Moscow\", \"Spartak Moscow\", \"CSKA Moscow\", \"Zenit\", \"Fakel Voronezh\", \"Krasnodar\", \"Ural\", \"Sochi\", \"Torpedo Moscow\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Moscow Clubs",
+      "purpose": "Matches involving Moscow-based teams",
+      "emotion_tone": "Competitive",
+      "description": "Posts about matches featuring teams from Moscow, including Lokomotiv Moscow, Spartak Moscow, CSKA Moscow, Zenit, and others",
+      "inclusion_cues": [
+       "Moscow",
+       "Lokomotiv Moscow",
+       "Spartak Moscow",
+       "CSKA Moscow",
+       "Zenit",
+       "Fakel Voronezh",
+       "Krasnodar",
+       "Ural",
+       "Sochi",
+       "Torpedo Moscow"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 133,
+   "seed": 2415267048,
+   "seconds": 1.06
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: novgorod khimki, nizhny novgorod, moscow krasnodar, moscow arsen, novgorod, torpedo moscow, fk rostov, spartak moscow, cska moscow, dynamo moscow, dinamo moscow, spartak, rostov, zenit spartak, moscow sochi\nPosts (one per line, title first):\n- Nizhny Novgorod 1-0 Lokomotiv Moscow - Viktor Aleksandrov 10'\n- Nizhny Novgorod 3-[1] Akhmat Grozny - Vladimir Iljin 73'\n- Akhmat Grozny [1]-1 Nizhny Novgorod - Yury Zhuravlev 59'\n- Nizhny Novgorod 1-0 Akhmat Grozny - Iaroslav Mikhailov 20'\n- Lokomotiv Moscow 0-1 Akhmat Grozny - Mohamed Konate 3'\n- Zenit 1-0 Fakel Voronezh - Mateo Cassierra 23'\n- Ural 0-2 Zenit - Andrey Mostovoy 55'\n- Spartak Moscow 1-[2] Zenit - Andrey Mostovoy 60'\n- FK Rostov 1-0 Dinamo Moscow - Kiril Shchetinin 66'\n- Lokomotiv Moscow 0-1 Spartak Moscow - Quincy Promes penalty 22'\n- Khimki [1]-2 CSKA Moscow - Butta Magomedov 88'\n- Zenit 2-0 Fakel Voronezh - Mateo Cassierra 33'\n- Khimki 0-4 Lokomotiv Moscow - Wilson Isidor 57'\n- Krasnodar 1-0 Lokomotiv Moscow - Ilzat Akhmetov 1'\n- Samara 0-1 CSKA Moscow - Jesus Medina 79'\n- Lokomotiv Moscow 2-[1] Orenburg - Vladimir Sychevoi 13'\n- Khimki 0-2 Krasnodar - Ilzat Akhmetov 40'\n- Orenburg [1]-1 Akhmat Grozny - Dmitriy Vorobyev penalty 20'\n- Lokomotiv Moscow 0-2 Ural - Aleksander Yushin 41'\n- Nizhny Novgorod 1-[1] Spartak Moscow - Shamar Nicholson 66'\n- Nizhny Novgorod 2-0 Akhmat Grozny - Timur Suleymanov 52'\n- Orenburg 1-0 Sochi - Timur Ayupov 3'\n- Zenit [1] - 0 CSKA Moscow - Malcom 45+2'\n- Khimki 0-1 Lokomotiv Moscow - Pedrinho 20'\n- Sochi 2-0 Nizhny Novgorod - Artur Yusupov 38'\n- Fakel Voronezh 1-[3] Krasnodar - Aleksey Ionov 62'\n- Spartak Moscow 1-0 Zenit - Alexander Sobolev 21'\n- Lokomotiv Moscow [2]-4 Ural - Ivan Ignatjev 90'+3'\n- Fakel Voronezh 1-[2] Krasnodar - Mihajlo Banjac penalty 43'\n- Torpedo Moscow 0-1 Krasnodar - Eduard Spertsyan 31'\n- Krasnodar [1]-1 Fakel Voronezh - Aleksey Ionov 24'\n- Fakel Voronezh 0-2 Zenit - Malcom 82'\n- Khimki 0-3 Lokomotiv Moscow - Pedrinho 50'\n- CSKA Moscow [2]-2 Spartak Moscow - Fedor Chalov 70'\n- CSKA Moscow 0-1 Fakel - Georgi Gongadze penalty 42'\n- Zenit 6-0 Sochi - Malcom 74'\n- Khimki 0-1 CSKA Moscow - Fedor Chalov 13'\n- CSKA Moscow 1-0 Sochi - Konstantin Kuchaev 23'\n- Spartak Moscow 1-0 Fakel Voronezh - Pavel Alekseevich Meleshin 4'\n- Torpedo Moscow 0-2 Sochi - Vladislav Sarveli 37'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Krasnodar vs. Zenit\", \"purpose\": \"League match\", \"emotion_tone\": \"competitive\", \"description\": \"Matches between Krasnodar and Zenit featuring high-scoring finishes and penalties\", \"inclusion_cues\": [\"Krasnodar 1-0 Zenit\", \"Zenit 6-0 Sochi\", \"Krasnodar [1]-1 Fakel Voronezh\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Moscow Clubs\", \"purpose\": \"Matches involving Moscow-based teams\", \"emotion_tone\": \"Competitive\", \"description\": \"Posts about matches featuring teams from Moscow, including Lokomotiv Moscow, Spartak Moscow, CSKA Moscow, Zenit, and others\", \"inclusion_cues\": [\"Moscow\", \"Lokomotiv Moscow\", \"Spartak Moscow\", \"CSKA Moscow\", \"Zenit\", \"Fakel Voronezh\", \"Krasnodar\", \"Ural\", \"Sochi\", \"Torpedo Moscow\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Moscow Clubs\", \"purpose\": \"Matches involving Moscow-based teams\", \"emotion_tone\": \"Competitive\", \"description\": \"Posts about matches featuring teams from Moscow, including Lokomotiv Moscow, Spartak Moscow, CSKA Moscow, Zenit, and others\", \"inclusion_cues\": [\"Moscow\", \"Lokomotiv Moscow\", \"Spartak Moscow\", \"CSKA Moscow\", \"Zenit\", \"Fakel Voronezh\", \"Krasnodar\", \"Ural\", \"Sochi\", \"Torpedo Moscow\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 132,
+   "seed": 2808586319,
+   "seconds": 2.82
+  }
+ ]
+}

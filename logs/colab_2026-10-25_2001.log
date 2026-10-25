@@ -1693,3 +1693,950 @@ report: /content/drive/MyDrive/fifa-communities/results/bin-5/report.html
 review pack written: /content/drive/MyDrive/fifa-communities/results/bin-5/review_pack.md (2593 kB)
 nearest_topic_name written into 4 outlier calibration sample file(s) in /content/drive/MyDrive/fifa-communities/results/bin-5/outlier_calibration
 <<< exit 0 after 0.0 min
+hand-back zip: /content/drive/MyDrive/fifa-communities/handback/bins-5_2026-10-25_2055.zip | 482 files | 18.8 MB
+=== bin 5 READY FOR REVIEW: /content/drive/MyDrive/fifa-communities/results/bin-5/REVIEW_READY.txt, review_pack.md and topic_overrides.csv on Drive; the zip in handback/ ===
+>>> /usr/bin/python3 -u code/05-analysis-pipeline.py --stage embed --bin 7
+2026-10-25 20:55:48,979 | INFO | === stage embed, bin 7 === args: {'stage': 'embed', 'bin': 7, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': False, 'keep_umap': False, 'grid': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 20:55:58,391 | INFO | bin 7: 41438 documents from years [2022, 2023]
+2026-10-25 20:56:04,239 | INFO | TensorFlow version 2.21.0 available.
+2026-10-25 20:56:04,240 | INFO | JAX version 0.11.1 available.
+2026-10-25 20:56:05,841 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-25 20:56:05,842 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-25 20:56:05,851 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/modules.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22 "HTTP/1.1 200 OK"
+2026-10-25 20:56:05,952 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 20:56:05,965 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/config_sentence_transformers.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22fd1b291129c607e5d49799f87cb219b27f98acdf%22 "HTTP/1.1 200 OK"
+2026-10-25 20:56:05,966 | INFO | Loading SentenceTransformer model from sentence-transformers/all-mpnet-base-v2.
+2026-10-25 20:56:06,087 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 20:56:06,096 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/config_sentence_transformers.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22fd1b291129c607e5d49799f87cb219b27f98acdf%22 "HTTP/1.1 200 OK"
+2026-10-25 20:56:06,199 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 20:56:06,209 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/README.md?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2FREADME.md=&etag=%221452a960a1189347d079efa950d3c87d5706c0d6%22 "HTTP/1.1 200 OK"
+2026-10-25 20:56:06,314 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 20:56:06,324 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/modules.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22 "HTTP/1.1 200 OK"
+2026-10-25 20:56:06,430 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 20:56:06,439 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/sentence_bert_config.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fsentence_bert_config.json=&etag=%224eb670bb4e7f34e9031acec2b86d39e5c921198e%22 "HTTP/1.1 200 OK"
+2026-10-25 20:56:06,547 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-10-25 20:56:06,653 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2 "HTTP/1.1 200 OK"
+2026-10-25 20:56:06,763 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2 "HTTP/1.1 200 OK"
+2026-10-25 20:56:07,042 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2 "HTTP/1.1 200 OK"
+2026-10-25 20:56:07,153 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-25 20:56:07,257 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-25 20:56:07,402 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 20:56:07,411 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/1_Pooling%2Fconfig.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2F1_Pooling%2Fconfig.json=&etag=%224e09f293dfe90bba49f87cfe7996271f07be2666%22 "HTTP/1.1 200 OK"
+2026-10-25 20:56:07,516 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/2_Normalize/config.json "HTTP/1.1 404 Not Found"
+2026-10-25 20:56:07,738 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2 "HTTP/1.1 200 OK"
+2026-10-25 20:56:08,133 | INFO | embeddings: encoding 64584 docs for 2022 with sentence-transformers/all-mpnet-base-v2 on cuda
+
+Batches:   0%|          | 0/253 [00:00<?, ?it/s]
+Batches:   0%|          | 1/253 [00:01<05:26,  1.30s/it]
+Batches:   1%|          | 2/253 [00:02<04:39,  1.11s/it]
+Batches:   1%|          | 3/253 [00:03<04:22,  1.05s/it]
+Batches:   2%|▏         | 4/253 [00:04<04:13,  1.02s/it]
+Batches:   2%|▏         | 5/253 [00:05<04:08,  1.00s/it]
+Batches:   2%|▏         | 6/253 [00:06<04:04,  1.01it/s]
+Batches:   3%|▎         | 7/253 [00:07<04:02,  1.02it/s]
+Batches:   3%|▎         | 8/253 [00:08<03:59,  1.02it/s]
+Batches:   4%|▎         | 9/253 [00:09<03:58,  1.02it/s]
+Batches:   4%|▍         | 10/253 [00:10<03:56,  1.03it/s]
+Batches:   4%|▍         | 11/253 [00:10<03:54,  1.03it/s]
+Batches:   5%|▍         | 12/253 [00:11<03:49,  1.05it/s]
+Batches:   5%|▌         | 13/253 [00:12<03:45,  1.07it/s]
+Batches:   6%|▌         | 14/253 [00:13<03:36,  1.10it/s]
+Batches:   6%|▌         | 15/253 [00:14<03:13,  1.23it/s]
+Batches:   6%|▋         | 16/253 [00:14<02:41,  1.46it/s]
+Batches:   7%|▋         | 17/253 [00:14<02:16,  1.73it/s]
+Batches:   7%|▋         | 18/253 [00:15<02:00,  1.94it/s]
+Batches:   8%|▊         | 19/253 [00:15<01:48,  2.15it/s]
+Batches:   8%|▊         | 20/253 [00:16<01:40,  2.32it/s]
+Batches:   8%|▊         | 21/253 [00:16<01:33,  2.47it/s]
+Batches:   9%|▊         | 22/253 [00:16<01:27,  2.65it/s]
+Batches:   9%|▉         | 23/253 [00:17<01:23,  2.76it/s]
+Batches:   9%|▉         | 24/253 [00:17<01:21,  2.81it/s]
+Batches:  10%|▉         | 25/253 [00:17<01:20,  2.83it/s]
+Batches:  10%|█         | 26/253 [00:18<01:17,  2.93it/s]
+Batches:  11%|█         | 27/253 [00:18<01:20,  2.81it/s]
+Batches:  11%|█         | 28/253 [00:18<01:18,  2.88it/s]
+Batches:  11%|█▏        | 29/253 [00:19<01:16,  2.94it/s]
+Batches:  12%|█▏        | 30/253 [00:19<01:15,  2.95it/s]
+Batches:  12%|█▏        | 31/253 [00:19<01:12,  3.07it/s]
+Batches:  13%|█▎        | 32/253 [00:19<01:09,  3.16it/s]
+Batches:  13%|█▎        | 33/253 [00:20<01:14,  2.95it/s]
+Batches:  13%|█▎        | 34/253 [00:20<01:13,  2.97it/s]
+Batches:  14%|█▍        | 35/253 [00:21<01:12,  3.01it/s]
+Batches:  14%|█▍        | 36/253 [00:21<01:09,  3.12it/s]
+Batches:  15%|█▍        | 37/253 [00:21<01:06,  3.23it/s]
+Batches:  15%|█▌        | 38/253 [00:21<01:06,  3.23it/s]
+Batches:  15%|█▌        | 39/253 [00:22<01:05,  3.25it/s]
+Batches:  16%|█▌        | 40/253 [00:22<01:04,  3.32it/s]
+Batches:  16%|█▌        | 41/253 [00:22<01:00,  3.48it/s]
+Batches:  17%|█▋        | 42/253 [00:23<01:00,  3.47it/s]
+Batches:  17%|█▋        | 43/253 [00:23<01:00,  3.49it/s]
+Batches:  17%|█▋        | 44/253 [00:23<01:00,  3.45it/s]
+Batches:  18%|█▊        | 45/253 [00:23<00:57,  3.60it/s]
+Batches:  18%|█▊        | 46/253 [00:24<00:54,  3.77it/s]
+Batches:  19%|█▊        | 47/253 [00:24<00:55,  3.72it/s]
+Batches:  19%|█▉        | 48/253 [00:24<00:53,  3.84it/s]
+Batches:  19%|█▉        | 49/253 [00:24<00:51,  3.96it/s]
+Batches:  20%|█▉        | 50/253 [00:25<00:52,  3.85it/s]
+Batches:  20%|██        | 51/253 [00:25<00:51,  3.89it/s]
+Batches:  21%|██        | 52/253 [00:25<00:53,  3.77it/s]
+Batches:  21%|██        | 53/253 [00:25<00:51,  3.91it/s]
+Batches:  21%|██▏       | 54/253 [00:26<00:50,  3.90it/s]
+Batches:  22%|██▏       | 55/253 [00:26<00:51,  3.88it/s]
+Batches:  22%|██▏       | 56/253 [00:26<00:47,  4.15it/s]
+Batches:  23%|██▎       | 57/253 [00:26<00:44,  4.37it/s]
+Batches:  23%|██▎       | 58/253 [00:27<00:42,  4.54it/s]
+Batches:  23%|██▎       | 59/253 [00:27<00:42,  4.60it/s]
+Batches:  24%|██▎       | 60/253 [00:27<00:40,  4.72it/s]
+Batches:  24%|██▍       | 61/253 [00:27<00:40,  4.72it/s]
+Batches:  25%|██▍       | 62/253 [00:27<00:40,  4.66it/s]
+Batches:  25%|██▍       | 63/253 [00:28<00:39,  4.87it/s]
+Batches:  25%|██▌       | 64/253 [00:28<00:39,  4.83it/s]
+Batches:  26%|██▌       | 65/253 [00:28<00:37,  4.99it/s]
+Batches:  26%|██▌       | 66/253 [00:28<00:36,  5.10it/s]
+Batches:  26%|██▋       | 67/253 [00:28<00:35,  5.28it/s]
+Batches:  27%|██▋       | 68/253 [00:29<00:35,  5.24it/s]
+Batches:  27%|██▋       | 69/253 [00:29<00:34,  5.30it/s]
+Batches:  28%|██▊       | 70/253 [00:29<00:33,  5.45it/s]
+Batches:  28%|██▊       | 71/253 [00:29<00:32,  5.60it/s]
+Batches:  28%|██▊       | 72/253 [00:29<00:31,  5.71it/s]
+Batches:  29%|██▉       | 73/253 [00:29<00:31,  5.78it/s]
+Batches:  29%|██▉       | 74/253 [00:30<00:30,  5.92it/s]
+Batches:  30%|██▉       | 75/253 [00:30<00:29,  6.04it/s]
+Batches:  30%|███       | 76/253 [00:30<00:28,  6.14it/s]
+Batches:  30%|███       | 77/253 [00:30<00:30,  5.83it/s]
+Batches:  31%|███       | 78/253 [00:30<00:29,  5.97it/s]
+Batches:  31%|███       | 79/253 [00:30<00:28,  6.00it/s]
+Batches:  32%|███▏      | 80/253 [00:31<00:28,  6.10it/s]
+Batches:  32%|███▏      | 81/253 [00:31<00:27,  6.19it/s]
+Batches:  32%|███▏      | 82/253 [00:31<00:26,  6.42it/s]
+Batches:  33%|███▎      | 83/253 [00:31<00:26,  6.45it/s]
+Batches:  33%|███▎      | 84/253 [00:31<00:26,  6.42it/s]
+Batches:  34%|███▎      | 85/253 [00:31<00:26,  6.44it/s]
+Batches:  34%|███▍      | 86/253 [00:31<00:25,  6.46it/s]
+Batches:  34%|███▍      | 87/253 [00:32<00:25,  6.48it/s]
+Batches:  35%|███▍      | 88/253 [00:32<00:25,  6.47it/s]
+Batches:  35%|███▌      | 89/253 [00:32<00:25,  6.49it/s]
+Batches:  36%|███▌      | 90/253 [00:32<00:24,  6.55it/s]
+Batches:  36%|███▌      | 91/253 [00:32<00:24,  6.55it/s]
+Batches:  36%|███▋      | 92/253 [00:32<00:24,  6.57it/s]
+Batches:  37%|███▋      | 93/253 [00:32<00:24,  6.61it/s]
+Batches:  37%|███▋      | 94/253 [00:33<00:23,  6.72it/s]
+Batches:  38%|███▊      | 95/253 [00:33<00:23,  6.69it/s]
+Batches:  38%|███▊      | 96/253 [00:33<00:23,  6.64it/s]
+Batches:  38%|███▊      | 97/253 [00:33<00:22,  6.81it/s]
+Batches:  39%|███▊      | 98/253 [00:33<00:22,  6.78it/s]
+Batches:  39%|███▉      | 99/253 [00:33<00:22,  6.89it/s]
+Batches:  40%|███▉      | 100/253 [00:33<00:21,  7.12it/s]
+Batches:  40%|███▉      | 101/253 [00:34<00:21,  6.97it/s]
+Batches:  40%|████      | 102/253 [00:34<00:21,  7.05it/s]
+Batches:  41%|████      | 103/253 [00:34<00:21,  6.95it/s]
+Batches:  41%|████      | 104/253 [00:34<00:21,  7.03it/s]
+Batches:  42%|████▏     | 105/253 [00:34<00:20,  7.09it/s]
+Batches:  42%|████▏     | 106/253 [00:34<00:20,  7.13it/s]
+Batches:  42%|████▏     | 107/253 [00:34<00:20,  7.18it/s]
+Batches:  43%|████▎     | 108/253 [00:35<00:20,  7.17it/s]
+Batches:  43%|████▎     | 109/253 [00:35<00:19,  7.24it/s]
+Batches:  43%|████▎     | 110/253 [00:35<00:19,  7.25it/s]
+Batches:  44%|████▍     | 111/253 [00:35<00:19,  7.29it/s]
+Batches:  44%|████▍     | 112/253 [00:35<00:19,  7.32it/s]
+Batches:  45%|████▍     | 113/253 [00:35<00:19,  7.32it/s]
+Batches:  45%|████▌     | 114/253 [00:35<00:18,  7.46it/s]
+Batches:  45%|████▌     | 115/253 [00:36<00:18,  7.42it/s]
+Batches:  46%|████▌     | 116/253 [00:36<00:18,  7.52it/s]
+Batches:  46%|████▌     | 117/253 [00:36<00:18,  7.50it/s]
+Batches:  47%|████▋     | 118/253 [00:36<00:18,  7.45it/s]
+Batches:  47%|████▋     | 119/253 [00:36<00:17,  7.57it/s]
+Batches:  47%|████▋     | 120/253 [00:36<00:17,  7.50it/s]
+Batches:  48%|████▊     | 121/253 [00:36<00:17,  7.58it/s]
+Batches:  48%|████▊     | 122/253 [00:36<00:17,  7.62it/s]
+Batches:  49%|████▊     | 123/253 [00:37<00:17,  7.57it/s]
+Batches:  49%|████▉     | 124/253 [00:37<00:16,  7.65it/s]
+Batches:  49%|████▉     | 125/253 [00:37<00:16,  7.78it/s]
+Batches:  50%|████▉     | 126/253 [00:37<00:16,  7.66it/s]
+Batches:  50%|█████     | 127/253 [00:37<00:16,  7.60it/s]
+Batches:  51%|█████     | 128/253 [00:37<00:16,  7.70it/s]
+Batches:  51%|█████     | 129/253 [00:37<00:16,  7.65it/s]
+Batches:  51%|█████▏    | 130/253 [00:38<00:15,  7.71it/s]
+Batches:  52%|█████▏    | 131/253 [00:38<00:15,  7.81it/s]
+Batches:  52%|█████▏    | 132/253 [00:38<00:15,  7.67it/s]
+Batches:  53%|█████▎    | 133/253 [00:38<00:15,  7.63it/s]
+Batches:  53%|█████▎    | 134/253 [00:38<00:15,  7.72it/s]
+Batches:  53%|█████▎    | 135/253 [00:38<00:15,  7.86it/s]
+Batches:  54%|█████▍    | 136/253 [00:38<00:14,  7.93it/s]
+Batches:  54%|█████▍    | 137/253 [00:38<00:14,  7.99it/s]
+Batches:  55%|█████▍    | 138/253 [00:39<00:14,  8.05it/s]
+Batches:  55%|█████▍    | 139/253 [00:39<00:14,  8.05it/s]
+Batches:  55%|█████▌    | 140/253 [00:39<00:13,  8.12it/s]
+Batches:  56%|█████▌    | 141/253 [00:39<00:24,  4.50it/s]
+Batches:  56%|█████▌    | 142/253 [00:39<00:21,  5.20it/s]
+Batches:  57%|█████▋    | 143/253 [00:39<00:18,  5.84it/s]
+Batches:  57%|█████▋    | 144/253 [00:40<00:17,  6.41it/s]
+Batches:  57%|█████▋    | 145/253 [00:40<00:15,  6.90it/s]
+Batches:  58%|█████▊    | 146/253 [00:40<00:14,  7.25it/s]
+Batches:  58%|█████▊    | 147/253 [00:40<00:13,  7.77it/s]
+Batches:  58%|█████▊    | 148/253 [00:40<00:13,  7.89it/s]
+Batches:  59%|█████▉    | 149/253 [00:40<00:13,  7.99it/s]
+Batches:  59%|█████▉    | 150/253 [00:40<00:12,  8.31it/s]
+Batches:  60%|█████▉    | 151/253 [00:40<00:12,  8.30it/s]
+Batches:  60%|██████    | 152/253 [00:41<00:12,  8.28it/s]
+Batches:  60%|██████    | 153/253 [00:41<00:11,  8.55it/s]
+Batches:  61%|██████    | 154/253 [00:41<00:11,  8.72it/s]
+Batches:  61%|██████▏   | 155/253 [00:41<00:11,  8.68it/s]
+Batches:  62%|██████▏   | 156/253 [00:41<00:11,  8.79it/s]
+Batches:  62%|██████▏   | 157/253 [00:41<00:11,  8.70it/s]
+Batches:  62%|██████▏   | 158/253 [00:41<00:11,  8.56it/s]
+Batches:  63%|██████▎   | 159/253 [00:41<00:10,  8.80it/s]
+Batches:  63%|██████▎   | 160/253 [00:41<00:10,  8.91it/s]
+Batches:  64%|██████▎   | 161/253 [00:42<00:10,  8.80it/s]
+Batches:  64%|██████▍   | 162/253 [00:42<00:10,  8.65it/s]
+Batches:  64%|██████▍   | 163/253 [00:42<00:10,  8.63it/s]
+Batches:  65%|██████▍   | 164/253 [00:42<00:10,  8.88it/s]
+Batches:  65%|██████▌   | 165/253 [00:42<00:09,  9.04it/s]
+Batches:  66%|██████▌   | 166/253 [00:42<00:09,  9.08it/s]
+Batches:  66%|██████▌   | 167/253 [00:42<00:09,  9.16it/s]
+Batches:  66%|██████▋   | 168/253 [00:42<00:09,  9.22it/s]
+Batches:  67%|██████▋   | 169/253 [00:42<00:09,  9.19it/s]
+Batches:  67%|██████▋   | 170/253 [00:43<00:09,  9.21it/s]
+Batches:  68%|██████▊   | 171/253 [00:43<00:08,  9.27it/s]
+Batches:  68%|██████▊   | 172/253 [00:43<00:08,  9.29it/s]
+Batches:  68%|██████▊   | 173/253 [00:43<00:08,  9.33it/s]
+Batches:  69%|██████▉   | 174/253 [00:43<00:08,  9.35it/s]
+Batches:  69%|██████▉   | 175/253 [00:43<00:08,  9.34it/s]
+Batches:  70%|██████▉   | 176/253 [00:43<00:08,  9.32it/s]
+Batches:  70%|██████▉   | 177/253 [00:43<00:08,  9.41it/s]
+Batches:  70%|███████   | 178/253 [00:43<00:08,  9.37it/s]
+Batches:  71%|███████   | 179/253 [00:44<00:07,  9.38it/s]
+Batches:  71%|███████   | 180/253 [00:44<00:07,  9.43it/s]
+Batches:  72%|███████▏  | 182/253 [00:44<00:07,  9.84it/s]
+Batches:  72%|███████▏  | 183/253 [00:44<00:07,  9.73it/s]
+Batches:  73%|███████▎  | 185/253 [00:44<00:06,  9.86it/s]
+Batches:  74%|███████▍  | 187/253 [00:44<00:06,  9.91it/s]
+Batches:  74%|███████▍  | 188/253 [00:44<00:06,  9.80it/s]
+Batches:  75%|███████▍  | 189/253 [00:45<00:06,  9.76it/s]
+Batches:  75%|███████▌  | 191/253 [00:45<00:06, 10.02it/s]
+Batches:  76%|███████▋  | 193/253 [00:45<00:06,  9.98it/s]
+Batches:  77%|███████▋  | 195/253 [00:45<00:05, 10.14it/s]
+Batches:  78%|███████▊  | 197/253 [00:45<00:05, 10.28it/s]
+Batches:  79%|███████▊  | 199/253 [00:45<00:05, 10.38it/s]
+Batches:  79%|███████▉  | 201/253 [00:46<00:04, 10.47it/s]
+Batches:  80%|████████  | 203/253 [00:46<00:04, 10.51it/s]
+Batches:  81%|████████  | 205/253 [00:46<00:04, 10.52it/s]
+Batches:  82%|████████▏ | 207/253 [00:46<00:04, 10.56it/s]
+Batches:  83%|████████▎ | 209/253 [00:46<00:04, 10.63it/s]
+Batches:  83%|████████▎ | 211/253 [00:47<00:03, 10.60it/s]
+Batches:  84%|████████▍ | 213/253 [00:47<00:03, 10.65it/s]
+Batches:  85%|████████▍ | 215/253 [00:47<00:03, 10.73it/s]
+Batches:  86%|████████▌ | 217/253 [00:47<00:03, 10.74it/s]
+Batches:  87%|████████▋ | 219/253 [00:47<00:03, 10.78it/s]
+Batches:  87%|████████▋ | 221/253 [00:48<00:02, 10.76it/s]
+Batches:  88%|████████▊ | 223/253 [00:48<00:02, 10.92it/s]
+Batches:  89%|████████▉ | 225/253 [00:48<00:02, 11.00it/s]
+Batches:  90%|████████▉ | 227/253 [00:48<00:02, 11.08it/s]
+Batches:  91%|█████████ | 229/253 [00:48<00:02, 11.14it/s]
+Batches:  91%|█████████▏| 231/253 [00:48<00:01, 11.20it/s]
+Batches:  92%|█████████▏| 233/253 [00:49<00:01, 11.34it/s]
+Batches:  93%|█████████▎| 235/253 [00:49<00:01, 11.36it/s]
+Batches:  94%|█████████▎| 237/253 [00:49<00:01, 11.47it/s]
+Batches:  94%|█████████▍| 239/253 [00:49<00:01, 11.64it/s]
+Batches:  95%|█████████▌| 241/253 [00:49<00:01, 11.83it/s]
+Batches:  96%|█████████▌| 243/253 [00:49<00:00, 11.83it/s]
+Batches:  97%|█████████▋| 245/253 [00:50<00:00, 11.95it/s]
+Batches:  98%|█████████▊| 247/253 [00:50<00:00, 12.27it/s]
+Batches:  98%|█████████▊| 249/253 [00:50<00:00, 12.39it/s]
+Batches:  99%|█████████▉| 251/253 [00:50<00:00, 12.83it/s]
+Batches: 100%|██████████| 253/253 [00:50<00:00,  5.00it/s]
+2026-10-25 20:56:59,582 | INFO | embeddings: cached /content/drive/MyDrive/fifa-communities/embeddings/sentence-transformers_all-mpnet-base-v2/2022.npz
+2026-10-25 20:56:59,588 | INFO | embeddings: encoding 70334 docs for 2023 with sentence-transformers/all-mpnet-base-v2 on cuda
+
+Batches:   0%|          | 0/275 [00:00<?, ?it/s]
+Batches:   0%|          | 1/275 [00:00<04:30,  1.01it/s]
+Batches:   1%|          | 2/275 [00:01<04:29,  1.01it/s]
+Batches:   1%|          | 3/275 [00:02<04:29,  1.01it/s]
+Batches:   1%|▏         | 4/275 [00:03<04:27,  1.01it/s]
+Batches:   2%|▏         | 5/275 [00:04<04:26,  1.01it/s]
+Batches:   2%|▏         | 6/275 [00:05<04:24,  1.02it/s]
+Batches:   3%|▎         | 7/275 [00:06<04:23,  1.02it/s]
+Batches:   3%|▎         | 8/275 [00:07<04:25,  1.01it/s]
+Batches:   3%|▎         | 9/275 [00:08<04:25,  1.00it/s]
+Batches:   4%|▎         | 10/275 [00:09<04:22,  1.01it/s]
+Batches:   4%|▍         | 11/275 [00:10<04:20,  1.01it/s]
+Batches:   4%|▍         | 12/275 [00:11<04:17,  1.02it/s]
+Batches:   5%|▍         | 13/275 [00:12<04:16,  1.02it/s]
+Batches:   5%|▌         | 14/275 [00:13<04:14,  1.03it/s]
+Batches:   5%|▌         | 15/275 [00:14<04:10,  1.04it/s]
+Batches:   6%|▌         | 16/275 [00:15<04:06,  1.05it/s]
+Batches:   6%|▌         | 17/275 [00:16<04:02,  1.06it/s]
+Batches:   7%|▋         | 18/275 [00:17<03:59,  1.07it/s]
+Batches:   7%|▋         | 19/275 [00:18<03:50,  1.11it/s]
+Batches:   7%|▋         | 20/275 [00:18<03:26,  1.24it/s]
+Batches:   8%|▊         | 21/275 [00:19<03:00,  1.41it/s]
+Batches:   8%|▊         | 22/275 [00:19<02:37,  1.61it/s]
+Batches:   8%|▊         | 23/275 [00:20<02:21,  1.78it/s]
+Batches:   9%|▊         | 24/275 [00:20<02:08,  1.95it/s]
+Batches:   9%|▉         | 25/275 [00:21<02:00,  2.08it/s]
+Batches:   9%|▉         | 26/275 [00:21<01:54,  2.18it/s]
+Batches:  10%|▉         | 27/275 [00:21<01:45,  2.36it/s]
+Batches:  10%|█         | 28/275 [00:22<01:39,  2.49it/s]
+Batches:  11%|█         | 29/275 [00:22<01:34,  2.60it/s]
+Batches:  11%|█         | 30/275 [00:22<01:29,  2.75it/s]
+Batches:  11%|█▏        | 31/275 [00:23<01:25,  2.87it/s]
+Batches:  12%|█▏        | 32/275 [00:23<01:29,  2.71it/s]
+Batches:  12%|█▏        | 33/275 [00:23<01:27,  2.77it/s]
+Batches:  12%|█▏        | 34/275 [00:24<01:26,  2.79it/s]
+Batches:  13%|█▎        | 35/275 [00:24<01:24,  2.83it/s]
+Batches:  13%|█▎        | 36/275 [00:24<01:22,  2.90it/s]
+Batches:  13%|█▎        | 37/275 [00:25<01:19,  2.98it/s]
+Batches:  14%|█▍        | 38/275 [00:25<01:16,  3.09it/s]
+Batches:  14%|█▍        | 39/275 [00:25<01:15,  3.13it/s]
+Batches:  15%|█▍        | 40/275 [00:26<01:17,  3.04it/s]
+Batches:  15%|█▍        | 41/275 [00:26<01:13,  3.17it/s]
+Batches:  15%|█▌        | 42/275 [00:26<01:16,  3.03it/s]
+Batches:  16%|█▌        | 43/275 [00:27<01:14,  3.10it/s]
+Batches:  16%|█▌        | 44/275 [00:27<01:12,  3.19it/s]
+Batches:  16%|█▋        | 45/275 [00:27<01:10,  3.28it/s]
+Batches:  17%|█▋        | 46/275 [00:27<01:09,  3.28it/s]
+Batches:  17%|█▋        | 47/275 [00:28<01:08,  3.32it/s]
+Batches:  17%|█▋        | 48/275 [00:28<01:07,  3.39it/s]
+Batches:  18%|█▊        | 49/275 [00:28<01:06,  3.40it/s]
+Batches:  18%|█▊        | 50/275 [00:29<01:04,  3.49it/s]
+Batches:  19%|█▊        | 51/275 [00:29<01:03,  3.55it/s]
+Batches:  19%|█▉        | 52/275 [00:29<01:04,  3.46it/s]
+Batches:  19%|█▉        | 53/275 [00:29<01:03,  3.50it/s]
+Batches:  20%|█▉        | 54/275 [00:30<01:00,  3.62it/s]
+Batches:  20%|██        | 55/275 [00:30<00:59,  3.72it/s]
+Batches:  20%|██        | 56/275 [00:30<00:57,  3.84it/s]
+Batches:  21%|██        | 57/275 [00:30<00:54,  3.98it/s]
+Batches:  21%|██        | 58/275 [00:31<00:53,  4.05it/s]
+Batches:  21%|██▏       | 59/275 [00:31<00:51,  4.19it/s]
+Batches:  22%|██▏       | 60/275 [00:31<00:52,  4.13it/s]
+Batches:  22%|██▏       | 61/275 [00:31<00:51,  4.15it/s]
+Batches:  23%|██▎       | 62/275 [00:32<00:50,  4.18it/s]
+Batches:  23%|██▎       | 63/275 [00:32<00:51,  4.10it/s]
+Batches:  23%|██▎       | 64/275 [00:32<00:50,  4.15it/s]
+Batches:  24%|██▎       | 65/275 [00:32<00:50,  4.18it/s]
+Batches:  24%|██▍       | 66/275 [00:33<00:49,  4.22it/s]
+Batches:  24%|██▍       | 67/275 [00:33<00:47,  4.40it/s]
+Batches:  25%|██▍       | 68/275 [00:33<00:45,  4.55it/s]
+Batches:  25%|██▌       | 69/275 [00:33<00:46,  4.46it/s]
+Batches:  25%|██▌       | 70/275 [00:33<00:45,  4.52it/s]
+Batches:  26%|██▌       | 71/275 [00:34<00:43,  4.72it/s]
+Batches:  26%|██▌       | 72/275 [00:34<00:41,  4.90it/s]
+Batches:  27%|██▋       | 73/275 [00:34<00:42,  4.73it/s]
+Batches:  27%|██▋       | 74/275 [00:34<00:49,  4.05it/s]
+Batches:  27%|██▋       | 75/275 [00:35<00:45,  4.37it/s]
+Batches:  28%|██▊       | 76/275 [00:35<00:42,  4.64it/s]
+Batches:  28%|██▊       | 77/275 [00:35<00:40,  4.84it/s]
+Batches:  28%|██▊       | 78/275 [00:35<00:39,  5.01it/s]
+Batches:  29%|██▊       | 79/275 [00:35<00:38,  5.11it/s]
+Batches:  29%|██▉       | 80/275 [00:35<00:37,  5.21it/s]
+Batches:  29%|██▉       | 81/275 [00:36<00:37,  5.17it/s]
+Batches:  30%|██▉       | 82/275 [00:36<00:36,  5.34it/s]
+Batches:  30%|███       | 83/275 [00:36<00:34,  5.50it/s]
+Batches:  31%|███       | 84/275 [00:36<00:34,  5.61it/s]
+Batches:  31%|███       | 85/275 [00:36<00:34,  5.57it/s]
+Batches:  31%|███▏      | 86/275 [00:37<00:33,  5.67it/s]
+Batches:  32%|███▏      | 87/275 [00:37<00:32,  5.73it/s]
+Batches:  32%|███▏      | 88/275 [00:37<00:31,  5.89it/s]
+Batches:  32%|███▏      | 89/275 [00:37<00:31,  5.91it/s]
+Batches:  33%|███▎      | 90/275 [00:37<00:31,  5.80it/s]
+Batches:  33%|███▎      | 91/275 [00:37<00:30,  5.96it/s]
+Batches:  33%|███▎      | 92/275 [00:38<00:30,  6.09it/s]
+Batches:  34%|███▍      | 93/275 [00:38<00:30,  6.05it/s]
+Batches:  34%|███▍      | 94/275 [00:38<00:29,  6.15it/s]
+Batches:  35%|███▍      | 95/275 [00:38<00:28,  6.23it/s]
+Batches:  35%|███▍      | 96/275 [00:38<00:28,  6.31it/s]
+Batches:  35%|███▌      | 97/275 [00:38<00:28,  6.35it/s]
+Batches:  36%|███▌      | 98/275 [00:38<00:27,  6.43it/s]
+Batches:  36%|███▌      | 99/275 [00:39<00:27,  6.34it/s]
+Batches:  36%|███▋      | 100/275 [00:39<00:27,  6.40it/s]
+Batches:  37%|███▋      | 101/275 [00:39<00:27,  6.43it/s]
+Batches:  37%|███▋      | 102/275 [00:39<00:26,  6.63it/s]
+Batches:  37%|███▋      | 103/275 [00:39<00:26,  6.59it/s]
+Batches:  38%|███▊      | 104/275 [00:39<00:25,  6.61it/s]
+Batches:  38%|███▊      | 105/275 [00:40<00:25,  6.60it/s]
+Batches:  39%|███▊      | 106/275 [00:40<00:25,  6.59it/s]
+Batches:  39%|███▉      | 107/275 [00:40<00:25,  6.59it/s]
+Batches:  39%|███▉      | 108/275 [00:40<00:24,  6.76it/s]
+Batches:  40%|███▉      | 109/275 [00:40<00:24,  6.69it/s]
+Batches:  40%|████      | 110/275 [00:40<00:24,  6.84it/s]
+Batches:  40%|████      | 111/275 [00:40<00:23,  6.87it/s]
+Batches:  41%|████      | 112/275 [00:41<00:23,  6.94it/s]
+Batches:  41%|████      | 113/275 [00:41<00:23,  6.81it/s]
+Batches:  41%|████▏     | 114/275 [00:41<00:23,  6.75it/s]
+Batches:  42%|████▏     | 115/275 [00:41<00:23,  6.71it/s]
+Batches:  42%|████▏     | 116/275 [00:41<00:23,  6.83it/s]
+Batches:  43%|████▎     | 117/275 [00:41<00:23,  6.74it/s]
+Batches:  43%|████▎     | 118/275 [00:41<00:22,  6.88it/s]
+Batches:  43%|████▎     | 119/275 [00:42<00:22,  7.01it/s]
+Batches:  44%|████▎     | 120/275 [00:42<00:21,  7.05it/s]
+Batches:  44%|████▍     | 121/275 [00:42<00:22,  6.87it/s]
+Batches:  44%|████▍     | 122/275 [00:42<00:22,  6.83it/s]
+Batches:  45%|████▍     | 123/275 [00:42<00:22,  6.78it/s]
+Batches:  45%|████▌     | 124/275 [00:42<00:21,  6.91it/s]
+Batches:  45%|████▌     | 125/275 [00:42<00:21,  7.00it/s]
+Batches:  46%|████▌     | 126/275 [00:43<00:21,  6.90it/s]
+Batches:  46%|████▌     | 127/275 [00:43<00:21,  6.96it/s]
+Batches:  47%|████▋     | 128/275 [00:43<00:20,  7.06it/s]
+Batches:  47%|████▋     | 129/275 [00:43<00:20,  7.27it/s]
+Batches:  47%|████▋     | 130/275 [00:43<00:19,  7.28it/s]
+Batches:  48%|████▊     | 131/275 [00:43<00:19,  7.30it/s]
+Batches:  48%|████▊     | 132/275 [00:43<00:19,  7.46it/s]
+Batches:  48%|████▊     | 133/275 [00:44<00:19,  7.40it/s]
+Batches:  49%|████▊     | 134/275 [00:44<00:18,  7.54it/s]
+Batches:  49%|████▉     | 135/275 [00:44<00:18,  7.62it/s]
+Batches:  49%|████▉     | 136/275 [00:44<00:18,  7.69it/s]
+Batches:  50%|████▉     | 137/275 [00:44<00:17,  7.73it/s]
+Batches:  50%|█████     | 138/275 [00:44<00:17,  7.81it/s]
+Batches:  51%|█████     | 139/275 [00:44<00:17,  7.85it/s]
+Batches:  51%|█████     | 140/275 [00:44<00:17,  7.88it/s]
+Batches:  51%|█████▏    | 141/275 [00:45<00:17,  7.73it/s]
+Batches:  52%|█████▏    | 142/275 [00:45<00:17,  7.78it/s]
+Batches:  52%|█████▏    | 143/275 [00:45<00:16,  7.85it/s]
+Batches:  52%|█████▏    | 144/275 [00:45<00:16,  8.00it/s]
+Batches:  53%|█████▎    | 145/275 [00:45<00:16,  8.02it/s]
+Batches:  53%|█████▎    | 146/275 [00:45<00:16,  8.04it/s]
+Batches:  53%|█████▎    | 147/275 [00:45<00:15,  8.07it/s]
+Batches:  54%|█████▍    | 148/275 [00:45<00:15,  8.05it/s]
+Batches:  54%|█████▍    | 149/275 [00:46<00:15,  8.14it/s]
+Batches:  55%|█████▍    | 150/275 [00:46<00:15,  8.21it/s]
+Batches:  55%|█████▍    | 151/275 [00:46<00:15,  8.23it/s]
+Batches:  55%|█████▌    | 152/275 [00:46<00:15,  8.15it/s]
+Batches:  56%|█████▌    | 153/275 [00:46<00:14,  8.38it/s]
+Batches:  56%|█████▌    | 154/275 [00:46<00:14,  8.27it/s]
+Batches:  56%|█████▋    | 155/275 [00:46<00:14,  8.18it/s]
+Batches:  57%|█████▋    | 156/275 [00:46<00:14,  8.16it/s]
+Batches:  57%|█████▋    | 157/275 [00:47<00:14,  8.17it/s]
+Batches:  57%|█████▋    | 158/275 [00:47<00:14,  8.20it/s]
+Batches:  58%|█████▊    | 159/275 [00:47<00:14,  8.16it/s]
+Batches:  58%|█████▊    | 160/275 [00:47<00:13,  8.25it/s]
+Batches:  59%|█████▊    | 161/275 [00:47<00:13,  8.22it/s]
+Batches:  59%|█████▉    | 162/275 [00:47<00:13,  8.19it/s]
+Batches:  59%|█████▉    | 163/275 [00:47<00:13,  8.15it/s]
+Batches:  60%|█████▉    | 164/275 [00:47<00:13,  8.25it/s]
+Batches:  60%|██████    | 165/275 [00:47<00:13,  8.27it/s]
+Batches:  60%|██████    | 166/275 [00:48<00:13,  8.34it/s]
+Batches:  61%|██████    | 167/275 [00:48<00:13,  8.25it/s]
+Batches:  61%|██████    | 168/275 [00:48<00:12,  8.33it/s]
+Batches:  61%|██████▏   | 169/275 [00:48<00:12,  8.28it/s]
+Batches:  62%|██████▏   | 170/275 [00:48<00:12,  8.36it/s]
+Batches:  62%|██████▏   | 171/275 [00:48<00:12,  8.39it/s]
+Batches:  63%|██████▎   | 172/275 [00:48<00:12,  8.38it/s]
+Batches:  63%|██████▎   | 173/275 [00:48<00:12,  8.11it/s]
+Batches:  63%|██████▎   | 174/275 [00:49<00:12,  8.23it/s]
+Batches:  64%|██████▎   | 175/275 [00:49<00:12,  8.30it/s]
+Batches:  64%|██████▍   | 176/275 [00:49<00:11,  8.54it/s]
+Batches:  64%|██████▍   | 177/275 [00:49<00:11,  8.71it/s]
+Batches:  65%|██████▍   | 178/275 [00:49<00:10,  8.83it/s]
+Batches:  65%|██████▌   | 179/275 [00:49<00:10,  8.90it/s]
+Batches:  65%|██████▌   | 180/275 [00:49<00:10,  8.78it/s]
+Batches:  66%|██████▌   | 181/275 [00:49<00:10,  8.90it/s]
+Batches:  66%|██████▌   | 182/275 [00:49<00:10,  8.76it/s]
+Batches:  67%|██████▋   | 183/275 [00:50<00:10,  8.92it/s]
+Batches:  67%|██████▋   | 184/275 [00:50<00:10,  9.02it/s]
+Batches:  67%|██████▋   | 185/275 [00:50<00:09,  9.14it/s]
+Batches:  68%|██████▊   | 186/275 [00:50<00:09,  9.14it/s]
+Batches:  68%|██████▊   | 187/275 [00:50<00:09,  9.22it/s]
+Batches:  68%|██████▊   | 188/275 [00:50<00:09,  9.23it/s]
+Batches:  69%|██████▊   | 189/275 [00:50<00:09,  9.25it/s]
+Batches:  69%|██████▉   | 190/275 [00:50<00:09,  9.05it/s]
+Batches:  70%|██████▉   | 192/275 [00:51<00:08,  9.39it/s]
+Batches:  70%|███████   | 193/275 [00:51<00:08,  9.39it/s]
+Batches:  71%|███████   | 194/275 [00:51<00:08,  9.35it/s]
+Batches:  71%|███████   | 195/275 [00:51<00:08,  9.44it/s]
+Batches:  71%|███████▏  | 196/275 [00:51<00:08,  9.50it/s]
+Batches:  72%|███████▏  | 197/275 [00:51<00:08,  9.39it/s]
+Batches:  72%|███████▏  | 199/275 [00:51<00:07,  9.67it/s]
+Batches:  73%|███████▎  | 200/275 [00:51<00:07,  9.63it/s]
+Batches:  73%|███████▎  | 201/275 [00:51<00:07,  9.33it/s]
+Batches:  74%|███████▍  | 203/275 [00:52<00:07,  9.61it/s]
+Batches:  74%|███████▍  | 204/275 [00:52<00:07,  9.61it/s]
+Batches:  75%|███████▍  | 205/275 [00:52<00:07,  9.58it/s]
+Batches:  75%|███████▌  | 207/275 [00:52<00:06,  9.77it/s]
+Batches:  76%|███████▌  | 209/275 [00:53<00:10,  6.08it/s]
+Batches:  77%|███████▋  | 211/275 [00:53<00:08,  7.11it/s]
+Batches:  77%|███████▋  | 213/275 [00:53<00:07,  7.98it/s]
+Batches:  78%|███████▊  | 215/275 [00:53<00:06,  8.66it/s]
+Batches:  79%|███████▉  | 217/275 [00:53<00:06,  9.18it/s]
+Batches:  79%|███████▉  | 218/275 [00:54<00:06,  9.27it/s]
+Batches:  80%|████████  | 220/275 [00:54<00:05,  9.63it/s]
+Batches:  81%|████████  | 222/275 [00:54<00:05,  9.88it/s]
+Batches:  81%|████████▏ | 224/275 [00:54<00:05, 10.08it/s]
+Batches:  82%|████████▏ | 226/275 [00:54<00:04, 10.19it/s]
+Batches:  83%|████████▎ | 228/275 [00:54<00:04, 10.37it/s]
+Batches:  84%|████████▎ | 230/275 [00:55<00:04, 10.23it/s]
+Batches:  84%|████████▍ | 232/275 [00:55<00:04, 10.43it/s]
+Batches:  85%|████████▌ | 234/275 [00:55<00:03, 10.47it/s]
+Batches:  86%|████████▌ | 236/275 [00:55<00:03, 10.51it/s]
+Batches:  87%|████████▋ | 238/275 [00:55<00:03, 10.71it/s]
+Batches:  87%|████████▋ | 240/275 [00:56<00:03, 10.70it/s]
+Batches:  88%|████████▊ | 242/275 [00:56<00:03, 10.83it/s]
+Batches:  89%|████████▊ | 244/275 [00:56<00:02, 10.92it/s]
+Batches:  89%|████████▉ | 246/275 [00:56<00:02, 11.00it/s]
+Batches:  90%|█████████ | 248/275 [00:56<00:02, 11.01it/s]
+Batches:  91%|█████████ | 250/275 [00:56<00:02, 11.00it/s]
+Batches:  92%|█████████▏| 252/275 [00:57<00:02, 11.15it/s]
+Batches:  92%|█████████▏| 254/275 [00:57<00:01, 11.15it/s]
+Batches:  93%|█████████▎| 256/275 [00:57<00:01, 11.14it/s]
+Batches:  94%|█████████▍| 258/275 [00:57<00:01, 11.08it/s]
+Batches:  95%|█████████▍| 260/275 [00:57<00:01, 11.14it/s]
+Batches:  95%|█████████▌| 262/275 [00:58<00:01, 11.32it/s]
+Batches:  96%|█████████▌| 264/275 [00:58<00:00, 11.50it/s]
+Batches:  97%|█████████▋| 266/275 [00:58<00:00, 11.69it/s]
+Batches:  97%|█████████▋| 268/275 [00:58<00:00, 11.92it/s]
+Batches:  98%|█████████▊| 270/275 [00:58<00:00, 12.25it/s]
+Batches:  99%|█████████▉| 272/275 [00:58<00:00, 12.92it/s]
+Batches: 100%|█████████▉| 274/275 [00:58<00:00, 13.78it/s]
+Batches: 100%|██████████| 275/275 [00:58<00:00,  4.66it/s]
+2026-10-25 20:57:59,436 | INFO | embeddings: cached /content/drive/MyDrive/fifa-communities/embeddings/sentence-transformers_all-mpnet-base-v2/2023.npz
+<<< exit 0 after 2.2 min
+>>> /usr/bin/python3 -u -m cuml.accel code/05-analysis-pipeline.py --stage topics --bin 7
+2026-10-25 20:58:04,065 | INFO | === stage topics, bin 7 === args: {'stage': 'topics', 'bin': 7, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': False, 'keep_umap': False, 'grid': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1792961893.409531  124063 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1792961896.280254  124063 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1792961896.280985  124063 cudart_stub.cc:31] Could not find cuda drivers on your machine, GPU will not be used.
+2026-10-25 20:58:18,698 | INFO | topics: bin 7 on backend cuml ({'backend': 'cuml', 'cuml_accel': True, 'cuml_version': '26.06.00', 'umap_class': 'umap.UMAP', 'hdbscan_class': 'hdbscan.HDBSCAN'})
+2026-10-25 20:58:26,523 | INFO | bin 7: 41438 documents from years [2022, 2023]
+2026-10-25 20:58:26,651 | INFO | embeddings: cache hit 2022.npz (64584 docs)
+2026-10-25 20:58:26,990 | INFO | embeddings: cache hit 2023.npz (70334 docs)
+2026-10-25 20:58:28,574 | INFO | UMAP: 41397 x 768 -> 5 dims in 0.0 min
+2026-10-25 20:58:28,771 | INFO | guard: min_cluster_size=25 -> 172 topics, 35.6 % outliers
+2026-10-25 20:58:28,771 | WARNING | guard: topic count 172 outside (207, 310) after 1 trial(s); keeping min_cluster_size=25 (flagged)
+2026-10-25 20:58:34,688 | INFO | TensorFlow version 2.21.0 available.
+2026-10-25 20:58:34,690 | INFO | JAX version 0.11.1 available.
+2026-10-25 20:58:36,392 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 20:58:36,404 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/modules.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22 "HTTP/1.1 200 OK"
+2026-10-25 20:58:36,520 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-25 20:58:36,521 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-25 20:58:36,532 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/config_sentence_transformers.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22fd1b291129c607e5d49799f87cb219b27f98acdf%22 "HTTP/1.1 200 OK"
+2026-10-25 20:58:36,533 | INFO | Loading SentenceTransformer model from sentence-transformers/all-mpnet-base-v2.
+2026-10-25 20:58:36,651 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 20:58:36,663 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/config_sentence_transformers.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22fd1b291129c607e5d49799f87cb219b27f98acdf%22 "HTTP/1.1 200 OK"
+2026-10-25 20:58:36,778 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 20:58:36,790 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/README.md?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2FREADME.md=&etag=%221452a960a1189347d079efa950d3c87d5706c0d6%22 "HTTP/1.1 200 OK"
+2026-10-25 20:58:36,902 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 20:58:36,915 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/modules.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22 "HTTP/1.1 200 OK"
+2026-10-25 20:58:37,030 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 20:58:37,043 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/sentence_bert_config.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fsentence_bert_config.json=&etag=%224eb670bb4e7f34e9031acec2b86d39e5c921198e%22 "HTTP/1.1 200 OK"
+2026-10-25 20:58:37,161 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-10-25 20:58:37,277 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2 "HTTP/1.1 200 OK"
+2026-10-25 20:58:37,401 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2 "HTTP/1.1 200 OK"
+2026-10-25 20:58:38,387 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2 "HTTP/1.1 200 OK"
+2026-10-25 20:58:38,507 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-25 20:58:38,624 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-25 20:58:38,778 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 20:58:38,790 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/1_Pooling%2Fconfig.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2F1_Pooling%2Fconfig.json=&etag=%224e09f293dfe90bba49f87cfe7996271f07be2666%22 "HTTP/1.1 200 OK"
+2026-10-25 20:58:38,905 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/2_Normalize/config.json "HTTP/1.1 404 Not Found"
+2026-10-25 20:58:39,020 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2 "HTTP/1.1 200 OK"
+2026-10-25 20:58:39,183 - BERTopic - Dimensionality - Fitting the dimensionality reduction algorithm
+2026-10-25 20:58:39,183 - BERTopic - Dimensionality - Completed ✓
+2026-10-25 20:58:39,184 - BERTopic - Cluster - Start clustering the reduced embeddings
+2026-10-25 20:58:39,189 - BERTopic - Cluster - Completed ✓
+2026-10-25 20:58:39,199 - BERTopic - Representation - Fine-tuning topics using representation models.
+2026-10-25 20:58:57,973 - BERTopic - Representation - Completed ✓
+2026-10-25 20:58:59,094 | INFO | BERTopic renumbered 59 topic id(s) (ties in size): {21: 22, 22: 21, 39: 40, 40: 39, 49: 50, 50: 49, 66: 67, 67: 66, 70: 71, 71: 70}
+2026-10-25 20:59:00,600 | INFO | calibration: 4 band(s), 4 new sample file(s) in /content/drive/MyDrive/fifa-communities/results/bin-7/outlier_calibration
+
+0it [00:00, ?it/s]
+1it [00:04,  4.67s/it]
+2it [00:12,  6.42s/it]
+3it [00:20,  7.41s/it]
+4it [00:29,  7.74s/it]
+5it [00:37,  8.12s/it]
+6it [00:47,  8.47s/it]
+7it [00:55,  8.59s/it]
+8it [01:04,  8.53s/it]
+9it [01:13,  8.77s/it]
+10it [01:22,  8.89s/it]
+11it [01:31,  8.78s/it]
+12it [01:39,  8.60s/it]
+13it [01:47,  8.30s/it]
+14it [01:55,  8.20s/it]
+15it [02:03,  8.30s/it]
+16it [02:12,  8.41s/it]
+17it [02:20,  8.27s/it]
+18it [02:29,  8.46s/it]
+19it [02:37,  8.51s/it]
+20it [02:46,  8.63s/it]
+21it [02:53,  8.09s/it]
+22it [02:59,  7.56s/it]
+23it [03:06,  7.33s/it]
+24it [03:12,  7.00s/it]
+25it [03:18,  6.49s/it]
+26it [03:24,  6.50s/it]
+27it [03:31,  6.56s/it]
+28it [03:38,  6.80s/it]
+29it [03:46,  7.15s/it]
+30it [03:54,  7.34s/it]
+31it [04:02,  7.54s/it]
+32it [04:10,  7.65s/it]
+33it [04:18,  7.81s/it]
+34it [04:26,  7.92s/it]
+35it [04:34,  7.85s/it]
+36it [04:38,  6.76s/it]
+36it [04:38,  7.74s/it]
+2026-10-25 21:03:42,056 | INFO | report written: /content/drive/MyDrive/fifa-communities/results/bin-7/report.html
+2026-10-25 21:03:42,082 | INFO | topics: bin 7 done in 5.6 min — 172 topics, 35.6 % raw outliers; tiers T=0.5626 C=0.6887 -> 2950 reassigned, 6633 dual, 12.5 % outliers left -> /content/drive/MyDrive/fifa-communities/results/bin-7
+<<< exit 0 after 5.7 min
+bin 7: 41397 posts, 172 topics (target [207, 310]), raw outliers 35.6%, backend cuml, guard converged False, hdbscan {'min_samples': 10, 'method': 'eom', 'epsilon': 0.0, 'topics_per_10k': [50, 75], 'min_cluster_floor': 25}
+>>> /usr/bin/python3 -u code/05-analysis-pipeline.py --stage embed --bin 7
+2026-10-25 21:04:15,163 | INFO | === stage embed, bin 7 === args: {'stage': 'embed', 'bin': 7, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': False, 'keep_umap': False, 'grid': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 21:04:24,491 | INFO | bin 7: 41438 documents from years [2022, 2023]
+2026-10-25 21:04:24,597 | INFO | embeddings: cache hit 2022.npz (64584 docs)
+2026-10-25 21:04:24,899 | INFO | embeddings: cache hit 2023.npz (70334 docs)
+<<< exit 0 after 0.2 min
+>>> /usr/bin/python3 -u -m cuml.accel code/05-analysis-pipeline.py --stage topics --bin 7
+2026-10-25 21:04:28,402 | INFO | === stage topics, bin 7 === args: {'stage': 'topics', 'bin': 7, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': False, 'keep_umap': False, 'grid': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 21:04:28,404 | INFO | topics: bin 7 already modelled (/content/drive/MyDrive/fifa-communities/results/bin-7/documents.csv); use --force
+<<< exit 0 after 0.1 min
+{
+ "n_modelled": 41397,
+ "n_topics_raw": 172,
+ "outlier_share_raw": 0.3561,
+ "elapsed_min": 5.6
+} | guard {'min_cluster_size': 25, 'n_topics': 172, 'target': [207, 310], 'trials': [{'min_cluster_size': 25, 'n_topics': 172, 'outlier_share': 0.3561}], 'converged': False, 'enabled': True} | backend cuml
+repository at commit 308e79e43f83ecdf983d7c3f6106bbf0c051010c
+yearly files on the local disk: 17 | total GB: 1.93
+effective paths of the program: {
+ "PIPELINE_ROOT": "/content/drive/MyDrive/fifa-communities",
+ "YEARLY_DIR": "/content/data/yearly datasets",
+ "ANALYSIS_DATA_DIR": "/content/drive/MyDrive/fifa-communities/analysis",
+ "ANALYSIS_DIR": "/content/drive/MyDrive/fifa-communities/results",
+ "EMBED_CACHE_DIR": "/content/drive/MyDrive/fifa-communities/embeddings",
+ "LLM_CACHE_DIR": "/content/hf-cache"
+}
+>>> /usr/bin/python3 -u code/tests/test_pipeline_units.py
+[PASS] test_script_names_defined
+[PASS] test_paths_and_tones
+[PASS] test_bin_boundaries
+guard: 10 topics at the floor min_cluster_size=25, below the target (20, 30) — floor-bound (decision D10: the floor wins, the bin stands)
+[PASS] test_guard
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1792963573.586422  131117 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1792963576.054628  131117 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+[PASS] test_frozen_components_in_bertopic
+[PASS] test_json_and_validation
+[PASS] test_label_identity
+[PASS] test_overrides
+[PASS] test_debate_modes
+[PASS] test_labelling_resume_and_outputs
+topic_crosswalk.csv has entries and is kept; add rows for new bins by hand
+S5 check failed: bin 1: topic ids not in topics.csv
+S5 check failed: bin 1: topic_name missing for posts with a topic
+topic_crosswalk.csv has entries and is kept; add rows for new bins by hand
+[PASS] test_collect_partial
+[PASS] test_sentiment_labels
+[PASS] test_salvage_json
+
+13/13 checks passed
+<<< exit 0 after 0.4 min
+>>> /usr/bin/python3 -u code/05-analysis-pipeline.py --stage embed --bin 3
+2026-10-25 21:26:44,833 | INFO | === stage embed, bin 3 === args: {'stage': 'embed', 'bin': 3, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': False, 'keep_umap': False, 'grid': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 21:26:51,136 | INFO | bin 3: 83147 documents from years [2014]
+2026-10-25 21:26:51,314 | INFO | embeddings: cache hit 2014.npz (112754 docs)
+<<< exit 0 after 0.1 min
+>>> /usr/bin/python3 -u -m cuml.accel code/05-analysis-pipeline.py --stage topics --bin 3
+2026-10-25 21:26:54,923 | INFO | === stage topics, bin 3 === args: {'stage': 'topics', 'bin': 3, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': False, 'keep_umap': False, 'grid': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 21:26:54,925 | INFO | topics: bin 3 already modelled (/content/drive/MyDrive/fifa-communities/results/bin-3/documents.csv); use --force
+<<< exit 0 after 0.1 min
+bin 3: 81634 posts, 474 topics (target [408, 612]), raw outliers 45.8%, backend cuml, guard converged True, hdbscan {'min_samples': 10, 'method': 'eom', 'epsilon': 0.0, 'topics_per_10k': [50, 75], 'min_cluster_floor': 25}
+bin 3: tiers T=0.5634 C=0.6755 -> 7472 reassigned, 16826 dual, 16.0% outliers left
+report: /content/drive/MyDrive/fifa-communities/results/bin-3/report.html
+>>> /usr/bin/python3 -u code/05-analysis-pipeline.py --stage label --bin 3
+2026-10-25 21:26:56,049 | INFO | === stage label, bin 3 === args: {'stage': 'label', 'bin': 3, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': False, 'keep_umap': False, 'grid': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 21:27:00,783 | INFO | bin 3: 83147 documents from years [2014]
+2026-10-25 21:27:07,465 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-25 21:27:07,584 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-25 21:27:08,131 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B "HTTP/1.1 200 OK"
+2026-10-25 21:27:10,293 | INFO | LLM loaded: Qwen/Qwen3-1.7B (revision 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e) on cuda, bfloat16, batch 16, greedy decoding
+2026-10-25 21:27:10,314 | INFO | labelling bin 3: 474 topics, 474 already done, 0 to do
+2026-10-25 21:27:10,362 | INFO | labelling bin 3: 474 topics labelled, 7 need review -> /content/drive/MyDrive/fifa-communities/results/bin-3/topics_labelled.csv
+2026-10-25 21:27:10,437 | INFO | label: nearest_topic_name written into 4 outlier calibration sample file(s)
+2026-10-25 21:27:11,503 | INFO | report written: /content/drive/MyDrive/fifa-communities/results/bin-3/report.html
+<<< exit 0 after 0.3 min
+bin 3: 474 topics labelled | needs_review 7 (1%) | modes {'accepted_by_A': 431, 'identical': 27, 'accepted_by_B': 9, 'stalemate': 6, 'no_answer': 1}
+report: /content/drive/MyDrive/fifa-communities/results/bin-3/report.html
+>>> /usr/bin/python3 -u code/08-review-pack.py pack --bin 3 --analysis-dir /content/drive/MyDrive/fifa-communities/results
+review pack written: /content/drive/MyDrive/fifa-communities/results/bin-3/review_pack.md (2504 kB)
+nearest_topic_name written into 4 outlier calibration sample file(s) in /content/drive/MyDrive/fifa-communities/results/bin-3/outlier_calibration
+<<< exit 0 after 0.0 min
+hand-back zip: /content/drive/MyDrive/fifa-communities/handback/bins-3_2026-10-25_2127.zip | 508 files | 18.7 MB
+=== bin 3 READY FOR REVIEW: /content/drive/MyDrive/fifa-communities/results/bin-3/REVIEW_READY.txt, review_pack.md and topic_overrides.csv on Drive; the zip in handback/ ===
+>>> /usr/bin/python3 -u code/05-analysis-pipeline.py --stage embed --bin 5
+2026-10-25 21:27:17,633 | INFO | === stage embed, bin 5 === args: {'stage': 'embed', 'bin': 5, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': False, 'keep_umap': False, 'grid': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 21:27:25,262 | INFO | bin 5: 88648 documents from years [2018]
+2026-10-25 21:27:25,457 | INFO | embeddings: cache hit 2018.npz (126743 docs)
+<<< exit 0 after 0.2 min
+>>> /usr/bin/python3 -u -m cuml.accel code/05-analysis-pipeline.py --stage topics --bin 5
+2026-10-25 21:27:29,105 | INFO | === stage topics, bin 5 === args: {'stage': 'topics', 'bin': 5, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': False, 'keep_umap': False, 'grid': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 21:27:29,107 | INFO | topics: bin 5 already modelled (/content/drive/MyDrive/fifa-communities/results/bin-5/documents.csv); use --force
+<<< exit 0 after 0.1 min
+bin 5: 87858 posts, 448 topics (target [439, 659]), raw outliers 43.2%, backend cuml, guard converged True, hdbscan {'min_samples': 10, 'method': 'eom', 'epsilon': 0.0, 'topics_per_10k': [50, 75], 'min_cluster_floor': 25}
+bin 5: tiers T=0.5713 C=0.6927 -> 7603 reassigned, 17098 dual, 15.1% outliers left
+report: /content/drive/MyDrive/fifa-communities/results/bin-5/report.html
+>>> /usr/bin/python3 -u code/05-analysis-pipeline.py --stage label --bin 5
+2026-10-25 21:27:30,222 | INFO | === stage label, bin 5 === args: {'stage': 'label', 'bin': 5, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': False, 'keep_umap': False, 'grid': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 21:27:36,360 | INFO | bin 5: 88648 documents from years [2018]
+2026-10-25 21:27:43,084 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-25 21:27:43,213 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-25 21:27:43,765 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B "HTTP/1.1 200 OK"
+2026-10-25 21:27:45,933 | INFO | LLM loaded: Qwen/Qwen3-1.7B (revision 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e) on cuda, bfloat16, batch 16, greedy decoding
+2026-10-25 21:27:45,954 | INFO | labelling bin 5: 448 topics, 448 already done, 0 to do
+2026-10-25 21:27:46,000 | INFO | labelling bin 5: 448 topics labelled, 8 need review -> /content/drive/MyDrive/fifa-communities/results/bin-5/topics_labelled.csv
+2026-10-25 21:27:46,076 | INFO | label: nearest_topic_name written into 4 outlier calibration sample file(s)
+2026-10-25 21:27:47,147 | INFO | report written: /content/drive/MyDrive/fifa-communities/results/bin-5/report.html
+<<< exit 0 after 0.3 min
+bin 5: 448 topics labelled | needs_review 8 (2%) | modes {'accepted_by_A': 402, 'identical': 25, 'accepted_by_B': 13, 'stalemate': 7, 'no_answer': 1}
+report: /content/drive/MyDrive/fifa-communities/results/bin-5/report.html
+>>> /usr/bin/python3 -u code/08-review-pack.py pack --bin 5 --analysis-dir /content/drive/MyDrive/fifa-communities/results
+review pack written: /content/drive/MyDrive/fifa-communities/results/bin-5/review_pack.md (2593 kB)
+nearest_topic_name written into 4 outlier calibration sample file(s) in /content/drive/MyDrive/fifa-communities/results/bin-5/outlier_calibration
+<<< exit 0 after 0.0 min
+hand-back zip: /content/drive/MyDrive/fifa-communities/handback/bins-5_2026-10-25_2127.zip | 482 files | 18.8 MB
+=== bin 5 READY FOR REVIEW: /content/drive/MyDrive/fifa-communities/results/bin-5/REVIEW_READY.txt, review_pack.md and topic_overrides.csv on Drive; the zip in handback/ ===
+>>> /usr/bin/python3 -u code/05-analysis-pipeline.py --stage embed --bin 7
+2026-10-25 21:27:53,520 | INFO | === stage embed, bin 7 === args: {'stage': 'embed', 'bin': 7, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': False, 'keep_umap': False, 'grid': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 21:28:02,743 | INFO | bin 7: 41438 documents from years [2022, 2023]
+2026-10-25 21:28:02,849 | INFO | embeddings: cache hit 2022.npz (64584 docs)
+2026-10-25 21:28:03,151 | INFO | embeddings: cache hit 2023.npz (70334 docs)
+<<< exit 0 after 0.2 min
+>>> /usr/bin/python3 -u -m cuml.accel code/05-analysis-pipeline.py --stage topics --bin 7
+2026-10-25 21:28:06,580 | INFO | === stage topics, bin 7 === args: {'stage': 'topics', 'bin': 7, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': False, 'keep_umap': False, 'grid': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 21:28:06,582 | INFO | topics: bin 7 already modelled (/content/drive/MyDrive/fifa-communities/results/bin-7/documents.csv); use --force
+<<< exit 0 after 0.1 min
+bin 7: 41397 posts, 172 topics (target [207, 310]), raw outliers 35.6%, backend cuml, guard converged False, hdbscan {'min_samples': 10, 'method': 'eom', 'epsilon': 0.0, 'topics_per_10k': [50, 75], 'min_cluster_floor': 25}
+bin 7: tiers T=0.5626 C=0.6887 -> 2950 reassigned, 6633 dual, 12.5% outliers left
+report: /content/drive/MyDrive/fifa-communities/results/bin-7/report.html
+>>> /usr/bin/python3 -u code/05-analysis-pipeline.py --stage label --bin 7
+2026-10-25 21:28:07,726 | INFO | === stage label, bin 7 === args: {'stage': 'label', 'bin': 7, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': False, 'keep_umap': False, 'grid': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 21:28:15,450 | INFO | bin 7: 41438 documents from years [2022, 2023]
+2026-10-25 21:28:22,011 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-25 21:28:22,136 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-25 21:28:22,730 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B "HTTP/1.1 200 OK"
+2026-10-25 21:28:24,906 | INFO | LLM loaded: Qwen/Qwen3-1.7B (revision 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e) on cuda, bfloat16, batch 16, greedy decoding
+2026-10-25 21:28:24,926 | INFO | labelling bin 7: 172 topics, 0 already done, 172 to do
+2026-10-25 21:28:33,706 | INFO | LLM: 16 prompt(s) in 8.5s (0.5 s/prompt; cap 600 tokens)
+2026-10-25 21:28:46,897 | INFO | LLM: 16 prompt(s) in 13.1s (0.8 s/prompt; cap 600 tokens)
+2026-10-25 21:28:59,701 | INFO | LLM: 16 prompt(s) in 12.7s (0.8 s/prompt; cap 600 tokens)
+2026-10-25 21:29:18,892 | INFO | LLM: 16 prompt(s) in 19.1s (1.2 s/prompt; cap 600 tokens)
+2026-10-25 21:29:47,886 | INFO | LLM: 16 prompt(s) in 28.9s (1.8 s/prompt; cap 600 tokens)
+2026-10-25 21:30:00,820 | INFO | LLM: 16 prompt(s) in 12.8s (0.8 s/prompt; cap 600 tokens)
+2026-10-25 21:30:15,097 | INFO | LLM: 16 prompt(s) in 14.1s (0.9 s/prompt; cap 600 tokens)
+2026-10-25 21:30:47,391 | INFO | LLM: 16 prompt(s) in 32.2s (2.0 s/prompt; cap 600 tokens)
+2026-10-25 21:30:55,977 | INFO | LLM: 16 prompt(s) in 8.5s (0.5 s/prompt; cap 600 tokens)
+2026-10-25 21:31:24,436 | INFO | LLM: 16 prompt(s) in 28.4s (1.8 s/prompt; cap 600 tokens)
+2026-10-25 21:31:43,506 | INFO | LLM: 12 prompt(s) in 19.0s (1.6 s/prompt; cap 600 tokens)
+2026-10-25 21:32:11,529 | INFO | LLM: 4 prompt(s) in 28.0s (7.0 s/prompt; cap 600 tokens)
+2026-10-25 21:32:40,053 | INFO | LLM: 16 prompt(s) in 28.4s (1.8 s/prompt; cap 600 tokens)
+2026-10-25 21:32:57,107 | INFO | LLM: 16 prompt(s) in 16.9s (1.1 s/prompt; cap 600 tokens)
+2026-10-25 21:33:10,920 | INFO | LLM: 16 prompt(s) in 13.7s (0.9 s/prompt; cap 600 tokens)
+2026-10-25 21:33:29,855 | INFO | LLM: 16 prompt(s) in 18.8s (1.2 s/prompt; cap 600 tokens)
+2026-10-25 21:33:59,089 | INFO | LLM: 16 prompt(s) in 29.1s (1.8 s/prompt; cap 600 tokens)
+2026-10-25 21:34:11,926 | INFO | LLM: 16 prompt(s) in 12.7s (0.8 s/prompt; cap 600 tokens)
+2026-10-25 21:34:27,152 | INFO | LLM: 16 prompt(s) in 15.1s (0.9 s/prompt; cap 600 tokens)
+2026-10-25 21:34:37,164 | INFO | LLM: 16 prompt(s) in 9.9s (0.6 s/prompt; cap 600 tokens)
+2026-10-25 21:34:51,174 | INFO | LLM: 16 prompt(s) in 13.9s (0.9 s/prompt; cap 600 tokens)
+2026-10-25 21:35:07,905 | INFO | LLM: 16 prompt(s) in 16.6s (1.0 s/prompt; cap 600 tokens)
+2026-10-25 21:35:26,580 | INFO | LLM: 12 prompt(s) in 18.6s (1.6 s/prompt; cap 600 tokens)
+2026-10-25 21:35:54,986 | INFO | LLM: 3 prompt(s) in 28.4s (9.5 s/prompt; cap 600 tokens)
+2026-10-25 21:35:55,000 | INFO | topic 5: UEFA Europa Conference League [identical, 1 round(s)]
+2026-10-25 21:35:55,007 | INFO | topic 7: FC Porto vs. Clubs [identical, 1 round(s)]
+2026-10-25 21:35:55,014 | INFO | topic 18: Ligue 1 Match Threads [identical, 1 round(s)]
+2026-10-25 21:35:55,022 | INFO | topic 48: A-League Finals [identical, 1 round(s)]
+2026-10-25 21:35:55,030 | INFO | topic 67: — [no_answer, 1 round(s)] NEEDS REVIEW
+2026-10-25 21:35:55,039 | INFO | topic 99: Watford Signings [identical, 1 round(s)]
+2026-10-25 21:35:55,061 | INFO | topic 108: Juventus Financial Fraud [identical, 1 round(s)]
+2026-10-25 21:35:55,069 | INFO | topic 121: European Super League [identical, 1 round(s)]
+2026-10-25 21:35:55,076 | INFO | topic 122: VAR Disallowed Goals [identical, 1 round(s)]
+2026-10-25 21:35:55,085 | INFO | topic 151: Lens vs. Top Clubs [identical, 1 round(s)]
+2026-10-25 21:35:55,092 | INFO | topic 157: Group Standings [identical, 1 round(s)]
+2026-10-25 21:35:55,093 | INFO | label: round 1 done — 11/172 items resolved
+2026-10-25 21:36:05,047 | INFO | LLM: 16 prompt(s) in 9.8s (0.6 s/prompt; cap 600 tokens)
+2026-10-25 21:36:50,334 | INFO | LLM: 16 prompt(s) in 45.2s (2.8 s/prompt; cap 600 tokens)
+2026-10-25 21:37:03,214 | INFO | LLM: 16 prompt(s) in 12.7s (0.8 s/prompt; cap 600 tokens)
+2026-10-25 21:37:16,687 | INFO | LLM: 16 prompt(s) in 13.4s (0.8 s/prompt; cap 600 tokens)
+2026-10-25 21:37:25,408 | INFO | LLM: 16 prompt(s) in 8.6s (0.5 s/prompt; cap 600 tokens)
+2026-10-25 21:37:36,567 | INFO | LLM: 16 prompt(s) in 11.0s (0.7 s/prompt; cap 600 tokens)
+2026-10-25 21:37:50,715 | INFO | LLM: 16 prompt(s) in 14.0s (0.9 s/prompt; cap 600 tokens)
+2026-10-25 21:38:01,315 | INFO | LLM: 16 prompt(s) in 10.5s (0.7 s/prompt; cap 600 tokens)
+2026-10-25 21:38:12,047 | INFO | LLM: 16 prompt(s) in 10.6s (0.7 s/prompt; cap 600 tokens)
+2026-10-25 21:38:23,261 | INFO | LLM: 16 prompt(s) in 11.1s (0.7 s/prompt; cap 600 tokens)
+2026-10-25 21:38:27,203 | INFO | LLM: 1 prompt(s) in 3.9s (3.9 s/prompt; cap 600 tokens)
+2026-10-25 21:38:32,128 | INFO | LLM: 2 prompt(s) in 4.9s (2.5 s/prompt; cap 600 tokens)
+2026-10-25 21:38:32,138 | INFO | topic 0: Premier League Teams [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,145 | INFO | topic 1: Bayern Munich [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,151 | INFO | topic 2: Napoli vs. Rangers [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,158 | INFO | topic 3: Barcelona vs Real Sociedad [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,164 | INFO | topic 4: USL League Two [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,171 | INFO | topic 6: Red Card Incidents [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,190 | INFO | topic 8: FIFA World Cup Match Analysis [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,197 | INFO | topic 9: AZ Alkmaar vs. Competitors [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,203 | INFO | topic 10: River Plate vs. Competitors [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,209 | INFO | topic 11: Injury Updates [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,215 | INFO | topic 12: Goal Stats [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,222 | INFO | topic 13: Milan Transfer Activity [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,228 | INFO | topic 14: Loan Deals [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,235 | INFO | topic 15: Loan Deals [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,241 | INFO | topic 16: Match Results [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,247 | INFO | topic 17: Bundesliga Match Threads [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,254 | INFO | topic 19: Premier League Match Threads [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,272 | INFO | topic 20: Europa League Qualifying [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,280 | INFO | topic 22: Serie A Match Thread [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,287 | INFO | topic 23: Ligue 2 Matches [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,294 | INFO | topic 24: Loan Transfers [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,301 | INFO | topic 25: Manager Appointments [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,308 | INFO | topic 26: Goalkeeper Saves [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,315 | INFO | topic 27: Ancelotti & Simeone's Management [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,321 | INFO | topic 28: Flamengo RJ [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,327 | INFO | topic 29: Celtic vs. Rangers [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,334 | INFO | topic 30: Moscow Clubs [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,341 | INFO | topic 31: Liga Matchday [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,347 | INFO | topic 32: Schalke Coach [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,367 | INFO | topic 33: FA fines and charges [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,374 | INFO | topic 34: manager discourse [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,380 | INFO | topic 35: Yokohama Marinos [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,386 | INFO | topic 36: Santos Laguna [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,393 | INFO | topic 37: Bundesliga Match Threads [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,400 | INFO | topic 38: Saudi Pro League Match [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,406 | INFO | topic 39: Qatar World Cup Criticism [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,412 | INFO | topic 40: Copa Libertadores [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,419 | INFO | topic 41: Gibraltar Football League [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,426 | INFO | topic 42: Bundesliga Attendance [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,433 | INFO | topic 43: Ligue 1 Matchday [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,452 | INFO | topic 44: Ballon d'Or [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,459 | INFO | topic 45: World Cup Squad Analysis [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,466 | INFO | topic 46: Missed Goals [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,473 | INFO | topic 47: Fulham Transfer Talks [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,480 | INFO | topic 49: Women's Euro 2022 [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,487 | INFO | topic 50: Eredivisie Match Threads [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,494 | INFO | topic 51: Fan Violence and Protests [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,501 | INFO | topic 52: UEFA Europa League [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,508 | INFO | topic 53: Disallowed Goals [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,514 | INFO | topic 54: AFF Cup 2022 [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,521 | INFO | topic 55: Dinamo Zagreb Match Thread [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,527 | INFO | topic 56: Arabian Gulf Cup [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,546 | INFO | topic 57: Transfer Spending [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,553 | INFO | topic 58: Racism in Football [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,560 | INFO | topic 59: CONCACAF U17 Championship [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,567 | INFO | topic 60: Monaco Goals [stalemate, 2 round(s)] NEEDS REVIEW
+2026-10-25 21:38:32,574 | INFO | topic 61: PSV transfers [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,580 | INFO | topic 62: Feyenoord Transfer Activity [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,587 | INFO | topic 63: MUFC takeover [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,593 | INFO | topic 64: UEFA Champions League [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,600 | INFO | topic 65: Premier League Predictions [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,607 | INFO | topic 66: Brazilian Coach Recruitment [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,613 | INFO | topic 68: Danish Superliga Matches [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,632 | INFO | topic 69: Football History & Legacy [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,640 | INFO | topic 70: Moroccan Football Celebrations [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,647 | INFO | topic 71: Galatasaray Goalscoring [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,653 | INFO | topic 72: UEFA Europa Conference League [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,660 | INFO | topic 73: Cherry TV & Fixture Guide [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,666 | INFO | topic 74: U20 Sudamericano Match Thread [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,673 | INFO | topic 75: PSG Ligue 1 Highlights [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,680 | INFO | topic 76: Ronaldo Transfer [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,687 | INFO | topic 77: Youngest Player [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,694 | INFO | topic 78: Goalkeepers' Saves [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,700 | INFO | topic 79: League Standings [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,707 | INFO | topic 80: Fenerbahce vs. Clubs [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,727 | INFO | topic 81: K League 2023 [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,733 | INFO | topic 82: Fixture List & Cheat Sheet [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,739 | INFO | topic 83: Argentina World Cup Celebrations [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,745 | INFO | topic 84: Pelé Tribute [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,752 | INFO | topic 85: FC Zurich Matches [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,758 | INFO | topic 86: Belgian League Match Reports [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,764 | INFO | topic 87: Haaland vs. Others [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,771 | INFO | topic 88: Tuchel Sacking & Chelsea Dynamics [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,777 | INFO | topic 89: BarcaGate [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,783 | INFO | topic 90: Indian Super League [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,790 | INFO | topic 91: Roma & Mourinho [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,809 | INFO | topic 92: Manager Performance Analysis [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,816 | INFO | topic 93: Queen's Funeral Postponements [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,822 | INFO | topic 94: Anderlecht Matches [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,829 | INFO | topic 95: Iranian Football Protests [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,835 | INFO | topic 96: FIFA U-20 Women's World Cup [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,842 | INFO | topic 97: Benfica Match Updates [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,848 | INFO | topic 98: World Cup Match Reports [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,854 | INFO | topic 100: Valencia signings [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,860 | INFO | topic 101: Goal Highlights [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,867 | INFO | topic 102: Bundesliga Match Scorers [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,873 | INFO | topic 103: Derby Matches [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,879 | INFO | topic 104: Salzburg vs. Competitors [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,899 | INFO | topic 105: MLS Streaming & Broadcast [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,906 | INFO | topic 106: Spain vs Japan Match [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,912 | INFO | topic 107: Morocco 2022 [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,919 | INFO | topic 109: Covid-19 Infections [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,925 | INFO | topic 110: Transfer Market [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,932 | INFO | topic 111: Ronaldo Interview Analysis [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,938 | INFO | topic 112: G.A. Eagles [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,944 | INFO | topic 113: Ajax Manager Changes [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,951 | INFO | topic 114: FIFA U-20 Women's World Cup [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,957 | INFO | topic 115: Championship Preview [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,963 | INFO | topic 116: Barcelona Transfer [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,982 | INFO | topic 117: Tottenham Future [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,989 | INFO | topic 118: FA sanctions [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:32,996 | INFO | topic 119: OneLove Armband Controversy [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,002 | INFO | topic 120: Fofana Transfer [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,008 | INFO | topic 123: Osasuna vs. Sevilla [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,015 | INFO | topic 124: Player of the Month Awards [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,021 | INFO | topic 125: MLS Cup [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,028 | INFO | topic 126: Argentina Match Scorers [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,034 | INFO | topic 127: Friendly Match Scorers [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,040 | INFO | topic 128: World Cup History [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,046 | INFO | topic 129: Bundesliga Table [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,066 | INFO | topic 130: Women's Football [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,072 | INFO | topic 131: UEFA Coefficients [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,080 | INFO | topic 133: Wrexham & Hollywood [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,087 | INFO | topic 134: Lazio Fans [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,093 | INFO | topic 135: Cherry's Football Fixture Guide [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,099 | INFO | topic 136: Atlético Madrid Loan Deals [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,106 | INFO | topic 137: UEFA Youth League [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,113 | INFO | topic 138: U19 Match Analysis [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,120 | INFO | topic 139: Salzburg & Leipzig Transfer Drama [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,126 | INFO | topic 140: Loan and Transfer Activity [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,133 | INFO | topic 141: Bremer and Wijnaldum Transfer [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,139 | INFO | topic 142: Penalty Shouts [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,158 | INFO | topic 143: Rennes vs Fenerbahce [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,164 | INFO | topic 144: Swedish Football [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,171 | INFO | topic 145: Southampton Transfer Deals [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,178 | INFO | topic 146: Amazon Prime Football Series [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,184 | INFO | topic 147: Fenerbahçe Transfer Updates [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,190 | INFO | topic 148: Flamengo João Gomes Transfer [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,196 | INFO | topic 149: Santa Clara vs. Clubs [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,202 | INFO | topic 150: Gibraltar Scorers [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,209 | INFO | topic 152: FA Cup Draw [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,215 | INFO | topic 153: Ajax Antony Transfer [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,221 | INFO | topic 154: Everton Gordon Transfer [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,241 | INFO | topic 155: United Squad & Management [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,248 | INFO | topic 156: Barcelona Financial Woes [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,254 | INFO | topic 158: Zaniolo Transfer Drama [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,261 | INFO | topic 159: Cody Gakpo Transfer [identical, 2 round(s)]
+2026-10-25 21:38:33,267 | INFO | topic 160: Chelsea defender transfers [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,273 | INFO | topic 161: England U17 Matches [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,279 | INFO | topic 162: Istanbulspor vs. Other Teams [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,285 | INFO | topic 163: Gambling & Sponsorship Regulation [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,291 | INFO | topic 164: Aubameyang Transfer [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,298 | INFO | topic 165: Gibraltar Football League [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,304 | INFO | topic 166: Brentford Match Thread [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,311 | INFO | topic 167: Women's Football [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,329 | INFO | topic 168: Premiership Table [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,335 | INFO | topic 169: Morecambe FC Transfer Drama [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,342 | INFO | topic 170: World Cup Qualification Outcomes [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:33,349 | INFO | topic 171: FC Basel Scorers [accepted_by_A, 2 round(s)]
+2026-10-25 21:38:39,728 | INFO | LLM: 2 prompt(s) in 6.4s (3.2 s/prompt; cap 600 tokens)
+2026-10-25 21:38:39,738 | INFO | topic 21: chance [accepted_by_B, 2 round(s)]
+2026-10-25 21:38:39,745 | INFO | topic 132: Toronto FC signings [accepted_by_B, 2 round(s)]
+2026-10-25 21:38:39,745 | INFO | label: round 2 done — 172/172 items resolved
+2026-10-25 21:38:39,774 | INFO | labelling bin 7: 172 topics labelled, 2 need review -> /content/drive/MyDrive/fifa-communities/results/bin-7/topics_labelled.csv
+2026-10-25 21:38:39,831 | INFO | label: nearest_topic_name written into 4 outlier calibration sample file(s)
+2026-10-25 21:38:40,736 | INFO | report written: /content/drive/MyDrive/fifa-communities/results/bin-7/report.html
+<<< exit 0 after 10.6 min
+bin 7: 172 topics labelled | needs_review 2 (1%) | modes {'accepted_by_A': 157, 'identical': 11, 'accepted_by_B': 2, 'stalemate': 1, 'no_answer': 1}
+report: /content/drive/MyDrive/fifa-communities/results/bin-7/report.html
+>>> /usr/bin/python3 -u code/08-review-pack.py pack --bin 7 --analysis-dir /content/drive/MyDrive/fifa-communities/results
+review pack written: /content/drive/MyDrive/fifa-communities/results/bin-7/review_pack.md (1110 kB)
+nearest_topic_name written into 4 outlier calibration sample file(s) in /content/drive/MyDrive/fifa-communities/results/bin-7/outlier_calibration
+<<< exit 0 after 0.0 min

@@ -99,7 +99,8 @@ eom/leaf — on the cached UMAP array, minutes) → the author chooses `HDBSCAN_
 its review is used.
 
 ## 8. Bins 2–9 — one bin at a time, review as you go
-Cell 3.5 finishes each bin before starting the next: embed → topics (a bin clustered before D8 is refitted on its cached UMAP
+Cell 3.5 runs the tournament bins first (3, 5, 7, 9 — small, minutes to label each), then the interim bins (2, 4, 6, 8 — about
+an hour of labelling each; author's order, 2026-10-25), and finishes each bin before starting the next: embed → topics (a bin clustered before D8 is refitted on its cached UMAP
 array) → the gate (raw outliers ≤ 45 %, guard converged; **the loop stops at the first bin that fails** — cell 3.3b's grid with
 `GATE_BIN = N`, the author's setting, then re-run 3.5: finished bins are skipped) → label (resumable) → `review_pack.md` →
 a per-bin hand-back zip in `handback/` → the flag **`results/bin-N/REVIEW_READY.txt`** on Drive (written by the pipeline when

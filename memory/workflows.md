@@ -102,6 +102,7 @@ $P $S --stage sentiment                              # S4: data/analysis/sentime
 $P $S --stage collect                                # S5: data/analysis/post_variables.csv (+ .json; topic_uid/topic_name/topic_tone per post),
 #                                                       topic_labels_all_bins.csv (with mean_vader_sentiment), topic_crosswalk.csv (template)
 Rscript code/06-tag-corpus.R && Rscript code/07-validate-analysis.R   # S6 (local): append the 10 columns (v3.0) + 13 check families
+$P $S --stage status                                 # one row per bin: state, topics, labelled, review_ready (= bin-N/REVIEW_READY.txt), reassigned
 $P code/08-review-pack.py pack --bin 1   # review_pack.md for the co-authors (after each hand-back); `check --bin 1` validates the
 #                                          filled override files before they go back to Drive (guide: docs/session-08_2026-10-25/01_...)
 ```

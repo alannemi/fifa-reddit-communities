@@ -330,6 +330,10 @@ def test_collect_partial():
         assert lab["topic_uid"].tolist() == ["1-0", "1-1"]
         # the mean VADER score per topic (title score of the topic's posts after reassignment): topic 0 = p0, p1; topic 1 = p2, p3
         assert lab["mean_vader_sentiment"].tolist() == ["0.0000", "0.0500"] and lab["n_posts_scored"].tolist() == ["2", "2"]
+        st = T.write_status(b)                                                            # the per-bin flag for the review
+        assert st["state"] == "labelled" and st["n_topics"] == 2 and st["n_labelled"] == 2 and st["review_ready"] is True and st["n_needs_review"] == 1
+        assert (b / "REVIEW_READY.txt").exists() and json.loads((b / "status.json").read_text())["review_ready"] is True
+        assert T.status_table(an).set_index("bin").loc[1, "state"] == "labelled" and T.status_table(an).set_index("bin").loc[2, "state"] == "missing"
         xw = pd.read_csv(an / "topic_crosswalk.csv", keep_default_na=False)
         assert list(xw.columns) == T.CROSSWALK_COLUMNS and xw["topic_id"].tolist() == [0, 1] and (xw["chapter_theme"] == "").all() and xw["period_type"].tolist() == ["tournament"] * 2
         assert xw["topic_uid"].tolist() == ["1-0", "1-1"]

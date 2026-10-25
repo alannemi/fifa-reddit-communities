@@ -32,6 +32,8 @@ STAGES (design §3)                                            reads -> writes  
                                                               <results>/topic_labels_all_bins.csv (with mean_vader_sentiment),
                                                               topic_crosswalk.csv (template)
   report      per-bin report.html (re-render)                 bin-N/ -> report.html
+  status      where every bin stands (no --bin)               bin-N/status.json (written after topics/reassign/label) -> a table;
+                                                              bin-N/REVIEW_READY.txt appears when every topic of a bin is labelled
 S6 (append the eight columns to the master and yearly files) is code/06-tag-corpus.R + code/07-validate-analysis.R.
 
 HOW TO RUN (repository root; local .venv, or Colab through the notebook)
@@ -76,7 +78,7 @@ from topicmodel import data, embed, bins as BINS, model as M, sentiment, report,
 from topicmodel import agents as G
 
 log = logging.getLogger("topicmodel")
-STAGES = ["bins", "embed", "topics", "grid", "reassign", "label", "sentiment", "collect", "report"]
+STAGES = ["bins", "embed", "topics", "grid", "reassign", "label", "sentiment", "collect", "report", "status"]
 
 
 # ---------------------------------------------------------------------------
@@ -255,6 +257,7 @@ def stage_topics(args, paths: Paths, b: int):
             "config": C.effective_settings()}
     (bdir / "config.json").write_text(json.dumps({"topics": meta}, indent=1, default=str), encoding="utf-8")
     render_report(args, paths, b)
+    tagging.write_status(bdir)
     log.info("topics: bin %d done in %.1f min — %d topics, %.1f %% raw outliers, T=%s -> %s", b, (time.time() - t0) / 60,
              meta["n_topics_raw"], 100 * meta["outlier_share_raw"], T, bdir)
 
@@ -328,6 +331,7 @@ def stage_reassign(args, paths: Paths, b: int):
                                      "outlier_share_final": round(float((topic_id == -1).mean()), 4),
                                      "run_at": dt.datetime.now().isoformat(timespec="seconds")})
     render_report(args, paths, b)
+    tagging.write_status(bdir)
     log.info("reassign: bin %d at T=%.4f -> %d reassigned, %.1f %% outliers remain", b, T,
              int((assignment == "reassigned").sum()), 100 * float((topic_id == -1).mean()))
 
@@ -366,6 +370,7 @@ def stage_label(args, paths: Paths, b: int):
                                   "llm_stats": llm.stats, "max_topics": args.max_topics, "elapsed_min": round((time.time() - t0) / 60, 1),
                                   "run_at": dt.datetime.now().isoformat(timespec="seconds"), "prompts": P.stage_prompts("label")})
     render_report(args, paths, b)
+    tagging.write_status(bdir)
 
 
 # ---------------------------------------------------------------------------
@@ -439,6 +444,8 @@ def main():
             log.info("=== stage %s, bin %d === args: %s | paths: %s", args.stage, b, vars(args), paths.describe())
             {"embed": stage_embed, "topics": stage_topics, "grid": stage_grid, "reassign": stage_reassign, "label": stage_label,
              "report": render_report}[args.stage](args, paths, b)
+    elif args.stage == "status":
+        print(tagging.status_table(paths.analysis).to_string(index=False))
     else:
         setup_logging(paths.analysis_data / "pipeline-log.txt")
         log.info("=== stage %s === args: %s | paths: %s", args.stage, vars(args), paths.describe())

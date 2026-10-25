@@ -265,3 +265,13 @@ not comparable); if the outlier share still exceeds 45 %, cell 3.3b's grid (25/4
 author's choice, possibly per period type. (3) Then `T`, bins 2–9, sentiment, collect, S6 — the runbook. Open for the
 author (F44): the size of the human review sample for bins with 1,000–2,500 topics.
 
+## 10. Review as you go (author's request, 2026-10-25 evening)
+
+Each bin now carries a flag: the pipeline writes `results/bin-N/status.json` after the topics, reassign and label stages and
+`results/bin-N/REVIEW_READY.txt` the moment every topic of the bin is labelled (removed again if the bin is re-clustered);
+`--stage status` prints one row per bin. Notebook cell 3.5 runs bins 2–9 **one bin at a time**: embed → topics (refitting a
+bin clustered before D8 on its cached UMAP array) → the gate, which stops the loop at the first failing bin → label →
+`review_pack.md` → a per-bin hand-back zip → the flag and the log line "bin N READY FOR REVIEW"; cell 3.6 is `status()`;
+section 5's cell uses the same `handback()` helper for a chosen set of bins. Unit checks 12/12 (`write_status`,
+`status_table` covered in the collect test).
+

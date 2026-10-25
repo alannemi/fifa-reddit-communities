@@ -67,6 +67,57 @@ def bin_state(bin_dir: Path) -> str:
     return "missing"
 
 
+def bin_status(bin_dir: Path) -> dict:
+    """Where one bin stands (for `--stage status`, the notebook and the REVIEW_READY flag): state, topics, labelled topics,
+    whether the review can start (every topic labelled), whether the outlier threshold was applied."""
+    st = {"bin": int(str(bin_dir.name).split("-")[-1]) if "-" in bin_dir.name else None, "state": bin_state(bin_dir),
+          "n_modelled": None, "n_topics": None, "n_labelled": 0, "n_needs_review": None, "review_ready": False,
+          "reassigned": False, "outlier_threshold": None, "topics_at": None, "labelled_at": None}
+    if st["state"] == "missing":
+        return st
+    cfg = {}
+    if (bin_dir / "config.json").exists():
+        try:
+            cfg = json.loads((bin_dir / "config.json").read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            cfg = {}
+    t = cfg.get("topics", {})
+    st["n_modelled"] = t.get("n_modelled"); st["topics_at"] = t.get("run_at")
+    topics = _read(bin_dir / "topics.csv")
+    if len(topics):
+        st["n_topics"] = int((topics["topic_id"].astype(int) != -1).sum())
+    if st["state"] == "labelled":
+        lab = _read(bin_dir / "topics_labelled.csv")
+        st["n_labelled"] = int(len(lab))
+        st["n_needs_review"] = int(lab["needs_review"].astype(str).str.lower().eq("true").sum()) if "needs_review" in lab.columns else None
+        st["labelled_at"] = cfg.get("label", {}).get("run_at")
+        st["review_ready"] = st["n_topics"] is not None and st["n_labelled"] >= st["n_topics"]
+    if "reassign" in cfg:
+        st["reassigned"] = True; st["outlier_threshold"] = cfg["reassign"].get("outlier_threshold")
+    return st
+
+
+def write_status(bin_dir: Path) -> dict:
+    """status.json next to the bin's outputs after every per-bin stage; REVIEW_READY.txt appears when every topic of the bin
+    is labelled (the flag the co-authors watch on Drive) and disappears again if the bin is re-clustered."""
+    st = bin_status(bin_dir)
+    st["written"] = pd.Timestamp.utcnow().isoformat(timespec="seconds")
+    (bin_dir / "status.json").write_text(json.dumps(st, indent=1, default=str), encoding="utf-8")
+    flag = bin_dir / "REVIEW_READY.txt"
+    if st["review_ready"]:
+        flag.write_text(f"bin {st['bin']}: {st['n_labelled']} topics labelled ({st['n_needs_review']} flagged needs_review), "
+                        f"{st['n_modelled']} posts modelled — ready for the co-author review (topic_overrides.csv). {st['written']}\n", encoding="utf-8")
+    elif flag.exists():
+        flag.unlink()
+    return st
+
+
+def status_table(analysis_dir: Path) -> pd.DataFrame:
+    """One row per bin 1–9 for `--stage status`."""
+    rows = [bin_status(analysis_dir / f"bin-{b}") | {"bin": b} for b in range(1, 10)]
+    return pd.DataFrame(rows)[["bin", "state", "n_modelled", "n_topics", "n_labelled", "n_needs_review", "review_ready", "reassigned", "outlier_threshold", "labelled_at"]]
+
+
 def load_bin_outputs(bin_dir: Path, b: int) -> dict:
     """Everything S5 needs from one bin, with the topic overrides applied. Returns dict(posts, labels, topics, state, merges)."""
     state = bin_state(bin_dir)

@@ -98,10 +98,15 @@ eom/leaf — on the cached UMAP array, minutes) → the author chooses `HDBSCAN_
 --keep-umap`, the gate checks, label). A setting that applies to every bin means re-clustering and relabelling bin 1 before
 its review is used.
 
-## 8. Bins 2–9
-Cell 3.5: embed + topics (read the seven printed lines: topics, raw outliers, backend, guard) → label → review pause
-(`topic_overrides.csv` per bin, §6) → reassign with the fixed `T`. Each bin's `config.json` is the record; keep the review
-files in git with the results.
+## 8. Bins 2–9 — one bin at a time, review as you go
+Cell 3.5 finishes each bin before starting the next: embed → topics (a bin clustered before D8 is refitted on its cached UMAP
+array) → the gate (raw outliers ≤ 45 %, guard converged; **the loop stops at the first bin that fails** — cell 3.3b's grid with
+`GATE_BIN = N`, the author's setting, then re-run 3.5: finished bins are skipped) → label (resumable) → `review_pack.md` →
+a per-bin hand-back zip in `handback/` → the flag **`results/bin-N/REVIEW_READY.txt`** on Drive (written by the pipeline when
+every topic of the bin is labelled; `status.json` beside it holds the numbers) and the log line "bin N READY FOR REVIEW".
+`--stage status` (cell 3.6, or locally) prints one row per bin. The co-authors review a finished bin (§6) while the GPU works
+on the next; after the reviews, the reassignment with the fixed `T` (§5) runs for every bin. Each bin's `config.json` is the
+record; keep the review files in git with the results.
 
 ## 9. Sentiment and collect (section 4) — gate 5 (§12.5)
 `--stage sentiment` (≈ 15 min, CPU) writes `fifa-communities/analysis/sentiment.csv` and `sentiment_validation_sample.csv`

@@ -201,7 +201,7 @@ def guard_min_cluster_size(umap5d: np.ndarray, n_modelled: int, enabled: bool = 
     conv = dist(k) == 0
     if enabled and not conv:
         log.warning("guard: topic count %d outside %s after %d trial(s); keeping min_cluster_size=%d (flagged)", k, (lo, hi), len(trials), m)
-    return {"labels": lab, "min_cluster_size": int(m), "n_topics": k, "trials": trials, "converged": conv, "enabled": enabled}
+    return {"labels": lab, "min_cluster_size": int(m), "n_topics": k, "target": [int(lo), int(hi)], "trials": trials, "converged": conv, "enabled": enabled}
 
 
 def renumber_by_size(labels: np.ndarray) -> tuple[np.ndarray, dict]:

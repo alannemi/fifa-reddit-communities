@@ -564,8 +564,8 @@ the effective settings, guard trials, backend, CUDA/cuML versions, `pip freeze`,
    other bins.
 3. **Outlier threshold.** `T` from the similarity quantiles + the 100-post human check, on bin 1 and the large bin.
 4. **Agents.** Round distribution and `agreement_mode` counts; `needs_review` ≤ 15 % of topics; greedy versus
-   seeded-sampling comparison on bin 1; 20 topics read by a co-author against their posts; optional relabel of bin 1
-   with Qwen3-4B (weights cached) to see what the larger model changes.
+   seeded-sampling comparison on bin 1 (dropped 2026-10-25, §14); 20 topics read by a co-author against their posts; optional relabel of bin 1
+   with Qwen3-4B (weights cached) to see what the larger model changes (dropped 2026-10-24, §14).
 5. **Sentiment.** The 300-post hand-coded sample.
 6. **Automatic checks** per bin (counts, coverage, assignment coverage, ids valid) and the S6 validation script.
 
@@ -613,7 +613,7 @@ the effective settings, guard trials, backend, CUDA/cuML versions, `pip freeze`,
 | D3 | Outliers | Thresholded reassignment (embedding similarity ≥ T, calibrated); raw and final ids kept | Middle path between purity and coverage |
 | D4 | Session scope | Design document + codebook now; implementation and test in session 05 | Author reviews F1–F21 first |
 | Defaults accepted with the plan (2026-10-22) | bins supersede year/window/era runs (F6); `all-mpnet-base-v2`; Qwen3-1.7B, greedy, thinking off, lenses; `period_type` column; bin-local ids with composite keys; stop-list additions; title-only `post_sentiment` with `post_sentiment_full` (F18); topic range 50–100; `min_samples` 10 | As proposed; each is a single value in `config.py` |
-| Open | `T` (outlier threshold), greedy vs seeded sampling, `min_samples` for large bins | Set at the quality gates (§12) and recorded here |
+| Open | `T` (outlier threshold), `min_samples` for large bins | Set at the quality gates (§12) and recorded here (greedy vs seeded: decided 2026-10-25, below) |
 | 2026-10-23 F4 | Cross-bin comparability | Approved as designed: manual `category_crosswalk.csv` (template written by S5); S3c stays a hook | author's review before implementation |
 | 2026-10-23 F6 | Bin boundaries | Approved exactly as in the brief (§4); no `in_tournament` column | idem |
 | 2026-10-23 F18 | Sentiment measure | Approved: `post_sentiment` on the title, `post_sentiment_full` kept | idem |
@@ -624,6 +624,7 @@ the effective settings, guard trials, backend, CUDA/cuML versions, `pip freeze`,
 | 2026-10-24 | Qwen3-4B comparison (F9, §12.4) | **Dropped**: the pipeline stays with Qwen3-1.7B | author's decision |
 | 2026-10-24 | Colab test batch | Pass 1 (every stage once, 12 labelled topics) + the full bin 1; gates and bins 2–9 afterwards | idem |
 | 2026-10-24 F22–F30 | Consequences of the two-step protocol (above) | as listed | approvals §5 |
+| **2026-10-25** | Greedy vs seeded sampling (F17, §12.4) | **Greedy decoding kept for every bin; the seeded-sampling comparison on bin 1 is dropped** (notebook cell 3.2 stays as an unused tool) | author's decision after Colab Pass 1 on bin 1 (65 topics, the 12 labelled topics sound): reproducible labels; the two lenses already give the second analyst a distinct view; the comparison would have cost a second labelling run of bin 1 |
 | **2026-10-25 H1–H7** | Code harmonization (session 07) | **H1** the session-02 exploratory tool removed entirely; **H2** flat, purpose-named Drive layout under `MyDrive/fifa-communities/`; **H3** Drive as the root for everything that persists, code cloned on the Colab machine, CSVs copied locally, no symlinks; **H4** shared R helper file `code/R/pipeline-utils.R`; **H5** scripts renumbered 06→05, 06b→05b, 07→06, 08→07; **H6** stale tracked copies under `data/` untracked; **H7** `03-data-validation.R` accepts the v3.0 spec now | `../session-07_2026-10-25/00_approvals.md` (defaults and flags F31–F38 there); no analytical change |
 
 ## 15. Brief versus design

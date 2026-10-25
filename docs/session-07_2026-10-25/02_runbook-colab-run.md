@@ -71,9 +71,9 @@ Then run the **hand-back cell (section 5)**: the zip `fifa-communities/handback/
 (without `model/`), the aggregated tables, `data/analysis/*` and the log, laid out as repository paths — unzip it at the
 repository root, commit `results/analysis/bin-1/` with the review templates, move `data/analysis/` to the shared data folder.
 The reviewer reads the outputs through the Google Drive connector (to be authorised in claude.ai) or from the zip.
-**Decisions to record (design §14):** greedy vs seeded sampling for the full run (optional comparison, cell 3.2, into
-`fifa-communities/comparisons/`); whether the D2 "identical" rule needs the name + tone refinement (only if `needs_review`
-exceeds 15 %).
+**Decisions to record (design §14):** ~~greedy vs seeded sampling~~ — **decided 2026-10-25 (Alan): greedy kept, the seeded
+comparison of cell 3.2 dropped**; whether the D2 "identical" rule needs the name + tone refinement (only if `needs_review`
+exceeds 15 %; the rule compares all five label fields, the refinement would count a match on name + tone category).
 
 ## 5. Outlier threshold `T` — gate 3 (§12.3)
 `results/bin-1/outlier_calibration/calibration_table.csv` lists the candidate thresholds (50th / 65th / 80th percentile of

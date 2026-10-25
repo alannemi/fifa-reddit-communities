@@ -319,3 +319,52 @@ before refitting; nothing is deleted and the hand-back zips do not include it. R
 `labels.jsonl` by topic id and every refit renumbers the topics, so a labelled bin that was re-clustered would have received
 its old labels on unrelated topics. No bin was in that state (bin 4 stopped at the gate before labelling; bin 1 is not
 re-clustered). Unit checks 12/12 (`retire_label_outputs` covered in the labelling test).
+
+## 13. Decision D9 — tiered outlier reassignment with a second topic (Alan Nemirovski, 2026-10-25, night)
+
+**Why.** With the design's single threshold the chapter would have carried 20–35 % of the posts without any topic (bin 1:
+27.8 % at the strictest candidate, bin 3 similar), the first thing a reviewer asks about. The author asked how to bring the
+outliers to a low value and, after weighing the levers (clustering settings, a lower threshold, a nearest-topic tag — §11 of this
+log's conversation record in `memory/`), decided on a tiered rule that keeps the confident reassignments single-topic and records
+the ambiguity of the less confident ones instead of a hard claim. The rule, as decided:
+
+| similarity to the nearest topic | `topic_assignment` | the post carries |
+|---|---|---|
+| ≥ the bin's **80th percentile** of outlier similarities | `reassigned` | its nearest topic |
+| **35th** ≤ … < 80th percentile ("let's be conservative still") | `dual` | its nearest topic **and** the second-nearest topic as a second label |
+| < the 35th percentile | `outlier` | nothing; the nearest topics stay in `outlier_nearest.csv` |
+
+Both cut points are percentiles of each bin's own distribution (the assistant's recommendation, accepted): every bin reassigns
+the same share of its outliers and the values in force are recorded in its `config.json`. **Counting** (author, after two
+clarifications): a dual post counts once in each of its two topics — `n_total = n_first + n_as_second`, with `n_first` the posts
+whose first topic it is and `n_as_second` the dual posts for which it is the second; shares (`n_total` over the bin's modelled
+posts) may therefore add up to more than 1; prevalence over time and the mean VADER score of a topic also count a dual post in
+both. The second similarity is stored (author). The percentiles are a rank, not a quality level (assistant's caveat, accepted):
+the coded samples measure the admitted bands' precision, and a quantile can be raised afterwards at the cost of seconds per bin.
+
+**What changed (commit of the same night).** `config.py`: `OUTLIER_REASSIGN_QUANTILE = 0.35`, `OUTLIER_SINGLE_QUANTILE = 0.80`,
+`OUTLIER_CALIBRATION_QUANTILES = (0.35, 0.5, 0.65, 0.8)`; `OUTLIER_THRESHOLD` is now a fixed-value override only. `model.py`:
+`outlier_nearest` keeps the two nearest topics; `tier_thresholds`; `apply_outlier_threshold(…, T, C)` returns the second topic
+and similarity; `topic_table` counts `n_first`, `n_as_second`, `n_total`; `topics_over_time` repeats a dual post under its second
+topic. Stage S2 applies the tiers itself; `--stage reassign` recomputes the two nearest topics from `topic_embeddings.npy` and
+the cached embeddings (no refit), writes the missing calibration samples (never overwriting a coded one) and serves the bins
+clustered before D9 (1 and 3) and any later change of a quantile. `documents.csv` gains `topic_id_2`, `similarity_2`;
+`post_variables.csv` gains `topic_uid_2`, `topic_name_2`, `topic_tone_2`, `topic_similarity`, `topic_similarity_2` (15 analysis
+columns, 57 in the data files; a second topic merged into the first by a co-author disappears and the post becomes
+`reassigned`); S5 checks the dual posts' consistency; the R scripts (`pipeline-utils.R`, `06`, `07` A2/A6/A7/A10, `03` C4)
+follow; codebook §1/§4.9/§8.1/limitation 10 and the design (v1.6: §6.3, §6.4, §9, §12.2, §14) record it. Notebook: cell 0.4
+defines `OUTLIER_GATE = 0.50` and `gate_ok()` (the 50 % tolerance for a converged bin, proposed by the assistant after bin 3 and
+applied pending the author's confirmation; cells 3.3, 3.3b, 3.3c, 3.5 use it), cell 3.4 re-applies the tiers to every bin whose
+record shows none (`FORCE_ALL = True` after a quantile change), cell 3.5 does the same inside its loop. Unit checks 12/12.
+
+**Dry run (local, the 92-topic MiniLM dry run of bin 1, 2026-10-25 15:54).** `--stage reassign`: T = 0.4863 (35th percentile),
+C = 0.6211 (80th); of 3,521 raw outliers (35.9 %) 705 reassigned, 1,585 dual, **12.6 % outliers left**; the fourth calibration
+sample (the 35th-percentile band) written with the topics' names (all 92 topics labelled in that dry run); `collect --allow-partial`
+without a failed check (every dual post carries two different named topics); `06-tag-corpus.R` + `07-validate-analysis.R` on
+the mini 2010 corpus: 57 columns, **ALL CHECKS PASSED** (A6 and A7 now cover the second topic). The same run on the 12-topic dry
+run fails A6 only because 80 topics have no label there — the expected result.
+
+**Expected on the real bins** (from their recorded similarity distributions): bin 1 from 34.8 % raw to about 12 % outliers, bin
+3 from 45.8 % to about 16 %, with roughly 45 % of each bin's former outliers carrying a second topic. **Open:** the author's
+confirmation of the gate tolerance; the co-authors' coding of the four bands on bin 1 and one large bin (the 35th-percentile band
+first) before the data files are final.

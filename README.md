@@ -35,7 +35,7 @@ fifa-reddit-communities/
 │   │                                  sentiment, collect, report)
 │   ├── 05b-analysis-pipeline-colab.ipynb   orchestration of 05 on a Colab GPU (A100; cuML), rooted on the Drive
 │   │                                  folder MyDrive/fifa-communities/
-│   ├── 06-tag-corpus.R               stage S6: append the 10 analysis columns to the master and yearly files
+│   ├── 06-tag-corpus.R               stage S6: append the 15 analysis columns to the master and yearly files
 │   ├── 07-validate-analysis.R        13 check families on the tagged files (fingerprints of the original columns)
 │   ├── 08-review-pack.py             co-author review of a bin: review_pack.md (labels, both analysts, sample posts) and
 │   │                                  the check of the filled topic_overrides.csv (guide: docs/session-08_2026-10-25/)

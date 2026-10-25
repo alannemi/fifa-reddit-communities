@@ -279,28 +279,61 @@ def representative_ids(model, docs_text: list[str], ids: np.ndarray, topics: np.
 
 
 # ---------------------------------------------------------------------------
-# Outliers (D3): nearest topic and similarity, calibration table and samples, thresholded reassignment
+# Outliers (D3 -> D9): the two nearest topics and similarities, calibration table and samples, tiered reassignment
 # ---------------------------------------------------------------------------
-def outlier_nearest(model, emb: np.ndarray, topics_raw: np.ndarray, ids: np.ndarray) -> pd.DataFrame:
-    """For every raw outlier: the most similar topic (cosine to the topic embedding) and that similarity (N1)."""
+NEAREST_COLUMNS = ["id", "nearest_topic", "similarity", "nearest_topic_2", "similarity_2"]
+
+
+def outlier_nearest_from(topic_embeddings: np.ndarray, emb: np.ndarray, topics_raw: np.ndarray, ids: np.ndarray) -> pd.DataFrame:
+    """For every raw outlier: the two most similar topics (cosine to the topic embeddings, row t = topic t) and the
+    similarities (N1, D9). The second pair is empty when the bin has a single topic."""
     from sklearn.metrics.pairwise import cosine_similarity
     out_idx = np.where(topics_raw == -1)[0]
     if len(out_idx) == 0 or n_topics_of(topics_raw) == 0:
-        return pd.DataFrame(columns=["id", "nearest_topic", "similarity"])
-    te = np.asarray(model.topic_embeddings_)[model._outliers:]
-    sims = cosine_similarity(emb[out_idx], te)
-    return pd.DataFrame({"id": ids[out_idx].astype(str), "nearest_topic": sims.argmax(1).astype(int),
-                         "similarity": sims.max(1).round(4)})
+        return pd.DataFrame(columns=NEAREST_COLUMNS)
+    sims = cosine_similarity(emb[out_idx], np.asarray(topic_embeddings))
+    order = np.argsort(-sims, axis=1)
+    rows = np.arange(len(out_idx))
+    df = pd.DataFrame({"id": ids[out_idx].astype(str), "nearest_topic": order[:, 0].astype(int),
+                       "similarity": sims[rows, order[:, 0]].round(4)})
+    if sims.shape[1] >= 2:
+        df["nearest_topic_2"] = order[:, 1].astype(int)
+        df["similarity_2"] = sims[rows, order[:, 1]].round(4)
+    else:
+        df["nearest_topic_2"] = np.nan
+        df["similarity_2"] = np.nan
+    return df
+
+
+def outlier_nearest(model, emb: np.ndarray, topics_raw: np.ndarray, ids: np.ndarray) -> pd.DataFrame:
+    """outlier_nearest_from() on a fitted BERTopic model (stage S2); `reassign` uses the saved topic_embeddings.npy."""
+    return outlier_nearest_from(np.asarray(model.topic_embeddings_)[model._outliers:], emb, topics_raw, ids)
+
+
+def tier_thresholds(nearest: pd.DataFrame, fixed_T: float | None = None,
+                    q_reassign: float = C.OUTLIER_REASSIGN_QUANTILE, q_single: float = C.OUTLIER_SINGLE_QUANTILE):
+    """(T, C) of one bin (D9): T = the reassignment floor, C = the single-topic floor, both quantiles of the bin's
+    outlier-to-nearest-topic similarity; `fixed_T` (config.OUTLIER_THRESHOLD / --outlier-threshold) replaces T.
+    (None, None) when the bin has no outliers."""
+    s = nearest["similarity"].to_numpy(dtype=float) if len(nearest) else np.array([])
+    if len(s) == 0:
+        return (None if fixed_T is None else float(fixed_T)), None
+    T = float(fixed_T) if fixed_T is not None else round(float(np.quantile(s, q_reassign)), 4)
+    Cc = round(float(np.quantile(s, q_single)), 4)
+    return T, max(Cc, T)
 
 
 def calibration_table(nearest: pd.DataFrame, n_modelled: int) -> pd.DataFrame:
-    """Candidate thresholds = quantiles of the outlier-to-nearest-topic similarity (design §6.3)."""
+    """The judgement bands = quantiles of the outlier-to-nearest-topic similarity (design §6.3): what each candidate
+    floor would reassign, and which band is the floor T / the single-topic floor C in force."""
     rows = []
     s = nearest["similarity"].to_numpy(dtype=float) if len(nearest) else np.array([])
     for q in C.OUTLIER_CALIBRATION_QUANTILES:
         T = float(np.quantile(s, q)) if len(s) else float("nan")
         n_re = int((s >= T).sum()) if len(s) else 0
-        rows.append({"quantile": q, "threshold": round(T, 4), "n_outliers": len(s), "n_reassigned_at_T": n_re,
+        role = ("T (reassignment floor)" if q == C.OUTLIER_REASSIGN_QUANTILE else
+                "C (single-topic floor)" if q == C.OUTLIER_SINGLE_QUANTILE else "")
+        rows.append({"quantile": q, "threshold": round(T, 4), "role": role, "n_outliers": len(s), "n_reassigned_at_T": n_re,
                      "share_outliers_remaining": round((len(s) - n_re) / max(1, n_modelled), 4)})
     return pd.DataFrame(rows)
 
@@ -336,42 +369,62 @@ def resolve_threshold(bin_id: int, override: float | None = None) -> float | Non
     return None if v is None else float(v)
 
 
-def apply_outlier_threshold(topics_raw: np.ndarray, ids: np.ndarray, nearest: pd.DataFrame, T: float | None):
-    """Thresholded reassignment (D3): an outlier joins its nearest topic only if similarity >= T.
-    Returns (topic_id, topic_assignment, similarity) aligned with `ids`."""
+def apply_outlier_threshold(topics_raw: np.ndarray, ids: np.ndarray, nearest: pd.DataFrame, T: float | None,
+                            C_single: float | None = None):
+    """Tiered reassignment (D9): an outlier with similarity >= T joins its nearest topic — alone when the similarity
+    reaches C_single ("reassigned"), with the second-nearest topic as a second label below it ("dual"); below T it stays
+    an outlier. C_single=None gives D3's single tier. Returns (topic_id, topic_assignment, similarity, topic_id_2,
+    similarity_2) aligned with `ids`; topic_id_2 is -1 and similarity_2 NaN except for dual posts."""
     topic_id = topics_raw.copy()
+    topic_id_2 = np.full(len(ids), -1)
     assignment = np.where(topics_raw == -1, "outlier", "cluster").astype(object)
     sim = np.full(len(ids), np.nan)
+    sim_2 = np.full(len(ids), np.nan)
     if len(nearest):
         pos = {str(i): k for k, i in enumerate(ids.astype(str))}
-        for i, t, s in zip(nearest["id"].astype(str), nearest["nearest_topic"].astype(int), nearest["similarity"].astype(float)):
-            k = pos.get(i)
+        has2 = "nearest_topic_2" in nearest.columns
+        for r in nearest.itertuples(index=False):
+            k = pos.get(str(r.id))
             if k is None:
                 continue
+            s = float(r.similarity)
             sim[k] = s
-            if T is not None and s >= T:
-                topic_id[k] = t
+            if T is None or s < T:
+                continue
+            topic_id[k] = int(r.nearest_topic)
+            t2 = r.nearest_topic_2 if has2 else None
+            if C_single is not None and s < C_single and t2 is not None and not pd.isna(t2) and int(t2) != int(r.nearest_topic):
+                assignment[k] = "dual"
+                topic_id_2[k] = int(t2)
+                sim_2[k] = float(r.similarity_2)
+            else:
                 assignment[k] = "reassigned"
-    return topic_id, assignment, sim
+    return topic_id, assignment, sim, topic_id_2, sim_2
 
 
 # ---------------------------------------------------------------------------
 # The per-bin tables (design §6.4)
 # ---------------------------------------------------------------------------
 def topic_table(model, docs: pd.DataFrame, topic_id_raw: np.ndarray, topic_id: np.ndarray,
-                rep_ids: dict[int, list[str]]) -> pd.DataFrame:
-    """topics.csv of a bin: sizes before/after reassignment, keywords from cluster members, representative posts,
-    QA covariates over the final members."""
-    d = docs.assign(_raw=topic_id_raw, _final=topic_id)
+                rep_ids: dict[int, list[str]], topic_id_2: np.ndarray | None = None) -> pd.DataFrame:
+    """topics.csv of a bin: sizes, keywords from cluster members, representative posts, QA covariates over the members.
+    Counting (D9, author 2026-10-25): a dual post counts once in each of its two topics, so n_total = n_first (posts whose
+    first topic it is: cluster + reassigned + dual) + n_as_second (dual posts for which it is the second topic); shares are
+    n_total over the bin's modelled posts and may add up to more than 1 by the dual posts."""
+    d = docs.assign(_raw=topic_id_raw, _final=topic_id,
+                    _second=(topic_id_2 if topic_id_2 is not None else np.full(len(docs), -1)))
     title_of = dict(zip(d["id"].astype(str), d["title"]))
     n_mod = len(d)
     rows = []
     for t in sorted(set(topic_id_raw.tolist()) | set(topic_id.tolist())):
         words = [w for w, _ in (model.get_topic(t) or [])] if t != -1 else []
-        fin = d[d["_final"] == t]
+        fin = d[(d["_final"] == t) | ((d["_second"] == t) & (t != -1))]       # every post that carries the topic
+        n_first = int((d["_final"] == t).sum())
         reps = rep_ids.get(t, []) if t != -1 else []
-        rows.append({"topic_id": int(t), "n_cluster": int((d["_raw"] == t).sum()), "n_total": int(len(fin)),
-                     "share": round(len(fin) / max(1, n_mod), 5), "keywords": ", ".join(words),
+        n_second = int((d["_second"] == t).sum()) if t != -1 else 0
+        rows.append({"topic_id": int(t), "n_cluster": int((d["_raw"] == t).sum()), "n_first": n_first,
+                     "n_as_second": n_second, "n_total": n_first + n_second,
+                     "share": round((n_first + n_second) / max(1, n_mod), 5), "keywords": ", ".join(words),
                      "representative_ids": "|".join(reps), "representative_titles": " || ".join(str(title_of.get(i, ""))[:140] for i in reps),
                      "share_match_thread": round(float((fin["post_type"] == "match_thread").mean()), 4) if len(fin) else 0.0,
                      "share_lang_en": round(float((fin["lang"] == "en").mean()), 4) if len(fin) else 0.0,
@@ -379,12 +432,17 @@ def topic_table(model, docs: pd.DataFrame, topic_id_raw: np.ndarray, topic_id: n
     return pd.DataFrame(rows)
 
 
-def topics_over_time(model, docs: pd.DataFrame, topic_id: np.ndarray, period_type: str) -> pd.DataFrame:
-    """Weekly (tournament bins) or monthly (interim bins) topic frequencies over the final assignment (config.TIME_BIN)."""
+def topics_over_time(model, docs: pd.DataFrame, topic_id: np.ndarray, period_type: str,
+                     topic_id_2: np.ndarray | None = None) -> pd.DataFrame:
+    """Weekly (tournament bins) or monthly (interim bins) topic frequencies over the final assignment (config.TIME_BIN).
+    A dual post (D9) counts once in each of its two topics: its row is repeated with the second topic."""
     freq = C.TIME_BIN[period_type]
     stamps = docs["date"].dt.tz_localize(None).dt.to_period("W" if freq == "W" else "M").dt.start_time
-    tot = model.topics_over_time(docs["document"].tolist(), stamps.tolist(), topics=topic_id.tolist(),
-                                 global_tuning=False, evolution_tuning=False)
+    texts, times, tops = docs["document"].tolist(), stamps.tolist(), [int(t) for t in topic_id]
+    if topic_id_2 is not None:
+        for k in np.where(np.asarray(topic_id_2) != -1)[0]:
+            texts.append(texts[k]); times.append(times[k]); tops.append(int(topic_id_2[k]))
+    tot = model.topics_over_time(texts, times, topics=tops, global_tuning=False, evolution_tuning=False)
     tot = tot.rename(columns={"Topic": "topic_id", "Words": "keywords", "Frequency": "n_docs", "Timestamp": "period"})
     return tot[["topic_id", "period", "n_docs", "keywords"]]
 

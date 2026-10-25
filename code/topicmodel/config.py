@@ -146,13 +146,21 @@ EXTRA_STOPWORDS = [
 ]
 
 # ---------------------------------------------------------------------------
-# D3 — thresholded outlier reassignment (design §6.3; stage `reassign`, refinement N1)
+# D9 — tiered outlier reassignment (design §6.3; author's decision of 2026-10-25, replacing D3's single calibrated T)
 # ---------------------------------------------------------------------------
-# An outlier joins its most similar topic (cosine to the topic embedding) only if the similarity reaches T; T is
-# calibrated at the quality gates from the judgement samples that stage S2 writes (outlier_calibration/).
-OUTLIER_THRESHOLD: dict = {}            # {"default": T} or per bin {1: T1, 4: T4}; empty = not calibrated -> no reassignment yet
-OUTLIER_CALIBRATION_QUANTILES = (0.50, 0.65, 0.80)   # candidate thresholds = these quantiles of the outlier similarity
-OUTLIER_SAMPLE_PER_CANDIDATE = 100      # posts per candidate threshold in the co-author judgement sample
+# For every raw outlier the cosine similarity to its nearest topic (the topic embedding) is compared with two cut points,
+# both quantiles of the bin's own outlier-similarity distribution, so every bin reassigns the same share of its outliers
+# and the values in force are recorded per bin in config.json:
+#   similarity >= Q(OUTLIER_SINGLE_QUANTILE)                       -> "reassigned": the nearest topic alone
+#   Q(OUTLIER_REASSIGN_QUANTILE) <= similarity < Q(SINGLE)          -> "dual": the nearest topic (the one that is counted) and
+#                                                                     the second-nearest topic as a second label (context)
+#   similarity <  Q(OUTLIER_REASSIGN_QUANTILE)                      -> "outlier" (nearest topics kept in outlier_nearest.csv)
+# Applied by stage S2 and re-applied by `reassign` (seconds per bin, no refit) when a quantile changes.
+OUTLIER_REASSIGN_QUANTILE = 0.35        # the reassignment floor T (author, 2026-10-25: "let's be conservative still")
+OUTLIER_SINGLE_QUANTILE = 0.80          # above it a reassigned post carries one topic only (author, 2026-10-25)
+OUTLIER_THRESHOLD: dict = {}            # fixed-value override of T: {"default": T} or per bin {1: T1}; empty = the quantile rule
+OUTLIER_CALIBRATION_QUANTILES = (0.35, 0.50, 0.65, 0.80)   # judgement-sample bands: the first is T's band, the last the single-topic band
+OUTLIER_SAMPLE_PER_CANDIDATE = 100      # posts per band in the co-author judgement sample (outlier_calibration/)
 
 # ---------------------------------------------------------------------------
 # S3 — the two analysts (design §7; agreement protocol = decision D2)

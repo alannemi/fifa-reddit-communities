@@ -97,11 +97,11 @@ $P $S --stage embed --bin 1                          # S1: mpnet embeddings, cac
 python -m cuml.accel $S --stage topics --bin 1       # S2: BERTopic per bin (GPU on Colab; same command without the prefix on CPU)
 $P $S --stage label --bin 1                          # S3a: two-agent cluster labelling (resumable via labels.jsonl)
 #   -> co-author review: results/analysis/bin-1/topics_labelled.csv, report.html -> fill topic_overrides.csv
-$P $S --stage reassign --bin 1 --outlier-threshold T # D3: apply the calibrated T (seconds; see outlier_calibration/)
+$P $S --stage reassign --bin 1                       # D9: re-apply the outlier tiers from the persisted arrays (seconds; bins clustered before D9, or after a quantile change)
 $P $S --stage sentiment                              # S4: data/analysis/sentiment.csv (+ sentiment_validation_sample.csv)
 $P $S --stage collect                                # S5: data/analysis/post_variables.csv (+ .json; topic_uid/topic_name/topic_tone per post),
 #                                                       topic_labels_all_bins.csv (with mean_vader_sentiment), topic_crosswalk.csv (template)
-Rscript code/06-tag-corpus.R && Rscript code/07-validate-analysis.R   # S6 (local): append the 10 columns (v3.0) + 13 check families
+Rscript code/06-tag-corpus.R && Rscript code/07-validate-analysis.R   # S6 (local): append the 15 columns (v3.0) + 13 check families
 $P $S --stage status                                 # one row per bin: state, topics, labelled, review_ready (= bin-N/REVIEW_READY.txt), reassigned
 $P code/08-review-pack.py pack --bin 1   # review_pack.md for the co-authors (after each hand-back); `check --bin 1` validates the
 #                                          filled override files before they go back to Drive (guide: docs/session-08_2026-10-25/01_...)

@@ -146,15 +146,31 @@ def test_frozen_components_in_bertopic():
     rep = M.representative_ids(bt, docs, ids, topics, emb, n=5)
     assert set(rep) == {0, 1, 2} and all(1 <= len(v) <= 5 for v in rep.values())
     near = M.outlier_nearest(bt, emb, topics, ids)
-    assert len(near) == 10 and (near["nearest_topic"] == 0).all()
-    tid, ass, sim = M.apply_outlier_threshold(topics, ids, near, T=0.0)
-    assert (ass[:10] == "reassigned").all() and (tid[:10] == 0).all()
-    tid, ass, sim = M.apply_outlier_threshold(topics, ids, near, T=2.0)
+    assert list(near.columns) == M.NEAREST_COLUMNS and len(near) == 10 and (near["nearest_topic"] == 0).all()
+    assert (near["nearest_topic_2"] != near["nearest_topic"]).all() and (near["similarity_2"] <= near["similarity"]).all()
+    tid, ass, sim, tid2, sim2 = M.apply_outlier_threshold(topics, ids, near, T=0.0)        # one tier (the D3 form)
+    assert (ass[:10] == "reassigned").all() and (tid[:10] == 0).all() and (tid2 == -1).all() and np.isnan(sim2).all()
+    tid, ass, sim, tid2, sim2 = M.apply_outlier_threshold(topics, ids, near, T=2.0)
     assert (ass[:10] == "outlier").all() and (tid[:10] == -1).all() and (ass[10:] == "cluster").all()
-    tid, ass, sim = M.apply_outlier_threshold(topics, ids, near, T=None)
+    tid, ass, sim, tid2, sim2 = M.apply_outlier_threshold(topics, ids, near, T=None)
     assert (ass[:10] == "outlier").all() and not np.isnan(sim[:10]).any()
+    # D9: T and C from the bin's own similarity quantiles; between them a post is dual (nearest + second-nearest topic)
+    T, Cc = M.tier_thresholds(near)
+    s = near["similarity"].to_numpy(dtype=float)
+    assert T == round(float(np.quantile(s, C.OUTLIER_REASSIGN_QUANTILE)), 4) and Cc == round(float(np.quantile(s, C.OUTLIER_SINGLE_QUANTILE)), 4)
+    assert M.tier_thresholds(near, fixed_T=0.1)[0] == 0.1 and M.tier_thresholds(near.iloc[0:0]) == (None, None)
+    tid, ass, sim, tid2, sim2 = M.apply_outlier_threshold(topics, ids, near, T, Cc)
+    n_out, n_dual, n_single = int((ass[:10] == "outlier").sum()), int((ass[:10] == "dual").sum()), int((ass[:10] == "reassigned").sum())
+    assert n_out + n_dual + n_single == 10 and n_single >= 2 and n_dual >= 1 and n_out >= 1, (n_out, n_dual, n_single)
+    by_id = near.set_index("id")
+    for k in range(10):
+        if ass[k] == "dual":
+            assert tid[k] == 0 and tid2[k] == by_id.loc[ids[k], "nearest_topic_2"] and sim2[k] == by_id.loc[ids[k], "similarity_2"]
+        else:
+            assert tid2[k] == -1 and np.isnan(sim2[k])
     tbl = M.calibration_table(near, len(docs))
     assert list(tbl["quantile"]) == list(C.OUTLIER_CALIBRATION_QUANTILES)
+    assert tbl["role"].tolist()[0].startswith("T") and tbl["role"].tolist()[-1].startswith("C") and tbl["role"].tolist()[1] == ""
     # the judgement samples: one per candidate band; the nearest topic's name beside its id (empty until the bin is labelled)
     near2 = pd.DataFrame({"id": [f"o{i}" for i in range(20)], "nearest_topic": [0] * 10 + [1] * 10, "similarity": np.linspace(0.3, 0.9, 20).round(4)})
     tbl2 = M.calibration_table(near2, 100)
@@ -165,8 +181,10 @@ def test_frozen_components_in_bertopic():
         assert all(nm == ("Topic one" if t == 1 else "") for t, nm in zip(x["nearest_topic"], x["nearest_topic_name"]))
     assert all((x["nearest_topic_name"] == "").all() for x in M.calibration_samples(near2, {}, {}, tbl2, n=5).values())
     docs_df = pd.DataFrame({"id": ids, "title": docs, "post_type": "regular", "lang": "en", "num_comments": "3"})
-    tt = M.topic_table(bt, docs_df, topics, tid, rep)
-    assert set(tt["topic_id"]) == {-1, 0, 1, 2} and tt.loc[tt["topic_id"] == 0, "n_cluster"].iloc[0] == 110
+    tt = M.topic_table(bt, docs_df, topics, tid, rep, tid2).set_index("topic_id")
+    assert set(tt.index) == {-1, 0, 1, 2} and tt.loc[0, "n_cluster"] == 110 and tt.loc[0, "n_first"] == 110 + n_dual + n_single
+    assert tt["n_as_second"].sum() == n_dual and (tt["n_total"] == tt["n_first"] + tt["n_as_second"]).all() and tt.loc[0, "n_as_second"] == 0
+    assert tt.drop(index=-1)["n_total"].sum() == tt.drop(index=-1)["n_first"].sum() + n_dual      # a dual post counts once in each topic
 
 
 def test_json_and_validation():
@@ -336,7 +354,8 @@ def test_collect_partial():
         b = an / "bin-1"
         pd.DataFrame({"id": ids[:6], "created_datetime": ["2010-06-01 00:00:00"] * 6, "period_bin": [1] * 6, "post_type": ["regular"] * 6, "lang": ["en"] * 6,
                       "num_comments": ["1"] * 6, "topic_id_raw": ["0", "0", "1", "-1", "-1", ""], "topic_id": ["0", "0", "1", "1", "-1", ""],
-                      "topic_assignment": ["cluster", "cluster", "cluster", "reassigned", "outlier", "not_modelled"], "similarity": ["", "", "", "0.6", "0.2", ""]}).to_csv(b / "documents.csv", index=False)
+                      "topic_id_2": ["", "", "", "0", "", ""], "topic_assignment": ["cluster", "cluster", "cluster", "dual", "outlier", "not_modelled"],
+                      "similarity": ["", "", "", "0.6", "0.2", ""], "similarity_2": ["", "", "", "0.55", "", ""]}).to_csv(b / "documents.csv", index=False)
         pd.DataFrame({"topic_id": [-1, 0, 1], "n_cluster": [2, 2, 1], "n_total": [1, 2, 2], "share": [0.2, 0.4, 0.4], "keywords": ["", "a, b", "c, d"], "representative_ids": ["", "p0", "p2"]}).to_csv(b / "topics.csv", index=False)
         pd.DataFrame({"topic_id": [0, 1], "keywords": ["a, b", "c, d"], "name": ["Zero", "One"], "purpose": ["p", "p"], "emotion_tone": ["excited", "sad"], "tone_category": ["excited", "sad"],
                       "description": ["d", "d"], "inclusion_cues": ["x", "y"], "round_iterations": [1, 2], "agreed": [True, False], "agreement_mode": ["identical", "cap"],
@@ -359,12 +378,19 @@ def test_collect_partial():
         assert pv["post_sentiment"].tolist()[0] == "0.5000" and pv["topic_id_raw"].tolist()[3] == "-1"
         assert pv["topic_name"].tolist()[:6] == ["Zero", "Zero", "One (final)", "One (final)", "", ""] and pv["topic_tone"].tolist()[:4] == ["excited", "excited", "sad", "sad"]
         assert pv["topic_uid"].tolist()[:6] == ["1-0", "1-0", "1-1", "1-1", "", ""]
+        # the dual post (D9): second topic with uid, name, tone and both similarities; empty everywhere else
+        assert pv["topic_assignment"].tolist()[:6] == ["cluster", "cluster", "cluster", "dual", "outlier", "not_modelled"]
+        assert pv["topic_uid_2"].tolist()[:6] == ["", "", "", "1-0", "", ""] and pv["topic_name_2"].tolist()[3] == "Zero" and pv["topic_tone_2"].tolist()[3] == "excited"
+        assert pv["topic_similarity"].tolist()[:6] == ["", "", "", "0.6", "0.2", ""] and pv["topic_similarity_2"].tolist()[:6] == ["", "", "", "0.55", "", ""]
         assert side["bins_complete"] == [1] and side["complete"] is False and side["errors"] == [] and side["n_topics_labelled"] == 2
         lab = pd.read_csv(an / "topic_labels_all_bins.csv", dtype=str, keep_default_na=False)
-        assert list(lab.columns) == T.LABEL_COLUMNS and lab.loc[lab["topic_id"] == "1", "name"].iloc[0] == "One (final)" and lab["n_total"].tolist() == ["2", "2"]
+        assert list(lab.columns) == T.LABEL_COLUMNS and lab.loc[lab["topic_id"] == "1", "name"].iloc[0] == "One (final)"
         assert lab["topic_uid"].tolist() == ["1-0", "1-1"]
-        # the mean VADER score per topic (title score of the topic's posts after reassignment): topic 0 = p0, p1; topic 1 = p2, p3
-        assert lab["mean_vader_sentiment"].tolist() == ["0.0000", "0.0500"] and lab["n_posts_scored"].tolist() == ["2", "2"]
+        # D9 counting: the dual post p3 (first topic 1, second topic 0) counts once in each topic
+        assert lab["n_first"].tolist() == ["2", "2"] and lab["n_as_second"].tolist() == ["1", "0"] and lab["n_total"].tolist() == ["3", "2"]
+        assert lab["share"].tolist() == ["0.6", "0.4"]                     # over the 5 modelled posts; the dual post makes them add up to > 1
+        # the mean VADER score per topic (title score): topic 0 = p0, p1 and p3 as its second topic; topic 1 = p2, p3
+        assert lab["mean_vader_sentiment"].tolist() == ["0.0333", "0.0500"] and lab["n_posts_scored"].tolist() == ["3", "2"]
         st = T.write_status(b)                                                            # the per-bin flag for the review
         assert st["state"] == "labelled" and st["n_topics"] == 2 and st["n_labelled"] == 2 and st["review_ready"] is True and st["n_needs_review"] == 1
         assert (b / "REVIEW_READY.txt").exists() and json.loads((b / "status.json").read_text())["review_ready"] is True
@@ -382,8 +408,11 @@ def test_collect_partial():
         pv = pd.read_csv(ad / "post_variables.csv", dtype=str, keep_default_na=False)
         assert pv["topic_id"].tolist()[:4] == ["0"] * 4 and pv["topic_id_raw"].tolist()[2] == "1" and side["errors"] == []
         assert pv["topic_name"].tolist()[:4] == ["Zero"] * 4 and pv["topic_tone"].tolist()[:4] == ["excited"] * 4
+        # the dual post's second topic merged into its first: it becomes a plain reassignment
+        assert pv["topic_assignment"].tolist()[3] == "reassigned" and pv["topic_uid_2"].tolist()[3] == "" and pv["topic_similarity_2"].tolist()[3] == ""
         lab = pd.read_csv(an / "topic_labels_all_bins.csv", dtype=str, keep_default_na=False)
         assert lab["topic_id"].tolist() == ["0"] and lab["merged_from"].tolist() == ["1"] and lab["n_total"].tolist() == ["4"]
+        assert lab["n_first"].tolist() == ["4"] and lab["n_as_second"].tolist() == ["0"]
         assert lab["mean_vader_sentiment"].tolist() == ["0.0250"] and lab["n_posts_scored"].tolist() == ["4"]
         xw = pd.read_csv(an / "topic_crosswalk.csv", keep_default_na=False)
         assert len(xw) == 2 and xw.loc[xw["topic_id"] == 0, "chapter_theme"].iloc[0] == "Match talk"

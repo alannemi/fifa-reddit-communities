@@ -70,9 +70,11 @@ ORIGINAL_COLS <- c("id","name","title","selftext","author","author_flair_text","
   "subreddit_subscribers","media","preview","year","post_type","lang")
 N_ORIGINAL <- length(ORIGINAL_COLS)                # 42
 # The 8 analysis columns appended by stage S6 (codebook §4.9, in order).
-ANALYSIS_COLS <- c("period_bin", "period_type", "topic_id", "topic_uid", "topic_name", "topic_tone", "topic_assignment",
-                   "post_sentiment", "post_sentiment_full", "post_sentiment_label")   # 10 since 2026-10-25 (D7: no category layer;
-                                                                                      # corpus-wide topic key, label and tone on every post)
+ANALYSIS_COLS <- c("period_bin", "period_type", "topic_id", "topic_uid", "topic_name", "topic_tone",
+                   "topic_uid_2", "topic_name_2", "topic_tone_2", "topic_assignment", "topic_similarity", "topic_similarity_2",
+                   "post_sentiment", "post_sentiment_full", "post_sentiment_label")
+# 15 since 2026-10-25: D7 (no category layer; corpus-wide topic key, label and tone on every post) and D9 (tiered outlier
+# reassignment: a "dual" post carries a second topic — uid, name, tone — and both similarities)
 
 # ---------------------------------------------------------------------------
 # Period bins (design §4).  Mirrored from code/topicmodel/config.py PERIOD_BINS so that R checks stage S0

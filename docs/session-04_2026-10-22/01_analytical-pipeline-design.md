@@ -1,4 +1,4 @@
-# Analytical pipeline design — period-binned topic modelling, two-agent labelling and sentiment (v1.5)
+# Analytical pipeline design — period-binned topic modelling, two-agent labelling and sentiment (v1.6)
 
 **Session 04, 2026-10-22/23 · FIFA Communities chapter, McGill University.**
 Decisions: Alan Nemirovski. Drafting and technical design: Claude. Brief: `00_brief.md`. Template method: the
@@ -29,7 +29,7 @@ pipeline and its code; every post carries its topic's corpus-wide key, agreed la
 `topic_tone`); the topic table carries the mean VADER score of the topic's posts (`mean_vader_sentiment`); the cross-bin
 comparison is a manual crosswalk of topics (§7.7, §9, F42–F44). **D8** — no fixed topic range per bin but a density of 50–75
 raw topics per 10,000 modelled posts, the guard searching the minimum cluster size from a floor of 25 (§6.2). §7.4 and the S3b
-texts of §7.6 are kept as the record of the superseded protocol (`../session-08_2026-10-25/00_colab-run-log.md` §9).
+texts of §7.6 are kept as the record of the superseded protocol (`../session-08_2026-10-25/00_colab-run-log.md` §9). **Version 1.6 (2026-10-25, night)** records decision **D9** (§6.3): tiered outlier reassignment by each bin's similarity quantiles — nearest topic at or above the 80th percentile, nearest plus second-nearest topic (`dual`) from the 35th, outlier below —, a dual post counted once in each of its two topics, five more analysis columns (15; 57 in the data files), and the 50 % gate tolerance for converged bins proposed after bin 3 (§12.2; `../session-08_2026-10-25/00_colab-run-log.md` §13).
 
 ---
 
@@ -199,31 +199,48 @@ Consequence to keep in mind (F44): the interim bins will hold 1,000–2,500 topi
 by the co-authors; the review there is the design's sample plus the flagged topics. Labelling scales linearly (≈ 2 min per 65
 topics on the A100).
 
-### 6.3 Outlier handling (decision D3: thresholded reassignment)
+### 6.3 Outlier handling (decision D3 → D9: tiered reassignment with a second topic)
 
-HDBSCAN leaves posts that sit in no dense region unassigned (37–40 % in the 2010 test). Reassigning them all (the
-session-02 default) gave every post a topic but diluted topic purity; keeping them all as outliers would leave ~40 %
-of posts without a topic or category.
+HDBSCAN leaves posts that sit in no dense region unassigned (34.8 % raw in bin 1, 45.8 % in bin 3). Reassigning them all
+(the session-02 default) gave every post a topic but diluted topic purity; keeping them all as outliers would leave a third
+of the posts without a topic.
 
 * `topic_id_raw` = the HDBSCAN label, saved before anything else (`hdbscan_labels_raw.npy`).
-* Reassignment: `reduce_outliers(documents, topics, strategy="embeddings", embeddings=<768-d>, threshold=T)` — an
-  outlier joins the topic whose embedding (mean of its members) is most similar, **only if** the cosine similarity is
-  ≥ `T`; otherwise it stays `-1`. The similarity of every reassigned post is stored.
-* Choosing `T`: on bin 1 **and** one large interim bin, take the distribution of outlier-to-nearest-topic similarity,
-  evaluate candidate thresholds at its quantiles (e.g. 50th, 65th, 80th), and have a co-author judge a 100-post sample
-  per candidate for whether the post belongs to the topic; the chosen `T` (one value, or one per bin if the
-  distributions differ) is recorded in `config.json` and in §14.
-* `topic_assignment ∈ {cluster, reassigned, outlier, not_modelled}` records how each post got its `topic_id`.
-* Topic sizes are reported both ways: `n_cluster` (HDBSCAN members) and `n_total` (after reassignment); shares and
-  prevalence over time use `n_total`.
+* For every raw outlier the two most similar topics (cosine similarity between the post embedding and the topic
+  embeddings, the mean of the members) and both similarities are stored (`outlier_nearest.csv`).
+* **Decision D9 (author, 2026-10-25, replacing D3's single calibrated `T`).** Two cut points per bin, both quantiles of the
+  bin's own outlier-to-nearest-topic similarity (`OUTLIER_REASSIGN_QUANTILE = 0.35`, `OUTLIER_SINGLE_QUANTILE = 0.80`), so
+  every bin reassigns the same share of its outliers; the values in force are recorded in the bin's `config.json`:
+
+  | similarity to the nearest topic | `topic_assignment` | the post carries |
+  |---|---|---|
+  | at or above the 80th percentile | `reassigned` | its nearest topic |
+  | 35th ≤ … < 80th percentile | `dual` | its nearest topic **and** its second-nearest topic as a second label (`topic_id_2`, `topic_uid_2`, `topic_name_2`, `topic_tone_2`, `similarity_2`) |
+  | below the 35th percentile | `outlier` | nothing (`topic_id = -1`); its nearest topics stay in `outlier_nearest.csv` |
+
+  Why (author): a deliberately conservative floor ("let's be conservative still"), with the second topic recording the
+  ambiguity of the less confident reassignments instead of a hard claim, and a smaller honest residual (bin 1: from 34.8 %
+  raw to about 12 % outliers; bin 3: from 45.8 % to about 16 %). The percentiles are a rank, not a quality level: the coded
+  judgement samples below measure the precision of the admitted bands, and a quantile can be raised afterwards —
+  `--stage reassign` re-applies the tiers in seconds per bin without a refit. Stage S2 applies the tiers itself.
+* **Counting (author, 2026-10-25).** A dual post counts once in each of its two topics: `n_total = n_first + n_as_second`,
+  where `n_first` counts the posts whose first topic it is (cluster + reassigned + dual) and `n_as_second` the dual posts for
+  which it is the second topic; `n_cluster` (HDBSCAN members) stays beside them. Shares are `n_total` over the bin's
+  modelled posts and add up to more than 1 by the dual posts; prevalence over time and the mean VADER score of a topic
+  count a dual post in both of its topics as well.
+* Judgement samples (`outlier_calibration/`): the band table at the 35th, 50th, 65th and 80th percentiles and one 100-post
+  sample per band (the posts just above each cut, with the nearest topic's id, name and keywords; `belongs` for the
+  co-author), on bin 1 and one large bin at least. The first band is the one the floor admits, so it is coded first. The
+  samples validate the quantiles; they are not a prerequisite of the run.
+* `topic_assignment ∈ {cluster, reassigned, dual, outlier, not_modelled}` records how each post got its `topic_id`.
 
 ### 6.4 Outputs per bin (`results/analysis/bin-N/`)
 
 | File | Content |
 |---|---|
 | `umap_5d.npy`, `hdbscan_labels_raw.npy` | the persisted intermediate arrays (replay, §11) |
-| `documents.csv` | `id, created_datetime, period_bin, post_type, lang, topic_id_raw, topic_id, topic_assignment, similarity` (no text; join to the corpus by `id`) |
-| `topics.csv` | `topic_id, n_cluster, n_total, share, keywords, representative_ids, representative_titles, share_match_thread, share_lang_en, mean_comments` |
+| `documents.csv` | `id, created_datetime, period_bin, post_type, lang, num_comments, topic_id_raw, topic_id, topic_id_2, topic_assignment, similarity, similarity_2` (no text; join to the corpus by `id`; the `_2` columns are filled for dual posts, D9) |
+| `topics.csv` | `topic_id, n_cluster, n_first, n_as_second, n_total, share, keywords, representative_ids, representative_titles, share_match_thread, share_lang_en, mean_comments` (D9 counting, §6.3) |
 | `topics_over_time.csv` | `topic_id, period, n_docs, keywords` (weekly / monthly) |
 | `model/` | the BERTopic model in safetensors format (topic embeddings, c-TF-IDF). UMAP and HDBSCAN are **not** saved in this format; the raw labels come from the `.npy` files |
 | `config.json`, `log.txt`, `report.html` | effective settings, guard trials, backend, versions; run log; charts and topic table for review |
@@ -507,20 +524,22 @@ else.
 ### 9.1 S5 collect (after the reviews and overrides)
 
 `data/analysis/post_variables.csv`, one row per post (1,302,021): `id, period_bin, period_type, topic_id, topic_uid,
-topic_name, topic_tone, topic_assignment, post_sentiment, post_sentiment_full, post_sentiment_label` (D7: the topic's
-corpus-wide key, agreed name and controlled tone on every post that has a topic; empty for outliers and unmodelled posts),
-plus the audit column `topic_id_raw` that is **not** written to the master. A sidecar `post_variables.json` records the
+topic_name, topic_tone, topic_uid_2, topic_name_2, topic_tone_2, topic_assignment, topic_similarity, topic_similarity_2,
+post_sentiment, post_sentiment_full, post_sentiment_label` (D7: the topic's corpus-wide key, agreed name and controlled
+tone on every post that has a topic; D9: the second topic of a dual post in the same form, and the similarities to the
+nearest topic (reassigned, dual and outlier posts) and to the second one (dual posts); empty otherwise), plus the audit
+column `topic_id_raw` that is **not** written to the master. A sidecar `post_variables.json` records the
 labels version (a hash of the labelled topics), the run ids and software versions. Checks: every corpus id present
 once; ids valid for their bin; scores within range.
 
 ### 9.2 S6 write-back (local, R; gated on the S3a review)
 
 `code/07-tag-corpus.R` left-joins `post_variables.csv` by `id` into `data/soccer_data.clean.csv` and the 17 yearly
-files, appending the **10 analysis columns** after the existing 42 (which stay byte-identical), with the same
+files, appending the **15 analysis columns** after the existing 42 (which stay byte-identical), with the same
 `readr::write_csv(na = "")` call as the cleaning pipeline. Side files are not analysed and keep their 43 columns.
 `code/08-validate-analysis.R` checks: row counts unchanged; every post has one bin consistent with its date; bin sizes
 sum to the corpus; `topic_id` exists in its bin's table; `topic_uid`, `topic_name` and `topic_tone` present iff the post has a
-topic; `topic_assignment` consistent with `topic_id`;
+topic; the second topic (`topic_uid_2`, `topic_name_2`, `topic_tone_2`, `topic_similarity_2`) present iff `topic_assignment = dual` and different from the first; `topic_assignment` consistent with `topic_id`;
 sentiment within [−1, 1] and labels consistent with the thresholds; the original 42 columns unchanged (hash); master
 and `post_variables.csv` identical on the new columns.
 
@@ -598,7 +617,9 @@ the effective settings, guard trials, backend, CUDA/cuML versions, `pip freeze`,
    --keep-umap`. **First attempt, bin 4 (2026-10-25): guard 820 → 2 topics, 547 → 74 topics with 56.2 % raw outliers — failed on
    the outlier share; decision pending** (`../session-08_2026-10-25/00_colab-run-log.md` §8). **Bin 3 under D8 (2026-10-25,
    cell 3.5): 474 topics at `min_cluster_size` 25, inside the target 408–612, 45.8 % raw outliers — failed on the outlier share
-   by 0.8 points; decision pending** (run log §12: grid, or a 50 % tolerance for bins whose guard converged). A refit with
+   by 0.8 points** (run log §12). Tolerance since D9 (2026-10-25): the raw share only sizes the dual and outlier tiers, so the
+   notebook's gate constant `OUTLIER_GATE` is **0.50 for a bin whose guard converged** — proposed by the assistant after bin 3,
+   pending the author's confirmation (§14). A refit with
    `--force` moves the previous clustering's labels, review files and calibration samples to `results/stale/bin-N_<timestamp>/`
    (2026-10-25; nothing deleted), since the label stage resumes by topic id and a refit renumbers the topics.
 3. **Outlier threshold.** `T` from the similarity quantiles + the 100-post human check, on bin 1 and the large bin.
@@ -674,6 +695,8 @@ the effective settings, guard trials, backend, CUDA/cuML versions, `pip freeze`,
 | **2026-10-25 D7** | The unit of analysis | **The individual BERTopic topic, labelled by the two analysts (S3a). The taxonomy stage S3b (D5, D6, N13) is removed from the pipeline and its code**; every post carries `topic_uid` (`<bin>-<topic_id>`), `topic_name` and `topic_tone`; the topic table carries `mean_vader_sentiment` and `n_posts_scored`; the cross-bin comparison is a manual topic crosswalk (`topic_crosswalk.csv`); the one review file is `topic_overrides.csv`; the analysis columns are 10 (52 in the data files); the bin-1 taxonomy outputs of the day were removed from the live folder (git history keeps them) | author's decision after the first Colab run (`../session-08_2026-10-25/00_colab-run-log.md` §9): the chapter wants the fine-grained topics, not an aggregation; alternatives declined: keeping the taxonomy code switched off; VADER-only topic sentiment (the analysts' tone stays, the VADER mean is added) |
 | **2026-10-25 D8** | Topic granularity | **No fixed topic range per bin: 50–75 raw topics per 10,000 modelled posts (`TOPICS_PER_10K`), the guard searching `min_cluster_size` from the floor of 25** (§6.2); the HDBSCAN settings may be set per period type (`config.setting()`) from the grid diagnostic | author's decision: topics should emerge from the volume of discussion; the fixed 50–100 range served the removed taxonomy stage |
 | **2026-10-25 H1–H7** | Code harmonization (session 07) | **H1** the session-02 exploratory tool removed entirely; **H2** flat, purpose-named Drive layout under `MyDrive/fifa-communities/`; **H3** Drive as the root for everything that persists, code cloned on the Colab machine, CSVs copied locally, no symlinks; **H4** shared R helper file `code/R/pipeline-utils.R`; **H5** scripts renumbered 06→05, 06b→05b, 07→06, 08→07; **H6** stale tracked copies under `data/` untracked; **H7** `03-data-validation.R` accepts the v3.0 spec now | `../session-07_2026-10-25/00_approvals.md` (defaults and flags F31–F38 there); no analytical change |
+| **2026-10-25 D9** | Outliers (replaces D3) | **Tiered reassignment by the bin's own similarity quantiles: ≥ 80th percentile → the nearest topic; 35th–80th → the nearest topic and the second-nearest as a second label (`dual`: `topic_uid_2`, `topic_name_2`, `topic_tone_2`, both similarities); < 35th → outlier. A dual post counts once in each of its two topics (`n_total = n_first + n_as_second`; shares may add up to more than 1). Applied by S2, re-applied by `reassign`; 15 analysis columns (57 in the data files). The 35th percentile stands until the coded samples show the admitted band's precision** | author: a conservative floor with a recorded hedge instead of a residual of a third of the posts; coverage comparable across bins (§6.3) |
+| 2026-10-25 gate tolerance | Large-bin gate (§12.2) | Raw outlier share ≤ 50 % for a bin whose guard converged (`OUTLIER_GATE` in the notebook; the design's 45 % stays the reference) — **proposed by the assistant after bin 3 (474 topics in target, 45.8 %), pending the author's confirmation** | under D9 the raw share only sizes the dual and outlier tiers |
 
 ## 15. Brief versus design
 

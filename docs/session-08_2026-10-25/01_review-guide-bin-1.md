@@ -27,7 +27,7 @@ Repository (GitHub `alannemi/fifa-reddit-communities`, or the folder Alan shares
 | `topics.csv`, `topics_labelled.csv` | The topics (sizes, keywords, representative titles) and their agreed labels | no |
 | `labels/topic_<id>.json` | The full transcript of one topic's labelling debate (only if you want to see every turn) | no |
 | **`topic_overrides.csv`** | your corrections: rename or merge topics | **yes** |
-| `outlier_calibration/sample_T0.5428.csv`, `sample_T0.5789.csv`, `sample_T0.6173.csv` | the outlier judgement samples (§4) | **yes** |
+| `outlier_calibration/sample_T<value>.csv` (four files, one per similarity band) | the outlier judgement samples (§4) | **yes** |
 
 The pipeline runs on Google Drive (`MyDrive/fifa-communities/results/bin-1/`, the same files). Alan uploads your filled files
 there; you do not need Drive access.
@@ -69,23 +69,26 @@ chain (A → B, B → C) is allowed and resolves to C. A merged topic cannot als
 
 ## 4. The outlier judgement samples (`outlier_calibration/`), same sitting
 
-3,414 posts of bin 1 fit no cluster. The design re-attaches an outlier to its nearest topic when the similarity between them
-is at least a threshold `T`, to be chosen from three candidates. Each `sample_T<value>.csv` holds 100 outlier posts whose
-similarity lies just above that candidate, with the nearest topic's id, name and keywords:
+3,414 posts of bin 1 fit no cluster. Since decision D9 (2026-10-25) the pipeline sorts them by their similarity to the nearest
+topic, measured against the bin's own distribution: a post at or above the **80th percentile** joins its nearest topic; between
+the **35th and the 80th** it joins its nearest topic *and* carries the second-nearest topic as a second label (`dual`); below
+the 35th it stays an outlier. Your judgements tell us how often the admitted posts really belong: each `sample_T<value>.csv`
+holds 100 outlier posts whose similarity lies just above one cut (35th, 50th, 65th, 80th percentile — four files; the
+`calibration_table.csv` beside them names which file is the floor's band), with the nearest topic's id, name and keywords:
 
 | Column | Meaning |
 |---|---|
 | `id`, `title` | the post |
 | `nearest_topic`, `nearest_topic_name`, `nearest_topic_keywords` | the topic it would join: its id, its agreed name (as in the review pack) and its keywords |
-| `similarity`, `candidate_threshold`, `band_upper` | where the post sits relative to the candidate threshold |
+| `similarity`, `candidate_threshold`, `band_upper` | where the post sits relative to the cut |
 | **`belongs`** | your judgement: `yes` if the post belongs with that topic, `no` if not |
 | `notes` | optional |
 
-Fill `belongs` for all 100 rows of all three files (300 judgements, about an hour). The threshold is set where the yes answers
-clearly dominate; the same files exist for the large bin 4 and both are needed before `T` is fixed. Two coders would allow an
-agreement figure for the codebook. The names are the analysts' agreed names at the time the files were written; if you finish
-the topic file (§3) first, Alan refreshes them with your renames (`python code/08-review-pack.py pack --bin 1` rewrites the
-name column and keeps everything you filled in).
+Start with the lowest band (the 35th percentile file): it is the one the rule admits last, so its "yes" share decides whether
+the floor stays or moves up. Then the other three (400 judgements in all, about an hour and a quarter). The same files exist for
+the large bins; bin 1 and one large bin are needed. Two coders would allow an agreement figure for the codebook. The names are
+the analysts' agreed names at the time the files were written; if you finish the topic file (§3) first, Alan refreshes them with
+your renames (`python code/08-review-pack.py pack --bin 1` rewrites the name column and keeps everything you filled in).
 
 ## 5. Checking and handing over
 
@@ -97,7 +100,7 @@ name column and keeps everything you filled in).
    the collect stage applies the renames and merges to every post and to the topic table, and records what it applied in
    `data/analysis/post_variables.json`. Nothing else has to re-run.
 
-Time: one to two hours for the 65 topics; about an hour for the outlier samples.
+Time: one to two hours for the 65 topics; about an hour and a quarter for the outlier samples.
 
 ## 6. The larger bins
 

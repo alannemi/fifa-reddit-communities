@@ -23,8 +23,10 @@ STAGES (design §3)                                            reads -> writes  
   grid        diagnostic of a failed large-bin gate (§12.2):  bin-N/umap_5d.npy -> bin-N/hdbscan_grid.csv (one row per HDBSCAN
               HDBSCAN over config.HDBSCAN_GRID on the cached   setting: topics, outlier share, largest cluster); the author chooses
               UMAP array (GPU under cuml.accel)               the setting, then `topics --force --keep-umap`
-  reassign    D3 thresholded outlier reassignment             bin-N/ (+ --outlier-threshold T or config.OUTLIER_THRESHOLD) -> rewrites
-                                                              documents.csv, topics.csv, topics_over_time.csv, report.html
+  reassign    D9 tiered outlier reassignment, re-applied      bin-N/ (topic_embeddings.npy, cached embeddings; the quantiles of
+              from the persisted arrays (no refit)            config.OUTLIER_*_QUANTILE or --outlier-threshold T) -> rewrites documents.csv,
+                                                              topics.csv, topics_over_time.csv, outlier_nearest.csv, report.html; S2 applies
+                                                              the same tiers itself, so this stage serves bins clustered before D9 and changes
   label       S3a two-agent cluster labelling (resumable)     bin-N/ -> labels/topic_<id>.json, labels.jsonl, topics_labelled.csv,
                                                               topic_overrides.csv (template)   -> co-author review
   sentiment   S4 VADER per post (title; title + body)         yearly CSVs -> <tables>/sentiment.csv (+ validation sample)
@@ -34,7 +36,7 @@ STAGES (design §3)                                            reads -> writes  
   report      per-bin report.html (re-render)                 bin-N/ -> report.html
   status      where every bin stands (no --bin)               bin-N/status.json (written after topics/reassign/label) -> a table;
                                                               bin-N/REVIEW_READY.txt appears when every topic of a bin is labelled
-S6 (append the eight columns to the master and yearly files) is code/06-tag-corpus.R + code/07-validate-analysis.R.
+S6 (append the 15 analysis columns to the master and yearly files) is code/06-tag-corpus.R + code/07-validate-analysis.R.
 
 HOW TO RUN (repository root; local .venv, or Colab through the notebook)
 ------------------------------------------------------------------------
@@ -236,17 +238,14 @@ def stage_topics(args, paths: Paths, b: int):
     rep = M.representative_ids(bt, modelled["document"].tolist(), ids, topics_raw, emb)
     nearest = M.outlier_nearest(bt, emb, topics_raw, ids)
     nearest.to_csv(bdir / "outlier_nearest.csv", index=False)
-    calib = M.calibration_table(nearest, len(modelled))
-    cdir = bdir / "outlier_calibration"; cdir.mkdir(exist_ok=True)
-    calib.to_csv(cdir / "calibration_table.csv", index=False)
     kw_of = {t: ", ".join(w for w, _ in (bt.get_topic(t) or [])[:C.SAMPLE_KEYWORDS]) for t in set(topics_raw.tolist()) - {-1}}
-    titles = dict(zip(modelled["id"].astype(str), modelled["title"]))
-    for T, samp in M.calibration_samples(nearest, titles, kw_of, calib).items():
-        samp.to_csv(cdir / f"sample_T{T:.4f}.csv", index=False)
+    calib = write_calibration(bdir, nearest, modelled, kw_of, names_of={})
 
-    T = M.resolve_threshold(b, args.outlier_threshold)
-    topic_id, assignment, sim = M.apply_outlier_threshold(topics_raw, ids, nearest, T)
-    write_bin_tables(bdir, bt, docs, modelled, topics_raw, topic_id, assignment, sim, rep, info["period_type"])
+    # D9: the tiers from the bin's own similarity quantiles (a fixed --outlier-threshold / config.OUTLIER_THRESHOLD replaces T)
+    fixed_T = M.resolve_threshold(b, args.outlier_threshold)
+    T, Cc = M.tier_thresholds(nearest, fixed_T=fixed_T)
+    topic_id, assignment, sim, topic_id_2, sim_2 = M.apply_outlier_threshold(topics_raw, ids, nearest, T, Cc)
+    write_bin_tables(bdir, bt, docs, modelled, topics_raw, topic_id, assignment, sim, rep, info["period_type"], topic_id_2, sim_2)
     M.save_model(bt, bdir / "model", args.embedding_model)
 
     meta = {"period_bin": b, "period_type": info["period_type"], "start": str(info["start"]), "end": str(info["end"]),
@@ -254,31 +253,61 @@ def stage_topics(args, paths: Paths, b: int):
             "debug_max_docs": args.max_docs or None, "embedding_model": args.embedding_model, "device": device, "backend": backend,
             "hdbscan": M.hdbscan_settings(info["period_type"]),
             "guard": {k: v for k, v in guard.items() if k != "labels"}, "n_topics_raw": int(M.n_topics_of(topics_raw)),
-            "outlier_share_raw": round(float((topics_raw == -1).mean()), 4), "outlier_threshold": T,
-            "outlier_share_final": round(float((topic_id == -1).mean()), 4), "n_reassigned": int((assignment == "reassigned").sum()),
-            "calibration": calib.to_dict(orient="records"), "elapsed_min": round((time.time() - t0) / 60, 1),
+            "outlier_share_raw": round(float((topics_raw == -1).mean()), 4),
+            **tier_meta(T, Cc, assignment, topic_id, fixed=fixed_T is not None),
+            "calibration": calib, "elapsed_min": round((time.time() - t0) / 60, 1),
             "run_at": dt.datetime.now().isoformat(timespec="seconds"), "versions": versions(), "prompts": P.all_prompts(),
             "config": C.effective_settings()}
     (bdir / "config.json").write_text(json.dumps({"topics": meta}, indent=1, default=str), encoding="utf-8")
     render_report(args, paths, b)
     tagging.write_status(bdir)
-    log.info("topics: bin %d done in %.1f min — %d topics, %.1f %% raw outliers, T=%s -> %s", b, (time.time() - t0) / 60,
-             meta["n_topics_raw"], 100 * meta["outlier_share_raw"], T, bdir)
+    log.info("topics: bin %d done in %.1f min — %d topics, %.1f %% raw outliers; tiers T=%s C=%s -> %d reassigned, %d dual, %.1f %% outliers left -> %s",
+             b, (time.time() - t0) / 60, meta["n_topics_raw"], 100 * meta["outlier_share_raw"], T, Cc, meta["n_reassigned"], meta["n_dual"],
+             100 * meta["outlier_share_final"], bdir)
 
 
-def write_bin_tables(bdir, bt, docs, modelled, topics_raw, topic_id, assignment, sim, rep, period_type):
-    """documents.csv (every post of the bin), topics.csv, topics_over_time.csv — the files that depend on T (R4)."""
+def write_bin_tables(bdir, bt, docs, modelled, topics_raw, topic_id, assignment, sim, rep, period_type, topic_id_2=None, sim_2=None):
+    """documents.csv (every post of the bin), topics.csv, topics_over_time.csv — the files that depend on the tiers (R4, D9).
+    topic_id_2 / similarity_2 are filled for dual posts only (-1 / empty otherwise)."""
+    if topic_id_2 is None:
+        topic_id_2 = np.full(len(modelled), -1); sim_2 = np.full(len(modelled), np.nan)
     out = docs[["id", "created_datetime", "period_bin", "post_type", "lang", "num_comments", "too_short"]].copy()
-    m = pd.DataFrame({"id": modelled["id"].to_numpy(), "topic_id_raw": topics_raw, "topic_id": topic_id,
-                      "topic_assignment": assignment, "similarity": np.round(sim, 4)})
+    m = pd.DataFrame({"id": modelled["id"].to_numpy(), "topic_id_raw": topics_raw, "topic_id": topic_id, "topic_id_2": topic_id_2,
+                      "topic_assignment": assignment, "similarity": np.round(sim, 4), "similarity_2": np.round(sim_2, 4)})
     out = out.merge(m, on="id", how="left")
     out["topic_assignment"] = out["topic_assignment"].fillna("not_modelled")
     for c in ("topic_id_raw", "topic_id"):
         out[c] = out[c].map(lambda x: "" if pd.isna(x) else str(int(x)))
-    out["similarity"] = out["similarity"].map(lambda x: "" if pd.isna(x) else f"{x:.4f}")
+    out["topic_id_2"] = out["topic_id_2"].map(lambda x: "" if pd.isna(x) or int(x) == -1 else str(int(x)))
+    for c in ("similarity", "similarity_2"):
+        out[c] = out[c].map(lambda x: "" if pd.isna(x) else f"{x:.4f}")
     out.drop(columns=["too_short"]).to_csv(bdir / "documents.csv", index=False)
-    M.topic_table(bt, modelled, topics_raw, topic_id, rep).to_csv(bdir / "topics.csv", index=False)
-    M.topics_over_time(bt, modelled, topic_id, period_type).to_csv(bdir / "topics_over_time.csv", index=False)
+    M.topic_table(bt, modelled, topics_raw, topic_id, rep, topic_id_2).to_csv(bdir / "topics.csv", index=False)
+    M.topics_over_time(bt, modelled, topic_id, period_type, topic_id_2).to_csv(bdir / "topics_over_time.csv", index=False)
+
+
+def write_calibration(bdir, nearest, modelled, kw_of, names_of) -> dict:
+    """outlier_calibration/: the band table and one 100-post judgement sample per band (design §6.3). An existing sample
+    file is never overwritten — a co-author may have coded it; the nearest topic's name is written in where labels exist."""
+    cdir = bdir / "outlier_calibration"; cdir.mkdir(exist_ok=True)
+    calib = M.calibration_table(nearest, len(modelled))
+    calib.to_csv(cdir / "calibration_table.csv", index=False)
+    titles = dict(zip(modelled["id"].astype(str), modelled["title"]))
+    n_new = 0
+    for T, samp in M.calibration_samples(nearest, titles, kw_of, calib, names_of=names_of).items():
+        p = cdir / f"sample_T{T:.4f}.csv"
+        if not p.exists():
+            samp.to_csv(p, index=False); n_new += 1
+    log.info("calibration: %d band(s), %d new sample file(s) in %s", len(calib), n_new, cdir)
+    return calib.to_dict(orient="records")
+
+
+def tier_meta(T, Cc, assignment, topic_id, fixed: bool) -> dict:
+    """The D9 tiers in force for config.json."""
+    return {"outlier_threshold": T, "outlier_quantile": None if fixed else C.OUTLIER_REASSIGN_QUANTILE,
+            "single_threshold": Cc, "single_quantile": C.OUTLIER_SINGLE_QUANTILE,
+            "n_reassigned": int((assignment == "reassigned").sum()), "n_dual": int((assignment == "dual").sum()),
+            "outlier_share_final": round(float((topic_id == -1).mean()), 4)}
 
 
 # ---------------------------------------------------------------------------
@@ -306,13 +335,16 @@ def stage_grid(args, paths: Paths, b: int):
 
 
 def stage_reassign(args, paths: Paths, b: int):
+    """Apply the D9 tiers (again) from the persisted arrays — no refit, seconds to a minute per bin: for bins clustered
+    before D9 (one nearest topic on file) and whenever a quantile or a fixed threshold changes. Recomputes the two nearest
+    topics from topic_embeddings.npy and the cached post embeddings, rewrites documents.csv, topics.csv,
+    topics_over_time.csv and the report, adds the missing calibration samples; never touches topic_id_raw, keywords or labels."""
     bdir = paths.bin_dir(b)
-    cfg = read_config(bdir)
     if not (bdir / "documents.csv").exists():
         raise SystemExit(f"bin {b}: run --stage topics first")
-    T = M.resolve_threshold(b, args.outlier_threshold)
-    if T is None:
-        raise SystemExit("reassign needs --outlier-threshold T or config.OUTLIER_THRESHOLD")
+    if not (bdir / "topic_embeddings.npy").exists():
+        raise SystemExit(f"bin {b}: topic_embeddings.npy missing — re-run --stage topics --force --keep-umap")
+    t0 = time.time()
     device = embed.get_device(args.device)
     # the document set is whatever --stage topics modelled (documents.csv), so no --max-docs is needed here
     prev = pd.read_csv(bdir / "documents.csv", dtype=str, keep_default_na=False)
@@ -324,33 +356,27 @@ def stage_reassign(args, paths: Paths, b: int):
         raise SystemExit("reassign: documents.csv does not match the bin's documents (corpus changed since --stage topics?)")
     raw = prev_mod.set_index("id").loc[modelled["id"], "topic_id_raw"].astype(int).to_numpy()
     ids = modelled["id"].to_numpy().astype(str)
-    nearest = pd.read_csv(bdir / "outlier_nearest.csv", dtype={"id": str})
-    topic_id, assignment, sim = M.apply_outlier_threshold(raw, ids, nearest, T)
+    emb = embed.embeddings_for(modelled, full, args.embedding_model, device)                  # cache hit
+    nearest = M.outlier_nearest_from(np.load(bdir / "topic_embeddings.npy"), emb, raw, ids)   # the two nearest topics
+    nearest.to_csv(bdir / "outlier_nearest.csv", index=False)
+    old_topics = pd.read_csv(bdir / "topics.csv", dtype=str, keep_default_na=False)
+    kw_of = {int(r["topic_id"]): ", ".join(r["keywords"].split(", ")[:C.SAMPLE_KEYWORDS]) for _, r in old_topics.iterrows() if r["topic_id"] != "-1"}
+    calib = write_calibration(bdir, nearest, modelled, kw_of, names_of=tagging.topic_names(bdir))
+    fixed_T = M.resolve_threshold(b, args.outlier_threshold)
+    T, Cc = M.tier_thresholds(nearest, fixed_T=fixed_T)
+    topic_id, assignment, sim, topic_id_2, sim_2 = M.apply_outlier_threshold(raw, ids, nearest, T, Cc)
     bt = M.load_model(bdir / "model")
     bt.embedding_model = embed.load_embedding_model(args.embedding_model, device)
-    old_topics = pd.read_csv(bdir / "topics.csv", dtype=str, keep_default_na=False)
     rep = {int(r["topic_id"]): [x for x in r["representative_ids"].split("|") if x] for _, r in old_topics.iterrows() if r["topic_id"] != "-1"}
-    write_bin_tables(bdir, bt, docs, modelled, raw, topic_id, assignment, sim, rep, BINS.bin_info(b)["period_type"])
-    update_config(bdir, "reassign", {"outlier_threshold": T, "n_reassigned": int((assignment == "reassigned").sum()),
-                                     "outlier_share_final": round(float((topic_id == -1).mean()), 4),
-                                     "run_at": dt.datetime.now().isoformat(timespec="seconds")})
+    write_bin_tables(bdir, bt, docs, modelled, raw, topic_id, assignment, sim, rep, BINS.bin_info(b)["period_type"], topic_id_2, sim_2)
+    meta = {**tier_meta(T, Cc, assignment, topic_id, fixed=fixed_T is not None), "calibration": calib,
+            "elapsed_min": round((time.time() - t0) / 60, 1), "run_at": dt.datetime.now().isoformat(timespec="seconds")}
+    update_config(bdir, "reassign", meta)
+    tagging.annotate_calibration_samples(bdir)
+    log.info("reassign: bin %d — T=%s C=%s: %d reassigned, %d dual, %.1f %% outliers left (raw %.1f %%)", b, T, Cc, meta["n_reassigned"],
+             meta["n_dual"], 100 * meta["outlier_share_final"], 100 * float((raw == -1).mean()))
     render_report(args, paths, b)
     tagging.write_status(bdir)
-    log.info("reassign: bin %d at T=%.4f -> %d reassigned, %.1f %% outliers remain", b, T,
-             int((assignment == "reassigned").sum()), 100 * float((topic_id == -1).mean()))
-
-
-# ---------------------------------------------------------------------------
-# S3a
-# ---------------------------------------------------------------------------
-_LLM = None
-
-
-def get_llm(args):
-    global _LLM
-    if _LLM is None:
-        _LLM = G.LLM(args.llm, embed.get_device(args.device), sampling=args.sampling)
-    return _LLM
 
 
 def stage_label(args, paths: Paths, b: int):
@@ -409,14 +435,21 @@ def render_report(args, paths: Paths, b: int):
         docs = pd.read_csv(bdir / "documents.csv", dtype=str, keep_default_na=False)
         sent_path = paths.analysis_data / "sentiment.csv"
         if sent_path.exists():
-            sd = pd.read_csv(sent_path, dtype={"id": str}, keep_default_na=False).merge(docs[["id", "topic_id"]], on="id")
+            pairs = docs[["id", "topic_id"]]                       # a dual post (D9) belongs to both of its topics
+            if "topic_id_2" in docs.columns:
+                dual = docs[docs["topic_id_2"] != ""][["id", "topic_id_2"]].rename(columns={"topic_id_2": "topic_id"})
+                pairs = pd.concat([pairs, dual], ignore_index=True)
+            sd = pd.read_csv(sent_path, dtype={"id": str}, keep_default_na=False).merge(pairs, on="id")
             sd = sd[sd["topic_id"] != ""]; sd["topic_id"] = sd["topic_id"].astype(int)
             st = sd.groupby("topic_id").agg(n_docs=("id", "size"), mean_compound=("post_sentiment", "mean")).reset_index()
         else:
             st = pd.DataFrame({"topic_id": t["topic_id"], "n_docs": t["n_total"], "mean_compound": 0.0})
         cfg = read_config(bdir).get("topics", {})
         meta = {k: cfg.get(k) for k in ("period_bin", "period_type", "start", "end", "n_documents", "n_modelled", "n_topics_raw",
-                                         "outlier_share_raw", "outlier_threshold", "outlier_share_final", "embedding_model", "backend")}
+                                         "outlier_share_raw", "outlier_threshold", "single_threshold", "n_dual", "outlier_share_final",
+                                         "embedding_model", "backend")}
+        if "reassign" in read_config(bdir):                       # the tiers last applied
+            meta.update({k: read_config(bdir)["reassign"].get(k) for k in ("outlier_threshold", "single_threshold", "n_dual", "outlier_share_final")})
         meta["run_name"] = f"bin-{b}"
         info = BINS.bin_info(b)
         markers = {"kick-off": C.WORLD_CUPS[info["world_cup"]][0], "final": C.WORLD_CUPS[info["world_cup"]][1]} if info["world_cup"] else None
@@ -434,7 +467,7 @@ def main():
     p.add_argument("--llm", default=C.LLM_MODEL); p.add_argument("--sampling", default="seeded" if C.LLM_SAMPLING_SEEDED else "greedy", choices=["greedy", "seeded"])
     p.add_argument("--max-docs", type=int, default=0, help="mechanics test on a subsample of the bin (disables the topic-count guard)")
     p.add_argument("--max-topics", type=int, default=0, help="label only the N largest topics (smoke tests)")
-    p.add_argument("--outlier-threshold", type=float, default=None)
+    p.add_argument("--outlier-threshold", type=float, default=None, help="fixed reassignment floor T replacing the quantile rule (tests, dry runs)")
     p.add_argument("--years", type=int, nargs="*", help="sentiment: restrict to these years")
     p.add_argument("--out-root", default=None, help="dry runs: write <PATH>/results/analysis and <PATH>/data/analysis (input and caches unchanged)")
     p.add_argument("--allow-partial", action="store_true"); p.add_argument("--force", action="store_true")

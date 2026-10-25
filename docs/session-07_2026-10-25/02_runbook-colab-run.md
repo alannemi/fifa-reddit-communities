@@ -64,15 +64,18 @@ the Google Drive connector (authorised 2026-10-25).
 **Decisions recorded (design §14):** greedy decoding kept, the seeded comparison dropped (2026-10-25); the D2 name + tone
 refinement is moot (0 % flagged). **Done for bin 1 on 2026-10-25** (`../session-08_2026-10-25/00_colab-run-log.md` §3).
 
-## 5. Outlier threshold `T` — gate 3 (§12.3)
-`results/bin-1/outlier_calibration/calibration_table.csv` lists the candidate thresholds (50th / 65th / 80th percentile of
-outlier-to-nearest-topic similarity); `sample_T<value>.csv` gives 100 posts per candidate with the nearest topic's id, name
-(`nearest_topic_name`, written in by the label stage and refreshed by `08-review-pack.py pack`) and keywords; a co-author
-fills `belongs` (yes/no). Repeat on the large bin of step 7 before fixing `T`. Then set
-`OUTLIER_THRESHOLD = {"default": T}` (or per bin) in `code/topicmodel/config.py`, commit, and run
-`--stage reassign --bin N --outlier-threshold T` (cell 3.4; seconds per bin; rewrites sizes, prevalence and the report,
-never `topic_id_raw`, keywords or labels).
-**Decision to record:** `T` (one value or per bin), the co-author agreement on the samples.
+## 5. Outlier tiers — decision D9 (2026-10-25), formerly gate 3 (§12.3)
+Since D9 the topics stage applies the tiers itself: an outlier at or above the bin's **35th percentile** of nearest-topic similarity
+joins its nearest topic; below the **80th percentile** it also carries the second-nearest topic (`topic_assignment = dual`; a dual
+post counts once in each of its two topics); below the 35th it stays an outlier. Bins clustered before D9 (1 and 3) get the tiers
+through cell 3.4 (`--stage reassign`, seconds per bin, no refit; `topic_id_raw`, keywords and labels never change); cell 3.5 does
+the same inside its loop. `results/bin-N/outlier_calibration/calibration_table.csv` lists the four bands (35th / 50th / 65th /
+80th percentile; `role` marks the floor T and the single-topic floor C) and `sample_T<value>.csv` gives 100 posts per band with
+the nearest topic's id, name (`nearest_topic_name`, written in once the bin is labelled; `08-review-pack.py pack` refreshes it)
+and keywords; a co-author fills `belongs` (yes/no), **the first band first** (it is the one the floor admits), on bin 1 and one
+large bin. If a band proves poor, raise `OUTLIER_REASSIGN_QUANTILE` in `code/topicmodel/config.py`, commit, and re-run cell 3.4
+with `FORCE_ALL = True` for every bin (then `collect` again).
+**Decision to record:** the quantiles confirmed or changed, the co-authors' precision per band.
 
 ## 6. Co-author review per bin (one file since D7)
 `results/analysis/bin-N/topic_overrides.csv`: `final_name` renames a topic, `merge_into` folds it into another topic, `notes`
@@ -87,7 +90,7 @@ F44): a full read is not feasible there — the design's sample (20 topics again
 is the review; the author decides whether a larger sample is needed.
 
 ## 7. Large-bin gate — gate 2 (§12.2): bin 4 (331k posts) or bin 6 (306k)
-Cell 3.3 with `GATE_BIN = 4`: raw outlier share ≤ 45 %, guard converged (to the density target, within six trials), UMAP +
+Cell 3.3 with `GATE_BIN = 4`: raw outlier share ≤ `OUTLIER_GATE` (0.45 in the design; 0.50 for a bin whose guard converged, proposed after bin 3 and pending the author's confirmation), guard converged (to the density target, within six trials), UMAP +
 HDBSCAN minutes on the GPU (≈ 1 h on CPU would mean the accelerator is off); then the labelling (≈ 1 h for ≈ 2,000 topics on the
 A100, resumable).
 **First attempt (2026-10-25, under the old 50–100 range):** 331,216 posts, guard 820 → 2 topics, 547 → 74 topics, **56.2 %
@@ -104,14 +107,14 @@ and a refit renumbers the topics (safeguard of 2026-10-25).
 ## 8. Bins 2–9 — one bin at a time, review as you go
 Cell 3.5 runs the tournament bins first (3, 5, 7, 9 — small, minutes to label each), then the interim bins (2, 4, 6, 8 — about
 an hour of labelling each; author's order, 2026-10-25), and finishes each bin before starting the next: embed → topics (a bin clustered before D8 is refitted on its cached UMAP
-array) → the gate (raw outliers ≤ 45 %, guard converged; **the loop stops at the first bin that fails** — cell 3.3b's grid with
+array) → the gate (raw outliers ≤ `OUTLIER_GATE`, guard converged; **the loop stops at the first bin that fails** — cell 3.3b's grid with
 `GATE_BIN = N`, the author's setting, then re-run 3.5: finished bins are skipped; first run, 2026-10-25: bin 3 stopped the loop
 at 45.8 % with 474 topics inside its target — decision pending, `../session-08_2026-10-25/00_colab-run-log.md` §12) → label
 (resumable) → `review_pack.md` →
 a per-bin hand-back zip in `handback/` → the flag **`results/bin-N/REVIEW_READY.txt`** on Drive (written by the pipeline when
 every topic of the bin is labelled; `status.json` beside it holds the numbers) and the log line "bin N READY FOR REVIEW".
 `--stage status` (cell 3.6, or locally) prints one row per bin. The co-authors review a finished bin (§6) while the GPU works
-on the next; after the reviews, the reassignment with the fixed `T` (§5) runs for every bin. Each bin's `config.json` is the
+on the next; the outlier tiers of D9 are applied by the topics stage, or by `reassign` inside the loop for a bin clustered before D9 (§5). Each bin's `config.json` is the
 record; keep the review files in git with the results.
 
 ## 9. Sentiment and collect (section 4) — gate 5 (§12.5)
@@ -130,14 +133,14 @@ The hand-back cell (section 5, `HANDBACK_BINS = [1, …, 9]`) zips `results/bin-
 `results/analysis/` is tracked in git (commit it with the review files); `data/analysis/` goes to the shared data folder.
 
 ## 11. Stage S6 and the codebook (local, ≈ 30 min)
-1. `Rscript code/06-tag-corpus.R` (in place; ≈ 10–15 min; rewrites the master and the 17 yearly files with the **10
-   analysis columns** — 52 columns in total; stores the fingerprints in `data/data artefacts/tagging_fingerprint.json`), then
+1. `Rscript code/06-tag-corpus.R` (in place; ≈ 10–15 min; rewrites the master and the 17 yearly files with the **15
+   analysis columns** — 57 columns in total; stores the fingerprints in `data/data artefacts/tagging_fingerprint.json`), then
    `Rscript code/07-validate-analysis.R` (ALL CHECKS PASSED; dry-run on the mini 2010 corpus 2026-10-25) and
-   `Rscript code/03-data-validation.R` (28/28; its C4 check accepts the v3.0 spec of 42 + 10 columns).
+   `Rscript code/03-data-validation.R` (28/28; its C4 check accepts the v3.0 spec of 42 + 15 columns).
 2. Codebook: remove the *draft* marker, update the file table and the version-3.0 row (run date, labels version from
    `post_variables.json`), §8.2 with the validation-sample agreement; render the PDF (`Rscript code/04-render-codebook.R`).
 3. The run log (`docs/session-08_2026-10-25/00_colab-run-log.md` or its successor) with every gate's numbers and decisions,
-   `memory/`, design §14 rows for the decisions taken (`T`, the clustering settings of the gate), commit and push.
+   `memory/`, design §14 rows for the decisions taken (the D9 quantiles after the coding, the clustering settings of the gate), commit and push.
 
 ## Estimates (A100)
 Embeddings 15–20 min for the corpus · UMAP + HDBSCAN 1–7 min per bin (up to six guard fits) · labelling ≈ 2 min per 65 topics

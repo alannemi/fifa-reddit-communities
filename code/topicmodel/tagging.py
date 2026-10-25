@@ -7,10 +7,12 @@ overrides (renames, merges) are applied here (never in place), so the agents' va
 `name_agent`, `merged_from`).  Since decision D7 (2026-10-25) the unit of analysis is the individual BERTopic topic:
 there is no category layer.
 Outputs:
-  data/analysis/post_variables.csv (+ .json sidecar)  one row per clean post, the ten codebook §4.9 columns — incl. the
+  data/analysis/post_variables.csv (+ .json sidecar)  one row per clean post, the 15 codebook §4.9 columns — incl. the
                                                        corpus-wide topic key `topic_uid` ("<bin>-<topic_id>"), the topic's
                                                        agreed label (`topic_name`) and controlled tone (`topic_tone`) after the
-                                                       overrides — plus the audit column topic_id_raw; the input of 06-tag-corpus.R
+                                                       overrides, the second topic of a dual post (D9: `topic_uid_2`, `topic_name_2`,
+                                                       `topic_tone_2`) and both similarities — plus the audit column topic_id_raw;
+                                                       the input of 06-tag-corpus.R
   results/analysis/topic_labels_all_bins.csv           one row per topic (the brief's "separate CSV"), with the mean VADER
                                                        score of the topic's posts (`mean_vader_sentiment`, author 2026-10-25)
   results/analysis/topic_crosswalk.csv                 template for the co-authors' manual cross-bin crosswalk of topics
@@ -36,12 +38,14 @@ from .agents import apply_topic_overrides, read_overrides
 
 log = logging.getLogger("topicmodel")
 
-POST_COLUMNS = ["id", "period_bin", "period_type", "topic_id", "topic_uid", "topic_name", "topic_tone", "topic_assignment",
-                "post_sentiment", "post_sentiment_full", "post_sentiment_label"]   # topic_uid / topic_name / topic_tone: author, 2026-10-25
+POST_COLUMNS = ["id", "period_bin", "period_type", "topic_id", "topic_uid", "topic_name", "topic_tone",
+                "topic_uid_2", "topic_name_2", "topic_tone_2", "topic_assignment", "topic_similarity", "topic_similarity_2",
+                "post_sentiment", "post_sentiment_full", "post_sentiment_label"]      # 15 analysis columns + id (D9, 2026-10-25)   # topic_uid / topic_name / topic_tone: author, 2026-10-25
 AUDIT_COLUMNS = ["topic_id_raw"]
 LABEL_COLUMNS = ["period_bin", "topic_id", "topic_uid", "name", "purpose", "emotion_tone", "tone_category", "description",
                  "inclusion_cues", "round_iterations", "agreed", "agreement_mode", "needs_review", "analyst_a_final",
-                 "analyst_b_final", "n_cluster", "n_total", "share", "mean_vader_sentiment", "n_posts_scored", "keywords",
+                 "analyst_b_final", "n_cluster", "n_first", "n_as_second", "n_total", "share", "mean_vader_sentiment",
+                 "n_posts_scored", "keywords",
                  "llm_model", "llm_revision", "prompt_version", "decoding", "name_agent", "merged_from"]
 CROSSWALK_COLUMNS = ["period_bin", "period_type", "topic_id", "topic_uid", "name", "n_total", "chapter_theme", "notes"]
 
@@ -138,7 +142,7 @@ def bin_status(bin_dir: Path) -> dict:
     whether the review can start (every topic labelled), whether the outlier threshold was applied."""
     st = {"bin": int(str(bin_dir.name).split("-")[-1]) if "-" in bin_dir.name else None, "state": bin_state(bin_dir),
           "n_modelled": None, "n_topics": None, "n_labelled": 0, "n_needs_review": None, "review_ready": False,
-          "reassigned": False, "outlier_threshold": None, "topics_at": None, "labelled_at": None}
+          "reassigned": False, "outlier_threshold": None, "single_threshold": None, "n_dual": None, "topics_at": None, "labelled_at": None}
     if st["state"] == "missing":
         return st
     cfg = {}
@@ -158,8 +162,10 @@ def bin_status(bin_dir: Path) -> dict:
         st["n_needs_review"] = int(lab["needs_review"].astype(str).str.lower().eq("true").sum()) if "needs_review" in lab.columns else None
         st["labelled_at"] = cfg.get("label", {}).get("run_at")
         st["review_ready"] = st["n_topics"] is not None and st["n_labelled"] >= st["n_topics"]
-    if "reassign" in cfg:
-        st["reassigned"] = True; st["outlier_threshold"] = cfg["reassign"].get("outlier_threshold")
+    applied = cfg["reassign"] if "reassign" in cfg else (t if t.get("outlier_threshold") is not None else None)   # S2 applies D9 itself
+    if applied:
+        st["reassigned"] = True; st["outlier_threshold"] = applied.get("outlier_threshold")
+        st["single_threshold"] = applied.get("single_threshold"); st["n_dual"] = applied.get("n_dual")
     return st
 
 
@@ -181,7 +187,8 @@ def write_status(bin_dir: Path) -> dict:
 def status_table(analysis_dir: Path) -> pd.DataFrame:
     """One row per bin 1–9 for `--stage status`."""
     rows = [bin_status(analysis_dir / f"bin-{b}") | {"bin": b} for b in range(1, 10)]
-    return pd.DataFrame(rows)[["bin", "state", "n_modelled", "n_topics", "n_labelled", "n_needs_review", "review_ready", "reassigned", "outlier_threshold", "labelled_at"]]
+    return pd.DataFrame(rows)[["bin", "state", "n_modelled", "n_topics", "n_labelled", "n_needs_review", "review_ready", "reassigned",
+                               "outlier_threshold", "single_threshold", "n_dual", "labelled_at"]]
 
 
 def load_bin_outputs(bin_dir: Path, b: int) -> dict:
@@ -191,26 +198,41 @@ def load_bin_outputs(bin_dir: Path, b: int) -> dict:
         return {"state": state}
     docs = _read(bin_dir / "documents.csv")
     topics = _read(bin_dir / "topics.csv")
+    for c in ("topic_id_2", "similarity", "similarity_2"):          # bins written before D9 lack the second-topic columns
+        if c not in docs.columns:
+            docs[c] = ""
+    docs["topic_id_2"] = docs["topic_id_2"].replace("-1", "")
     out = {"state": state, "topic_merges": {}}
     labels = None
     if state == "labelled":
         labelled = _read(bin_dir / "topics_labelled.csv")
         labels, merges = apply_topic_overrides(labelled, read_overrides(bin_dir / "topic_overrides.csv"))
         out["topic_merges"] = merges
-        # topic_id after overrides (raw ids and outliers untouched)
+        # topic_id after overrides (raw ids and outliers untouched); the second topic of a dual post follows the merges and
+        # disappears when it merges into the first (the post is then a plain reassignment)
         docs["topic_id"] = ["" if x == "" else str(merges.get(int(x), int(x))) for x in docs["topic_id"]]
+        docs["topic_id_2"] = ["" if x in ("", "-1") else str(merges.get(int(x), int(x))) for x in docs["topic_id_2"]]
+        same = (docs["topic_id_2"] != "") & (docs["topic_id_2"] == docs["topic_id"])
+        docs.loc[same, "topic_id_2"] = ""; docs.loc[same, "similarity_2"] = ""
+        docs.loc[same & (docs["topic_assignment"] == "dual"), "topic_assignment"] = "reassigned"
         sizes = topics.set_index(topics["topic_id"].astype(int))
-        n_cluster = sizes["n_cluster"].astype(int).to_dict(); n_total = sizes["n_total"].astype(int).to_dict()
+        n_cluster = sizes["n_cluster"].astype(int).to_dict()
         kw = sizes["keywords"].to_dict()
         for old, new in merges.items():
             n_cluster[new] = n_cluster.get(new, 0) + n_cluster.pop(old, 0)
-            n_total[new] = n_total.get(new, 0) + n_total.pop(old, 0)
         merged_from = {}
         for old, new in merges.items():
             merged_from.setdefault(new, []).append(str(old))
-        n_mod = max(1, sum(n_total.values()))
+        # sizes after the overrides, from the posts themselves (D9 counting: a dual post counts once in each of its two
+        # topics — n_total = n_first + n_as_second; shares over the bin's modelled posts may add up to more than 1)
+        modelled = docs["topic_id"] != ""
+        n_mod = max(1, int(modelled.sum()))
+        first = docs.loc[modelled & (docs["topic_id"] != "-1"), "topic_id"].astype(int).value_counts().to_dict()
+        second = docs.loc[docs["topic_id_2"] != "", "topic_id_2"].astype(int).value_counts().to_dict()
         labels["n_cluster"] = labels["topic_id"].map(n_cluster).fillna(0).astype(int)
-        labels["n_total"] = labels["topic_id"].map(n_total).fillna(0).astype(int)
+        labels["n_first"] = labels["topic_id"].map(first).fillna(0).astype(int)
+        labels["n_as_second"] = labels["topic_id"].map(second).fillna(0).astype(int)
+        labels["n_total"] = labels["n_first"] + labels["n_as_second"]
         labels["share"] = (labels["n_total"] / n_mod).round(5)
         labels["keywords"] = labels["topic_id"].map(kw).fillna(labels.get("keywords", ""))
         labels["merged_from"] = labels["topic_id"].map(lambda t: "|".join(merged_from.get(t, [])))
@@ -219,10 +241,16 @@ def load_bin_outputs(bin_dir: Path, b: int) -> dict:
         tone_of = dict(zip(labels["topic_id"].astype(str), labels["tone_category"])) if "tone_category" in labels.columns else {}
         docs["topic_name"] = docs["topic_id"].map(lambda t: name_of.get(t, "") if t not in ("", "-1") else "")
         docs["topic_tone"] = docs["topic_id"].map(lambda t: tone_of.get(t, "") if t not in ("", "-1") else "")
+        docs["topic_name_2"] = docs["topic_id_2"].map(lambda t: name_of.get(t, "") if t != "" else "")
+        docs["topic_tone_2"] = docs["topic_id_2"].map(lambda t: tone_of.get(t, "") if t != "" else "")
     else:
-        docs["topic_name"] = ""; docs["topic_tone"] = ""
-    # the corpus-wide topic key: "<period_bin>-<topic_id>" for posts with a topic (ids are bin-local; author, 2026-10-25)
+        docs["topic_name"] = ""; docs["topic_tone"] = ""; docs["topic_name_2"] = ""; docs["topic_tone_2"] = ""
+    # the corpus-wide topic key: "<period_bin>-<topic_id>" for posts with a topic (ids are bin-local; author, 2026-10-25);
+    # the second label of a dual post (D9) in the same form
     docs["topic_uid"] = docs["topic_id"].map(lambda t: f"{b}-{t}" if t not in ("", "-1") else "")
+    docs["topic_uid_2"] = docs["topic_id_2"].map(lambda t: f"{b}-{t}" if t != "" else "")
+    docs["topic_similarity"] = docs["similarity"]
+    docs["topic_similarity_2"] = docs["similarity_2"]
     out.update(posts=docs, labels=labels, topics=topics)
     return out
 
@@ -270,12 +298,19 @@ def collect(analysis_dir: Path, analysis_data_dir: Path, allow_partial: bool, ru
         ass = posts["topic_assignment"]
         _check(bool(((ass == "outlier") == (tid == "-1")).all()), f"bin {b}: topic_assignment 'outlier' inconsistent with topic_id -1", errors)
         _check(bool(((ass == "not_modelled") == (tid == "")).all()), f"bin {b}: topic_assignment 'not_modelled' inconsistent with empty topic_id", errors)
+        dual = ass == "dual"                                                       # D9: the second topic exists iff the post is dual
+        _check(bool((dual == (posts["topic_uid_2"] != "")).all()), f"bin {b}: topic_uid_2 present iff topic_assignment 'dual'", errors)
+        _check(bool((dual == (posts["topic_similarity_2"] != "")).all()), f"bin {b}: topic_similarity_2 present iff topic_assignment 'dual'", errors)
+        _check(bool((posts.loc[dual, "topic_uid_2"] != posts.loc[dual, "topic_uid"]).all()), f"bin {b}: a dual post's two topics must differ", errors)
+        _check(bool((posts["topic_similarity"] != "")[dual | (ass == "reassigned")].all()), f"bin {b}: topic_similarity missing for reassigned or dual posts", errors)
         if o["labels"] is not None:
             lab = o["labels"].copy(); lab["period_bin"] = b
             label_frames.append(lab)
         _check(bool(((posts["topic_name"] != "") == (~posts["topic_id"].isin(["", "-1"]))).all()) or o["labels"] is None,
                f"bin {b}: topic_name missing for posts with a topic", errors)
-        post_frames.append(posts[["id", "topic_id_raw", "topic_id", "topic_uid", "topic_name", "topic_tone", "topic_assignment", "period_bin_run"]])
+        _check(bool(((posts["topic_name_2"] != "") == dual).all()) or o["labels"] is None, f"bin {b}: topic_name_2 missing for dual posts", errors)
+        post_frames.append(posts[["id", "topic_id_raw", "topic_id", "topic_uid", "topic_name", "topic_tone", "topic_uid_2", "topic_name_2",
+                                  "topic_tone_2", "topic_assignment", "topic_similarity", "topic_similarity_2", "period_bin_run"]])
 
     pv = pb.copy()
     if post_frames:
@@ -283,7 +318,8 @@ def collect(analysis_dir: Path, analysis_data_dir: Path, allow_partial: bool, ru
         _check(not allp["id"].duplicated().any(), "a post appears in more than one bin run", errors)
         pv = pv.merge(allp, on="id", how="left")
     else:
-        for c in ["topic_id_raw", "topic_id", "topic_uid", "topic_name", "topic_tone", "topic_assignment", "period_bin_run"]:
+        for c in ["topic_id_raw", "topic_id", "topic_uid", "topic_name", "topic_tone", "topic_uid_2", "topic_name_2", "topic_tone_2",
+                  "topic_assignment", "topic_similarity", "topic_similarity_2", "period_bin_run"]:
             pv[c] = ""
     sent_path = analysis_data_dir / "sentiment.csv"
     if sent_path.exists():
@@ -309,17 +345,23 @@ def collect(analysis_dir: Path, analysis_data_dir: Path, allow_partial: bool, ru
     if errors and not allow_partial:
         raise SystemExit("S5 collect: checks failed:\n  " + "\n  ".join(errors))
 
-    # the mean VADER score of each topic's posts (title score; after the topic overrides) — author's request, 2026-10-25
+    # the mean VADER score of each topic's posts (title score; after the topic overrides) — author's request, 2026-10-25;
+    # a dual post (D9) enters the mean of both of its topics
     topic_sent = {}
     if n_sent and post_frames:
         sc = pd.to_numeric(pv["post_sentiment"], errors="coerce")
         has = sc.notna() & (pv["topic_id"].fillna("") != "") & (pv["topic_id"].astype(str) != "-1")
-        g = pd.DataFrame({"b": pv.loc[has, "period_bin_run"].astype(int), "t": pv.loc[has, "topic_id"].astype(str), "s": sc[has]}).groupby(["b", "t"])["s"]
+        has2 = sc.notna() & (pv["topic_uid_2"].fillna("") != "")
+        pairs = pd.concat([pd.DataFrame({"b": pv.loc[has, "period_bin_run"].astype(int), "t": pv.loc[has, "topic_id"].astype(str), "s": sc[has]}),
+                           pd.DataFrame({"b": pv.loc[has2, "period_bin_run"].astype(int),
+                                         "t": pv.loc[has2, "topic_uid_2"].astype(str).str.split("-").str[-1], "s": sc[has2]})], ignore_index=True)
+        g = pairs.groupby(["b", "t"])["s"]
         topic_sent = {k: (round(float(v), C.SENTIMENT_DECIMALS), int(n)) for k, v, n in zip(g.mean().index, g.mean().to_numpy(), g.size().to_numpy())}
 
     for c in ["topic_id", "topic_id_raw"]:
         pv[c] = pv[c].map(_int_str)
-    for c in ["topic_uid", "topic_name", "topic_tone", "topic_assignment", "post_sentiment_label"]:
+    for c in ["topic_uid", "topic_name", "topic_tone", "topic_uid_2", "topic_name_2", "topic_tone_2", "topic_assignment",
+              "topic_similarity", "topic_similarity_2", "post_sentiment_label"]:
         pv[c] = pv[c].fillna("")
     pv = pv[POST_COLUMNS + AUDIT_COLUMNS]
     analysis_data_dir.mkdir(parents=True, exist_ok=True)

@@ -5,10 +5,13 @@
 #
 # PURPOSE
 # -------
-# Append the ten analysis variables of codebook §4.9 (period_bin, period_type,
-# topic_id, topic_uid, topic_name, topic_tone, topic_assignment, post_sentiment,
-# post_sentiment_full, post_sentiment_label; decision D7 of 2026-10-25 removed
-# category_id and put the topic's corpus-wide key, label and tone on every post)
+# Append the 15 analysis variables of codebook §4.9 (period_bin, period_type,
+# topic_id, topic_uid, topic_name, topic_tone, topic_uid_2, topic_name_2,
+# topic_tone_2, topic_assignment, topic_similarity, topic_similarity_2,
+# post_sentiment, post_sentiment_full, post_sentiment_label; decision D7 of
+# 2026-10-25 removed category_id and put the topic's corpus-wide key, label and
+# tone on every post; decision D9 of the same day added the second topic of
+# "dual" posts and both similarities)
 # to the clean master `data/soccer_data.clean.csv` and to
 # the 17 yearly files, from the join table `data/analysis/post_variables.csv`
 # written by stage S5 of code/05-analysis-pipeline.py.  Side files are not
@@ -47,7 +50,7 @@
 #
 # OUTPUTS
 # -------
-#   <out>/data/soccer_data.clean.csv, <out>/data/yearly datasets/soccer.data.cleaned-YYYY.csv   (52 columns)
+#   <out>/data/soccer_data.clean.csv, <out>/data/yearly datasets/soccer.data.cleaned-YYYY.csv   (57 columns)
 #   <out>/data/data artefacts/tagging_fingerprint.json   per file: n_rows, per-column hashes of the 42 columns
 #   <out>/data/data artefacts/tagging_summary.csv        per file: rows, posts with topic / sentiment
 ##############################################################################
@@ -81,7 +84,7 @@ pv <- read_chr(pv_path)
 if (!all(ANALYSIS_COLS %in% names(pv))) stop("post_variables.csv lacks: ", paste(setdiff(ANALYSIS_COLS, names(pv)), collapse = ", "))
 if (any(duplicated(pv$id))) stop("duplicate ids in post_variables.csv")
 pv <- pv[, c("id", ANALYSIS_COLS)]
-log_msg("post_variables.csv: %s rows, taxonomy version %s", format(nrow(pv), big.mark = ","), side$taxonomy_version %||% "NA")
+log_msg("post_variables.csv: %s rows, labels version %s", format(nrow(pv), big.mark = ","), side$labels_version %||% "NA")
 
 for (d in c("data", "data/yearly datasets", "data/data artefacts"))
   dir.create(file.path(OUT_ROOT, d), recursive = TRUE, showWarnings = FALSE)
@@ -123,7 +126,7 @@ for (f in yearly) tag_file(f, file.path(OUT_ROOT, "data/yearly datasets", basena
 # 3. Artefacts
 # ---------------------------------------------------------------------------
 write_json(list(written = format(Sys.time(), "%Y-%m-%d %H:%M:%S"), in_root = IN_ROOT, out_root = OUT_ROOT,
-                partial = !isTRUE(side$complete), taxonomy_version = side$taxonomy_version, analysis_columns = ANALYSIS_COLS,
+                partial = !isTRUE(side$complete), labels_version = side$labels_version, analysis_columns = ANALYSIS_COLS,
                 files = fingerprint),
            file.path(OUT_ROOT, "data/data artefacts/tagging_fingerprint.json"), auto_unbox = TRUE, pretty = TRUE)
 write_csv(bind_rows(summary_rows), file.path(OUT_ROOT, "data/data artefacts/tagging_summary.csv"))

@@ -17,7 +17,8 @@
 #                      dropped and reported by 02-data-cleaning.R)
 #  C2  ids are unique within and across all output files
 #  C3  yearly files sum to the master and contain only their own year
-#  C4  identical column specification in master, yearly and side files
+#  C4  column specification: master and yearly files = the v2.1 spec (42 columns) or, once stage S6
+#      has run, the v3.0 spec (42 + 8 analysis columns); side files = 42 + filter_reason
 #  C5  date range and continuity (every month 2010-01 .. 2026-07 present)
 #  C6  fidelity: a random sample of ids is compared with the raw file
 #      byte-for-byte on title and selftext (catches the fread quote bug)
@@ -32,22 +33,12 @@
 suppressPackageStartupMessages({ library(readr); library(dplyr); library(stringr); library(jsonlite) })
 set.seed(20261011)
 
-find_root <- function() {
-  if (file.exists("data/soccer_posts.csv")) return(normalizePath("."))
-  cand <- path.expand("~/OneDrive - McGill University/SHARED FOLDER - FIFA Chapter/fifa-reddit-communities")
-  if (file.exists(file.path(cand, "data/soccer_posts.csv"))) return(cand)
-  stop("repository root not found")
-}
-setwd(find_root())
-OUT_ROOT <- Sys.getenv("CLEAN_OUT_ROOT", ".")   # same override as 02-data-cleaning.R (dry runs)
-
-results <- list()
-check <- function(name, ok, detail = "") {
-  results[[name]] <<- ok
-  cat(sprintf("[%s] %-60s %s\n", if (isTRUE(ok)) "PASS" else "FAIL", name, detail))
-}
-read_chr <- function(p, ...) read_csv(p, col_types = cols(.default = col_character()),
-                                      na = character(), progress = FALSE, lazy = FALSE, ...)
+.utils <- local({ a <- commandArgs(trailingOnly = FALSE); f <- sub("^--file=", "", a[grepl("^--file=", a)])
+                  if (length(f) == 1) file.path(dirname(normalizePath(f)), "R", "pipeline-utils.R") else "code/R/pipeline-utils.R" })
+source(.utils)                     # shared helpers and column specifications (code/R/pipeline-utils.R)
+ROOT <- find_root()
+setwd(ROOT)
+OUT_ROOT <- Sys.getenv("CLEAN_OUT_ROOT", ROOT)   # same override as 02-data-cleaning.R (dry runs)
 
 # ---------------------------------------------------------------------------
 # Load outputs (character, verbatim)
@@ -94,17 +85,14 @@ check("C3b each yearly file holds only its year", yok)
 check("C3c no redundant master copy in yearly folder", !file.exists(file.path(yearly_dir, "soccer_data.clean.csv")))
 
 # C4 column spec --------------------------------------------------------------
-expected_cols <- c("id","name","title","selftext","author","author_flair_text","author_flair_css_class",
-  "author_flair_background_color","author_flair_text_color","author_flair_type","author_flair_richtext",
-  "author_flair_template_id","link_flair_text","link_flair_css_class","link_flair_background_color",
-  "link_flair_text_color","link_flair_type","link_flair_richtext","link_flair_template_id","score","ups",
-  "downs","num_comments","num_crossposts","total_awards_received","gilded","created_datetime","edited",
-  "domain","url","permalink","is_self","is_video","is_reddit_media_domain","post_hint","removed_by_category",
-  "subreddit_subscribers","media","preview","year","post_type","lang")
-check("C4a master has the 42 expected columns", identical(names(d$clean), expected_cols))
+# ORIGINAL_COLS (42) and ANALYSIS_COLS (8) come from code/R/pipeline-utils.R.  Before stage S6 the master
+# and the yearly files carry the v2.1 spec; after it the v3.0 spec (session 07, decision H7).
+spec <- if (identical(names(d$clean), ORIGINAL_COLS)) "v2.1 spec (42 columns)" else
+        if (identical(names(d$clean), c(ORIGINAL_COLS, ANALYSIS_COLS))) "v3.0 spec (42 + 8 analysis columns)" else NA_character_
+check("C4a master = v2.1 (42) or v3.0 (42 + 8) column spec", !is.na(spec), if (is.na(spec)) paste(ncol(d$clean), "columns") else spec)
 check("C4b yearly files share the master spec", ycols_ok)
-check("C4c side files = master spec + filter_reason",
-      all(sapply(d[-1], function(x) identical(names(x), c(expected_cols, "filter_reason")))))
+check("C4c side files = the 42 original columns + filter_reason",
+      all(sapply(d[-1], function(x) identical(names(x), c(ORIGINAL_COLS, "filter_reason")))))
 
 # C5 dates --------------------------------------------------------------------
 dt <- d$clean$created_datetime

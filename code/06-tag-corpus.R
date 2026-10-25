@@ -1,6 +1,6 @@
 ##############################################################################
 # FIFA COMMUNITIES CHAPTER
-## 7. TAG THE CORPUS  (stage S6 of the analytical pipeline — append the analysis variables)
+## 6. TAG THE CORPUS  (stage S6 of the analytical pipeline — append the analysis variables)
 ##############################################################################
 #
 # PURPOSE
@@ -9,7 +9,7 @@
 # topic_id, topic_assignment, category_id, post_sentiment, post_sentiment_full,
 # post_sentiment_label) to the clean master `data/soccer_data.clean.csv` and to
 # the 17 yearly files, from the join table `data/analysis/post_variables.csv`
-# written by stage S5 of code/06-analysis-pipeline.py.  Side files are not
+# written by stage S5 of code/05-analysis-pipeline.py.  Side files are not
 # analysed and stay untouched (43 columns).  Design: docs/session-04_2026-10-22/
 # 01_analytical-pipeline-design.md §9.2; approvals: docs/session-05_2026-10-23/.
 #
@@ -18,7 +18,7 @@
 # The data files have exactly one writer and one format (readr::write_csv,
 # UTF-8, RFC-4180 quoting, empty cell = missing) since v2.0.  Writing them from
 # the same function keeps every existing column byte-identical; the validation
-# script (08) proves it with per-column fingerprints taken here before writing.
+# script (07-validate-analysis.R) proves it with per-column fingerprints taken here before writing.
 #
 # DESIGN PRINCIPLES
 # -----------------
@@ -30,17 +30,18 @@
 #    (TAG_ALLOW_PARTIAL=1) and only into a different output root.
 # 3. Nothing is lost: a per-column xxhash64 fingerprint of the 42 original
 #    columns of every file is stored in data/data artefacts/tagging_fingerprint.json
-#    before the files are rewritten; 08-validate-analysis.R recomputes it.
+#    before the files are rewritten; 07-validate-analysis.R recomputes it.
 # 4. Memory: the master (1.9 GB) is processed first and released; the yearly
 #    files follow one at a time (review finding R12).
 #
 # HOW TO RUN (repository root)
 # ----------------------------
-#   Rscript code/07-tag-corpus.R                 # in place; needs a complete post_variables.csv
-#   TAG_IN_ROOT=<root> TAG_OUT_ROOT=<other root> TAG_ALLOW_PARTIAL=1 Rscript code/07-tag-corpus.R   # dry run
-# Environment variables: TAG_IN_ROOT (default ".") holds data/soccer_data.clean.csv, data/yearly datasets/ and
-# data/analysis/post_variables.csv; TAG_OUT_ROOT (default = TAG_IN_ROOT) receives the tagged files and the
-# artefacts; TAG_ALLOW_PARTIAL=1 accepts an incomplete table (dry runs only).
+#   Rscript code/06-tag-corpus.R                 # in place; needs a complete post_variables.csv
+#   TAG_IN_ROOT=<root> TAG_OUT_ROOT=<other root> TAG_ALLOW_PARTIAL=1 Rscript code/06-tag-corpus.R   # dry run
+# Environment variables: TAG_IN_ROOT (default: the repository root) holds data/soccer_data.clean.csv,
+# data/yearly datasets/ and data/analysis/post_variables.csv; TAG_OUT_ROOT (default = TAG_IN_ROOT) receives
+# the tagged files and the artefacts; TAG_ALLOW_PARTIAL=1 accepts an incomplete table (dry runs only).
+# Shared helpers and the column specifications: code/R/pipeline-utils.R.
 #
 # OUTPUTS
 # -------
@@ -51,19 +52,15 @@
 
 suppressPackageStartupMessages({ library(readr); library(dplyr); library(jsonlite); library(digest) })
 
-IN_ROOT  <- Sys.getenv("TAG_IN_ROOT", ".")
+.utils <- local({ a <- commandArgs(trailingOnly = FALSE); f <- sub("^--file=", "", a[grepl("^--file=", a)])
+                  if (length(f) == 1) file.path(dirname(normalizePath(f)), "R", "pipeline-utils.R") else "code/R/pipeline-utils.R" })
+source(.utils)                     # shared helpers and column specifications (code/R/pipeline-utils.R)
+ROOT <- find_root()
+setwd(ROOT)
+IN_ROOT  <- Sys.getenv("TAG_IN_ROOT", ROOT)
 OUT_ROOT <- Sys.getenv("TAG_OUT_ROOT", IN_ROOT)
 ALLOW_PARTIAL <- Sys.getenv("TAG_ALLOW_PARTIAL", "0") == "1"
 in_place <- normalizePath(IN_ROOT, mustWork = TRUE) == normalizePath(OUT_ROOT, mustWork = FALSE)
-
-ANALYSIS_COLS <- c("period_bin", "period_type", "topic_id", "topic_assignment", "category_id",
-                   "post_sentiment", "post_sentiment_full", "post_sentiment_label")
-N_ORIGINAL <- 42
-
-log_msg <- function(...) cat(format(Sys.time(), "%H:%M:%S"), "|", sprintf(...), "\n")
-read_chr <- function(p) read_csv(p, col_types = cols(.default = col_character()), na = character(),
-                                 progress = FALSE, lazy = FALSE)
-col_hash <- function(x) digest(as.character(x), algo = "xxhash64", serialize = TRUE)
 
 # ---------------------------------------------------------------------------
 # 1. Pre-flight: the join table and its sidecar
@@ -94,7 +91,7 @@ fingerprint <- list(); summary_rows <- list()
 # ---------------------------------------------------------------------------
 tag_file <- function(in_path, out_path, label) {
   d <- read_chr(in_path)
-  if (ncol(d) != N_ORIGINAL) stop(label, ": expected ", N_ORIGINAL, " columns, found ", ncol(d), " (already tagged?)")
+  if (!identical(names(d), ORIGINAL_COLS)) stop(label, ": columns differ from the v2.1 spec (", ncol(d), " columns; already tagged?)")
   if (any(ANALYSIS_COLS %in% names(d))) stop(label, ": analysis columns already present")
   missing_ids <- setdiff(d$id, pv$id)
   if (length(missing_ids)) stop(label, ": ", length(missing_ids), " ids have no row in post_variables.csv")

@@ -1,6 +1,6 @@
 ##############################################################################
 # FIFA COMMUNITIES CHAPTER
-## 8. VALIDATE THE ANALYSIS VARIABLES  (run after 07-tag-corpus.R)
+## 7. VALIDATE THE ANALYSIS VARIABLES  (run after 06-tag-corpus.R)
 ##############################################################################
 #
 # PURPOSE
@@ -13,7 +13,8 @@
 #
 # CHECKS (design §9.2)
 # --------------------
-#  A1  row counts unchanged (per file, against the fingerprint taken by 07)
+#  A0  the period-bin table written by stage S0 (period_bins_summary.csv, when present) equals the bin table of design §4
+#  A1  row counts unchanged (per file, against the fingerprint taken by 06-tag-corpus.R)
 #  A2  column specification: master and yearly files = 42 + 8 columns in codebook order; side files 43
 #  A3  period_bin matches the UTC calendar date of created_datetime (bin table of design §4)
 #  A4  every post has one bin in 1..9; bin sizes sum to the file; period_type consistent with the bin
@@ -27,40 +28,30 @@
 #  A11 yearly files equal the master's year subset on every column (per-column hashes)
 #  A12 the collection was complete (post_variables.json) — reported, not failed, for dry runs
 #
-# HOW TO RUN (repository root):  Rscript code/08-validate-analysis.R
-# Environment: TAG_OUT_ROOT (default ".") = where the tagged files and the fingerprint are;
-#              TAG_IN_ROOT (default TAG_OUT_ROOT) = where data/analysis/post_variables.csv is;
-#              ANALYSIS_DIR (default <TAG_IN_ROOT>/results/analysis) = the per-bin pipeline folders.
+# HOW TO RUN (repository root):  Rscript code/07-validate-analysis.R
+# Environment (the same variables as 06-tag-corpus.R):
+#   TAG_IN_ROOT      (default: the repository root) = where data/analysis/post_variables.csv is
+#   TAG_OUT_ROOT     (default = TAG_IN_ROOT)        = where the tagged files and the fingerprint are
+#   TAG_ANALYSIS_DIR (default <TAG_IN_ROOT>/results/analysis) = the per-bin pipeline folders
+# Shared helpers, the column specifications and the bin table: code/R/pipeline-utils.R.
 ##############################################################################
 
 suppressPackageStartupMessages({ library(readr); library(dplyr); library(jsonlite); library(digest) })
 
-OUT_ROOT <- Sys.getenv("TAG_OUT_ROOT", ".")
-IN_ROOT  <- Sys.getenv("TAG_IN_ROOT", OUT_ROOT)
-ANALYSIS_DIR <- Sys.getenv("ANALYSIS_DIR", file.path(IN_ROOT, "results/analysis"))
-ANALYSIS_COLS <- c("period_bin", "period_type", "topic_id", "topic_assignment", "category_id",
-                   "post_sentiment", "post_sentiment_full", "post_sentiment_label")
-N_ORIGINAL <- 42
-
-results <- list()
-check <- function(name, ok, detail = "") {
-  results[[name]] <<- ok
-  cat(sprintf("[%s] %-64s %s\n", if (isTRUE(ok)) "PASS" else "FAIL", name, detail))
-}
-read_chr <- function(p) read_csv(p, col_types = cols(.default = col_character()), na = character(), progress = FALSE, lazy = FALSE)
-col_hash <- function(x) digest(as.character(x), algo = "xxhash64", serialize = TRUE)
-
-# the bin table (design §4) — kept in sync with code/topicmodel/config.py PERIOD_BINS
-BIN_START <- as.Date(c("2010-01-01", "2010-10-01", "2014-02-01", "2014-10-01", "2018-02-01", "2018-10-01", "2022-07-01", "2023-03-01", "2026-02-01"))
-BIN_END   <- as.Date(c("2010-09-30", "2014-01-31", "2014-09-30", "2018-01-31", "2018-09-30", "2022-06-30", "2023-02-28", "2026-01-31", "2026-07-31"))
-BIN_TYPE  <- c("tournament", "interim", "tournament", "interim", "tournament", "interim", "tournament", "interim", "tournament")
-bin_of <- function(dt) { d <- as.Date(substr(dt, 1, 10)); b <- findInterval(d, BIN_START); b[d > BIN_END[pmax(b, 1)] | b < 1] <- NA; b }
+.utils <- local({ a <- commandArgs(trailingOnly = FALSE); f <- sub("^--file=", "", a[grepl("^--file=", a)])
+                  if (length(f) == 1) file.path(dirname(normalizePath(f)), "R", "pipeline-utils.R") else "code/R/pipeline-utils.R" })
+source(.utils)                     # shared helpers and column specifications (code/R/pipeline-utils.R)
+ROOT <- find_root()
+setwd(ROOT)
+IN_ROOT  <- Sys.getenv("TAG_IN_ROOT", ROOT)
+OUT_ROOT <- Sys.getenv("TAG_OUT_ROOT", IN_ROOT)
+ANALYSIS_DIR <- Sys.getenv("TAG_ANALYSIS_DIR", file.path(IN_ROOT, "results/analysis"))
 
 # ---------------------------------------------------------------------------
 # Load
 # ---------------------------------------------------------------------------
 fp_path <- file.path(OUT_ROOT, "data/data artefacts/tagging_fingerprint.json")
-if (!file.exists(fp_path)) stop("missing ", fp_path, " — run 07-tag-corpus.R first")
+if (!file.exists(fp_path)) stop("missing ", fp_path, " — run 06-tag-corpus.R first")
 fp <- fromJSON(fp_path, simplifyVector = FALSE)
 pv <- read_chr(file.path(IN_ROOT, "data/analysis/post_variables.csv"))
 side_path <- file.path(IN_ROOT, "data/analysis/post_variables.json")
@@ -93,12 +84,22 @@ bin_tables <- lapply(1:9, function(b) {
 })
 
 # ---------------------------------------------------------------------------
+# A0: the pipeline's own bin table (stage S0) agrees with the mirrored table of code/R/pipeline-utils.R
+# ---------------------------------------------------------------------------
+pbs_path <- file.path(IN_ROOT, "data/analysis/period_bins_summary.csv")
+if (file.exists(pbs_path)) {
+  pbs <- read_chr(pbs_path)
+  check("A0 period_bins_summary.csv equals the bin table of design §4",
+        nrow(pbs) == 9 && all(as.Date(pbs$start) == BIN_START) && all(as.Date(pbs$end) == BIN_END) && all(pbs$period_type == BIN_TYPE))
+} else cat("[SKIP] A0 period_bins_summary.csv not present in this root (dry run)\n")
+
+# ---------------------------------------------------------------------------
 # A1, A2
 # ---------------------------------------------------------------------------
 if (has_master) check("A1 master row count unchanged", nrow(m) == fp$files[["soccer_data.clean.csv"]]$n_rows, format(nrow(m), big.mark = ","))
 yrows_ok <- all(vapply(yearly, function(f) nrow(read_chr(f)) == fp$files[[basename(f)]]$n_rows, logical(1)))
 check("A1b yearly row counts unchanged", yrows_ok, sprintf("%d files", length(yearly)))
-expected_cols <- c(names(fp$files[[1]]$columns), ANALYSIS_COLS)
+expected_cols <- c(ORIGINAL_COLS, ANALYSIS_COLS)
 check("A2a master/yearly = 42 + 8 columns in codebook order", identical(names(m), expected_cols) && ncol(m) == N_ORIGINAL + 8)
 ycols_ok <- all(vapply(yearly, function(f) identical(names(read_csv(f, n_max = 0, col_types = cols(.default = col_character()), progress = FALSE)), expected_cols), logical(1)))
 check("A2b yearly files share the 50-column spec", ycols_ok)

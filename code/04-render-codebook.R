@@ -15,11 +15,12 @@
 # HOW TO RUN:  Rscript code/04-render-codebook.R   (from the repository root)
 ##############################################################################
 
+# The repository root: the working directory, or the script's own location (code/ -> ..); no machine-specific fallback.
 find_root <- function() {
   if (file.exists("data/codebook_soccer_posts.md")) return(normalizePath("."))
-  cand <- path.expand("~/OneDrive - McGill University/SHARED FOLDER - FIFA Chapter/fifa-reddit-communities")
-  if (file.exists(file.path(cand, "data/codebook_soccer_posts.md"))) return(cand)
-  stop("repository root not found")
+  a <- commandArgs(trailingOnly = FALSE); f <- sub("^--file=", "", a[grepl("^--file=", a)])
+  if (length(f) == 1 && file.exists(file.path(dirname(f), "..", "data/codebook_soccer_posts.md"))) return(normalizePath(file.path(dirname(f), "..")))
+  stop("repository root not found: run `Rscript code/04-render-codebook.R` from the repository root")
 }
 setwd(find_root())
 
@@ -32,8 +33,8 @@ page <- c("<!doctype html><html><head><meta charset=\"utf-8\">",
 html_path <- file.path(tempdir(), "codebook_soccer_posts.html")
 writeLines(page, html_path, useBytes = TRUE)
 
-chrome <- "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-if (!file.exists(chrome)) stop("Google Chrome not found at ", chrome, " — adjust the path or use another HTML-to-PDF tool.")
+chrome <- Sys.getenv("CHROME_PATH", "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")   # macOS default; set CHROME_PATH elsewhere
+if (!file.exists(chrome)) stop("Google Chrome not found at ", chrome, " — set CHROME_PATH or use another HTML-to-PDF tool.")
 pdf_path <- normalizePath("data/codebook_soccer_posts.pdf", mustWork = FALSE)
 status <- system2(chrome, c("--headless", "--disable-gpu", "--no-pdf-header-footer",
                             shQuote(paste0("--print-to-pdf=", pdf_path)), shQuote(html_path)),

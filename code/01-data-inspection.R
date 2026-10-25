@@ -21,7 +21,9 @@
 
 library(tidyverse)   # readr, dplyr, stringr, ...
 
-setwd("~/OneDrive - McGill University/SHARED FOLDER - FIFA Chapter/fifa-reddit-communities")
+# Run from the repository root (open fifa-reddit-communities.Rproj); the data folder is copied into it
+# from the shared folder (data/README.md).
+if (!file.exists("data/soccer_posts.csv")) stop("data/soccer_posts.csv not found: open the .Rproj or setwd() to the repository root")
 
 soccer.data <- read_csv(
   "data/soccer_posts.csv",

@@ -107,27 +107,19 @@ suppressPackageStartupMessages({
 })
 
 t_start <- Sys.time()
-log_msg <- function(...) cat(format(Sys.time(), "%H:%M:%S"), "|", sprintf(...), "\n")
 
 # ---------------------------------------------------------------------------
-# 0. LOCATE THE REPOSITORY ROOT
-#    Works when run with `Rscript code/02-data-cleaning.R` from the repo root,
-#    when sourced from RStudio, or by falling back to the known OneDrive path.
+# 0. SHARED HELPERS AND THE REPOSITORY ROOT
+#    code/R/pipeline-utils.R provides log_msg(), read_chr(), find_root() and the column specifications.
+#    Works when run with `Rscript code/02-data-cleaning.R` from the repository root or sourced in RStudio
+#    with the .Rproj open; there is no machine-specific fallback (session 07).
 # ---------------------------------------------------------------------------
-find_root <- function() {
-  if (file.exists("data/soccer_posts.csv")) return(normalizePath("."))
-  args <- commandArgs(trailingOnly = FALSE)
-  f <- sub("^--file=", "", args[grepl("^--file=", args)])
-  if (length(f) == 1) {
-    cand <- normalizePath(file.path(dirname(f), ".."))
-    if (file.exists(file.path(cand, "data/soccer_posts.csv"))) return(cand)
-  }
-  cand <- path.expand("~/OneDrive - McGill University/SHARED FOLDER - FIFA Chapter/fifa-reddit-communities")
-  if (file.exists(file.path(cand, "data/soccer_posts.csv"))) return(cand)
-  stop("Could not locate the repository root (data/soccer_posts.csv not found).")
-}
+.utils <- local({ a <- commandArgs(trailingOnly = FALSE); f <- sub("^--file=", "", a[grepl("^--file=", a)])
+                  if (length(f) == 1) file.path(dirname(normalizePath(f)), "R", "pipeline-utils.R") else "code/R/pipeline-utils.R" })
+source(.utils)                     # shared helpers and column specifications (code/R/pipeline-utils.R)
 ROOT <- find_root()
 setwd(ROOT)
+if (!file.exists("data/soccer_posts.csv")) stop("raw export data/soccer_posts.csv not found under ", ROOT, " (copy data/ from the shared folder)")
 log_msg("Repository root: %s", ROOT)
 
 # Test overrides (used only for dry runs; leave unset for the real rebuild):

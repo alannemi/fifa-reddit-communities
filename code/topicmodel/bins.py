@@ -7,7 +7,7 @@ bin is decided by the UTC calendar date of `created_datetime`.  The bins cover
 the whole corpus, so every post gets exactly one bin; the stage checks that
 the bin sizes add up to the number of posts read.
 
-Outputs (data/analysis/, or <out-root>/data/analysis/):
+Outputs (config.ANALYSIS_DATA_DIR; <out-root>/data/analysis/ in dry runs):
   period_bins.csv          id, period_bin, period_type      -- the join table used by every later stage
   period_bins_summary.csv  one row per bin with the counts that the design table (§4) reports
 
@@ -23,6 +23,7 @@ import numpy as np
 import pandas as pd
 from . import config as C
 from . import data
+from . import model as M
 
 log = logging.getLogger("topicmodel")
 
@@ -65,10 +66,10 @@ def build_period_bins(out_dir: Path) -> pd.DataFrame:
     """Read the 17 yearly files one at a time (text dropped after deriving flags, R10), assign bins, write the
     join table and the summary; return the summary."""
     out_dir.mkdir(parents=True, exist_ok=True)
-    years = sorted(int(p.stem.rsplit("-", 1)[1]) for p in C.YEARLY_DIR.glob("soccer.data.cleaned-*.csv"))
+    years = data.available_years()
     parts = []
     for y in years:
-        df = pd.read_csv(C.YEARLY_DIR / f"soccer.data.cleaned-{y}.csv", dtype=str, keep_default_na=False,
+        df = pd.read_csv(data.yearly_file(y), dtype=str, keep_default_na=False,
                          usecols=_USECOLS, encoding="utf-8")
         part = pd.DataFrame({
             "id": df["id"],
@@ -77,7 +78,7 @@ def build_period_bins(out_dir: Path) -> pd.DataFrame:
             "has_body": df["selftext"].str.strip().ne(""),
             "match_thread": df["post_type"].eq("match_thread"),
             "lang_en": df["lang"].eq("en"),
-            "title_short": df["title"].map(data.clean_text).map(lambda s: len(data._TOKEN.findall(s))) < C.MIN_TOKENS,
+            "title_short": df["title"].map(data.clean_text).map(data.n_tokens) < C.MIN_TOKENS,
         })
         parts.append(part)
         log.info("bins: %d -> %d posts read", y, len(part))
@@ -105,7 +106,7 @@ def build_period_bins(out_dir: Path) -> pd.DataFrame:
         "share_lang_en": g["lang_en"].mean().round(4).to_numpy(),
         "n_title_short": g["title_short"].sum().to_numpy(),
     })
-    summ["min_cluster_size_start"] = [max(C.BIN_MIN_CLUSTER_FLOOR, round(n * C.BIN_MIN_CLUSTER_FRACTION)) for n in summ["n_posts"]]
+    summ["min_cluster_size_start"] = [M.start_min_cluster_size(int(n)) for n in summ["n_posts"]]
     summ["expected_n_design"] = summ["period_bin"].map(C.PERIOD_BIN_EXPECTED_N)
     summ.to_csv(out_dir / "period_bins_summary.csv", index=False)
 

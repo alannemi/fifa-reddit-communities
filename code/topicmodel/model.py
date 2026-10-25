@@ -1,15 +1,19 @@
 """
-BERTopic construction, fitting and post-processing.
-====================================================
-Pipeline inside BERTopic (all settings from config.py):
-  embeddings (pre-computed) -> UMAP (5 dims) -> HDBSCAN (density clusters)
-  -> CountVectorizer + c-TF-IDF (distinctive words per topic)
-  -> KeyBERTInspired + MaximalMarginalRelevance (readable, diverse keywords)
-Afterwards: optional outlier reduction, topics over time, optional reduced
-model when there are many topics, and era alignment via merge_models.
+Stage S2 — BERTopic per period bin (design §6) and the outlier stage (decision D3, §6.3).
+=========================================================================================
+Inside BERTopic (every setting in config.py): pre-computed sentence embeddings -> UMAP to 5 dimensions, fitted ONCE
+per bin and replayed through `FrozenUMAP` -> HDBSCAN labels chosen by the topic-count guard and injected through
+`FrozenCluster` (refinement N2) -> CountVectorizer + c-TF-IDF (distinctive words per topic) -> KeyBERTInspired +
+MaximalMarginalRelevance (readable, diverse keywords).
+Around it: the guard (§6.2), the renumbering of cluster labels by size (review R1), the representative posts (R3),
+the outlier similarities and the calibration samples for the threshold T (N1), the thresholded reassignment, and the
+per-bin tables topics.csv / topics_over_time.csv (§6.4).  `save_model` / `load_model` keep the fitted model in
+safetensors format; UMAP and HDBSCAN are not part of it — the persisted .npy arrays are the replay record (§11).
 """
 from __future__ import annotations
 import logging
+import time
+from collections import Counter
 import numpy as np
 import pandas as pd
 from . import config as C
@@ -17,114 +21,9 @@ from . import config as C
 log = logging.getLogger("topicmodel")
 
 
-def min_cluster_size(n_docs: int) -> int:
-    return max(C.HDBSCAN_MIN_CLUSTER_FLOOR, round(n_docs * C.HDBSCAN_MIN_CLUSTER_FRACTION))
-
-
-def build_topic_model(n_docs: int, embedding_model_name: str, device: str):
-    from bertopic import BERTopic
-    from bertopic.representation import KeyBERTInspired, MaximalMarginalRelevance
-    from bertopic.vectorizers import ClassTfidfTransformer
-    from hdbscan import HDBSCAN
-    from sklearn.feature_extraction.text import CountVectorizer, ENGLISH_STOP_WORDS
-    from umap import UMAP
-    from .embed import load_embedding_model
-
-    umap_model = UMAP(**C.UMAP_PARAMS)
-    hdbscan_model = HDBSCAN(min_cluster_size=min_cluster_size(n_docs), min_samples=C.HDBSCAN_MIN_SAMPLES,
-                            metric="euclidean", cluster_selection_method="eom", prediction_data=True)
-    stop = list(ENGLISH_STOP_WORDS) + C.EXTRA_STOPWORDS
-    vectorizer = CountVectorizer(ngram_range=C.NGRAM_RANGE, stop_words=stop, min_df=2)
-    ctfidf = ClassTfidfTransformer(reduce_frequent_words=True)
-    # A chain: KeyBERT-style re-ranking of candidate words by similarity to the
-    # topic, then MMR to penalise near-duplicate keywords.
-    representation = [KeyBERTInspired(top_n_words=C.TOP_N_WORDS * 2),
-                      MaximalMarginalRelevance(diversity=C.MMR_DIVERSITY, top_n_words=C.TOP_N_WORDS)]
-    st_model = load_embedding_model(embedding_model_name, device)   # needed by KeyBERTInspired
-    model = BERTopic(embedding_model=st_model, umap_model=umap_model, hdbscan_model=hdbscan_model,
-                     vectorizer_model=vectorizer, ctfidf_model=ctfidf, representation_model=representation,
-                     top_n_words=C.TOP_N_WORDS, calculate_probabilities=False, verbose=True)
-    log.info("BERTopic built: min_cluster_size=%d, n_docs=%d", min_cluster_size(n_docs), n_docs)
-    return model
-
-
-def fit_model(model, docs: list[str], embeddings: np.ndarray) -> tuple[list[int], dict]:
-    """Fit and return (topics per doc, stats)."""
-    topics, _ = model.fit_transform(docs, embeddings)
-    topics = np.asarray(topics)
-    stats = {"n_docs": len(docs), "n_topics_raw": int((model.get_topic_info()["Topic"] != -1).sum()),
-             "outlier_share_raw": float((topics == -1).mean())}
-    if C.REDUCE_OUTLIERS and (topics == -1).any():
-        # Reassign outliers to the closest topic by c-TF-IDF similarity (documented strategy).
-        new_topics = model.reduce_outliers(docs, topics.tolist(), strategy="c-tf-idf")
-        model.update_topics(docs, topics=new_topics, vectorizer_model=model.vectorizer_model,
-                            ctfidf_model=model.ctfidf_model, representation_model=model.representation_model)
-        topics = np.asarray(new_topics)
-    stats["outlier_share_final"] = float((topics == -1).mean())
-    stats["n_topics_final"] = int((model.get_topic_info()["Topic"] != -1).sum())
-    log.info("fit: %s", stats)
-    return topics.tolist(), stats
-
-
-def topic_table(model, docs: pd.DataFrame, topics: list[int]) -> pd.DataFrame:
-    """One row per topic: size, share, keywords, representative documents."""
-    info = model.get_topic_info()
-    rows = []
-    d = docs.assign(topic=topics)
-    for _, r in info.iterrows():
-        t = int(r["Topic"])
-        words = [w for w, _ in model.get_topic(t)] if t != -1 else []
-        sub = d[d["topic"] == t]
-        # representative = documents closest to the topic's c-TF-IDF representation
-        rep_ids, rep_titles = [], []
-        if t != -1:
-            reps = model.get_representative_docs(t) or []
-            for text in reps[: C.N_REPRESENTATIVE_DOCS]:
-                m = sub[sub["document"] == text]
-                if len(m):
-                    rep_ids.append(m.iloc[0]["id"]); rep_titles.append(m.iloc[0]["title"][:140])
-        rows.append({"topic": t, "size": int(len(sub)), "share": round(len(sub) / len(d), 5),
-                     "keywords": ", ".join(words), "representative_ids": "|".join(rep_ids),
-                     "representative_titles": " || ".join(rep_titles),
-                     "share_match_thread": round(float((sub["post_type"] == "match_thread").mean()), 4) if len(sub) else 0.0,
-                     "mean_comments": round(float(pd.to_numeric(sub["num_comments"], errors="coerce").fillna(0).mean()), 2) if len(sub) else 0.0})
-    return pd.DataFrame(rows)
-
-
-def topics_over_time(model, docs: pd.DataFrame, topics: list[int], run_type: str) -> pd.DataFrame:
-    """Topic frequency per time bin (month for year/era, week for windows)."""
-    freq = C.TIME_BIN[run_type]
-    stamps = docs["date"].dt.tz_localize(None).dt.to_period("W" if freq == "W" else "M").dt.start_time
-    tot = model.topics_over_time(docs["document"].tolist(), stamps.tolist(), topics=topics, global_tuning=False, evolution_tuning=False)
-    tot = tot.rename(columns={"Topic": "topic", "Words": "keywords", "Frequency": "n_docs", "Timestamp": "period"})
-    return tot[["topic", "period", "n_docs", "keywords"]]
-
-
-def save_model(model, path, embedding_model_name: str):
-    path.mkdir(parents=True, exist_ok=True)
-    model.save(str(path), serialization="safetensors", save_ctfidf=True, save_embedding_model=embedding_model_name)
-
-
-def load_model(path):
-    from bertopic import BERTopic
-    return BERTopic.load(str(path))
-
-
-def merge_year_models(models: list, min_similarity: float = C.ERA_MERGE_MIN_SIMILARITY):
-    """Align several year models into one era model (topics sharing >= min_similarity are unified)."""
-    from bertopic import BERTopic
-    return BERTopic.merge_models(models, min_similarity=min_similarity)
-
-
-# ===========================================================================
-# Analytical pipeline (session 05) — per-bin BERTopic with frozen components, topic-count guard,
-# thresholded outlier reassignment and the per-bin tables.  Design §6; approvals N1–N3, R1, R3, R4.
-# ===========================================================================
-import json as _json
-import time as _time
-from collections import Counter as _Counter
-
-
+# ---------------------------------------------------------------------------
+# Frozen components (N2): BERTopic receives the 5-d array and the labels instead of refitting them
+# ---------------------------------------------------------------------------
 class FrozenUMAP:
     """Stands in for UMAP inside BERTopic: the 5-d array was computed once per bin (`fit_umap`) and is replayed,
     so the topic-count guard and any re-run never refit UMAP (design §6.1)."""
@@ -181,13 +80,16 @@ def detect_backend() -> dict:
     return info
 
 
+# ---------------------------------------------------------------------------
+# UMAP once per bin, HDBSCAN with the topic-count guard
+# ---------------------------------------------------------------------------
 def fit_umap(emb: np.ndarray) -> np.ndarray:
     """One UMAP fit per bin on the 768-d embeddings (seeded; GPU under cuml.accel). Returns the 5-d array."""
     from umap import UMAP
-    t0 = _time.time()
+    t0 = time.time()
     red = UMAP(**C.UMAP_PARAMS).fit_transform(emb)
     red = np.nan_to_num(np.asarray(red, dtype=np.float32))
-    log.info("UMAP: %d x %d -> %d dims in %.1f min", emb.shape[0], emb.shape[1], red.shape[1], (_time.time() - t0) / 60)
+    log.info("UMAP: %d x %d -> %d dims in %.1f min", emb.shape[0], emb.shape[1], red.shape[1], (time.time() - t0) / 60)
     return red
 
 
@@ -199,7 +101,8 @@ def hdbscan_labels(umap5d: np.ndarray, min_cluster_size: int) -> np.ndarray:
 
 
 def start_min_cluster_size(n_modelled: int) -> int:
-    return max(C.BIN_MIN_CLUSTER_FLOOR, round(n_modelled * C.BIN_MIN_CLUSTER_FRACTION))
+    """The relative minimum topic size of design §6.1: MIN_CLUSTER_FRACTION of the modelled posts, floor MIN_CLUSTER_FLOOR."""
+    return max(C.MIN_CLUSTER_FLOOR, round(n_modelled * C.MIN_CLUSTER_FRACTION))
 
 
 def n_topics_of(labels: np.ndarray) -> int:
@@ -209,7 +112,7 @@ def n_topics_of(labels: np.ndarray) -> int:
 def guard_min_cluster_size(umap5d: np.ndarray, n_modelled: int, enabled: bool = True, fit=hdbscan_labels) -> dict:
     """Topic-count guard (design §6.2): start at the relative minimum, then move ×1.5 / ÷1.5 and bisect between
     the bracketing values until the raw topic count lies in TOPIC_COUNT_RANGE; at most GUARD_MAX_TRIALS fits;
-    never below BIN_MIN_CLUSTER_FLOOR. Keeps the trial nearest to the range; `converged` says whether it was
+    never below MIN_CLUSTER_FLOOR. Keeps the trial nearest to the range; `converged` says whether it was
     reached. `fit` is injectable for tests."""
     lo, hi = C.TOPIC_COUNT_RANGE
     trials = []
@@ -236,7 +139,7 @@ def guard_min_cluster_size(umap5d: np.ndarray, n_modelled: int, enabled: bool = 
             elif too_many is not None:
                 m = int(round(too_many * C.GUARD_STEP))
             else:
-                m = max(C.BIN_MIN_CLUSTER_FLOOR, int(round(too_few / C.GUARD_STEP)))
+                m = max(C.MIN_CLUSTER_FLOOR, int(round(too_few / C.GUARD_STEP)))
             if m in tried:
                 break
             tried.add(m)
@@ -259,15 +162,19 @@ def guard_min_cluster_size(umap5d: np.ndarray, n_modelled: int, enabled: bool = 
 def renumber_by_size(labels: np.ndarray) -> tuple[np.ndarray, dict]:
     """Renumber cluster labels by size (largest -> 0; ties by original label) so that BERTopic's own
     frequency sort is the identity up to ties (R1). Returns (new labels, {old: new})."""
-    sizes = _Counter(int(l) for l in labels if l != -1)
+    sizes = Counter(int(l) for l in labels if l != -1)
     order = sorted(sizes, key=lambda l: (-sizes[l], l))
     mp = {l: i for i, l in enumerate(order)}
     mp[-1] = -1
     return np.array([mp[int(l)] for l in labels], dtype=int), mp
 
 
-def build_bin_topic_model(umap5d: np.ndarray, labels: np.ndarray, embedding_model_name: str, device: str):
-    """BERTopic for one bin: frozen UMAP + frozen cluster labels; the same keyword chain as build_topic_model."""
+# ---------------------------------------------------------------------------
+# The BERTopic model of a bin
+# ---------------------------------------------------------------------------
+def build_topic_model(umap5d: np.ndarray, labels: np.ndarray, embedding_model_name: str, device: str):
+    """BERTopic for one bin: frozen UMAP + frozen cluster labels, then the keyword chain of design §6.1
+    (CountVectorizer with the stop-list -> c-TF-IDF -> KeyBERTInspired -> MaximalMarginalRelevance)."""
     from bertopic import BERTopic
     from bertopic.representation import KeyBERTInspired, MaximalMarginalRelevance
     from bertopic.vectorizers import ClassTfidfTransformer
@@ -286,7 +193,7 @@ def build_bin_topic_model(umap5d: np.ndarray, labels: np.ndarray, embedding_mode
     return model
 
 
-def fit_bin_model(model, docs_text: list[str], emb: np.ndarray) -> tuple[np.ndarray, dict]:
+def fit_model(model, docs_text: list[str], emb: np.ndarray) -> tuple[np.ndarray, dict]:
     """fit_transform with the frozen components; returns BERTopic's topic ids and the {injected: BERTopic} map."""
     topics, _ = model.fit_transform(docs_text, emb)
     mapping = {int(k): int(v) for k, v in model.topic_mapper_.get_mappings().items()}
@@ -326,6 +233,9 @@ def representative_ids(model, docs_text: list[str], ids: np.ndarray, topics: np.
     return out
 
 
+# ---------------------------------------------------------------------------
+# Outliers (D3): nearest topic and similarity, calibration table and samples, thresholded reassignment
+# ---------------------------------------------------------------------------
 def outlier_nearest(model, emb: np.ndarray, topics_raw: np.ndarray, ids: np.ndarray) -> pd.DataFrame:
     """For every raw outlier: the most similar topic (cosine to the topic embedding) and that similarity (N1)."""
     from sklearn.metrics.pairwise import cosine_similarity
@@ -395,10 +305,13 @@ def apply_outlier_threshold(topics_raw: np.ndarray, ids: np.ndarray, nearest: pd
     return topic_id, assignment, sim
 
 
-def bin_topic_table(model, docs: pd.DataFrame, topic_id_raw: np.ndarray, topic_id: np.ndarray,
-                    rep_ids: dict[int, list[str]]) -> pd.DataFrame:
-    """topics.csv of a bin (design §6.4): sizes before/after reassignment, keywords from cluster members,
-    representative posts, QA covariates over the final members."""
+# ---------------------------------------------------------------------------
+# The per-bin tables (design §6.4)
+# ---------------------------------------------------------------------------
+def topic_table(model, docs: pd.DataFrame, topic_id_raw: np.ndarray, topic_id: np.ndarray,
+                rep_ids: dict[int, list[str]]) -> pd.DataFrame:
+    """topics.csv of a bin: sizes before/after reassignment, keywords from cluster members, representative posts,
+    QA covariates over the final members."""
     d = docs.assign(_raw=topic_id_raw, _final=topic_id)
     title_of = dict(zip(d["id"].astype(str), d["title"]))
     n_mod = len(d)
@@ -416,11 +329,24 @@ def bin_topic_table(model, docs: pd.DataFrame, topic_id_raw: np.ndarray, topic_i
     return pd.DataFrame(rows)
 
 
-def bin_topics_over_time(model, docs: pd.DataFrame, topic_id: np.ndarray, period_type: str) -> pd.DataFrame:
-    """Weekly (tournament bins) or monthly (interim bins) topic frequencies over the final assignment."""
-    freq = C.BIN_TIME_BIN[period_type]
+def topics_over_time(model, docs: pd.DataFrame, topic_id: np.ndarray, period_type: str) -> pd.DataFrame:
+    """Weekly (tournament bins) or monthly (interim bins) topic frequencies over the final assignment (config.TIME_BIN)."""
+    freq = C.TIME_BIN[period_type]
     stamps = docs["date"].dt.tz_localize(None).dt.to_period("W" if freq == "W" else "M").dt.start_time
     tot = model.topics_over_time(docs["document"].tolist(), stamps.tolist(), topics=topic_id.tolist(),
                                  global_tuning=False, evolution_tuning=False)
     tot = tot.rename(columns={"Topic": "topic_id", "Words": "keywords", "Frequency": "n_docs", "Timestamp": "period"})
     return tot[["topic_id", "period", "n_docs", "keywords"]]
+
+
+# ---------------------------------------------------------------------------
+# Persistence (safetensors; UMAP/HDBSCAN are replayed from the .npy arrays, design §11)
+# ---------------------------------------------------------------------------
+def save_model(model, path, embedding_model_name: str):
+    path.mkdir(parents=True, exist_ok=True)
+    model.save(str(path), serialization="safetensors", save_ctfidf=True, save_embedding_model=embedding_model_name)
+
+
+def load_model(path):
+    from bertopic import BERTopic
+    return BERTopic.load(str(path))

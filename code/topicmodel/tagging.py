@@ -10,12 +10,12 @@ topic_category_overrides.csv on the topic that survives `merge_into`; then the c
 category_overrides.csv; then topic lists and sizes are recomputed (a category emptied by moves stays with n_topics 0).
 Outputs:
   data/analysis/post_variables.csv (+ .json sidecar)  one row per clean post, the eight codebook §4.9 columns plus
-                                                       the two audit columns; the input of 07-tag-corpus.R
+                                                       the two audit columns; the input of 06-tag-corpus.R
   results/analysis/topic_labels_all_bins.csv           one row per topic cluster (the brief's "separate CSV")
   results/analysis/categories_all_bins.csv             one row per category of each bin's taxonomy
   results/analysis/category_crosswalk.csv              empty template for the manual cross-bin crosswalk (F4)
 S5 may run before all bins exist (refinement N6): columns stay empty for bins without outputs, the sidecar lists
-`bins_complete`, and 07-tag-corpus.R refuses a partial write-back outside a dry run.
+`bins_complete`, and 06-tag-corpus.R refuses a partial write-back outside a dry run.
 """
 from __future__ import annotations
 import hashlib
@@ -28,6 +28,7 @@ import pandas as pd
 
 from . import config as C
 from . import bins as BINS
+from . import sentiment as S
 from .agents import apply_topic_overrides, apply_category_overrides, read_overrides, read_final_categories, ASSIGN_COLS
 
 log = logging.getLogger("topicmodel")
@@ -214,7 +215,7 @@ def collect(analysis_dir: Path, analysis_data_dir: Path, allow_partial: bool, ru
         pv = pv.merge(sent, on="id", how="left")
         s = pd.to_numeric(pv["post_sentiment"], errors="coerce")
         _check(bool(s.dropna().between(-1, 1).all()), "post_sentiment outside [-1, 1]", errors)
-        lab_expected = s.map(lambda v: "" if np.isnan(v) else ("positive" if v > C.SENTIMENT_POS_THRESHOLD else "negative" if v < C.SENTIMENT_NEG_THRESHOLD else "neutral"))
+        lab_expected = s.map(lambda v: "" if np.isnan(v) else S.label_of(v))
         got = pv["post_sentiment_label"].fillna("")
         _check(bool((lab_expected == got).all()), "post_sentiment_label inconsistent with the thresholds", errors)
         n_sent = int(s.notna().sum())

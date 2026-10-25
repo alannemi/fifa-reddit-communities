@@ -1,11 +1,11 @@
 """
-Sentence embeddings with a per-year cache.
-==========================================
-Embeddings are the most expensive step and are identical for the same
-(model, document) pair, so they are computed once per year and stored in
-results/topic-models/embeddings/<model-slug>/<year>.npz (ids + float32
-matrix).  Year runs, tournament-window runs and era runs all draw from this
-cache, and a Colab job that disconnects resumes from it.
+Stage S1 — sentence embeddings with a per-year cache (design §5).
+=================================================================
+Embeddings are the most expensive step and are identical for the same (model, document) pair, so they are computed
+once per calendar year — for ALL documents of the year, too-short ones included — and stored under
+config.EMBED_CACHE_DIR/<model-slug>/<year>.npz (ids + float32 matrix).  Every bin draws its rows from the year caches
+(bin 7 spans 2022 and 2023), a re-run costs nothing already embedded, and a Colab job that disconnects resumes from
+the cache.  The model weights are downloaded into config.LLM_CACHE_DIR.
 """
 from __future__ import annotations
 import logging
@@ -47,11 +47,20 @@ def _cache_path(model_name: str, year: int) -> Path:
     return p / f"{year}.npz"
 
 
-def embed_year(year: int, docs: pd.DataFrame, model_name: str, device: str, st_model=None) -> tuple[np.ndarray, np.ndarray]:
+def cached(model_name: str, year: int) -> bool:
+    """Whether a cache file exists for (model, year) — the caller decides whether to load the model."""
+    return _cache_path(model_name, year).exists()
+
+
+def embed_year(year: int, docs: pd.DataFrame, model_name: str, device: str, st_model=None,
+               force: bool = False) -> tuple[np.ndarray, np.ndarray]:
     """Return (ids, embeddings) for ALL documents of a year, computing and caching if needed.
-    `docs` must contain the full year's documents (id, document, too_short)."""
+    `docs` must contain the full year's documents (id, document, too_short); `force` discards an existing cache."""
     path = _cache_path(model_name, year)
-    if path.exists():
+    if path.exists() and force:
+        path.unlink()
+        log.info("embeddings: --force removed %s", path)
+    elif path.exists():
         z = np.load(path, allow_pickle=False)
         if len(z["ids"]) == len(docs) and set(z["ids"]) == set(docs["id"]):
             log.info("embeddings: cache hit %s (%d docs)", path.name, len(docs))
@@ -73,7 +82,7 @@ def embeddings_for(docs: pd.DataFrame, full_year_docs: dict[int, pd.DataFrame], 
     st_model = None
     lookup = {}
     for year, ydocs in full_year_docs.items():
-        if not _cache_path(model_name, year).exists() and st_model is None:
+        if not cached(model_name, year) and st_model is None:
             st_model = load_embedding_model(model_name, device)
         ids, emb = embed_year(year, ydocs, model_name, device, st_model)
         lookup.update({i: k for k, i in enumerate(ids)})

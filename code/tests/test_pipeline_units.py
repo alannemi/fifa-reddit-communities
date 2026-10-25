@@ -1,12 +1,14 @@
 #!/usr/bin/env python
 """
-Unit checks for the analytical pipeline (session 05, plan §5.1 / review R6) — no GPU, no language model.
+Unit checks for the analytical pipeline — no GPU, no language model (session 05, review R6; extended in sessions 06–07).
 Run:  .venv/bin/python code/tests/test_pipeline_units.py        (exit code 1 if any check fails)
-Covers: period-bin boundaries; the topic-count guard; the frozen UMAP/cluster components inside BERTopic and
-the size renumbering; JSON extraction, validation, normalisation and partition comparison; the deterministic
-repair; override application (incl. merge chains); outlier thresholds; the full D2 debate engine with a
-scripted StubLLM (every agreement_mode, the repair and no-answer paths, resume); the S3b chunking fallback;
-a partial S5 collect; sentiment labels.
+Covers: the path root (PIPELINE_ROOT) and the tone vocabulary; period-bin boundaries; the topic-count guard; the
+frozen UMAP/cluster components inside BERTopic and the size renumbering; JSON extraction, validation, normalisation
+and partition comparison; the deterministic repair; override application (incl. merge chains and the topic-level
+category moves, F28); outlier thresholds; the full D2 debate engine with a scripted StubLLM (every agreement_mode,
+the repair and no-answer paths, resume); the S3b two-step protocol (definitions, assignment, salvage, checkpoint
+resume, batching, cap) and the superseded partition protocol with its chunking fallback; a partial S5 collect;
+sentiment labels.
 """
 from __future__ import annotations
 import json
@@ -35,6 +37,26 @@ def check(name, fn):
 
 
 # ---------------------------------------------------------------------------
+def test_paths_and_tones():
+    # repository layout (PIPELINE_ROOT unset)
+    p = C.resolve_paths(None)
+    assert p["YEARLY_DIR"] == C.ROOT / "data" / "yearly datasets" and p["ANALYSIS_DATA_DIR"] == C.ROOT / "data" / "analysis"
+    assert p["ANALYSIS_DIR"] == C.ROOT / "results" / "analysis" and p["EMBED_CACHE_DIR"] == C.ROOT / "results" / "embeddings"
+    assert p["LLM_CACHE_DIR"] == C.ROOT / ".hf-cache"
+    # the flat Drive layout (decision H2), with and without the local copy of the yearly files (H3)
+    r = (Path(tempfile.gettempdir()) / "fifa-communities").resolve()
+    q = C.resolve_paths(str(r))
+    assert q["YEARLY_DIR"] == r / "yearly datasets" and q["ANALYSIS_DATA_DIR"] == r / "analysis" and q["ANALYSIS_DIR"] == r / "results"
+    assert q["EMBED_CACHE_DIR"] == r / "embeddings" and q["LLM_CACHE_DIR"] == r / "hf-cache"
+    q = C.resolve_paths(str(r), str(Path(tempfile.gettempdir()) / "content" / "yearly datasets"))
+    assert q["YEARLY_DIR"].name == "yearly datasets" and q["YEARLY_DIR"] != r / "yearly datasets" and q["ANALYSIS_DIR"] == r / "results"
+    s = C.effective_settings()
+    assert s["PIPELINE_ROOT"] == C.PIPELINE_ROOT and s["ANALYSIS_DIR"] == str(C.ANALYSIS_DIR) and "EMBEDDING_MODEL_HQ" not in s
+    # tone vocabulary: every stem maps into TONE_SET; the mapper is unchanged
+    assert {cat for _, cat in C.TONE_STEMS} <= set(C.TONE_SET)
+    assert [G.tone_category(x) for x in ("Frustration and anger", "anxious and desperate", "Satirical and humorous", "meh")] == ["frustrated", "anxious", "humorous", "other"]
+
+
 def test_bin_boundaries():
     s = pd.Series(["2010-01-01 00:00:00", "2010-09-30 23:59:59", "2010-10-01 00:00:00", "2014-01-31 23:59:59",
                    "2014-02-01 00:00:00", "2018-09-30 12:00:00", "2018-10-01 00:00:00", "2022-06-30 23:59:59",
@@ -68,7 +90,7 @@ def test_guard():
     def stub3(X, m):                              # never enough topics: stays at the floor, flagged
         return np.array([(i % 11) - 1 for i in range(len(X))])
     r = M.guard_min_cluster_size(X, 4000, True, fit=stub3)
-    assert not r["converged"] and r["min_cluster_size"] == C.BIN_MIN_CLUSTER_FLOOR
+    assert not r["converged"] and r["min_cluster_size"] == C.MIN_CLUSTER_FLOOR
     r = M.guard_min_cluster_size(X, 4000, False, fit=stub2)   # disabled: one fit
     assert len(r["trials"]) == 1 and r["enabled"] is False
 
@@ -93,7 +115,7 @@ def test_frozen_components_in_bertopic():
     umap5d = rng.normal(size=(len(docs), 5)).astype(np.float32)
     bt = BERTopic(embedding_model=None, umap_model=M.FrozenUMAP(umap5d), hdbscan_model=M.FrozenCluster(renum),
                   vectorizer_model=CountVectorizer(min_df=1), calculate_probabilities=False, verbose=False)
-    topics, mapping = M.fit_bin_model(bt, docs, emb)
+    topics, mapping = M.fit_model(bt, docs, emb)
     assert (topics == renum).all(), "BERTopic changed the injected labels"
     assert all(k == v for k, v in mapping.items()), mapping
     assert bt._outliers == 1 and np.asarray(bt.topic_embeddings_).shape == (4, 16)
@@ -111,7 +133,7 @@ def test_frozen_components_in_bertopic():
     tbl = M.calibration_table(near, len(docs))
     assert list(tbl["quantile"]) == list(C.OUTLIER_CALIBRATION_QUANTILES)
     docs_df = pd.DataFrame({"id": ids, "title": docs, "post_type": "regular", "lang": "en", "num_comments": "3"})
-    tt = M.bin_topic_table(bt, docs_df, topics, tid, rep)
+    tt = M.topic_table(bt, docs_df, topics, tid, rep)
     assert set(tt["topic_id"]) == {-1, 0, 1, 2} and tt.loc[tt["topic_id"] == 0, "n_cluster"].iloc[0] == 110
 
 

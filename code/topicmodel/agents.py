@@ -43,7 +43,6 @@ import pandas as pd
 
 from . import config as C
 from . import prompts as P
-from .label import tone_category
 
 log = logging.getLogger("topicmodel")
 
@@ -54,6 +53,20 @@ ASSIGN_COLS = ["assignment_item", "assignment_round_iterations", "assignment_agr
                "assignment_needs_review"]
 # bookkeeping keys kept in parsed answers but never shown to the model in a revision turn
 INTERNAL_KEYS = {"id_given", "topics_ignored", "resolved_from", "n_cues_given"}
+
+
+# ===========================================================================
+# 0. Controlled tone vocabulary (design §7.3)
+# ===========================================================================
+def tone_category(free_text: str) -> str:
+    """Map a free-text emotion_tone to the controlled vocabulary config.TONE_SET by word stems (config.TONE_STEMS,
+    first match wins); "other" when no stem matches.  Used for `tone_category` in the label and category tables and
+    for the identity rules of the taxonomy debates."""
+    t = str(free_text).lower()
+    for stem, cat in C.TONE_STEMS:
+        if stem in t:
+            return cat
+    return "other"
 
 
 # ===========================================================================
@@ -539,7 +552,8 @@ def partition_problems(categories: list[dict], topic_ids: list[int]) -> dict:
 
 
 def validate_taxonomy(obj: dict, topic_ids: list[int], allow_accept: bool) -> tuple[dict | None, str | None]:
-    """S3b answer: accept, or ≥ 1 categories each with the five fields plus `topics`; the `topics` lists must
+    """S3b answer of the partition protocol (v1.1, superseded by the two-step protocol): accept, or ≥ 1 categories
+    each with the five fields plus `topics`; the `topics` lists must
     partition `topic_ids` (every id exactly once). Structural errors and partition violations both return an
     error message (the caller grants one repair turn); the parsed object is returned alongside a partition
     error so that the deterministic repair can start from it."""
@@ -625,7 +639,9 @@ class Debate:
         self.stage, self.llm, self.validate, self.identical = stage, llm, validate, identical
         self.max_rounds, self.seed_prefix, self.on_resolved = max_rounds, seed_prefix, on_resolved
         # token budget, salvage function and the answer key named in the revision turn are per stage (v1.2)
-        self.max_new = int(max_new_tokens) if max_new_tokens else (C.LLM_MAX_NEW_TOKENS_LABEL if stage == "label" else C.LLM_MAX_NEW_TOKENS_TAXONOMY)
+        budgets = {"label": C.LLM_MAX_NEW_TOKENS_LABEL, "define": C.LLM_MAX_NEW_TOKENS_DEFINE,
+                   "assign": C.LLM_MAX_NEW_TOKENS_ASSIGN, "taxonomy": C.LLM_MAX_NEW_TOKENS_PARTITION}
+        self.max_new = int(max_new_tokens) if max_new_tokens else budgets[stage]
         self.salvage = salvage or _default_salvage
         self.answer_key = answer_key or P.ANSWER_KEYS.get(stage, "categories")
 
@@ -686,6 +702,7 @@ class Debate:
         results = {}
 
         def resolve(it, mode, rnd, final, agreed):
+            assert mode in AGREEMENT_MODES, mode
             it["resolved"] = True
             rec = {"key": it["key"], "agreed": bool(agreed), "agreement_mode": mode, "round_iterations": rnd,
                    "needs_review": not agreed, "final": final, "analyst_a_final": it["answers"][A],

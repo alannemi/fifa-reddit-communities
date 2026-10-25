@@ -1,9 +1,10 @@
 """
-Tables and report for one run.
-==============================
-Writes CSV tables (joinable to the corpus by post id) and a self-contained
-HTML report (Plotly charts; the Plotly library is loaded from a CDN) plus a
-Markdown summary.  Nothing here changes the data; it only presents it.
+The per-bin report (report.html + report.md) — presentation only; nothing here changes the data.
+================================================================================================
+Rendered after every stage that changes a bin's tables (topics, reassign, label, taxonomy; `--stage report`
+re-renders): topic sizes, prevalence over time with the kick-off / final markers of the tournament bins, the mean
+VADER sentiment of the titles by topic, and the topic table with the agreed names, tones, descriptions and the
+category of each topic in the bin's taxonomy.  Plotly is loaded from a CDN, so the file is small and self-contained.
 """
 from __future__ import annotations
 import datetime as dt
@@ -14,75 +15,70 @@ from . import config as C
 
 log = logging.getLogger("topicmodel")
 
-
-def write_tables(run_dir, docs: pd.DataFrame, topics: pd.DataFrame, tot: pd.DataFrame,
-                 sent_topic: pd.DataFrame, sent_period: pd.DataFrame) -> None:
-    keep = ["id", "created_datetime", "year", "post_type", "lang", "link_flair_text", "num_comments", "score",
-            "too_short", "topic", "sentiment_compound", "sentiment_label"]
-    docs[[c for c in keep if c in docs.columns]].to_csv(run_dir / "documents.csv", index=False)
-    topics.to_csv(run_dir / "topics.csv", index=False)
-    tot.to_csv(run_dir / "topics_over_time.csv", index=False)
-    sent_topic.to_csv(run_dir / "sentiment_by_topic.csv", index=False)
-    sent_period.to_csv(run_dir / "sentiment_by_period.csv", index=False)
+LABEL_COLS = ["name", "emotion_tone", "description", "needs_review", "category_id", "category_name"]
 
 
 def _fig_html(fig) -> str:
     return fig.to_html(full_html=False, include_plotlyjs=False)
 
 
-def write_report(run_dir, meta: dict, docs: pd.DataFrame, topics: pd.DataFrame, tot: pd.DataFrame,
-                 sent_topic: pd.DataFrame, bt_model=None, markers: dict | None = None) -> None:
+def write_report(run_dir, meta: dict, topics: pd.DataFrame, tot: pd.DataFrame, sent_topic: pd.DataFrame,
+                 markers: dict | None = None) -> None:
+    """`topics` = the columns of topics.csv (topic_id, n_cluster, n_total, share, keywords, representative_titles, …)
+    plus, when the stages have run, the label columns (name, emotion_tone, description, needs_review) and the
+    category columns (category_id, category_name); `tot` = topics_over_time.csv; `sent_topic` = topic_id, n_docs,
+    mean_compound; `markers` = {name: date} vertical lines for the prevalence chart."""
     import plotly.express as px
-    import plotly.graph_objects as go
-    t = topics[topics["topic"] != -1].copy()
-    t["label"] = t.apply(lambda r: f"{r['topic']}: " + (r["label_name"] if "label_name" in t.columns and str(r.get("label_name", "")).strip() else ", ".join(r["keywords"].split(", ")[:4])), axis=1)
+    t = topics[topics["topic_id"] != -1].copy()
+    has_names = "name" in t.columns
+
+    def label(r):
+        name = str(r["name"]).strip() if has_names else ""
+        return f"{r['topic_id']}: " + (name if name else ", ".join(str(r["keywords"]).split(", ")[:4]))
+
+    t["label"] = t.apply(label, axis=1)
     parts = []
-    # 1. topic sizes
-    fig = px.bar(t.sort_values("size", ascending=True), x="size", y="label", orientation="h",
+    # 1. topic sizes (posts after the outlier reassignment, if a threshold is set)
+    fig = px.bar(t.sort_values("n_total", ascending=True), x="n_total", y="label", orientation="h",
                  title="Topic sizes (number of posts)", height=max(400, 22 * len(t)))
     parts.append(_fig_html(fig))
-    # 2. topics over time (top 12 by size)
-    top = t.nlargest(12, "size")["topic"].tolist()
-    tt = tot[tot["topic"].isin(top)].merge(t[["topic", "label"]], on="topic")
+    # 2. prevalence over time (12 largest topics)
+    top = t.nlargest(12, "n_total")["topic_id"].tolist()
+    tt = tot[tot["topic_id"].isin(top)].merge(t[["topic_id", "label"]], on="topic_id")
     fig = px.line(tt, x="period", y="n_docs", color="label", title="Topic prevalence over time (12 largest topics)")
     if markers:
         for name, day in markers.items():
             fig.add_vline(x=pd.Timestamp(day).to_pydatetime(), line_dash="dash", annotation_text=name)
     parts.append(_fig_html(fig))
     # 3. sentiment by topic
-    st = sent_topic[sent_topic["topic"] != -1].merge(t[["topic", "label"]], on="topic")
+    st = sent_topic[sent_topic["topic_id"] != -1].merge(t[["topic_id", "label"]], on="topic_id")
     fig = px.bar(st.sort_values("mean_compound"), x="mean_compound", y="label", orientation="h",
-                 title="Mean VADER sentiment by topic (lexicon baseline)", height=max(400, 22 * len(st)))
+                 title="Mean VADER sentiment of the titles by topic", height=max(400, 22 * len(st)))
     parts.append(_fig_html(fig))
-    # 4. intertopic distance map
-    if bt_model is not None:
-        try:
-            parts.append(_fig_html(bt_model.visualize_topics()))
-        except Exception as e:  # small models can fail the 2-D projection
-            log.warning("intertopic map skipped: %s", e)
-    # topic table
-    cols = ["topic", "size", "share", "keywords"] + [c for c in ("label_name", "label_tone", "label_description", "needs_review") if c in t.columns] + ["representative_titles"]
+    # the topic table
+    cols = ["topic_id", "n_cluster", "n_total", "share", "keywords"] + [c for c in LABEL_COLS if c in t.columns] + ["representative_titles"]
+    cols = [c for c in cols if c in t.columns]
     table_html = t[cols].to_html(index=False, escape=True, classes="topics")
     summary = {k: v for k, v in meta.items() if k != "config"}
-    html = f"""<!doctype html><html><head><meta charset="utf-8"><title>{meta['run_name']} — topic model report</title>
+    html = f"""<!doctype html><html><head><meta charset="utf-8"><title>{meta['run_name']} — period bin report</title>
 <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
 <style>body{{font-family:Helvetica,Arial,sans-serif;max-width:1200px;margin:20px auto;color:#1f2933}}
 table.topics{{border-collapse:collapse;font-size:12px}} table.topics td,table.topics th{{border:1px solid #d9e2ec;padding:4px 6px;vertical-align:top}}
 th{{background:#e8eef5}} pre{{background:#f0f4f8;padding:8px;font-size:12px}}</style></head><body>
-<h1>Topic model report — {meta['run_name']}</h1>
-<p>Generated {dt.datetime.now():%Y-%m-%d %H:%M}. One document = one r/soccer post (title + up to {C.BODY_MAX_CHARS} characters of body).</p>
+<h1>Period bin report — {meta['run_name']}</h1>
+<p>Generated {dt.datetime.now():%Y-%m-%d %H:%M}. One document = one r/soccer post (title + up to {C.BODY_MAX_CHARS} characters of body); one BERTopic model per period bin.</p>
 <h2>Run summary</h2><pre>{json.dumps(summary, indent=1, default=str)}</pre>
-<p><b>How to read this.</b> Topics are dense groups of posts with similar meaning found by BERTopic; each is described by its most distinctive words (c-TF-IDF keywords) and, when labelled, by a name, tone and description proposed by two LLM analysts. Posts that fit no topic are topic −1 (outliers). Sentiment is a VADER lexicon score in [−1, 1] and is a first baseline only.</p>
+<p><b>How to read this.</b> Topics are dense groups of posts with similar meaning found by BERTopic; each is described by its most distinctive words (c-TF-IDF keywords) and, once the labelling stage has run, by the name, tone and description the two analysts agreed on, and by the category of the bin's discourse taxonomy. Posts that fit no topic are topic −1 (outliers); above the calibrated similarity threshold they are reassigned to their nearest topic (<code>n_cluster</code> = cluster members, <code>n_total</code> = after reassignment). Sentiment is the VADER compound score of the title in [−1, 1], a lexicon measure (design F10).</p>
 <h2>Charts</h2>{''.join(parts)}
 <h2>Topics</h2>{table_html}
 </body></html>"""
     (run_dir / "report.html").write_text(html, encoding="utf-8")
     # Markdown summary
-    md = [f"# Topic model report — {meta['run_name']}", "", "## Run summary", "```", json.dumps(summary, indent=1, default=str), "```", "",
-          "## Topics", "", "| topic | size | share | keywords | " + (" name | tone | " if "label_name" in t.columns else "") + "representative titles |",
-          "|---|---|---|---|" + ("---|---|" if "label_name" in t.columns else "") + "---|"]
-    for _, r in t.sort_values("size", ascending=False).iterrows():
-        extra = f" {r.get('label_name','')} | {r.get('label_tone','')} |" if "label_name" in t.columns else ""
-        md.append(f"| {r['topic']} | {r['size']} | {r['share']:.1%} | {r['keywords']} |{extra} {str(r['representative_titles']).replace('|','/')} |")
+    md = [f"# Period bin report — {meta['run_name']}", "", "## Run summary", "```", json.dumps(summary, indent=1, default=str), "```", "",
+          "## Topics", "", "| topic_id | n_total | share | keywords | " + (" name | tone | category | " if has_names else "") + "representative titles |",
+          "|---|---|---|---|" + ("---|---|---|" if has_names else "") + "---|"]
+    for _, r in t.sort_values("n_total", ascending=False).iterrows():
+        extra = f" {r.get('name', '')} | {r.get('emotion_tone', '')} | {r.get('category_id', '')} |" if has_names else ""
+        md.append(f"| {r['topic_id']} | {r['n_total']} | {float(r['share']):.1%} | {r['keywords']} |{extra} {str(r['representative_titles']).replace('|', '/')} |")
     (run_dir / "report.md").write_text("\n".join(md), encoding="utf-8")
     log.info("report written: %s", run_dir / "report.html")

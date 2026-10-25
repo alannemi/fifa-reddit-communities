@@ -1,21 +1,23 @@
 #!/usr/bin/env python
 """
 FIFA COMMUNITIES CHAPTER
-6. ANALYTICAL PIPELINE — period bins → BERTopic per bin → two-agent labels → VADER → tagging
-==============================================================================================
+5. ANALYTICAL PIPELINE — period bins → BERTopic per bin → two-agent labels and taxonomies → VADER → tagging
+=============================================================================================================
 
 PURPOSE
 -------
-Run the analytical pipeline designed in session 04 (docs/session-04_2026-10-22/01_analytical-pipeline-design.md,
-approved 2026-10-22; implementation approvals in docs/session-05_2026-10-23/00_approvals.md) stage by stage.
-Every stage is idempotent (it skips when its output exists; --force re-runs) and resumable; every bin writes
-config.json (effective settings, guard trials, backend, versions, prompts) and log.txt next to its outputs.
+Run the chapter's analytical pipeline stage by stage.  Design: docs/session-04_2026-10-22/01_analytical-pipeline-design.md
+(v1.2, decisions D1–D5).  Approvals: docs/session-05_2026-10-23/00_approvals.md (N1–N12, R1–R13),
+docs/session-06_2026-10-24/00_approvals.md (D5 two-step taxonomy, prompt v1.2), docs/session-07_2026-10-25/00_approvals.md
+(one pipeline, PIPELINE_ROOT).  Every stage is idempotent (it skips when its output exists; --force re-runs) and
+resumable; every bin writes config.json (effective settings and paths, guard trials, backend, versions, prompts) and
+log.txt next to its outputs.  The Colab notebook (code/05b-analysis-pipeline-colab.ipynb) only calls this program.
 
-STAGES (design §3)                                            reads -> writes
+STAGES (design §3)                                            reads -> writes   (<tables> = config.ANALYSIS_DATA_DIR, <results> = config.ANALYSIS_DIR)
 ------------------                                            ---------------
-  bins        S0 period_bin for every post                    yearly CSVs -> data/analysis/period_bins.csv (+ summary)
-  embed       S1 sentence embeddings, cached per year         yearly CSVs -> results/topic-models/embeddings/<model>/<year>.npz
-  topics      S2 BERTopic for one bin (frozen UMAP, guard)    S0, S1 -> results/analysis/bin-N/ (umap_5d.npy, hdbscan_labels_raw.npy,
+  bins        S0 period_bin for every post                    yearly CSVs -> <tables>/period_bins.csv (+ summary)
+  embed       S1 sentence embeddings, cached per year         yearly CSVs -> EMBED_CACHE_DIR/<model>/<year>.npz
+  topics      S2 BERTopic for one bin (frozen UMAP, guard)    S0, S1 -> <results>/bin-N/ (umap_5d.npy, hdbscan_labels_raw.npy,
                                                               documents.csv, topics.csv, topics_over_time.csv, model/, outlier_nearest.csv,
                                                               outlier_calibration/, config.json, report.html)
   reassign    D3 thresholded outlier reassignment             bin-N/ (+ --outlier-threshold T or config.OUTLIER_THRESHOLD) -> rewrites
@@ -25,38 +27,44 @@ STAGES (design §3)                                            reads -> writes
   taxonomy    S3b two-agent discourse taxonomy of the bin     topics_labelled + topic_overrides -> taxonomy.json, categories.csv,
               (two-step protocol D5: definitions, then one   topic_categories.csv, taxonomy_definitions.json (checkpoint),
               assignment debate per topic; prompt v1.2)      category_overrides.csv + topic_category_overrides.csv (templates) -> review
-  sentiment   S4 VADER per post (title; title + body)         yearly CSVs -> data/analysis/sentiment.csv (+ validation sample)
-  collect     S5 post_variables.csv + aggregated tables       S0–S4 (+ overrides) -> data/analysis/post_variables.csv (+ .json),
-                                                              results/analysis/topic_labels_all_bins.csv, categories_all_bins.csv
+  sentiment   S4 VADER per post (title; title + body)         yearly CSVs -> <tables>/sentiment.csv (+ validation sample)
+  collect     S5 post_variables.csv + aggregated tables       S0–S4 (+ overrides) -> <tables>/post_variables.csv (+ .json),
+                                                              <results>/topic_labels_all_bins.csv, categories_all_bins.csv
   report      per-bin report.html (re-render)                 bin-N/ -> report.html
-S6 (append the eight columns to the master and yearly files) is code/07-tag-corpus.R + 08-validate-analysis.R.
+S6 (append the eight columns to the master and yearly files) is code/06-tag-corpus.R + code/07-validate-analysis.R.
 
-HOW TO RUN (repository root; local .venv or Colab — see code/06b-analysis-pipeline-colab.ipynb)
------------------------------------------------------------------------------------------------
-  export HF_HOME=$PWD/.hf-cache TOKENIZERS_PARALLELISM=false
-  python code/06-analysis-pipeline.py --stage bins
-  python code/06-analysis-pipeline.py --stage embed --bin 1
-  python -m cuml.accel code/06-analysis-pipeline.py --stage topics --bin 1      # GPU UMAP/HDBSCAN on Colab
-  python code/06-analysis-pipeline.py --stage label --bin 1
-  python code/06-analysis-pipeline.py --stage taxonomy --bin 1
-  python code/06-analysis-pipeline.py --stage sentiment
-  python code/06-analysis-pipeline.py --stage collect
-Options: --bin N | --bins 1-9   --device auto|cuda|mps|cpu   --embedding-model <hf id> (default mpnet)
-         --llm <hf id>   --sampling greedy|seeded   --max-docs N (debug subsample, guard off)   --max-topics N
-         --outlier-threshold T   --years 2010 2011   --out-root PATH (dry runs: redirects results/analysis AND
-         data/analysis)   --allow-partial (collect)   --force
-         --taxonomy-protocol two_step|partition (default config.TAXONOMY_PROTOCOL; "partition" = the v1.1 single prompt)
-         --assign-batch N (topics per assignment item, default config.TAXONOMY_ASSIGN_BATCH = 1)
-Local dry run on bin 1 (design §16): --max-docs 3000 --embedding-model sentence-transformers/all-MiniLM-L6-v2
-         --out-root results/dry-runs/bin1-3000
+HOW TO RUN (repository root; local .venv, or Colab through the notebook)
+------------------------------------------------------------------------
+  export TOKENIZERS_PARALLELISM=false
+  python code/05-analysis-pipeline.py --stage bins
+  python code/05-analysis-pipeline.py --stage embed --bin 1
+  python -m cuml.accel code/05-analysis-pipeline.py --stage topics --bin 1      # GPU UMAP/HDBSCAN on Colab; without the prefix on CPU
+  python code/05-analysis-pipeline.py --stage label --bin 1
+  python code/05-analysis-pipeline.py --stage taxonomy --bin 1
+  python code/05-analysis-pipeline.py --stage sentiment
+  python code/05-analysis-pipeline.py --stage collect
+PATHS: by default the repository layout (data/yearly datasets, data/analysis, results/analysis, results/embeddings,
+  .hf-cache).  PIPELINE_ROOT=<folder> re-roots everything that persists on the flat layout of the shared Drive folder
+  MyDrive/fifa-communities/ (yearly datasets/, analysis/, results/, embeddings/, hf-cache/) — the notebook sets it;
+  PIPELINE_YEARLY_DIR overrides the input folder alone.  HF_HOME defaults to config.LLM_CACHE_DIR.
+OPTIONS: --bin N | --bins 1-9   --device auto|cuda|mps|cpu   --embedding-model <hf id> (default config.EMBEDDING_MODEL)
+  --llm <hf id>   --sampling greedy|seeded   --max-docs N (mechanics test on a subsample; guard off)   --max-topics N
+  --outlier-threshold T   --years 2010 2011   --out-root PATH (dry runs: writes <PATH>/results/analysis AND
+  <PATH>/data/analysis; input and caches unchanged)   --allow-partial (collect)   --force
+  --taxonomy-protocol two_step|partition (default config.TAXONOMY_PROTOCOL; "partition" = the superseded v1.1 single prompt)
+  --assign-batch N (topics per assignment item; default config.TAXONOMY_ASSIGN_BATCH = 1)
+Local dry run on the full bin 1 (memory/workflows.md §7): --embedding-model sentence-transformers/all-MiniLM-L6-v2
+  (= config.EMBEDDING_MODEL_DRY_RUN)  --out-root results/dry-runs/<name>
 """
 from __future__ import annotations
 import argparse
 import datetime as dt
 import json
 import logging
+import os
 import sys
 import time
+from collections import Counter
 from pathlib import Path
 
 import numpy as np
@@ -66,7 +74,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))   # make `topicmodel` i
 from topicmodel import config as C
 from topicmodel import data, embed, bins as BINS, model as M, sentiment, report, tagging, prompts as P
 from topicmodel import agents as G
-from collections import Counter
 
 log = logging.getLogger("topicmodel")
 STAGES = ["bins", "embed", "topics", "reassign", "label", "taxonomy", "sentiment", "collect", "report"]
@@ -76,6 +83,9 @@ STAGES = ["bins", "embed", "topics", "reassign", "label", "taxonomy", "sentiment
 # Paths, logging, run metadata
 # ---------------------------------------------------------------------------
 class Paths:
+    """The two output folders of a run: config.ANALYSIS_DIR / ANALYSIS_DATA_DIR (repository layout, or the flat Drive
+    layout under PIPELINE_ROOT), or both under --out-root for dry runs (repository-shaped, so the R scripts read them)."""
+
     def __init__(self, out_root: str | None):
         if out_root:
             root = Path(out_root).resolve()
@@ -86,6 +96,12 @@ class Paths:
             self.analysis, self.analysis_data, self.out_root = C.ANALYSIS_DIR, C.ANALYSIS_DATA_DIR, None
         self.analysis.mkdir(parents=True, exist_ok=True)
         self.analysis_data.mkdir(parents=True, exist_ok=True)
+
+    def describe(self) -> dict:
+        """Every path a run reads or writes (logged at the start of each stage; stored in post_variables.json)."""
+        return {"pipeline_root": C.PIPELINE_ROOT, "yearly_dir": str(C.YEARLY_DIR), "analysis_dir": str(self.analysis),
+                "analysis_data_dir": str(self.analysis_data), "embed_cache_dir": str(C.EMBED_CACHE_DIR),
+                "llm_cache_dir": str(C.LLM_CACHE_DIR), "out_root": self.out_root}
 
     def bin_dir(self, b: int) -> Path:
         d = self.analysis / f"bin-{b}"
@@ -165,21 +181,10 @@ def stage_embed(args, paths: Paths, b: int):
     device = embed.get_device(args.device)
     _, _, full = bin_documents(args, paths, b)
     st_model = None
-    for y, ydocs in full.items():   # the cache holds ALL documents of a year (same convention as 05-topic-model.py)
-        path = embed._cache_path(args.embedding_model, y)
-        if path.exists() and not args.force:
-            z = np.load(path, allow_pickle=False)
-            if len(z["ids"]) == len(ydocs):
-                log.info("embed: %d cached (%d docs) at %s", y, len(ydocs), path); continue
-        st_model = st_model or embed.load_embedding_model(args.embedding_model, device)
-        if path.exists():
-            path.unlink()
-        embed.embed_year(y, ydocs, args.embedding_model, device, st_model)
-
-
-def embeddings_for_modelled(modelled, full, model_name, device):
-    """Embeddings aligned to the modelled docs, drawn from the per-year cache (computed if missing)."""
-    return embed.embeddings_for(modelled, full, model_name, device)
+    for y, ydocs in full.items():   # the cache holds ALL documents of a year (too-short ones included)
+        if args.force or not embed.cached(args.embedding_model, y):
+            st_model = st_model or embed.load_embedding_model(args.embedding_model, device)
+        embed.embed_year(y, ydocs, args.embedding_model, device, st_model, force=args.force)
 
 
 # ---------------------------------------------------------------------------
@@ -195,7 +200,7 @@ def stage_topics(args, paths: Paths, b: int):
     log.info("topics: bin %d on backend %s (%s)", b, backend["backend"], backend)
     docs, modelled, full = bin_documents(args, paths, b)
     info = BINS.bin_info(b)
-    emb = embeddings_for_modelled(modelled, full, args.embedding_model, device)
+    emb = embed.embeddings_for(modelled, full, args.embedding_model, device)
     ids = modelled["id"].to_numpy().astype(str)
 
     # UMAP once per bin (replayed from umap_5d.npy on re-runs with the same documents)
@@ -215,8 +220,8 @@ def stage_topics(args, paths: Paths, b: int):
     np.save(bdir / "hdbscan_labels_raw.npy", guard["labels"])
     labels_sorted, size_map = M.renumber_by_size(guard["labels"])
 
-    bt = M.build_bin_topic_model(umap5d, labels_sorted, args.embedding_model, device)
-    topics_raw, bt_map = M.fit_bin_model(bt, modelled["document"].tolist(), emb)
+    bt = M.build_topic_model(umap5d, labels_sorted, args.embedding_model, device)
+    topics_raw, bt_map = M.fit_model(bt, modelled["document"].tolist(), emb)
     hdb_to_topic = {int(h): int(bt_map.get(int(s), int(s))) for h, s in size_map.items()}
     (bdir / "hdbscan_to_topic_map.json").write_text(json.dumps({"hdbscan_label_to_topic_id_raw": hdb_to_topic,
                                                                  "size_renumbering": size_map, "bertopic_mapping": bt_map}, indent=1), encoding="utf-8")
@@ -228,7 +233,7 @@ def stage_topics(args, paths: Paths, b: int):
     calib = M.calibration_table(nearest, len(modelled))
     cdir = bdir / "outlier_calibration"; cdir.mkdir(exist_ok=True)
     calib.to_csv(cdir / "calibration_table.csv", index=False)
-    kw_of = {t: ", ".join(w for w, _ in (bt.get_topic(t) or [])[:8]) for t in set(topics_raw.tolist()) - {-1}}
+    kw_of = {t: ", ".join(w for w, _ in (bt.get_topic(t) or [])[:C.TAXONOMY_KEYWORDS_PER_TOPIC]) for t in set(topics_raw.tolist()) - {-1}}
     titles = dict(zip(modelled["id"].astype(str), modelled["title"]))
     for T, samp in M.calibration_samples(nearest, titles, kw_of, calib).items():
         samp.to_csv(cdir / f"sample_T{T:.4f}.csv", index=False)
@@ -264,8 +269,8 @@ def write_bin_tables(bdir, bt, docs, modelled, topics_raw, topic_id, assignment,
         out[c] = out[c].map(lambda x: "" if pd.isna(x) else str(int(x)))
     out["similarity"] = out["similarity"].map(lambda x: "" if pd.isna(x) else f"{x:.4f}")
     out.drop(columns=["too_short"]).to_csv(bdir / "documents.csv", index=False)
-    M.bin_topic_table(bt, modelled, topics_raw, topic_id, rep).to_csv(bdir / "topics.csv", index=False)
-    M.bin_topics_over_time(bt, modelled, topic_id, period_type).to_csv(bdir / "topics_over_time.csv", index=False)
+    M.topic_table(bt, modelled, topics_raw, topic_id, rep).to_csv(bdir / "topics.csv", index=False)
+    M.topics_over_time(bt, modelled, topic_id, period_type).to_csv(bdir / "topics_over_time.csv", index=False)
 
 
 # ---------------------------------------------------------------------------
@@ -377,7 +382,7 @@ def stage_taxonomy(args, paths: Paths, b: int):
                                      "n_items_contested": sum(1 for i in items if i.get("n_contested")),
                                      "n_answers_salvaged": tj.get("n_answers_salvaged"),
                                      "token_budgets": {"define": C.LLM_MAX_NEW_TOKENS_DEFINE, "assign": C.LLM_MAX_NEW_TOKENS_ASSIGN,
-                                                       "partition": C.LLM_MAX_NEW_TOKENS_TAXONOMY},
+                                                       "partition": C.LLM_MAX_NEW_TOKENS_PARTITION},
                                      "llm_stats": llm.stats, "elapsed_min": round((time.time() - t0) / 60, 1),
                                      "run_at": dt.datetime.now().isoformat(timespec="seconds"), "prompts": P.stage_prompts("taxonomy")})
     render_report(args, paths, b)
@@ -389,46 +394,51 @@ def stage_taxonomy(args, paths: Paths, b: int):
 def stage_sentiment(args, paths: Paths):
     if (paths.analysis_data / "sentiment.csv").exists() and not args.force and not args.years:
         log.info("sentiment: %s exists (use --force)", paths.analysis_data / "sentiment.csv"); return
-    years = args.years or sorted(int(p.stem.rsplit("-", 1)[1]) for p in C.YEARLY_DIR.glob("soccer.data.cleaned-*.csv"))
+    years = args.years or data.available_years()
     pb = BINS.read_period_bins(paths.analysis_data) if (paths.analysis_data / "period_bins.csv").exists() else None
     sentiment.run_sentiment(years, paths.analysis_data, pb)
 
 
 def stage_collect(args, paths: Paths):
     tagging.collect(paths.analysis, paths.analysis_data, args.allow_partial,
-                    {"out_root": paths.out_root, "versions": {k: v for k, v in versions().items() if k != "pip_freeze"}})
+                    {"paths": paths.describe(), "versions": {k: v for k, v in versions().items() if k != "pip_freeze"}})
 
 
 def render_report(args, paths: Paths, b: int):
-    """report.html per bin through the existing writer (R13): sizes, prevalence over time, labels, categories."""
+    """report.html / report.md of a bin from its tables (topics.csv + the labels and categories, when present);
+    re-rendered after every stage that changes them."""
     bdir = paths.bin_dir(b)
     try:
-        topics = pd.read_csv(bdir / "topics.csv", keep_default_na=False)
-        t = topics.rename(columns={"topic_id": "topic", "n_total": "size"})
+        t = pd.read_csv(bdir / "topics.csv", keep_default_na=False)
         if (bdir / "topics_labelled.csv").exists():
             lab = pd.read_csv(bdir / "topics_labelled.csv", keep_default_na=False)
-            lab = lab.rename(columns={"topic_id": "topic", "name": "label_name", "emotion_tone": "label_tone", "description": "label_description"})
-            t = t.merge(lab[["topic", "label_name", "label_tone", "label_description", "needs_review"]], on="topic", how="left")
-            t[["label_name", "label_tone", "label_description"]] = t[["label_name", "label_tone", "label_description"]].fillna("")
-        if (bdir / "topic_categories.csv").exists():
-            tc = pd.read_csv(bdir / "topic_categories.csv", keep_default_na=False).rename(columns={"topic_id": "topic"})
-            t = t.merge(tc[["topic", "category_id"]], on="topic", how="left")
-        tot = pd.read_csv(bdir / "topics_over_time.csv", parse_dates=["period"]).rename(columns={"topic_id": "topic"})
+            t = t.merge(lab[["topic_id", "name", "emotion_tone", "description", "needs_review"]], on="topic_id", how="left")
+            t[["name", "emotion_tone", "description"]] = t[["name", "emotion_tone", "description"]].fillna("")
+        if (bdir / "topic_categories.csv").exists() and (bdir / "categories.csv").exists():
+            tc = pd.read_csv(bdir / "topic_categories.csv", keep_default_na=False)
+            try:
+                cats = pd.read_csv(bdir / "categories.csv", keep_default_na=False)
+            except pd.errors.EmptyDataError:
+                cats = pd.DataFrame(columns=["category_id", "name"])
+            t = t.merge(tc[["topic_id", "category_id"]], on="topic_id", how="left")
+            t["category_id"] = t["category_id"].fillna("")
+            t["category_name"] = t["category_id"].map(dict(zip(cats["category_id"], cats["name"]))).fillna("")
+        tot = pd.read_csv(bdir / "topics_over_time.csv", parse_dates=["period"])
         docs = pd.read_csv(bdir / "documents.csv", dtype=str, keep_default_na=False)
         sent_path = paths.analysis_data / "sentiment.csv"
         if sent_path.exists():
-            s = pd.read_csv(sent_path, dtype={"id": str}, keep_default_na=False).merge(docs[["id", "topic_id"]], on="id")
-            s = s[s["topic_id"] != ""]; s["topic"] = s["topic_id"].astype(int)
-            st = s.groupby("topic").agg(n_docs=("id", "size"), mean_compound=("post_sentiment", "mean")).reset_index()
+            sd = pd.read_csv(sent_path, dtype={"id": str}, keep_default_na=False).merge(docs[["id", "topic_id"]], on="id")
+            sd = sd[sd["topic_id"] != ""]; sd["topic_id"] = sd["topic_id"].astype(int)
+            st = sd.groupby("topic_id").agg(n_docs=("id", "size"), mean_compound=("post_sentiment", "mean")).reset_index()
         else:
-            st = pd.DataFrame({"topic": t["topic"], "n_docs": t["size"], "mean_compound": 0.0})
+            st = pd.DataFrame({"topic_id": t["topic_id"], "n_docs": t["n_total"], "mean_compound": 0.0})
         cfg = read_config(bdir).get("topics", {})
         meta = {k: cfg.get(k) for k in ("period_bin", "period_type", "start", "end", "n_documents", "n_modelled", "n_topics_raw",
                                          "outlier_share_raw", "outlier_threshold", "outlier_share_final", "embedding_model", "backend")}
         meta["run_name"] = f"bin-{b}"
         info = BINS.bin_info(b)
         markers = {"kick-off": C.WORLD_CUPS[info["world_cup"]][0], "final": C.WORLD_CUPS[info["world_cup"]][1]} if info["world_cup"] else None
-        report.write_report(bdir, meta, docs, t, tot, st, bt_model=None, markers=markers)
+        report.write_report(bdir, meta, t, tot, st, markers=markers)
     except Exception as e:
         log.warning("report for bin %d skipped: %s", b, e)
 
@@ -438,29 +448,30 @@ def main():
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--stage", required=True, choices=STAGES)
     p.add_argument("--bin", type=int, choices=range(1, 10)); p.add_argument("--bins", help="range, e.g. 1-9")
-    p.add_argument("--device", default="auto"); p.add_argument("--embedding-model", default=C.ANALYSIS_EMBEDDING_MODEL)
+    p.add_argument("--device", default="auto"); p.add_argument("--embedding-model", default=C.EMBEDDING_MODEL)
     p.add_argument("--llm", default=C.LLM_MODEL); p.add_argument("--sampling", default="seeded" if C.LLM_SAMPLING_SEEDED else "greedy", choices=["greedy", "seeded"])
-    p.add_argument("--max-docs", type=int, default=0, help="debug subsample of the bin (disables the topic-count guard)")
+    p.add_argument("--max-docs", type=int, default=0, help="mechanics test on a subsample of the bin (disables the topic-count guard)")
     p.add_argument("--max-topics", type=int, default=0, help="label only the N largest topics (smoke tests)")
     p.add_argument("--outlier-threshold", type=float, default=None)
     p.add_argument("--years", type=int, nargs="*", help="sentiment: restrict to these years")
-    p.add_argument("--out-root", default=None, help="write results/analysis and data/analysis under this root (dry runs)")
+    p.add_argument("--out-root", default=None, help="dry runs: write <PATH>/results/analysis and <PATH>/data/analysis (input and caches unchanged)")
     p.add_argument("--allow-partial", action="store_true"); p.add_argument("--force", action="store_true")
     p.add_argument("--taxonomy-protocol", default=None, choices=["two_step", "partition"],
-                   help="S3b protocol (default config.TAXONOMY_PROTOCOL; 'partition' = the v1.1 single prompt)")
+                   help="S3b protocol (default config.TAXONOMY_PROTOCOL; 'partition' = the superseded v1.1 single prompt)")
     p.add_argument("--assign-batch", type=int, default=None, help="topics per assignment item (default config.TAXONOMY_ASSIGN_BATCH)")
     args = p.parse_args()
+    os.environ.setdefault("HF_HOME", str(C.LLM_CACHE_DIR))   # every loader passes cache_dir explicitly; this keeps hub metadata there too
     paths = Paths(args.out_root)
     per_bin = args.stage in ("embed", "topics", "reassign", "label", "taxonomy", "report")
     if per_bin:
         for b in parse_bins(args):
             setup_logging(paths.bin_dir(b) / "log.txt")
-            log.info("=== stage %s, bin %d === args: %s", args.stage, b, vars(args))
+            log.info("=== stage %s, bin %d === args: %s | paths: %s", args.stage, b, vars(args), paths.describe())
             {"embed": stage_embed, "topics": stage_topics, "reassign": stage_reassign, "label": stage_label,
              "taxonomy": stage_taxonomy, "report": render_report}[args.stage](args, paths, b)
     else:
         setup_logging(paths.analysis_data / "pipeline-log.txt")
-        log.info("=== stage %s === args: %s", args.stage, vars(args))
+        log.info("=== stage %s === args: %s | paths: %s", args.stage, vars(args), paths.describe())
         {"bins": stage_bins, "sentiment": stage_sentiment, "collect": stage_collect}[args.stage](args, paths)
 
 

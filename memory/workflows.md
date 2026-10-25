@@ -105,6 +105,8 @@ $P $S --stage reassign --bin 1 --outlier-threshold T # D3: apply the calibrated 
 $P $S --stage sentiment                              # S4: data/analysis/sentiment.csv (+ sentiment_validation_sample.csv)
 $P $S --stage collect                                # S5: data/analysis/post_variables.csv (+ .json), topic_labels_all_bins.csv, categories_all_bins.csv
 Rscript code/06-tag-corpus.R && Rscript code/07-validate-analysis.R   # S6 (local): append the 8 columns (v3.0) + 13 check families
+$P code/08-review-pack.py pack --bin 1   # review_pack.md for the co-authors (after each hand-back); `check --bin 1` validates the
+#                                          filled override files before they go back to Drive (guide: docs/session-08_2026-10-25/01_...)
 ```
 Options: `--bins 1-9` (loop), `--device auto|cuda|mps|cpu`, `--embedding-model <id>` (default `config.EMBEDDING_MODEL` = mpnet),
 `--llm <id>`, `--sampling greedy|seeded`, `--max-topics N` (smoke test), `--years 2010 2011` (sentiment subset),

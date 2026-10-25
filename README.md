@@ -37,6 +37,8 @@ fifa-reddit-communities/
 │   │                                  folder MyDrive/fifa-communities/
 │   ├── 06-tag-corpus.R               stage S6: append the 8 analysis columns to the master and yearly files
 │   ├── 07-validate-analysis.R        13 check families on the tagged files (fingerprints of the original columns)
+│   ├── 08-review-pack.py             co-author review of a bin: review_pack.md (labels, categories, sample posts) and
+│   │                                  the check of the filled override files (guide: docs/session-08_2026-10-25/)
 │   ├── R/pipeline-utils.R            helpers and column specifications shared by the R scripts 02, 03, 06, 07
 │   ├── topicmodel/                   the Python package behind 05 (config.py holds every setting and the path root;
 │   │                                  data, bins, embed, model, prompts, agents, sentiment, tagging, report)

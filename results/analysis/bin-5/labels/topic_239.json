@@ -1,0 +1,197 @@
+{
+ "period_bin": 5,
+ "topic_id": 239,
+ "keywords": "characters, 2018 ben, spongebob, life 2018, freddy, cosplay, lion king, popular, fanfiction, simpsons, 2018 emoji, dragon ball, lego, tom, friends",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "82t9on",
+  "89ayj1",
+  "7yjdlc",
+  "7zawq4",
+  "83nubu",
+  "83nds8",
+  "8bgs4k",
+  "815z1y",
+  "7y6xx1",
+  "7z1y4c",
+  "82np0y",
+  "826c9m",
+  "82p09f",
+  "7vur6i",
+  "7vf4md",
+  "8rl4lb",
+  "7vfkf3",
+  "7vwtuf",
+  "99pdpr",
+  "8a0up8",
+  "84u3hr",
+  "7wemu6",
+  "87a63t",
+  "7w5u1e",
+  "85b17d",
+  "7uj0ux",
+  "7zaot3",
+  "8273aq",
+  "7w3nfb",
+  "8164dq",
+  "7y70bv",
+  "7w5xf2",
+  "7wt7dc",
+  "8ah8h6",
+  "7vupct",
+  "8aidgn",
+  "82o7gu",
+  "7w3jyn",
+  "8apu3m",
+  "7uzp2l"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Real Life Characters",
+  "purpose": "Explore real-life representations of popular football/soccer characters",
+  "emotion_tone": "enthusiastic",
+  "description": "Posts discussing real-life portrayals of well-known football/soccer characters, including fanfiction, cosplay, and fan-made content.",
+  "inclusion_cues": [
+   "characters in real life",
+   "fanfiction",
+   "cosplay",
+   "popular characters",
+   "real life portrayals",
+   "football/soccer"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Real Life Characters",
+    "purpose": "Explore real-life representations of popular football/soccer characters",
+    "emotion_tone": "enthusiastic",
+    "description": "Posts discussing characters from popular football/soccer franchises being portrayed in real life, including cosplay, fanfiction, and fanart.",
+    "inclusion_cues": [
+     "characters in real life",
+     "fanfiction",
+     "cosplay",
+     "popular franchises",
+     "real life portrayals"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Real Life Characters",
+    "purpose": "Explore real-life representations of popular football/soccer characters",
+    "emotion_tone": "enthusiastic",
+    "description": "Posts discussing real-life portrayals of well-known football/soccer characters, including fanfiction, cosplay, and fan-made content.",
+    "inclusion_cues": [
+     "characters in real life",
+     "fanfiction",
+     "cosplay",
+     "popular characters",
+     "real life portrayals",
+     "football/soccer"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: characters, 2018 ben, spongebob, life 2018, freddy, cosplay, lion king, popular, fanfiction, simpsons, 2018 emoji, dragon ball, lego, tom, friends\nPosts (one per line, title first):\n- Zig and Sharko Characters In Real Life 2018\n- Ben 10 Characters in Real Life 2018\n- Oggy And The Cockroaches Characters In Real Life 2018\n- Oggy Characters in Real Life 2018\n- Zootopia Characters In Real Life 2018\n- Lego Ninjago Characters In Real Life\n- LPS Popular REAL LIFE All Characters 2018\n- Chuck And Friends Characters In Real Life - All Characters\n- The Powerpuff Girls characters In Real Life\n- Zig And Sharko Characters In Real Life - All Characters\n- All Dragon Ball Characters In Real Life 2018\n- Zig and Sharko Characters In Real Life 2018\n- Grand Theft Auto V Characters In Real Life 2018\n- Pokemon Characters As Monsters 2018\n- Jungle Junction Characters In Real Life - All Characters\n- There's got to be some Parks and Rec fans here, right?\n- Subway Surfers Characters In Real Life 2018\n- Tom and Jerry In Real Life 2018\n- is-beauty-and-the-beast-fanfiction-still-relevant/\n- Lego Ninjago Characters IN REAL LIFE 2018\n- The Loud House In Real Life - The Loud House COSPLAY 2018\n- Spongebob Characters In Real Life 2018\n- Fairy Tail Characters In Real Life 2018\n- TALKING TOM AND FRIENDS IN REAL LIFE 2018\n- Simpsons are Real !!! Characters in Real Life 2018\n- SuperHeroes in Real Life As Dogs - Top 100\n- The Lion King Characters in Real Life - All Characters\n- Zig and Sharko Characters In Real Life - All Characters\n- Talking Tom and Friends Characters In Real Life 2018\n- Chuck And Friends Characters In Real Life 2018\n- The Emoji Movie Characters In Real Life 2018\n- Superheroes As Cats - Superheroes In Real Life As Cats 2018\n- SpongeBob SquarePants Characters In Real Life 2018\n- Grand Theft Auto V GTA 5 Characters In Real Life\n- SuperHeroes in Real Life As Cats 2018\n- Fairy Tail In REAL LIFE All Characters 2018\n- Gravity Falls Characters in Real Life\n- Subway Surfers Characters In Real Life 2018\n- Mortal Komba Characters In real Life\n- My Little Pony Characters In Real Life\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Real Life Characters\", \"purpose\": \"Explore real-life representations of popular football/soccer characters\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts discussing characters from popular football/soccer franchises being portrayed in real life, including cosplay, fanfiction, and fanart.\", \"inclusion_cues\": [\"characters in real life\", \"fanfiction\", \"cosplay\", \"popular franchises\", \"real life portrayals\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Real Life Characters",
+      "purpose": "Explore real-life representations of popular football/soccer characters",
+      "emotion_tone": "enthusiastic",
+      "description": "Posts discussing characters from popular football/soccer franchises being portrayed in real life, including cosplay, fanfiction, and fanart.",
+      "inclusion_cues": [
+       "characters in real life",
+       "fanfiction",
+       "cosplay",
+       "popular franchises",
+       "real life portrayals"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 106,
+   "seed": 1762730701,
+   "seconds": 0.54
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: characters, 2018 ben, spongebob, life 2018, freddy, cosplay, lion king, popular, fanfiction, simpsons, 2018 emoji, dragon ball, lego, tom, friends\nPosts (one per line, title first):\n- Zig and Sharko Characters In Real Life 2018\n- Ben 10 Characters in Real Life 2018\n- Oggy And The Cockroaches Characters In Real Life 2018\n- Oggy Characters in Real Life 2018\n- Zootopia Characters In Real Life 2018\n- Lego Ninjago Characters In Real Life\n- LPS Popular REAL LIFE All Characters 2018\n- Chuck And Friends Characters In Real Life - All Characters\n- The Powerpuff Girls characters In Real Life\n- Zig And Sharko Characters In Real Life - All Characters\n- All Dragon Ball Characters In Real Life 2018\n- Zig and Sharko Characters In Real Life 2018\n- Grand Theft Auto V Characters In Real Life 2018\n- Pokemon Characters As Monsters 2018\n- Jungle Junction Characters In Real Life - All Characters\n- There's got to be some Parks and Rec fans here, right?\n- Subway Surfers Characters In Real Life 2018\n- Tom and Jerry In Real Life 2018\n- is-beauty-and-the-beast-fanfiction-still-relevant/\n- Lego Ninjago Characters IN REAL LIFE 2018\n- The Loud House In Real Life - The Loud House COSPLAY 2018\n- Spongebob Characters In Real Life 2018\n- Fairy Tail Characters In Real Life 2018\n- TALKING TOM AND FRIENDS IN REAL LIFE 2018\n- Simpsons are Real !!! Characters in Real Life 2018\n- SuperHeroes in Real Life As Dogs - Top 100\n- The Lion King Characters in Real Life - All Characters\n- Zig and Sharko Characters In Real Life - All Characters\n- Talking Tom and Friends Characters In Real Life 2018\n- Chuck And Friends Characters In Real Life 2018\n- The Emoji Movie Characters In Real Life 2018\n- Superheroes As Cats - Superheroes In Real Life As Cats 2018\n- SpongeBob SquarePants Characters In Real Life 2018\n- Grand Theft Auto V GTA 5 Characters In Real Life\n- SuperHeroes in Real Life As Cats 2018\n- Fairy Tail In REAL LIFE All Characters 2018\n- Gravity Falls Characters in Real Life\n- Subway Surfers Characters In Real Life 2018\n- Mortal Komba Characters In real Life\n- My Little Pony Characters In Real Life\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Real Life Characters\", \"purpose\": \"Explore real-life representations of popular football/soccer characters\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts discussing real-life portrayals of well-known football/soccer characters, including fanfiction, cosplay, and fan-made content.\", \"inclusion_cues\": [\"characters in real life\", \"fanfiction\", \"cosplay\", \"popular characters\", \"real life portrayals\", \"football/soccer\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Real Life Characters",
+      "purpose": "Explore real-life representations of popular football/soccer characters",
+      "emotion_tone": "enthusiastic",
+      "description": "Posts discussing real-life portrayals of well-known football/soccer characters, including fanfiction, cosplay, and fan-made content.",
+      "inclusion_cues": [
+       "characters in real life",
+       "fanfiction",
+       "cosplay",
+       "popular characters",
+       "real life portrayals",
+       "football/soccer"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 111,
+   "seed": 2545972624,
+   "seconds": 0.52
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: characters, 2018 ben, spongebob, life 2018, freddy, cosplay, lion king, popular, fanfiction, simpsons, 2018 emoji, dragon ball, lego, tom, friends\nPosts (one per line, title first):\n- Zig and Sharko Characters In Real Life 2018\n- Ben 10 Characters in Real Life 2018\n- Oggy And The Cockroaches Characters In Real Life 2018\n- Oggy Characters in Real Life 2018\n- Zootopia Characters In Real Life 2018\n- Lego Ninjago Characters In Real Life\n- LPS Popular REAL LIFE All Characters 2018\n- Chuck And Friends Characters In Real Life - All Characters\n- The Powerpuff Girls characters In Real Life\n- Zig And Sharko Characters In Real Life - All Characters\n- All Dragon Ball Characters In Real Life 2018\n- Zig and Sharko Characters In Real Life 2018\n- Grand Theft Auto V Characters In Real Life 2018\n- Pokemon Characters As Monsters 2018\n- Jungle Junction Characters In Real Life - All Characters\n- There's got to be some Parks and Rec fans here, right?\n- Subway Surfers Characters In Real Life 2018\n- Tom and Jerry In Real Life 2018\n- is-beauty-and-the-beast-fanfiction-still-relevant/\n- Lego Ninjago Characters IN REAL LIFE 2018\n- The Loud House In Real Life - The Loud House COSPLAY 2018\n- Spongebob Characters In Real Life 2018\n- Fairy Tail Characters In Real Life 2018\n- TALKING TOM AND FRIENDS IN REAL LIFE 2018\n- Simpsons are Real !!! Characters in Real Life 2018\n- SuperHeroes in Real Life As Dogs - Top 100\n- The Lion King Characters in Real Life - All Characters\n- Zig and Sharko Characters In Real Life - All Characters\n- Talking Tom and Friends Characters In Real Life 2018\n- Chuck And Friends Characters In Real Life 2018\n- The Emoji Movie Characters In Real Life 2018\n- Superheroes As Cats - Superheroes In Real Life As Cats 2018\n- SpongeBob SquarePants Characters In Real Life 2018\n- Grand Theft Auto V GTA 5 Characters In Real Life\n- SuperHeroes in Real Life As Cats 2018\n- Fairy Tail In REAL LIFE All Characters 2018\n- Gravity Falls Characters in Real Life\n- Subway Surfers Characters In Real Life 2018\n- Mortal Komba Characters In real Life\n- My Little Pony Characters In Real Life\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Real Life Characters\", \"purpose\": \"Explore real-life representations of popular football/soccer characters\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts discussing characters from popular football/soccer franchises being portrayed in real life, including cosplay, fanfiction, and fanart.\", \"inclusion_cues\": [\"characters in real life\", \"fanfiction\", \"cosplay\", \"popular franchises\", \"real life portrayals\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Real Life Characters\", \"purpose\": \"Explore real-life representations of popular football/soccer characters\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts discussing real-life portrayals of well-known football/soccer characters, including fanfiction, cosplay, and fan-made content.\", \"inclusion_cues\": [\"characters in real life\", \"fanfiction\", \"cosplay\", \"popular characters\", \"real life portrayals\", \"football/soccer\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Real Life Characters\", \"purpose\": \"Explore real-life representations of popular football/soccer characters\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts discussing characters from popular football/soccer franchises being portrayed in real life, including fanfiction, cosplay, and fan-made content.\", \"inclusion_cues\": [\"characters in real life\", \"fanfiction\", \"cosplay\", \"popular characters\", \"real life portrayals\", \"football/soccer\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 111,
+   "seed": 1274295414,
+   "seconds": 0.56
+  }
+ ]
+}

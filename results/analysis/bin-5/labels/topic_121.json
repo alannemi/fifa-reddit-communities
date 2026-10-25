@@ -1,0 +1,200 @@
+{
+ "period_bin": 5,
+ "topic_id": 121,
+ "keywords": "coming home, home coming, come home, football home, football coming, home england, home world, home meme, home france, home message, england coming, home harry, coming drunk, realises coming, england close",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "884p53",
+  "8y3831",
+  "8y38iu",
+  "8ydszl",
+  "8x72t2",
+  "8w1i7l",
+  "8wrzhf",
+  "8y37xz",
+  "8ybolx",
+  "8thlh2",
+  "8vvqde",
+  "8xohoh",
+  "8v1ha5",
+  "8sc8g2",
+  "8zazb4",
+  "8wkdmn",
+  "8wkgf1",
+  "8xpv0m",
+  "8wkwgr",
+  "8wsk3q",
+  "8y0cq4",
+  "8y33b9",
+  "8yv009",
+  "8wuzxm",
+  "8weaaq",
+  "8y725k",
+  "8z436n",
+  "8xorq1",
+  "8y356b",
+  "8wu5t7",
+  "8y3saj",
+  "8wuhbi",
+  "8xzrt7",
+  "8y3eyc",
+  "8y2wy1",
+  "8y3spe",
+  "8ya2c8",
+  "8w4fwn",
+  "8y3a2g",
+  "8wd56g"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Football Homecoming",
+  "purpose": "Expressing hope or anticipation for a football team's return to a home ground or national team's return to a familiar environment",
+  "emotion_tone": "Hopeful, nostalgic, and celebratory",
+  "description": "Posts expressing excitement, nostalgia, or anticipation for a football team's return to a home ground or national team's return to a familiar environment, often with a meme or meme-like tone.",
+  "inclusion_cues": [
+   "It's coming home",
+   "Football's coming home",
+   "It's coming home to England",
+   "Bring it home donkey",
+   "It's coming home lads!!",
+   "Football's coming home",
+   "It's coming home indeed"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Football Homecoming",
+    "purpose": "Expressing hope or anticipation for a football team's return to a home ground or national pride",
+    "emotion_tone": "Hopeful, enthusiastic, nostalgic",
+    "description": "Posts expressing excitement, nostalgia, or hope for a football team's return to a home ground or national pride, often with a meme or hashtag reference.",
+    "inclusion_cues": [
+     "It's coming home",
+     "Football's coming home",
+     "It's coming home to England",
+     "Bring it home donkey",
+     "It's coming home lads!!"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Football Homecoming",
+    "purpose": "Expressing hope or anticipation for a football team's return to a home ground or national team's return to a familiar environment",
+    "emotion_tone": "Hopeful, nostalgic, and celebratory",
+    "description": "Posts expressing excitement, nostalgia, or anticipation for a football team's return to a home ground or national team's return to a familiar environment, often with a meme or meme-like tone.",
+    "inclusion_cues": [
+     "It's coming home",
+     "Football's coming home",
+     "It's coming home to England",
+     "Bring it home donkey",
+     "It's coming home lads!!",
+     "Football's coming home",
+     "It's coming home indeed"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: coming home, home coming, come home, football home, football coming, home england, home world, home meme, home france, home message, england coming, home harry, coming drunk, realises coming, england close\nPosts (one per line, title first):\n- Its coming home\n- It's coming home.\n- It’s not coming home...\n- Its not coming home\n- IT'S COMING HOME, IT'S COMING HOME, IT'S COMING: FOOTBALL'S COMING HOME!\n- Google search trend for \"it's coming home\" since 2004\n- Agent Kujan realises It's Coming Home\n- I GUESS ITS NOT COMING HOME / Yeet\n- So was doing some sanding today and accidentally produced this. *crying* it’s..coming..home\n- It's coming home!\n- Is it coming home?\n- Guess it's official now\n- \"Just hold on, it’s coming home\" 🦁🦁🦁\n- Its coming home lad\n- CRO heroes coming home - LIVE\n- Confirmed. Its coming home boys...\n- It's coming home boys. Confirmed!\n- ITS COMING HOME BART SIMPSON MEME\n- Even maths literally knows it’s coming home\n- It's coming home lads!! Everyone's joining in on the fun\n- Fortball's Coming Home\n- It's coming home indeed.\n- “IT’S NOT COMING HOME” A message from Belgium to England!\n- The days following, It Coming Home!\n- It's coming home!\n- Football’s coming home\n- My girlfriend thought it was coming home... I haven't told her the news.\n- Is it coming home?\n- The only thing \"coming home\"\n- coming home with the goods. and probably a load of candles!\n- It’s Coming Home\n- It's coming home...\n- Bring Football Home!\n- Coming home status: denied\n- ITS COMING HOME\n- It's not coming home.\n- It's Coming Home to England!\n- Hilarious It's Coming Home Meme\n- Just want it back...\n- Bring it home donkey\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Football Homecoming\", \"purpose\": \"Expressing hope or anticipation for a football team's return to a home ground or national pride\", \"emotion_tone\": \"Hopeful, enthusiastic, nostalgic\", \"description\": \"Posts expressing excitement, nostalgia, or hope for a football team's return to a home ground or national pride, often with a meme or hashtag reference.\", \"inclusion_cues\": [\"It's coming home\", \"Football's coming home\", \"It's coming home to England\", \"Bring it home donkey\", \"It's coming home lads!!\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Football Homecoming",
+      "purpose": "Expressing hope or anticipation for a football team's return to a home ground or national pride",
+      "emotion_tone": "Hopeful, enthusiastic, nostalgic",
+      "description": "Posts expressing excitement, nostalgia, or hope for a football team's return to a home ground or national pride, often with a meme or hashtag reference.",
+      "inclusion_cues": [
+       "It's coming home",
+       "Football's coming home",
+       "It's coming home to England",
+       "Bring it home donkey",
+       "It's coming home lads!!"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 133,
+   "seed": 889347355,
+   "seconds": 0.67
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: coming home, home coming, come home, football home, football coming, home england, home world, home meme, home france, home message, england coming, home harry, coming drunk, realises coming, england close\nPosts (one per line, title first):\n- Its coming home\n- It's coming home.\n- It’s not coming home...\n- Its not coming home\n- IT'S COMING HOME, IT'S COMING HOME, IT'S COMING: FOOTBALL'S COMING HOME!\n- Google search trend for \"it's coming home\" since 2004\n- Agent Kujan realises It's Coming Home\n- I GUESS ITS NOT COMING HOME / Yeet\n- So was doing some sanding today and accidentally produced this. *crying* it’s..coming..home\n- It's coming home!\n- Is it coming home?\n- Guess it's official now\n- \"Just hold on, it’s coming home\" 🦁🦁🦁\n- Its coming home lad\n- CRO heroes coming home - LIVE\n- Confirmed. Its coming home boys...\n- It's coming home boys. Confirmed!\n- ITS COMING HOME BART SIMPSON MEME\n- Even maths literally knows it’s coming home\n- It's coming home lads!! Everyone's joining in on the fun\n- Fortball's Coming Home\n- It's coming home indeed.\n- “IT’S NOT COMING HOME” A message from Belgium to England!\n- The days following, It Coming Home!\n- It's coming home!\n- Football’s coming home\n- My girlfriend thought it was coming home... I haven't told her the news.\n- Is it coming home?\n- The only thing \"coming home\"\n- coming home with the goods. and probably a load of candles!\n- It’s Coming Home\n- It's coming home...\n- Bring Football Home!\n- Coming home status: denied\n- ITS COMING HOME\n- It's not coming home.\n- It's Coming Home to England!\n- Hilarious It's Coming Home Meme\n- Just want it back...\n- Bring it home donkey\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Football Homecoming\", \"purpose\": \"Expressing hope or anticipation for a football team's return to a home ground or national team's return to a familiar environment\", \"emotion_tone\": \"Hopeful, nostalgic, and celebratory\", \"description\": \"Posts expressing excitement, nostalgia, or anticipation for a football team's return to a home ground or national team's return to a familiar environment, often with a meme or meme-like tone.\", \"inclusion_cues\": [\"It's coming home\", \"Football's coming home\", \"It's coming home to England\", \"Bring it home donkey\", \"It's coming home lads!!\", \"Football's coming home\", \"It's coming home indeed\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Football Homecoming",
+      "purpose": "Expressing hope or anticipation for a football team's return to a home ground or national team's return to a familiar environment",
+      "emotion_tone": "Hopeful, nostalgic, and celebratory",
+      "description": "Posts expressing excitement, nostalgia, or anticipation for a football team's return to a home ground or national team's return to a familiar environment, often with a meme or meme-like tone.",
+      "inclusion_cues": [
+       "It's coming home",
+       "Football's coming home",
+       "It's coming home to England",
+       "Bring it home donkey",
+       "It's coming home lads!!",
+       "Football's coming home",
+       "It's coming home indeed"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 161,
+   "seed": 3407096196,
+   "seconds": 0.67
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: coming home, home coming, come home, football home, football coming, home england, home world, home meme, home france, home message, england coming, home harry, coming drunk, realises coming, england close\nPosts (one per line, title first):\n- Its coming home\n- It's coming home.\n- It’s not coming home...\n- Its not coming home\n- IT'S COMING HOME, IT'S COMING HOME, IT'S COMING: FOOTBALL'S COMING HOME!\n- Google search trend for \"it's coming home\" since 2004\n- Agent Kujan realises It's Coming Home\n- I GUESS ITS NOT COMING HOME / Yeet\n- So was doing some sanding today and accidentally produced this. *crying* it’s..coming..home\n- It's coming home!\n- Is it coming home?\n- Guess it's official now\n- \"Just hold on, it’s coming home\" 🦁🦁🦁\n- Its coming home lad\n- CRO heroes coming home - LIVE\n- Confirmed. Its coming home boys...\n- It's coming home boys. Confirmed!\n- ITS COMING HOME BART SIMPSON MEME\n- Even maths literally knows it’s coming home\n- It's coming home lads!! Everyone's joining in on the fun\n- Fortball's Coming Home\n- It's coming home indeed.\n- “IT’S NOT COMING HOME” A message from Belgium to England!\n- The days following, It Coming Home!\n- It's coming home!\n- Football’s coming home\n- My girlfriend thought it was coming home... I haven't told her the news.\n- Is it coming home?\n- The only thing \"coming home\"\n- coming home with the goods. and probably a load of candles!\n- It’s Coming Home\n- It's coming home...\n- Bring Football Home!\n- Coming home status: denied\n- ITS COMING HOME\n- It's not coming home.\n- It's Coming Home to England!\n- Hilarious It's Coming Home Meme\n- Just want it back...\n- Bring it home donkey\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Football Homecoming\", \"purpose\": \"Expressing hope or anticipation for a football team's return to a home ground or national pride\", \"emotion_tone\": \"Hopeful, enthusiastic, nostalgic\", \"description\": \"Posts expressing excitement, nostalgia, or hope for a football team's return to a home ground or national pride, often with a meme or hashtag reference.\", \"inclusion_cues\": [\"It's coming home\", \"Football's coming home\", \"It's coming home to England\", \"Bring it home donkey\", \"It's coming home lads!!\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Football Homecoming\", \"purpose\": \"Expressing hope or anticipation for a football team's return to a home ground or national team's return to a familiar environment\", \"emotion_tone\": \"Hopeful, nostalgic, and celebratory\", \"description\": \"Posts expressing excitement, nostalgia, or anticipation for a football team's return to a home ground or national team's return to a familiar environment, often with a meme or meme-like tone.\", \"inclusion_cues\": [\"It's coming home\", \"Football's coming home\", \"It's coming home to England\", \"Bring it home donkey\", \"It's coming home lads!!\", \"Football's coming home\", \"It's coming home indeed\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Football Homecoming\", \"purpose\": \"Expressing hope or anticipation for a football team's return to a home ground or national team's return to a familiar environment\", \"emotion_tone\": \"Hopeful, nostalgic, and celebratory\", \"description\": \"Posts expressing excitement, nostalgia, or anticipation for a football team's return to a home ground or national team's return to a familiar environment, often with a meme or meme-like tone.\", \"inclusion_cues\": [\"It's coming home\", \"Football's coming home\", \"It's coming home to England\", \"Bring it home donkey\", \"It's coming home lads!!\", \"Football's coming home\", \"It's coming home indeed\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 160,
+   "seed": 157836795,
+   "seconds": 0.54
+  }
+ ]
+}

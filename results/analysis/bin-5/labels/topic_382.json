@@ -1,0 +1,204 @@
+{
+ "period_bin": 5,
+ "topic_id": 382,
+ "keywords": "porto u19, barcelona u19, uefa youth, barcelona psv, 18 uefa, 83 uefa, chelsea goals, 42 tottenham, league barcelona, league benfica, fc porto, chelsea champions, benfica bayern, porto, league diogo",
+ "n_sample_posts": 30,
+ "sample_ids": [
+  "8dog1b",
+  "8dp1n5",
+  "84661y",
+  "8452sv",
+  "8454lr",
+  "855vxl",
+  "8ece1g",
+  "84iy60",
+  "7z62l9",
+  "8ecm0h",
+  "8dodim",
+  "8dofeo",
+  "9guepa",
+  "8dol32",
+  "9h54vq",
+  "8dofj2",
+  "9h5bbj",
+  "9gva29",
+  "8dmvsu",
+  "8dnarp",
+  "7yqsx6",
+  "8ecx6g",
+  "8dol0f",
+  "8dowua",
+  "9h4oz1",
+  "8dmxc0",
+  "8dolxt",
+  "84f047",
+  "8dn9d8",
+  "8613fy"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "UEFA Youth League",
+  "purpose": "Youth football matches and competitions",
+  "emotion_tone": "positive",
+  "description": "Posts about youth football matches, including goals, results, and highlights from the UEFA Youth League",
+  "inclusion_cues": [
+   "UEFA Youth League",
+   "FC Porto U19",
+   "Barcelona U19",
+   "Chelsea U19",
+   "Lyon",
+   "PSV",
+   "Bayern",
+   "Monaco",
+   "Tottenham U19",
+   "Inter"
+  ],
+  "n_cues_given": 13
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "UEFA Youth League",
+    "purpose": "Youth football matches and competitions",
+    "emotion_tone": "competitive",
+    "description": "Posts about youth football matches, including goals, teams, and league results",
+    "inclusion_cues": [
+     "UEFA Youth League",
+     "FC Porto U19",
+     "Barcelona U19",
+     "Chelsea U19",
+     "goals",
+     "matches"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "UEFA Youth League",
+    "purpose": "Youth football matches and competitions",
+    "emotion_tone": "positive",
+    "description": "Posts about youth football matches, including goals, results, and highlights from the UEFA Youth League",
+    "inclusion_cues": [
+     "UEFA Youth League",
+     "FC Porto U19",
+     "Barcelona U19",
+     "Chelsea U19",
+     "Lyon",
+     "PSV",
+     "Bayern",
+     "Monaco",
+     "Tottenham U19",
+     "Inter"
+    ],
+    "n_cues_given": 13
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: porto u19, barcelona u19, uefa youth, barcelona psv, 18 uefa, 83 uefa, chelsea goals, 42 tottenham, league barcelona, league benfica, fc porto, chelsea champions, benfica bayern, porto, league diogo\nPosts (one per line, title first):\n- Manchester City U19 [2]-2 Barcelona U19 - Lukas Nmecha\n- Manchester City U19 [4]-5 Barcelona U19 - Lukas Nmecha\n- Barcelona U19 2-0 Atl. Madrid U19 (Youth League) - Collado 42'\n- Tottenham U19 0-1 FC Porto U19 (Youth League) - Diogo Leite 30'\n- Tottenham U19 0-2 FC Porto U19 (Youth League) - Irala 40'\n- UEFA Champions League: FC Barcelona - Chelsea FC 3:0 all goals with my camera...\n- Chelsea U19 0-1 Barcelona U19 - Alejandro Marques\n- Barcelona vs Chelsea 3-0 - All Goals & Highlights 14-03-2018\n- UEFA Youth League FT: Spurs U19 1 - 1 Monaco U19 - Spurs win the shootout 4-1 and advance to the quarter finals\n- Chelsea U19 0-2 Barcelona U19 - Alejandro Marques\n- Manchester City U19 0-1 Barcelona U19 - Carles Perez\n- Manchester City U19 [1]-1 Barcelona U19 - Joel Latibeaudiere\n- Inter 1-0 Tottenham - Facundo Colidio 22' [UEFA Youth League]\n- Manchester City U19 2-[4] Barcelona U19 - Carles Perez\n- [UEFA Youth League] Man City [1]-2 Lyon - Felix Nmecha 58'\n- Manchester City U19 1-[2] Barcelona U19 - Alex Collado free-kick\n- [UEFA Youth League] Benfica 3-0 Bayern - Jota 83'\n- [UEFA Youth League] Barcelona [2]-1 PSV - Nico Gonzalez 88'\n- Chelsea U19 1-0 FC Porto U19 - Daishawn Redan\n- Chelsea U19 [2]-2 FC Porto U19 - Joshua Grant\n- Barcelona 5-1 Chelsea CL Quarter Final 2nd Leg 1999/00\n- Chelsea U19 0-3 Barcelona U19 - Abel Ruiz\n- Manchester City U19 2-[3] Barcelona U19 - Ricard Puig\n- Manchester City U19 [3]-5 Barcelona U19 - Rabbi Matondo\n- [UEFA Youth League] Man City 0-1 Lyon - Paul Devarrewaere 18'\n- Chelsea U19 1-[1] FC Porto U19 - Diogo Queiros\n- Manchester City U19 2-[5] Barcelona U19 - Alejandro Marqués\n- All Goals | Real Madrid U19 2-4 Chelsea U19 (UEFA Youth League)\n- Chelsea U19 1-[2] FC Porto U19 - Joao Mario\n- Barcelona vs Chelsea 3-0 [Champions league]\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"UEFA Youth League\", \"purpose\": \"Youth football matches and competitions\", \"emotion_tone\": \"competitive\", \"description\": \"Posts about youth football matches, including goals, teams, and league results\", \"inclusion_cues\": [\"UEFA Youth League\", \"FC Porto U19\", \"Barcelona U19\", \"Chelsea U19\", \"goals\", \"matches\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "UEFA Youth League",
+      "purpose": "Youth football matches and competitions",
+      "emotion_tone": "competitive",
+      "description": "Posts about youth football matches, including goals, teams, and league results",
+      "inclusion_cues": [
+       "UEFA Youth League",
+       "FC Porto U19",
+       "Barcelona U19",
+       "Chelsea U19",
+       "goals",
+       "matches"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 98,
+   "seed": 609298962,
+   "seconds": 0.56
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: porto u19, barcelona u19, uefa youth, barcelona psv, 18 uefa, 83 uefa, chelsea goals, 42 tottenham, league barcelona, league benfica, fc porto, chelsea champions, benfica bayern, porto, league diogo\nPosts (one per line, title first):\n- Manchester City U19 [2]-2 Barcelona U19 - Lukas Nmecha\n- Manchester City U19 [4]-5 Barcelona U19 - Lukas Nmecha\n- Barcelona U19 2-0 Atl. Madrid U19 (Youth League) - Collado 42'\n- Tottenham U19 0-1 FC Porto U19 (Youth League) - Diogo Leite 30'\n- Tottenham U19 0-2 FC Porto U19 (Youth League) - Irala 40'\n- UEFA Champions League: FC Barcelona - Chelsea FC 3:0 all goals with my camera...\n- Chelsea U19 0-1 Barcelona U19 - Alejandro Marques\n- Barcelona vs Chelsea 3-0 - All Goals & Highlights 14-03-2018\n- UEFA Youth League FT: Spurs U19 1 - 1 Monaco U19 - Spurs win the shootout 4-1 and advance to the quarter finals\n- Chelsea U19 0-2 Barcelona U19 - Alejandro Marques\n- Manchester City U19 0-1 Barcelona U19 - Carles Perez\n- Manchester City U19 [1]-1 Barcelona U19 - Joel Latibeaudiere\n- Inter 1-0 Tottenham - Facundo Colidio 22' [UEFA Youth League]\n- Manchester City U19 2-[4] Barcelona U19 - Carles Perez\n- [UEFA Youth League] Man City [1]-2 Lyon - Felix Nmecha 58'\n- Manchester City U19 1-[2] Barcelona U19 - Alex Collado free-kick\n- [UEFA Youth League] Benfica 3-0 Bayern - Jota 83'\n- [UEFA Youth League] Barcelona [2]-1 PSV - Nico Gonzalez 88'\n- Chelsea U19 1-0 FC Porto U19 - Daishawn Redan\n- Chelsea U19 [2]-2 FC Porto U19 - Joshua Grant\n- Barcelona 5-1 Chelsea CL Quarter Final 2nd Leg 1999/00\n- Chelsea U19 0-3 Barcelona U19 - Abel Ruiz\n- Manchester City U19 2-[3] Barcelona U19 - Ricard Puig\n- Manchester City U19 [3]-5 Barcelona U19 - Rabbi Matondo\n- [UEFA Youth League] Man City 0-1 Lyon - Paul Devarrewaere 18'\n- Chelsea U19 1-[1] FC Porto U19 - Diogo Queiros\n- Manchester City U19 2-[5] Barcelona U19 - Alejandro Marqués\n- All Goals | Real Madrid U19 2-4 Chelsea U19 (UEFA Youth League)\n- Chelsea U19 1-[2] FC Porto U19 - Joao Mario\n- Barcelona vs Chelsea 3-0 [Champions league]\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"UEFA Youth League\", \"purpose\": \"Youth football matches and competitions\", \"emotion_tone\": \"positive\", \"description\": \"Posts about youth football matches, including goals, results, and highlights from the UEFA Youth League\", \"inclusion_cues\": [\"UEFA Youth League\", \"FC Porto U19\", \"Barcelona U19\", \"Chelsea U19\", \"Lyon\", \"PSV\", \"Bayern\", \"Monaco\", \"Tottenham U19\", \"Inter\", \"Man City U19\", \"Lyon U19\", \"Benfica\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "UEFA Youth League",
+      "purpose": "Youth football matches and competitions",
+      "emotion_tone": "positive",
+      "description": "Posts about youth football matches, including goals, results, and highlights from the UEFA Youth League",
+      "inclusion_cues": [
+       "UEFA Youth League",
+       "FC Porto U19",
+       "Barcelona U19",
+       "Chelsea U19",
+       "Lyon",
+       "PSV",
+       "Bayern",
+       "Monaco",
+       "Tottenham U19",
+       "Inter"
+      ],
+      "n_cues_given": 13
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 141,
+   "seed": 1595565250,
+   "seconds": 0.55
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: porto u19, barcelona u19, uefa youth, barcelona psv, 18 uefa, 83 uefa, chelsea goals, 42 tottenham, league barcelona, league benfica, fc porto, chelsea champions, benfica bayern, porto, league diogo\nPosts (one per line, title first):\n- Manchester City U19 [2]-2 Barcelona U19 - Lukas Nmecha\n- Manchester City U19 [4]-5 Barcelona U19 - Lukas Nmecha\n- Barcelona U19 2-0 Atl. Madrid U19 (Youth League) - Collado 42'\n- Tottenham U19 0-1 FC Porto U19 (Youth League) - Diogo Leite 30'\n- Tottenham U19 0-2 FC Porto U19 (Youth League) - Irala 40'\n- UEFA Champions League: FC Barcelona - Chelsea FC 3:0 all goals with my camera...\n- Chelsea U19 0-1 Barcelona U19 - Alejandro Marques\n- Barcelona vs Chelsea 3-0 - All Goals & Highlights 14-03-2018\n- UEFA Youth League FT: Spurs U19 1 - 1 Monaco U19 - Spurs win the shootout 4-1 and advance to the quarter finals\n- Chelsea U19 0-2 Barcelona U19 - Alejandro Marques\n- Manchester City U19 0-1 Barcelona U19 - Carles Perez\n- Manchester City U19 [1]-1 Barcelona U19 - Joel Latibeaudiere\n- Inter 1-0 Tottenham - Facundo Colidio 22' [UEFA Youth League]\n- Manchester City U19 2-[4] Barcelona U19 - Carles Perez\n- [UEFA Youth League] Man City [1]-2 Lyon - Felix Nmecha 58'\n- Manchester City U19 1-[2] Barcelona U19 - Alex Collado free-kick\n- [UEFA Youth League] Benfica 3-0 Bayern - Jota 83'\n- [UEFA Youth League] Barcelona [2]-1 PSV - Nico Gonzalez 88'\n- Chelsea U19 1-0 FC Porto U19 - Daishawn Redan\n- Chelsea U19 [2]-2 FC Porto U19 - Joshua Grant\n- Barcelona 5-1 Chelsea CL Quarter Final 2nd Leg 1999/00\n- Chelsea U19 0-3 Barcelona U19 - Abel Ruiz\n- Manchester City U19 2-[3] Barcelona U19 - Ricard Puig\n- Manchester City U19 [3]-5 Barcelona U19 - Rabbi Matondo\n- [UEFA Youth League] Man City 0-1 Lyon - Paul Devarrewaere 18'\n- Chelsea U19 1-[1] FC Porto U19 - Diogo Queiros\n- Manchester City U19 2-[5] Barcelona U19 - Alejandro Marqués\n- All Goals | Real Madrid U19 2-4 Chelsea U19 (UEFA Youth League)\n- Chelsea U19 1-[2] FC Porto U19 - Joao Mario\n- Barcelona vs Chelsea 3-0 [Champions league]\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"UEFA Youth League\", \"purpose\": \"Youth football matches and competitions\", \"emotion_tone\": \"competitive\", \"description\": \"Posts about youth football matches, including goals, teams, and league results\", \"inclusion_cues\": [\"UEFA Youth League\", \"FC Porto U19\", \"Barcelona U19\", \"Chelsea U19\", \"goals\", \"matches\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"UEFA Youth League\", \"purpose\": \"Youth football matches and competitions\", \"emotion_tone\": \"positive\", \"description\": \"Posts about youth football matches, including goals, results, and highlights from the UEFA Youth League\", \"inclusion_cues\": [\"UEFA Youth League\", \"FC Porto U19\", \"Barcelona U19\", \"Chelsea U19\", \"Lyon\", \"PSV\", \"Bayern\", \"Monaco\", \"Tottenham U19\", \"Inter\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"UEFA Youth League\", \"purpose\": \"Youth football matches and competitions\", \"emotion_tone\": \"positive\", \"description\": \"Posts about youth football matches, including goals, results, highlights, and team performances in the UEFA Youth League\", \"inclusion_cues\": [\"UEFA Youth League\", \"FC Porto U19\", \"Barcelona U19\", \"Chelsea U19\", \"Lyon\", \"PSV\", \"Bayern\", \"Monaco\", \"Tottenham U19\", \"Inter\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 124,
+   "seed": 131280573,
+   "seconds": 0.49
+  }
+ ]
+}

@@ -1,0 +1,194 @@
+{
+ "period_bin": 5,
+ "topic_id": 410,
+ "keywords": "improve skills, training sessions, training, train everyday, skills training, workouts, ways improve, football, football better, learned play, improve, agility, striker, drills, coach",
+ "n_sample_posts": 27,
+ "sample_ids": [
+  "8d2nmw",
+  "8sytdy",
+  "88lu67",
+  "97zegj",
+  "86l2sd",
+  "8k7lt6",
+  "92fpfc",
+  "7zll1x",
+  "8obvzt",
+  "8sczbm",
+  "83trin",
+  "935q1j",
+  "8j6ma8",
+  "86ioro",
+  "80rplq",
+  "8cf4qd",
+  "81bhky",
+  "951grw",
+  "7w2mos",
+  "7uty1d",
+  "8gyexn",
+  "9ejrrf",
+  "958vdb",
+  "8szio7",
+  "882zu7",
+  "93he4e",
+  "7zkau8"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Soccer Training",
+  "purpose": "Encouraging and supporting football players in improving their skills through structured training",
+  "emotion_tone": "positive",
+  "description": "Posts focused on training methods, skill development, and fitness for soccer players",
+  "inclusion_cues": [
+   "training sessions",
+   "skills training",
+   "workouts",
+   "training everyday",
+   "football better",
+   "improve skills"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Soccer Training",
+    "purpose": "Encouraging and supporting football skill development",
+    "emotion_tone": "positive",
+    "description": "Posts related to improving soccer skills through training, workouts, and drills",
+    "inclusion_cues": [
+     "training sessions",
+     "skills training",
+     "workouts",
+     "drills",
+     "football better",
+     "improve skills",
+     "striker",
+     "agility",
+     "kicking skills",
+     "endurance training"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Soccer Training",
+    "purpose": "Encouraging and supporting football players in improving their skills through structured training",
+    "emotion_tone": "positive",
+    "description": "Posts focused on training methods, skill development, and fitness for soccer players",
+    "inclusion_cues": [
+     "training sessions",
+     "skills training",
+     "workouts",
+     "training everyday",
+     "football better",
+     "improve skills"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: improve skills, training sessions, training, train everyday, skills training, workouts, ways improve, football, football better, learned play, improve, agility, striker, drills, coach\nPosts (one per line, title first):\n- Is Combining Calisthenics and Football/Soccer Better Than Lifting?\n- Ways To Improve Your Soccer Skills\n- Training w/ Friends | Road to Pro Soccer Vlog\n- Effective Ways To Improve your Soccer Skills\n- I'm Finally Back Outside Training! | Road to Pro Soccer Vlog\n- Pro Agility Drill | Improve your Game\n- How to set SHORT TERM and LONG TERM GOALS to become a PRO SOCCER PLAYER\n- How Many Hours Should You Train on Soccer Everyday?\n- 5 Essential soccer drills | Improve your touch\n- 3 Tips On Becoming A Better Striker!\n- Take Up Your Soccer Skills With Training Sessions\n- Best Soccer Weight Room Workouts\n- Should Soccer Players Lift Weights???\n- Things To Do To Make Your Game Better\n- How to Know If You're Training Right in Soccer!\n- Short Soccer Training Session\n- I learned to play soccer with the smallest football ever size 1 in 3 minutes\n- Soccer Endurance Training 💥 Become The Player That never Stops\n- Improve your Kicking Skills – Get Full-Size Soccer Goal\n- Improve your kicking distance & accuracy- Learn from a Professional Coach!\n- Let's Begin Your Soccer Training\n- My Full Body Calisthenics Workout For Soccer Players!\n- Importance of Agility Poles for a Soccer Player\n- 3 Tips On Becoming A Better Striker!\n- Should You Listen To Music While Training On Soccer?\n- Safety tips to prevent injuries while playing soccer on the field\n- How Many Hours Should You Train on Soccer Everyday?\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Soccer Training\", \"purpose\": \"Encouraging and supporting football skill development\", \"emotion_tone\": \"positive\", \"description\": \"Posts related to improving soccer skills through training, workouts, and drills\", \"inclusion_cues\": [\"training sessions\", \"skills training\", \"workouts\", \"drills\", \"football better\", \"improve skills\", \"striker\", \"agility\", \"kicking skills\", \"endurance training\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Soccer Training",
+      "purpose": "Encouraging and supporting football skill development",
+      "emotion_tone": "positive",
+      "description": "Posts related to improving soccer skills through training, workouts, and drills",
+      "inclusion_cues": [
+       "training sessions",
+       "skills training",
+       "workouts",
+       "drills",
+       "football better",
+       "improve skills",
+       "striker",
+       "agility",
+       "kicking skills",
+       "endurance training"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 109,
+   "seed": 4000353917,
+   "seconds": 0.52
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: improve skills, training sessions, training, train everyday, skills training, workouts, ways improve, football, football better, learned play, improve, agility, striker, drills, coach\nPosts (one per line, title first):\n- Is Combining Calisthenics and Football/Soccer Better Than Lifting?\n- Ways To Improve Your Soccer Skills\n- Training w/ Friends | Road to Pro Soccer Vlog\n- Effective Ways To Improve your Soccer Skills\n- I'm Finally Back Outside Training! | Road to Pro Soccer Vlog\n- Pro Agility Drill | Improve your Game\n- How to set SHORT TERM and LONG TERM GOALS to become a PRO SOCCER PLAYER\n- How Many Hours Should You Train on Soccer Everyday?\n- 5 Essential soccer drills | Improve your touch\n- 3 Tips On Becoming A Better Striker!\n- Take Up Your Soccer Skills With Training Sessions\n- Best Soccer Weight Room Workouts\n- Should Soccer Players Lift Weights???\n- Things To Do To Make Your Game Better\n- How to Know If You're Training Right in Soccer!\n- Short Soccer Training Session\n- I learned to play soccer with the smallest football ever size 1 in 3 minutes\n- Soccer Endurance Training 💥 Become The Player That never Stops\n- Improve your Kicking Skills – Get Full-Size Soccer Goal\n- Improve your kicking distance & accuracy- Learn from a Professional Coach!\n- Let's Begin Your Soccer Training\n- My Full Body Calisthenics Workout For Soccer Players!\n- Importance of Agility Poles for a Soccer Player\n- 3 Tips On Becoming A Better Striker!\n- Should You Listen To Music While Training On Soccer?\n- Safety tips to prevent injuries while playing soccer on the field\n- How Many Hours Should You Train on Soccer Everyday?\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Soccer Training\", \"purpose\": \"Encouraging and supporting football players in improving their skills through structured training\", \"emotion_tone\": \"positive\", \"description\": \"Posts focused on training methods, skill development, and fitness for soccer players\", \"inclusion_cues\": [\"training sessions\", \"skills training\", \"workouts\", \"training everyday\", \"football better\", \"improve skills\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Soccer Training",
+      "purpose": "Encouraging and supporting football players in improving their skills through structured training",
+      "emotion_tone": "positive",
+      "description": "Posts focused on training methods, skill development, and fitness for soccer players",
+      "inclusion_cues": [
+       "training sessions",
+       "skills training",
+       "workouts",
+       "training everyday",
+       "football better",
+       "improve skills"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 98,
+   "seed": 2399466721,
+   "seconds": 0.53
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: improve skills, training sessions, training, train everyday, skills training, workouts, ways improve, football, football better, learned play, improve, agility, striker, drills, coach\nPosts (one per line, title first):\n- Is Combining Calisthenics and Football/Soccer Better Than Lifting?\n- Ways To Improve Your Soccer Skills\n- Training w/ Friends | Road to Pro Soccer Vlog\n- Effective Ways To Improve your Soccer Skills\n- I'm Finally Back Outside Training! | Road to Pro Soccer Vlog\n- Pro Agility Drill | Improve your Game\n- How to set SHORT TERM and LONG TERM GOALS to become a PRO SOCCER PLAYER\n- How Many Hours Should You Train on Soccer Everyday?\n- 5 Essential soccer drills | Improve your touch\n- 3 Tips On Becoming A Better Striker!\n- Take Up Your Soccer Skills With Training Sessions\n- Best Soccer Weight Room Workouts\n- Should Soccer Players Lift Weights???\n- Things To Do To Make Your Game Better\n- How to Know If You're Training Right in Soccer!\n- Short Soccer Training Session\n- I learned to play soccer with the smallest football ever size 1 in 3 minutes\n- Soccer Endurance Training 💥 Become The Player That never Stops\n- Improve your Kicking Skills – Get Full-Size Soccer Goal\n- Improve your kicking distance & accuracy- Learn from a Professional Coach!\n- Let's Begin Your Soccer Training\n- My Full Body Calisthenics Workout For Soccer Players!\n- Importance of Agility Poles for a Soccer Player\n- 3 Tips On Becoming A Better Striker!\n- Should You Listen To Music While Training On Soccer?\n- Safety tips to prevent injuries while playing soccer on the field\n- How Many Hours Should You Train on Soccer Everyday?\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Soccer Training\", \"purpose\": \"Encouraging and supporting football skill development\", \"emotion_tone\": \"positive\", \"description\": \"Posts related to improving soccer skills through training, workouts, and drills\", \"inclusion_cues\": [\"training sessions\", \"skills training\", \"workouts\", \"drills\", \"football better\", \"improve skills\", \"striker\", \"agility\", \"kicking skills\", \"endurance training\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Soccer Training\", \"purpose\": \"Encouraging and supporting football players in improving their skills through structured training\", \"emotion_tone\": \"positive\", \"description\": \"Posts focused on training methods, skill development, and fitness for soccer players\", \"inclusion_cues\": [\"training sessions\", \"skills training\", \"workouts\", \"training everyday\", \"football better\", \"improve skills\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Soccer Training\", \"purpose\": \"Encouraging and supporting football players in improving their skills through structured training\", \"emotion_tone\": \"positive\", \"description\": \"Posts focused on training methods, skill development, and fitness for soccer players\", \"inclusion_cues\": [\"training sessions\", \"skills training\", \"workouts\", \"training everyday\", \"football better\", \"improve skills\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 97,
+   "seed": 1933371813,
+   "seconds": 0.54
+  }
+ ]
+}

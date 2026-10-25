@@ -1,0 +1,175 @@
+{
+ "period_bin": 5,
+ "topic_id": 412,
+ "keywords": "shamrock rovers, dublin derby, league ireland, ireland division, rovers goal, ireland club, shamrock, derry city, sutton united, cork city, derry, dublin, fai cup, ireland 2018, city league",
+ "n_sample_posts": 27,
+ "sample_ids": [
+  "95416w",
+  "7y20y8",
+  "7y218r",
+  "7yxh6r",
+  "7y23lf",
+  "7y7dvu",
+  "8xr17n",
+  "80hqxl",
+  "7yxhbo",
+  "7y1gso",
+  "88dha0",
+  "7yxgzv",
+  "7xz2lr",
+  "8uwgls",
+  "7xz23l",
+  "8ycya0",
+  "94rnwh",
+  "7y20lw",
+  "7y2b7b",
+  "95gxxd",
+  "9bxt7x",
+  "9fjolz",
+  "9ex2ze",
+  "8uwloe",
+  "8ognyg",
+  "839tn3",
+  "953ow2"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "League of Ireland Premier Division",
+  "purpose": "Match results and highlights",
+  "emotion_tone": "Excitement",
+  "description": "Posts about matches in the League of Ireland Premier Division, including goals, results, and highlights.",
+  "inclusion_cues": [
+   "Bohemians 3-1 Shamrock Rovers",
+   "Dundalk [1]-0 Cork City",
+   "Cobh Ramblers beat Dundalk in EA Sports Cup semi final"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "League of Ireland Derby",
+    "purpose": "Highlighting matches between Dublin-based clubs",
+    "emotion_tone": "Excitement",
+    "description": "Posts about matches between Dublin-based clubs, including the Dublin Derby, featuring key events and goals",
+    "inclusion_cues": [
+     "Dublin Derby",
+     "Shamrock Rovers",
+     "Bohemians",
+     "Derry City",
+     "League of Ireland"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "League of Ireland Premier Division",
+    "purpose": "Match results and highlights",
+    "emotion_tone": "Excitement",
+    "description": "Posts about matches in the League of Ireland Premier Division, including goals, results, and highlights.",
+    "inclusion_cues": [
+     "Bohemians 3-1 Shamrock Rovers",
+     "Dundalk [1]-0 Cork City",
+     "Cobh Ramblers beat Dundalk in EA Sports Cup semi final"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: shamrock rovers, dublin derby, league ireland, ireland division, rovers goal, ireland club, shamrock, derry city, sutton united, cork city, derry, dublin, fai cup, ireland 2018, city league\nPosts (one per line, title first):\n- Cobh Ramblers (3rd last in the League of Ireland First Division) defeat Dundalk (1st in the League of Ireland Premier Division) in the EA Sports Cup Semi-Final to reach their first ever national final.\n- Bohemians [2]-1 Shamrock Rovers - Kavanagh\n- Bohemians [3]-1 Shamrock Rovers - Casey\n- [League of Ireland] [DUBLIN DERBY] Highlights: Bohemians 3-1 Shamrock Rovers\n- [Post Match Thread] Bohemians 3-1 Shamrock Rovers / ##Match Information **First Game of the League of Ireland 2018 season** **Competition:** League of Ireland Premier Division **Venue:** Dalymount Park Team Sheets *** ##Match Events **21' - Shamrock Rovers Goal:** R. Finn **72' - Bohemians Goal:** D\n- Paddy Kavanagh heads over to the chip van to celebrate his goal vs Shamrock Rovers.\n- A 12-year wait ends for Cork City tonight at a sold-out Turner's Cross\n- League of Ireland club Derry City release an incredible video to announce their return to their home ground following its redevelopment.\n- [League of Ireland] HIGHLIGHTS: Waterford 2-1 Derry City - YouTube\n- Bohemians 0-[1] Shamrock Rovers - Ronan Finn\n- Derry City v St. Pat’s | Last Kick Of The Game Is A Goaline Clearance\n- [League of Ireland] HIGHLIGHTS: St. Patrick's Athletic 2-3 Cork City\n- [League of Ireland] Highlights | 2017 FAI Cup Final | Dundalk 1 - 1 Cork City (3 - 5 PENS AET)\n- Dundalk [2]-1 Cork City | 90’ OG\n- [League of Ireland] Highlights | 2018 President's Cup (Community Shield) | Dundalk 2 - 4 Cork City\n- Shamrock Rovers 0-1 AIK - Daniel Sundgren 74'\n- Hunt and Hutchinson’s stamps vs Cork City\n- Bohemains [1]-1 Shamrock Rovers - Casey\n- Celebrate in style. In front of the chippy! Bohemians vs Shamrock Rovers\n- On this day in 2014 Cork City beat St.Pats thanks to Colin Healy’s injury time bicycle kick\n- Minute’s applause on 19 minutes at tonight's Derry City v Bohemians for Oran Tully, the 19-year-old Bohemians fan who tragically passed away this week after battling an incurable bowel condition\n- Brandywell stadium to be named after late Derry City captain Ryan McBride\n- London's Sutton United will play Dublin's Bohemians in the third round of the Scottish Challenge Cup\n- Dundalk beat Cork City 2-1 to take over first place in the League of Ireland Premier Division\n- Cork City FC vs Derry City Match Preview and Predictions\n- Dundalk [1]-0 Cork City\n- Cobh Ramblers beat holders Dundalk in EA Sports Cup semi final to reach their first major cup final where they will face Derry City.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"League of Ireland Derby\", \"purpose\": \"Highlighting matches between Dublin-based clubs\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts about matches between Dublin-based clubs, including the Dublin Derby, featuring key events and goals\", \"inclusion_cues\": [\"Dublin Derby\", \"Shamrock Rovers\", \"Bohemians\", \"Derry City\", \"League of Ireland\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "League of Ireland Derby",
+      "purpose": "Highlighting matches between Dublin-based clubs",
+      "emotion_tone": "Excitement",
+      "description": "Posts about matches between Dublin-based clubs, including the Dublin Derby, featuring key events and goals",
+      "inclusion_cues": [
+       "Dublin Derby",
+       "Shamrock Rovers",
+       "Bohemians",
+       "Derry City",
+       "League of Ireland"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 100,
+   "seed": 1708844051,
+   "seconds": 0.52
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: shamrock rovers, dublin derby, league ireland, ireland division, rovers goal, ireland club, shamrock, derry city, sutton united, cork city, derry, dublin, fai cup, ireland 2018, city league\nPosts (one per line, title first):\n- Cobh Ramblers (3rd last in the League of Ireland First Division) defeat Dundalk (1st in the League of Ireland Premier Division) in the EA Sports Cup Semi-Final to reach their first ever national final.\n- Bohemians [2]-1 Shamrock Rovers - Kavanagh\n- Bohemians [3]-1 Shamrock Rovers - Casey\n- [League of Ireland] [DUBLIN DERBY] Highlights: Bohemians 3-1 Shamrock Rovers\n- [Post Match Thread] Bohemians 3-1 Shamrock Rovers / ##Match Information **First Game of the League of Ireland 2018 season** **Competition:** League of Ireland Premier Division **Venue:** Dalymount Park Team Sheets *** ##Match Events **21' - Shamrock Rovers Goal:** R. Finn **72' - Bohemians Goal:** D\n- Paddy Kavanagh heads over to the chip van to celebrate his goal vs Shamrock Rovers.\n- A 12-year wait ends for Cork City tonight at a sold-out Turner's Cross\n- League of Ireland club Derry City release an incredible video to announce their return to their home ground following its redevelopment.\n- [League of Ireland] HIGHLIGHTS: Waterford 2-1 Derry City - YouTube\n- Bohemians 0-[1] Shamrock Rovers - Ronan Finn\n- Derry City v St. Pat’s | Last Kick Of The Game Is A Goaline Clearance\n- [League of Ireland] HIGHLIGHTS: St. Patrick's Athletic 2-3 Cork City\n- [League of Ireland] Highlights | 2017 FAI Cup Final | Dundalk 1 - 1 Cork City (3 - 5 PENS AET)\n- Dundalk [2]-1 Cork City | 90’ OG\n- [League of Ireland] Highlights | 2018 President's Cup (Community Shield) | Dundalk 2 - 4 Cork City\n- Shamrock Rovers 0-1 AIK - Daniel Sundgren 74'\n- Hunt and Hutchinson’s stamps vs Cork City\n- Bohemains [1]-1 Shamrock Rovers - Casey\n- Celebrate in style. In front of the chippy! Bohemians vs Shamrock Rovers\n- On this day in 2014 Cork City beat St.Pats thanks to Colin Healy’s injury time bicycle kick\n- Minute’s applause on 19 minutes at tonight's Derry City v Bohemians for Oran Tully, the 19-year-old Bohemians fan who tragically passed away this week after battling an incurable bowel condition\n- Brandywell stadium to be named after late Derry City captain Ryan McBride\n- London's Sutton United will play Dublin's Bohemians in the third round of the Scottish Challenge Cup\n- Dundalk beat Cork City 2-1 to take over first place in the League of Ireland Premier Division\n- Cork City FC vs Derry City Match Preview and Predictions\n- Dundalk [1]-0 Cork City\n- Cobh Ramblers beat holders Dundalk in EA Sports Cup semi final to reach their first major cup final where they will face Derry City.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"League of Ireland Premier Division\", \"purpose\": \"Match results and highlights\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts about matches in the League of Ireland Premier Division, including goals, results, and highlights.\", \"inclusion_cues\": [\"Bohemians 3-1 Shamrock Rovers\", \"Dundalk [1]-0 Cork City\", \"Cobh Ramblers beat Dundalk in EA Sports Cup semi final\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "League of Ireland Premier Division",
+      "purpose": "Match results and highlights",
+      "emotion_tone": "Excitement",
+      "description": "Posts about matches in the League of Ireland Premier Division, including goals, results, and highlights.",
+      "inclusion_cues": [
+       "Bohemians 3-1 Shamrock Rovers",
+       "Dundalk [1]-0 Cork City",
+       "Cobh Ramblers beat Dundalk in EA Sports Cup semi final"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 111,
+   "seed": 2698148215,
+   "seconds": 0.53
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: shamrock rovers, dublin derby, league ireland, ireland division, rovers goal, ireland club, shamrock, derry city, sutton united, cork city, derry, dublin, fai cup, ireland 2018, city league\nPosts (one per line, title first):\n- Cobh Ramblers (3rd last in the League of Ireland First Division) defeat Dundalk (1st in the League of Ireland Premier Division) in the EA Sports Cup Semi-Final to reach their first ever national final.\n- Bohemians [2]-1 Shamrock Rovers - Kavanagh\n- Bohemians [3]-1 Shamrock Rovers - Casey\n- [League of Ireland] [DUBLIN DERBY] Highlights: Bohemians 3-1 Shamrock Rovers\n- [Post Match Thread] Bohemians 3-1 Shamrock Rovers / ##Match Information **First Game of the League of Ireland 2018 season** **Competition:** League of Ireland Premier Division **Venue:** Dalymount Park Team Sheets *** ##Match Events **21' - Shamrock Rovers Goal:** R. Finn **72' - Bohemians Goal:** D\n- Paddy Kavanagh heads over to the chip van to celebrate his goal vs Shamrock Rovers.\n- A 12-year wait ends for Cork City tonight at a sold-out Turner's Cross\n- League of Ireland club Derry City release an incredible video to announce their return to their home ground following its redevelopment.\n- [League of Ireland] HIGHLIGHTS: Waterford 2-1 Derry City - YouTube\n- Bohemians 0-[1] Shamrock Rovers - Ronan Finn\n- Derry City v St. Pat’s | Last Kick Of The Game Is A Goaline Clearance\n- [League of Ireland] HIGHLIGHTS: St. Patrick's Athletic 2-3 Cork City\n- [League of Ireland] Highlights | 2017 FAI Cup Final | Dundalk 1 - 1 Cork City (3 - 5 PENS AET)\n- Dundalk [2]-1 Cork City | 90’ OG\n- [League of Ireland] Highlights | 2018 President's Cup (Community Shield) | Dundalk 2 - 4 Cork City\n- Shamrock Rovers 0-1 AIK - Daniel Sundgren 74'\n- Hunt and Hutchinson’s stamps vs Cork City\n- Bohemains [1]-1 Shamrock Rovers - Casey\n- Celebrate in style. In front of the chippy! Bohemians vs Shamrock Rovers\n- On this day in 2014 Cork City beat St.Pats thanks to Colin Healy’s injury time bicycle kick\n- Minute’s applause on 19 minutes at tonight's Derry City v Bohemians for Oran Tully, the 19-year-old Bohemians fan who tragically passed away this week after battling an incurable bowel condition\n- Brandywell stadium to be named after late Derry City captain Ryan McBride\n- London's Sutton United will play Dublin's Bohemians in the third round of the Scottish Challenge Cup\n- Dundalk beat Cork City 2-1 to take over first place in the League of Ireland Premier Division\n- Cork City FC vs Derry City Match Preview and Predictions\n- Dundalk [1]-0 Cork City\n- Cobh Ramblers beat holders Dundalk in EA Sports Cup semi final to reach their first major cup final where they will face Derry City.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"League of Ireland Derby\", \"purpose\": \"Highlighting matches between Dublin-based clubs\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts about matches between Dublin-based clubs, including the Dublin Derby, featuring key events and goals\", \"inclusion_cues\": [\"Dublin Derby\", \"Shamrock Rovers\", \"Bohemians\", \"Derry City\", \"League of Ireland\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"League of Ireland Premier Division\", \"purpose\": \"Match results and highlights\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts about matches in the League of Ireland Premier Division, including goals, results, and highlights.\", \"inclusion_cues\": [\"Bohemians 3-1 Shamrock Rovers\", \"Dundalk [1]-0 Cork City\", \"Cobh Ramblers beat Dundalk in EA Sports Cup semi final\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"League of Ireland Derby\", \"purpose\": \"Highlighting matches between Dublin-based clubs\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts about matches between Dublin-based clubs, including the Dublin Derby, featuring key events and goals\", \"inclusion_cues\": [\"Dublin Derby\", \"Shamrock Rovers\", \"Bohemians\", \"Derry City\", \"League of Ireland\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 99,
+   "seed": 257122545,
+   "seconds": 0.54
+  }
+ ]
+}

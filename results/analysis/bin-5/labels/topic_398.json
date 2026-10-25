@@ -1,0 +1,172 @@
+{
+ "period_bin": 5,
+ "topic_id": 398,
+ "keywords": "iranian fans, iran fans, iran cristiano, portugal iran, ronaldo responds, portugal players, portugal cristiano, ronaldo asked, ronaldo came, iran ronaldo, match ronaldo, video cristiano, iranian, lovren singing, match chilean",
+ "n_sample_posts": 28,
+ "sample_ids": [
+  "8tl2hj",
+  "8to8yd",
+  "8tnn27",
+  "8tlcel",
+  "8tlms9",
+  "8v073t",
+  "9eldc9",
+  "8uvzx5",
+  "8t6332",
+  "8tl8ji",
+  "8tskhs",
+  "8toeip",
+  "8unkdq",
+  "8tow0e",
+  "8tksas",
+  "8uvmlc",
+  "8ze0b3",
+  "8trekv",
+  "8tm5xd",
+  "8uw0ut",
+  "8tqvo1",
+  "8raruf",
+  "8t2563",
+  "8tlavg",
+  "8unf7e",
+  "8ub5x5",
+  "8tqurj",
+  "9ez4tk"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Iranian Fan Noise",
+  "purpose": "Reporting and addressing fan behavior during matches",
+  "emotion_tone": "Annoyed/Concerned",
+  "description": "Posts about Iranian fans making noise near Portuguese hotel, asking Ronaldo to stop, and the response from Ronaldo.",
+  "inclusion_cues": [
+   "Iranian fans making noise near Portuguese hotel",
+   "Ronaldo asking fans to stop",
+   "Ronaldo responding to fan noise"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Iranian Fan Noise",
+    "purpose": "Addressing fan noise during matches",
+    "emotion_tone": "Annoyed",
+    "description": "Posts about Iranian fans making noise near Portuguese hotel, asking Ronaldo to stop, and the response from Ronaldo.",
+    "inclusion_cues": [
+     "Iranian fans making noise near Portuguese hotel",
+     "Ronaldo asking fans to stop",
+     "Ronaldo responding to fan noise"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Iranian Fan Noise",
+    "purpose": "Reporting and addressing fan behavior during matches",
+    "emotion_tone": "Annoyed/Concerned",
+    "description": "Posts about Iranian fans making noise near Portuguese hotel, asking Ronaldo to stop, and the response from Ronaldo.",
+    "inclusion_cues": [
+     "Iranian fans making noise near Portuguese hotel",
+     "Ronaldo asking fans to stop",
+     "Ronaldo responding to fan noise"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: iranian fans, iran fans, iran cristiano, portugal iran, ronaldo responds, portugal players, portugal cristiano, ronaldo asked, ronaldo came, iran ronaldo, match ronaldo, video cristiano, iranian, lovren singing, match chilean\nPosts (one per line, title first):\n- Ronaldo goes to the hotel window and asks the Iranian fans to be quiet as he tries to sleep ahead of Portugal vs Iran\n- Iranian fans won't let the Portuguese national team sleep\n- Iranian Fans won't let the Portugues national-team sleep. Making noises in front of the hotel.\n- A group of Iranian Fans with Vuvuzelas outside of Portuguese NT's Hotel. Cristiano Ronaldo goes to the window and asks them to let him sleep\n- A number of Iranian fans made noise outside the Portuguese residence before the match between Portugal and Iran, until Cristiano Ronaldo came out and pointed to them from the window to let him sleep\n- ‘Slant-eyed’ gesture is pure racism – and World Cup TV hosts have no excuse\n- Chilean player caught making racist gesture to Koreans ahead of the friendly with South Korea\n- Telemundo Hosts Suspended for Making Racist Gestures Towards Team South Korea During World Cup\n- Rafa Marquez and the Mexican National team come out of the hotel and asks the fans to let them sleep before the match vs. South Korea\n- Iranian fans making noise so that the Portugal national team can’t sleep - the night before the match\n- Iran Fans Won’t Let Ronaldo Sleep\n- Iran fans tried to prevent Portugal players from sleeping, singing loudly under their hotel windows. It got so bad that Cristiano Ronaldo asked them to stop with sign language\n- Telemundo hosts suspended after racial gestures towards South Korea\n- Iran fans went to make noise at the hotel in Portugal ... and Cristiano asked them to let him sleep\n- Ronaldo going to the window to ask the Iranian fans to let him sleep in peace.\n- Two hosts on US Spanish-language network Telemundo have been suspended after making racist gestures while celebrating South Korea's win over Germany.\n- Šime Vrsaljko riding on back of police motorcycle on way to Zagreb main square\n- Cristiano begs Iranian fans to stop making noise to let him sleep\n- Video: Cristiano asking the Iranian fans outside of the team Hotel to let him sleep\n- Telemundo Hosts Suspended for Making Racist Gestures Towards Team South Korea During World Cup\n- Iranian fans party next to Portugals team and prevent them from getting sleep\n- Ronaldo to promote new sleep measurement platform\n- Dejan Lovren singing fascist song in Croatia dressing room following win against Argentina\n- Ronaldo Responds To Iranian Fans Making Noise Outside The Portugal NT's Rooms\n- Telemundo fires two presenters that mocked Koreans with \"slanted eyes\" gesture during World Cup coverage\n- Telemundo with the inappropriate Korea jokes.\n- Humble Ronaldo asks fans to let him sleep...\n- Morella midfielder Diego Valdes made a racist gesture before Chile’s match against South Korea. Then Son did this to him 2 minutes into the match\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Iranian Fan Noise\", \"purpose\": \"Addressing fan noise during matches\", \"emotion_tone\": \"Annoyed\", \"description\": \"Posts about Iranian fans making noise near Portuguese hotel, asking Ronaldo to stop, and the response from Ronaldo.\", \"inclusion_cues\": [\"Iranian fans making noise near Portuguese hotel\", \"Ronaldo asking fans to stop\", \"Ronaldo responding to fan noise\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Iranian Fan Noise",
+      "purpose": "Addressing fan noise during matches",
+      "emotion_tone": "Annoyed",
+      "description": "Posts about Iranian fans making noise near Portuguese hotel, asking Ronaldo to stop, and the response from Ronaldo.",
+      "inclusion_cues": [
+       "Iranian fans making noise near Portuguese hotel",
+       "Ronaldo asking fans to stop",
+       "Ronaldo responding to fan noise"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 103,
+   "seed": 3006281915,
+   "seconds": 0.63
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: iranian fans, iran fans, iran cristiano, portugal iran, ronaldo responds, portugal players, portugal cristiano, ronaldo asked, ronaldo came, iran ronaldo, match ronaldo, video cristiano, iranian, lovren singing, match chilean\nPosts (one per line, title first):\n- Ronaldo goes to the hotel window and asks the Iranian fans to be quiet as he tries to sleep ahead of Portugal vs Iran\n- Iranian fans won't let the Portuguese national team sleep\n- Iranian Fans won't let the Portugues national-team sleep. Making noises in front of the hotel.\n- A group of Iranian Fans with Vuvuzelas outside of Portuguese NT's Hotel. Cristiano Ronaldo goes to the window and asks them to let him sleep\n- A number of Iranian fans made noise outside the Portuguese residence before the match between Portugal and Iran, until Cristiano Ronaldo came out and pointed to them from the window to let him sleep\n- ‘Slant-eyed’ gesture is pure racism – and World Cup TV hosts have no excuse\n- Chilean player caught making racist gesture to Koreans ahead of the friendly with South Korea\n- Telemundo Hosts Suspended for Making Racist Gestures Towards Team South Korea During World Cup\n- Rafa Marquez and the Mexican National team come out of the hotel and asks the fans to let them sleep before the match vs. South Korea\n- Iranian fans making noise so that the Portugal national team can’t sleep - the night before the match\n- Iran Fans Won’t Let Ronaldo Sleep\n- Iran fans tried to prevent Portugal players from sleeping, singing loudly under their hotel windows. It got so bad that Cristiano Ronaldo asked them to stop with sign language\n- Telemundo hosts suspended after racial gestures towards South Korea\n- Iran fans went to make noise at the hotel in Portugal ... and Cristiano asked them to let him sleep\n- Ronaldo going to the window to ask the Iranian fans to let him sleep in peace.\n- Two hosts on US Spanish-language network Telemundo have been suspended after making racist gestures while celebrating South Korea's win over Germany.\n- Šime Vrsaljko riding on back of police motorcycle on way to Zagreb main square\n- Cristiano begs Iranian fans to stop making noise to let him sleep\n- Video: Cristiano asking the Iranian fans outside of the team Hotel to let him sleep\n- Telemundo Hosts Suspended for Making Racist Gestures Towards Team South Korea During World Cup\n- Iranian fans party next to Portugals team and prevent them from getting sleep\n- Ronaldo to promote new sleep measurement platform\n- Dejan Lovren singing fascist song in Croatia dressing room following win against Argentina\n- Ronaldo Responds To Iranian Fans Making Noise Outside The Portugal NT's Rooms\n- Telemundo fires two presenters that mocked Koreans with \"slanted eyes\" gesture during World Cup coverage\n- Telemundo with the inappropriate Korea jokes.\n- Humble Ronaldo asks fans to let him sleep...\n- Morella midfielder Diego Valdes made a racist gesture before Chile’s match against South Korea. Then Son did this to him 2 minutes into the match\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Iranian Fan Noise\", \"purpose\": \"Reporting and addressing fan behavior during matches\", \"emotion_tone\": \"Annoyed/Concerned\", \"description\": \"Posts about Iranian fans making noise near Portuguese hotel, asking Ronaldo to stop, and the response from Ronaldo.\", \"inclusion_cues\": [\"Iranian fans making noise near Portuguese hotel\", \"Ronaldo asking fans to stop\", \"Ronaldo responding to fan noise\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Iranian Fan Noise",
+      "purpose": "Reporting and addressing fan behavior during matches",
+      "emotion_tone": "Annoyed/Concerned",
+      "description": "Posts about Iranian fans making noise near Portuguese hotel, asking Ronaldo to stop, and the response from Ronaldo.",
+      "inclusion_cues": [
+       "Iranian fans making noise near Portuguese hotel",
+       "Ronaldo asking fans to stop",
+       "Ronaldo responding to fan noise"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 107,
+   "seed": 4277676712,
+   "seconds": 0.6
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: iranian fans, iran fans, iran cristiano, portugal iran, ronaldo responds, portugal players, portugal cristiano, ronaldo asked, ronaldo came, iran ronaldo, match ronaldo, video cristiano, iranian, lovren singing, match chilean\nPosts (one per line, title first):\n- Ronaldo goes to the hotel window and asks the Iranian fans to be quiet as he tries to sleep ahead of Portugal vs Iran\n- Iranian fans won't let the Portuguese national team sleep\n- Iranian Fans won't let the Portugues national-team sleep. Making noises in front of the hotel.\n- A group of Iranian Fans with Vuvuzelas outside of Portuguese NT's Hotel. Cristiano Ronaldo goes to the window and asks them to let him sleep\n- A number of Iranian fans made noise outside the Portuguese residence before the match between Portugal and Iran, until Cristiano Ronaldo came out and pointed to them from the window to let him sleep\n- ‘Slant-eyed’ gesture is pure racism – and World Cup TV hosts have no excuse\n- Chilean player caught making racist gesture to Koreans ahead of the friendly with South Korea\n- Telemundo Hosts Suspended for Making Racist Gestures Towards Team South Korea During World Cup\n- Rafa Marquez and the Mexican National team come out of the hotel and asks the fans to let them sleep before the match vs. South Korea\n- Iranian fans making noise so that the Portugal national team can’t sleep - the night before the match\n- Iran Fans Won’t Let Ronaldo Sleep\n- Iran fans tried to prevent Portugal players from sleeping, singing loudly under their hotel windows. It got so bad that Cristiano Ronaldo asked them to stop with sign language\n- Telemundo hosts suspended after racial gestures towards South Korea\n- Iran fans went to make noise at the hotel in Portugal ... and Cristiano asked them to let him sleep\n- Ronaldo going to the window to ask the Iranian fans to let him sleep in peace.\n- Two hosts on US Spanish-language network Telemundo have been suspended after making racist gestures while celebrating South Korea's win over Germany.\n- Šime Vrsaljko riding on back of police motorcycle on way to Zagreb main square\n- Cristiano begs Iranian fans to stop making noise to let him sleep\n- Video: Cristiano asking the Iranian fans outside of the team Hotel to let him sleep\n- Telemundo Hosts Suspended for Making Racist Gestures Towards Team South Korea During World Cup\n- Iranian fans party next to Portugals team and prevent them from getting sleep\n- Ronaldo to promote new sleep measurement platform\n- Dejan Lovren singing fascist song in Croatia dressing room following win against Argentina\n- Ronaldo Responds To Iranian Fans Making Noise Outside The Portugal NT's Rooms\n- Telemundo fires two presenters that mocked Koreans with \"slanted eyes\" gesture during World Cup coverage\n- Telemundo with the inappropriate Korea jokes.\n- Humble Ronaldo asks fans to let him sleep...\n- Morella midfielder Diego Valdes made a racist gesture before Chile’s match against South Korea. Then Son did this to him 2 minutes into the match\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Iranian Fan Noise\", \"purpose\": \"Addressing fan noise during matches\", \"emotion_tone\": \"Annoyed\", \"description\": \"Posts about Iranian fans making noise near Portuguese hotel, asking Ronaldo to stop, and the response from Ronaldo.\", \"inclusion_cues\": [\"Iranian fans making noise near Portuguese hotel\", \"Ronaldo asking fans to stop\", \"Ronaldo responding to fan noise\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Iranian Fan Noise\", \"purpose\": \"Reporting and addressing fan behavior during matches\", \"emotion_tone\": \"Annoyed/Concerned\", \"description\": \"Posts about Iranian fans making noise near Portuguese hotel, asking Ronaldo to stop, and the response from Ronaldo.\", \"inclusion_cues\": [\"Iranian fans making noise near Portuguese hotel\", \"Ronaldo asking fans to stop\", \"Ronaldo responding to fan noise\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Iranian Fan Noise\", \"purpose\": \"Reporting and addressing fan behavior during matches\", \"emotion_tone\": \"Annoyed/Concerned\", \"description\": \"Posts about Iranian fans making noise near Portuguese hotel, asking Ronaldo to stop, and the response from Ronaldo.\", \"inclusion_cues\": [\"Iranian fans making noise near Portuguese hotel\", \"Ronaldo asking fans to stop\", \"Ronaldo responding to fan noise\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 106,
+   "seed": 1102702079,
+   "seconds": 0.66
+  }
+ ]
+}

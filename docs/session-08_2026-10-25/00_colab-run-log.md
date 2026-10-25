@@ -386,3 +386,13 @@ pulled file by file through the Drive connector (its 10 MB limit rules out the z
 (`sample_T0.4971.csv`) still has to come from Drive by hand. A co-author's review of bin 1's labels arrived on GitHub the same
 evening (`results/analysis/manual review/BIN1_topics_labelled_TP:BA.csv`, commit `f938c69b`) — hence the rule: pull and merge
 before every commit. Local `collect --allow-partial` rebuilt `topic_labels_all_bins.csv` with bins 1 and 3 (539 topics).
+
+**Bin 5 handed back (2026-10-25, 20:55 UTC zip; the loop went on to bin 7).** The 2018 World Cup period: 88,648 posts, 87,858
+modelled; the density guard converged on its first trial (448 topics, target 439–659) and the raw outlier share of 43.2 % passed
+even the original 45 % gate, so the tolerance was not needed here. Tiers T = 0.5713, C = 0.6927 → 7,603 reassigned, 17,098 dual,
+**15.1 % outliers left**. Topics 12.1 min, labelling 17.0 min on the A100 (embeddings were cached). 448 topics labelled, 8 flagged
+`needs_review` (402 accepted by A, 25 identical, 13 accepted by B, 7 stalemates, 1 no answer — topic 30 "Red Card Incidents", where
+neither analyst returned a usable answer); the review pack, four calibration samples (names written in) and the 448 transcripts are in
+`results/analysis/bin-5/`; `08-review-pack.py check --bin 5` finds no problems. Local `collect --allow-partial` rebuilt
+`topic_labels_all_bins.csv` and the crosswalk template with bins 1, 3 and 5 (987 topics). Per bin, the two tournament runs so far
+took 29–33 min end to end; the three remaining tournament bins (7, 9, then 2) should follow at that pace, the interim bins slower.

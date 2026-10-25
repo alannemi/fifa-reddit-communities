@@ -1,0 +1,199 @@
+{
+ "period_bin": 5,
+ "topic_id": 107,
+ "keywords": "silva shot, morata miss, crossbar liverpool, griezmann miss, higuain miss, ronaldo miss, morata goalscoring, shot liverpool, cavani miss, penalty leverkusen, shot hits, madrid injury, post arsenal, post barcelona, madrid morata",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "9jm5sg",
+  "8bajs6",
+  "81i2lm",
+  "8in0v9",
+  "8t42og",
+  "8aqepq",
+  "8ulb5r",
+  "9j5iys",
+  "8v2h2u",
+  "94oiw1",
+  "8bjw3n",
+  "8u30d0",
+  "8dx41a",
+  "82aksi",
+  "8fjdgg",
+  "8dhmya",
+  "9cbix6",
+  "81iddl",
+  "89hhoc",
+  "87lkxl",
+  "8slery",
+  "9bwi10",
+  "7zx60s",
+  "804i5n",
+  "8s1y4x",
+  "85jo61",
+  "8ewaae",
+  "8v4av2",
+  "8m18ni",
+  "9i8osx",
+  "8s1nes",
+  "80y1eg",
+  "9j5x7x",
+  "87lcpf",
+  "831ji2",
+  "8sub3d",
+  "804nag",
+  "830lw8",
+  "7v7i5j",
+  "9a0aqf"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Shot Saves and Misses",
+  "purpose": "Analyzing player shots and misses in matches",
+  "emotion_tone": "neutral",
+  "description": "Posts discussing shots that hit the crossbar, post, or are missed in matches, including details about goal attempts and their outcomes.",
+  "inclusion_cues": [
+   "shot hits",
+   "miss",
+   "crossbar",
+   "post",
+   "goal attempt",
+   "goal save"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Shot Saves",
+    "purpose": "Identify and categorize shots that resulted in goal saves",
+    "emotion_tone": "neutral",
+    "description": "Posts discussing shots that hit the crossbar, post, or were saved by the goalkeeper",
+    "inclusion_cues": [
+     "crossbar",
+     "post",
+     "goal saving clearance",
+     "lob",
+     "miss",
+     "save"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Shot Saves and Misses",
+    "purpose": "Analyzing player shots and misses in matches",
+    "emotion_tone": "neutral",
+    "description": "Posts discussing shots that hit the crossbar, post, or are missed in matches, including details about goal attempts and their outcomes.",
+    "inclusion_cues": [
+     "shot hits",
+     "miss",
+     "crossbar",
+     "post",
+     "goal attempt",
+     "goal save"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: silva shot, morata miss, crossbar liverpool, griezmann miss, higuain miss, ronaldo miss, morata goalscoring, shot liverpool, cavani miss, penalty leverkusen, shot hits, madrid injury, post arsenal, post barcelona, madrid morata\nPosts (one per line, title first):\n- Wayne Rooney Hits The Crossbar\n- Bernardo Silva shot hits the post\n- Moussa Marega (FC Porto) hit the post against Sporting and Bryan Ruiz goal line clearance\n- 4 years ago today, Luis Suarez was on 31-goals and needed one goal to break the Premier League single-season record. He attempted this lob free kick, which was promptly disallowed. (Medium potato quality)\n- Shaqiri's curling shot hits the crossbar\n- Danny Welbeck miss vs Southampton\n- Lewandowski miss vs Japan\n- Morata double chance vs Liverpool\n- Griezmann Miss vs Argentina\n- Wayne Rooney hits the post\n- Varane hits the Crossbar vs Juventus\n- Gonzalo Higuain chance against Nigeria 80'\n- Marco Reus missed penalty vs Leverkusen\n- Sterling's Cracking Shot in Training\n- Salah miss vs Stoke City\n- Morata awful miss vs Burnley\n- Raúl Jiménez Miss vs West Ham [West Ham United 0-1 Wolves]\n- Miss of the season in A-league. Troisi's painful last-minute miss. His team won though.\n- Kroos hits the crossbar vs Juventus\n- Higuain miss vs Spain.\n- Milad Mohammadi failed throw-in against Spain\n- Marco Reus off the crossbar vs Hannover\n- Arnautović off the crossbar vs Liverpool\n- Aurier Open Goal Miss Vs Crystal Palace\n- Lingard shot off the post vs Tunisia\n- Coutinho hitting the crossbar vs. Athletic Bilbao\n- Ribéry missed opportunity vs Real Madrid\n- Bernardo Silva misses an empty net vs Uruguay\n- Morata Miss Compilation (all sitters missed 17/18)\n- Huge Yarmolenko miss vs. Chelsea\n- Raheem Sterling miss vs. Tunisia\n- Alejandro Gomez (Atalanta) lob hit the post against Juventus\n- S. Mane close miss vs Chelsea\n- Gabriel Jesus Miss vs Germany\n- Xabier Etxeita (Athletic Bilbao) goal saving clearance against Marseille\n- Enzo Perez miss against Croatia\n- [Highlight] Morata off the bar\n- Welbeck's blistering shot in tonight's Europa League fixture.\n- Philippe Coutinho hit the crossbar against Espanyol\n- Michael Obafemi with a bizarre headed miss vs Manchester United u-23s\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Shot Saves\", \"purpose\": \"Identify and categorize shots that resulted in goal saves\", \"emotion_tone\": \"neutral\", \"description\": \"Posts discussing shots that hit the crossbar, post, or were saved by the goalkeeper\", \"inclusion_cues\": [\"crossbar\", \"post\", \"goal saving clearance\", \"lob\", \"miss\", \"save\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Shot Saves",
+      "purpose": "Identify and categorize shots that resulted in goal saves",
+      "emotion_tone": "neutral",
+      "description": "Posts discussing shots that hit the crossbar, post, or were saved by the goalkeeper",
+      "inclusion_cues": [
+       "crossbar",
+       "post",
+       "goal saving clearance",
+       "lob",
+       "miss",
+       "save"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 93,
+   "seed": 3111274743,
+   "seconds": 0.5
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: silva shot, morata miss, crossbar liverpool, griezmann miss, higuain miss, ronaldo miss, morata goalscoring, shot liverpool, cavani miss, penalty leverkusen, shot hits, madrid injury, post arsenal, post barcelona, madrid morata\nPosts (one per line, title first):\n- Wayne Rooney Hits The Crossbar\n- Bernardo Silva shot hits the post\n- Moussa Marega (FC Porto) hit the post against Sporting and Bryan Ruiz goal line clearance\n- 4 years ago today, Luis Suarez was on 31-goals and needed one goal to break the Premier League single-season record. He attempted this lob free kick, which was promptly disallowed. (Medium potato quality)\n- Shaqiri's curling shot hits the crossbar\n- Danny Welbeck miss vs Southampton\n- Lewandowski miss vs Japan\n- Morata double chance vs Liverpool\n- Griezmann Miss vs Argentina\n- Wayne Rooney hits the post\n- Varane hits the Crossbar vs Juventus\n- Gonzalo Higuain chance against Nigeria 80'\n- Marco Reus missed penalty vs Leverkusen\n- Sterling's Cracking Shot in Training\n- Salah miss vs Stoke City\n- Morata awful miss vs Burnley\n- Raúl Jiménez Miss vs West Ham [West Ham United 0-1 Wolves]\n- Miss of the season in A-league. Troisi's painful last-minute miss. His team won though.\n- Kroos hits the crossbar vs Juventus\n- Higuain miss vs Spain.\n- Milad Mohammadi failed throw-in against Spain\n- Marco Reus off the crossbar vs Hannover\n- Arnautović off the crossbar vs Liverpool\n- Aurier Open Goal Miss Vs Crystal Palace\n- Lingard shot off the post vs Tunisia\n- Coutinho hitting the crossbar vs. Athletic Bilbao\n- Ribéry missed opportunity vs Real Madrid\n- Bernardo Silva misses an empty net vs Uruguay\n- Morata Miss Compilation (all sitters missed 17/18)\n- Huge Yarmolenko miss vs. Chelsea\n- Raheem Sterling miss vs. Tunisia\n- Alejandro Gomez (Atalanta) lob hit the post against Juventus\n- S. Mane close miss vs Chelsea\n- Gabriel Jesus Miss vs Germany\n- Xabier Etxeita (Athletic Bilbao) goal saving clearance against Marseille\n- Enzo Perez miss against Croatia\n- [Highlight] Morata off the bar\n- Welbeck's blistering shot in tonight's Europa League fixture.\n- Philippe Coutinho hit the crossbar against Espanyol\n- Michael Obafemi with a bizarre headed miss vs Manchester United u-23s\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Shot Saves and Misses\", \"purpose\": \"Analyzing player shots and misses in matches\", \"emotion_tone\": \"neutral\", \"description\": \"Posts discussing shots that hit the crossbar, post, or are missed in matches, including details about goal attempts and their outcomes.\", \"inclusion_cues\": [\"shot hits\", \"miss\", \"crossbar\", \"post\", \"goal attempt\", \"goal save\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Shot Saves and Misses",
+      "purpose": "Analyzing player shots and misses in matches",
+      "emotion_tone": "neutral",
+      "description": "Posts discussing shots that hit the crossbar, post, or are missed in matches, including details about goal attempts and their outcomes.",
+      "inclusion_cues": [
+       "shot hits",
+       "miss",
+       "crossbar",
+       "post",
+       "goal attempt",
+       "goal save"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 102,
+   "seed": 4210693755,
+   "seconds": 0.5
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: silva shot, morata miss, crossbar liverpool, griezmann miss, higuain miss, ronaldo miss, morata goalscoring, shot liverpool, cavani miss, penalty leverkusen, shot hits, madrid injury, post arsenal, post barcelona, madrid morata\nPosts (one per line, title first):\n- Wayne Rooney Hits The Crossbar\n- Bernardo Silva shot hits the post\n- Moussa Marega (FC Porto) hit the post against Sporting and Bryan Ruiz goal line clearance\n- 4 years ago today, Luis Suarez was on 31-goals and needed one goal to break the Premier League single-season record. He attempted this lob free kick, which was promptly disallowed. (Medium potato quality)\n- Shaqiri's curling shot hits the crossbar\n- Danny Welbeck miss vs Southampton\n- Lewandowski miss vs Japan\n- Morata double chance vs Liverpool\n- Griezmann Miss vs Argentina\n- Wayne Rooney hits the post\n- Varane hits the Crossbar vs Juventus\n- Gonzalo Higuain chance against Nigeria 80'\n- Marco Reus missed penalty vs Leverkusen\n- Sterling's Cracking Shot in Training\n- Salah miss vs Stoke City\n- Morata awful miss vs Burnley\n- Raúl Jiménez Miss vs West Ham [West Ham United 0-1 Wolves]\n- Miss of the season in A-league. Troisi's painful last-minute miss. His team won though.\n- Kroos hits the crossbar vs Juventus\n- Higuain miss vs Spain.\n- Milad Mohammadi failed throw-in against Spain\n- Marco Reus off the crossbar vs Hannover\n- Arnautović off the crossbar vs Liverpool\n- Aurier Open Goal Miss Vs Crystal Palace\n- Lingard shot off the post vs Tunisia\n- Coutinho hitting the crossbar vs. Athletic Bilbao\n- Ribéry missed opportunity vs Real Madrid\n- Bernardo Silva misses an empty net vs Uruguay\n- Morata Miss Compilation (all sitters missed 17/18)\n- Huge Yarmolenko miss vs. Chelsea\n- Raheem Sterling miss vs. Tunisia\n- Alejandro Gomez (Atalanta) lob hit the post against Juventus\n- S. Mane close miss vs Chelsea\n- Gabriel Jesus Miss vs Germany\n- Xabier Etxeita (Athletic Bilbao) goal saving clearance against Marseille\n- Enzo Perez miss against Croatia\n- [Highlight] Morata off the bar\n- Welbeck's blistering shot in tonight's Europa League fixture.\n- Philippe Coutinho hit the crossbar against Espanyol\n- Michael Obafemi with a bizarre headed miss vs Manchester United u-23s\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Shot Saves\", \"purpose\": \"Identify and categorize shots that resulted in goal saves\", \"emotion_tone\": \"neutral\", \"description\": \"Posts discussing shots that hit the crossbar, post, or were saved by the goalkeeper\", \"inclusion_cues\": [\"crossbar\", \"post\", \"goal saving clearance\", \"lob\", \"miss\", \"save\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Shot Saves and Misses\", \"purpose\": \"Analyzing player shots and misses in matches\", \"emotion_tone\": \"neutral\", \"description\": \"Posts discussing shots that hit the crossbar, post, or are missed in matches, including details about goal attempts and their outcomes.\", \"inclusion_cues\": [\"shot hits\", \"miss\", \"crossbar\", \"post\", \"goal attempt\", \"goal save\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Shot Saves and Misses\", \"purpose\": \"Analyzing player shots and misses in matches\", \"emotion_tone\": \"neutral\", \"description\": \"Posts discussing shots that hit the crossbar, post, or are missed in matches, including details about goal attempts and their outcomes.\", \"inclusion_cues\": [\"shot hits\", \"miss\", \"crossbar\", \"post\", \"goal attempt\", \"goal save\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 101,
+   "seed": 1258238219,
+   "seconds": 0.68
+  }
+ ]
+}

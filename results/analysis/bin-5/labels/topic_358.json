@@ -1,0 +1,220 @@
+{
+ "period_bin": 5,
+ "topic_id": 358,
+ "keywords": "goalkeeper scores, insane goal, stunning freekick, goal spectacular, goal kick, goal griezmann, goal spain, goal napoli, counterattack goal, african goalkeeper, goal 29, volley goal, goal league, cr7 goal, griezmann free",
+ "n_sample_posts": 32,
+ "sample_ids": [
+  "8suw8t",
+  "8joz2x",
+  "805wvd",
+  "9227ev",
+  "809cvw",
+  "8v22w4",
+  "86tzir",
+  "87lx15",
+  "81uc8g",
+  "8m6r6r",
+  "9cnfnk",
+  "89kjj2",
+  "8vlwak",
+  "9c9prj",
+  "84b97q",
+  "8jyk25",
+  "8yyv7j",
+  "8s41p4",
+  "87k8np",
+  "9bs9le",
+  "87ytxp",
+  "8qrn9q",
+  "7xzu09",
+  "8hm2zx",
+  "8m1d4u",
+  "84xq2d",
+  "8iqpeq",
+  "7yei24",
+  "83ph4z",
+  "80hdd1",
+  "9cg2yz",
+  "8umq33"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": false,
+ "agreement_mode": "stalemate",
+ "round_iterations": 2,
+ "needs_review": true,
+ "label": {
+  "name": "goal spectacular",
+  "purpose": "highlighting visually stunning goals",
+  "emotion_tone": "excitement",
+  "description": "Posts featuring dramatic, visually striking goals, including free kicks, volleys, and goal line clearances",
+  "inclusion_cues": [
+   "goal spectacular",
+   "stunning freekick",
+   "goal griezmann",
+   "goal spain",
+   "goal napoli",
+   "counterattack goal",
+   "african goalkeeper",
+   "goal 29",
+   "volley goal",
+   "goal league"
+  ],
+  "n_cues_given": 12
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "goal spectacular",
+    "purpose": "highlighting visually stunning goals",
+    "emotion_tone": "excitement",
+    "description": "Posts featuring dramatic, visually striking goals, including free kicks, volleys, and goal line clearances",
+    "inclusion_cues": [
+     "goal spectacular",
+     "stunning freekick",
+     "goal griezmann",
+     "goal spain",
+     "goal napoli",
+     "counterattack goal",
+     "african goalkeeper",
+     "goal 29",
+     "volley goal",
+     "goal league"
+    ],
+    "n_cues_given": 12
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Goalkeeper Scores",
+    "purpose": "Highlight goalkeepers' spectacular performances",
+    "emotion_tone": "excited",
+    "description": "Posts featuring goalkeepers scoring goals, including last-minute, stunning, or dramatic moments",
+    "inclusion_cues": [
+     "South African goalkeeper scores last minute goal in spectacular fashion",
+     "Kreilach calmly finishes Lennon's ball",
+     "V-League player's Amazing Halfway Line Goal"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: goalkeeper scores, insane goal, stunning freekick, goal spectacular, goal kick, goal griezmann, goal spain, goal napoli, counterattack goal, african goalkeeper, goal 29, volley goal, goal league, cr7 goal, griezmann free\nPosts (one per line, title first):\n- Rakitic hits the cross bar from a great Free Kick Vs Argentina\n- Stewart Downing smacks the crossbar with a 88th minute freekick.\n- Gary Medel amazing goal line clearance against Fenerbahçe\n- South African goalkeeper scores last minute goal in spectacular fashion\n- Simply unbelievable goal line clearance by Gary Medel (1.71 meters) in Beşiktaş-Fenerbahçe game.\n- Griezmann free kick off the crossbar vs Argentina\n- The great Swedish counterattack goal against Spain in 2006. Save on own goalline to goal in 18 seconds.\n- Cracking volley from Greek LB Stafylidis against Egypt (called offside)\n- Brahimi’s great goal against Sporting [2]-1 from another perspective\n- Sweet Volley Goal\n- Quagliarella's Insane goal Vs Napoli. From Every angle.\n- CR7's goal from within the crowd. An amazing perspective to hear the applause\n- Amazing last second goal !!\n- GOAL: Kreilach calmly finishes Lennon's ball.\n- Giovinco on Freekicks: \"Yeah I liek\"\n- Clinton N'jie shot attempt vs Atleti\n- Wonderful own goal\n- Awesome World Cup Goal\n- Another free kick gem by Giovinco\n- Great Goal at 0.29\n- Sensational Half Volley Shot!!\n- David Luiz's Stunning Freekick vs Colombia [2014 World Cup]\n- Marcelo Salas hits it sweet (England vs Chile, 1998)\n- Marcos Alonso incredible first-time volley attempt vs Liverpool\n- V-League player's Amazing Halfway Line Goal\n- Sebastian Giovinco: The Free Kick King\n- Amazing own goal.\n- Perfect corner kick from Ekstraklasa\n- Ridiculous 95th minute backheel volley equaliser\n- FCB Femeni Andonova Goal Direct From Corner Kick\n- Michel Vorm goal kick that went out for a corner\n- Higuita scorpion kick vs England\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"goal spectacular\", \"purpose\": \"highlighting visually stunning goals\", \"emotion_tone\": \"excitement\", \"description\": \"Posts featuring dramatic, visually striking goals, including free kicks, volleys, and goal line clearances\", \"inclusion_cues\": [\"goal spectacular\", \"stunning freekick\", \"goal griezmann\", \"goal spain\", \"goal napoli\", \"counterattack goal\", \"african goalkeeper\", \"goal 29\", \"volley goal\", \"goal league\", \"cr7 goal\", \"griezmann free\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "goal spectacular",
+      "purpose": "highlighting visually stunning goals",
+      "emotion_tone": "excitement",
+      "description": "Posts featuring dramatic, visually striking goals, including free kicks, volleys, and goal line clearances",
+      "inclusion_cues": [
+       "goal spectacular",
+       "stunning freekick",
+       "goal griezmann",
+       "goal spain",
+       "goal napoli",
+       "counterattack goal",
+       "african goalkeeper",
+       "goal 29",
+       "volley goal",
+       "goal league"
+      ],
+      "n_cues_given": 12
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 135,
+   "seed": 655069956,
+   "seconds": 0.64
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: goalkeeper scores, insane goal, stunning freekick, goal spectacular, goal kick, goal griezmann, goal spain, goal napoli, counterattack goal, african goalkeeper, goal 29, volley goal, goal league, cr7 goal, griezmann free\nPosts (one per line, title first):\n- Rakitic hits the cross bar from a great Free Kick Vs Argentina\n- Stewart Downing smacks the crossbar with a 88th minute freekick.\n- Gary Medel amazing goal line clearance against Fenerbahçe\n- South African goalkeeper scores last minute goal in spectacular fashion\n- Simply unbelievable goal line clearance by Gary Medel (1.71 meters) in Beşiktaş-Fenerbahçe game.\n- Griezmann free kick off the crossbar vs Argentina\n- The great Swedish counterattack goal against Spain in 2006. Save on own goalline to goal in 18 seconds.\n- Cracking volley from Greek LB Stafylidis against Egypt (called offside)\n- Brahimi’s great goal against Sporting [2]-1 from another perspective\n- Sweet Volley Goal\n- Quagliarella's Insane goal Vs Napoli. From Every angle.\n- CR7's goal from within the crowd. An amazing perspective to hear the applause\n- Amazing last second goal !!\n- GOAL: Kreilach calmly finishes Lennon's ball.\n- Giovinco on Freekicks: \"Yeah I liek\"\n- Clinton N'jie shot attempt vs Atleti\n- Wonderful own goal\n- Awesome World Cup Goal\n- Another free kick gem by Giovinco\n- Great Goal at 0.29\n- Sensational Half Volley Shot!!\n- David Luiz's Stunning Freekick vs Colombia [2014 World Cup]\n- Marcelo Salas hits it sweet (England vs Chile, 1998)\n- Marcos Alonso incredible first-time volley attempt vs Liverpool\n- V-League player's Amazing Halfway Line Goal\n- Sebastian Giovinco: The Free Kick King\n- Amazing own goal.\n- Perfect corner kick from Ekstraklasa\n- Ridiculous 95th minute backheel volley equaliser\n- FCB Femeni Andonova Goal Direct From Corner Kick\n- Michel Vorm goal kick that went out for a corner\n- Higuita scorpion kick vs England\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Goalkeeper Scores\", \"purpose\": \"Highlight goalkeepers' spectacular performances\", \"emotion_tone\": \"excited\", \"description\": \"Posts featuring goalkeepers scoring goals, including last-minute, stunning, or dramatic moments\", \"inclusion_cues\": [\"South African goalkeeper scores last minute goal in spectacular fashion\", \"Kreilach calmly finishes Lennon's ball\", \"V-League player's Amazing Halfway Line Goal\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Goalkeeper Scores",
+      "purpose": "Highlight goalkeepers' spectacular performances",
+      "emotion_tone": "excited",
+      "description": "Posts featuring goalkeepers scoring goals, including last-minute, stunning, or dramatic moments",
+      "inclusion_cues": [
+       "South African goalkeeper scores last minute goal in spectacular fashion",
+       "Kreilach calmly finishes Lennon's ball",
+       "V-League player's Amazing Halfway Line Goal"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 102,
+   "seed": 1894872626,
+   "seconds": 0.51
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: goalkeeper scores, insane goal, stunning freekick, goal spectacular, goal kick, goal griezmann, goal spain, goal napoli, counterattack goal, african goalkeeper, goal 29, volley goal, goal league, cr7 goal, griezmann free\nPosts (one per line, title first):\n- Rakitic hits the cross bar from a great Free Kick Vs Argentina\n- Stewart Downing smacks the crossbar with a 88th minute freekick.\n- Gary Medel amazing goal line clearance against Fenerbahçe\n- South African goalkeeper scores last minute goal in spectacular fashion\n- Simply unbelievable goal line clearance by Gary Medel (1.71 meters) in Beşiktaş-Fenerbahçe game.\n- Griezmann free kick off the crossbar vs Argentina\n- The great Swedish counterattack goal against Spain in 2006. Save on own goalline to goal in 18 seconds.\n- Cracking volley from Greek LB Stafylidis against Egypt (called offside)\n- Brahimi’s great goal against Sporting [2]-1 from another perspective\n- Sweet Volley Goal\n- Quagliarella's Insane goal Vs Napoli. From Every angle.\n- CR7's goal from within the crowd. An amazing perspective to hear the applause\n- Amazing last second goal !!\n- GOAL: Kreilach calmly finishes Lennon's ball.\n- Giovinco on Freekicks: \"Yeah I liek\"\n- Clinton N'jie shot attempt vs Atleti\n- Wonderful own goal\n- Awesome World Cup Goal\n- Another free kick gem by Giovinco\n- Great Goal at 0.29\n- Sensational Half Volley Shot!!\n- David Luiz's Stunning Freekick vs Colombia [2014 World Cup]\n- Marcelo Salas hits it sweet (England vs Chile, 1998)\n- Marcos Alonso incredible first-time volley attempt vs Liverpool\n- V-League player's Amazing Halfway Line Goal\n- Sebastian Giovinco: The Free Kick King\n- Amazing own goal.\n- Perfect corner kick from Ekstraklasa\n- Ridiculous 95th minute backheel volley equaliser\n- FCB Femeni Andonova Goal Direct From Corner Kick\n- Michel Vorm goal kick that went out for a corner\n- Higuita scorpion kick vs England\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"goal spectacular\", \"purpose\": \"highlighting visually stunning goals\", \"emotion_tone\": \"excitement\", \"description\": \"Posts featuring dramatic, visually striking goals, including free kicks, volleys, and goal line clearances\", \"inclusion_cues\": [\"goal spectacular\", \"stunning freekick\", \"goal griezmann\", \"goal spain\", \"goal napoli\", \"counterattack goal\", \"african goalkeeper\", \"goal 29\", \"volley goal\", \"goal league\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Goalkeeper Scores\", \"purpose\": \"Highlight goalkeepers' spectacular performances\", \"emotion_tone\": \"excited\", \"description\": \"Posts featuring goalkeepers scoring goals, including last-minute, stunning, or dramatic moments\", \"inclusion_cues\": [\"South African goalkeeper scores last minute goal in spectacular fashion\", \"Kreilach calmly finishes Lennon's ball\", \"V-League player's Amazing Halfway Line Goal\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Goal Spectacular\", \"purpose\": \"Highlighting visually stunning goals\", \"emotion_tone\": \"excitement\", \"description\": \"Posts featuring dramatic, visually striking goals, including free kicks, volleys, and goal line clearances\", \"inclusion_cues\": [\"goal spectacular\", \"stunning freekick\", \"goal griezmann\", \"goal spain\", \"goal napoli\", \"counterattack goal\", \"african goalkeeper\", \"goal 29\", \"volley goal\", \"goal league\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Goal Spectacular",
+      "purpose": "Highlighting visually stunning goals",
+      "emotion_tone": "excitement",
+      "description": "Posts featuring dramatic, visually striking goals, including free kicks, volleys, and goal line clearances",
+      "inclusion_cues": [
+       "goal spectacular",
+       "stunning freekick",
+       "goal griezmann",
+       "goal spain",
+       "goal napoli",
+       "counterattack goal",
+       "african goalkeeper",
+       "goal 29",
+       "volley goal",
+       "goal league"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 124,
+   "seed": 3755476429,
+   "seconds": 0.54
+  }
+ ]
+}

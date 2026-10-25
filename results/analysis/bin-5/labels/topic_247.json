@@ -1,0 +1,219 @@
+{
+ "period_bin": 5,
+ "topic_id": 247,
+ "keywords": "game moment, short video, aubameyang goals, ball movement, cup goal, following football, goal world, chelsea coach, cup monday, team scores, spurs juventus, linesman gets, end match, decides play, cup stoke",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "8w9ipm",
+  "90sy8y",
+  "7w3fnh",
+  "7vpehk",
+  "7ut2te",
+  "82q2o8",
+  "7vypo7",
+  "8np3p9",
+  "880uio",
+  "8xsyet",
+  "93p0hy",
+  "8380n7",
+  "7xkyap",
+  "8t4llr",
+  "8xe61q",
+  "88kaja",
+  "8r32yi",
+  "7wteyj",
+  "8wn9yq",
+  "9b1h9v",
+  "8z3i46",
+  "84jb28",
+  "8gzuqm",
+  "8z8iwo",
+  "8vzrax",
+  "8rto5u",
+  "8v42h7",
+  "8e8i4x",
+  "8p9dux",
+  "8xzjfs",
+  "87ld96",
+  "8p96c0",
+  "9bykbf",
+  "8n1ir6",
+  "8td07z",
+  "8c9i29",
+  "8uokp4",
+  "8bbn77",
+  "8rs30c",
+  "8hzu8m"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": false,
+ "agreement_mode": "stalemate",
+ "round_iterations": 2,
+ "needs_review": true,
+ "label": {
+  "name": "Cup Moments",
+  "purpose": "Highlight significant football events and their emotional impact",
+  "emotion_tone": "emotional",
+  "description": "Posts about key football moments, cup goals, and their significance in the context of the game and personal feelings",
+  "inclusion_cues": [
+   "cup goal",
+   "team scores",
+   "cups monday",
+   "cub stoke",
+   "world cup",
+   "end match",
+   "goal world"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Cup Moments",
+    "purpose": "Highlight significant football events and their emotional impact",
+    "emotion_tone": "emotional",
+    "description": "Posts about key football moments, cup goals, and their significance in the context of the game and personal feelings",
+    "inclusion_cues": [
+     "cup goal",
+     "team scores",
+     "cups monday",
+     "cub stoke",
+     "world cup",
+     "end match",
+     "goal world"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "goal moments",
+    "purpose": "Highlighting key football events and their emotional impact",
+    "emotion_tone": "emotional",
+    "description": "Posts about significant football moments, including goals, player movements, and game outcomes",
+    "inclusion_cues": [
+     "aubameyang goals",
+     "ball movement",
+     "cup goal",
+     "team scores",
+     "end match",
+     "decides play"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: game moment, short video, aubameyang goals, ball movement, cup goal, following football, goal world, chelsea coach, cup monday, team scores, spurs juventus, linesman gets, end match, decides play, cup stoke\nPosts (one per line, title first):\n- When you realise it's comin home too late...\n- The moment when you realize that these legendary coachs are free agents!!\n- made a video analyzing Harry Kane's impressive off the ball movement\n- made a short video analyzing Mauro Icardi's off the ball movement\n- made a video analyzing some typical Aubameyang goals highlighting his off the ball movement\n- When you find out you're going to Spurs v Juventus tonight..\n- When your team scores and you don't know how to cheer\n- When you realize it can also happen in other sports\n- When life hits you hard.\n- When your mum calls you by your full name.\n- When a linesman gets too involved in the game...\n- When god has got your back xD\n- When it's cold on the touchline but you have to show off that blazer endorsement\n- When you realise that after the World Cup you have to go back to Stoke\n- When the World is Hinting You.\n- When it's 5-0 at halftime\n- When bae is about to score a goal 😂\n- When you're fuming but don't wanna get sent off..\n- When you realise you have to knock France out in the semi-final. 😂😂\n- When a team does everything on its power to mess it up.\n- When you realise that in 4 years you ain't making it past the group stage\n- When you win a cup and want to proclaim yourself king\n- When the Jedi hears playoff tickets are on sale..\n- When u realize the world cup is over and its monday and u have nothing to live for.\n- When you ask your work friends if they enjoyed last night and they start talking about Love Island.\n- When you realize you've been named as the Chelsea coach, Again\n- When the wedgie hits the soul.\n- When you hear there's a vacancy at Arsenal\n- When you had a few too many the night before 🍺\n- When you find out you’re teammates with Cristiano Ronaldo\n- When u lie in CV and pretend that u know what u doing\n- When the guard wins the best players in the world\n- When you are following a football bet on your phone\n- When your legs don’t work like they used to! 😂😂\n- When Tony Kroos is taking a freekick\n- When you 3-0 down in the first half and you're mad..\n- Top half is way more loaded than the bottom.\n- When you spot Guardiola in the stand at the end of the match!\n- When you're astonished by the world around you\n- When you get the chance to have a photo with Arsene Wenger but you hit the wrong button\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Cup Moments\", \"purpose\": \"Highlight significant football events and their emotional impact\", \"emotion_tone\": \"emotional\", \"description\": \"Posts about key football moments, cup goals, and their significance in the context of the game and personal feelings\", \"inclusion_cues\": [\"cup goal\", \"team scores\", \"cups monday\", \"cub stoke\", \"world cup\", \"end match\", \"goal world\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Cup Moments",
+      "purpose": "Highlight significant football events and their emotional impact",
+      "emotion_tone": "emotional",
+      "description": "Posts about key football moments, cup goals, and their significance in the context of the game and personal feelings",
+      "inclusion_cues": [
+       "cup goal",
+       "team scores",
+       "cups monday",
+       "cub stoke",
+       "world cup",
+       "end match",
+       "goal world"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 106,
+   "seed": 3988411113,
+   "seconds": 0.63
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: game moment, short video, aubameyang goals, ball movement, cup goal, following football, goal world, chelsea coach, cup monday, team scores, spurs juventus, linesman gets, end match, decides play, cup stoke\nPosts (one per line, title first):\n- When you realise it's comin home too late...\n- The moment when you realize that these legendary coachs are free agents!!\n- made a video analyzing Harry Kane's impressive off the ball movement\n- made a short video analyzing Mauro Icardi's off the ball movement\n- made a video analyzing some typical Aubameyang goals highlighting his off the ball movement\n- When you find out you're going to Spurs v Juventus tonight..\n- When your team scores and you don't know how to cheer\n- When you realize it can also happen in other sports\n- When life hits you hard.\n- When your mum calls you by your full name.\n- When a linesman gets too involved in the game...\n- When god has got your back xD\n- When it's cold on the touchline but you have to show off that blazer endorsement\n- When you realise that after the World Cup you have to go back to Stoke\n- When the World is Hinting You.\n- When it's 5-0 at halftime\n- When bae is about to score a goal 😂\n- When you're fuming but don't wanna get sent off..\n- When you realise you have to knock France out in the semi-final. 😂😂\n- When a team does everything on its power to mess it up.\n- When you realise that in 4 years you ain't making it past the group stage\n- When you win a cup and want to proclaim yourself king\n- When the Jedi hears playoff tickets are on sale..\n- When u realize the world cup is over and its monday and u have nothing to live for.\n- When you ask your work friends if they enjoyed last night and they start talking about Love Island.\n- When you realize you've been named as the Chelsea coach, Again\n- When the wedgie hits the soul.\n- When you hear there's a vacancy at Arsenal\n- When you had a few too many the night before 🍺\n- When you find out you’re teammates with Cristiano Ronaldo\n- When u lie in CV and pretend that u know what u doing\n- When the guard wins the best players in the world\n- When you are following a football bet on your phone\n- When your legs don’t work like they used to! 😂😂\n- When Tony Kroos is taking a freekick\n- When you 3-0 down in the first half and you're mad..\n- Top half is way more loaded than the bottom.\n- When you spot Guardiola in the stand at the end of the match!\n- When you're astonished by the world around you\n- When you get the chance to have a photo with Arsene Wenger but you hit the wrong button\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"goal moments\", \"purpose\": \"Highlighting key football events and their emotional impact\", \"emotion_tone\": \"emotional\", \"description\": \"Posts about significant football moments, including goals, player movements, and game outcomes\", \"inclusion_cues\": [\"aubameyang goals\", \"ball movement\", \"cup goal\", \"team scores\", \"end match\", \"decides play\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "goal moments",
+      "purpose": "Highlighting key football events and their emotional impact",
+      "emotion_tone": "emotional",
+      "description": "Posts about significant football moments, including goals, player movements, and game outcomes",
+      "inclusion_cues": [
+       "aubameyang goals",
+       "ball movement",
+       "cup goal",
+       "team scores",
+       "end match",
+       "decides play"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 97,
+   "seed": 3262905402,
+   "seconds": 0.62
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: game moment, short video, aubameyang goals, ball movement, cup goal, following football, goal world, chelsea coach, cup monday, team scores, spurs juventus, linesman gets, end match, decides play, cup stoke\nPosts (one per line, title first):\n- When you realise it's comin home too late...\n- The moment when you realize that these legendary coachs are free agents!!\n- made a video analyzing Harry Kane's impressive off the ball movement\n- made a short video analyzing Mauro Icardi's off the ball movement\n- made a video analyzing some typical Aubameyang goals highlighting his off the ball movement\n- When you find out you're going to Spurs v Juventus tonight..\n- When your team scores and you don't know how to cheer\n- When you realize it can also happen in other sports\n- When life hits you hard.\n- When your mum calls you by your full name.\n- When a linesman gets too involved in the game...\n- When god has got your back xD\n- When it's cold on the touchline but you have to show off that blazer endorsement\n- When you realise that after the World Cup you have to go back to Stoke\n- When the World is Hinting You.\n- When it's 5-0 at halftime\n- When bae is about to score a goal 😂\n- When you're fuming but don't wanna get sent off..\n- When you realise you have to knock France out in the semi-final. 😂😂\n- When a team does everything on its power to mess it up.\n- When you realise that in 4 years you ain't making it past the group stage\n- When you win a cup and want to proclaim yourself king\n- When the Jedi hears playoff tickets are on sale..\n- When u realize the world cup is over and its monday and u have nothing to live for.\n- When you ask your work friends if they enjoyed last night and they start talking about Love Island.\n- When you realize you've been named as the Chelsea coach, Again\n- When the wedgie hits the soul.\n- When you hear there's a vacancy at Arsenal\n- When you had a few too many the night before 🍺\n- When you find out you’re teammates with Cristiano Ronaldo\n- When u lie in CV and pretend that u know what u doing\n- When the guard wins the best players in the world\n- When you are following a football bet on your phone\n- When your legs don’t work like they used to! 😂😂\n- When Tony Kroos is taking a freekick\n- When you 3-0 down in the first half and you're mad..\n- Top half is way more loaded than the bottom.\n- When you spot Guardiola in the stand at the end of the match!\n- When you're astonished by the world around you\n- When you get the chance to have a photo with Arsene Wenger but you hit the wrong button\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Cup Moments\", \"purpose\": \"Highlight significant football events and their emotional impact\", \"emotion_tone\": \"emotional\", \"description\": \"Posts about key football moments, cup goals, and their significance in the context of the game and personal feelings\", \"inclusion_cues\": [\"cup goal\", \"team scores\", \"cups monday\", \"cub stoke\", \"world cup\", \"end match\", \"goal world\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"goal moments\", \"purpose\": \"Highlighting key football events and their emotional impact\", \"emotion_tone\": \"emotional\", \"description\": \"Posts about significant football moments, including goals, player movements, and game outcomes\", \"inclusion_cues\": [\"aubameyang goals\", \"ball movement\", \"cup goal\", \"team scores\", \"end match\", \"decides play\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Cup Moments\", \"purpose\": \"Highlight significant football events and their emotional impact\", \"emotion_tone\": \"emotional\", \"description\": \"Posts about key football moments, cup goals, and their significance in the context of the game and personal feelings\", \"inclusion_cues\": [\"cup goal\", \"team scores\", \"cups monday\", \"cub stoke\", \"world cup\", \"end match\", \"goal world\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Cup Moments",
+      "purpose": "Highlight significant football events and their emotional impact",
+      "emotion_tone": "emotional",
+      "description": "Posts about key football moments, cup goals, and their significance in the context of the game and personal feelings",
+      "inclusion_cues": [
+       "cup goal",
+       "team scores",
+       "cups monday",
+       "cub stoke",
+       "world cup",
+       "end match",
+       "goal world"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 106,
+   "seed": 1448072415,
+   "seconds": 0.56
+  }
+ ]
+}

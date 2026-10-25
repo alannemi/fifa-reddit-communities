@@ -1,0 +1,184 @@
+{
+ "period_bin": 5,
+ "topic_id": 431,
+ "keywords": "france equipe, france world, bye bordeaux, bordeaux, bordeaux tomorrow, ahead france, sur, daily sports, france, bruyne, tomorrow equipe, france argentina, biggest newspapers, belgium semi, semi final",
+ "n_sample_posts": 27,
+ "sample_ids": [
+  "9atks6",
+  "8uttx4",
+  "8xfwa5",
+  "8wwx8r",
+  "8wwx8r",
+  "8wwuq0",
+  "8za0n7",
+  "919qud",
+  "8yrpum",
+  "8y1fub",
+  "82jno5",
+  "8zh9mo",
+  "80k9i2",
+  "8ext69",
+  "8z9que",
+  "8us7z3",
+  "97cuje",
+  "8xyeii",
+  "8xuep3",
+  "8pufpl",
+  "880p83",
+  "82uts8",
+  "8uo973",
+  "9gbgey",
+  "9bxoy0",
+  "83jjzj",
+  "9gbtn1"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "L'Equipe France World",
+  "purpose": "Promote France's footballing identity and global reach",
+  "emotion_tone": "Excitement, pride, and celebration",
+  "description": "Posts about L'Equipe's front pages, France's footballing culture, and global footballing references",
+  "inclusion_cues": [
+   "L'Equipe front page",
+   "France-Belgium Semi-Final",
+   "Tintin Destination Moon",
+   "CR7",
+   "Daily sports",
+   "Biggest newspapers"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "L'Equipe France World",
+    "purpose": "Highlighting France's footballing world and international coverage",
+    "emotion_tone": "enthusiastic, celebratory",
+    "description": "Posts about L'Equipe's front pages, France's footballing world, and international football highlights",
+    "inclusion_cues": [
+     "L'Equipe front page",
+     "France-Belgium Semi-Final",
+     "Tintin Destination Moon",
+     "CR7",
+     "Biggest newspapers in France and Argentina"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "L'Equipe France World",
+    "purpose": "Promote France's footballing identity and global reach",
+    "emotion_tone": "Excitement, pride, and celebration",
+    "description": "Posts about L'Equipe's front pages, France's footballing culture, and global footballing references",
+    "inclusion_cues": [
+     "L'Equipe front page",
+     "France-Belgium Semi-Final",
+     "Tintin Destination Moon",
+     "CR7",
+     "Daily sports",
+     "Biggest newspapers"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: france equipe, france world, bye bordeaux, bordeaux, bordeaux tomorrow, ahead france, sur, daily sports, france, bruyne, tomorrow equipe, france argentina, biggest newspapers, belgium semi, semi final\nPosts (one per line, title first):\n- Tomorrow's L'Equipe front page : T. Henry, Bye-Bye Bordeaux\n- L’Equipe with “ You shall not pass “ and Messi against french defenders vs Diario Olé “ He will pass “. 2 of the biggest newspapers in France and Argentina.\n- Edu Aguirre (Official CR7 Biographer) has just posted this photo on Instagram\n- L'Equipe's front page ahead of the France-Belgium Semi-Final is a beautiful reference to Tintin Destination Moon\n- L'Equipe's front page ahead of the France-Belgium Semi-Final is a beautiful reference to Tintin Destination Moon\n- L'Equipe's front page ahead of the France-Belgium Semi-Final is a beautiful reference to Tintin Destination Moon\n- L'Equipe frontpages on France throughout the World Cup\n- CR7 Life STyle\n- L'Equipe's front page ahead of the Final is a great reference to The Incredibles\n- Official CR7 presentation announcement\n- \"All that fuss for what ?\" - L'Équipe's front cover tomorrow\n- CR7 has arrived 😍\n- If you think CR7 is good player, watch this!\n- Any CR7 FAN?\n- A Collection of Today's Front Pages in France\n- L'Equipe ( 🇫🇷 ) : He Will Not Pass! Ole ( 🇦🇷 ) : He Will Pass!\n- Tomorrow's L'Equipe front page, \"Zidane, the temptation\"\n- L'Équipe's new illustration after the win \"We walked on the Bruyne\" a reference to Tintin \"On a marché sur la Lune\"\n- L' Equipe daily sports cover tomorrow\n- CR7 VS LM10●SKILLS●GOALS\n- CR7 Gets Another Bust!\n- Simply the best of them all !! CR7\n- Tomorrow's front page of L'Equipe : \"¡No Pasará!\"\n- First For Many . CR7\n- Amazing cr7 flipbook animation skill !\n- For those who don't know: CR7 made a song and it only has 1 Millions views\n- Second of Many. CR7\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"L'Equipe France World\", \"purpose\": \"Highlighting France's footballing world and international coverage\", \"emotion_tone\": \"enthusiastic, celebratory\", \"description\": \"Posts about L'Equipe's front pages, France's footballing world, and international football highlights\", \"inclusion_cues\": [\"L'Equipe front page\", \"France-Belgium Semi-Final\", \"Tintin Destination Moon\", \"CR7\", \"Biggest newspapers in France and Argentina\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "L'Equipe France World",
+      "purpose": "Highlighting France's footballing world and international coverage",
+      "emotion_tone": "enthusiastic, celebratory",
+      "description": "Posts about L'Equipe's front pages, France's footballing world, and international football highlights",
+      "inclusion_cues": [
+       "L'Equipe front page",
+       "France-Belgium Semi-Final",
+       "Tintin Destination Moon",
+       "CR7",
+       "Biggest newspapers in France and Argentina"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 121,
+   "seed": 1375872001,
+   "seconds": 0.5
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: france equipe, france world, bye bordeaux, bordeaux, bordeaux tomorrow, ahead france, sur, daily sports, france, bruyne, tomorrow equipe, france argentina, biggest newspapers, belgium semi, semi final\nPosts (one per line, title first):\n- Tomorrow's L'Equipe front page : T. Henry, Bye-Bye Bordeaux\n- L’Equipe with “ You shall not pass “ and Messi against french defenders vs Diario Olé “ He will pass “. 2 of the biggest newspapers in France and Argentina.\n- Edu Aguirre (Official CR7 Biographer) has just posted this photo on Instagram\n- L'Equipe's front page ahead of the France-Belgium Semi-Final is a beautiful reference to Tintin Destination Moon\n- L'Equipe's front page ahead of the France-Belgium Semi-Final is a beautiful reference to Tintin Destination Moon\n- L'Equipe's front page ahead of the France-Belgium Semi-Final is a beautiful reference to Tintin Destination Moon\n- L'Equipe frontpages on France throughout the World Cup\n- CR7 Life STyle\n- L'Equipe's front page ahead of the Final is a great reference to The Incredibles\n- Official CR7 presentation announcement\n- \"All that fuss for what ?\" - L'Équipe's front cover tomorrow\n- CR7 has arrived 😍\n- If you think CR7 is good player, watch this!\n- Any CR7 FAN?\n- A Collection of Today's Front Pages in France\n- L'Equipe ( 🇫🇷 ) : He Will Not Pass! Ole ( 🇦🇷 ) : He Will Pass!\n- Tomorrow's L'Equipe front page, \"Zidane, the temptation\"\n- L'Équipe's new illustration after the win \"We walked on the Bruyne\" a reference to Tintin \"On a marché sur la Lune\"\n- L' Equipe daily sports cover tomorrow\n- CR7 VS LM10●SKILLS●GOALS\n- CR7 Gets Another Bust!\n- Simply the best of them all !! CR7\n- Tomorrow's front page of L'Equipe : \"¡No Pasará!\"\n- First For Many . CR7\n- Amazing cr7 flipbook animation skill !\n- For those who don't know: CR7 made a song and it only has 1 Millions views\n- Second of Many. CR7\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"L'Equipe France World\", \"purpose\": \"Promote France's footballing identity and global reach\", \"emotion_tone\": \"Excitement, pride, and celebration\", \"description\": \"Posts about L'Equipe's front pages, France's footballing culture, and global footballing references\", \"inclusion_cues\": [\"L'Equipe front page\", \"France-Belgium Semi-Final\", \"Tintin Destination Moon\", \"CR7\", \"Daily sports\", \"Biggest newspapers\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "L'Equipe France World",
+      "purpose": "Promote France's footballing identity and global reach",
+      "emotion_tone": "Excitement, pride, and celebration",
+      "description": "Posts about L'Equipe's front pages, France's footballing culture, and global footballing references",
+      "inclusion_cues": [
+       "L'Equipe front page",
+       "France-Belgium Semi-Final",
+       "Tintin Destination Moon",
+       "CR7",
+       "Daily sports",
+       "Biggest newspapers"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 123,
+   "seed": 1241525915,
+   "seconds": 0.51
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: france equipe, france world, bye bordeaux, bordeaux, bordeaux tomorrow, ahead france, sur, daily sports, france, bruyne, tomorrow equipe, france argentina, biggest newspapers, belgium semi, semi final\nPosts (one per line, title first):\n- Tomorrow's L'Equipe front page : T. Henry, Bye-Bye Bordeaux\n- L’Equipe with “ You shall not pass “ and Messi against french defenders vs Diario Olé “ He will pass “. 2 of the biggest newspapers in France and Argentina.\n- Edu Aguirre (Official CR7 Biographer) has just posted this photo on Instagram\n- L'Equipe's front page ahead of the France-Belgium Semi-Final is a beautiful reference to Tintin Destination Moon\n- L'Equipe's front page ahead of the France-Belgium Semi-Final is a beautiful reference to Tintin Destination Moon\n- L'Equipe's front page ahead of the France-Belgium Semi-Final is a beautiful reference to Tintin Destination Moon\n- L'Equipe frontpages on France throughout the World Cup\n- CR7 Life STyle\n- L'Equipe's front page ahead of the Final is a great reference to The Incredibles\n- Official CR7 presentation announcement\n- \"All that fuss for what ?\" - L'Équipe's front cover tomorrow\n- CR7 has arrived 😍\n- If you think CR7 is good player, watch this!\n- Any CR7 FAN?\n- A Collection of Today's Front Pages in France\n- L'Equipe ( 🇫🇷 ) : He Will Not Pass! Ole ( 🇦🇷 ) : He Will Pass!\n- Tomorrow's L'Equipe front page, \"Zidane, the temptation\"\n- L'Équipe's new illustration after the win \"We walked on the Bruyne\" a reference to Tintin \"On a marché sur la Lune\"\n- L' Equipe daily sports cover tomorrow\n- CR7 VS LM10●SKILLS●GOALS\n- CR7 Gets Another Bust!\n- Simply the best of them all !! CR7\n- Tomorrow's front page of L'Equipe : \"¡No Pasará!\"\n- First For Many . CR7\n- Amazing cr7 flipbook animation skill !\n- For those who don't know: CR7 made a song and it only has 1 Millions views\n- Second of Many. CR7\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"L'Equipe France World\", \"purpose\": \"Highlighting France's footballing world and international coverage\", \"emotion_tone\": \"enthusiastic, celebratory\", \"description\": \"Posts about L'Equipe's front pages, France's footballing world, and international football highlights\", \"inclusion_cues\": [\"L'Equipe front page\", \"France-Belgium Semi-Final\", \"Tintin Destination Moon\", \"CR7\", \"Biggest newspapers in France and Argentina\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"L'Equipe France World\", \"purpose\": \"Promote France's footballing identity and global reach\", \"emotion_tone\": \"Excitement, pride, and celebration\", \"description\": \"Posts about L'Equipe's front pages, France's footballing culture, and global footballing references\", \"inclusion_cues\": [\"L'Equipe front page\", \"France-Belgium Semi-Final\", \"Tintin Destination Moon\", \"CR7\", \"Daily sports\", \"Biggest newspapers\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"L'Equipe France World\", \"purpose\": \"Promote France's footballing identity and global reach\", \"emotion_tone\": \"Excitement, pride, and celebration\", \"description\": \"Posts about L'Equipe's front pages, France's footballing culture, and global footballing references\", \"inclusion_cues\": [\"L'Equipe front page\", \"France-Belgium Semi-Final\", \"Tintin Destination Moon\", \"CR7\", \"Daily sports\", \"Biggest newspapers\"]]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 455)",
+   "n_tokens": 122,
+   "seed": 4225854040,
+   "seconds": 0.53
+  }
+ ]
+}

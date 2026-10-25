@@ -1,0 +1,191 @@
+{
+ "period_bin": 5,
+ "topic_id": 6,
+ "keywords": "girona celta, madrid alaves, villarreal real, eibar sevilla, bilbao levante, sociedad girona, barcelona huesca, madrid leganes, levante barcelona, sevilla atlético, real sociedad, madrid girona, athletic bilbao, barcelona girona, atl madrid",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "7v1eqb",
+  "8c8rwm",
+  "9i00qw",
+  "9i0pi8",
+  "8kmmvj",
+  "7ydpxa",
+  "9i7jcd",
+  "7uuudi",
+  "7y9ki8",
+  "9gnie2",
+  "8i9is6",
+  "806j19",
+  "7wocex",
+  "9i0q8q",
+  "8i4adw",
+  "85ctdm",
+  "7yha0y",
+  "85ax57",
+  "98lowh",
+  "9j70dm",
+  "8hebm2",
+  "8ap6tu",
+  "8kmg1q",
+  "81s81p",
+  "98fb6q",
+  "8arob1",
+  "9cb6cr",
+  "8gbee5",
+  "8fjbvo",
+  "98w4p4",
+  "9c61tr",
+  "8hg26j",
+  "88jypk",
+  "7v9l0c",
+  "8d7qqq",
+  "81t0bb",
+  "9cdi24",
+  "9as6xd",
+  "8c9nrz",
+  "8czura"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Club Matches",
+  "purpose": "Matches between clubs in Spain",
+  "emotion_tone": "neutral",
+  "description": "Posts about matches between Spanish football clubs, including results and player actions.",
+  "inclusion_cues": [
+   "Alaves 2-[1] Celta Vigo",
+   "Real Sociedad 1-0 Levante",
+   "Levante 1-[4] Sevilla",
+   "Real Madrid 5-2 Real Sociedad"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Club vs Club",
+    "purpose": "Matches between clubs",
+    "emotion_tone": "neutral",
+    "description": "Posts discussing matches between clubs in Spain",
+    "inclusion_cues": [
+     "Celta Vigo vs Real Valladolid",
+     "Real Sociedad vs Levante",
+     "Sevilla vs Real Madrid",
+     "Leganes vs Barcelona",
+     "Atlético Madrid vs Espanyol"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Club Matches",
+    "purpose": "Matches between clubs in Spain",
+    "emotion_tone": "neutral",
+    "description": "Posts about matches between Spanish football clubs, including results and player actions.",
+    "inclusion_cues": [
+     "Alaves 2-[1] Celta Vigo",
+     "Real Sociedad 1-0 Levante",
+     "Levante 1-[4] Sevilla",
+     "Real Madrid 5-2 Real Sociedad"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: girona celta, madrid alaves, villarreal real, eibar sevilla, bilbao levante, sociedad girona, barcelona huesca, madrid leganes, levante barcelona, sevilla atlético, real sociedad, madrid girona, athletic bilbao, barcelona girona, atl madrid\nPosts (one per line, title first):\n- Alaves 2-[1] Celta Vigo - Iago Aspas\n- Las Palmas 0-1 Real Sociedad - Mikel Oyarzabal\n- Celta Vigo 1-0 Real Valladolid - Iago Aspas 5'\n- Celta Vigo [3]-1 Real Valladolid - Iago Aspas 54'\n- Las Palmas 1-[2] Girona - Christian Stuani\n- Real Sociedad 1-0 Levante - Xabi Prieto penalty\n- Levante 1-[4] Sevilla - Wissam Ben Yedder 45' (Hat-trick)\n- Real Sociedad 5-0 Deportivo - Asier Illarramendi\n- Málaga 1-[1] Valencia — Francis Coquelin 80'\n- Girona 1-[1] Celta Vigo - Iago Aspas free-kick 34'\n- Sevilla 3-0 Real Madrid - Sergio Ramos OG\n- Valencia [2]-1 Real Sociedad - Santi Mina\n- Real Madrid 5-2 Real Sociedad - Illarramendi\n- Eibar 1-0 Leganes - Kike 52'\n- ENES ÜNAL VILLAREAL TÜM GOLLER VE ASİSTLER 2017 - 2018 (ATLETICO SON)\n- Villarreal 0-1 Atl. Madrid - Griezmann (Penalty + Call) 20'\n- Real madrid scored\n- Leganes 2-0 Sevilla - Javier Eraso\n- Eibar 0-2 Huesca - Alex Gallar 40'\n- Leganes vs Barcelona 2-1\n- Malaga 0-1 Alaves - Manu Garcia Goal\n- Levante 1-0 Las Palmas - Coke\n- Las Palmas [1]-1 Girona - Jonathan Calleri penalty\n- Leganes 1-0 Malaga - Javier Eraso\n- Barcelona [2]-0 Alaves : Coutinho 83'\n- Real Sociedad 3-0 Girona - Mikel Oyarzabal\n- Levante 1-[1] Valencia - Cheryshev 16'\n- Real Madrid 2-1 Bayern Munich - Karim Benzema 45'\n- Espanyol 0-1 Las Palmas - Jonathan Calleri penalty\n- Valencia 0-1 Atlético Madrid - Angel Correa 26'\n- Zaragoza 1:1 UD Las Palmas\n- Atlético Madrid 0-2 Espanyol - Leo Baptistao\n- Las Palmas 0-1 Real Madrid - Bale 26'\n- Atlético Madrid 1-0 Valencia - Angel Correa\n- Espanyol 0-1 Eibar - David Lomban\n- Real Madrid 2-[1] Getafe - Francisco Portillo penalty\n- Barcelona [1]-1 Huesca - Lionel Messi 16'\n- Levante [1]-2 Celta Vigo - Jose Morales penalty 78'\n- Athletic Bilbao 0-2 Deportivo - Adrian\n- Celta Vigo - Barcelona 2-2 Aspas\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Club vs Club\", \"purpose\": \"Matches between clubs\", \"emotion_tone\": \"neutral\", \"description\": \"Posts discussing matches between clubs in Spain\", \"inclusion_cues\": [\"Celta Vigo vs Real Valladolid\", \"Real Sociedad vs Levante\", \"Sevilla vs Real Madrid\", \"Leganes vs Barcelona\", \"Atlético Madrid vs Espanyol\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Club vs Club",
+      "purpose": "Matches between clubs",
+      "emotion_tone": "neutral",
+      "description": "Posts discussing matches between clubs in Spain",
+      "inclusion_cues": [
+       "Celta Vigo vs Real Valladolid",
+       "Real Sociedad vs Levante",
+       "Sevilla vs Real Madrid",
+       "Leganes vs Barcelona",
+       "Atlético Madrid vs Espanyol"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 97,
+   "seed": 2505279401,
+   "seconds": 0.61
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: girona celta, madrid alaves, villarreal real, eibar sevilla, bilbao levante, sociedad girona, barcelona huesca, madrid leganes, levante barcelona, sevilla atlético, real sociedad, madrid girona, athletic bilbao, barcelona girona, atl madrid\nPosts (one per line, title first):\n- Alaves 2-[1] Celta Vigo - Iago Aspas\n- Las Palmas 0-1 Real Sociedad - Mikel Oyarzabal\n- Celta Vigo 1-0 Real Valladolid - Iago Aspas 5'\n- Celta Vigo [3]-1 Real Valladolid - Iago Aspas 54'\n- Las Palmas 1-[2] Girona - Christian Stuani\n- Real Sociedad 1-0 Levante - Xabi Prieto penalty\n- Levante 1-[4] Sevilla - Wissam Ben Yedder 45' (Hat-trick)\n- Real Sociedad 5-0 Deportivo - Asier Illarramendi\n- Málaga 1-[1] Valencia — Francis Coquelin 80'\n- Girona 1-[1] Celta Vigo - Iago Aspas free-kick 34'\n- Sevilla 3-0 Real Madrid - Sergio Ramos OG\n- Valencia [2]-1 Real Sociedad - Santi Mina\n- Real Madrid 5-2 Real Sociedad - Illarramendi\n- Eibar 1-0 Leganes - Kike 52'\n- ENES ÜNAL VILLAREAL TÜM GOLLER VE ASİSTLER 2017 - 2018 (ATLETICO SON)\n- Villarreal 0-1 Atl. Madrid - Griezmann (Penalty + Call) 20'\n- Real madrid scored\n- Leganes 2-0 Sevilla - Javier Eraso\n- Eibar 0-2 Huesca - Alex Gallar 40'\n- Leganes vs Barcelona 2-1\n- Malaga 0-1 Alaves - Manu Garcia Goal\n- Levante 1-0 Las Palmas - Coke\n- Las Palmas [1]-1 Girona - Jonathan Calleri penalty\n- Leganes 1-0 Malaga - Javier Eraso\n- Barcelona [2]-0 Alaves : Coutinho 83'\n- Real Sociedad 3-0 Girona - Mikel Oyarzabal\n- Levante 1-[1] Valencia - Cheryshev 16'\n- Real Madrid 2-1 Bayern Munich - Karim Benzema 45'\n- Espanyol 0-1 Las Palmas - Jonathan Calleri penalty\n- Valencia 0-1 Atlético Madrid - Angel Correa 26'\n- Zaragoza 1:1 UD Las Palmas\n- Atlético Madrid 0-2 Espanyol - Leo Baptistao\n- Las Palmas 0-1 Real Madrid - Bale 26'\n- Atlético Madrid 1-0 Valencia - Angel Correa\n- Espanyol 0-1 Eibar - David Lomban\n- Real Madrid 2-[1] Getafe - Francisco Portillo penalty\n- Barcelona [1]-1 Huesca - Lionel Messi 16'\n- Levante [1]-2 Celta Vigo - Jose Morales penalty 78'\n- Athletic Bilbao 0-2 Deportivo - Adrian\n- Celta Vigo - Barcelona 2-2 Aspas\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Club Matches\", \"purpose\": \"Matches between clubs in Spain\", \"emotion_tone\": \"neutral\", \"description\": \"Posts about matches between Spanish football clubs, including results and player actions.\", \"inclusion_cues\": [\"Alaves 2-[1] Celta Vigo\", \"Real Sociedad 1-0 Levante\", \"Levante 1-[4] Sevilla\", \"Real Madrid 5-2 Real Sociedad\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Club Matches",
+      "purpose": "Matches between clubs in Spain",
+      "emotion_tone": "neutral",
+      "description": "Posts about matches between Spanish football clubs, including results and player actions.",
+      "inclusion_cues": [
+       "Alaves 2-[1] Celta Vigo",
+       "Real Sociedad 1-0 Levante",
+       "Levante 1-[4] Sevilla",
+       "Real Madrid 5-2 Real Sociedad"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 108,
+   "seed": 1139752107,
+   "seconds": 0.95
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: girona celta, madrid alaves, villarreal real, eibar sevilla, bilbao levante, sociedad girona, barcelona huesca, madrid leganes, levante barcelona, sevilla atlético, real sociedad, madrid girona, athletic bilbao, barcelona girona, atl madrid\nPosts (one per line, title first):\n- Alaves 2-[1] Celta Vigo - Iago Aspas\n- Las Palmas 0-1 Real Sociedad - Mikel Oyarzabal\n- Celta Vigo 1-0 Real Valladolid - Iago Aspas 5'\n- Celta Vigo [3]-1 Real Valladolid - Iago Aspas 54'\n- Las Palmas 1-[2] Girona - Christian Stuani\n- Real Sociedad 1-0 Levante - Xabi Prieto penalty\n- Levante 1-[4] Sevilla - Wissam Ben Yedder 45' (Hat-trick)\n- Real Sociedad 5-0 Deportivo - Asier Illarramendi\n- Málaga 1-[1] Valencia — Francis Coquelin 80'\n- Girona 1-[1] Celta Vigo - Iago Aspas free-kick 34'\n- Sevilla 3-0 Real Madrid - Sergio Ramos OG\n- Valencia [2]-1 Real Sociedad - Santi Mina\n- Real Madrid 5-2 Real Sociedad - Illarramendi\n- Eibar 1-0 Leganes - Kike 52'\n- ENES ÜNAL VILLAREAL TÜM GOLLER VE ASİSTLER 2017 - 2018 (ATLETICO SON)\n- Villarreal 0-1 Atl. Madrid - Griezmann (Penalty + Call) 20'\n- Real madrid scored\n- Leganes 2-0 Sevilla - Javier Eraso\n- Eibar 0-2 Huesca - Alex Gallar 40'\n- Leganes vs Barcelona 2-1\n- Malaga 0-1 Alaves - Manu Garcia Goal\n- Levante 1-0 Las Palmas - Coke\n- Las Palmas [1]-1 Girona - Jonathan Calleri penalty\n- Leganes 1-0 Malaga - Javier Eraso\n- Barcelona [2]-0 Alaves : Coutinho 83'\n- Real Sociedad 3-0 Girona - Mikel Oyarzabal\n- Levante 1-[1] Valencia - Cheryshev 16'\n- Real Madrid 2-1 Bayern Munich - Karim Benzema 45'\n- Espanyol 0-1 Las Palmas - Jonathan Calleri penalty\n- Valencia 0-1 Atlético Madrid - Angel Correa 26'\n- Zaragoza 1:1 UD Las Palmas\n- Atlético Madrid 0-2 Espanyol - Leo Baptistao\n- Las Palmas 0-1 Real Madrid - Bale 26'\n- Atlético Madrid 1-0 Valencia - Angel Correa\n- Espanyol 0-1 Eibar - David Lomban\n- Real Madrid 2-[1] Getafe - Francisco Portillo penalty\n- Barcelona [1]-1 Huesca - Lionel Messi 16'\n- Levante [1]-2 Celta Vigo - Jose Morales penalty 78'\n- Athletic Bilbao 0-2 Deportivo - Adrian\n- Celta Vigo - Barcelona 2-2 Aspas\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Club vs Club\", \"purpose\": \"Matches between clubs\", \"emotion_tone\": \"neutral\", \"description\": \"Posts discussing matches between clubs in Spain\", \"inclusion_cues\": [\"Celta Vigo vs Real Valladolid\", \"Real Sociedad vs Levante\", \"Sevilla vs Real Madrid\", \"Leganes vs Barcelona\", \"Atlético Madrid vs Espanyol\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Club Matches\", \"purpose\": \"Matches between clubs in Spain\", \"emotion_tone\": \"neutral\", \"description\": \"Posts about matches between Spanish football clubs, including results and player actions.\", \"inclusion_cues\": [\"Alaves 2-[1] Celta Vigo\", \"Real Sociedad 1-0 Levante\", \"Levante 1-[4] Sevilla\", \"Real Madrid 5-2 Real Sociedad\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Club Matches\", \"purpose\": \"Matches between clubs in Spain\", \"emotion_tone\": \"neutral\", \"description\": \"Posts about matches between Spanish football clubs, including results and player actions.\", \"inclusion_cues\": [\"Alaves 2-[1] Celta Vigo\", \"Real Sociedad 1-0 Levante\", \"Levante 1-[4] Sevilla\", \"Real Madrid 5-2 Real Sociedad\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 107,
+   "seed": 1089071873,
+   "seconds": 0.62
+  }
+ ]
+}

@@ -1,0 +1,199 @@
+{
+ "period_bin": 5,
+ "topic_id": 35,
+ "keywords": "madrid goal, goal sevilla, goal juventus, goal marseille, goal benfica, goal hoffenheim, goal lazio, goal milan, goal napoli, goal udinese, goal barcelona, ligue goal, goal lyon, goal bordeaux, goal levante",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "9j58ue",
+  "94ne1m",
+  "94nbv8",
+  "7zrm3u",
+  "9jz1v3",
+  "94n4yn",
+  "9c3yyz",
+  "8o2u6f",
+  "8btgix",
+  "92od2q",
+  "9gb4qt",
+  "8o2az9",
+  "8yviaq",
+  "9ahg6i",
+  "8czm78",
+  "9gbfzl",
+  "9j5lbb",
+  "97l8e0",
+  "9ivtt1",
+  "9ivc6x",
+  "9j5ue4",
+  "8o2pvv",
+  "9aab5z",
+  "955787",
+  "9dy617",
+  "8kntzt",
+  "9j51yz",
+  "8iy96b",
+  "9ce64e",
+  "7v1rjm",
+  "8j6evn",
+  "8czqb8",
+  "9h8d1l",
+  "94n50t",
+  "7xt03x",
+  "7zrqaj",
+  "9k06rv",
+  "92ogjy",
+  "7v723k",
+  "867qlb"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Goal Scoring",
+  "purpose": "Tracking goal events in football matches",
+  "emotion_tone": "positive",
+  "description": "Posts related to goals scored in football matches, including details about the goal, team, and match context.",
+  "inclusion_cues": [
+   "goal scored",
+   "team",
+   "match context",
+   "goal details",
+   "time of goal",
+   "team vs. opponent"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Goal Scoring",
+    "purpose": "Identify and categorize goal-scoring events in football matches",
+    "emotion_tone": "positive",
+    "description": "Posts containing goals scored by players in matches, including details about the goal, team, and match context",
+    "inclusion_cues": [
+     "goal",
+     "match",
+     "player",
+     "team",
+     "time",
+     "result"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Goal Scoring",
+    "purpose": "Tracking goal events in football matches",
+    "emotion_tone": "positive",
+    "description": "Posts related to goals scored in football matches, including details about the goal, team, and match context.",
+    "inclusion_cues": [
+     "goal scored",
+     "team",
+     "match context",
+     "goal details",
+     "time of goal",
+     "team vs. opponent"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: madrid goal, goal sevilla, goal juventus, goal marseille, goal benfica, goal hoffenheim, goal lazio, goal milan, goal napoli, goal udinese, goal barcelona, ligue goal, goal lyon, goal bordeaux, goal levante\nPosts (one per line, title first):\n- Jacob Bruun Larsen goal (Dortmund [1]-0 Nürnberg) 9'\n- Marco Asensio (Real Madrid) goal vs. Juventus ([3]-1)\n- Marco Asensio (Real Madrid) goal vs. Juventus ([2]-1)\n- Ezikian goal - Lyon-Duchere [2]-2 Entente SSG [French National - 3rd div.] 90+ min\n- Jacob Bruun Larsen goal (Leverkusen 2-[1] Dortmund) 65'\n- G. Bale great goal (Real Madrid [1]-1 Juventus) 39'\n- Neymar goal (Nîmes 0-[1] PSG) 35'\n- A. Schöpf goal (Austria [2]-1 Germany) 69'\n- S. Lainer goal (Salzburg [4]-1 Lazio) 76' (Europa League - Quarter-finals)\n- Álex Grimaldo Fantastic Goal - Benfica vs Juventus (28/07/18)\n- K. Babacar goal (Juventus 2-[1] Sassuolo) 91'\n- M. Özil goal (Austria 0-[1] Germany) 11'\n- Lautaro scores after just 16 minutes on his Inter debut vs Lugano.\n- M. Reus goal (Dortmund [4]-1 Leipzig) 91'\n- T. Müller goal (Leverkusen 1-[5] Bayern München) 63'\n- R. Ripart goal (Bordeaux 1-[1] Nîmes) 31'\n- B. Matuidi goal (Juventus [2]-0 Bologna) 16'\n- Karim Benzema goal vs. Atletico Madrid (1-1)\n- Willian José goal (Real Sociedad [2]-2 Vallecano) 77'\n- P. Kadeřábek great goal (Hannover 0-[2] Hoffenheim) 49'\n- M. Reus goal (Dortmund [4]-0 Nürnberg) 57'\n- M. Hinteregger nice goal (Austria [1]-1 Germany) 52'\n- O. Dembélé goal (Valladolid 0-[1] Barcelona) 57'\n- M'Bone incredible own goal in Chateauroux-Lorient match [Ligue 2]\n- Jorginho (Penalty) goal (Italy [1]-1 Poland) 77'\n- M. Depay free kick goal (Lyon [2]-1 Nice) 65'\n- F. Acerbi goal (Udinese 0-[1] Lazio) 60'\n- Gareth Bale 2nd goal vs. Celta Vigo (2-0)\n- Jordi Alba goal (Barcelona [7]-2 Huesca) 81'\n- E. Martins goal (Inter [1]-0 Crotone) 23'\n- Bahrdi goal vs. Barcelona (3-1)\n- T. Müller goal (Leverkusen 2-[6] Bayern München) 78'\n- Isco (Real Madrid) goal vs. Roma ([1]-0)\n- Gareth Bale (Real Madrid) goal vs. Juventus ([1]-1)\n- F. Borini goal (Ludogorets 0-[3] Milan) 92'\n- Sea goal - Lyon-Duchere 1-[1] Entente SSG [French National - 3rd div.] 30th min\n- M. Politano goal (Inter [2]-0 Cagliari) 89'\n- L. Clemenza great goal (Benfica 1-[1] Juventus) 83'\n- M. Pjanić goal (Juventus [4]-0 Sassuolo) 37' great goal\n- Fernando Morientes was in his prime, and Real Madrid didn’t want him. They were so keen for him to join Monaco, they waived various clauses to get the deal done. He then scored home and away in the CL QF against Madrid, knocking them out on away goals.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Goal Scoring\", \"purpose\": \"Identify and categorize goal-scoring events in football matches\", \"emotion_tone\": \"positive\", \"description\": \"Posts containing goals scored by players in matches, including details about the goal, team, and match context\", \"inclusion_cues\": [\"goal\", \"match\", \"player\", \"team\", \"time\", \"result\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Goal Scoring",
+      "purpose": "Identify and categorize goal-scoring events in football matches",
+      "emotion_tone": "positive",
+      "description": "Posts containing goals scored by players in matches, including details about the goal, team, and match context",
+      "inclusion_cues": [
+       "goal",
+       "match",
+       "player",
+       "team",
+       "time",
+       "result"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 95,
+   "seed": 965415064,
+   "seconds": 1.18
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: madrid goal, goal sevilla, goal juventus, goal marseille, goal benfica, goal hoffenheim, goal lazio, goal milan, goal napoli, goal udinese, goal barcelona, ligue goal, goal lyon, goal bordeaux, goal levante\nPosts (one per line, title first):\n- Jacob Bruun Larsen goal (Dortmund [1]-0 Nürnberg) 9'\n- Marco Asensio (Real Madrid) goal vs. Juventus ([3]-1)\n- Marco Asensio (Real Madrid) goal vs. Juventus ([2]-1)\n- Ezikian goal - Lyon-Duchere [2]-2 Entente SSG [French National - 3rd div.] 90+ min\n- Jacob Bruun Larsen goal (Leverkusen 2-[1] Dortmund) 65'\n- G. Bale great goal (Real Madrid [1]-1 Juventus) 39'\n- Neymar goal (Nîmes 0-[1] PSG) 35'\n- A. Schöpf goal (Austria [2]-1 Germany) 69'\n- S. Lainer goal (Salzburg [4]-1 Lazio) 76' (Europa League - Quarter-finals)\n- Álex Grimaldo Fantastic Goal - Benfica vs Juventus (28/07/18)\n- K. Babacar goal (Juventus 2-[1] Sassuolo) 91'\n- M. Özil goal (Austria 0-[1] Germany) 11'\n- Lautaro scores after just 16 minutes on his Inter debut vs Lugano.\n- M. Reus goal (Dortmund [4]-1 Leipzig) 91'\n- T. Müller goal (Leverkusen 1-[5] Bayern München) 63'\n- R. Ripart goal (Bordeaux 1-[1] Nîmes) 31'\n- B. Matuidi goal (Juventus [2]-0 Bologna) 16'\n- Karim Benzema goal vs. Atletico Madrid (1-1)\n- Willian José goal (Real Sociedad [2]-2 Vallecano) 77'\n- P. Kadeřábek great goal (Hannover 0-[2] Hoffenheim) 49'\n- M. Reus goal (Dortmund [4]-0 Nürnberg) 57'\n- M. Hinteregger nice goal (Austria [1]-1 Germany) 52'\n- O. Dembélé goal (Valladolid 0-[1] Barcelona) 57'\n- M'Bone incredible own goal in Chateauroux-Lorient match [Ligue 2]\n- Jorginho (Penalty) goal (Italy [1]-1 Poland) 77'\n- M. Depay free kick goal (Lyon [2]-1 Nice) 65'\n- F. Acerbi goal (Udinese 0-[1] Lazio) 60'\n- Gareth Bale 2nd goal vs. Celta Vigo (2-0)\n- Jordi Alba goal (Barcelona [7]-2 Huesca) 81'\n- E. Martins goal (Inter [1]-0 Crotone) 23'\n- Bahrdi goal vs. Barcelona (3-1)\n- T. Müller goal (Leverkusen 2-[6] Bayern München) 78'\n- Isco (Real Madrid) goal vs. Roma ([1]-0)\n- Gareth Bale (Real Madrid) goal vs. Juventus ([1]-1)\n- F. Borini goal (Ludogorets 0-[3] Milan) 92'\n- Sea goal - Lyon-Duchere 1-[1] Entente SSG [French National - 3rd div.] 30th min\n- M. Politano goal (Inter [2]-0 Cagliari) 89'\n- L. Clemenza great goal (Benfica 1-[1] Juventus) 83'\n- M. Pjanić goal (Juventus [4]-0 Sassuolo) 37' great goal\n- Fernando Morientes was in his prime, and Real Madrid didn’t want him. They were so keen for him to join Monaco, they waived various clauses to get the deal done. He then scored home and away in the CL QF against Madrid, knocking them out on away goals.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Goal Scoring\", \"purpose\": \"Tracking goal events in football matches\", \"emotion_tone\": \"positive\", \"description\": \"Posts related to goals scored in football matches, including details about the goal, team, and match context.\", \"inclusion_cues\": [\"goal scored\", \"team\", \"match context\", \"goal details\", \"time of goal\", \"team vs. opponent\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Goal Scoring",
+      "purpose": "Tracking goal events in football matches",
+      "emotion_tone": "positive",
+      "description": "Posts related to goals scored in football matches, including details about the goal, team, and match context.",
+      "inclusion_cues": [
+       "goal scored",
+       "team",
+       "match context",
+       "goal details",
+       "time of goal",
+       "team vs. opponent"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 97,
+   "seed": 713996542,
+   "seconds": 0.67
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: madrid goal, goal sevilla, goal juventus, goal marseille, goal benfica, goal hoffenheim, goal lazio, goal milan, goal napoli, goal udinese, goal barcelona, ligue goal, goal lyon, goal bordeaux, goal levante\nPosts (one per line, title first):\n- Jacob Bruun Larsen goal (Dortmund [1]-0 Nürnberg) 9'\n- Marco Asensio (Real Madrid) goal vs. Juventus ([3]-1)\n- Marco Asensio (Real Madrid) goal vs. Juventus ([2]-1)\n- Ezikian goal - Lyon-Duchere [2]-2 Entente SSG [French National - 3rd div.] 90+ min\n- Jacob Bruun Larsen goal (Leverkusen 2-[1] Dortmund) 65'\n- G. Bale great goal (Real Madrid [1]-1 Juventus) 39'\n- Neymar goal (Nîmes 0-[1] PSG) 35'\n- A. Schöpf goal (Austria [2]-1 Germany) 69'\n- S. Lainer goal (Salzburg [4]-1 Lazio) 76' (Europa League - Quarter-finals)\n- Álex Grimaldo Fantastic Goal - Benfica vs Juventus (28/07/18)\n- K. Babacar goal (Juventus 2-[1] Sassuolo) 91'\n- M. Özil goal (Austria 0-[1] Germany) 11'\n- Lautaro scores after just 16 minutes on his Inter debut vs Lugano.\n- M. Reus goal (Dortmund [4]-1 Leipzig) 91'\n- T. Müller goal (Leverkusen 1-[5] Bayern München) 63'\n- R. Ripart goal (Bordeaux 1-[1] Nîmes) 31'\n- B. Matuidi goal (Juventus [2]-0 Bologna) 16'\n- Karim Benzema goal vs. Atletico Madrid (1-1)\n- Willian José goal (Real Sociedad [2]-2 Vallecano) 77'\n- P. Kadeřábek great goal (Hannover 0-[2] Hoffenheim) 49'\n- M. Reus goal (Dortmund [4]-0 Nürnberg) 57'\n- M. Hinteregger nice goal (Austria [1]-1 Germany) 52'\n- O. Dembélé goal (Valladolid 0-[1] Barcelona) 57'\n- M'Bone incredible own goal in Chateauroux-Lorient match [Ligue 2]\n- Jorginho (Penalty) goal (Italy [1]-1 Poland) 77'\n- M. Depay free kick goal (Lyon [2]-1 Nice) 65'\n- F. Acerbi goal (Udinese 0-[1] Lazio) 60'\n- Gareth Bale 2nd goal vs. Celta Vigo (2-0)\n- Jordi Alba goal (Barcelona [7]-2 Huesca) 81'\n- E. Martins goal (Inter [1]-0 Crotone) 23'\n- Bahrdi goal vs. Barcelona (3-1)\n- T. Müller goal (Leverkusen 2-[6] Bayern München) 78'\n- Isco (Real Madrid) goal vs. Roma ([1]-0)\n- Gareth Bale (Real Madrid) goal vs. Juventus ([1]-1)\n- F. Borini goal (Ludogorets 0-[3] Milan) 92'\n- Sea goal - Lyon-Duchere 1-[1] Entente SSG [French National - 3rd div.] 30th min\n- M. Politano goal (Inter [2]-0 Cagliari) 89'\n- L. Clemenza great goal (Benfica 1-[1] Juventus) 83'\n- M. Pjanić goal (Juventus [4]-0 Sassuolo) 37' great goal\n- Fernando Morientes was in his prime, and Real Madrid didn’t want him. They were so keen for him to join Monaco, they waived various clauses to get the deal done. He then scored home and away in the CL QF against Madrid, knocking them out on away goals.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Goal Scoring\", \"purpose\": \"Identify and categorize goal-scoring events in football matches\", \"emotion_tone\": \"positive\", \"description\": \"Posts containing goals scored by players in matches, including details about the goal, team, and match context\", \"inclusion_cues\": [\"goal\", \"match\", \"player\", \"team\", \"time\", \"result\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Goal Scoring\", \"purpose\": \"Tracking goal events in football matches\", \"emotion_tone\": \"positive\", \"description\": \"Posts related to goals scored in football matches, including details about the goal, team, and match context.\", \"inclusion_cues\": [\"goal scored\", \"team\", \"match context\", \"goal details\", \"time of goal\", \"team vs. opponent\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Goal Scoring\", \"purpose\": \"Tracking goal events in football matches\", \"emotion_tone\": \"positive\", \"description\": \"Posts related to goals scored in football matches, including details about the goal, team, and match context.\", \"inclusion_cues\": [\"goal scored\", \"team\", \"match context\", \"goal details\", \"time of goal\", \"team vs. opponent\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 96,
+   "seed": 228212159,
+   "seconds": 0.7
+  }
+ ]
+}

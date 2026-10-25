@@ -1,0 +1,263 @@
+{
+ "period_bin": 5,
+ "topic_id": 61,
+ "keywords": "absolutely crazy, unreal, mighty fallen, place looks, video today, atmosphere today, watch funny, england throw, time feel, thousand, seen new, english world, weren good, sure posted, words just",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "97vhxz",
+  "8ld038",
+  "960twj",
+  "960twj",
+  "8y773p",
+  "8u5edy",
+  "9b0cts",
+  "8sv9eu",
+  "8ngpw0",
+  "8uvgoj",
+  "8bbuvh",
+  "8c31pd",
+  "8ykkqc",
+  "8owazz",
+  "8bbftx",
+  "8rx6ld",
+  "8bgej3",
+  "8vvfnu",
+  "8hose9",
+  "81hf86",
+  "8bby4w",
+  "8ns4j3",
+  "82thwk",
+  "8uoyur",
+  "8xaw6q",
+  "88641q",
+  "8sbnnr",
+  "7xm801",
+  "8mij9n",
+  "8hs75i",
+  "94kymc",
+  "89ykvz",
+  "8tfdng",
+  "96jb2h",
+  "8rqq5v",
+  "9i2g12",
+  "8tcfcf",
+  "8q1tzv",
+  "852i87",
+  "8nyv02"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_B",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "soccer memes",
+  "purpose": "share humorous content related to football",
+  "emotion_tone": "lighthearted, funny",
+  "description": "Posts about funny soccer moments, memes, and jokes, often with a humorous or sarcastic tone.",
+  "inclusion_cues": [
+   "absolutely crazy",
+   "unreal",
+   "video today",
+   "atmosphere today",
+   "watch funny",
+   "english world",
+   "seen new",
+   "time feel",
+   "thousand",
+   "memes are coming"
+  ],
+  "n_cues_given": 11
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "soccer memes",
+    "purpose": "share humorous content related to football",
+    "emotion_tone": "lighthearted, funny",
+    "description": "Posts about funny soccer moments, memes, and jokes, often with a humorous or sarcastic tone.",
+    "inclusion_cues": [
+     "absolutely crazy",
+     "unreal",
+     "video today",
+     "atmosphere today",
+     "watch funny",
+     "english world",
+     "seen new",
+     "time feel",
+     "thousand",
+     "memes are coming"
+    ],
+    "n_cues_given": 11
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "soccer memes",
+    "purpose": "share humorous content related to football",
+    "emotion_tone": "lighthearted, funny",
+    "description": "Posts about funny soccer moments, memes, and jokes, often with a humorous or sarcastic tone.",
+    "inclusion_cues": [
+     "absolutely crazy",
+     "unreal",
+     "video today",
+     "atmosphere today",
+     "watch funny",
+     "english world",
+     "seen new",
+     "english world",
+     "time feel",
+     "thousand"
+    ],
+    "n_cues_given": 25
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: absolutely crazy, unreal, mighty fallen, place looks, video today, atmosphere today, watch funny, england throw, time feel, thousand, seen new, english world, weren good, sure posted, words just\nPosts (one per line, title first):\n- If You Wanna Check Out Something Epic Click On This Link:\n- If You Wanna Check Out Something Amazing Click On This Link\n- If You Wanna Check Out Something Amazing Click On This Link:\n- If You Wanna Check Out Something Amazing Click On This Link:\n- Trying to put this English World Cup into context / Writing this partly because I can't sleep and partly because I've seen a lot of misunderstanding from fans of other teams regarding this England team and England fans. I'm still a bit drunk so forgive any mistakes and if this is just a self indulge\n- This man is absolutely crazy!\n- If You Wanna Check Out An Amazing Website That I Have Created Click On This Link:\n- I found this funny.\n- don't miss this video watch this funny\n- How I feel today.\n- What a time to be alive!\n- Im getting scared now.\n- Was at work and watching ESPN videos when I came across this one. Figured y'all would get a chuckle out of it as I did.\n- Never thought of it this way\n- Who could’ve guessed this? 😱😱😱\n- Thought you guys would appreciate this (not sure if this has already been posted)\n- OH NO oh no no no no\n- Just leaving it here.\n- cant be the only one who noticed this\n- please click the following website\n- Memes are coming\n- No reason to panic\n- Watch till the end...\n- Can we get a rip in the chat 😂\n- Are You Kidding Me\n- Found this gem today.\n- The flood gates have burst wide open...\n- Kind of called it 😜\n- You need to look at the other side.\n- A picture really does say a thousand words.\n- Keep on Keeping on ! 👍🏿 🌹\n- This girl is so funny\n- Wondering what you guys think of this?\n- What the actual fuck\n- World Cup and Soccer Jokes\n- This just too much\n- Now it makes sense\n- Conquer Your Dream [Portugal WC Promo]\n- NEW VIDEO!! Dad protects his family from dangerous place\n- For fun let’s laugh\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"soccer memes\", \"purpose\": \"share humorous content related to football\", \"emotion_tone\": \"lighthearted, funny\", \"description\": \"Posts containing jokes, memes, or humorous commentary about football\", \"inclusion_cues\": [\"absolutely crazy\", \"unreal\", \"video today\", \"watch funny\", \"english world\", \"seen new\", \"thousand\", \"watch till the end\", \"memes are coming\", \"can we get a rip in the chat\", \"are you kidding me\", \"found this gem\", \"this just too much\", \"conquer your dream\", \"new video\", \"dad protects his family from dangerous place\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "soccer memes",
+      "purpose": "share humorous content related to football",
+      "emotion_tone": "lighthearted, funny",
+      "description": "Posts containing jokes, memes, or humorous commentary about football",
+      "inclusion_cues": [
+       "absolutely crazy",
+       "unreal",
+       "video today",
+       "watch funny",
+       "english world",
+       "seen new",
+       "thousand",
+       "watch till the end",
+       "memes are coming",
+       "can we get a rip in the chat"
+      ],
+      "n_cues_given": 16
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 155,
+   "seed": 3434277045,
+   "seconds": 0.87
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: absolutely crazy, unreal, mighty fallen, place looks, video today, atmosphere today, watch funny, england throw, time feel, thousand, seen new, english world, weren good, sure posted, words just\nPosts (one per line, title first):\n- If You Wanna Check Out Something Epic Click On This Link:\n- If You Wanna Check Out Something Amazing Click On This Link\n- If You Wanna Check Out Something Amazing Click On This Link:\n- If You Wanna Check Out Something Amazing Click On This Link:\n- Trying to put this English World Cup into context / Writing this partly because I can't sleep and partly because I've seen a lot of misunderstanding from fans of other teams regarding this England team and England fans. I'm still a bit drunk so forgive any mistakes and if this is just a self indulge\n- This man is absolutely crazy!\n- If You Wanna Check Out An Amazing Website That I Have Created Click On This Link:\n- I found this funny.\n- don't miss this video watch this funny\n- How I feel today.\n- What a time to be alive!\n- Im getting scared now.\n- Was at work and watching ESPN videos when I came across this one. Figured y'all would get a chuckle out of it as I did.\n- Never thought of it this way\n- Who could’ve guessed this? 😱😱😱\n- Thought you guys would appreciate this (not sure if this has already been posted)\n- OH NO oh no no no no\n- Just leaving it here.\n- cant be the only one who noticed this\n- please click the following website\n- Memes are coming\n- No reason to panic\n- Watch till the end...\n- Can we get a rip in the chat 😂\n- Are You Kidding Me\n- Found this gem today.\n- The flood gates have burst wide open...\n- Kind of called it 😜\n- You need to look at the other side.\n- A picture really does say a thousand words.\n- Keep on Keeping on ! 👍🏿 🌹\n- This girl is so funny\n- Wondering what you guys think of this?\n- What the actual fuck\n- World Cup and Soccer Jokes\n- This just too much\n- Now it makes sense\n- Conquer Your Dream [Portugal WC Promo]\n- NEW VIDEO!! Dad protects his family from dangerous place\n- For fun let’s laugh\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"soccer memes\", \"purpose\": \"share humorous content related to football\", \"emotion_tone\": \"lighthearted, funny\", \"description\": \"Posts about funny soccer moments, memes, and jokes, often with a humorous or sarcastic tone.\", \"inclusion_cues\": [\"absolutely crazy\", \"unreal\", \"video today\", \"atmosphere today\", \"watch funny\", \"english world\", \"seen new\", \"english world\", \"time feel\", \"thousand\", \"watch till the end\", \"rip in the chat\", \"are you kidding me\", \"gem today\", \"flood gates\", \"called it\", \"need to look at the other side\", \"a picture says a thousand words\", \"keep on keeping on\", \"girl is so funny\", \"conquer your dream\", \"new video\", \"dad protects his family\", \"laugh\", \"world cup and soccer jokes\"]}]}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "soccer memes",
+      "purpose": "share humorous content related to football",
+      "emotion_tone": "lighthearted, funny",
+      "description": "Posts about funny soccer moments, memes, and jokes, often with a humorous or sarcastic tone.",
+      "inclusion_cues": [
+       "absolutely crazy",
+       "unreal",
+       "video today",
+       "atmosphere today",
+       "watch funny",
+       "english world",
+       "seen new",
+       "english world",
+       "time feel",
+       "thousand"
+      ],
+      "n_cues_given": 25
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 206,
+   "seed": 2385124378,
+   "seconds": 0.89
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: absolutely crazy, unreal, mighty fallen, place looks, video today, atmosphere today, watch funny, england throw, time feel, thousand, seen new, english world, weren good, sure posted, words just\nPosts (one per line, title first):\n- If You Wanna Check Out Something Epic Click On This Link:\n- If You Wanna Check Out Something Amazing Click On This Link\n- If You Wanna Check Out Something Amazing Click On This Link:\n- If You Wanna Check Out Something Amazing Click On This Link:\n- Trying to put this English World Cup into context / Writing this partly because I can't sleep and partly because I've seen a lot of misunderstanding from fans of other teams regarding this England team and England fans. I'm still a bit drunk so forgive any mistakes and if this is just a self indulge\n- This man is absolutely crazy!\n- If You Wanna Check Out An Amazing Website That I Have Created Click On This Link:\n- I found this funny.\n- don't miss this video watch this funny\n- How I feel today.\n- What a time to be alive!\n- Im getting scared now.\n- Was at work and watching ESPN videos when I came across this one. Figured y'all would get a chuckle out of it as I did.\n- Never thought of it this way\n- Who could’ve guessed this? 😱😱😱\n- Thought you guys would appreciate this (not sure if this has already been posted)\n- OH NO oh no no no no\n- Just leaving it here.\n- cant be the only one who noticed this\n- please click the following website\n- Memes are coming\n- No reason to panic\n- Watch till the end...\n- Can we get a rip in the chat 😂\n- Are You Kidding Me\n- Found this gem today.\n- The flood gates have burst wide open...\n- Kind of called it 😜\n- You need to look at the other side.\n- A picture really does say a thousand words.\n- Keep on Keeping on ! 👍🏿 🌹\n- This girl is so funny\n- Wondering what you guys think of this?\n- What the actual fuck\n- World Cup and Soccer Jokes\n- This just too much\n- Now it makes sense\n- Conquer Your Dream [Portugal WC Promo]\n- NEW VIDEO!! Dad protects his family from dangerous place\n- For fun let’s laugh\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"soccer memes\", \"purpose\": \"share humorous content related to football\", \"emotion_tone\": \"lighthearted, funny\", \"description\": \"Posts containing jokes, memes, or humorous commentary about football\", \"inclusion_cues\": [\"absolutely crazy\", \"unreal\", \"video today\", \"watch funny\", \"english world\", \"seen new\", \"thousand\", \"watch till the end\", \"memes are coming\", \"can we get a rip in the chat\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"soccer memes\", \"purpose\": \"share humorous content related to football\", \"emotion_tone\": \"lighthearted, funny\", \"description\": \"Posts about funny soccer moments, memes, and jokes, often with a humorous or sarcastic tone.\", \"inclusion_cues\": [\"absolutely crazy\", \"unreal\", \"video today\", \"atmosphere today\", \"watch funny\", \"english world\", \"seen new\", \"english world\", \"time feel\", \"thousand\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"soccer memes\", \"purpose\": \"share humorous content related to football\", \"emotion_tone\": \"lighthearted, funny\", \"description\": \"Posts about funny soccer moments, memes, and jokes, often with a humorous or sarcastic tone.\", \"inclusion_cues\": [\"absolutely crazy\", \"unreal\", \"video today\", \"atmosphere today\", \"watch funny\", \"english world\", \"seen new\", \"time feel\", \"thousand\", \"memes are coming\", \"can we get a rip in the chat\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "soccer memes",
+      "purpose": "share humorous content related to football",
+      "emotion_tone": "lighthearted, funny",
+      "description": "Posts about funny soccer moments, memes, and jokes, often with a humorous or sarcastic tone.",
+      "inclusion_cues": [
+       "absolutely crazy",
+       "unreal",
+       "video today",
+       "atmosphere today",
+       "watch funny",
+       "english world",
+       "seen new",
+       "time feel",
+       "thousand",
+       "memes are coming"
+      ],
+      "n_cues_given": 11
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 131,
+   "seed": 2038576173,
+   "seconds": 0.8
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: absolutely crazy, unreal, mighty fallen, place looks, video today, atmosphere today, watch funny, england throw, time feel, thousand, seen new, english world, weren good, sure posted, words just\nPosts (one per line, title first):\n- If You Wanna Check Out Something Epic Click On This Link:\n- If You Wanna Check Out Something Amazing Click On This Link\n- If You Wanna Check Out Something Amazing Click On This Link:\n- If You Wanna Check Out Something Amazing Click On This Link:\n- Trying to put this English World Cup into context / Writing this partly because I can't sleep and partly because I've seen a lot of misunderstanding from fans of other teams regarding this England team and England fans. I'm still a bit drunk so forgive any mistakes and if this is just a self indulge\n- This man is absolutely crazy!\n- If You Wanna Check Out An Amazing Website That I Have Created Click On This Link:\n- I found this funny.\n- don't miss this video watch this funny\n- How I feel today.\n- What a time to be alive!\n- Im getting scared now.\n- Was at work and watching ESPN videos when I came across this one. Figured y'all would get a chuckle out of it as I did.\n- Never thought of it this way\n- Who could’ve guessed this? 😱😱😱\n- Thought you guys would appreciate this (not sure if this has already been posted)\n- OH NO oh no no no no\n- Just leaving it here.\n- cant be the only one who noticed this\n- please click the following website\n- Memes are coming\n- No reason to panic\n- Watch till the end...\n- Can we get a rip in the chat 😂\n- Are You Kidding Me\n- Found this gem today.\n- The flood gates have burst wide open...\n- Kind of called it 😜\n- You need to look at the other side.\n- A picture really does say a thousand words.\n- Keep on Keeping on ! 👍🏿 🌹\n- This girl is so funny\n- Wondering what you guys think of this?\n- What the actual fuck\n- World Cup and Soccer Jokes\n- This just too much\n- Now it makes sense\n- Conquer Your Dream [Portugal WC Promo]\n- NEW VIDEO!! Dad protects his family from dangerous place\n- For fun let’s laugh\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"soccer memes\", \"purpose\": \"share humorous content related to football\", \"emotion_tone\": \"lighthearted, funny\", \"description\": \"Posts about funny soccer moments, memes, and jokes, often with a humorous or sarcastic tone.\", \"inclusion_cues\": [\"absolutely crazy\", \"unreal\", \"video today\", \"atmosphere today\", \"watch funny\", \"english world\", \"seen new\", \"english world\", \"time feel\", \"thousand\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"soccer memes\", \"purpose\": \"share humorous content related to football\", \"emotion_tone\": \"lighthearted, funny\", \"description\": \"Posts about funny soccer moments, memes, and jokes, often with a humorous or sarcastic tone.\", \"inclusion_cues\": [\"absolutely crazy\", \"unreal\", \"video today\", \"atmosphere today\", \"watch funny\", \"english world\", \"seen new\", \"time feel\", \"thousand\", \"memes are coming\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"soccer memes\", \"purpose\": \"share humorous content related to football\", \"emotion_tone\": \"lighthearted, funny\", \"description\": \"Posts about funny soccer moments, memes, and jokes, often with a humorous or sarcastic tone.\", \"inclusion_cues\": [\"absolutely crazy\", \"unreal\", \"video today\", \"atmosphere today\", \"watch funny\", \"english world\", \"seen new\", \"time feel\", \"thousand\", \"memes are coming\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 120,
+   "seed": 3475920199,
+   "seconds": 0.61
+  }
+ ]
+}

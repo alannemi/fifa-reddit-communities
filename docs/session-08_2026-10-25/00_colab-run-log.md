@@ -139,9 +139,43 @@ categories named after one match or one player (*Sevilla vs Barcelona Match Disc
 *MLS Week 15 & Match Previews*). The designed remedy is the co-author's `category_overrides.csv` (merges); whether step 1
 should be asked for fewer, broader categories is a later decision for the author (not taken today).
 
+### 6.2 Colab re-run of step 2 with D6 + N13 (cell 3.1b, 17:22 UTC) — the taxonomy of record for bin 1
+
+Hand-back `bins-1_2026-10-25_1722.zip`, committed as `results/analysis/bin-1/` (the pre-D6 files of the first run remain in
+git at `844399e4`). A100, prompt v1.3, shortlist 10 of 35, mpnet for the shortlist: **2.6 min**, 133 prompts, 0 truncated,
+4 salvaged, **26 answers cleaned by N13** (extras dropped without a repair turn).
+
+| | First run (v1.2) | Local D6 (Mac) | **Colab D6 + N13** |
+|---|---|---|---|
+| Topics assigned by the agents / repaired | 64 / 1 | 65 / 0 | **65 / 0** |
+| Assignment debates identical in round 1 | 57 | 64 | 62 (3 agreed in round 2) |
+| Defined categories left empty | 8 | 1 | **1** (`cat_35`, the duplicate vuvuzela category) |
+| Final categories (single-topic) | 27 (17) | 34 (18) | **34 (17)**; largest 5 topics |
+| Rank distribution | — | 1: 44 … 8: 1 | **1: 47 · 2: 10 · 3: 2 · 4: 3 · 5: 1 · 6: 1 · 7: 1** |
+| Flagged `assignment_needs_review` | 0 | 9 | **6** (topics 0, 43, 45, 56, 57, 64) |
+| Same category as the local D6 run | — | — | 60 of 65 |
+
+The five differences from the local run are the N13 effect and all read as improvements: 18 → `cat_19` *Anthems & Chants*
+(right), 26 → `cat_25` (the two vuvuzela topics now share one category), 47 and 52 → `cat_1`, 40 *Jabulani* → `cat_18`
+*Advertising & Branding* (adidas; debatable). For the co-author review: topic 1 *Transfer Window Rumors* → `cat_10`
+*Manchester City & Financial Issues* (rank 2, not flagged; `cat_2` *Transfer Rumors* was the first candidate), topic 46 *EPL
+Team Support* → `cat_22` *UEFA Champions League Live* (rank 1, not flagged), and among the flagged six, topic 0 → `cat_21`
+and topic 64 → `cat_26` look wrong, 43, 45, 56, 57 defensible. `n_with_category` in the partial collect: 6,395 posts (all
+65 topics carry a category; the rest of bin 1 are the 3,414 raw outliers).
+
+**Verdict for the full run.** The pipeline has run end to end on bin 1 and every gate that can be read before the review is
+passed; the assignment step is now sound enough to run on the other bins, with the review flag doing its job. Open before
+bins 2–9, in the runbook's order: the review of bin 1 (§7), the large-bin gate, `T`. One granularity question is for the
+author: step 1 defines many fine categories (35 for 65 topics, half of them single-topic). The brief's rule ("no minimum or
+maximum number of categories") is kept as designed; the merges are the co-authors' category review, as in the template
+paper's manual merge. Asking step 1 for broader categories would be a prompt change (v1.4) — not taken.
+
 ## 7. Next steps
 
-1. Colab: pull, run cell 3.1b (step 2 alone, minutes), then the hand-back cell; commit `results/analysis/bin-1/`.
-2. Read the new `topic_categories.csv` against §4 above; the co-author review starts with the flagged topics.
-3. Then the runbook from §4 on: review of bin 1 (topic merges — the two vuvuzela topics, the two Mourinho topics, the two
-   MLS topics, the three live-stream spam topics), the large-bin gate (cell 3.3), `T`, bins 2–9, sentiment, S6.
+1. ~~Colab cell 3.1b and the hand-back~~ — done 17:22 UTC (§6.2).
+2. Review of bin 1 by the co-authors (runbook §4 and §6): `topic_overrides.csv` (merges: 26 + 37 vuvuzela, 42 + 57 Mourinho,
+   24 + 35 MLS, 11 + 22 + 53 live-stream spam; renames of 0 and 3) → `--stage taxonomy --bin 1 --force` → `category_overrides.csv`
+   (the streaming, MLS and match-thread categories; player-named singletons) and `topic_category_overrides.csv` (start with the
+   six flagged topics, then 1 and 46) → `collect`. The outlier calibration samples of bin 1 (`belongs`) in the same session.
+3. Large-bin gate on bin 4 (cell 3.3), `T` from the samples of bins 1 and 4 (cell 3.4), bins 2–9 (cell 3.5 with its two review
+   pauses), sentiment + the 300-post hand-coded sample, collect, hand-back of all bins, S6 locally, codebook v3.0 final.

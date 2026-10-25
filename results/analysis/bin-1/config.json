@@ -1230,7 +1230,7 @@
    "user_repair": "Your previous answer could not be used: {error}\nReturn the corrected answer with the same schema. JSON only; no prose or markdown."
   }
  },
- "updated": "2026-10-25T16:10:14",
+ "updated": "2026-10-25T17:22:21",
  "taxonomy": {
   "llm_model": "Qwen/Qwen3-1.7B",
   "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
@@ -1238,19 +1238,12 @@
   "dtype": "bfloat16",
   "decoding": "greedy",
   "batch_size": 16,
-  "prompt_version": "1.2",
+  "prompt_version": "1.3",
   "protocol": "two_step",
   "assign_batch": 1,
   "n_categories_defined": 35,
-  "n_categories": 27,
+  "n_categories": 34,
   "categories_dropped_empty": [
-   "cat_20",
-   "cat_21",
-   "cat_23",
-   "cat_26",
-   "cat_28",
-   "cat_29",
-   "cat_31",
    "cat_35"
   ],
   "definitions_cleanup": {
@@ -1279,31 +1272,48 @@
   "agreement_mode": "accepted_by_A",
   "round_iterations": 2,
   "needs_review": false,
-  "n_repaired": 1,
+  "n_repaired": 0,
   "n_unplaced": 0,
   "n_items": 65,
   "assignment_agreement_modes": {
-   "identical": 57,
-   "accepted_by_A": 8
+   "identical": 62,
+   "accepted_by_A": 3
   },
-  "n_items_contested": 8,
+  "n_items_contested": 3,
   "n_answers_salvaged": 4,
+  "n_answers_cleaned": 26,
+  "shortlist": {
+   "k": 10,
+   "review_rank": 3,
+   "text_embeddings": true,
+   "rank_distribution": {
+    "1": 47,
+    "2": 10,
+    "3": 2,
+    "4": 3,
+    "5": 1,
+    "6": 1,
+    "7": 1
+   },
+   "n_flagged_by_rank": 6
+  },
+  "text_embedding_model": "sentence-transformers/all-mpnet-base-v2",
   "token_budgets": {
    "define": 4000,
    "assign": 800,
    "partition": 8000
   },
   "llm_stats": {
-   "calls": 17,
-   "prompts": 148,
-   "seconds": 793.0240697860718,
-   "tokens_out": 23106,
-   "truncated": 3
+   "calls": 11,
+   "prompts": 133,
+   "seconds": 118.06403708457947,
+   "tokens_out": 10977,
+   "truncated": 0
   },
-  "elapsed_min": 13.4,
-  "run_at": "2026-10-25T16:10:14",
+  "elapsed_min": 2.6,
+  "run_at": "2026-10-25T17:22:20",
   "prompts": {
-   "prompt_version": "1.2",
+   "prompt_version": "1.3",
    "agents": [
     "Analyst A",
     "Analyst B"
@@ -1315,7 +1325,9 @@
    "system_define": "You are {agent_name}, a discourse analyst studying posts from the football community r/soccer.\n{lens}\nBuild a discourse taxonomy from the items: define its categories. Use the keywords and the labelled sample of each item.\nReturn JSON only; no prose or markdown.",
    "user_define": "Items: the {n_topics} topics found in r/soccer posts between {start} and {end}, one per line:\ntopic_id | name | emotion_tone | keywords | description\n{topic_lines}\nOutput schema:\n{{\"decision\": \"revise\",\n \"categories\": [\n  {{\"id\": \"cat_1\", \"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}}\n ]}}\nRules: keep category names short and non-overlapping; capture both communicative purpose and emotional tone.\nThere is no minimum or maximum number of categories: define a category for a group of topics only if they are\nsufficiently similar; the categories together must cover all topics above. Do not list topic ids; the topics are\nassigned to the categories in a second step.",
    "system_assign": "You are {agent_name}, a discourse analyst studying posts from the football community r/soccer.\n{lens}\nAssign each topic to exactly one category of the agreed discourse taxonomy. Use the keywords and the labelled sample\nof each item. Return JSON only; no prose or markdown.",
-   "user_assign": "Categories (the agreed taxonomy of r/soccer posts between {start} and {end}), one per line:\ncategory_id | name | emotion_tone | inclusion_cues | description\n{category_lines}\nTopics to assign ({n_batch} of the bin's {n_topics} topics), one per line:\ntopic_id | name | emotion_tone | keywords | description\n{topic_lines}\nOutput schema:\n{{\"decision\": \"revise\",\n \"assignments\": [\n  {{\"topic_id\": <topic_id>, \"category_id\": \"<category_id>\"}}\n ]}}\nRules: list every topic_id above exactly once, each with the single best-fitting category_id; use only the category\nids listed; if no category fits well, choose the closest one.",
+   "user_assign": "{intro}category_id | name | emotion_tone | inclusion_cues | description\n{category_lines}\nTopics to assign ({n_batch} of the bin's {n_topics} topics), one per line:\ntopic_id | name | emotion_tone | keywords | description\n{topic_lines}\nOutput schema:\n{{\"decision\": \"revise\",\n \"assignments\": [\n  {{\"topic_id\": <topic_id>, \"category_id\": \"<category_id>\", \"category_name\": \"<name>\"}}\n ]}}\nRules: list every topic_id above exactly once with the single best-fitting category; copy that category's category_id and\nname exactly as listed, from the same line; use only the categories listed; if none fits well, choose the closest one.",
+   "user_assign_intro_shortlist": "Candidate categories for the topic(s) below: the {n_candidates} of the {n_categories} categories of the agreed taxonomy of\nr/soccer posts between {start} and {end} that are most similar to them, most similar first, one per line:\n",
+   "user_assign_intro_all": "Categories (the agreed taxonomy of r/soccer posts between {start} and {end}), one per line:\n",
    "system_taxonomy_v1_1": "You are {agent_name}, a discourse analyst studying posts from the football community r/soccer.\n{lens}\nBuild a discourse taxonomy from the items. Use the keywords and the labelled sample of each item.\nReturn JSON only; no prose or markdown.",
    "user_taxonomy_v1_1": "Items: the {n_topics} topics found in r/soccer posts between {start} and {end}, one per line:\ntopic_id | name | emotion_tone | keywords | description\n{topic_lines}\nOutput schema:\n{{\"decision\": \"revise\",\n \"categories\": [\n  {{\"id\": \"cat_1\", \"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\",\n   \"inclusion_cues\": [\"...\"], \"topics\": [topic_id, ...]}}\n ]}}\nRules: keep category names short and non-overlapping; capture both communicative purpose and emotional tone.\nThere is no minimum or maximum number of categories: group topics into one category only if they are sufficiently\nsimilar; every topic_id must appear in exactly one category.",
    "user_revision": "Your previous answer:\n{mine}\nYour peer's latest answer:\n{peer}\nIf the peer's answer is at least as good as yours, return {{\"decision\": \"accept\"}} and nothing else.\nOtherwise return {{\"decision\": \"revise\", \"{answer_key}\": [...]}} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",

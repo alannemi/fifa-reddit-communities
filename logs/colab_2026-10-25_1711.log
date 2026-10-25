@@ -1,0 +1,218 @@
+=== Colab session log /content/drive/MyDrive/fifa-communities/logs/colab_2026-10-25_1711.log (UTC 2026-10-25 17:11) ===
+Drive mounted; yearly files: 17 | folders under fifa-communities: ['analysis', 'comparisons', 'embeddings', 'handback', 'hf-cache', 'logs', 'results', 'yearly datasets']
+repository at commit e57662e4b1062ef257a14162e7c55c6c86db0485
+yearly files on the local disk: 17 | total GB: 1.93
+effective paths of the program: {
+ "PIPELINE_ROOT": "/content/drive/MyDrive/fifa-communities",
+ "YEARLY_DIR": "/content/data/yearly datasets",
+ "ANALYSIS_DATA_DIR": "/content/drive/MyDrive/fifa-communities/analysis",
+ "ANALYSIS_DIR": "/content/drive/MyDrive/fifa-communities/results",
+ "EMBED_CACHE_DIR": "/content/drive/MyDrive/fifa-communities/embeddings",
+ "LLM_CACHE_DIR": "/content/hf-cache"
+}
+pip install (--no-deps) exit 0 
+pip check: ipython 7.34.0 requires jedi, which is not installed.
+pip check (pipeline stack): OK — other complaints above concern the Colab image only
+GPU: NVIDIA A100-SXM4-80GB | torch 2.11.0+cu130 | CUDA 13.0 | cuml 26.06.00 | python 3.13.16
+versions: bertopic 0.17.4 | umap-learn 0.5.12 | hdbscan 0.8.44 | pynndescent 0.6.0 | sentence-transformers 6.1.0 | transformers 5.20.2 | torch 2.11.0+cu130 | numpy 2.1.3 | scikit-learn 1.6.1 | pandas 2.2.3 | vaderSentiment 3.3.2
+cuml.accel enabled in this kernel: False (the topics stage runs in a child process under `python -m cuml.accel`)
+name, memory.total [MiB], memory.used [MiB]
+NVIDIA A100-SXM4-80GB, 81920 MiB, 6 MiB
+>>> /usr/bin/python3 -u code/tests/test_pipeline_units.py
+[PASS] test_paths_and_tones
+[PASS] test_bin_boundaries
+guard: topic count 10 outside (50, 100) after 1 trial(s); keeping min_cluster_size=25 (flagged)
+[PASS] test_guard
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1792948751.203484   68792 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1792948753.626477   68792 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+[PASS] test_frozen_components_in_bertopic
+[PASS] test_json_and_validation
+[PASS] test_identity_and_partition
+[PASS] test_repair_partition
+[PASS] test_overrides
+[PASS] test_debate_modes
+[PASS] test_labelling_resume_and_outputs
+[PASS] test_taxonomy_small_and_repair
+[PASS] test_taxonomy_chunking
+bin 1: topic_category_overrides names topic 7, which has no category row
+bin 1: topic_category_overrides for topic 1 ignored — the topic was merged into 0
+S5 check failed: bin 1: category ids not in categories.csv
+[PASS] test_collect_partial
+[PASS] test_sentiment_labels
+[PASS] test_salvage_json
+taxonomy bin 1: no agreed category definitions — all 4 topics unplaced
+[PASS] test_taxonomy_empty_is_not_fatal
+[PASS] test_two_step_validators
+[PASS] test_salvage_assignments_and_truncated_definitions
+[PASS] test_taxonomy_two_step
+[PASS] test_taxonomy_shortlist
+[PASS] test_taxonomy_two_step_cap
+
+21/21 checks passed
+<<< exit 0 after 0.5 min
+>>> /usr/bin/python3 -u code/05-analysis-pipeline.py --stage taxonomy --bin 1 --force --keep-definitions
+2026-10-25 17:19:42,904 | INFO | === stage taxonomy, bin 1 === args: {'stage': 'taxonomy', 'bin': 1, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': True, 'keep_definitions': True, 'taxonomy_protocol': None, 'assign_batch': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 17:19:43,296 | INFO | taxonomy: --force with --keep-definitions keeps the step-1 checkpoint taxonomy_definitions.json; only the assignments re-run (D6)
+2026-10-25 17:19:50,141 | INFO | HTTP Request: GET https://huggingface.co/api/agent-harnesses "HTTP/1.1 200 OK"
+2026-10-25 17:19:50,242 | INFO | HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-1.7B/resolve/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 17:19:50,251 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-1.7B/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/config.json?%2FQwen%2FQwen3-1.7B%2Fresolve%2F70d244cc86ccca08cf5af4e1e306ecf908b1ad5e%2Fconfig.json=&etag=%22044a86ecf7cb32238f3fae4184e55d354787edec%22 "HTTP/1.1 200 OK"
+2026-10-25 17:19:50,262 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-1.7B/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/config.json?%2FQwen%2FQwen3-1.7B%2Fresolve%2F70d244cc86ccca08cf5af4e1e306ecf908b1ad5e%2Fconfig.json=&etag=%22044a86ecf7cb32238f3fae4184e55d354787edec%22 "HTTP/1.1 200 OK"
+2026-10-25 17:19:50,375 | INFO | HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-1.7B/resolve/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-25 17:19:50,375 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-25 17:19:50,383 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-1.7B/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/tokenizer_config.json?%2FQwen%2FQwen3-1.7B%2Fresolve%2F70d244cc86ccca08cf5af4e1e306ecf908b1ad5e%2Ftokenizer_config.json=&etag=%22417d038a63fa3de29cfde265caedae14d1a58d92%22 "HTTP/1.1 200 OK"
+2026-10-25 17:19:50,394 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-1.7B/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/tokenizer_config.json?%2FQwen%2FQwen3-1.7B%2Fresolve%2F70d244cc86ccca08cf5af4e1e306ecf908b1ad5e%2Ftokenizer_config.json=&etag=%22417d038a63fa3de29cfde265caedae14d1a58d92%22 "HTTP/1.1 200 OK"
+2026-10-25 17:19:50,499 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-25 17:19:50,605 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-25 17:19:50,705 | INFO | HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-1.7B/resolve/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/vocab.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 17:19:50,715 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-1.7B/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/vocab.json?%2FQwen%2FQwen3-1.7B%2Fresolve%2F70d244cc86ccca08cf5af4e1e306ecf908b1ad5e%2Fvocab.json=&etag=%224783fe10ac3adce15ac8f358ef5462739852c569%22 "HTTP/1.1 200 OK"
+2026-10-25 17:19:50,726 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-1.7B/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/vocab.json?%2FQwen%2FQwen3-1.7B%2Fresolve%2F70d244cc86ccca08cf5af4e1e306ecf908b1ad5e%2Fvocab.json=&etag=%224783fe10ac3adce15ac8f358ef5462739852c569%22 "HTTP/1.1 200 OK"
+2026-10-25 17:19:50,858 | INFO | HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-1.7B/resolve/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/merges.txt "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 17:19:50,868 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-1.7B/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/merges.txt?%2FQwen%2FQwen3-1.7B%2Fresolve%2F70d244cc86ccca08cf5af4e1e306ecf908b1ad5e%2Fmerges.txt=&etag=%2231349551d90c7606f325fe0f11bbb8bd5fa0d7c7%22 "HTTP/1.1 200 OK"
+2026-10-25 17:19:50,878 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-1.7B/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/merges.txt?%2FQwen%2FQwen3-1.7B%2Fresolve%2F70d244cc86ccca08cf5af4e1e306ecf908b1ad5e%2Fmerges.txt=&etag=%2231349551d90c7606f325fe0f11bbb8bd5fa0d7c7%22 "HTTP/1.1 200 OK"
+2026-10-25 17:19:50,992 | INFO | HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-1.7B/resolve/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/tokenizer.json "HTTP/1.1 302 Found"
+2026-10-25 17:19:51,147 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/xet-read-token/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e "HTTP/1.1 200 OK"
+2026-10-25 17:19:52,042 | INFO | HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-1.7B/resolve/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/added_tokens.json "HTTP/1.1 404 Not Found"
+2026-10-25 17:19:52,146 | INFO | HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-1.7B/resolve/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/special_tokens_map.json "HTTP/1.1 404 Not Found"
+2026-10-25 17:19:52,249 | INFO | HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-1.7B/resolve/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-10-25 17:19:52,798 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B "HTTP/1.1 200 OK"
+2026-10-25 17:19:52,922 | INFO | HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-1.7B/resolve/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-10-25 17:19:53,618 | INFO | HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-1.7B/resolve/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-10-25 17:19:53,723 | INFO | HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-1.7B/resolve/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/model.safetensors "HTTP/1.1 404 Not Found"
+2026-10-25 17:19:53,828 | INFO | HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-1.7B/resolve/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/model.safetensors.index.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 17:19:53,839 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-1.7B/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/model.safetensors.index.json?%2FQwen%2FQwen3-1.7B%2Fresolve%2F70d244cc86ccca08cf5af4e1e306ecf908b1ad5e%2Fmodel.safetensors.index.json=&etag=%22986d7db875b47d21f68530f6baac038f1b297b39%22 "HTTP/1.1 200 OK"
+2026-10-25 17:19:53,851 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-1.7B/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/model.safetensors.index.json?%2FQwen%2FQwen3-1.7B%2Fresolve%2F70d244cc86ccca08cf5af4e1e306ecf908b1ad5e%2Fmodel.safetensors.index.json=&etag=%22986d7db875b47d21f68530f6baac038f1b297b39%22 "HTTP/1.1 200 OK"
+2026-10-25 17:19:53,959 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-25 17:20:08,226 | INFO | HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-1.7B/resolve/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 17:20:08,237 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-1.7B/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/generation_config.json?%2FQwen%2FQwen3-1.7B%2Fresolve%2F70d244cc86ccca08cf5af4e1e306ecf908b1ad5e%2Fgeneration_config.json=&etag=%2220a8a9156fc8c3f25295ca067f61fdf120d517c5%22 "HTTP/1.1 200 OK"
+2026-10-25 17:20:08,248 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/Qwen/Qwen3-1.7B/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/generation_config.json?%2FQwen%2FQwen3-1.7B%2Fresolve%2F70d244cc86ccca08cf5af4e1e306ecf908b1ad5e%2Fgeneration_config.json=&etag=%2220a8a9156fc8c3f25295ca067f61fdf120d517c5%22 "HTTP/1.1 200 OK"
+2026-10-25 17:20:09,504 | INFO | LLM loaded: Qwen/Qwen3-1.7B (revision 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e) on cuda, bfloat16, batch 16, greedy decoding
+2026-10-25 17:20:09,999 | INFO | TensorFlow version 2.21.0 available.
+2026-10-25 17:20:10,000 | INFO | JAX version 0.11.1 available.
+2026-10-25 17:20:11,516 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 17:20:11,526 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/modules.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22 "HTTP/1.1 200 OK"
+2026-10-25 17:20:11,539 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/modules.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22 "HTTP/1.1 200 OK"
+2026-10-25 17:20:11,640 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 17:20:11,653 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/config_sentence_transformers.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22fd1b291129c607e5d49799f87cb219b27f98acdf%22 "HTTP/1.1 200 OK"
+2026-10-25 17:20:11,664 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/config_sentence_transformers.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22fd1b291129c607e5d49799f87cb219b27f98acdf%22 "HTTP/1.1 200 OK"
+2026-10-25 17:20:11,665 | INFO | Loading SentenceTransformer model from sentence-transformers/all-mpnet-base-v2.
+2026-10-25 17:20:11,765 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 17:20:11,776 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/config_sentence_transformers.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22fd1b291129c607e5d49799f87cb219b27f98acdf%22 "HTTP/1.1 200 OK"
+2026-10-25 17:20:11,881 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 17:20:11,890 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/README.md?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2FREADME.md=&etag=%221452a960a1189347d079efa950d3c87d5706c0d6%22 "HTTP/1.1 200 OK"
+2026-10-25 17:20:11,901 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/README.md?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2FREADME.md=&etag=%221452a960a1189347d079efa950d3c87d5706c0d6%22 "HTTP/1.1 200 OK"
+2026-10-25 17:20:12,009 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 17:20:12,019 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/modules.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22 "HTTP/1.1 200 OK"
+2026-10-25 17:20:12,124 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 17:20:12,133 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/sentence_bert_config.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fsentence_bert_config.json=&etag=%224eb670bb4e7f34e9031acec2b86d39e5c921198e%22 "HTTP/1.1 200 OK"
+2026-10-25 17:20:12,145 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/sentence_bert_config.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fsentence_bert_config.json=&etag=%224eb670bb4e7f34e9031acec2b86d39e5c921198e%22 "HTTP/1.1 200 OK"
+2026-10-25 17:20:12,248 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-10-25 17:20:12,352 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2 "HTTP/1.1 200 OK"
+2026-10-25 17:20:12,454 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/e8c3b32edf5434bc2275fc9bab85f82640a19130/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 17:20:12,463 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/config.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fe8c3b32edf5434bc2275fc9bab85f82640a19130%2Fconfig.json=&etag=%22b9fd4298819da011007a6a4ceb728c860914fc88%22 "HTTP/1.1 200 OK"
+2026-10-25 17:20:12,475 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/config.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fe8c3b32edf5434bc2275fc9bab85f82640a19130%2Fconfig.json=&etag=%22b9fd4298819da011007a6a4ceb728c860914fc88%22 "HTTP/1.1 200 OK"
+2026-10-25 17:20:12,585 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2 "HTTP/1.1 200 OK"
+2026-10-25 17:20:12,691 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/e8c3b32edf5434bc2275fc9bab85f82640a19130/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-10-25 17:20:12,813 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/e8c3b32edf5434bc2275fc9bab85f82640a19130/model.safetensors "HTTP/1.1 302 Found"
+2026-10-25 17:20:12,913 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2/xet-read-token/e8c3b32edf5434bc2275fc9bab85f82640a19130 "HTTP/1.1 200 OK"
+2026-10-25 17:20:15,777 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2 "HTTP/1.1 200 OK"
+2026-10-25 17:20:15,878 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/e8c3b32edf5434bc2275fc9bab85f82640a19130/processor_config.json "HTTP/1.1 404 Not Found"
+2026-10-25 17:20:15,980 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/e8c3b32edf5434bc2275fc9bab85f82640a19130/preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-10-25 17:20:16,081 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/e8c3b32edf5434bc2275fc9bab85f82640a19130/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+2026-10-25 17:20:16,184 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/e8c3b32edf5434bc2275fc9bab85f82640a19130/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 17:20:16,195 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/tokenizer_config.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fe8c3b32edf5434bc2275fc9bab85f82640a19130%2Ftokenizer_config.json=&etag=%2220ae1276042f43d1c80f4f7b7f084a8704592c1d%22 "HTTP/1.1 200 OK"
+2026-10-25 17:20:16,204 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/tokenizer_config.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fe8c3b32edf5434bc2275fc9bab85f82640a19130%2Ftokenizer_config.json=&etag=%2220ae1276042f43d1c80f4f7b7f084a8704592c1d%22 "HTTP/1.1 200 OK"
+2026-10-25 17:20:16,316 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-25 17:20:16,421 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-25 17:20:16,522 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/e8c3b32edf5434bc2275fc9bab85f82640a19130/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 17:20:16,533 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/vocab.txt?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fe8c3b32edf5434bc2275fc9bab85f82640a19130%2Fvocab.txt=&etag=%221c51ab79a2298a340952d3e6012042a9c84bbe4d%22 "HTTP/1.1 200 OK"
+2026-10-25 17:20:16,576 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/vocab.txt?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fe8c3b32edf5434bc2275fc9bab85f82640a19130%2Fvocab.txt=&etag=%221c51ab79a2298a340952d3e6012042a9c84bbe4d%22 "HTTP/1.1 200 OK"
+2026-10-25 17:20:16,684 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/e8c3b32edf5434bc2275fc9bab85f82640a19130/tokenizer.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 17:20:16,694 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/tokenizer.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fe8c3b32edf5434bc2275fc9bab85f82640a19130%2Ftokenizer.json=&etag=%227c8e194053bc80e27e19bb2125469e4f289ab2b3%22 "HTTP/1.1 200 OK"
+2026-10-25 17:20:16,705 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/tokenizer.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fe8c3b32edf5434bc2275fc9bab85f82640a19130%2Ftokenizer.json=&etag=%227c8e194053bc80e27e19bb2125469e4f289ab2b3%22 "HTTP/1.1 200 OK"
+2026-10-25 17:20:16,812 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/e8c3b32edf5434bc2275fc9bab85f82640a19130/added_tokens.json "HTTP/1.1 404 Not Found"
+2026-10-25 17:20:16,913 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/e8c3b32edf5434bc2275fc9bab85f82640a19130/special_tokens_map.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 17:20:16,924 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/special_tokens_map.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fe8c3b32edf5434bc2275fc9bab85f82640a19130%2Fspecial_tokens_map.json=&etag=%22378d4fa393d5eaccf69c437a20f1cda6ac65c14d%22 "HTTP/1.1 200 OK"
+2026-10-25 17:20:16,934 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/special_tokens_map.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fe8c3b32edf5434bc2275fc9bab85f82640a19130%2Fspecial_tokens_map.json=&etag=%22378d4fa393d5eaccf69c437a20f1cda6ac65c14d%22 "HTTP/1.1 200 OK"
+2026-10-25 17:20:17,038 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/e8c3b32edf5434bc2275fc9bab85f82640a19130/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-10-25 17:20:17,174 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-25 17:20:17,186 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/1_Pooling%2Fconfig.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2F1_Pooling%2Fconfig.json=&etag=%224e09f293dfe90bba49f87cfe7996271f07be2666%22 "HTTP/1.1 200 OK"
+2026-10-25 17:20:17,197 | INFO | HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/1_Pooling%2Fconfig.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2F1_Pooling%2Fconfig.json=&etag=%224e09f293dfe90bba49f87cfe7996271f07be2666%22 "HTTP/1.1 200 OK"
+2026-10-25 17:20:17,313 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/2_Normalize/config.json "HTTP/1.1 404 Not Found"
+2026-10-25 17:20:17,419 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2 "HTTP/1.1 200 OK"
+2026-10-25 17:20:18,877 | INFO | taxonomy bin 1 (two-step): 65 topics (0 merged away by overrides), 1 topic(s) per assignment item
+2026-10-25 17:20:19,216 | INFO | taxonomy bin 1: step 1 resumed from taxonomy_definitions.json (35 categories)
+2026-10-25 17:20:19,994 | INFO | taxonomy bin 1: step 2 — 65 item(s), shortlist of 10 of 35 categories per topic (D6)
+2026-10-25 17:20:36,085 | INFO | LLM: 16 prompt(s) in 16.0s (1.0 s/prompt; cap 800 tokens)
+2026-10-25 17:20:51,739 | INFO | LLM: 16 prompt(s) in 15.6s (1.0 s/prompt; cap 800 tokens)
+2026-10-25 17:21:04,070 | INFO | LLM: 16 prompt(s) in 12.3s (0.8 s/prompt; cap 800 tokens)
+2026-10-25 17:21:16,946 | INFO | LLM: 16 prompt(s) in 12.8s (0.8 s/prompt; cap 800 tokens)
+2026-10-25 17:21:30,048 | INFO | LLM: 1 prompt(s) in 13.1s (13.1 s/prompt; cap 800 tokens)
+2026-10-25 17:21:45,213 | INFO | LLM: 16 prompt(s) in 15.1s (0.9 s/prompt; cap 800 tokens)
+2026-10-25 17:22:00,100 | INFO | LLM: 16 prompt(s) in 14.8s (0.9 s/prompt; cap 800 tokens)
+2026-10-25 17:22:12,705 | INFO | LLM: 16 prompt(s) in 12.6s (0.8 s/prompt; cap 800 tokens)
+2026-10-25 17:22:15,283 | INFO | LLM: 16 prompt(s) in 2.5s (0.2 s/prompt; cap 800 tokens)
+2026-10-25 17:22:17,083 | INFO | LLM: 1 prompt(s) in 1.8s (1.8 s/prompt; cap 800 tokens)
+2026-10-25 17:22:17,085 | INFO | assign: round 1 done — 62/65 items resolved
+2026-10-25 17:22:18,519 | INFO | LLM: 3 prompt(s) in 1.4s (0.5 s/prompt; cap 800 tokens)
+2026-10-25 17:22:18,519 | INFO | assign: round 2 done — 65/65 items resolved
+2026-10-25 17:22:18,521 | INFO | taxonomy bin 1: step 2 done — 65/65 topics assigned by the agents over 65 item(s) (modes {'identical': 62, 'accepted_by_A': 3}), 0 placed by repair
+2026-10-25 17:22:20,702 | INFO | taxonomy bin 1: 34 categories [accepted_by_A, 2 round(s)], 0 topics repaired, 0 unplaced, 4 answer(s) salvaged -> /content/drive/MyDrive/fifa-communities/results/bin-1/categories.csv
+2026-10-25 17:22:24,685 | INFO | report written: /content/drive/MyDrive/fifa-communities/results/bin-1/report.html
+<<< exit 0 after 2.7 min
+taxonomy bin 1: protocol two_step | definitions debate: accepted_by_A, 2 round(s), needs_review False
+  categories defined 35 -> final 34 | dropped (no topic assigned): ['cat_35'] | cleanup: {'merged_same_name': {'cat_23': 'cat_21', 'cat_32': 'cat_21'}, 'renumbered': {'cat_24': 'cat_23', 'cat_25': 'cat_24', 'cat_26': 'cat_25', 'cat_27': 'cat_26', 'cat_28': 'cat_27', 'cat_29': 'cat_28', 'cat_30': 'cat_29', 'cat_31': 'cat_30', 'cat_33': 'cat_31', 'cat_34': 'cat_32', 'cat_35': 'cat_33', 'cat_36': 'cat_34', 'cat_37': 'cat_35'}, 'filled_from_duplicate': [], 'still_empty': []}
+  assignment items 65 | modes {'identical': 62, 'accepted_by_A': 3} | items contested 3
+  topics assigned by the agents 65, placed by the repair 0, unplaced 0 | answers salvaged 4
+category_id                                         name tone_category  n_topics  n_posts   share
+      cat_1             World Cup Predictions & Analysis       excited         5      222 0.03471
+      cat_2            Transfer Rumors & Player Signings  enthusiastic         2       87 0.01360
+      cat_3                     Refereeing & Rule Issues      critical         1      381 0.05958
+      cat_4        Arsenal & Liverpool Match Discussions  enthusiastic         2      300 0.04691
+      cat_5             Iconic Goals & Memorable Moments         other         1      257 0.04019
+      cat_6         Football Legacy & Historical Context         other         1      184 0.02877
+      cat_7                    Streaming & Access Issues    frustrated         1      168 0.02627
+      cat_8                     Injury & Health Concerns         other         1      165 0.02580
+      cat_9           World Cup Humor & Cultural Content         other         2      192 0.03002
+     cat_10           Manchester City & Financial Issues      critical         4      686 0.10727
+     cat_11                Jersey & Clothing Discussions       curious         1      129 0.02017
+     cat_12           Live Football Coverage & Streaming  enthusiastic         3      215 0.03362
+     cat_13                American Soccer & Fan Culture  enthusiastic         1      121 0.01892
+     cat_14                     Fantasy Football Leagues  enthusiastic         1      118 0.01845
+     cat_15              US vs England Match Discussions    frustrated         2      153 0.02392
+     cat_16                  South Africa World Cup 2010       excited         3      156 0.02439
+     cat_17              Squad Analysis & Team Formation         other         1       99 0.01548
+     cat_18             World Cup Advertising & Branding  enthusiastic         2      150 0.02346
+     cat_19                   World Cup Anthems & Chants  enthusiastic         1       92 0.01439
+     cat_20           Managerial Changes & Controversies         other         4      196 0.03065
+     cat_21   World Cup Highlights & Player Performances       excited         3      996 0.15575
+     cat_22                   UEFA Champions League Live       excited         3      160 0.02502
+     cat_23                 MLS Support & Fan Engagement      positive         2      123 0.01923
+     cat_24            Goal Celebrations & Fan Reactions  enthusiastic         1       71 0.01110
+     cat_25                  Vuvuzela Noise & Its Impact    frustrated         2      129 0.02017
+     cat_26    French Football Crisis & Team Performance      critical         3      124 0.01939
+     cat_27 Paul the Octopus Predictions & Controversies         angry         1       69 0.01079
+     cat_28           Coaching & Development in Football    supportive         1       68 0.01063
+     cat_29        Sevilla vs Barcelona Match Discussion       excited         4      205 0.03206
+     cat_30              Landon Donovan & Football Stars      positive         2      143 0.02236
+     cat_31       Capello England & Managerial Decisions         other         1       61 0.00954
+     cat_32      North Korea Football & Cultural Aspects      critical         1       59 0.00923
+     cat_33                 MLS Week 15 & Match Previews       excited         1       58 0.00907
+     cat_34        World Cup Commentators & Their Impact      critical         1       58 0.00907
+shortlist: {'k': 10, 'review_rank': 3, 'text_embeddings': True, 'rank_distribution': {'1': 47, '2': 10, '3': 2, '4': 3, '5': 1, '6': 1, '7': 1}, 'n_flagged_by_rank': 6}
+6 topic(s) flagged for the co-author review (rank worse than 3, or contested and not agreed):
+ topic_id category_id assignment_agreement_mode  assignment_similarity_rank
+        0      cat_21                 identical                           5
+       43      cat_10                 identical                           4
+       45      cat_29                 identical                           4
+       56      cat_16                 identical                           6
+       57      cat_20                 identical                           4
+       64      cat_26             accepted_by_A                           7
+report: /content/drive/MyDrive/fifa-communities/results/bin-1/report.html
+>>> /usr/bin/python3 -u code/05-analysis-pipeline.py --stage collect --allow-partial
+2026-10-25 17:22:27,166 | INFO | === stage collect === args: {'stage': 'collect', 'bin': None, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': True, 'force': False, 'keep_definitions': False, 'taxonomy_protocol': None, 'assign_batch': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-25 17:22:45,091 | INFO | S5: post_variables.csv 1302021 rows; bins complete [1]; sentiment 13638; complete=False
+<<< exit 0 after 0.3 min
+=== STOP POINT of the test batch (after the D6 re-run): run the hand-back cell in section 5 ===

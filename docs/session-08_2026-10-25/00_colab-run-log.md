@@ -535,3 +535,38 @@ files would give the agreement figure. The bin-1 bands are not coded yet.
 `07-validate-analysis.R`, `03-data-validation.R`), the codebook, and the co-author reviews (`topic_overrides.csv` per bin, the two
 nameless topics first). Repository note: `results/analysis/` now holds ≈ 420 MB, of which the 6,245 transcripts ≈ 150 MB; the local
 `.git` is 4.9 GB because of the collector's media files, not the pipeline.
+
+## 16. S4 sentiment and S5 collect complete (Colab, 2026-10-26 19:16–19:20 UTC; session log `logs/colab_2026-10-26_1830.log`)
+
+The notebook was reloaded from GitHub (commit `b0f07281`), cells 0.1–0.4 ran on a fresh A100 runtime, **cell 3.4b restored the labelling
+records of bins 3 and 5 on Drive** (92 calls / 16.2 min and 87 calls / 16.9 min), **cell 4.0 copied the two committed override files**
+(bins 6 and 7, one rename each; the nine checks clean), and **cell 4.1** scored VADER for the sixteen remaining years in 3.2 min (2010 was
+scored on 2026-10-25) and ran the collect without `--allow-partial`: **`complete = true`**, 1,302,021 posts, 1,289,838 with a topic
+(1,087,798 with a topic other than outlier), 6,245 labelled topics, `labels_version dbf90eb21e87`, no errors. The final hand-back
+(`bins-_2026-10-26_1922.zip`, 38.8 MB) was unpacked the same afternoon: `data/analysis/` (join table 123 MB, sentiment table 37 MB,
+validation sample, S0 tables) went to the shared data folder, which stays out of git; `topic_labels_all_bins.csv` — now with
+`mean_vader_sentiment` for every topic — and the crosswalk template went to `results/analysis/`.
+
+**Verification of the join table (local, 2026-10-26).** 1,302,021 rows, ids unique, 15 analysis columns plus `topic_id_raw`; every
+post with a topic has a `topic_name` (the two names of §15 applied: 147 + 110 posts first, 16 posts second); every dual post carries two
+different topics and both similarities; no post outside the dual tier carries a second topic; sentiment present for every post, in
+[−1, 1], labels consistent with the ±0.05 rule. Tiers over the whole corpus: cluster 712,218 · reassigned 115,526 · dual 260,054 ·
+outlier 202,040 (15.5 %) · not modelled 12,183 (too short). Sentiment labels: neutral 655,711 · positive 439,866 · negative 206,444.
+The topic table equals the local rebuild apart from the two sentiment columns. The stratified validation sample holds **337 posts (54
+strata)**, not the round 300 of the design — the stratification rounds up per stratum; `coder_1` / `coder_2` blank.
+
+**One gap left (F45, follow-up): 257 posts carry a name but no `topic_tone`** — the posts of the two topics named through the override
+files (bin 6 topic 369: 147; bin 7 topic 67: 110; plus 16 dual posts with topic 67 second). The override file carries a name, not a tone,
+and the pipeline derives `topic_tone` from the analysts' `emotion_tone`, which these two topics never had on file. The transcripts show
+that both analysts' truncated answers contain complete `name`, `purpose` and `emotion_tone` fields — identical between the analysts
+("Rayo Vallecano vs. Clubs" / "Excitement"; "retirement announcements" / "sadness, farewell, reflection") — and only the long
+`description` was cut. R check A6 (tone present iff the post has a topic) will fail on these 257 posts until they have a tone. Options
+for the author: (a) salvage the complete fields of the final truncated answers for these two topics (the analysts' own words, no new
+model run; `agreement_mode` recorded as salvaged, `needs_review` kept), then re-run the collect locally; (b) relabel the two topics on
+Colab with a larger answer budget (new labels, ≈ 2 min of GPU plus a hand-back); (c) accept the gap and let A6 tolerate an empty tone
+where no analyst label exists, with a codebook note. **Decision pending.** Until it is taken, S6 runs only as a draft into another root.
+
+**Co-author files on GitHub the same day:** TP's `manual review/BIN3_topics_labelled_TP.csv` (474 topics of bin 3, every row tagged in a
+`QUALTAG` column with a scheme of the kind "WC; National Identity", "non-political; Club", "WC; FIFA Body") after TP/BA's bin-1 file of
+2026-10-25. These tags are the chapter-level themes the design foresaw for the manual cross-bin crosswalk (`topic_crosswalk.csv`,
+column `chapter_theme`); carrying them into that table, one row per topic, would let the pipeline and the R checks use them.

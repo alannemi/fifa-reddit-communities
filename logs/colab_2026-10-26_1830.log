@@ -1,0 +1,173 @@
+=== Colab session log /content/drive/MyDrive/fifa-communities/logs/colab_2026-10-26_1830.log (UTC 2026-10-26 18:30) ===
+Drive mounted; yearly files: 17 | folders under fifa-communities: ['analysis', 'comparisons', 'embeddings', 'handback', 'hf-cache', 'logs', 'results', 'yearly datasets']
+repository at commit b0f07281ff3ec83232adb9e1d6405524d4a73476
+yearly files on the local disk: 17 | total GB: 1.93
+effective paths of the program: {
+ "PIPELINE_ROOT": "/content/drive/MyDrive/fifa-communities",
+ "YEARLY_DIR": "/content/data/yearly datasets",
+ "ANALYSIS_DATA_DIR": "/content/drive/MyDrive/fifa-communities/analysis",
+ "ANALYSIS_DIR": "/content/drive/MyDrive/fifa-communities/results",
+ "EMBED_CACHE_DIR": "/content/drive/MyDrive/fifa-communities/embeddings",
+ "LLM_CACHE_DIR": "/content/hf-cache"
+}
+pip install (--no-deps) exit 0 
+pip check: ipython 7.34.0 requires jedi, which is not installed.
+pip check (pipeline stack): OK — other complaints above concern the Colab image only
+GPU: NVIDIA A100-SXM4-80GB | torch 2.11.0+cu130 | CUDA 13.0 | cuml 26.06.00 | python 3.13.16
+versions: bertopic 0.17.4 | umap-learn 0.5.12 | hdbscan 0.8.44 | pynndescent 0.6.0 | sentence-transformers 6.1.0 | transformers 5.20.2 | torch 2.11.0+cu130 | numpy 2.1.3 | scikit-learn 1.6.1 | pandas 2.2.3 | vaderSentiment 3.3.2
+cuml.accel enabled in this kernel: False (the topics stage runs in a child process under `python -m cuml.accel`)
+name, memory.total [MiB], memory.used [MiB]
+NVIDIA A100-SXM4-80GB, 81920 MiB, 6 MiB
+>>> /usr/bin/python3 -u code/tests/test_pipeline_units.py
+[PASS] test_script_names_defined
+[PASS] test_paths_and_tones
+[PASS] test_bin_boundaries
+guard: 10 topics at the floor min_cluster_size=25, below the target (20, 30) — floor-bound (decision D10: the floor wins, the bin stands)
+[PASS] test_guard
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1793039930.302552    4962 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1793039932.795681    4962 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+[PASS] test_frozen_components_in_bertopic
+[PASS] test_json_and_validation
+[PASS] test_label_identity
+[PASS] test_overrides
+[PASS] test_debate_modes
+[PASS] test_labelling_resume_and_outputs
+topic_crosswalk.csv has entries and is kept; add rows for new bins by hand
+S5 check failed: bin 1: topic ids not in topics.csv
+S5 check failed: bin 1: topic_name missing for posts with a topic
+topic_crosswalk.csv has entries and is kept; add rows for new bins by hand
+[PASS] test_collect_partial
+[PASS] test_sentiment_labels
+[PASS] test_salvage_json
+
+13/13 checks passed
+<<< exit 0 after 0.5 min
+bin 3: label record restored from the repository — 92 LLM calls, 16.2 min, run_at 2026-10-25T20:26:18
+bin 5: label record restored from the repository — 87 LLM calls, 16.9 min, run_at 2026-10-25T20:55:41
+>>> /usr/bin/python3 -u code/08-review-pack.py check --bin 1 --analysis-dir /content/drive/MyDrive/fifa-communities/results
+  note: topic overrides: 0 rename(s), 0 merge(s)
+OK — no problems found
+<<< exit 0 after 0.0 min
+>>> /usr/bin/python3 -u code/08-review-pack.py check --bin 2 --analysis-dir /content/drive/MyDrive/fifa-communities/results
+  note: topic overrides: 0 rename(s), 0 merge(s)
+OK — no problems found
+<<< exit 0 after 0.0 min
+>>> /usr/bin/python3 -u code/08-review-pack.py check --bin 3 --analysis-dir /content/drive/MyDrive/fifa-communities/results
+  note: topic overrides: 0 rename(s), 0 merge(s)
+OK — no problems found
+<<< exit 0 after 0.0 min
+>>> /usr/bin/python3 -u code/08-review-pack.py check --bin 4 --analysis-dir /content/drive/MyDrive/fifa-communities/results
+  note: topic overrides: 0 rename(s), 0 merge(s)
+OK — no problems found
+<<< exit 0 after 0.0 min
+>>> /usr/bin/python3 -u code/08-review-pack.py check --bin 5 --analysis-dir /content/drive/MyDrive/fifa-communities/results
+  note: topic overrides: 0 rename(s), 0 merge(s)
+OK — no problems found
+<<< exit 0 after 0.0 min
+bin 6: topic_overrides.csv copied from the repository to Drive
+>>> /usr/bin/python3 -u code/08-review-pack.py check --bin 6 --analysis-dir /content/drive/MyDrive/fifa-communities/results
+  note: topic overrides: 1 rename(s), 0 merge(s)
+OK — no problems found
+<<< exit 0 after 0.0 min
+bin 7: topic_overrides.csv copied from the repository to Drive
+>>> /usr/bin/python3 -u code/08-review-pack.py check --bin 7 --analysis-dir /content/drive/MyDrive/fifa-communities/results
+  note: topic overrides: 1 rename(s), 0 merge(s)
+OK — no problems found
+<<< exit 0 after 0.0 min
+>>> /usr/bin/python3 -u code/08-review-pack.py check --bin 8 --analysis-dir /content/drive/MyDrive/fifa-communities/results
+  note: topic overrides: 0 rename(s), 0 merge(s)
+OK — no problems found
+<<< exit 0 after 0.0 min
+>>> /usr/bin/python3 -u code/08-review-pack.py check --bin 9 --analysis-dir /content/drive/MyDrive/fifa-communities/results
+  note: topic overrides: 0 rename(s), 0 merge(s)
+OK — no problems found
+<<< exit 0 after 0.0 min
+>>> /usr/bin/python3 -u code/05-analysis-pipeline.py --stage sentiment --force
+2026-10-26 19:16:19,610 | INFO | === stage sentiment === args: {'stage': 'sentiment', 'bin': None, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': True, 'keep_umap': False, 'grid': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-26 19:16:26,535 | INFO | sentiment: 2011 scored 33280 posts (6294 with body) -> /content/drive/MyDrive/fifa-communities/analysis/sentiment/2011.csv
+2026-10-26 19:16:35,197 | INFO | sentiment: 2012 scored 63649 posts (10768 with body) -> /content/drive/MyDrive/fifa-communities/analysis/sentiment/2012.csv
+2026-10-26 19:16:44,722 | INFO | sentiment: 2013 scored 78472 posts (10892 with body) -> /content/drive/MyDrive/fifa-communities/analysis/sentiment/2013.csv
+2026-10-26 19:16:57,942 | INFO | sentiment: 2014 scored 112754 posts (15102 with body) -> /content/drive/MyDrive/fifa-communities/analysis/sentiment/2014.csv
+2026-10-26 19:17:11,965 | INFO | sentiment: 2015 scored 107461 posts (17424 with body) -> /content/drive/MyDrive/fifa-communities/analysis/sentiment/2015.csv
+2026-10-26 19:17:22,204 | INFO | sentiment: 2016 scored 85318 posts (9340 with body) -> /content/drive/MyDrive/fifa-communities/analysis/sentiment/2016.csv
+2026-10-26 19:17:33,704 | INFO | sentiment: 2017 scored 105531 posts (6450 with body) -> /content/drive/MyDrive/fifa-communities/analysis/sentiment/2017.csv
+2026-10-26 19:17:47,733 | INFO | sentiment: 2018 scored 126743 posts (6132 with body) -> /content/drive/MyDrive/fifa-communities/analysis/sentiment/2018.csv
+2026-10-26 19:18:01,705 | INFO | sentiment: 2019 scored 118664 posts (6504 with body) -> /content/drive/MyDrive/fifa-communities/analysis/sentiment/2019.csv
+2026-10-26 19:18:10,365 | INFO | sentiment: 2020 scored 61794 posts (5482 with body) -> /content/drive/MyDrive/fifa-communities/analysis/sentiment/2020.csv
+2026-10-26 19:18:20,158 | INFO | sentiment: 2021 scored 65286 posts (6367 with body) -> /content/drive/MyDrive/fifa-communities/analysis/sentiment/2021.csv
+2026-10-26 19:18:28,312 | INFO | sentiment: 2022 scored 64584 posts (3982 with body) -> /content/drive/MyDrive/fifa-communities/analysis/sentiment/2022.csv
+2026-10-26 19:18:37,761 | INFO | sentiment: 2023 scored 70334 posts (6251 with body) -> /content/drive/MyDrive/fifa-communities/analysis/sentiment/2023.csv
+2026-10-26 19:18:48,032 | INFO | sentiment: 2024 scored 76473 posts (7522 with body) -> /content/drive/MyDrive/fifa-communities/analysis/sentiment/2024.csv
+2026-10-26 19:18:58,705 | INFO | sentiment: 2025 scored 74348 posts (8777 with body) -> /content/drive/MyDrive/fifa-communities/analysis/sentiment/2025.csv
+2026-10-26 19:19:06,259 | INFO | sentiment: 2026 scored 43692 posts (7062 with body) -> /content/drive/MyDrive/fifa-communities/analysis/sentiment/2026.csv
+2026-10-26 19:19:11,388 | INFO | sentiment: 1302021 posts -> /content/drive/MyDrive/fifa-communities/analysis/sentiment.csv
+2026-10-26 19:19:30,800 | INFO | sentiment: validation sample of 337 posts (54 strata) -> /content/drive/MyDrive/fifa-communities/analysis/sentiment_validation_sample.csv
+<<< exit 0 after 3.2 min
+>>> /usr/bin/python3 -u code/05-analysis-pipeline.py --stage collect
+2026-10-26 19:19:31,672 | INFO | === stage collect === args: {'stage': 'collect', 'bin': None, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': False, 'keep_umap': False, 'grid': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-26 19:20:17,283 | INFO | S5: post_variables.csv 1302021 rows; bins complete [1, 2, 3, 4, 5, 6, 7, 8, 9]; 6245 topics; sentiment 1302021; complete=True
+<<< exit 0 after 0.8 min
+{
+ "written": "2026-10-26T19:20:16+00:00",
+ "n_posts": 1302021,
+ "bins_state": {
+  "1": "labelled",
+  "2": "labelled",
+  "3": "labelled",
+  "4": "labelled",
+  "5": "labelled",
+  "6": "labelled",
+  "7": "labelled",
+  "8": "labelled",
+  "9": "labelled"
+ },
+ "bins_complete": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9
+ ],
+ "complete": true,
+ "n_with_sentiment": 1302021,
+ "n_with_topic": 1289838,
+ "n_topics_labelled": 6245,
+ "labels_version": "dbf90eb21e87",
+ "columns": [
+  "id",
+  "period_bin",
+  "period_type",
+  "topic_id",
+  "topic_uid",
+  "topic_name",
+  "topic_tone",
+  "topic_uid_2",
+  "topic_name_2",
+  "topic_tone_2",
+  "topic_assignment",
+  "topic_similarity",
+  "topic_similarity_2",
+  "post_sentiment",
+  "post_sentiment_full",
+  "post_sentiment_label"
+ ],
+ "audit_columns": [
+  "topic_id_raw"
+ ],
+ "errors": [],
+ "paths": {
+  "pipeline_root": "/content/drive/MyDrive/fifa-communities",
+  "yearly_dir": "/content/data/yearly datasets",
+  "analysis_dir": "/content/drive/MyDrive/fifa-communities/results",
+  "analysis_data_dir": "/content/drive/MyDrive/fifa-communities/analysis",
+  "embed_cache_dir": "/content/drive/MyDrive/fifa-communities/embeddings",
+  "llm_cache_dir": "/content/hf-cache",
+  "out_root": null
+ }
+}

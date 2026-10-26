@@ -405,17 +405,20 @@ def stage_label(args, paths: Paths, b: int):
     topics = pd.read_csv(bdir / "topics.csv", dtype={"topic_id": int, "n_cluster": int, "representative_ids": str,
                                                       "keywords": str}, keep_default_na=False)
     llm = get_llm(args)
-    labelled = G.run_labelling(bdir, b, md, topics, llm, max_topics=args.max_topics)
+    redo = [int(x) for x in str(args.redo_topics).split(",") if x.strip()] if args.redo_topics else []
+    labelled = G.run_labelling(bdir, b, md, topics, llm, max_topics=args.max_topics, redo=redo or None, max_new_tokens=args.max_new_tokens)
     n_samp = tagging.annotate_calibration_samples(bdir)      # the nearest topic's name beside its id in the judgement samples
     log.info("label: nearest_topic_name written into %d outlier calibration sample file(s)", n_samp)
     record = {**llm.describe(), "prompt_version": P.PROMPT_VERSION, "n_topics_labelled": int(len(labelled)),
               "n_needs_review": int(labelled["needs_review"].sum()) if len(labelled) else 0,
               "agreement_modes": labelled["agreement_mode"].value_counts().to_dict() if len(labelled) else {},
               "round_iterations": labelled["round_iterations"].value_counts().sort_index().to_dict() if len(labelled) else {},
-              "llm_stats": llm.stats, "max_topics": args.max_topics, "elapsed_min": round((time.time() - t0) / 60, 1),
+              "llm_stats": llm.stats, "max_topics": args.max_topics, "max_new_tokens": int(args.max_new_tokens or C.LLM_MAX_NEW_TOKENS_LABEL),
+              "elapsed_min": round((time.time() - t0) / 60, 1),
               "run_at": dt.datetime.now().isoformat(timespec="seconds"), "prompts": P.stage_prompts("label")}
-    # a re-run with nothing left to label keeps the real run's statistics and time (tagging.merge_label_record, 2026-10-25)
-    update_config(bdir, "label", tagging.merge_label_record(read_config(bdir).get("label"), record))
+    # a re-run with nothing left to label keeps the real run's statistics and time; a relabel of chosen topics is appended to the
+    # record instead of replacing it (tagging.merge_label_record, 2026-10-25/26)
+    update_config(bdir, "label", tagging.merge_label_record(read_config(bdir).get("label"), record, relabelled=redo))
     render_report(args, paths, b)
     tagging.write_status(bdir)
 
@@ -482,6 +485,8 @@ def main():
     p.add_argument("--llm", default=C.LLM_MODEL); p.add_argument("--sampling", default="seeded" if C.LLM_SAMPLING_SEEDED else "greedy", choices=["greedy", "seeded"])
     p.add_argument("--max-docs", type=int, default=0, help="mechanics test on a subsample of the bin (disables the topic-count guard)")
     p.add_argument("--max-topics", type=int, default=0, help="label only the N largest topics (smoke tests)")
+    p.add_argument("--redo-topics", default=None, help="label stage: comma-separated topic ids to label again (their transcripts move to labels/superseded/)")
+    p.add_argument("--max-new-tokens", type=int, default=None, help="label stage: answer budget for this run (default config.LLM_MAX_NEW_TOKENS_LABEL)")
     p.add_argument("--outlier-threshold", type=float, default=None, help="fixed reassignment floor T replacing the quantile rule (tests, dry runs)")
     p.add_argument("--years", type=int, nargs="*", help="sentiment: restrict to these years")
     p.add_argument("--out-root", default=None, help="dry runs: write <PATH>/results/analysis and <PATH>/data/analysis (input and caches unchanged)")

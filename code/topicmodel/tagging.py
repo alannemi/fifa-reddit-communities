@@ -137,15 +137,22 @@ def bin_state(bin_dir: Path) -> str:
     return "missing"
 
 
-def merge_label_record(previous: dict | None, current: dict) -> dict:
+def merge_label_record(previous: dict | None, current: dict, relabelled: list[int] | None = None) -> dict:
     """The `label` section of config.json after a label stage. A re-run with nothing left to label (every topic already in
     labels.jsonl — cell 3.5 re-entered after a gate stop, 2026-10-25) must not replace the record of the real run with the no-op's
     statistics (0 calls, 0.2 min): `llm_stats`, `elapsed_min` and `run_at` of the previous record are kept and `refreshed_at` says
-    when the counts were recomputed. A run that made LLM calls writes its own record."""
+    when the counts were recomputed. A run that made LLM calls writes its own record — except a **relabel of chosen topics**
+    (`--redo-topics`, 2026-10-26): the full run's statistics stay, the counts (`n_needs_review`, `agreement_modes`, …) are the
+    recomputed ones, and the relabel is appended to `relabels` (topics, answer budget, its own llm_stats, time)."""
     prev_calls = ((previous or {}).get("llm_stats") or {}).get("calls", 0)
+    if relabelled and prev_calls:
+        entry = {"topics": [int(t) for t in relabelled], "max_new_tokens": current.get("max_new_tokens"), "llm_stats": current.get("llm_stats"),
+                 "elapsed_min": current.get("elapsed_min"), "run_at": current.get("run_at")}
+        kept = {k: previous[k] for k in ("llm_stats", "elapsed_min", "run_at", "max_new_tokens") if k in previous}
+        return {**current, **kept, "relabels": list(previous.get("relabels") or []) + [entry]}
     if current.get("llm_stats", {}).get("calls", 0) == 0 and prev_calls:
         kept = {k: previous[k] for k in ("llm_stats", "elapsed_min", "run_at") if k in previous}
-        return {**current, **kept, "refreshed_at": current.get("run_at")}
+        return {**current, **kept, "refreshed_at": current.get("run_at"), **({"relabels": previous["relabels"]} if previous.get("relabels") else {})}
     return current
 
 

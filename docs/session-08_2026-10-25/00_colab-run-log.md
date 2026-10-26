@@ -569,7 +569,7 @@ where no analyst label exists, with a codebook note. **Decision pending.** Until
 taken); `07-validate-analysis.R` passed A0–A5 and A7–A12 (row counts, 42 + 15 columns, bins, topic ids, assignments, sentiment, the 42
 original columns byte-identical, master = join table on the 15 columns, yearly files = year subsets, collection complete) and **failed
 only A6, only on the missing tones** (257 posts; the uid format, name presence and the second-topic rules all hold). The in-place run
-waits for the tone decision.
+waits for the tone decision. **Decision (Alan Nemirovski, 2026-10-26): option (b), relabel.** Implemented the same day: `--stage label --bin N --redo-topics 369 --max-new-tokens 900` labels the named topics again — their transcripts move to `labels/superseded/` (nothing deleted), their lines leave `labels.jsonl`, the debate runs with the larger budget, the per-topic record carries `max_new_tokens` and `relabelled`, and the bin's `config.json → label` keeps the full run's statistics while appending the relabel to `relabels` (`tagging.merge_label_record`); notebook cell 3.7 runs it for the two topics, refreshes the review packs and hands back bins 6 and 7. After the hand-back the two `final_name` rows of §15 come out of the override files (the analysts' new labels stand), the collect runs locally, then S6 in place.
 
 **Co-author files on GitHub the same day:** TP's `manual review/BIN3_topics_labelled_TP.csv` (474 topics of bin 3, every row tagged in a
 `QUALTAG` column with a scheme of the kind "WC; National Identity", "non-political; Club", "WC; FIFA Body") after TP/BA's bin-1 file of

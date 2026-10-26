@@ -89,6 +89,9 @@ table (their posts carry the target's `topic_id`, `topic_uid`, `topic_name`, `to
 F44): a full read is not feasible there — the design's sample (20 topics against their posts) plus every `needs_review` topic
 is the review; the author decides whether a larger sample is needed.
 
+A topic left without a label (both analysts cut off at the answer budget, F45) is labelled again with `--stage label --bin N --redo-topics <ids>
+--max-new-tokens 900` (notebook cell 3.7, 2026-10-26); the previous transcripts move to `labels/superseded/` and the bin's record lists the relabel.
+
 ## 7. Large-bin gate — gate 2 (§12.2): bin 4 (331k posts) or bin 6 (306k)
 Cell 3.3 with `GATE_BIN = 4`: raw outlier share ≤ `OUTLIER_GATE` (0.45 in the design; 0.50 for a bin whose guard converged, proposed after bin 3 and pending the author's confirmation), guard converged (to the density target, within six trials) or floor-bound (too few topics at the floor of 25 — accepted, decision D10 after bin 7), UMAP +
 HDBSCAN minutes on the GPU (≈ 1 h on CPU would mean the accelerator is off); then the labelling (≈ 1 h for ≈ 2,000 topics on the

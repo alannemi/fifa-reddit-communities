@@ -136,6 +136,14 @@ def test_guard():
     m = T.merge_label_record(real, noop)
     assert m["llm_stats"]["calls"] == 92 and m["elapsed_min"] == 16.2 and m["run_at"] == "2026-10-25T20:26:18" and m["refreshed_at"] == "2026-10-25T21:27:10"
     assert T.merge_label_record(None, noop) == noop and T.merge_label_record(real, real | {"run_at": "later"})["run_at"] == "later"
+    # a relabel of chosen topics keeps the full run's statistics and appends itself to `relabels`
+    part = {"llm_stats": {"calls": 2, "prompts": 4, "seconds": 20.0, "tokens_out": 1500, "truncated": 0}, "elapsed_min": 0.9,
+            "run_at": "2026-10-26T21:00:00", "n_needs_review": 6, "max_new_tokens": 900}
+    m = T.merge_label_record(real, part, relabelled=[67])
+    assert m["llm_stats"]["calls"] == 92 and m["run_at"] == "2026-10-25T20:26:18" and m["n_needs_review"] == 6
+    assert m["relabels"] == [{"topics": [67], "max_new_tokens": 900, "llm_stats": part["llm_stats"], "elapsed_min": 0.9, "run_at": "2026-10-26T21:00:00"}]
+    m2 = T.merge_label_record(m, noop)                       # a later no-op keeps the relabel entry too
+    assert m2["relabels"] == m["relabels"] and m2["llm_stats"]["calls"] == 92
     # the gate diagnostic: HDBSCAN over the grid on the cached array (stub: topics = 6000 / mcs, fewer outliers with lower min_samples)
     def stub4(X, mcs, ms, method, eps):
         k = max(1, int(6000 / mcs)); n = len(X); n_out = int(n * ms / 20)
@@ -362,6 +370,17 @@ def test_labelling_resume_and_outputs():
         assert rec["sample_ids"][0] == "p5" and "ITEMS" not in rec["transcript"][0]["user"] and "Keywords: k1" in rec["transcript"][0]["user"]
         cols = pd.read_csv(tmp / "topics_labelled.csv").columns
         assert "n_total" not in cols and "name" in cols and "round_iterations" in cols
+        # relabel one topic with a larger answer budget (decision of 2026-10-26, F45): its old transcript is superseded, not deleted;
+        # the other topics keep their labels; labels.jsonl holds one line per topic; the budget is recorded per topic
+        llm.script.update({(1, A, 1, False): label_json("One redone"), (1, B, 1, False): label_json("one redone")})
+        n_calls = len(llm.calls)
+        out4 = G.run_labelling(tmp, 1, docs, topics, llm, redo=[1], max_new_tokens=900)
+        assert out4["topic_id"].tolist() == [0, 1, 2] and out4["name"].tolist() == ["Zero", "One redone", "Two"], out4[["topic_id", "name"]].values.tolist()
+        assert len(llm.calls) == n_calls + 2 and len(G.read_jsonl(tmp / "labels.jsonl")) == 3
+        sup = list((tmp / "labels" / "superseded").glob("topic_1_*.json")); assert len(sup) == 1 and json.loads(sup[0].read_text())["label"]["name"] == "One B"
+        rec1 = json.loads((tmp / "labels" / "topic_1.json").read_text())
+        assert rec1["max_new_tokens"] == 900 and rec1["relabelled"] is True and rec1["agreement_mode"] == "identical"
+        assert json.loads((tmp / "labels" / "topic_0.json").read_text())["relabelled"] is False
         # a refit retires the previous clustering's labels, review files and calibration samples (nothing deleted), so a
         # resume cannot attach old labels to renumbered topics; labelling then starts from scratch
         (tmp / "outlier_calibration").mkdir(); (tmp / "outlier_calibration" / "sample_T0.5000.csv").write_text("id\n", encoding="utf-8")

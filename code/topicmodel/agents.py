@@ -455,13 +455,32 @@ def read_jsonl(path: Path) -> list[dict]:
 
 
 def run_labelling(bin_dir: Path, bin_id: int, docs: pd.DataFrame, topics: pd.DataFrame, llm,
-                  max_topics: int | None = None) -> pd.DataFrame:
+                  max_topics: int | None = None, redo: list[int] | None = None, max_new_tokens: int | None = None) -> pd.DataFrame:
     """Label every topic of a bin (resumable through labels.jsonl). `docs` = modelled documents with columns
     id, document, topic_id_raw; `topics` = topics.csv. Writes labels/topic_<id>.json, labels.jsonl,
-    topics_labelled.csv and the topic_overrides.csv template; returns the labelled table."""
+    topics_labelled.csv and the topic_overrides.csv template; returns the labelled table.
+    `redo` (author's decision of 2026-10-26, F45): topics to label again — their previous transcripts move to
+    labels/superseded/ (nothing deleted) and their lines leave labels.jsonl before the debate; `max_new_tokens` replaces
+    the answer budget C.LLM_MAX_NEW_TOKENS_LABEL for this run (recorded per topic) — the case of the two topics whose
+    analysts were both cut off at 600 tokens."""
     labels_dir = bin_dir / "labels"; labels_dir.mkdir(parents=True, exist_ok=True)
     jsonl = bin_dir / "labels.jsonl"
     done = {int(r["topic_id"]): r for r in read_jsonl(jsonl)}
+    budget = int(max_new_tokens) if max_new_tokens else int(C.LLM_MAX_NEW_TOKENS_LABEL)
+    redo = [int(x) for x in (redo or [])]
+    if redo:
+        stamp = pd.Timestamp.utcnow().strftime("%Y-%m-%dT%H-%M-%S")
+        sup = labels_dir / "superseded"; sup.mkdir(exist_ok=True)
+        for tid in redo:
+            old_json = labels_dir / f"topic_{tid}.json"
+            if old_json.exists():
+                old_json.rename(sup / f"topic_{tid}_{stamp}.json")
+            done.pop(tid, None)
+        with open(jsonl, "w", encoding="utf-8") as f:
+            for tid in sorted(done):
+                f.write(json.dumps(done[tid], ensure_ascii=False) + "\n")
+        log.info("labelling bin %d: relabelling topic(s) %s with an answer budget of %d tokens; previous transcripts in %s",
+                 bin_id, redo, budget, sup)
     t = topics[topics["topic_id"].astype(int) != -1].copy()
     t["topic_id"] = t["topic_id"].astype(int)
     if max_topics:
@@ -483,6 +502,7 @@ def run_labelling(bin_dir: Path, bin_id: int, docs: pd.DataFrame, topics: pd.Dat
         tid = int(rec["key"])
         final = (rec["final"] or {}).get("categories", [None])[0] if rec["final"] else None
         out = {"period_bin": bin_id, "topic_id": tid, **meta[tid], **llm.describe(), "prompt_version": P.PROMPT_VERSION,
+               "max_new_tokens": budget, "relabelled": tid in redo,
                "agreed": rec["agreed"], "agreement_mode": rec["agreement_mode"], "round_iterations": rec["round_iterations"],
                "needs_review": rec["needs_review"], "label": final, "analyst_a_final": rec["analyst_a_final"],
                "analyst_b_final": rec["analyst_b_final"]}
@@ -495,7 +515,7 @@ def run_labelling(bin_dir: Path, bin_id: int, docs: pd.DataFrame, topics: pd.Dat
 
     if items:
         Debate("label", llm, lambda obj, it, acc: validate_label(obj, acc), labels_identical,
-               seed_prefix=str(bin_id), on_resolved=on_resolved).run(items)
+               seed_prefix=str(bin_id), on_resolved=on_resolved, max_new_tokens=budget).run(items)
 
     rows = []
     for tid in sorted(done):

@@ -480,3 +480,58 @@ topic named). 1 flagged `needs_review`: topic 175 "Fallon D'Floor Nominations" (
 nameless topic 67 (F45). The four tournament bins of this run took 29, 29, 17 and 16 minutes end to end (bins 3 and 5 clustered
 ≈ 85,000 posts each). The loop went straight on to **bin 2**, the first interim bin (October 2010 – January 2014) — this run started
 before the skip-and-restore commit `ab740195`, so cells 0.2 and 3.4b are still to be run once.
+
+## 15. Bins 2–9 complete: the run of cell 3.5 finished overnight (2026-10-25 21:58 – 2026-10-26 06:03 UTC)
+
+After bin 9 the loop ran the four interim bins without a stop. Every bin passed the gate: the raw outlier share stayed between 35.6 %
+and 48.4 % (bins 2 and 4 are the closest to the 50 % tolerance), and the guard either converged or — for every interim bin but bin 2, as
+for bin 7 — stopped **floor-bound** under decision D10. Bin 4's first clustering of 2026-10-25 (74 topics, 56 % outliers, §8) was
+retired to `results/stale/bin-4_2026-10-25T23-15-00/` by the safeguard before the refit. The nine bins as handed back (hand-back zips of
+2026-10-25 23:40 and 2026-10-26 02:41, 04:33, 06:03 UTC; all in `results/analysis/`):
+
+| Bin | Period type | Posts modelled | Topics (target) | Guard | Raw outliers | T | C | Outliers left | `needs_review` | Topics / labels (min) | LLM calls |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | tournament | 9,809 | 65 (49–74) | converged | 34.8 % | 0.4971 | 0.6173 | 12.2 % | 0 | 1.8 / 2.0 | 13 |
+| 2 | interim | 182,832 | 916 (914–1,371) | converged | 48.2 % | 0.5902 | 0.7020 | 16.8 % | 7 | 30.5 / 49.4 | 175 |
+| 3 | tournament | 81,634 | 474 (408–612) | converged | 45.8 % | 0.5634 | 0.6755 | 16.0 % | 7 | 8.1 / 16.2 | 92 |
+| 4 | interim | 327,808 | 1,602 (1,639–2,459) | floor-bound | 48.4 % | 0.6096 | 0.7251 | 16.9 % | 14 | 74.2 / 105.5 | 303 |
+| 5 | tournament | 87,858 | 448 (439–659) | converged | 43.2 % | 0.5713 | 0.6927 | 15.1 % | 8 | 12.0 / 16.9 | 87 |
+| 6 | interim | 304,019 | 1,375 (1,520–2,280) | floor-bound | 44.5 % | 0.6158 | 0.7470 | 15.6 % | 19 | 69.4 / 64.0 | 260 |
+| 7 | tournament | 41,397 | 172 (207–310) | floor-bound | 35.6 % | 0.5626 | 0.6887 | 12.5 % | 2 | 5.6 / 10.5 | 37 |
+| 8 | interim | 216,930 | 967 (1,085–1,627) | floor-bound | 40.0 % | 0.6150 | 0.7497 | 14.0 % | 12 | 37.7 / 49.3 | 187 |
+| 9 | tournament | 37,551 | 226 (188–282) | converged | 40.1 % | 0.5608 | 0.6861 | 14.0 % | 1 | 5.3 / 9.9 | 48 |
+
+**6,245 topics over 1,302,021 documents (1,289,838 modelled); 70 topics flagged `needs_review` (1.1 %)**; ≈ 8 h 20 min of A100 time for
+the whole run, of which ≈ 5 h 25 min labelling. Reading: the interim bins reach 44.6–50.1 raw topics per 10,000 posts at the floor
+of 25, so the density target of D8 (≥ 50) is met only by bin 2 and only just — for the large bins the floor is the binding constraint,
+as D10 anticipated; the raw outlier share rises with bin size but the tiers leave 14–17 % in every bin.
+
+**Audit of the hand-backs (2026-10-26, local).** Every bin has every expected file (tables, arrays, transcripts for every topic,
+`labels.jsonl`, review pack, override template, four calibration samples with the nearest topic's name, calibration table, reports, log,
+status, `REVIEW_READY.txt` — bin 1's flag was written locally, since its hand-back predates the flag); the dual posts carry two distinct
+topics and both similarities; every label record is the real one (calls > 0); `08-review-pack.py check` is clean for all nine override
+templates. Local `collect --allow-partial` builds the combined table with all nine bins; its only failures are the **two nameless topics**
+of F45: bin 6 topic 369 (147 posts, Rayo Vallecano match threads; both analysts wrote "Rayo Vallecano vs. Clubs" and were cut off at 600
+tokens) and bin 7 topic 67 (retirement announcements). Bins 4 and 8 had `no_answer` debates too (4 and 1) but those topics kept a name.
+The flagged topics are mostly stalemates between the two analysts, 1–2 % per bin.
+
+**The re-run of cell 3.5 at 22:49 UTC** (before the notebook was reloaded) re-entered bins 3, 5, 7 and 9 once more and produced a
+second hand-back of each. With the pulled pipeline the records of bins 7 and 9 survived (`refreshed_at` 22:50, calls 37 and 48) and
+their refreshed files were taken; bins 3 and 5 had already been zeroed on Drive (0 calls), so only their bin logs were taken and the
+repository keeps the true records. Cell 3.4b (restore on Drive) and the reload of cell 3.5 (skip of handed-back bins) are still to be
+done once; the repository is the record either way.
+
+**Coded calibration samples arrived (co-author BA, 2026-10-25 18:15 EDT, commit `afe05c33`): bin 3, all four bands**, as
+`sample_T<value>_coded_BA.csv` beside the blank files, `belongs` coded 1/0, no notes. Share judged to belong: **35th-percentile band
+(0.5634–0.6009) 41 %; 50th (0.6009–0.6362) 38 %; 65th (0.6362–0.6755) 38 %; 80th and above (≥ 0.6755) 51 %.** So, by this coder, about
+four in ten posts admitted by the dual tier and about half of those admitted to a single topic belong to the topic they were given — and
+the share hardly rises with similarity below the top band. This is the first evidence on D9's hedge and it is weaker than hoped;
+it needs the author's reading before the data files are final (options range from documenting it as the precision of the reassignment
+tiers in the codebook, to raising `OUTLIER_REASSIGN_QUANTILE`, to confining analyses to `cluster` posts). A second coder on the same
+files would give the agreement figure. The bin-1 bands are not coded yet.
+
+**Still to run on Colab**: cell 4 — S4 VADER sentiment for every year (CPU, ≈ 15 min) and the complete S5 collect (`post_variables.csv`,
+`topic_labels_all_bins.csv` with `mean_vader_sentiment` for every bin) — and cell 5's final hand-back; then S6 locally (`06-tag-corpus.R`,
+`07-validate-analysis.R`, `03-data-validation.R`), the codebook, and the co-author reviews (`topic_overrides.csv` per bin, the two
+nameless topics first). Repository note: `results/analysis/` now holds ≈ 420 MB, of which the 6,245 transcripts ≈ 150 MB; the local
+`.git` is 4.9 GB because of the collector's media files, not the pipeline.

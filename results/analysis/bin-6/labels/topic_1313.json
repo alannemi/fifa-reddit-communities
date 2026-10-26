@@ -1,0 +1,172 @@
+{
+ "period_bin": 6,
+ "topic_id": 1313,
+ "keywords": "match blackpool, 89 blackpool, rovers blackpool, blackpool everton, liverpool blackpool, blackpool sunderland, 22 blackpool, blackpool gillingham, 19 blackpool, blackpool doncaster, blackpool, 10 blackpool, blackpool gary, everton goals, 58 liverpool",
+ "n_sample_posts": 26,
+ "sample_ids": [
+  "u6gwdf",
+  "u6e3fc",
+  "u6flb7",
+  "a7et3l",
+  "a7f6ja",
+  "a7eobp",
+  "jqefg1",
+  "a7fsw1",
+  "n4w8mp",
+  "n4uxvn",
+  "u6etkk",
+  "tuiput",
+  "tugzrs",
+  "a7eldz",
+  "in1tx8",
+  "f4o69u",
+  "u6e8zg",
+  "iekv2l",
+  "iej4f3",
+  "ktt88x",
+  "f2ft3x",
+  "u6gwxf",
+  "nocfwf",
+  "abizct",
+  "jqe5hu",
+  "jqe5o9"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Blackpool vs. Premier League Teams",
+  "purpose": "Match results and analysis between Blackpool and Premier League teams",
+  "emotion_tone": "Excitement and anticipation",
+  "description": "Posts discussing match results, goals, and player performances between Blackpool and teams like Birmingham, Solihull Moors, Everton, and others.",
+  "inclusion_cues": [
+   "Blackpool [X]-Y [Z]",
+   "Blackpool [X]-[Y] [Z]",
+   "Blackpool [X]-[Y] [Z]"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Blackpool vs. Premier League Teams",
+    "purpose": "Match results and analysis between Blackpool and Premier League teams",
+    "emotion_tone": "Excitement and anticipation",
+    "description": "Posts discussing match results, goals, and player performances between Blackpool and Premier League teams",
+    "inclusion_cues": [
+     "Blackpool [5]-1 Birmingham",
+     "Blackpool 1-0 Solihull Moors",
+     "Blackpool 2-0 Everton",
+     "Blackpool 3-3 Everton"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Blackpool vs. Premier League Teams",
+    "purpose": "Match results and analysis between Blackpool and Premier League teams",
+    "emotion_tone": "Excitement and anticipation",
+    "description": "Posts discussing match results, goals, and player performances between Blackpool and teams like Birmingham, Solihull Moors, Everton, and others.",
+    "inclusion_cues": [
+     "Blackpool [X]-Y [Z]",
+     "Blackpool [X]-[Y] [Z]",
+     "Blackpool [X]-[Y] [Z]"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: match blackpool, 89 blackpool, rovers blackpool, blackpool everton, liverpool blackpool, blackpool sunderland, 22 blackpool, blackpool gillingham, 19 blackpool, blackpool doncaster, blackpool, 10 blackpool, blackpool gary, everton goals, 58 liverpool\nPosts (one per line, title first):\n- Blackpool [5]-1 Birmingham - Jerry Yates penalty 85'\n- Blackpool 1-0 Birmingham - Jake Beesley 3'\n- Blackpool 4-0 Birmingham - Jake Beesley 56'\n- Blackpool 2-[1] Solihull Moors - Adi Yussuf 33'\n- Blackpool 2-[2] Solihull Moors - Adi Yussuf penalty 51'\n- Blackpool 2-0 Solihull Moors - Joe Dodoo 19'\n- Eastbourne Boro 0-3 Blackpool - Jerry Yates 90'+2'\n- Blackpool [3]-2 Solihull Moors - Jay Spearing penalty 105'\n- Blackpool 2-0 Doncaster - Ellis Simms 80'\n- Blackpool 1-0 Doncaster - Ellis Simms 22'\n- Blackpool 3-0 Birmingham - Kenneth Dougall 40'\n- Blackpool [1]-4 Nottingham Forest - Callum Connolly 89'\n- Blackpool 0-1 Nottingham Forest - Philip Zinckernagel 11'\n- Blackpool 1-0 Solihull Moors - Armand Gnanduillet 10'\n- Liverpool 0-1 Blackpool - CJ Hamilton 15'\n- Bristol Rovers [1] - 1 Blackpool - Alfie Kilgour, centre back 🚀\n- Blackpool 2-0 Birmingham - CJ Hamilton 14'\n- Post Match Thread: Blackpool 3-3 Everton / # Blackpool 3-3 Everton #Goals # Hamilton 1-0 1' # Kaikal 2-0 10' # Ward 3-0 11' # Calvert-Lewin 3-1 22' # Sigurdsson (Penalty) 3-2 30' # Sigurdsson (Free-kick) 3-3 72'\n- Blackpool 2-0 Everton: Kaikal\n- Blackpool [1]-0 West Brom - Jerry Yates 41'\n- Blackpool 2-[3] Gillingham : Brandon Hanlan 90'+5'\n- Blackpool [6]-1 Birmingham - Callum Connolly 90'+4'\n- Blackpool [1]-1 Lincoln - Kenny Dougall 34'\n- Blackpool 0-[1] Sunderland — Josh Maja 23'\n- Eastbourne Boro 0-1 Blackpool - Gary Madine 58'\n- Eastbourne Boro 0-2 Blackpool - Gary Madine 68'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Blackpool vs. Premier League Teams\", \"purpose\": \"Match results and analysis between Blackpool and Premier League teams\", \"emotion_tone\": \"Excitement and anticipation\", \"description\": \"Posts discussing match results, goals, and player performances between Blackpool and Premier League teams\", \"inclusion_cues\": [\"Blackpool [5]-1 Birmingham\", \"Blackpool 1-0 Solihull Moors\", \"Blackpool 2-0 Everton\", \"Blackpool 3-3 Everton\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Blackpool vs. Premier League Teams",
+      "purpose": "Match results and analysis between Blackpool and Premier League teams",
+      "emotion_tone": "Excitement and anticipation",
+      "description": "Posts discussing match results, goals, and player performances between Blackpool and Premier League teams",
+      "inclusion_cues": [
+       "Blackpool [5]-1 Birmingham",
+       "Blackpool 1-0 Solihull Moors",
+       "Blackpool 2-0 Everton",
+       "Blackpool 3-3 Everton"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 121,
+   "seed": 1287361410,
+   "seconds": 0.57
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: match blackpool, 89 blackpool, rovers blackpool, blackpool everton, liverpool blackpool, blackpool sunderland, 22 blackpool, blackpool gillingham, 19 blackpool, blackpool doncaster, blackpool, 10 blackpool, blackpool gary, everton goals, 58 liverpool\nPosts (one per line, title first):\n- Blackpool [5]-1 Birmingham - Jerry Yates penalty 85'\n- Blackpool 1-0 Birmingham - Jake Beesley 3'\n- Blackpool 4-0 Birmingham - Jake Beesley 56'\n- Blackpool 2-[1] Solihull Moors - Adi Yussuf 33'\n- Blackpool 2-[2] Solihull Moors - Adi Yussuf penalty 51'\n- Blackpool 2-0 Solihull Moors - Joe Dodoo 19'\n- Eastbourne Boro 0-3 Blackpool - Jerry Yates 90'+2'\n- Blackpool [3]-2 Solihull Moors - Jay Spearing penalty 105'\n- Blackpool 2-0 Doncaster - Ellis Simms 80'\n- Blackpool 1-0 Doncaster - Ellis Simms 22'\n- Blackpool 3-0 Birmingham - Kenneth Dougall 40'\n- Blackpool [1]-4 Nottingham Forest - Callum Connolly 89'\n- Blackpool 0-1 Nottingham Forest - Philip Zinckernagel 11'\n- Blackpool 1-0 Solihull Moors - Armand Gnanduillet 10'\n- Liverpool 0-1 Blackpool - CJ Hamilton 15'\n- Bristol Rovers [1] - 1 Blackpool - Alfie Kilgour, centre back 🚀\n- Blackpool 2-0 Birmingham - CJ Hamilton 14'\n- Post Match Thread: Blackpool 3-3 Everton / # Blackpool 3-3 Everton #Goals # Hamilton 1-0 1' # Kaikal 2-0 10' # Ward 3-0 11' # Calvert-Lewin 3-1 22' # Sigurdsson (Penalty) 3-2 30' # Sigurdsson (Free-kick) 3-3 72'\n- Blackpool 2-0 Everton: Kaikal\n- Blackpool [1]-0 West Brom - Jerry Yates 41'\n- Blackpool 2-[3] Gillingham : Brandon Hanlan 90'+5'\n- Blackpool [6]-1 Birmingham - Callum Connolly 90'+4'\n- Blackpool [1]-1 Lincoln - Kenny Dougall 34'\n- Blackpool 0-[1] Sunderland — Josh Maja 23'\n- Eastbourne Boro 0-1 Blackpool - Gary Madine 58'\n- Eastbourne Boro 0-2 Blackpool - Gary Madine 68'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Blackpool vs. Premier League Teams\", \"purpose\": \"Match results and analysis between Blackpool and Premier League teams\", \"emotion_tone\": \"Excitement and anticipation\", \"description\": \"Posts discussing match results, goals, and player performances between Blackpool and teams like Birmingham, Solihull Moors, Everton, and others.\", \"inclusion_cues\": [\"Blackpool [X]-Y [Z]\", \"Blackpool [X]-[Y] [Z]\", \"Blackpool [X]-[Y] [Z]\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Blackpool vs. Premier League Teams",
+      "purpose": "Match results and analysis between Blackpool and Premier League teams",
+      "emotion_tone": "Excitement and anticipation",
+      "description": "Posts discussing match results, goals, and player performances between Blackpool and teams like Birmingham, Solihull Moors, Everton, and others.",
+      "inclusion_cues": [
+       "Blackpool [X]-Y [Z]",
+       "Blackpool [X]-[Y] [Z]",
+       "Blackpool [X]-[Y] [Z]"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 127,
+   "seed": 2080322694,
+   "seconds": 1.86
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: match blackpool, 89 blackpool, rovers blackpool, blackpool everton, liverpool blackpool, blackpool sunderland, 22 blackpool, blackpool gillingham, 19 blackpool, blackpool doncaster, blackpool, 10 blackpool, blackpool gary, everton goals, 58 liverpool\nPosts (one per line, title first):\n- Blackpool [5]-1 Birmingham - Jerry Yates penalty 85'\n- Blackpool 1-0 Birmingham - Jake Beesley 3'\n- Blackpool 4-0 Birmingham - Jake Beesley 56'\n- Blackpool 2-[1] Solihull Moors - Adi Yussuf 33'\n- Blackpool 2-[2] Solihull Moors - Adi Yussuf penalty 51'\n- Blackpool 2-0 Solihull Moors - Joe Dodoo 19'\n- Eastbourne Boro 0-3 Blackpool - Jerry Yates 90'+2'\n- Blackpool [3]-2 Solihull Moors - Jay Spearing penalty 105'\n- Blackpool 2-0 Doncaster - Ellis Simms 80'\n- Blackpool 1-0 Doncaster - Ellis Simms 22'\n- Blackpool 3-0 Birmingham - Kenneth Dougall 40'\n- Blackpool [1]-4 Nottingham Forest - Callum Connolly 89'\n- Blackpool 0-1 Nottingham Forest - Philip Zinckernagel 11'\n- Blackpool 1-0 Solihull Moors - Armand Gnanduillet 10'\n- Liverpool 0-1 Blackpool - CJ Hamilton 15'\n- Bristol Rovers [1] - 1 Blackpool - Alfie Kilgour, centre back 🚀\n- Blackpool 2-0 Birmingham - CJ Hamilton 14'\n- Post Match Thread: Blackpool 3-3 Everton / # Blackpool 3-3 Everton #Goals # Hamilton 1-0 1' # Kaikal 2-0 10' # Ward 3-0 11' # Calvert-Lewin 3-1 22' # Sigurdsson (Penalty) 3-2 30' # Sigurdsson (Free-kick) 3-3 72'\n- Blackpool 2-0 Everton: Kaikal\n- Blackpool [1]-0 West Brom - Jerry Yates 41'\n- Blackpool 2-[3] Gillingham : Brandon Hanlan 90'+5'\n- Blackpool [6]-1 Birmingham - Callum Connolly 90'+4'\n- Blackpool [1]-1 Lincoln - Kenny Dougall 34'\n- Blackpool 0-[1] Sunderland — Josh Maja 23'\n- Eastbourne Boro 0-1 Blackpool - Gary Madine 58'\n- Eastbourne Boro 0-2 Blackpool - Gary Madine 68'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Blackpool vs. Premier League Teams\", \"purpose\": \"Match results and analysis between Blackpool and Premier League teams\", \"emotion_tone\": \"Excitement and anticipation\", \"description\": \"Posts discussing match results, goals, and player performances between Blackpool and Premier League teams\", \"inclusion_cues\": [\"Blackpool [5]-1 Birmingham\", \"Blackpool 1-0 Solihull Moors\", \"Blackpool 2-0 Everton\", \"Blackpool 3-3 Everton\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Blackpool vs. Premier League Teams\", \"purpose\": \"Match results and analysis between Blackpool and Premier League teams\", \"emotion_tone\": \"Excitement and anticipation\", \"description\": \"Posts discussing match results, goals, and player performances between Blackpool and teams like Birmingham, Solihull Moors, Everton, and others.\", \"inclusion_cues\": [\"Blackpool [X]-Y [Z]\", \"Blackpool [X]-[Y] [Z]\", \"Blackpool [X]-[Y] [Z]\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Blackpool vs. Premier League Teams\", \"purpose\": \"Match results and analysis between Blackpool and Premier League teams\", \"emotion_tone\": \"Excitement and anticipation\", \"description\": \"Posts discussing match results, goals, and player performances between Blackpool and teams like Birmingham, Solihull Moors, Everton, and others.\", \"inclusion_cues\": [\"Blackpool [X]-Y [Z]\", \"Blackpool [X]-[Y] [Z]\", \"Blackpool [X]-[Y] [Z]\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 126,
+   "seed": 346533009,
+   "seconds": 0.66
+  }
+ ]
+}

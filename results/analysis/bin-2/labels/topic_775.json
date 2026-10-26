@@ -1,0 +1,215 @@
+{
+ "period_bin": 2,
+ "topic_id": 775,
+ "keywords": "nsfw streaker, streaker, streaker pitch, scores cracker, naked, flashes, lady, game nsfw, pitch invader, finish, runs, american football, hot, nsfw, videos",
+ "n_sample_posts": 31,
+ "sample_ids": [
+  "ta4p9",
+  "1fbupy",
+  "1fbupy",
+  "19ez11",
+  "19eyas",
+  "1f7qvj",
+  "1di2tr",
+  "17k73z",
+  "1749a3",
+  "pb4fv",
+  "1tc3h0",
+  "x0yd1",
+  "1fahfe",
+  "sxnkx",
+  "m3i0v",
+  "1447uv",
+  "16jpa1",
+  "1fdaww",
+  "10j2lp",
+  "1to51o",
+  "pwpa2",
+  "1d8479",
+  "g6gks",
+  "1f7t4a",
+  "1f73cm",
+  "1kfd2f",
+  "ptg5k",
+  "1fajd1",
+  "tv8iu",
+  "10j6in",
+  "kfrxd"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "NSFW Streaker",
+  "purpose": "Reporting or discussing NSFW streaker content in football",
+  "emotion_tone": "Sarcastic, humorous, and explicit",
+  "description": "Posts containing NSFW streaker content related to football, including naked individuals, streaker goals, and explicit content.",
+  "inclusion_cues": [
+   "nsfw streaker",
+   "naked",
+   "streaker",
+   "scores cracker",
+   "game nsfw",
+   "pitch invader",
+   "finish",
+   "runs",
+   "american football",
+   "hot"
+  ],
+  "n_cues_given": 11
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "NSFW Streaker",
+    "purpose": "Reporting or discussing NSFW streaker content",
+    "emotion_tone": "Sarcastic",
+    "description": "Posts about NSFW streakers, including nakedness, nudity, and explicit content related to football matches",
+    "inclusion_cues": [
+     "nsfw streaker",
+     "naked",
+     "naked lady",
+     "scores cracker",
+     "game nsfw",
+     "pitch invader",
+     "finish",
+     "runs",
+     "american football",
+     "hot"
+    ],
+    "n_cues_given": 26
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "NSFW Streaker",
+    "purpose": "Reporting or discussing NSFW streaker content in football",
+    "emotion_tone": "Sarcastic, humorous, and explicit",
+    "description": "Posts containing NSFW streaker content related to football, including naked individuals, streaker goals, and explicit content.",
+    "inclusion_cues": [
+     "nsfw streaker",
+     "naked",
+     "streaker",
+     "scores cracker",
+     "game nsfw",
+     "pitch invader",
+     "finish",
+     "runs",
+     "american football",
+     "hot"
+    ],
+    "n_cues_given": 11
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: nsfw streaker, streaker, streaker pitch, scores cracker, naked, flashes, lady, game nsfw, pitch invader, finish, runs, american football, hot, nsfw, videos\nPosts (one per line, title first):\n- Most ridiculous streaker I have ever seen!\n- Naked Lady Scores Amazing Streaker Goal!\n- Naked Lady Scores Amazing Streaker Goal!\n- Female streaker scores a cracker!\n- Female streaker scores a cracker! [NSFW]\n- Naked Lady Scores Amazing Streaker Goal!\n- Incredible goal by streaker\n- With the American football streaker video on the front page - here's my favorite streaker\n- The best streaker ever (X post from r/videos)\n- Streaker at Camp Nou\n- Kylie Jenner flashes\n- Dafuq? Is this real? Female streaker scores in a Barcelona game... (NSFW)\n- Streaker on Ecuador vs Germany friendly.\n- streaker scores great goal\n- Wang Dance! Streaker @ FC Bayern München vs. FC Augsburg [NSFW]\n- Streaker from Bayern v Dortmund\n- Funniest streaker ever!\n- Streaker (female) with an unexpected finish [NSFW]\n- Love them or hate them? Streaker in Arsenal vs Coventry.\n- Streaker at recent game\n- There Was A Streaker At Anfield\n- Female Streaker at the Allianz\n- The world's best streaker..!\n- Naked lady runs on to the pitch and scores a cracker\n- At what point does a streaker become a pitch invader in the nakedness stakes?\n- Clinical finish from streaker [NSFW]\n- Female streaker scores on the goalie [x-post from /r/videos]\n- Streaker gif on Germany vs Ecuador friendly\n- Streaker runs across field after Drogba's PK (0:12)\n- Women streaker with painted boobs during pre-match\n- Hot streaker scores an awesome goal.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"NSFW Streaker\", \"purpose\": \"Reporting or discussing NSFW streaker content\", \"emotion_tone\": \"Sarcastic\", \"description\": \"Posts about NSFW streakers, including nakedness, nudity, and explicit content related to football matches\", \"inclusion_cues\": [\"nsfw streaker\", \"naked\", \"naked lady\", \"scores cracker\", \"game nsfw\", \"pitch invader\", \"finish\", \"runs\", \"american football\", \"hot\", \"videos\", \"streaker\", \"lady\", \"flashes\", \"game nsfw\", \"streaker pitch\", \"streaker gif\", \"streaker runs\", \"streaker at\", \"streaker in\", \"streaker from\", \"streaker at\", \"streaker on\", \"streaker with\", \"streaker during\", \"streaker with painted boobs\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "NSFW Streaker",
+      "purpose": "Reporting or discussing NSFW streaker content",
+      "emotion_tone": "Sarcastic",
+      "description": "Posts about NSFW streakers, including nakedness, nudity, and explicit content related to football matches",
+      "inclusion_cues": [
+       "nsfw streaker",
+       "naked",
+       "naked lady",
+       "scores cracker",
+       "game nsfw",
+       "pitch invader",
+       "finish",
+       "runs",
+       "american football",
+       "hot"
+      ],
+      "n_cues_given": 26
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 210,
+   "seed": 702226444,
+   "seconds": 1.17
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: nsfw streaker, streaker, streaker pitch, scores cracker, naked, flashes, lady, game nsfw, pitch invader, finish, runs, american football, hot, nsfw, videos\nPosts (one per line, title first):\n- Most ridiculous streaker I have ever seen!\n- Naked Lady Scores Amazing Streaker Goal!\n- Naked Lady Scores Amazing Streaker Goal!\n- Female streaker scores a cracker!\n- Female streaker scores a cracker! [NSFW]\n- Naked Lady Scores Amazing Streaker Goal!\n- Incredible goal by streaker\n- With the American football streaker video on the front page - here's my favorite streaker\n- The best streaker ever (X post from r/videos)\n- Streaker at Camp Nou\n- Kylie Jenner flashes\n- Dafuq? Is this real? Female streaker scores in a Barcelona game... (NSFW)\n- Streaker on Ecuador vs Germany friendly.\n- streaker scores great goal\n- Wang Dance! Streaker @ FC Bayern München vs. FC Augsburg [NSFW]\n- Streaker from Bayern v Dortmund\n- Funniest streaker ever!\n- Streaker (female) with an unexpected finish [NSFW]\n- Love them or hate them? Streaker in Arsenal vs Coventry.\n- Streaker at recent game\n- There Was A Streaker At Anfield\n- Female Streaker at the Allianz\n- The world's best streaker..!\n- Naked lady runs on to the pitch and scores a cracker\n- At what point does a streaker become a pitch invader in the nakedness stakes?\n- Clinical finish from streaker [NSFW]\n- Female streaker scores on the goalie [x-post from /r/videos]\n- Streaker gif on Germany vs Ecuador friendly\n- Streaker runs across field after Drogba's PK (0:12)\n- Women streaker with painted boobs during pre-match\n- Hot streaker scores an awesome goal.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"NSFW Streaker\", \"purpose\": \"Reporting or discussing NSFW streaker content in football\", \"emotion_tone\": \"Sarcastic, humorous, and explicit\", \"description\": \"Posts containing NSFW streaker content related to football, including naked individuals, streaker goals, and explicit content.\", \"inclusion_cues\": [\"nsfw streaker\", \"naked\", \"streaker\", \"scores cracker\", \"game nsfw\", \"pitch invader\", \"finish\", \"runs\", \"american football\", \"hot\", \"videos\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "NSFW Streaker",
+      "purpose": "Reporting or discussing NSFW streaker content in football",
+      "emotion_tone": "Sarcastic, humorous, and explicit",
+      "description": "Posts containing NSFW streaker content related to football, including naked individuals, streaker goals, and explicit content.",
+      "inclusion_cues": [
+       "nsfw streaker",
+       "naked",
+       "streaker",
+       "scores cracker",
+       "game nsfw",
+       "pitch invader",
+       "finish",
+       "runs",
+       "american football",
+       "hot"
+      ],
+      "n_cues_given": 11
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 133,
+   "seed": 3388875790,
+   "seconds": 1.3
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: nsfw streaker, streaker, streaker pitch, scores cracker, naked, flashes, lady, game nsfw, pitch invader, finish, runs, american football, hot, nsfw, videos\nPosts (one per line, title first):\n- Most ridiculous streaker I have ever seen!\n- Naked Lady Scores Amazing Streaker Goal!\n- Naked Lady Scores Amazing Streaker Goal!\n- Female streaker scores a cracker!\n- Female streaker scores a cracker! [NSFW]\n- Naked Lady Scores Amazing Streaker Goal!\n- Incredible goal by streaker\n- With the American football streaker video on the front page - here's my favorite streaker\n- The best streaker ever (X post from r/videos)\n- Streaker at Camp Nou\n- Kylie Jenner flashes\n- Dafuq? Is this real? Female streaker scores in a Barcelona game... (NSFW)\n- Streaker on Ecuador vs Germany friendly.\n- streaker scores great goal\n- Wang Dance! Streaker @ FC Bayern München vs. FC Augsburg [NSFW]\n- Streaker from Bayern v Dortmund\n- Funniest streaker ever!\n- Streaker (female) with an unexpected finish [NSFW]\n- Love them or hate them? Streaker in Arsenal vs Coventry.\n- Streaker at recent game\n- There Was A Streaker At Anfield\n- Female Streaker at the Allianz\n- The world's best streaker..!\n- Naked lady runs on to the pitch and scores a cracker\n- At what point does a streaker become a pitch invader in the nakedness stakes?\n- Clinical finish from streaker [NSFW]\n- Female streaker scores on the goalie [x-post from /r/videos]\n- Streaker gif on Germany vs Ecuador friendly\n- Streaker runs across field after Drogba's PK (0:12)\n- Women streaker with painted boobs during pre-match\n- Hot streaker scores an awesome goal.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"NSFW Streaker\", \"purpose\": \"Reporting or discussing NSFW streaker content\", \"emotion_tone\": \"Sarcastic\", \"description\": \"Posts about NSFW streakers, including nakedness, nudity, and explicit content related to football matches\", \"inclusion_cues\": [\"nsfw streaker\", \"naked\", \"naked lady\", \"scores cracker\", \"game nsfw\", \"pitch invader\", \"finish\", \"runs\", \"american football\", \"hot\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"NSFW Streaker\", \"purpose\": \"Reporting or discussing NSFW streaker content in football\", \"emotion_tone\": \"Sarcastic, humorous, and explicit\", \"description\": \"Posts containing NSFW streaker content related to football, including naked individuals, streaker goals, and explicit content.\", \"inclusion_cues\": [\"nsfw streaker\", \"naked\", \"streaker\", \"scores cracker\", \"game nsfw\", \"pitch invader\", \"finish\", \"runs\", \"american football\", \"hot\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"NSFW Streaker\", \"purpose\": \"Reporting or discussing NSFW streaker content in football\", \"emotion_tone\": \"Sarcastic, humorous, and explicit\", \"description\": \"Posts containing NSFW streaker content related to football, including naked individuals, streaker goals, and explicit content.\", \"inclusion_cues\": [\"nsfw streaker\", \"naked\", \"streaker\", \"scores cracker\", \"game nsfw\", \"pitch invader\", \"finish\", \"runs\", \"american football\", \"hot\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 129,
+   "seed": 3272533707,
+   "seconds": 0.99
+  }
+ ]
+}

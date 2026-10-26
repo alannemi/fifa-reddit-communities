@@ -1,0 +1,206 @@
+{
+ "period_bin": 8,
+ "topic_id": 327,
+ "keywords": "championship table, efl championship, championship standings, efl league, table matchweek, season championship, standings 18, league position, matchweeks, teams league, league 21, remaining teams, matchweek 34, list teams, championship form",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "1p4nf6v",
+  "1c37bms",
+  "1brbohu",
+  "16oehc3",
+  "1ka6cuq",
+  "13bw6e7",
+  "1pjfttw",
+  "1c6vfmo",
+  "18tzmju",
+  "1inda10",
+  "1c1amwq",
+  "11p2d9q",
+  "1pwcltk",
+  "1qshl77",
+  "1j3n25g",
+  "1999z0z",
+  "1jcmt6t",
+  "1jzaarw",
+  "1prkb1w",
+  "11q48qj",
+  "1q1co13",
+  "129mtou",
+  "1pclenw",
+  "1qnvjd7",
+  "1hcp9b9",
+  "1ih1gte",
+  "18pcoia",
+  "1alfu4u",
+  "1opiyfd",
+  "1oakmeq",
+  "1pc14rv",
+  "1ar9t41",
+  "1ka6bpl",
+  "1oakl6w",
+  "1kd4lhv",
+  "1nyv5f7",
+  "1j790mp",
+  "134xw2f",
+  "1q1cmuj",
+  "17tqwx3"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Championship Table",
+  "purpose": "Tracking standings and positions in the EFL Championship and related leagues",
+  "emotion_tone": "informative",
+  "description": "Posts related to the EFL Championship standings, table updates, and league positions across matchweeks and matchdays",
+  "inclusion_cues": [
+   "EFL Championship standings after matchweeks",
+   "EFL Championship table after matchdays",
+   "League position tracking",
+   "Matchweek/Matchday updates",
+   "Remaining teams and fixtures"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "EFL Championship Table",
+    "purpose": "Displaying standings and positions of teams in the EFL Championship",
+    "emotion_tone": "informative",
+    "description": "Posts related to the EFL Championship standings, table updates, and matchweek information",
+    "inclusion_cues": [
+     "EFL Championship standings after 16 matchweeks",
+     "EFL Championship table after matchday 43",
+     "EFL Championship table after Matchday 39",
+     "EFL Championship table before the last matchday",
+     "EFL Championship Final Table",
+     "EFL Championship standings after 20 matchweeks",
+     "EFL Championship table after matchweek 35 (pending fixtures made up)",
+     "EFL Championship table after matchday 25",
+     "EFL Championship table after MatchDay 42",
+     "EFL Championship standings as of March 11, 2023"
+    ],
+    "n_cues_given": 33
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Championship Table",
+    "purpose": "Tracking standings and positions in the EFL Championship and related leagues",
+    "emotion_tone": "informative",
+    "description": "Posts related to the EFL Championship standings, table updates, and league positions across matchweeks and matchdays",
+    "inclusion_cues": [
+     "EFL Championship standings after matchweeks",
+     "EFL Championship table after matchdays",
+     "League position tracking",
+     "Matchweek/Matchday updates",
+     "Remaining teams and fixtures"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: championship table, efl championship, championship standings, efl league, table matchweek, season championship, standings 18, league position, matchweeks, teams league, league 21, remaining teams, matchweek 34, list teams, championship form\nPosts (one per line, title first):\n- EFL Championship standings after 16 matchweeks\n- EFL Championship table after matchday 43\n- EFL Championship table after Matchday 39\n- EFL Championship table after matchday 7\n- EFL Championship table before the last matchday\n- EFL Championship Final Table\n- EFL Championship standings after 20 matchweeks\n- EFL Championship team of the season\n- EFL Championship table after matchday 25\n- The battle for the EFL Championship play-off places is typically tight.\n- Championship table after Matchday 42\n- EFL Championship standings as of March 11, 2023\n- EFL Championship after 23 matchweeks\n- EFL Championship table after Matchday 30\n- EFL Championship table after matchweek 35 (pending fixtures made up)\n- FA Cup remaining teams by league position\n- EFL Championship standings after matchweek 38\n- EFL Championship table with four rounds of matches left to play\n- EFL League One after 21 matchweeks\n- EFL League One table after matchday 36\n- EFL Championship after 25 matchweeks\n- EFL Championship table after 39 games\n- EFL Championship's standings after 18 matchweeks\n- EFL Championship after matchday 29\n- The EFL Championship's bottom 11 teams are separated by six points\n- The Championship table for matchweek 30\n- EFL Championship table after MatchDay 23 (half season)\n- FA Cup remaining teams by league position - last 16\n- EFL Championship standings after matchweek 14\n- EFL League One table after Saturday's matches\n- EFL tables after this weekend\n- EFL Championship Table after Matchday 32\n- Championship table before the last matchday\n- EFL League One table after Saturday's matches\n- EFL Championship table ahead of tomorrow's last round of games\n- EFL Championship table going into the October international break\n- Updated Fijian Premier League table after yesterday’s action\n- EFL Championship table after matchday 45\n- EFL Championship after 25 matchweeks\n- Championship Table After Matchday 16\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"EFL Championship Table\", \"purpose\": \"Displaying standings and positions of teams in the EFL Championship\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to the EFL Championship standings, table updates, and matchweek information\", \"inclusion_cues\": [\"EFL Championship standings after 16 matchweeks\", \"EFL Championship table after matchday 43\", \"EFL Championship table after Matchday 39\", \"EFL Championship table before the last matchday\", \"EFL Championship Final Table\", \"EFL Championship standings after 20 matchweeks\", \"EFL Championship table after matchweek 35 (pending fixtures made up)\", \"EFL Championship table after matchday 25\", \"EFL Championship table after MatchDay 42\", \"EFL Championship standings as of March 11, 2023\", \"EFL Championship after 23 matchweeks\", \"EFL Championship table after MatchDay 30\", \"EFL Championship table after matchweek 38\", \"EFL Championship table with four rounds of matches left to play\", \"EFL League One after 21 matchweeks\", \"EFL League One table after matchday 36\", \"EFL Championship after 25 matchweeks\", \"EFL Championship table after 39 games\", \"EFL Championship's standings after 18 matchweeks\", \"EFL Championship after matchday 29\", \"EFL Championship table ahead of tomorrow's last round of games\", \"EFL Championship table going into the October international break\", \"EFL Championship table after MatchDay 23 (half season)\", \"FA Cup remaining teams by league position\", \"EFL Championship standings after matchweek 14\", \"EFL League One table after Saturday's matches\", \"EFL tables after this weekend\", \"EFL Championship Table after Matchday 32\", \"Championship table before the last matchday\", \"EFL League One table after Saturday's matches\", \"EFL Championship table ahead of tomorrow's last round of games\", \"EFL Championship table going into the October international break\", \"Updated Fijian Premier League table after yesterday’s action\"]}]}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "EFL Championship Table",
+      "purpose": "Displaying standings and positions of teams in the EFL Championship",
+      "emotion_tone": "informative",
+      "description": "Posts related to the EFL Championship standings, table updates, and matchweek information",
+      "inclusion_cues": [
+       "EFL Championship standings after 16 matchweeks",
+       "EFL Championship table after matchday 43",
+       "EFL Championship table after Matchday 39",
+       "EFL Championship table before the last matchday",
+       "EFL Championship Final Table",
+       "EFL Championship standings after 20 matchweeks",
+       "EFL Championship table after matchweek 35 (pending fixtures made up)",
+       "EFL Championship table after matchday 25",
+       "EFL Championship table after MatchDay 42",
+       "EFL Championship standings as of March 11, 2023"
+      ],
+      "n_cues_given": 33
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 473,
+   "seed": 2071378481,
+   "seconds": 1.89
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: championship table, efl championship, championship standings, efl league, table matchweek, season championship, standings 18, league position, matchweeks, teams league, league 21, remaining teams, matchweek 34, list teams, championship form\nPosts (one per line, title first):\n- EFL Championship standings after 16 matchweeks\n- EFL Championship table after matchday 43\n- EFL Championship table after Matchday 39\n- EFL Championship table after matchday 7\n- EFL Championship table before the last matchday\n- EFL Championship Final Table\n- EFL Championship standings after 20 matchweeks\n- EFL Championship team of the season\n- EFL Championship table after matchday 25\n- The battle for the EFL Championship play-off places is typically tight.\n- Championship table after Matchday 42\n- EFL Championship standings as of March 11, 2023\n- EFL Championship after 23 matchweeks\n- EFL Championship table after Matchday 30\n- EFL Championship table after matchweek 35 (pending fixtures made up)\n- FA Cup remaining teams by league position\n- EFL Championship standings after matchweek 38\n- EFL Championship table with four rounds of matches left to play\n- EFL League One after 21 matchweeks\n- EFL League One table after matchday 36\n- EFL Championship after 25 matchweeks\n- EFL Championship table after 39 games\n- EFL Championship's standings after 18 matchweeks\n- EFL Championship after matchday 29\n- The EFL Championship's bottom 11 teams are separated by six points\n- The Championship table for matchweek 30\n- EFL Championship table after MatchDay 23 (half season)\n- FA Cup remaining teams by league position - last 16\n- EFL Championship standings after matchweek 14\n- EFL League One table after Saturday's matches\n- EFL tables after this weekend\n- EFL Championship Table after Matchday 32\n- Championship table before the last matchday\n- EFL League One table after Saturday's matches\n- EFL Championship table ahead of tomorrow's last round of games\n- EFL Championship table going into the October international break\n- Updated Fijian Premier League table after yesterday’s action\n- EFL Championship table after matchday 45\n- EFL Championship after 25 matchweeks\n- Championship Table After Matchday 16\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Championship Table\", \"purpose\": \"Tracking standings and positions in the EFL Championship and related leagues\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to the EFL Championship standings, table updates, and league positions across matchweeks and matchdays\", \"inclusion_cues\": [\"EFL Championship standings after matchweeks\", \"EFL Championship table after matchdays\", \"League position tracking\", \"Matchweek/Matchday updates\", \"Remaining teams and fixtures\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Championship Table",
+      "purpose": "Tracking standings and positions in the EFL Championship and related leagues",
+      "emotion_tone": "informative",
+      "description": "Posts related to the EFL Championship standings, table updates, and league positions across matchweeks and matchdays",
+      "inclusion_cues": [
+       "EFL Championship standings after matchweeks",
+       "EFL Championship table after matchdays",
+       "League position tracking",
+       "Matchweek/Matchday updates",
+       "Remaining teams and fixtures"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 116,
+   "seed": 18378507,
+   "seconds": 0.95
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: championship table, efl championship, championship standings, efl league, table matchweek, season championship, standings 18, league position, matchweeks, teams league, league 21, remaining teams, matchweek 34, list teams, championship form\nPosts (one per line, title first):\n- EFL Championship standings after 16 matchweeks\n- EFL Championship table after matchday 43\n- EFL Championship table after Matchday 39\n- EFL Championship table after matchday 7\n- EFL Championship table before the last matchday\n- EFL Championship Final Table\n- EFL Championship standings after 20 matchweeks\n- EFL Championship team of the season\n- EFL Championship table after matchday 25\n- The battle for the EFL Championship play-off places is typically tight.\n- Championship table after Matchday 42\n- EFL Championship standings as of March 11, 2023\n- EFL Championship after 23 matchweeks\n- EFL Championship table after Matchday 30\n- EFL Championship table after matchweek 35 (pending fixtures made up)\n- FA Cup remaining teams by league position\n- EFL Championship standings after matchweek 38\n- EFL Championship table with four rounds of matches left to play\n- EFL League One after 21 matchweeks\n- EFL League One table after matchday 36\n- EFL Championship after 25 matchweeks\n- EFL Championship table after 39 games\n- EFL Championship's standings after 18 matchweeks\n- EFL Championship after matchday 29\n- The EFL Championship's bottom 11 teams are separated by six points\n- The Championship table for matchweek 30\n- EFL Championship table after MatchDay 23 (half season)\n- FA Cup remaining teams by league position - last 16\n- EFL Championship standings after matchweek 14\n- EFL League One table after Saturday's matches\n- EFL tables after this weekend\n- EFL Championship Table after Matchday 32\n- Championship table before the last matchday\n- EFL League One table after Saturday's matches\n- EFL Championship table ahead of tomorrow's last round of games\n- EFL Championship table going into the October international break\n- Updated Fijian Premier League table after yesterday’s action\n- EFL Championship table after matchday 45\n- EFL Championship after 25 matchweeks\n- Championship Table After Matchday 16\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"EFL Championship Table\", \"purpose\": \"Displaying standings and positions of teams in the EFL Championship\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to the EFL Championship standings, table updates, and matchweek information\", \"inclusion_cues\": [\"EFL Championship standings after 16 matchweeks\", \"EFL Championship table after matchday 43\", \"EFL Championship table after Matchday 39\", \"EFL Championship table before the last matchday\", \"EFL Championship Final Table\", \"EFL Championship standings after 20 matchweeks\", \"EFL Championship table after matchweek 35 (pending fixtures made up)\", \"EFL Championship table after matchday 25\", \"EFL Championship table after MatchDay 42\", \"EFL Championship standings as of March 11, 2023\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Championship Table\", \"purpose\": \"Tracking standings and positions in the EFL Championship and related leagues\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to the EFL Championship standings, table updates, and league positions across matchweeks and matchdays\", \"inclusion_cues\": [\"EFL Championship standings after matchweeks\", \"EFL Championship table after matchdays\", \"League position tracking\", \"Matchweek/Matchday updates\", \"Remaining teams and fixtures\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"EFL Championship Table\", \"purpose\": \"Displaying standings and positions of teams in the EFL Championship and related leagues\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to the EFL Championship standings, table updates, and league positions across matchweeks and matchdays\", \"inclusion_cues\": [\"EFL Championship standings after 16 matchweeks\", \"EFL Championship table after matchday 43\", \"EFL Championship table after MatchDay 39\", \"EFL Championship table before the last matchday\", \"EFL Championship Final Table\", \"EFL Championship standings after 20 matchweeks\", \"EFL Championship table after matchweek 35 (pending fixtures made up)\", \"EFL Championship table after matchday 25\", \"EFL Championship table after MatchDay 42\", \"EFL Championship standings as of March 11, 2023\", \"EFL Championship table after matchday 36\", \"EFL Championship table after matchweek 38\", \"EFL Championship table after matchday 30\", \"EFL Championship table after matchday 32\", \"EFL Championship table after matchday 29\", \"EFL Championship table after matchday 23\", \"EFL Championship table after matchday 45\", \"EFL Championship table after 39 games\", \"EFL Championship table after 21 matchweeks\", \"EFL Championship table after 25 matchweeks\", \"EFL Championship table after 23 matchweeks\", \"EFL Championship table after 18 matchweeks\", \"EFL Championship table ahead of tomorrow's last round of games\", \"EFL Championship table going into the October international break\", \"EFL League One table after matchday 36\", \"EFL League One table after Saturday's matches\", \"EFL tables after this weekend\", \"EFL Championship table with four rounds of matches left to play\", \"FA Cup remaining teams by league position\", \"FA Cup remaining teams by league position - last 16\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 445,
+   "seed": 2192688447,
+   "seconds": 1.8
+  }
+ ]
+}

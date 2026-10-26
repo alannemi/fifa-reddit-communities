@@ -1,0 +1,212 @@
+{
+ "period_bin": 2,
+ "topic_id": 443,
+ "keywords": "today years, difference years, years difference, years makes, difference year, 2010 years, year makes, happened years, days years, ol days, years tomorrow, year really, difference 10, thing year, ago day",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "100std",
+  "ilttu",
+  "s8hbd",
+  "s9mvd",
+  "1gv9yi",
+  "mv2ix",
+  "uzuxv",
+  "ozhw4",
+  "qwtj6",
+  "whnc0",
+  "1943f9",
+  "u4a13",
+  "jxd7n",
+  "i84tm",
+  "wedau",
+  "t87qm",
+  "vw7df",
+  "grf5w",
+  "1c29d0",
+  "fhknh",
+  "1i51t0",
+  "m8vvx",
+  "1hk27u",
+  "1jfya0",
+  "1u1cun",
+  "n2oqf",
+  "hnvrx",
+  "1bbgyv",
+  "1ayq19",
+  "lj5ep",
+  "dmnhl",
+  "qxegv",
+  "1j9wbd",
+  "1eisvm",
+  "j922w",
+  "u3b33",
+  "whnb6",
+  "u4lo0",
+  "od038",
+  "1bawge"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Years Difference",
+  "purpose": "Discuss the impact of time on football memories",
+  "emotion_tone": "nostalgic",
+  "description": "Posts discussing the emotional impact of time differences in football history",
+  "inclusion_cues": [
+   "What a difference a few years makes.",
+   "The Difference 10 Years Makes",
+   "Feels like yesterday in my head. 14 years tomorrow.",
+   "12 years ago today. You couldn't write a script like this.",
+   "Good old days.",
+   "The Good Ol' Days...",
+   "Was this ever a thing? What year?"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Years Difference",
+    "purpose": "Expressing the impact of time difference in football context",
+    "emotion_tone": "Reflective, nostalgic",
+    "description": "Posts discussing the effect of time difference on football memories, nostalgia, and emotional connection to past events.",
+    "inclusion_cues": [
+     "difference years",
+     "years difference",
+     "years makes",
+     "difference year",
+     "2010 years",
+     "year makes",
+     "happened years",
+     "days years",
+     "ol days",
+     "years tomorrow"
+    ],
+    "n_cues_given": 14
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Years Difference",
+    "purpose": "Discuss the impact of time on football memories",
+    "emotion_tone": "nostalgic",
+    "description": "Posts discussing the emotional impact of time differences in football history",
+    "inclusion_cues": [
+     "What a difference a few years makes.",
+     "The Difference 10 Years Makes",
+     "Feels like yesterday in my head. 14 years tomorrow.",
+     "12 years ago today. You couldn't write a script like this.",
+     "Good old days.",
+     "The Good Ol' Days...",
+     "Was this ever a thing? What year?"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: today years, difference years, years difference, years makes, difference year, 2010 years, year makes, happened years, days years, ol days, years tomorrow, year really, difference 10, thing year, ago day\nPosts (one per line, title first):\n- What a difference a few years makes.\n- 12 years ago today. You couldn't write a script like this.\n- What a difference 10 years makes.\n- The Difference 10 Years Makes\n- A day like today exactly 27 years ago, this happened.\n- Good old times.\n- What happened to those days?\n- What a difference 2 years makes.\n- I thought those days where behind him.\n- Feels like yesterday in my head. 14 years tomorrow...\n- the good old days\n- THIS happened 7 years ago Today!\n- Then and now.\n- Remember this? This happened one year ago yesterday.\n- 30 years ago today\n- 39 Years Ago Today.\n- Am I the only one missing this era ?\n- These used to be my favourite things in the world.\n- Twenty years ago to the day.\n- The halcyon days of SuperDepor.\n- 15 years ago was the best day of my life\n- Good old days.\n- The Good Ol' Days...\n- Was this ever a thing? What year?\n- What a difference two points makes!\n- Those were the days\n- instant nostalgia for a time with baggier shirts and black boots.\n- Can't believe This was 5 years ago!\n- On this day, 11 years ago\n- On this day, 15 years ago\n- The good old bad old days.\n- Remember when it was ok to play on looking like this?\n- I really cannot believe, that this was 23 years ago...\n- Then and Now\n- Bringing back the glory days la'\n- Exactly 17 years ago..\n- Feels like yesterday is in my head. 14 years tomorrow\n- 7 years ago today. Still the greatest thing I've ever seen\n- Back in the good old days\n- Hard to believe this was less than 5 years ago...\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Years Difference\", \"purpose\": \"Expressing the impact of time difference in football context\", \"emotion_tone\": \"Reflective, nostalgic\", \"description\": \"Posts discussing the effect of time difference on football memories, nostalgia, and emotional connection to past events.\", \"inclusion_cues\": [\"difference years\", \"years difference\", \"years makes\", \"difference year\", \"2010 years\", \"year makes\", \"happened years\", \"days years\", \"ol days\", \"years tomorrow\", \"year really\", \"difference 10\", \"thing year\", \"ago day\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Years Difference",
+      "purpose": "Expressing the impact of time difference in football context",
+      "emotion_tone": "Reflective, nostalgic",
+      "description": "Posts discussing the effect of time difference on football memories, nostalgia, and emotional connection to past events.",
+      "inclusion_cues": [
+       "difference years",
+       "years difference",
+       "years makes",
+       "difference year",
+       "2010 years",
+       "year makes",
+       "happened years",
+       "days years",
+       "ol days",
+       "years tomorrow"
+      ],
+      "n_cues_given": 14
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 139,
+   "seed": 695392995,
+   "seconds": 1.38
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: today years, difference years, years difference, years makes, difference year, 2010 years, year makes, happened years, days years, ol days, years tomorrow, year really, difference 10, thing year, ago day\nPosts (one per line, title first):\n- What a difference a few years makes.\n- 12 years ago today. You couldn't write a script like this.\n- What a difference 10 years makes.\n- The Difference 10 Years Makes\n- A day like today exactly 27 years ago, this happened.\n- Good old times.\n- What happened to those days?\n- What a difference 2 years makes.\n- I thought those days where behind him.\n- Feels like yesterday in my head. 14 years tomorrow...\n- the good old days\n- THIS happened 7 years ago Today!\n- Then and now.\n- Remember this? This happened one year ago yesterday.\n- 30 years ago today\n- 39 Years Ago Today.\n- Am I the only one missing this era ?\n- These used to be my favourite things in the world.\n- Twenty years ago to the day.\n- The halcyon days of SuperDepor.\n- 15 years ago was the best day of my life\n- Good old days.\n- The Good Ol' Days...\n- Was this ever a thing? What year?\n- What a difference two points makes!\n- Those were the days\n- instant nostalgia for a time with baggier shirts and black boots.\n- Can't believe This was 5 years ago!\n- On this day, 11 years ago\n- On this day, 15 years ago\n- The good old bad old days.\n- Remember when it was ok to play on looking like this?\n- I really cannot believe, that this was 23 years ago...\n- Then and Now\n- Bringing back the glory days la'\n- Exactly 17 years ago..\n- Feels like yesterday is in my head. 14 years tomorrow\n- 7 years ago today. Still the greatest thing I've ever seen\n- Back in the good old days\n- Hard to believe this was less than 5 years ago...\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Years Difference\", \"purpose\": \"Discuss the impact of time on football memories\", \"emotion_tone\": \"nostalgic\", \"description\": \"Posts discussing the emotional impact of time differences in football history\", \"inclusion_cues\": [\"What a difference a few years makes.\", \"The Difference 10 Years Makes\", \"Feels like yesterday in my head. 14 years tomorrow.\", \"12 years ago today. You couldn't write a script like this.\", \"Good old days.\", \"The Good Ol' Days...\", \"Was this ever a thing? What year?\"]]}]}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Years Difference",
+      "purpose": "Discuss the impact of time on football memories",
+      "emotion_tone": "nostalgic",
+      "description": "Posts discussing the emotional impact of time differences in football history",
+      "inclusion_cues": [
+       "What a difference a few years makes.",
+       "The Difference 10 Years Makes",
+       "Feels like yesterday in my head. 14 years tomorrow.",
+       "12 years ago today. You couldn't write a script like this.",
+       "Good old days.",
+       "The Good Ol' Days...",
+       "Was this ever a thing? What year?"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 541)",
+   "n_tokens": 137,
+   "seed": 543573874,
+   "seconds": 2.0
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: today years, difference years, years difference, years makes, difference year, 2010 years, year makes, happened years, days years, ol days, years tomorrow, year really, difference 10, thing year, ago day\nPosts (one per line, title first):\n- What a difference a few years makes.\n- 12 years ago today. You couldn't write a script like this.\n- What a difference 10 years makes.\n- The Difference 10 Years Makes\n- A day like today exactly 27 years ago, this happened.\n- Good old times.\n- What happened to those days?\n- What a difference 2 years makes.\n- I thought those days where behind him.\n- Feels like yesterday in my head. 14 years tomorrow...\n- the good old days\n- THIS happened 7 years ago Today!\n- Then and now.\n- Remember this? This happened one year ago yesterday.\n- 30 years ago today\n- 39 Years Ago Today.\n- Am I the only one missing this era ?\n- These used to be my favourite things in the world.\n- Twenty years ago to the day.\n- The halcyon days of SuperDepor.\n- 15 years ago was the best day of my life\n- Good old days.\n- The Good Ol' Days...\n- Was this ever a thing? What year?\n- What a difference two points makes!\n- Those were the days\n- instant nostalgia for a time with baggier shirts and black boots.\n- Can't believe This was 5 years ago!\n- On this day, 11 years ago\n- On this day, 15 years ago\n- The good old bad old days.\n- Remember when it was ok to play on looking like this?\n- I really cannot believe, that this was 23 years ago...\n- Then and Now\n- Bringing back the glory days la'\n- Exactly 17 years ago..\n- Feels like yesterday is in my head. 14 years tomorrow\n- 7 years ago today. Still the greatest thing I've ever seen\n- Back in the good old days\n- Hard to believe this was less than 5 years ago...\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Years Difference\", \"purpose\": \"Expressing the impact of time difference in football context\", \"emotion_tone\": \"Reflective, nostalgic\", \"description\": \"Posts discussing the effect of time difference on football memories, nostalgia, and emotional connection to past events.\", \"inclusion_cues\": [\"difference years\", \"years difference\", \"years makes\", \"difference year\", \"2010 years\", \"year makes\", \"happened years\", \"days years\", \"ol days\", \"years tomorrow\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Years Difference\", \"purpose\": \"Discuss the impact of time on football memories\", \"emotion_tone\": \"nostalgic\", \"description\": \"Posts discussing the emotional impact of time differences in football history\", \"inclusion_cues\": [\"What a difference a few years makes.\", \"The Difference 10 Years Makes\", \"Feels like yesterday in my head. 14 years tomorrow.\", \"12 years ago today. You couldn't write a script like this.\", \"Good old days.\", \"The Good Ol' Days...\", \"Was this ever a thing? What year?\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Years Difference\", \"purpose\": \"Discuss the impact of time on football memories\", \"emotion_tone\": \"nostalgic\", \"description\": \"Posts discussing the emotional impact of time differences in football history\", \"inclusion_cues\": [\"What a difference a few years makes.\", \"The Difference 10 Years Makes\", \"Feels like yesterday in my head. 14 years tomorrow.\", \"12 years ago today. You couldn't write a script like this.\", \"Good old days.\", \"The Good Ol' Days...\", \"Was this ever a thing? What year?\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 135,
+   "seed": 1749452706,
+   "seconds": 1.01
+  }
+ ]
+}

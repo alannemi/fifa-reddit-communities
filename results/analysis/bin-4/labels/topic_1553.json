@@ -1,0 +1,188 @@
+{
+ "period_bin": 4,
+ "topic_id": 1553,
+ "keywords": "new year, happy new, year happy, year new, enjoy new, merry, 2017 happy, season greetings, year lads, stay safe, 2015 happy, year season, trophies year, year football, greetings",
+ "n_sample_posts": 27,
+ "sample_ids": [
+  "2qy24v",
+  "2qzmg5",
+  "5lbybf",
+  "5lbybf",
+  "5ldqmt",
+  "5lfvw8",
+  "5l8uuj",
+  "7nrdaj",
+  "5ldysj",
+  "5lf6dv",
+  "5l9tow",
+  "67u6qz",
+  "7nbxsm",
+  "2qxqoq",
+  "7q2nb1",
+  "2qz321",
+  "7nd8fc",
+  "5ldcaw",
+  "2qyi4l",
+  "5lc2c6",
+  "34ux6l",
+  "7nbta7",
+  "7n0zmu",
+  "2qww6d",
+  "5lbrrr",
+  "2ogmnq",
+  "5lag1h"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "New Year Wishes",
+  "purpose": "Express well-wishes for the new year in a football/r/soccer context",
+  "emotion_tone": "positive, festive",
+  "description": "Posts containing greetings, wishes, and celebrations for the new year specifically related to football/r/soccer communities",
+  "inclusion_cues": [
+   "Happy New Year!!! R/soccer!!!",
+   "Happy New Year to all football lovers",
+   "Happy New Year, r/soccer lads / May your team win a lot of trophies this year",
+   "Season greetings from EatFootball.com",
+   "Happy Invincibles Day /r/soccer",
+   "Happy New Year Wherever You Are Whenever It Is New Year r/Soccer Fam"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "New Year Wishes",
+    "purpose": "Express well-wishes for the new year in a football/r/soccer context",
+    "emotion_tone": "positive, festive",
+    "description": "Posts containing greetings, wishes, and well-wishes for the new year, specifically related to football/r/soccer communities",
+    "inclusion_cues": [
+     "Happy New Year",
+     "2017 Happy New Year",
+     "Happy New Year to all football lovers",
+     "Enjoy New Year's Eve",
+     "Season greetings",
+     "Happy New Year r/soccer",
+     "Happy New Year wherever you are"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "New Year Wishes",
+    "purpose": "Express well-wishes for the new year in a football/r/soccer context",
+    "emotion_tone": "positive, festive",
+    "description": "Posts containing greetings, wishes, and celebrations for the new year specifically related to football/r/soccer communities",
+    "inclusion_cues": [
+     "Happy New Year!!! R/soccer!!!",
+     "Happy New Year to all football lovers",
+     "Happy New Year, r/soccer lads / May your team win a lot of trophies this year",
+     "Season greetings from EatFootball.com",
+     "Happy Invincibles Day /r/soccer",
+     "Happy New Year Wherever You Are Whenever It Is New Year r/Soccer Fam"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: new year, happy new, year happy, year new, enjoy new, merry, 2017 happy, season greetings, year lads, stay safe, 2015 happy, year season, trophies year, year football, greetings\nPosts (one per line, title first):\n- Happy New Year!!! R/soccer!!!!!\n- Happy New Year\n- Happy New Year!\n- Happy New Year!\n- Happy New Year!!\n- Happy New Year from Germany!\n- Happy New Year /r/soccer\n- Happy New Year to all football lovers\n- Happy New Year!\n- 2017 Happy New Year\n- Happy New Year!\n- Merry Slipmas Everyone! Three years ago today...\n- Happy New Year, r/soccer lads / May your team win a lot of trophies this year\n- HAPPY NEW YEAR MY FELLOW REDDITORS!\n- Happy New Year All soccer fans\n- Happy 2015! Mods are drunk or asleep – Post ZLATAN\n- Happy new year wishes\n- Didn't get enough attention on r/RocketLeague so I thought you guys would appreciate this. Happy New year all!\n- r/soccer, 2014 is coming to an end, it was awesome in here, it was awful in here, but we all share the same passion. Enjoy New Year's Eve, stay safe and I hope we can enjoy the wins and losses of 2015 like Scotland did in 2012.\n- Happy New Year Wherever You Are Whenever It Is New Year r/Soccer Fam!\n- May The 4Th be with you\n- Happy New Year\n- Season greetings from EatFootball.com Wishing you a lovely new year and an entertaining football calendar year!\n- Happy new year r/soccer! / Hoping you all and your teams will have a great 2015!\n- Happy New Year!\n- Happy Invincibles Day /r/soccer!\n- Happy new year my friends !\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"New Year Wishes\", \"purpose\": \"Express well-wishes for the new year in a football/r/soccer context\", \"emotion_tone\": \"positive, festive\", \"description\": \"Posts containing greetings, wishes, and well-wishes for the new year, specifically related to football/r/soccer communities\", \"inclusion_cues\": [\"Happy New Year\", \"2017 Happy New Year\", \"Happy New Year to all football lovers\", \"Enjoy New Year's Eve\", \"Season greetings\", \"Happy New Year r/soccer\", \"Happy New Year wherever you are\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "New Year Wishes",
+      "purpose": "Express well-wishes for the new year in a football/r/soccer context",
+      "emotion_tone": "positive, festive",
+      "description": "Posts containing greetings, wishes, and well-wishes for the new year, specifically related to football/r/soccer communities",
+      "inclusion_cues": [
+       "Happy New Year",
+       "2017 Happy New Year",
+       "Happy New Year to all football lovers",
+       "Enjoy New Year's Eve",
+       "Season greetings",
+       "Happy New Year r/soccer",
+       "Happy New Year wherever you are"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 137,
+   "seed": 1057770987,
+   "seconds": 0.79
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: new year, happy new, year happy, year new, enjoy new, merry, 2017 happy, season greetings, year lads, stay safe, 2015 happy, year season, trophies year, year football, greetings\nPosts (one per line, title first):\n- Happy New Year!!! R/soccer!!!!!\n- Happy New Year\n- Happy New Year!\n- Happy New Year!\n- Happy New Year!!\n- Happy New Year from Germany!\n- Happy New Year /r/soccer\n- Happy New Year to all football lovers\n- Happy New Year!\n- 2017 Happy New Year\n- Happy New Year!\n- Merry Slipmas Everyone! Three years ago today...\n- Happy New Year, r/soccer lads / May your team win a lot of trophies this year\n- HAPPY NEW YEAR MY FELLOW REDDITORS!\n- Happy New Year All soccer fans\n- Happy 2015! Mods are drunk or asleep – Post ZLATAN\n- Happy new year wishes\n- Didn't get enough attention on r/RocketLeague so I thought you guys would appreciate this. Happy New year all!\n- r/soccer, 2014 is coming to an end, it was awesome in here, it was awful in here, but we all share the same passion. Enjoy New Year's Eve, stay safe and I hope we can enjoy the wins and losses of 2015 like Scotland did in 2012.\n- Happy New Year Wherever You Are Whenever It Is New Year r/Soccer Fam!\n- May The 4Th be with you\n- Happy New Year\n- Season greetings from EatFootball.com Wishing you a lovely new year and an entertaining football calendar year!\n- Happy new year r/soccer! / Hoping you all and your teams will have a great 2015!\n- Happy New Year!\n- Happy Invincibles Day /r/soccer!\n- Happy new year my friends !\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"New Year Wishes\", \"purpose\": \"Express well-wishes for the new year in a football/r/soccer context\", \"emotion_tone\": \"positive, festive\", \"description\": \"Posts containing greetings, wishes, and celebrations for the new year specifically related to football/r/soccer communities\", \"inclusion_cues\": [\"Happy New Year!!! R/soccer!!!\", \"Happy New Year to all football lovers\", \"Happy New Year, r/soccer lads / May your team win a lot of trophies this year\", \"Season greetings from EatFootball.com\", \"Happy Invincibles Day /r/soccer\", \"Happy New Year Wherever You Are Whenever It Is New Year r/Soccer Fam\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "New Year Wishes",
+      "purpose": "Express well-wishes for the new year in a football/r/soccer context",
+      "emotion_tone": "positive, festive",
+      "description": "Posts containing greetings, wishes, and celebrations for the new year specifically related to football/r/soccer communities",
+      "inclusion_cues": [
+       "Happy New Year!!! R/soccer!!!",
+       "Happy New Year to all football lovers",
+       "Happy New Year, r/soccer lads / May your team win a lot of trophies this year",
+       "Season greetings from EatFootball.com",
+       "Happy Invincibles Day /r/soccer",
+       "Happy New Year Wherever You Are Whenever It Is New Year r/Soccer Fam"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 161,
+   "seed": 1667142234,
+   "seconds": 0.83
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: new year, happy new, year happy, year new, enjoy new, merry, 2017 happy, season greetings, year lads, stay safe, 2015 happy, year season, trophies year, year football, greetings\nPosts (one per line, title first):\n- Happy New Year!!! R/soccer!!!!!\n- Happy New Year\n- Happy New Year!\n- Happy New Year!\n- Happy New Year!!\n- Happy New Year from Germany!\n- Happy New Year /r/soccer\n- Happy New Year to all football lovers\n- Happy New Year!\n- 2017 Happy New Year\n- Happy New Year!\n- Merry Slipmas Everyone! Three years ago today...\n- Happy New Year, r/soccer lads / May your team win a lot of trophies this year\n- HAPPY NEW YEAR MY FELLOW REDDITORS!\n- Happy New Year All soccer fans\n- Happy 2015! Mods are drunk or asleep – Post ZLATAN\n- Happy new year wishes\n- Didn't get enough attention on r/RocketLeague so I thought you guys would appreciate this. Happy New year all!\n- r/soccer, 2014 is coming to an end, it was awesome in here, it was awful in here, but we all share the same passion. Enjoy New Year's Eve, stay safe and I hope we can enjoy the wins and losses of 2015 like Scotland did in 2012.\n- Happy New Year Wherever You Are Whenever It Is New Year r/Soccer Fam!\n- May The 4Th be with you\n- Happy New Year\n- Season greetings from EatFootball.com Wishing you a lovely new year and an entertaining football calendar year!\n- Happy new year r/soccer! / Hoping you all and your teams will have a great 2015!\n- Happy New Year!\n- Happy Invincibles Day /r/soccer!\n- Happy new year my friends !\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"New Year Wishes\", \"purpose\": \"Express well-wishes for the new year in a football/r/soccer context\", \"emotion_tone\": \"positive, festive\", \"description\": \"Posts containing greetings, wishes, and well-wishes for the new year, specifically related to football/r/soccer communities\", \"inclusion_cues\": [\"Happy New Year\", \"2017 Happy New Year\", \"Happy New Year to all football lovers\", \"Enjoy New Year's Eve\", \"Season greetings\", \"Happy New Year r/soccer\", \"Happy New Year wherever you are\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"New Year Wishes\", \"purpose\": \"Express well-wishes for the new year in a football/r/soccer context\", \"emotion_tone\": \"positive, festive\", \"description\": \"Posts containing greetings, wishes, and celebrations for the new year specifically related to football/r/soccer communities\", \"inclusion_cues\": [\"Happy New Year!!! R/soccer!!!\", \"Happy New Year to all football lovers\", \"Happy New Year, r/soccer lads / May your team win a lot of trophies this year\", \"Season greetings from EatFootball.com\", \"Happy Invincibles Day /r/soccer\", \"Happy New Year Wherever You Are Whenever It Is New Year r/Soccer Fam\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"New Year Wishes\", \"purpose\": \"Express well-wishes for the new year in a football/r/soccer context\", \"emotion_tone\": \"positive, festive\", \"description\": \"Posts containing greetings, wishes, and celebrations for the new year specifically related to football/r/soccer communities\", \"inclusion_cues\": [\"Happy New Year!!! R/soccer!!!\", \"Happy New Year to all football lovers\", \"Happy New Year, r/soccer lads / May your team win a lot of trophies this year\", \"Season greetings from EatFootball.com\", \"Happy Invincibles Day /r/soccer\", \"Happy New Year Wherever You Are Whenever It Is New Year r/Soccer Fam\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 160,
+   "seed": 2779002990,
+   "seconds": 0.85
+  }
+ ]
+}

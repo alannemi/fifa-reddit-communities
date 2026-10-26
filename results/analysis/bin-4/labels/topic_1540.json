@@ -1,0 +1,179 @@
+{
+ "period_bin": 4,
+ "topic_id": 1540,
+ "keywords": "ribéry, ribery, franck ribéry, franck ribery, german ribery, frank ribéry, injury bayern, ribery schweinsteiger, ribery miss, season injury, news bayern, munich winger, bundesliga season, comeback france, porto bayern",
+ "n_sample_posts": 26,
+ "sample_ids": [
+  "4aik3o",
+  "73svzl",
+  "3v63a9",
+  "45aj5c",
+  "39wo69",
+  "32ffat",
+  "3pp7mh",
+  "57mqs9",
+  "3v89sy",
+  "3vf97p",
+  "3uztp2",
+  "44r7ev",
+  "3vjv5g",
+  "3bvcf0",
+  "73n9oz",
+  "3vbng8",
+  "3b2uyg",
+  "3qurvs",
+  "3nz089",
+  "39ldyt",
+  "3nwqjj",
+  "39ku3w",
+  "3dmmdi",
+  "76in9u",
+  "7b542j",
+  "3pr3yq"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Ribéry Injury Recovery",
+  "purpose": "Tracking Franck Ribéry's recovery from injury and return to football",
+  "emotion_tone": "positive",
+  "description": "Posts about Ribéry's injury status, training updates, and return to football, including recovery progress, setbacks, and potential return to play.",
+  "inclusion_cues": [
+   "Franck Ribéry's injury status",
+   "Training updates and recovery progress",
+   "Return to football and potential return to play",
+   "Injury diagnosis and treatment"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Franck Ribéry Injury Recovery",
+    "purpose": "Tracking Franck Ribéry's recovery from injury and return to football",
+    "emotion_tone": "positive, anxious, hopeful",
+    "description": "Posts discussing Ribéry's injury status, recovery progress, and return to training or football",
+    "inclusion_cues": [
+     "Franck Ribéry",
+     "injury",
+     "training",
+     "return",
+     "recovery",
+     "Bundesliga"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Ribéry Injury Recovery",
+    "purpose": "Tracking Franck Ribéry's recovery from injury and return to football",
+    "emotion_tone": "positive",
+    "description": "Posts about Ribéry's injury status, training updates, and return to football, including recovery progress, setbacks, and potential return to play.",
+    "inclusion_cues": [
+     "Franck Ribéry's injury status",
+     "Training updates and recovery progress",
+     "Return to football and potential return to play",
+     "Injury diagnosis and treatment"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: ribéry, ribery, franck ribéry, franck ribery, german ribery, frank ribéry, injury bayern, ribery schweinsteiger, ribery miss, season injury, news bayern, munich winger, bundesliga season, comeback france, porto bayern\nPosts (one per line, title first):\n- Ribéry opens the door for a comeback in France NT for the Euros\n- Franck Ribery has suffered an LCL tear in his left knee.\n- Good news Bayern Munich fans, Franck Ribéry is back in training\n- BR.de | Franck Ribéry didn't complete today's training session. Still unclear if he sustained a new injury\n- Ribery likely not only to miss the start of the training but also the first game(s) of the new Season / Injury happened on march 11th, from then it was said it got better, worse and better again etc.. Now he got to wear a hard plaster for 4 weeks as his ankle needs to be tranquilized. source in germ\n- Ribery and Schweinsteiger to miss champions league match with Porto\n- Ribéry had to abandon practice session after 17 minutes\n- Bayern Munich's Franck Ribery ruled out for up to three weeks\n- Ribery back in training after nine months. As if they needed more help.\n- Ribéry's on his way back. Last minute addition to the traveling list to Gladbach.\n- This week, Ribery will be back for team training\n- Bayern Munich winger Franck Ribery returns to training\n- Ribery is back\n- Ribéry quashes retirement rumors, \"I will come back, that is certain!\"\n- [German] Ribery early diagnosis: Ligament tearing.\n- Ribery welcomed back in training\n- Ribery considering retirement due to ankle injury\n- Ribéry back in football boots\n- Frank Ribéry running again!\n- Bayern Munich say Franck Ribery injury has not improved\n- Ribery making good progress\n- Ribery has to get surgery and is out indefinitely\n- Ribery will miss start of Bundesliga season\n- Ribery might be fit again before the winter break\n- Franck Ribéry - Finally training on the pitch again!\n- All-clear signal after the setback in training! Ribery is completely pain-free[x-post from /r/fcbayern]\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Franck Ribéry Injury Recovery\", \"purpose\": \"Tracking Franck Ribéry's recovery from injury and return to football\", \"emotion_tone\": \"positive, anxious, hopeful\", \"description\": \"Posts discussing Ribéry's injury status, recovery progress, and return to training or football\", \"inclusion_cues\": [\"Franck Ribéry\", \"injury\", \"training\", \"return\", \"recovery\", \"Bundesliga\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Franck Ribéry Injury Recovery",
+      "purpose": "Tracking Franck Ribéry's recovery from injury and return to football",
+      "emotion_tone": "positive, anxious, hopeful",
+      "description": "Posts discussing Ribéry's injury status, recovery progress, and return to training or football",
+      "inclusion_cues": [
+       "Franck Ribéry",
+       "injury",
+       "training",
+       "return",
+       "recovery",
+       "Bundesliga"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 112,
+   "seed": 2581572635,
+   "seconds": 1.68
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: ribéry, ribery, franck ribéry, franck ribery, german ribery, frank ribéry, injury bayern, ribery schweinsteiger, ribery miss, season injury, news bayern, munich winger, bundesliga season, comeback france, porto bayern\nPosts (one per line, title first):\n- Ribéry opens the door for a comeback in France NT for the Euros\n- Franck Ribery has suffered an LCL tear in his left knee.\n- Good news Bayern Munich fans, Franck Ribéry is back in training\n- BR.de | Franck Ribéry didn't complete today's training session. Still unclear if he sustained a new injury\n- Ribery likely not only to miss the start of the training but also the first game(s) of the new Season / Injury happened on march 11th, from then it was said it got better, worse and better again etc.. Now he got to wear a hard plaster for 4 weeks as his ankle needs to be tranquilized. source in germ\n- Ribery and Schweinsteiger to miss champions league match with Porto\n- Ribéry had to abandon practice session after 17 minutes\n- Bayern Munich's Franck Ribery ruled out for up to three weeks\n- Ribery back in training after nine months. As if they needed more help.\n- Ribéry's on his way back. Last minute addition to the traveling list to Gladbach.\n- This week, Ribery will be back for team training\n- Bayern Munich winger Franck Ribery returns to training\n- Ribery is back\n- Ribéry quashes retirement rumors, \"I will come back, that is certain!\"\n- [German] Ribery early diagnosis: Ligament tearing.\n- Ribery welcomed back in training\n- Ribery considering retirement due to ankle injury\n- Ribéry back in football boots\n- Frank Ribéry running again!\n- Bayern Munich say Franck Ribery injury has not improved\n- Ribery making good progress\n- Ribery has to get surgery and is out indefinitely\n- Ribery will miss start of Bundesliga season\n- Ribery might be fit again before the winter break\n- Franck Ribéry - Finally training on the pitch again!\n- All-clear signal after the setback in training! Ribery is completely pain-free[x-post from /r/fcbayern]\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Ribéry Injury Recovery\", \"purpose\": \"Tracking Franck Ribéry's recovery from injury and return to football\", \"emotion_tone\": \"positive\", \"description\": \"Posts about Ribéry's injury status, training updates, and return to football, including recovery progress, setbacks, and potential return to play.\", \"inclusion_cues\": [\"Franck Ribéry's injury status\", \"Training updates and recovery progress\", \"Return to football and potential return to play\", \"Injury diagnosis and treatment\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Ribéry Injury Recovery",
+      "purpose": "Tracking Franck Ribéry's recovery from injury and return to football",
+      "emotion_tone": "positive",
+      "description": "Posts about Ribéry's injury status, training updates, and return to football, including recovery progress, setbacks, and potential return to play.",
+      "inclusion_cues": [
+       "Franck Ribéry's injury status",
+       "Training updates and recovery progress",
+       "Return to football and potential return to play",
+       "Injury diagnosis and treatment"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 123,
+   "seed": 3085035059,
+   "seconds": 0.95
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: ribéry, ribery, franck ribéry, franck ribery, german ribery, frank ribéry, injury bayern, ribery schweinsteiger, ribery miss, season injury, news bayern, munich winger, bundesliga season, comeback france, porto bayern\nPosts (one per line, title first):\n- Ribéry opens the door for a comeback in France NT for the Euros\n- Franck Ribery has suffered an LCL tear in his left knee.\n- Good news Bayern Munich fans, Franck Ribéry is back in training\n- BR.de | Franck Ribéry didn't complete today's training session. Still unclear if he sustained a new injury\n- Ribery likely not only to miss the start of the training but also the first game(s) of the new Season / Injury happened on march 11th, from then it was said it got better, worse and better again etc.. Now he got to wear a hard plaster for 4 weeks as his ankle needs to be tranquilized. source in germ\n- Ribery and Schweinsteiger to miss champions league match with Porto\n- Ribéry had to abandon practice session after 17 minutes\n- Bayern Munich's Franck Ribery ruled out for up to three weeks\n- Ribery back in training after nine months. As if they needed more help.\n- Ribéry's on his way back. Last minute addition to the traveling list to Gladbach.\n- This week, Ribery will be back for team training\n- Bayern Munich winger Franck Ribery returns to training\n- Ribery is back\n- Ribéry quashes retirement rumors, \"I will come back, that is certain!\"\n- [German] Ribery early diagnosis: Ligament tearing.\n- Ribery welcomed back in training\n- Ribery considering retirement due to ankle injury\n- Ribéry back in football boots\n- Frank Ribéry running again!\n- Bayern Munich say Franck Ribery injury has not improved\n- Ribery making good progress\n- Ribery has to get surgery and is out indefinitely\n- Ribery will miss start of Bundesliga season\n- Ribery might be fit again before the winter break\n- Franck Ribéry - Finally training on the pitch again!\n- All-clear signal after the setback in training! Ribery is completely pain-free[x-post from /r/fcbayern]\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Franck Ribéry Injury Recovery\", \"purpose\": \"Tracking Franck Ribéry's recovery from injury and return to football\", \"emotion_tone\": \"positive, anxious, hopeful\", \"description\": \"Posts discussing Ribéry's injury status, recovery progress, and return to training or football\", \"inclusion_cues\": [\"Franck Ribéry\", \"injury\", \"training\", \"return\", \"recovery\", \"Bundesliga\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Ribéry Injury Recovery\", \"purpose\": \"Tracking Franck Ribéry's recovery from injury and return to football\", \"emotion_tone\": \"positive\", \"description\": \"Posts about Ribéry's injury status, training updates, and return to football, including recovery progress, setbacks, and potential return to play.\", \"inclusion_cues\": [\"Franck Ribéry's injury status\", \"Training updates and recovery progress\", \"Return to football and potential return to play\", \"Injury diagnosis and treatment\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Franck Ribéry Injury Recovery\", \"purpose\": \"Tracking Franck Ribéry's recovery from injury and return to football\", \"emotion_tone\": \"positive, anxious, hopeful\", \"description\": \"Posts discussing Ribéry's injury status, recovery progress, and return to training or football, including setbacks, treatment, and potential return to play.\", \"inclusion_cues\": [\"Franck Ribéry\", \"injury\", \"training\", \"return\", \"recovery\", \"Bundesliga\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 122,
+   "seed": 373407242,
+   "seconds": 0.85
+  }
+ ]
+}

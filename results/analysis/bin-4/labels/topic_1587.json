@@ -1,0 +1,173 @@
+{
+ "period_bin": 4,
+ "topic_id": 1587,
+ "keywords": "banned football, banned league, team banned, sponsored jerseys, banned wearing, jerseys football, porn website, sports football, shirt sponsor, banned, italian football, final sporting, square fc, stadium match, raiders",
+ "n_sample_posts": 25,
+ "sample_ids": [
+  "2ksp55",
+  "2kuodk",
+  "6fqtbn",
+  "2kslni",
+  "2lwe7i",
+  "2yqepy",
+  "2kuieg",
+  "2ksw3k",
+  "33e9bd",
+  "5meuyt",
+  "7t4xoe",
+  "4bcc0q",
+  "2kw0vc",
+  "327z0s",
+  "6g1eti",
+  "3u754p",
+  "2xnl18",
+  "682mto",
+  "6fmvvt",
+  "740l23",
+  "2y3wzx",
+  "2ks4zp",
+  "2xrg3q",
+  "3s8oa8",
+  "3coi3s"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Banned Football",
+  "purpose": "Explain the ban of football teams or players due to sponsorship or content",
+  "emotion_tone": "Critical",
+  "description": "Posts discussing teams banned due to sponsorship, content, or related issues",
+  "inclusion_cues": [
+   "PornHub sponsored team banned",
+   "Football team sponsored by porn banned",
+   "Porn site RedTube becomes shirt sponsor"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Banned Sponsorship",
+    "purpose": "Regulation of sponsorships in football",
+    "emotion_tone": "Critical",
+    "description": "Posts discussing teams or sponsors banned due to inappropriate content, including pornographic material.",
+    "inclusion_cues": [
+     "PornHub sponsored team banned from league",
+     "Football team sponsored by porn banned",
+     "Porn site RedTube becomes shirt sponsor for team",
+     "PornHub on Bayern Munich vs Porto",
+     "Football team sponsored by Pornhub is banned from league"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Banned Football",
+    "purpose": "Explain the ban of football teams or players due to sponsorship or content",
+    "emotion_tone": "Critical",
+    "description": "Posts discussing teams banned due to sponsorship, content, or related issues",
+    "inclusion_cues": [
+     "PornHub sponsored team banned",
+     "Football team sponsored by porn banned",
+     "Porn site RedTube becomes shirt sponsor"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: banned football, banned league, team banned, sponsored jerseys, banned wearing, jerseys football, porn website, sports football, shirt sponsor, banned, italian football, final sporting, square fc, stadium match, raiders\nPosts (one per line, title first):\n- Pornhub sponsored team BANNED from football league\n- PornHub sponsored football team banned from university league\n- Porn site RedTube becomes shirt sponsor for Massachusetts football team Washington Square FC.\n- Football team are banned from wearing their Pornhub sponsored jerseys\n- PornHub Sponsored Football Team Banned From League\n- And all the Porn aficionados say to themselves, \"Hehehe\"\n- Soccer team dawns Pornhub on jerseys\n- Football team sponsored by porn banned\n- PornHub on Bayern Munich vs Porto\n- Effect of Champions League final on pornhub's traffic.\n- Following Coentrão's incident during the Portuguese League Cup semi-final, Sporting CP has posted a tweet of him hugging William Carvalho saying \"For us, there is only one colour: GREEN\"\n- Looks like Clint finally discovered internet porn...\n- Rutherford Raiders new sponsor: Pornhub\n- Ghanaian side's Champions League defeat based on too much porn\n- Porn site RedTube sponsors amateur soccer team\n- Pornhub on Twitter \"Don't worry Roma.. We have a special place on the site for you. Its called 'Gangbang'\"\n- FOX SPORTS Football on Twitter: \"Coutinho's goal against Manchester City was so good it got uploaded to a porn website\n- A supporter watching porn at Emirates Stadium during the match\n- Porn website RedTube becomes shirt sponsor for Massachusetts football team\n- German amateur team SV Oberwürzbach finds a sponsor in porn star Lena Nitro\n- TIL Getafe released a porn video to increase season ticket holders [NSFW]\n- Football team sponsored by Pornhub is banned from league\n- Coutinho's goal vs City has earned an upload to Pornhub.com, labeled \"Pure filth\"\n- Pornhub genuinely offer to sponsor Italian football team\n- [NSFW] I'm pretty sure this isn't allowed here but why the hell does Getafe have a porn flick??\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Banned Sponsorship\", \"purpose\": \"Regulation of sponsorships in football\", \"emotion_tone\": \"Critical\", \"description\": \"Posts discussing teams or sponsors banned due to inappropriate content, including pornographic material.\", \"inclusion_cues\": [\"PornHub sponsored team banned from league\", \"Football team sponsored by porn banned\", \"Porn site RedTube becomes shirt sponsor for team\", \"PornHub on Bayern Munich vs Porto\", \"Football team sponsored by Pornhub is banned from league\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Banned Sponsorship",
+      "purpose": "Regulation of sponsorships in football",
+      "emotion_tone": "Critical",
+      "description": "Posts discussing teams or sponsors banned due to inappropriate content, including pornographic material.",
+      "inclusion_cues": [
+       "PornHub sponsored team banned from league",
+       "Football team sponsored by porn banned",
+       "Porn site RedTube becomes shirt sponsor for team",
+       "PornHub on Bayern Munich vs Porto",
+       "Football team sponsored by Pornhub is banned from league"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 116,
+   "seed": 2835379055,
+   "seconds": 0.73
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: banned football, banned league, team banned, sponsored jerseys, banned wearing, jerseys football, porn website, sports football, shirt sponsor, banned, italian football, final sporting, square fc, stadium match, raiders\nPosts (one per line, title first):\n- Pornhub sponsored team BANNED from football league\n- PornHub sponsored football team banned from university league\n- Porn site RedTube becomes shirt sponsor for Massachusetts football team Washington Square FC.\n- Football team are banned from wearing their Pornhub sponsored jerseys\n- PornHub Sponsored Football Team Banned From League\n- And all the Porn aficionados say to themselves, \"Hehehe\"\n- Soccer team dawns Pornhub on jerseys\n- Football team sponsored by porn banned\n- PornHub on Bayern Munich vs Porto\n- Effect of Champions League final on pornhub's traffic.\n- Following Coentrão's incident during the Portuguese League Cup semi-final, Sporting CP has posted a tweet of him hugging William Carvalho saying \"For us, there is only one colour: GREEN\"\n- Looks like Clint finally discovered internet porn...\n- Rutherford Raiders new sponsor: Pornhub\n- Ghanaian side's Champions League defeat based on too much porn\n- Porn site RedTube sponsors amateur soccer team\n- Pornhub on Twitter \"Don't worry Roma.. We have a special place on the site for you. Its called 'Gangbang'\"\n- FOX SPORTS Football on Twitter: \"Coutinho's goal against Manchester City was so good it got uploaded to a porn website\n- A supporter watching porn at Emirates Stadium during the match\n- Porn website RedTube becomes shirt sponsor for Massachusetts football team\n- German amateur team SV Oberwürzbach finds a sponsor in porn star Lena Nitro\n- TIL Getafe released a porn video to increase season ticket holders [NSFW]\n- Football team sponsored by Pornhub is banned from league\n- Coutinho's goal vs City has earned an upload to Pornhub.com, labeled \"Pure filth\"\n- Pornhub genuinely offer to sponsor Italian football team\n- [NSFW] I'm pretty sure this isn't allowed here but why the hell does Getafe have a porn flick??\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Banned Football\", \"purpose\": \"Explain the ban of football teams or players due to sponsorship or content\", \"emotion_tone\": \"Critical\", \"description\": \"Posts discussing teams banned due to sponsorship, content, or related issues\", \"inclusion_cues\": [\"PornHub sponsored team banned\", \"Football team sponsored by porn banned\", \"Porn site RedTube becomes shirt sponsor\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Banned Football",
+      "purpose": "Explain the ban of football teams or players due to sponsorship or content",
+      "emotion_tone": "Critical",
+      "description": "Posts discussing teams banned due to sponsorship, content, or related issues",
+      "inclusion_cues": [
+       "PornHub sponsored team banned",
+       "Football team sponsored by porn banned",
+       "Porn site RedTube becomes shirt sponsor"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 96,
+   "seed": 3013322117,
+   "seconds": 0.75
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: banned football, banned league, team banned, sponsored jerseys, banned wearing, jerseys football, porn website, sports football, shirt sponsor, banned, italian football, final sporting, square fc, stadium match, raiders\nPosts (one per line, title first):\n- Pornhub sponsored team BANNED from football league\n- PornHub sponsored football team banned from university league\n- Porn site RedTube becomes shirt sponsor for Massachusetts football team Washington Square FC.\n- Football team are banned from wearing their Pornhub sponsored jerseys\n- PornHub Sponsored Football Team Banned From League\n- And all the Porn aficionados say to themselves, \"Hehehe\"\n- Soccer team dawns Pornhub on jerseys\n- Football team sponsored by porn banned\n- PornHub on Bayern Munich vs Porto\n- Effect of Champions League final on pornhub's traffic.\n- Following Coentrão's incident during the Portuguese League Cup semi-final, Sporting CP has posted a tweet of him hugging William Carvalho saying \"For us, there is only one colour: GREEN\"\n- Looks like Clint finally discovered internet porn...\n- Rutherford Raiders new sponsor: Pornhub\n- Ghanaian side's Champions League defeat based on too much porn\n- Porn site RedTube sponsors amateur soccer team\n- Pornhub on Twitter \"Don't worry Roma.. We have a special place on the site for you. Its called 'Gangbang'\"\n- FOX SPORTS Football on Twitter: \"Coutinho's goal against Manchester City was so good it got uploaded to a porn website\n- A supporter watching porn at Emirates Stadium during the match\n- Porn website RedTube becomes shirt sponsor for Massachusetts football team\n- German amateur team SV Oberwürzbach finds a sponsor in porn star Lena Nitro\n- TIL Getafe released a porn video to increase season ticket holders [NSFW]\n- Football team sponsored by Pornhub is banned from league\n- Coutinho's goal vs City has earned an upload to Pornhub.com, labeled \"Pure filth\"\n- Pornhub genuinely offer to sponsor Italian football team\n- [NSFW] I'm pretty sure this isn't allowed here but why the hell does Getafe have a porn flick??\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Banned Sponsorship\", \"purpose\": \"Regulation of sponsorships in football\", \"emotion_tone\": \"Critical\", \"description\": \"Posts discussing teams or sponsors banned due to inappropriate content, including pornographic material.\", \"inclusion_cues\": [\"PornHub sponsored team banned from league\", \"Football team sponsored by porn banned\", \"Porn site RedTube becomes shirt sponsor for team\", \"PornHub on Bayern Munich vs Porto\", \"Football team sponsored by Pornhub is banned from league\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Banned Football\", \"purpose\": \"Explain the ban of football teams or players due to sponsorship or content\", \"emotion_tone\": \"Critical\", \"description\": \"Posts discussing teams banned due to sponsorship, content, or related issues\", \"inclusion_cues\": [\"PornHub sponsored team banned\", \"Football team sponsored by porn banned\", \"Porn site RedTube becomes shirt sponsor\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Banned Sponsorship\", \"purpose\": \"Regulation of sponsorships in football\", \"emotion_tone\": \"Critical\", \"description\": \"Posts discussing teams or sponsors banned due to inappropriate content, including pornographic material.\", \"inclusion_cues\": [\"PornHub sponsored team banned from league\", \"Football team sponsored by porn banned\", \"Porn site RedTube becomes shirt sponsor for team\", \"PornHub on Bayern Munich vs Porto\", \"Football team sponsored by Pornhub is banned from league\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 115,
+   "seed": 1851031064,
+   "seconds": 0.96
+  }
+ ]
+}

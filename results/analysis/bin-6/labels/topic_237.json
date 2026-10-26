@@ -1,0 +1,200 @@
+{
+ "period_bin": 6,
+ "topic_id": 237,
+ "keywords": "al gharafa, al muwallad, al ahli, ahli al, al wakarah, fahad al, al hilal, ahli ksa, qat al, arabi al, wakarah al, merrikh al, alarabi alrayan, duhail al, wehdat al",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "blgv84",
+  "a6f5bu",
+  "a2emgl",
+  "ekx81w",
+  "blg8x0",
+  "aexjko",
+  "aexlju",
+  "b6nhfj",
+  "a6gxcs",
+  "cmszhz",
+  "ofqxj8",
+  "qeq9dy",
+  "tzahvq",
+  "ofqyf9",
+  "9pvshe",
+  "a0a2bc",
+  "sx8i0r",
+  "a0a9s7",
+  "ekww8a",
+  "a89z0j",
+  "9rhews",
+  "u3oevo",
+  "a9ckhr",
+  "bkbar2",
+  "cmt1mo",
+  "sjpdvr",
+  "b6npmi",
+  "aid1w4",
+  "bvoog9",
+  "aevw9f",
+  "s1ea4d",
+  "a1uf50",
+  "aexk55",
+  "qlzbg8",
+  "u3ohw3",
+  "ekwdm4",
+  "a2c5ay",
+  "aaluzz",
+  "a89slh",
+  "a2ezuy"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Al-Ahli",
+  "purpose": "Football match results and commentary",
+  "emotion_tone": "Excitement",
+  "description": "Posts related to Al-Ahli football matches, including scores, players, and commentary",
+  "inclusion_cues": [
+   "Al-Ahli [1]–0 Ohod - Djaniny 7'",
+   "Al-Ahli 4 - [5] Al-Raed - Saleh Al-Shehri 70'",
+   "Al-Ahli [2]–Ohod - Djaniny 15'"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Al-Ahli",
+    "purpose": "Football match results",
+    "emotion_tone": "Competitive",
+    "description": "Posts related to Al-Ahli football matches, including scores, players, and match details.",
+    "inclusion_cues": [
+     "Al-Ahli",
+     "Al-Sadd",
+     "Al-Hazem",
+     "Djaniny",
+     "Akram Afif",
+     "Saleh Al-Shehri",
+     "Arthur",
+     "Brahian Alemán",
+     "Fahad Al-Muwallad",
+     "Youssef Msakni"
+    ],
+    "n_cues_given": 11
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Al-Ahli",
+    "purpose": "Football match results and commentary",
+    "emotion_tone": "Excitement",
+    "description": "Posts related to Al-Ahli football matches, including scores, players, and commentary",
+    "inclusion_cues": [
+     "Al-Ahli [1]–0 Ohod - Djaniny 7'",
+     "Al-Ahli 4 - [5] Al-Raed - Saleh Al-Shehri 70'",
+     "Al-Ahli [2]–Ohod - Djaniny 15'"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: al gharafa, al muwallad, al ahli, ahli al, al wakarah, fahad al, al hilal, ahli ksa, qat al, arabi al, wakarah al, merrikh al, alarabi alrayan, duhail al, wehdat al\nPosts (one per line, title first):\n- Al-Sadd QAT 2-[1] Al-Ahli KSA - Omar Al-Somma\n- Al-Hilal 1 - [1] Al-Hazem - Mohammed Al Saiari 46'\n- Al-Ittihad 0 - [2] Al-Hazem- Mohammed Al Saiari 51'\n- Al-Arabi 1-[5] Al-Sadd : Akram Afif 76'\n- Al-Sadd QAT [2]-0 Al-Ahli KSA - Akram Afif\n- Al Ahli [1]–0 Ohod - Djaniny 7'\n- Al Ahli [4]–1 Ohod - Djaniny 65'\n- Al-Ahli 0 - [2] Al-Raed - Saleh Al-Shehri 6'\n- Al-Ahli 0 - [1] Al-Shabab - Arthur 90+6 '\n- Al-Duhail 0-[1] Al-Sadd - 29' Akram Afif\n- Connah's Quay Nomads 1-[1] Alashkert - David Khurtsidze 21'\n- Al Hilal 2-(2) Al Raed - Eder\n- Istiqlol Dushanbe [2] - 2 Al Rayyan - N.Chicherin 66'\n- Connah's Quay Nomads 1-[2] Alashkert - David Khurtsidze 44'\n- Ettifaq FC [4] - [1] Al-Ahli - Brahian Alemán '63\n- Al-Ittihad [1] - 0 Al-Ahli - Fahad Al-Muwallad 7'\n- ASEC Mimosas 3-[1] Berkane - Charki El Bahri 83'\n- Omar Al Somah - Al Ittihad 1–[1] Al Ahli\n- Al-Arabi 1-[4] Al-Sadd : Hassan Al-Haydos 55'\n- Al-Hilal [2] - 1 Al-Ahli - Yasir Al-Shahrani 47'\n- Al Hilal (2) - Al Ittihad (1) - Bafetimbi Gomis 74'\n- Al Duhail [1]-1 Pakhtakor - Edmílson Junior 66'\n- Badsha Mohammed Arthuro Bin Vidal\n- AlArabi 1-[1] AlRayan. Rodrigo Tabata\n- Al-Duhail [1]-1 Al-Sadd - 44' Youssef Msakni\n- Al-Jazira 3-[1] Pirae - Mohammed Rabii OG 48'\n- Al-Ahli 4 - [5] Al-Raed - Saleh Al-Shehri 70'\n- Al Hilal [1]–1 Al Faisaly - Bafetimbi Gomis\n- Ramadan Kareem yall...🤦‍♂️\n- Al-Hilal 1 - [1] Al-Raed - Mazen Abusharara 94'\n- Al Tai 0-(4) Al Hilal - Marega\n- Al-Ahli [1] - 0 Al-Fayha - Omar Al-Soma 69'\n- Al Ahli [2]–Ohod - Djaniny 15'\n- Al-Duhail 0 - [1] Al-Sadd Baghdad Bounedjah 4’\n- Al Duhail 1-[2] Pakhtakor - Sardor Sabirkhodjaev 69'\n- Al-Arabi 1-[1] Al-Sadd : Ró-Ró 31'\n- The story of youcef atal\n- Al-Ettifaq [1] - 0 Al-Ittihad - Mohammed Al Kuwaykibi 27'\n- Al-Hilal [1] - 1 Al-Ahli - Bafétimbi Gomis (PK) 45+3'\n- Al-Ittihad [2] - 2 Al-Hazem - Aleksandar Pesic 90'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Al-Ahli\", \"purpose\": \"Football match results\", \"emotion_tone\": \"Competitive\", \"description\": \"Posts related to Al-Ahli football matches, including scores, players, and match details.\", \"inclusion_cues\": [\"Al-Ahli\", \"Al-Sadd\", \"Al-Hazem\", \"Djaniny\", \"Akram Afif\", \"Saleh Al-Shehri\", \"Arthur\", \"Brahian Alemán\", \"Fahad Al-Muwallad\", \"Youssef Msakni\", \"Bafetimbi Gomis\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Al-Ahli",
+      "purpose": "Football match results",
+      "emotion_tone": "Competitive",
+      "description": "Posts related to Al-Ahli football matches, including scores, players, and match details.",
+      "inclusion_cues": [
+       "Al-Ahli",
+       "Al-Sadd",
+       "Al-Hazem",
+       "Djaniny",
+       "Akram Afif",
+       "Saleh Al-Shehri",
+       "Arthur",
+       "Brahian Alemán",
+       "Fahad Al-Muwallad",
+       "Youssef Msakni"
+      ],
+      "n_cues_given": 11
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 144,
+   "seed": 1898053597,
+   "seconds": 0.59
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: al gharafa, al muwallad, al ahli, ahli al, al wakarah, fahad al, al hilal, ahli ksa, qat al, arabi al, wakarah al, merrikh al, alarabi alrayan, duhail al, wehdat al\nPosts (one per line, title first):\n- Al-Sadd QAT 2-[1] Al-Ahli KSA - Omar Al-Somma\n- Al-Hilal 1 - [1] Al-Hazem - Mohammed Al Saiari 46'\n- Al-Ittihad 0 - [2] Al-Hazem- Mohammed Al Saiari 51'\n- Al-Arabi 1-[5] Al-Sadd : Akram Afif 76'\n- Al-Sadd QAT [2]-0 Al-Ahli KSA - Akram Afif\n- Al Ahli [1]–0 Ohod - Djaniny 7'\n- Al Ahli [4]–1 Ohod - Djaniny 65'\n- Al-Ahli 0 - [2] Al-Raed - Saleh Al-Shehri 6'\n- Al-Ahli 0 - [1] Al-Shabab - Arthur 90+6 '\n- Al-Duhail 0-[1] Al-Sadd - 29' Akram Afif\n- Connah's Quay Nomads 1-[1] Alashkert - David Khurtsidze 21'\n- Al Hilal 2-(2) Al Raed - Eder\n- Istiqlol Dushanbe [2] - 2 Al Rayyan - N.Chicherin 66'\n- Connah's Quay Nomads 1-[2] Alashkert - David Khurtsidze 44'\n- Ettifaq FC [4] - [1] Al-Ahli - Brahian Alemán '63\n- Al-Ittihad [1] - 0 Al-Ahli - Fahad Al-Muwallad 7'\n- ASEC Mimosas 3-[1] Berkane - Charki El Bahri 83'\n- Omar Al Somah - Al Ittihad 1–[1] Al Ahli\n- Al-Arabi 1-[4] Al-Sadd : Hassan Al-Haydos 55'\n- Al-Hilal [2] - 1 Al-Ahli - Yasir Al-Shahrani 47'\n- Al Hilal (2) - Al Ittihad (1) - Bafetimbi Gomis 74'\n- Al Duhail [1]-1 Pakhtakor - Edmílson Junior 66'\n- Badsha Mohammed Arthuro Bin Vidal\n- AlArabi 1-[1] AlRayan. Rodrigo Tabata\n- Al-Duhail [1]-1 Al-Sadd - 44' Youssef Msakni\n- Al-Jazira 3-[1] Pirae - Mohammed Rabii OG 48'\n- Al-Ahli 4 - [5] Al-Raed - Saleh Al-Shehri 70'\n- Al Hilal [1]–1 Al Faisaly - Bafetimbi Gomis\n- Ramadan Kareem yall...🤦‍♂️\n- Al-Hilal 1 - [1] Al-Raed - Mazen Abusharara 94'\n- Al Tai 0-(4) Al Hilal - Marega\n- Al-Ahli [1] - 0 Al-Fayha - Omar Al-Soma 69'\n- Al Ahli [2]–Ohod - Djaniny 15'\n- Al-Duhail 0 - [1] Al-Sadd Baghdad Bounedjah 4’\n- Al Duhail 1-[2] Pakhtakor - Sardor Sabirkhodjaev 69'\n- Al-Arabi 1-[1] Al-Sadd : Ró-Ró 31'\n- The story of youcef atal\n- Al-Ettifaq [1] - 0 Al-Ittihad - Mohammed Al Kuwaykibi 27'\n- Al-Hilal [1] - 1 Al-Ahli - Bafétimbi Gomis (PK) 45+3'\n- Al-Ittihad [2] - 2 Al-Hazem - Aleksandar Pesic 90'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Al-Ahli\", \"purpose\": \"Football match results and commentary\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts related to Al-Ahli football matches, including scores, players, and commentary\", \"inclusion_cues\": [\"Al-Ahli [1]–0 Ohod - Djaniny 7'\", \"Al-Ahli 4 - [5] Al-Raed - Saleh Al-Shehri 70'\", \"Al-Ahli [2]–Ohod - Djaniny 15'\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Al-Ahli",
+      "purpose": "Football match results and commentary",
+      "emotion_tone": "Excitement",
+      "description": "Posts related to Al-Ahli football matches, including scores, players, and commentary",
+      "inclusion_cues": [
+       "Al-Ahli [1]–0 Ohod - Djaniny 7'",
+       "Al-Ahli 4 - [5] Al-Raed - Saleh Al-Shehri 70'",
+       "Al-Ahli [2]–Ohod - Djaniny 15'"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 135,
+   "seed": 543971587,
+   "seconds": 0.59
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: al gharafa, al muwallad, al ahli, ahli al, al wakarah, fahad al, al hilal, ahli ksa, qat al, arabi al, wakarah al, merrikh al, alarabi alrayan, duhail al, wehdat al\nPosts (one per line, title first):\n- Al-Sadd QAT 2-[1] Al-Ahli KSA - Omar Al-Somma\n- Al-Hilal 1 - [1] Al-Hazem - Mohammed Al Saiari 46'\n- Al-Ittihad 0 - [2] Al-Hazem- Mohammed Al Saiari 51'\n- Al-Arabi 1-[5] Al-Sadd : Akram Afif 76'\n- Al-Sadd QAT [2]-0 Al-Ahli KSA - Akram Afif\n- Al Ahli [1]–0 Ohod - Djaniny 7'\n- Al Ahli [4]–1 Ohod - Djaniny 65'\n- Al-Ahli 0 - [2] Al-Raed - Saleh Al-Shehri 6'\n- Al-Ahli 0 - [1] Al-Shabab - Arthur 90+6 '\n- Al-Duhail 0-[1] Al-Sadd - 29' Akram Afif\n- Connah's Quay Nomads 1-[1] Alashkert - David Khurtsidze 21'\n- Al Hilal 2-(2) Al Raed - Eder\n- Istiqlol Dushanbe [2] - 2 Al Rayyan - N.Chicherin 66'\n- Connah's Quay Nomads 1-[2] Alashkert - David Khurtsidze 44'\n- Ettifaq FC [4] - [1] Al-Ahli - Brahian Alemán '63\n- Al-Ittihad [1] - 0 Al-Ahli - Fahad Al-Muwallad 7'\n- ASEC Mimosas 3-[1] Berkane - Charki El Bahri 83'\n- Omar Al Somah - Al Ittihad 1–[1] Al Ahli\n- Al-Arabi 1-[4] Al-Sadd : Hassan Al-Haydos 55'\n- Al-Hilal [2] - 1 Al-Ahli - Yasir Al-Shahrani 47'\n- Al Hilal (2) - Al Ittihad (1) - Bafetimbi Gomis 74'\n- Al Duhail [1]-1 Pakhtakor - Edmílson Junior 66'\n- Badsha Mohammed Arthuro Bin Vidal\n- AlArabi 1-[1] AlRayan. Rodrigo Tabata\n- Al-Duhail [1]-1 Al-Sadd - 44' Youssef Msakni\n- Al-Jazira 3-[1] Pirae - Mohammed Rabii OG 48'\n- Al-Ahli 4 - [5] Al-Raed - Saleh Al-Shehri 70'\n- Al Hilal [1]–1 Al Faisaly - Bafetimbi Gomis\n- Ramadan Kareem yall...🤦‍♂️\n- Al-Hilal 1 - [1] Al-Raed - Mazen Abusharara 94'\n- Al Tai 0-(4) Al Hilal - Marega\n- Al-Ahli [1] - 0 Al-Fayha - Omar Al-Soma 69'\n- Al Ahli [2]–Ohod - Djaniny 15'\n- Al-Duhail 0 - [1] Al-Sadd Baghdad Bounedjah 4’\n- Al Duhail 1-[2] Pakhtakor - Sardor Sabirkhodjaev 69'\n- Al-Arabi 1-[1] Al-Sadd : Ró-Ró 31'\n- The story of youcef atal\n- Al-Ettifaq [1] - 0 Al-Ittihad - Mohammed Al Kuwaykibi 27'\n- Al-Hilal [1] - 1 Al-Ahli - Bafétimbi Gomis (PK) 45+3'\n- Al-Ittihad [2] - 2 Al-Hazem - Aleksandar Pesic 90'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Al-Ahli\", \"purpose\": \"Football match results\", \"emotion_tone\": \"Competitive\", \"description\": \"Posts related to Al-Ahli football matches, including scores, players, and match details.\", \"inclusion_cues\": [\"Al-Ahli\", \"Al-Sadd\", \"Al-Hazem\", \"Djaniny\", \"Akram Afif\", \"Saleh Al-Shehri\", \"Arthur\", \"Brahian Alemán\", \"Fahad Al-Muwallad\", \"Youssef Msakni\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Al-Ahli\", \"purpose\": \"Football match results and commentary\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts related to Al-Ahli football matches, including scores, players, and commentary\", \"inclusion_cues\": [\"Al-Ahli [1]–0 Ohod - Djaniny 7'\", \"Al-Ahli 4 - [5] Al-Raed - Saleh Al-Shehri 70'\", \"Al-Ahli [2]–Ohod - Djaniny 15'\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Al-Ahli\", \"purpose\": \"Football match results and commentary\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts related to Al-Ahli football matches, including scores, players, and commentary\", \"inclusion_cues\": [\"Al-Ahli [1]–0 Ohod - Djaniny 7'\", \"Al-Ahli 4 - [5] Al-Raed - Saleh Al-Shehri 70'\", \"Al-Ahli [2]–Ohod - Djaniny 15'\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 133,
+   "seed": 1454978480,
+   "seconds": 0.61
+  }
+ ]
+}

@@ -1,0 +1,228 @@
+{
+ "period_bin": 2,
+ "topic_id": 387,
+ "keywords": "chelsea kit, pictured chelsea, arsenal shirt, liverpool shirt, united shirt, wearing liverpool, wearing arsenal, arsenal picture, shirt drogba, psg shirt, arsenal gear, chelseafc drogba, fc jersey, fernando wearing, hazard ll",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "wrc2b",
+  "xb4e7",
+  "xb4e7",
+  "xb4e7",
+  "xb4e7",
+  "17k016",
+  "1lgjpu",
+  "zeaam",
+  "wrc6v",
+  "lv7mn",
+  "fbz14",
+  "1lqagu",
+  "1fprvi",
+  "xevom",
+  "1ll21x",
+  "1uddgf",
+  "fajsy",
+  "jv8hk",
+  "lm1rl",
+  "1kyh6d",
+  "1gwxs2",
+  "wrc0r",
+  "tvkq7",
+  "1l8yow",
+  "ju4jd",
+  "1je6jx",
+  "yjm12",
+  "17lcd8",
+  "qji1x",
+  "vcojp",
+  "1gwy20",
+  "wvamz",
+  "ti6hd",
+  "r6tws",
+  "ukjxi",
+  "1hb2q9",
+  "fcdm7",
+  "wrcwh",
+  "td0ys",
+  "tcoc4"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_B",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Chelsea Kit",
+  "purpose": "Showcase Chelsea's official kit",
+  "emotion_tone": "Excitement",
+  "description": "Posts featuring Chelsea's official kit, including images of players wearing the club's home and away kits, and related commentary.",
+  "inclusion_cues": [
+   "Oscar and Hulk pictured in Chelsea shirts",
+   "Drogba in his new jersey",
+   "Eden Hazard with his new shirt",
+   "Chelseafc drogba"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Chelsea Kit",
+    "purpose": "Showcase Chelsea's official kit",
+    "emotion_tone": "Excitement",
+    "description": "Posts featuring Chelsea's official kit, including images of players wearing the club's home and away kits, and related commentary.",
+    "inclusion_cues": [
+     "Oscar and Hulk pictured in Chelsea shirts",
+     "Drogba in his new jersey",
+     "Eden Hazard with his new shirt",
+     "Chelseafc drogba"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Chelsea Kit",
+    "purpose": "Showcase Chelsea's official kit",
+    "emotion_tone": "Neutral",
+    "description": "Posts featuring Chelsea's official kit, including images of players wearing the club's home and away kits, and related commentary.",
+    "inclusion_cues": [
+     "Oscar and Hulk pictured in Chelsea shirts",
+     "Drogba in his new jersey",
+     "Eden Hazard with his new shirt",
+     "Chelseafc drogba"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: chelsea kit, pictured chelsea, arsenal shirt, liverpool shirt, united shirt, wearing liverpool, wearing arsenal, arsenal picture, shirt drogba, psg shirt, arsenal gear, chelseafc drogba, fc jersey, fernando wearing, hazard ll\nPosts (one per line, title first):\n- Oscar and Hulk pictured in Chelsea shirts Read more at\n- Oscar and Hulk pictured in Chelsea shirts\n- Oscar and Hulk pictured in Chelsea shirts\n- Oscar and Hulk pictured in Chelsea shirts\n- Oscar and Hulk pictured in Chelsea shirts\n- After clubs agreeing to terms and passing medical, Philippe Coutinho poses with Liverpool jersey. Official Announcement coming soon.\n- Sakho in Liverpool attire, presumably at Melwood\n- Del Piero with his new Sydney FC jersey\n- Oscar and Hulk pictured in Chelsea shirts\n- This is why substitutes warming up have to wear different colored shirts (Lavezzi gaffe)\n- Fernando Wearing Blue In London!\n- The first official picture of Mesut Ozil in an Arsenal shirt !!\n- Jose Enrique excited about Liverpool's new Away shirt.\n- Exclusive First pic of Oscar in Chelsea kit!\n- Young Bale in a Madrid kit\n- Peter Cech poses in all blue for Adidas\n- This guy would be wearing a Gunners jersey.\n- Joey Barton with his QPR shirt\n- Why the fuck is this man still in a Manchester United shirt?!\n- Just Hip Hop's Waka Flocka wearing a Leeds United shirt...\n- No idea why he's wearing that shirt and when this was taken but looks like this is not going to happen.\n- Oscar and Hulk pictured in Chelsea shirts\n- Didier Drogba wearing a New York Giants jersey\n- Gareth Bale in a pink t-shirt and a pink cap.\n- Charles Puyol, dressing for the occasion.\n- Steve Nash with his personalized Inter shirt after training with them. Repost from /r/football.\n- Nuri Sahin, spotted, and wearing an Arsenal top\n- Mancini's fabulous hat at Arsenal vs Liverpool\n- Here's Jack Wilshere wearing a Liverpool Keeper jersey. And a wee naked man in the back.\n- Drogba in his new jersey. (x-post from r/ChelseaFC)\n- Isco wearing a City shirt. No idea why he was wearing that shirt and when this was taken but looks like this transfer will likely not happen.\n- If Chelsea will sign Hulk and Oscar - it would look like this :)\n- Andy Carroll wearing the new Liverpool home kit\n- Just Alessandro del Piero in red and black.\n- Eden Hazard with his new shirt.\n- Simon Mignolet presented with world's biggest Liverpool shirt.\n- Torres in a Chelsea Jersey\n- Oscar and Hulk pictured in Chelsea shirts\n- Edin Hazard: I'll be wearing blue next season\n- Hazard: I'll wear blue next season\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Chelsea Kit\", \"purpose\": \"Showcase Chelsea's official kit\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts featuring Chelsea's official kit, including images of players wearing the club's home and away kits, and related commentary.\", \"inclusion_cues\": [\"Chelsea kit\", \"Oscar and Hulk\", \"Arsenal shirt\", \"Liverpool shirt\", \"United shirt\", \"wearing Liverpool\", \"wearing Arsenal\", \"Arsenal picture\", \"shirt drogba\", \"fc jersey\", \"fernando wearing\", \"hazard ll\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Chelsea Kit",
+      "purpose": "Showcase Chelsea's official kit",
+      "emotion_tone": "Excitement",
+      "description": "Posts featuring Chelsea's official kit, including images of players wearing the club's home and away kits, and related commentary.",
+      "inclusion_cues": [
+       "Chelsea kit",
+       "Oscar and Hulk",
+       "Arsenal shirt",
+       "Liverpool shirt",
+       "United shirt",
+       "wearing Liverpool",
+       "wearing Arsenal",
+       "Arsenal picture",
+       "shirt drogba",
+       "fc jersey"
+      ],
+      "n_cues_given": 12
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 132,
+   "seed": 2420112492,
+   "seconds": 0.73
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: chelsea kit, pictured chelsea, arsenal shirt, liverpool shirt, united shirt, wearing liverpool, wearing arsenal, arsenal picture, shirt drogba, psg shirt, arsenal gear, chelseafc drogba, fc jersey, fernando wearing, hazard ll\nPosts (one per line, title first):\n- Oscar and Hulk pictured in Chelsea shirts Read more at\n- Oscar and Hulk pictured in Chelsea shirts\n- Oscar and Hulk pictured in Chelsea shirts\n- Oscar and Hulk pictured in Chelsea shirts\n- Oscar and Hulk pictured in Chelsea shirts\n- After clubs agreeing to terms and passing medical, Philippe Coutinho poses with Liverpool jersey. Official Announcement coming soon.\n- Sakho in Liverpool attire, presumably at Melwood\n- Del Piero with his new Sydney FC jersey\n- Oscar and Hulk pictured in Chelsea shirts\n- This is why substitutes warming up have to wear different colored shirts (Lavezzi gaffe)\n- Fernando Wearing Blue In London!\n- The first official picture of Mesut Ozil in an Arsenal shirt !!\n- Jose Enrique excited about Liverpool's new Away shirt.\n- Exclusive First pic of Oscar in Chelsea kit!\n- Young Bale in a Madrid kit\n- Peter Cech poses in all blue for Adidas\n- This guy would be wearing a Gunners jersey.\n- Joey Barton with his QPR shirt\n- Why the fuck is this man still in a Manchester United shirt?!\n- Just Hip Hop's Waka Flocka wearing a Leeds United shirt...\n- No idea why he's wearing that shirt and when this was taken but looks like this is not going to happen.\n- Oscar and Hulk pictured in Chelsea shirts\n- Didier Drogba wearing a New York Giants jersey\n- Gareth Bale in a pink t-shirt and a pink cap.\n- Charles Puyol, dressing for the occasion.\n- Steve Nash with his personalized Inter shirt after training with them. Repost from /r/football.\n- Nuri Sahin, spotted, and wearing an Arsenal top\n- Mancini's fabulous hat at Arsenal vs Liverpool\n- Here's Jack Wilshere wearing a Liverpool Keeper jersey. And a wee naked man in the back.\n- Drogba in his new jersey. (x-post from r/ChelseaFC)\n- Isco wearing a City shirt. No idea why he was wearing that shirt and when this was taken but looks like this transfer will likely not happen.\n- If Chelsea will sign Hulk and Oscar - it would look like this :)\n- Andy Carroll wearing the new Liverpool home kit\n- Just Alessandro del Piero in red and black.\n- Eden Hazard with his new shirt.\n- Simon Mignolet presented with world's biggest Liverpool shirt.\n- Torres in a Chelsea Jersey\n- Oscar and Hulk pictured in Chelsea shirts\n- Edin Hazard: I'll be wearing blue next season\n- Hazard: I'll wear blue next season\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Chelsea Kit\", \"purpose\": \"Showcase Chelsea's official kit\", \"emotion_tone\": \"Neutral\", \"description\": \"Posts featuring Chelsea's official kit, including images of players wearing the club's home and away kits, and related commentary.\", \"inclusion_cues\": [\"Oscar and Hulk pictured in Chelsea shirts\", \"Drogba in his new jersey\", \"Eden Hazard with his new shirt\", \"Chelseafc drogba\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Chelsea Kit",
+      "purpose": "Showcase Chelsea's official kit",
+      "emotion_tone": "Neutral",
+      "description": "Posts featuring Chelsea's official kit, including images of players wearing the club's home and away kits, and related commentary.",
+      "inclusion_cues": [
+       "Oscar and Hulk pictured in Chelsea shirts",
+       "Drogba in his new jersey",
+       "Eden Hazard with his new shirt",
+       "Chelseafc drogba"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 108,
+   "seed": 3963638886,
+   "seconds": 0.9
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: chelsea kit, pictured chelsea, arsenal shirt, liverpool shirt, united shirt, wearing liverpool, wearing arsenal, arsenal picture, shirt drogba, psg shirt, arsenal gear, chelseafc drogba, fc jersey, fernando wearing, hazard ll\nPosts (one per line, title first):\n- Oscar and Hulk pictured in Chelsea shirts Read more at\n- Oscar and Hulk pictured in Chelsea shirts\n- Oscar and Hulk pictured in Chelsea shirts\n- Oscar and Hulk pictured in Chelsea shirts\n- Oscar and Hulk pictured in Chelsea shirts\n- After clubs agreeing to terms and passing medical, Philippe Coutinho poses with Liverpool jersey. Official Announcement coming soon.\n- Sakho in Liverpool attire, presumably at Melwood\n- Del Piero with his new Sydney FC jersey\n- Oscar and Hulk pictured in Chelsea shirts\n- This is why substitutes warming up have to wear different colored shirts (Lavezzi gaffe)\n- Fernando Wearing Blue In London!\n- The first official picture of Mesut Ozil in an Arsenal shirt !!\n- Jose Enrique excited about Liverpool's new Away shirt.\n- Exclusive First pic of Oscar in Chelsea kit!\n- Young Bale in a Madrid kit\n- Peter Cech poses in all blue for Adidas\n- This guy would be wearing a Gunners jersey.\n- Joey Barton with his QPR shirt\n- Why the fuck is this man still in a Manchester United shirt?!\n- Just Hip Hop's Waka Flocka wearing a Leeds United shirt...\n- No idea why he's wearing that shirt and when this was taken but looks like this is not going to happen.\n- Oscar and Hulk pictured in Chelsea shirts\n- Didier Drogba wearing a New York Giants jersey\n- Gareth Bale in a pink t-shirt and a pink cap.\n- Charles Puyol, dressing for the occasion.\n- Steve Nash with his personalized Inter shirt after training with them. Repost from /r/football.\n- Nuri Sahin, spotted, and wearing an Arsenal top\n- Mancini's fabulous hat at Arsenal vs Liverpool\n- Here's Jack Wilshere wearing a Liverpool Keeper jersey. And a wee naked man in the back.\n- Drogba in his new jersey. (x-post from r/ChelseaFC)\n- Isco wearing a City shirt. No idea why he was wearing that shirt and when this was taken but looks like this transfer will likely not happen.\n- If Chelsea will sign Hulk and Oscar - it would look like this :)\n- Andy Carroll wearing the new Liverpool home kit\n- Just Alessandro del Piero in red and black.\n- Eden Hazard with his new shirt.\n- Simon Mignolet presented with world's biggest Liverpool shirt.\n- Torres in a Chelsea Jersey\n- Oscar and Hulk pictured in Chelsea shirts\n- Edin Hazard: I'll be wearing blue next season\n- Hazard: I'll wear blue next season\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Chelsea Kit\", \"purpose\": \"Showcase Chelsea's official kit\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts featuring Chelsea's official kit, including images of players wearing the club's home and away kits, and related commentary.\", \"inclusion_cues\": [\"Chelsea kit\", \"Oscar and Hulk\", \"Arsenal shirt\", \"Liverpool shirt\", \"United shirt\", \"wearing Liverpool\", \"wearing Arsenal\", \"Arsenal picture\", \"shirt drogba\", \"fc jersey\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Chelsea Kit\", \"purpose\": \"Showcase Chelsea's official kit\", \"emotion_tone\": \"Neutral\", \"description\": \"Posts featuring Chelsea's official kit, including images of players wearing the club's home and away kits, and related commentary.\", \"inclusion_cues\": [\"Oscar and Hulk pictured in Chelsea shirts\", \"Drogba in his new jersey\", \"Eden Hazard with his new shirt\", \"Chelseafc drogba\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Chelsea Kit\", \"purpose\": \"Showcase Chelsea's official kit\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts featuring Chelsea's official kit, including images of players wearing the club's home and away kits, and related commentary.\", \"inclusion_cues\": [\"Oscar and Hulk pictured in Chelsea shirts\", \"Drogba in his new jersey\", \"Eden Hazard with his new shirt\", \"Chelseafc drogba\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Chelsea Kit",
+      "purpose": "Showcase Chelsea's official kit",
+      "emotion_tone": "Excitement",
+      "description": "Posts featuring Chelsea's official kit, including images of players wearing the club's home and away kits, and related commentary.",
+      "inclusion_cues": [
+       "Oscar and Hulk pictured in Chelsea shirts",
+       "Drogba in his new jersey",
+       "Eden Hazard with his new shirt",
+       "Chelseafc drogba"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 110,
+   "seed": 3894112368,
+   "seconds": 0.83
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: chelsea kit, pictured chelsea, arsenal shirt, liverpool shirt, united shirt, wearing liverpool, wearing arsenal, arsenal picture, shirt drogba, psg shirt, arsenal gear, chelseafc drogba, fc jersey, fernando wearing, hazard ll\nPosts (one per line, title first):\n- Oscar and Hulk pictured in Chelsea shirts Read more at\n- Oscar and Hulk pictured in Chelsea shirts\n- Oscar and Hulk pictured in Chelsea shirts\n- Oscar and Hulk pictured in Chelsea shirts\n- Oscar and Hulk pictured in Chelsea shirts\n- After clubs agreeing to terms and passing medical, Philippe Coutinho poses with Liverpool jersey. Official Announcement coming soon.\n- Sakho in Liverpool attire, presumably at Melwood\n- Del Piero with his new Sydney FC jersey\n- Oscar and Hulk pictured in Chelsea shirts\n- This is why substitutes warming up have to wear different colored shirts (Lavezzi gaffe)\n- Fernando Wearing Blue In London!\n- The first official picture of Mesut Ozil in an Arsenal shirt !!\n- Jose Enrique excited about Liverpool's new Away shirt.\n- Exclusive First pic of Oscar in Chelsea kit!\n- Young Bale in a Madrid kit\n- Peter Cech poses in all blue for Adidas\n- This guy would be wearing a Gunners jersey.\n- Joey Barton with his QPR shirt\n- Why the fuck is this man still in a Manchester United shirt?!\n- Just Hip Hop's Waka Flocka wearing a Leeds United shirt...\n- No idea why he's wearing that shirt and when this was taken but looks like this is not going to happen.\n- Oscar and Hulk pictured in Chelsea shirts\n- Didier Drogba wearing a New York Giants jersey\n- Gareth Bale in a pink t-shirt and a pink cap.\n- Charles Puyol, dressing for the occasion.\n- Steve Nash with his personalized Inter shirt after training with them. Repost from /r/football.\n- Nuri Sahin, spotted, and wearing an Arsenal top\n- Mancini's fabulous hat at Arsenal vs Liverpool\n- Here's Jack Wilshere wearing a Liverpool Keeper jersey. And a wee naked man in the back.\n- Drogba in his new jersey. (x-post from r/ChelseaFC)\n- Isco wearing a City shirt. No idea why he was wearing that shirt and when this was taken but looks like this transfer will likely not happen.\n- If Chelsea will sign Hulk and Oscar - it would look like this :)\n- Andy Carroll wearing the new Liverpool home kit\n- Just Alessandro del Piero in red and black.\n- Eden Hazard with his new shirt.\n- Simon Mignolet presented with world's biggest Liverpool shirt.\n- Torres in a Chelsea Jersey\n- Oscar and Hulk pictured in Chelsea shirts\n- Edin Hazard: I'll be wearing blue next season\n- Hazard: I'll wear blue next season\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Chelsea Kit\", \"purpose\": \"Showcase Chelsea's official kit\", \"emotion_tone\": \"Neutral\", \"description\": \"Posts featuring Chelsea's official kit, including images of players wearing the club's home and away kits, and related commentary.\", \"inclusion_cues\": [\"Oscar and Hulk pictured in Chelsea shirts\", \"Drogba in his new jersey\", \"Eden Hazard with his new shirt\", \"Chelseafc drogba\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Chelsea Kit\", \"purpose\": \"Showcase Chelsea's official kit\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts featuring Chelsea's official kit, including images of players wearing the club's home and away kits, and related commentary.\", \"inclusion_cues\": [\"Oscar and Hulk pictured in Chelsea shirts\", \"Drogba in his new jersey\", \"Eden Hazard with his new shirt\", \"Chelseafc drogba\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Chelsea Kit\", \"purpose\": \"Showcase Chelsea's official kit\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts featuring Chelsea's official kit, including images of players wearing the club's home and away kits, and related commentary.\", \"inclusion_cues\": [\"Oscar and Hulk pictured in Chelsea shirts\", \"Drogba in his new jersey\", \"Eden Hazard with his new shirt\", \"Chelseafc drogba\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 109,
+   "seed": 1999518322,
+   "seconds": 0.65
+  }
+ ]
+}

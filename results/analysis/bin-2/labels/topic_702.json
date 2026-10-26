@@ -1,0 +1,244 @@
+{
+ "period_bin": 2,
+ "topic_id": 702,
+ "keywords": "failed celebration, celebration goal, goal celebration, celebrates goal, celebration fail, hilarious celebration, celebrate goal, mancini celebration, cheeky celebration, robben failed, classy celebration, game celebration, celebration swansea, hilarious goal, southampton wanyama",
+ "n_sample_posts": 33,
+ "sample_ids": [
+  "1rxv5b",
+  "1r1b1w",
+  "1bulbx",
+  "1oxidl",
+  "1ru2fb",
+  "1qklqz",
+  "1rs4mm",
+  "1gcp35",
+  "ljrko",
+  "1netql",
+  "1bt2w8",
+  "1vj2x2",
+  "1d4f54",
+  "1s2b3m",
+  "mf4k8",
+  "1bthe2",
+  "1nvs2j",
+  "lujpc",
+  "1nzqr9",
+  "1vj36o",
+  "11p0aq",
+  "1bwchd",
+  "12ztni",
+  "1ow54j",
+  "1lff73",
+  "1rsgzb",
+  "t8i0w",
+  "1bv3ne",
+  "15mxpc",
+  "1bt4na",
+  "vz3b7",
+  "1kmo2v",
+  "1qw07x"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_B",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Goal Celebration Fail",
+  "purpose": "Documenting failed goal celebrations in football",
+  "emotion_tone": "humorous",
+  "description": "Posts about goal celebrations that were perceived as failed or inappropriate, often involving humorous or awkward reactions",
+  "inclusion_cues": [
+   "failed celebration",
+   "celebration fail",
+   "hilarious celebration",
+   "goal celebration",
+   "celebrates goal",
+   "wanyama celebration",
+   "robben failed",
+   "mancini celebration",
+   "cheeky celebration",
+   "celebration swansea"
+  ],
+  "n_cues_given": 31
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Goal Celebration Fail",
+    "purpose": "Documenting failed goal celebrations in football",
+    "emotion_tone": "humorous",
+    "description": "Posts about goal celebrations that were perceived as failed or inappropriate, often involving humorous or awkward reactions",
+    "inclusion_cues": [
+     "failed celebration",
+     "celebration fail",
+     "hilarious celebration",
+     "goal celebration",
+     "celebrates goal",
+     "wanyama celebration",
+     "robben failed",
+     "mancini celebration",
+     "cheeky celebration",
+     "celebration swansea"
+    ],
+    "n_cues_given": 31
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Goal Celebration Fail",
+    "purpose": "Documenting failed goal celebrations in football",
+    "emotion_tone": "humorous",
+    "description": "Posts about goal celebrations that were perceived as failed or inappropriate",
+    "inclusion_cues": [
+     "failed celebration",
+     "celebration fail",
+     "hilarious celebration",
+     "celebration fail",
+     "goal celebration"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: failed celebration, celebration goal, goal celebration, celebrates goal, celebration fail, hilarious celebration, celebrate goal, mancini celebration, cheeky celebration, robben failed, classy celebration, game celebration, celebration swansea, hilarious goal, southampton wanyama\nPosts (one per line, title first):\n- Unlike Robben, Drogba saved his celebration fail\n- Wanyama Celebration Fail!\n- Mirko Vucinic's ballsy goal celebration.\n- Goal Celebration FAIL in Brazil: Rafael Ratao (Ponte Preta)\n- Arjen Robben's Goal Celebration FAIL - EPIC FAIL!\n- Peralta's celebration after his first goal.\n- Robben's failed celebration\n- Funny Cristiano Lucarelli Goal Celebration\n- Marcello Matrone take celebrating a goal to another level...\n- Cacciatore's classy celebration against Juventus!\n- Hilarious celebration by Vucinic after scoring against Pescara\n- Giroud's wacking off celebration.\n- Di Canio celebration (End of Everton game)\n- Robben Goal Celebration Fails.\n- Fabio Santos Celebration Fail\n- Vucinic takes off shorts to celebrate goal.\n- Victor Wanyama starts celebrating a goal before being told it was disallowed\n- Roberto Mancini celebration\n- Wanyama's Celebration in Front of the Swansea Fans before realising the goal was ruled out\n- Giroud's wanking off celebration.\n- Carlos Saucedo's nice celebration\n- Mirko Vucinic pants off Celebration\n- Javier Hernandez celebration vs Aston Villa\n- EPIC FAIL - Rafael Ratao's embarrassing celebration\n- Pep and Ribéry celebration.\n- Robben needs to work on his post game celebration\n- Xabi Alonso's and Albiol's celebration in Cibeles\n- Mirko Vucinic strips on pitch\n- Walcott and Gibbs celebration\n- Vucinic \"cheeky\" celebration vs. Pescara\n- Arbeloa jumps off the celebration BUS!!!\n- Hilarious Goal Celebration - Cristiano Lucarelli\n- Southampton's Wanyama celebrates his goal before he realised it was ruled out\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Goal Celebration Fail\", \"purpose\": \"Documenting failed goal celebrations in football\", \"emotion_tone\": \"humorous\", \"description\": \"Posts about goal celebrations that are perceived as awkward, embarrassing, or humorous, often involving failed or inappropriate celebrations.\", \"inclusion_cues\": [\"failed celebration\", \"celebration fail\", \"hilarious celebration\", \"goal celebration\", \"celebrates goal\", \"celebration swansea\", \"wanyama celebration\", \"robben failed\", \"mancini celebration\", \"cheeky celebration\", \"vucinic pants off\", \"vucinic strips on pitch\", \"vucinic cheeky celebration\", \"vucinic wacking off celebration\", \"vucinic take celebrating a goal to another level\", \"vucinic strips on pitch\", \"vucinic takes off shorts to celebrate goal\", \"vucinic wanking off celebration\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Goal Celebration Fail",
+      "purpose": "Documenting failed goal celebrations in football",
+      "emotion_tone": "humorous",
+      "description": "Posts about goal celebrations that are perceived as awkward, embarrassing, or humorous, often involving failed or inappropriate celebrations.",
+      "inclusion_cues": [
+       "failed celebration",
+       "celebration fail",
+       "hilarious celebration",
+       "goal celebration",
+       "celebrates goal",
+       "celebration swansea",
+       "wanyama celebration",
+       "robben failed",
+       "mancini celebration",
+       "cheeky celebration"
+      ],
+      "n_cues_given": 18
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 203,
+   "seed": 680580677,
+   "seconds": 1.16
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: failed celebration, celebration goal, goal celebration, celebrates goal, celebration fail, hilarious celebration, celebrate goal, mancini celebration, cheeky celebration, robben failed, classy celebration, game celebration, celebration swansea, hilarious goal, southampton wanyama\nPosts (one per line, title first):\n- Unlike Robben, Drogba saved his celebration fail\n- Wanyama Celebration Fail!\n- Mirko Vucinic's ballsy goal celebration.\n- Goal Celebration FAIL in Brazil: Rafael Ratao (Ponte Preta)\n- Arjen Robben's Goal Celebration FAIL - EPIC FAIL!\n- Peralta's celebration after his first goal.\n- Robben's failed celebration\n- Funny Cristiano Lucarelli Goal Celebration\n- Marcello Matrone take celebrating a goal to another level...\n- Cacciatore's classy celebration against Juventus!\n- Hilarious celebration by Vucinic after scoring against Pescara\n- Giroud's wacking off celebration.\n- Di Canio celebration (End of Everton game)\n- Robben Goal Celebration Fails.\n- Fabio Santos Celebration Fail\n- Vucinic takes off shorts to celebrate goal.\n- Victor Wanyama starts celebrating a goal before being told it was disallowed\n- Roberto Mancini celebration\n- Wanyama's Celebration in Front of the Swansea Fans before realising the goal was ruled out\n- Giroud's wanking off celebration.\n- Carlos Saucedo's nice celebration\n- Mirko Vucinic pants off Celebration\n- Javier Hernandez celebration vs Aston Villa\n- EPIC FAIL - Rafael Ratao's embarrassing celebration\n- Pep and Ribéry celebration.\n- Robben needs to work on his post game celebration\n- Xabi Alonso's and Albiol's celebration in Cibeles\n- Mirko Vucinic strips on pitch\n- Walcott and Gibbs celebration\n- Vucinic \"cheeky\" celebration vs. Pescara\n- Arbeloa jumps off the celebration BUS!!!\n- Hilarious Goal Celebration - Cristiano Lucarelli\n- Southampton's Wanyama celebrates his goal before he realised it was ruled out\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Goal Celebration Fail\", \"purpose\": \"Documenting failed goal celebrations in football\", \"emotion_tone\": \"humorous\", \"description\": \"Posts about goal celebrations that were perceived as failed or inappropriate\", \"inclusion_cues\": [\"failed celebration\", \"celebration fail\", \"hilarious celebration\", \"celebration fail\", \"goal celebration\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Goal Celebration Fail",
+      "purpose": "Documenting failed goal celebrations in football",
+      "emotion_tone": "humorous",
+      "description": "Posts about goal celebrations that were perceived as failed or inappropriate",
+      "inclusion_cues": [
+       "failed celebration",
+       "celebration fail",
+       "hilarious celebration",
+       "celebration fail",
+       "goal celebration"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 90,
+   "seed": 629680623,
+   "seconds": 0.72
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: failed celebration, celebration goal, goal celebration, celebrates goal, celebration fail, hilarious celebration, celebrate goal, mancini celebration, cheeky celebration, robben failed, classy celebration, game celebration, celebration swansea, hilarious goal, southampton wanyama\nPosts (one per line, title first):\n- Unlike Robben, Drogba saved his celebration fail\n- Wanyama Celebration Fail!\n- Mirko Vucinic's ballsy goal celebration.\n- Goal Celebration FAIL in Brazil: Rafael Ratao (Ponte Preta)\n- Arjen Robben's Goal Celebration FAIL - EPIC FAIL!\n- Peralta's celebration after his first goal.\n- Robben's failed celebration\n- Funny Cristiano Lucarelli Goal Celebration\n- Marcello Matrone take celebrating a goal to another level...\n- Cacciatore's classy celebration against Juventus!\n- Hilarious celebration by Vucinic after scoring against Pescara\n- Giroud's wacking off celebration.\n- Di Canio celebration (End of Everton game)\n- Robben Goal Celebration Fails.\n- Fabio Santos Celebration Fail\n- Vucinic takes off shorts to celebrate goal.\n- Victor Wanyama starts celebrating a goal before being told it was disallowed\n- Roberto Mancini celebration\n- Wanyama's Celebration in Front of the Swansea Fans before realising the goal was ruled out\n- Giroud's wanking off celebration.\n- Carlos Saucedo's nice celebration\n- Mirko Vucinic pants off Celebration\n- Javier Hernandez celebration vs Aston Villa\n- EPIC FAIL - Rafael Ratao's embarrassing celebration\n- Pep and Ribéry celebration.\n- Robben needs to work on his post game celebration\n- Xabi Alonso's and Albiol's celebration in Cibeles\n- Mirko Vucinic strips on pitch\n- Walcott and Gibbs celebration\n- Vucinic \"cheeky\" celebration vs. Pescara\n- Arbeloa jumps off the celebration BUS!!!\n- Hilarious Goal Celebration - Cristiano Lucarelli\n- Southampton's Wanyama celebrates his goal before he realised it was ruled out\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Goal Celebration Fail\", \"purpose\": \"Documenting failed goal celebrations in football\", \"emotion_tone\": \"humorous\", \"description\": \"Posts about goal celebrations that are perceived as awkward, embarrassing, or humorous, often involving failed or inappropriate celebrations.\", \"inclusion_cues\": [\"failed celebration\", \"celebration fail\", \"hilarious celebration\", \"goal celebration\", \"celebrates goal\", \"celebration swansea\", \"wanyama celebration\", \"robben failed\", \"mancini celebration\", \"cheeky celebration\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Goal Celebration Fail\", \"purpose\": \"Documenting failed goal celebrations in football\", \"emotion_tone\": \"humorous\", \"description\": \"Posts about goal celebrations that were perceived as failed or inappropriate\", \"inclusion_cues\": [\"failed celebration\", \"celebration fail\", \"hilarious celebration\", \"celebration fail\", \"goal celebration\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Goal Celebration Fail\", \"purpose\": \"Documenting failed goal celebrations in football\", \"emotion_tone\": \"humorous\", \"description\": \"Posts about goal celebrations that were perceived as failed or inappropriate, often involving humorous or awkward reactions\", \"inclusion_cues\": [\"failed celebration\", \"celebration fail\", \"hilarious celebration\", \"goal celebration\", \"celebrates goal\", \"wanyama celebration\", \"robben failed\", \"mancini celebration\", \"cheeky celebration\", \"celebration swansea\", \"southampton wanyama\", \"vucinic failed\", \"vucinic pants off\", \"vucinic strips on pitch\", \"vucinic cheeky celebration\", \"giroud wanking off\", \"di canio celebration\", \"fabio santos celebration\", \"cacciatore classy celebration\", \"albiol celebration\", \"alonso celebration\", \"wanyama celebration\", \"vucinic strips on pitch\", \"vucinic pants off\", \"vucinic cheeky celebration\", \"giroud wanking off\", \"southampton wanyama celebration\", \"southampton wanyama fail\", \"vucinic strips on pitch\", \"vucinic pants off\", \"vucinic cheeky celebration\"]}]}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Goal Celebration Fail",
+      "purpose": "Documenting failed goal celebrations in football",
+      "emotion_tone": "humorous",
+      "description": "Posts about goal celebrations that were perceived as failed or inappropriate, often involving humorous or awkward reactions",
+      "inclusion_cues": [
+       "failed celebration",
+       "celebration fail",
+       "hilarious celebration",
+       "goal celebration",
+       "celebrates goal",
+       "wanyama celebration",
+       "robben failed",
+       "mancini celebration",
+       "cheeky celebration",
+       "celebration swansea"
+      ],
+      "n_cues_given": 31
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 279,
+   "seed": 146607196,
+   "seconds": 1.04
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: failed celebration, celebration goal, goal celebration, celebrates goal, celebration fail, hilarious celebration, celebrate goal, mancini celebration, cheeky celebration, robben failed, classy celebration, game celebration, celebration swansea, hilarious goal, southampton wanyama\nPosts (one per line, title first):\n- Unlike Robben, Drogba saved his celebration fail\n- Wanyama Celebration Fail!\n- Mirko Vucinic's ballsy goal celebration.\n- Goal Celebration FAIL in Brazil: Rafael Ratao (Ponte Preta)\n- Arjen Robben's Goal Celebration FAIL - EPIC FAIL!\n- Peralta's celebration after his first goal.\n- Robben's failed celebration\n- Funny Cristiano Lucarelli Goal Celebration\n- Marcello Matrone take celebrating a goal to another level...\n- Cacciatore's classy celebration against Juventus!\n- Hilarious celebration by Vucinic after scoring against Pescara\n- Giroud's wacking off celebration.\n- Di Canio celebration (End of Everton game)\n- Robben Goal Celebration Fails.\n- Fabio Santos Celebration Fail\n- Vucinic takes off shorts to celebrate goal.\n- Victor Wanyama starts celebrating a goal before being told it was disallowed\n- Roberto Mancini celebration\n- Wanyama's Celebration in Front of the Swansea Fans before realising the goal was ruled out\n- Giroud's wanking off celebration.\n- Carlos Saucedo's nice celebration\n- Mirko Vucinic pants off Celebration\n- Javier Hernandez celebration vs Aston Villa\n- EPIC FAIL - Rafael Ratao's embarrassing celebration\n- Pep and Ribéry celebration.\n- Robben needs to work on his post game celebration\n- Xabi Alonso's and Albiol's celebration in Cibeles\n- Mirko Vucinic strips on pitch\n- Walcott and Gibbs celebration\n- Vucinic \"cheeky\" celebration vs. Pescara\n- Arbeloa jumps off the celebration BUS!!!\n- Hilarious Goal Celebration - Cristiano Lucarelli\n- Southampton's Wanyama celebrates his goal before he realised it was ruled out\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Goal Celebration Fail\", \"purpose\": \"Documenting failed goal celebrations in football\", \"emotion_tone\": \"humorous\", \"description\": \"Posts about goal celebrations that were perceived as failed or inappropriate\", \"inclusion_cues\": [\"failed celebration\", \"celebration fail\", \"hilarious celebration\", \"celebration fail\", \"goal celebration\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Goal Celebration Fail\", \"purpose\": \"Documenting failed goal celebrations in football\", \"emotion_tone\": \"humorous\", \"description\": \"Posts about goal celebrations that were perceived as failed or inappropriate, often involving humorous or awkward reactions\", \"inclusion_cues\": [\"failed celebration\", \"celebration fail\", \"hilarious celebration\", \"goal celebration\", \"celebrates goal\", \"wanyama celebration\", \"robben failed\", \"mancini celebration\", \"cheeky celebration\", \"celebration swansea\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Goal Celebration Fail\", \"purpose\": \"Documenting failed goal celebrations in football\", \"emotion_tone\": \"humorous\", \"description\": \"Posts about goal celebrations that were perceived as failed or inappropriate, often involving humorous or awkward reactions\", \"inclusion_cues\": [\"failed celebration\", \"celebration fail\", \"hilarious celebration\", \"goal celebration\", \"celebrates goal\", \"wanyama celebration\", \"robben failed\", \"mancini celebration\", \"cheeky celebration\", \"celebration swansea\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 126,
+   "seed": 1454036248,
+   "seconds": 0.96
+  }
+ ]
+}

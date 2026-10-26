@@ -1,0 +1,206 @@
+{
+ "period_bin": 2,
+ "topic_id": 335,
+ "keywords": "gifs post, make gif, best gifs, looking gif, gifs, gif help, gifs make, better gif, gifs player, gifs ve, celebration post, gif compilation, gif ball, gif don, beauty post",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "xgyh3",
+  "1a853c",
+  "pwiur",
+  "1m5p3j",
+  "10ufl4",
+  "vh9pe",
+  "17dp7m",
+  "xw2hu",
+  "vrada",
+  "1kjrsc",
+  "10or1e",
+  "1sq32c",
+  "v1nzd",
+  "1wlh9l",
+  "1250os",
+  "11w4kd",
+  "13ym06",
+  "n7vkc",
+  "ix4ql",
+  "mu95y",
+  "1lgo5u",
+  "14gclj",
+  "vxdro",
+  "1ptg9h",
+  "1f8vff",
+  "pqxu3",
+  "lt7yt",
+  "13bnos",
+  "12dts3",
+  "elkkf",
+  "1hwlfo",
+  "wlqgy",
+  "ypas5",
+  "1wd7q2",
+  "gbnna",
+  "1trz9r",
+  "165x4g",
+  "10upif",
+  "tcfwq",
+  "qy7g4"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "GIFs",
+  "purpose": "Sharing and requesting football-related GIFs",
+  "emotion_tone": "enthusiastic, curious, playful",
+  "description": "Posts related to football GIFs, including requests for GIF creation, sharing of GIFs, and discussions about GIFs in the context of football.",
+  "inclusion_cues": [
+   "GIFs",
+   "GIF creation",
+   "GIF sharing",
+   "Football-related",
+   "Request for GIFs"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "GIFs",
+    "purpose": "Sharing and requesting football-related GIFs",
+    "emotion_tone": "enthusiastic, curious",
+    "description": "Posts related to football GIFs, including requests for GIF creation, sharing, and seeking help finding GIFs.",
+    "inclusion_cues": [
+     "gifs",
+     "gif help",
+     "gif make",
+     "better gif",
+     "gifs player",
+     "gifs ve",
+     "celebration post",
+     "gif compilation",
+     "gif ball",
+     "gif don"
+    ],
+    "n_cues_given": 11
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "GIFs",
+    "purpose": "Sharing and requesting football-related GIFs",
+    "emotion_tone": "enthusiastic, curious, playful",
+    "description": "Posts related to football GIFs, including requests for GIF creation, sharing of GIFs, and discussions about GIFs in the context of football.",
+    "inclusion_cues": [
+     "GIFs",
+     "GIF creation",
+     "GIF sharing",
+     "Football-related",
+     "Request for GIFs"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: gifs post, make gif, best gifs, looking gif, gifs, gif help, gifs make, better gif, gifs player, gifs ve, celebration post, gif compilation, gif ball, gif don, beauty post\nPosts (one per line, title first):\n- Mind-blowing celebration. (x-post from /r/gifs)\n- u/ibpants created and posted this gif over on /r/mcfc (x/post). Figured it could have some uses in this subreddit.\n- So close. [x-post from gifs]\n- day of the jackal [x-post from /r/gifs]\n- And that's how it's done. (x-post from /r/gifs)\n- Beautifully struck (x-post from r/gif)\n- Looking for a gif\n- 3 balls were lost in this one play\n- someone please get a gif made...\n- Can someone help me find this video?\n- Player wants all the balls...\n- You want the ball?\n- Could somebody tell me where this gif is from?\n- Trying to find a youth video. Need help searching.\n- I don't get why he'd do that, but it sure is cool. (x-post from r/gifs)\n- Tricky Tricky [gif]\n- I'm just trying to find this video on reddit to see the discussion, if this does post then please downvote and move on.\n- I received this Gif now!\n- Someone make a gif please?\n- Whatever I can do this with my eyes closed (x-post from r/gifs)\n- I've just made my first gif. I figured you all might like it...\n- Could someone help me find a video?\n- [GIF] No harm, no FOUL\n- GIF: One of the most awesome yet risky celeberations\n- This is how you wipe off a wet ball\n- The greatest GIF (suggested soundtrack included in text) / listen to this while you watch.\n- The gif heard around the world.\n- Need help finding a video\n- Requesting help to create a better gif\n- If only.. [gif]\n- Has anyone seen this video before? And if so, where? please help me.\n- Self Fan (x-post from /r/gifs)\n- Talking and Tweeting Balls\n- The Guardian: In memory of backpasses (Gif compilation)\n- Where's the fucking ball?\n- Balloon (x-post from gifs)\n- Looking for a video\n- Excellent teamwork (x-post r/gifs)\n- I guess he must of got some of ball!\n- Not another ball!? Eww gross!\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"GIFs\", \"purpose\": \"Sharing and requesting football-related GIFs\", \"emotion_tone\": \"enthusiastic, curious\", \"description\": \"Posts related to football GIFs, including requests for GIF creation, sharing, and seeking help finding GIFs.\", \"inclusion_cues\": [\"gifs\", \"gif help\", \"gif make\", \"better gif\", \"gifs player\", \"gifs ve\", \"celebration post\", \"gif compilation\", \"gif ball\", \"gif don\", \"beauty post\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "GIFs",
+      "purpose": "Sharing and requesting football-related GIFs",
+      "emotion_tone": "enthusiastic, curious",
+      "description": "Posts related to football GIFs, including requests for GIF creation, sharing, and seeking help finding GIFs.",
+      "inclusion_cues": [
+       "gifs",
+       "gif help",
+       "gif make",
+       "better gif",
+       "gifs player",
+       "gifs ve",
+       "celebration post",
+       "gif compilation",
+       "gif ball",
+       "gif don"
+      ],
+      "n_cues_given": 11
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 127,
+   "seed": 977670463,
+   "seconds": 0.98
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: gifs post, make gif, best gifs, looking gif, gifs, gif help, gifs make, better gif, gifs player, gifs ve, celebration post, gif compilation, gif ball, gif don, beauty post\nPosts (one per line, title first):\n- Mind-blowing celebration. (x-post from /r/gifs)\n- u/ibpants created and posted this gif over on /r/mcfc (x/post). Figured it could have some uses in this subreddit.\n- So close. [x-post from gifs]\n- day of the jackal [x-post from /r/gifs]\n- And that's how it's done. (x-post from /r/gifs)\n- Beautifully struck (x-post from r/gif)\n- Looking for a gif\n- 3 balls were lost in this one play\n- someone please get a gif made...\n- Can someone help me find this video?\n- Player wants all the balls...\n- You want the ball?\n- Could somebody tell me where this gif is from?\n- Trying to find a youth video. Need help searching.\n- I don't get why he'd do that, but it sure is cool. (x-post from r/gifs)\n- Tricky Tricky [gif]\n- I'm just trying to find this video on reddit to see the discussion, if this does post then please downvote and move on.\n- I received this Gif now!\n- Someone make a gif please?\n- Whatever I can do this with my eyes closed (x-post from r/gifs)\n- I've just made my first gif. I figured you all might like it...\n- Could someone help me find a video?\n- [GIF] No harm, no FOUL\n- GIF: One of the most awesome yet risky celeberations\n- This is how you wipe off a wet ball\n- The greatest GIF (suggested soundtrack included in text) / listen to this while you watch.\n- The gif heard around the world.\n- Need help finding a video\n- Requesting help to create a better gif\n- If only.. [gif]\n- Has anyone seen this video before? And if so, where? please help me.\n- Self Fan (x-post from /r/gifs)\n- Talking and Tweeting Balls\n- The Guardian: In memory of backpasses (Gif compilation)\n- Where's the fucking ball?\n- Balloon (x-post from gifs)\n- Looking for a video\n- Excellent teamwork (x-post r/gifs)\n- I guess he must of got some of ball!\n- Not another ball!? Eww gross!\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"GIFs\", \"purpose\": \"Sharing and requesting football-related GIFs\", \"emotion_tone\": \"enthusiastic, curious, playful\", \"description\": \"Posts related to football GIFs, including requests for GIF creation, sharing of GIFs, and discussions about GIFs in the context of football.\", \"inclusion_cues\": [\"GIFs\", \"GIF creation\", \"GIF sharing\", \"Football-related\", \"Request for GIFs\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "GIFs",
+      "purpose": "Sharing and requesting football-related GIFs",
+      "emotion_tone": "enthusiastic, curious, playful",
+      "description": "Posts related to football GIFs, including requests for GIF creation, sharing of GIFs, and discussions about GIFs in the context of football.",
+      "inclusion_cues": [
+       "GIFs",
+       "GIF creation",
+       "GIF sharing",
+       "Football-related",
+       "Request for GIFs"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 112,
+   "seed": 3976688961,
+   "seconds": 0.54
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: gifs post, make gif, best gifs, looking gif, gifs, gif help, gifs make, better gif, gifs player, gifs ve, celebration post, gif compilation, gif ball, gif don, beauty post\nPosts (one per line, title first):\n- Mind-blowing celebration. (x-post from /r/gifs)\n- u/ibpants created and posted this gif over on /r/mcfc (x/post). Figured it could have some uses in this subreddit.\n- So close. [x-post from gifs]\n- day of the jackal [x-post from /r/gifs]\n- And that's how it's done. (x-post from /r/gifs)\n- Beautifully struck (x-post from r/gif)\n- Looking for a gif\n- 3 balls were lost in this one play\n- someone please get a gif made...\n- Can someone help me find this video?\n- Player wants all the balls...\n- You want the ball?\n- Could somebody tell me where this gif is from?\n- Trying to find a youth video. Need help searching.\n- I don't get why he'd do that, but it sure is cool. (x-post from r/gifs)\n- Tricky Tricky [gif]\n- I'm just trying to find this video on reddit to see the discussion, if this does post then please downvote and move on.\n- I received this Gif now!\n- Someone make a gif please?\n- Whatever I can do this with my eyes closed (x-post from r/gifs)\n- I've just made my first gif. I figured you all might like it...\n- Could someone help me find a video?\n- [GIF] No harm, no FOUL\n- GIF: One of the most awesome yet risky celeberations\n- This is how you wipe off a wet ball\n- The greatest GIF (suggested soundtrack included in text) / listen to this while you watch.\n- The gif heard around the world.\n- Need help finding a video\n- Requesting help to create a better gif\n- If only.. [gif]\n- Has anyone seen this video before? And if so, where? please help me.\n- Self Fan (x-post from /r/gifs)\n- Talking and Tweeting Balls\n- The Guardian: In memory of backpasses (Gif compilation)\n- Where's the fucking ball?\n- Balloon (x-post from gifs)\n- Looking for a video\n- Excellent teamwork (x-post r/gifs)\n- I guess he must of got some of ball!\n- Not another ball!? Eww gross!\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"GIFs\", \"purpose\": \"Sharing and requesting football-related GIFs\", \"emotion_tone\": \"enthusiastic, curious\", \"description\": \"Posts related to football GIFs, including requests for GIF creation, sharing, and seeking help finding GIFs.\", \"inclusion_cues\": [\"gifs\", \"gif help\", \"gif make\", \"better gif\", \"gifs player\", \"gifs ve\", \"celebration post\", \"gif compilation\", \"gif ball\", \"gif don\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"GIFs\", \"purpose\": \"Sharing and requesting football-related GIFs\", \"emotion_tone\": \"enthusiastic, curious, playful\", \"description\": \"Posts related to football GIFs, including requests for GIF creation, sharing of GIFs, and discussions about GIFs in the context of football.\", \"inclusion_cues\": [\"GIFs\", \"GIF creation\", \"GIF sharing\", \"Football-related\", \"Request for GIFs\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"GIFs\", \"purpose\": \"Sharing and requesting football-related GIFs\", \"emotion_tone\": \"enthusiastic, curious, playful\", \"description\": \"Posts related to football GIFs, including requests for GIF creation, sharing of GIFs, and discussions about GIFs in the context of football.\", \"inclusion_cues\": [\"GIFs\", \"GIF creation\", \"GIF sharing\", \"Football-related\", \"Request for GIFs\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 111,
+   "seed": 2098938083,
+   "seconds": 0.53
+  }
+ ]
+}

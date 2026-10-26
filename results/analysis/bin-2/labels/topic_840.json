@@ -1,0 +1,174 @@
+{
+ "period_bin": 2,
+ "topic_id": 840,
+ "keywords": "goal danish, goal norwegian, larsson goal, goals norwegian, scored danish, goal norway, goal swedish, norwegian cup, emile højbjerg, danish superliga, awesome goals, goal history, danish talent, norwegian league, denmark nicklas",
+ "n_sample_posts": 27,
+ "sample_ids": [
+  "1k5w0f",
+  "1k3jbf",
+  "1jhhut",
+  "1li83s",
+  "1lhbhn",
+  "1cdjsc",
+  "1pouo4",
+  "1lytdw",
+  "1rcjlz",
+  "w9rzf",
+  "12qyfi",
+  "1n8l3f",
+  "1lvkgz",
+  "l457g",
+  "1m6gke",
+  "120aj2",
+  "11w3tb",
+  "1bg5mu",
+  "kdzpw",
+  "1k7gk9",
+  "1k4zmy",
+  "1kvdxb",
+  "11gn92",
+  "lzisr",
+  "1flxdo",
+  "z3jr4",
+  "1poujk"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Danish Superliga Goals",
+  "purpose": "Highlight goals from the Danish Superliga",
+  "emotion_tone": "excitement",
+  "description": "Posts about goals scored in the Danish Superliga, including specific mentions of players and events.",
+  "inclusion_cues": [
+   "A brilliant goal by Esbjergs Peter Ankersen in the Danish Superliga",
+   "Danish talent Pierre-Emile Højbjerg scores a screamer of a freekick for Bayern reserves",
+   "The best goal in the history of the danish superleague",
+   "A simply stunning goal from the Danish Superliga"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Danish Superliga Goals",
+    "purpose": "Highlight goals from the Danish Superliga",
+    "emotion_tone": "positive",
+    "description": "Posts about goals scored in the Danish Superliga, including specific mentions of players and events.",
+    "inclusion_cues": [
+     "Esbjerg fB scoring an amazing goal",
+     "Mikkel Diskerud to send them into Europa League",
+     "A simply stunning goal from the Danish Superliga"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Danish Superliga Goals",
+    "purpose": "Highlight goals from the Danish Superliga",
+    "emotion_tone": "excitement",
+    "description": "Posts about goals scored in the Danish Superliga, including specific mentions of players and events.",
+    "inclusion_cues": [
+     "A brilliant goal by Esbjergs Peter Ankersen in the Danish Superliga",
+     "Danish talent Pierre-Emile Højbjerg scores a screamer of a freekick for Bayern reserves",
+     "The best goal in the history of the danish superleague",
+     "A simply stunning goal from the Danish Superliga"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: goal danish, goal norwegian, larsson goal, goals norwegian, scored danish, goal norway, goal swedish, norwegian cup, emile højbjerg, danish superliga, awesome goals, goal history, danish talent, norwegian league, denmark nicklas\nPosts (one per line, title first):\n- A brilliant goal by Esbjergs Peter Ankersen in the Danish Superliga\n- Peter Ankersen - Esbjerg fB scoring an amazing goal\n- Danish talent Pierre-Emile Højbjerg scores a screamer of a freekick for Bayern reserves\n- Worldclass goal from Rosenborg-striker Nicki Bille Nielsen\n- Nicki Bille Nielsen with a wonderful goal in the Norwegian League\n- Youssef Toutouh Amazing Goal Esbjerg Vs Randers\n- Nice teamplay goal from Swedens U-17 team (crosspost r/allsvenskan)\n- Another great goal from Norway\n- Mix Diskerud Goal for Rosenborg BK vs Molde in the Norwegian Cup Final.\n- Henriks Larsson's last goal for Sweden. Doesn't it look familiar?\n- The best goal in the history of the danish superleague\n- Nice overtime goal by Magne Hoseth in the Norwegian Cup Semi Finals\n- Johann Berg Guðmundsson's amazing equalizer vs Switzerland in the 89th minute\n- Awesome Goals from Norwegian Club IK Start\n- Kerim Frei U21 goal vs Sweden 9/10/2013\n- Attended my first Swedish league game this week and was treated to this stunner of a goal\n- Best goal I've seen this weekend - It's from Denmark! (Nicklas Helenius)\n- Tokelo Rantie's amazing goal in Swedish Allsvenskan.\n- Amazing goal from Søren Berg in the Danish Superliga\n- Esbjergs FB's Ankersen scores an unbelievable goal\n- Amazing Goal Scored In Danish Soccerleague\n- Must see: Stabaek youth player Sakarias Opsahl scores flick-up wonder goal v Ski\n- A goal from Norwegian Fourth Division.\n- Not the best, but a nice goal by Lars Stindl scored today\n- A simply stunning goal from the Danish Superliga\n- Fantastic volley by Rosenborg Midfielder Mikkel Diskerud to send them into Europa League\n- Valmir Berisha backheel goal takes Sweden to the semis of the U17 World Cup!\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Danish Superliga Goals\", \"purpose\": \"Highlight goals from the Danish Superliga\", \"emotion_tone\": \"positive\", \"description\": \"Posts about goals scored in the Danish Superliga, including specific mentions of players and events.\", \"inclusion_cues\": [\"Esbjerg fB scoring an amazing goal\", \"Mikkel Diskerud to send them into Europa League\", \"A simply stunning goal from the Danish Superliga\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Danish Superliga Goals",
+      "purpose": "Highlight goals from the Danish Superliga",
+      "emotion_tone": "positive",
+      "description": "Posts about goals scored in the Danish Superliga, including specific mentions of players and events.",
+      "inclusion_cues": [
+       "Esbjerg fB scoring an amazing goal",
+       "Mikkel Diskerud to send them into Europa League",
+       "A simply stunning goal from the Danish Superliga"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 106,
+   "seed": 882968212,
+   "seconds": 1.84
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: goal danish, goal norwegian, larsson goal, goals norwegian, scored danish, goal norway, goal swedish, norwegian cup, emile højbjerg, danish superliga, awesome goals, goal history, danish talent, norwegian league, denmark nicklas\nPosts (one per line, title first):\n- A brilliant goal by Esbjergs Peter Ankersen in the Danish Superliga\n- Peter Ankersen - Esbjerg fB scoring an amazing goal\n- Danish talent Pierre-Emile Højbjerg scores a screamer of a freekick for Bayern reserves\n- Worldclass goal from Rosenborg-striker Nicki Bille Nielsen\n- Nicki Bille Nielsen with a wonderful goal in the Norwegian League\n- Youssef Toutouh Amazing Goal Esbjerg Vs Randers\n- Nice teamplay goal from Swedens U-17 team (crosspost r/allsvenskan)\n- Another great goal from Norway\n- Mix Diskerud Goal for Rosenborg BK vs Molde in the Norwegian Cup Final.\n- Henriks Larsson's last goal for Sweden. Doesn't it look familiar?\n- The best goal in the history of the danish superleague\n- Nice overtime goal by Magne Hoseth in the Norwegian Cup Semi Finals\n- Johann Berg Guðmundsson's amazing equalizer vs Switzerland in the 89th minute\n- Awesome Goals from Norwegian Club IK Start\n- Kerim Frei U21 goal vs Sweden 9/10/2013\n- Attended my first Swedish league game this week and was treated to this stunner of a goal\n- Best goal I've seen this weekend - It's from Denmark! (Nicklas Helenius)\n- Tokelo Rantie's amazing goal in Swedish Allsvenskan.\n- Amazing goal from Søren Berg in the Danish Superliga\n- Esbjergs FB's Ankersen scores an unbelievable goal\n- Amazing Goal Scored In Danish Soccerleague\n- Must see: Stabaek youth player Sakarias Opsahl scores flick-up wonder goal v Ski\n- A goal from Norwegian Fourth Division.\n- Not the best, but a nice goal by Lars Stindl scored today\n- A simply stunning goal from the Danish Superliga\n- Fantastic volley by Rosenborg Midfielder Mikkel Diskerud to send them into Europa League\n- Valmir Berisha backheel goal takes Sweden to the semis of the U17 World Cup!\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Danish Superliga Goals\", \"purpose\": \"Highlight goals from the Danish Superliga\", \"emotion_tone\": \"excitement\", \"description\": \"Posts about goals scored in the Danish Superliga, including specific mentions of players and events.\", \"inclusion_cues\": [\"A brilliant goal by Esbjergs Peter Ankersen in the Danish Superliga\", \"Danish talent Pierre-Emile Højbjerg scores a screamer of a freekick for Bayern reserves\", \"The best goal in the history of the danish superleague\", \"A simply stunning goal from the Danish Superliga\"]}]}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Danish Superliga Goals",
+      "purpose": "Highlight goals from the Danish Superliga",
+      "emotion_tone": "excitement",
+      "description": "Posts about goals scored in the Danish Superliga, including specific mentions of players and events.",
+      "inclusion_cues": [
+       "A brilliant goal by Esbjergs Peter Ankersen in the Danish Superliga",
+       "Danish talent Pierre-Emile Højbjerg scores a screamer of a freekick for Bayern reserves",
+       "The best goal in the history of the danish superleague",
+       "A simply stunning goal from the Danish Superliga"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 139,
+   "seed": 1171457071,
+   "seconds": 0.65
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: goal danish, goal norwegian, larsson goal, goals norwegian, scored danish, goal norway, goal swedish, norwegian cup, emile højbjerg, danish superliga, awesome goals, goal history, danish talent, norwegian league, denmark nicklas\nPosts (one per line, title first):\n- A brilliant goal by Esbjergs Peter Ankersen in the Danish Superliga\n- Peter Ankersen - Esbjerg fB scoring an amazing goal\n- Danish talent Pierre-Emile Højbjerg scores a screamer of a freekick for Bayern reserves\n- Worldclass goal from Rosenborg-striker Nicki Bille Nielsen\n- Nicki Bille Nielsen with a wonderful goal in the Norwegian League\n- Youssef Toutouh Amazing Goal Esbjerg Vs Randers\n- Nice teamplay goal from Swedens U-17 team (crosspost r/allsvenskan)\n- Another great goal from Norway\n- Mix Diskerud Goal for Rosenborg BK vs Molde in the Norwegian Cup Final.\n- Henriks Larsson's last goal for Sweden. Doesn't it look familiar?\n- The best goal in the history of the danish superleague\n- Nice overtime goal by Magne Hoseth in the Norwegian Cup Semi Finals\n- Johann Berg Guðmundsson's amazing equalizer vs Switzerland in the 89th minute\n- Awesome Goals from Norwegian Club IK Start\n- Kerim Frei U21 goal vs Sweden 9/10/2013\n- Attended my first Swedish league game this week and was treated to this stunner of a goal\n- Best goal I've seen this weekend - It's from Denmark! (Nicklas Helenius)\n- Tokelo Rantie's amazing goal in Swedish Allsvenskan.\n- Amazing goal from Søren Berg in the Danish Superliga\n- Esbjergs FB's Ankersen scores an unbelievable goal\n- Amazing Goal Scored In Danish Soccerleague\n- Must see: Stabaek youth player Sakarias Opsahl scores flick-up wonder goal v Ski\n- A goal from Norwegian Fourth Division.\n- Not the best, but a nice goal by Lars Stindl scored today\n- A simply stunning goal from the Danish Superliga\n- Fantastic volley by Rosenborg Midfielder Mikkel Diskerud to send them into Europa League\n- Valmir Berisha backheel goal takes Sweden to the semis of the U17 World Cup!\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Danish Superliga Goals\", \"purpose\": \"Highlight goals from the Danish Superliga\", \"emotion_tone\": \"positive\", \"description\": \"Posts about goals scored in the Danish Superliga, including specific mentions of players and events.\", \"inclusion_cues\": [\"Esbjerg fB scoring an amazing goal\", \"Mikkel Diskerud to send them into Europa League\", \"A simply stunning goal from the Danish Superliga\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Danish Superliga Goals\", \"purpose\": \"Highlight goals from the Danish Superliga\", \"emotion_tone\": \"excitement\", \"description\": \"Posts about goals scored in the Danish Superliga, including specific mentions of players and events.\", \"inclusion_cues\": [\"A brilliant goal by Esbjergs Peter Ankersen in the Danish Superliga\", \"Danish talent Pierre-Emile Højbjerg scores a screamer of a freekick for Bayern reserves\", \"The best goal in the history of the danish superleague\", \"A simply stunning goal from the Danish Superliga\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Danish Superliga Goals\", \"purpose\": \"Highlight goals from the Danish Superliga\", \"emotion_tone\": \"excitement\", \"description\": \"Posts about goals scored in the Danish Superliga, including specific mentions of players and events.\", \"inclusion_cues\": [\"A brilliant goal by Esbjergs Peter Ankersen in the Danish Superliga\", \"Danish talent Pierre-Emile Højbjerg scores a screamer of a freekick for Bayern reserves\", \"The best goal in the history of the danish superleague\", \"A simply stunning goal from the Danish Superliga\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 138,
+   "seed": 3439943868,
+   "seconds": 0.53
+  }
+ ]
+}

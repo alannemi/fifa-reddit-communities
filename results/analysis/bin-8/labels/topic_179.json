@@ -1,0 +1,184 @@
+{
+ "period_bin": 8,
+ "topic_id": 179,
+ "keywords": "bundesliga table, table bundesliga, matchday bundesliga, matchdays bundesliga, bundesliga matchday, week bundesliga, season bundesliga, bundesliga league, matches bundesliga, 10 bundesliga, 11 bundesliga, bundesliga form, bundesliga 24, bundesliga scorers, bundesliga gw",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "172z5og",
+  "15wirad",
+  "1ngyx6m",
+  "16r3ex9",
+  "16x1dd9",
+  "1ob1oce",
+  "1ckz4nb",
+  "16mj8kd",
+  "13i0z1k",
+  "1psa34z",
+  "1pgmn3p",
+  "1bsihjm",
+  "16r8xzq",
+  "1ogtc5p",
+  "1goarre",
+  "1gdxik2",
+  "1hjzzcw",
+  "1pajrbt",
+  "1qmruqc",
+  "1kk96bd",
+  "1osv3hz",
+  "12wn3j8",
+  "1gip986",
+  "1ogtl42",
+  "1nyonsr",
+  "1n53rem",
+  "1p4uifj",
+  "1k99u2l",
+  "1jsu63b",
+  "1fxm8j7",
+  "1p4wsen",
+  "18kqigz",
+  "1ir1s86",
+  "1aoert9",
+  "13o1bxz",
+  "1qghb8a",
+  "13tack2",
+  "1nsvlg4",
+  "1gyy14r",
+  "1g84bp6"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Bundesliga Table",
+  "purpose": "Displaying the current standings and matchday information of the Bundesliga",
+  "emotion_tone": "informative",
+  "description": "Posts related to the Bundesliga table, matchday, and league standings",
+  "inclusion_cues": [
+   "Bundesliga table after Matchday 9",
+   "Bundesliga table after matchday 1",
+   "Bundesliga Table after Matchday 3"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Bundesliga Table",
+    "purpose": "Displaying the current standings and matchday information of the Bundesliga",
+    "emotion_tone": "informative",
+    "description": "Posts related to the Bundesliga table, including matchdays, weeks, and league standings",
+    "inclusion_cues": [
+     "Bundesliga table after Matchday 9",
+     "Bundesliga table after matchday 1",
+     "Bundesliga league table after matchday 10"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Bundesliga Table",
+    "purpose": "Displaying the current standings and matchday information of the Bundesliga",
+    "emotion_tone": "informative",
+    "description": "Posts related to the Bundesliga table, matchday, and league standings",
+    "inclusion_cues": [
+     "Bundesliga table after Matchday 9",
+     "Bundesliga table after matchday 1",
+     "Bundesliga Table after Matchday 3"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: bundesliga table, table bundesliga, matchday bundesliga, matchdays bundesliga, bundesliga matchday, week bundesliga, season bundesliga, bundesliga league, matches bundesliga, 10 bundesliga, 11 bundesliga, bundesliga form, bundesliga 24, bundesliga scorers, bundesliga gw\nPosts (one per line, title first):\n- 2. Bundesliga table after Matchday 9\n- Bundesliga table after matchday 1\n- Bundesliga Table after Matchday 3\n- Bundesliga table after Matchday 5\n- 2. Bundesliga table after Matchday 8\n- Bundesliga table after Matchday 7\n- Bundesliga table after matchday 32\n- Bundesliga after match day 4\n- German Bundesliga table after week 32 with 2 matches to go\n- Table of 2. Bundesliga after matchday 17\n- Table of 2. Bundesliga after matchday 15\n- Bundesliga Table after Matchday 27\n- Bundesliga table after match day 5\n- Bundesliga table after GW 9\n- Bundesliga league table after matchday 10\n- [StatsUltra] Bundesliga Forecast after Matchday 8\n- 2. Bundesliga table before winter break (17/34)\n- Table of 2. Bundesliga after matchday 14\n- Bundesliga table after matchday 19\n- Bundesliga table after Matchday 33\n- Table of 1. Bundesliga after matchday 10\n- Bundesliga Table Matchday 29\n- 2. Bundesliga Table [Matchday 11/34]\n- Bundesliga table after GW 8\n- [2. Bundesliga] table after week 8\n- 2025/26 Bundesliga Table after MD 2\n- Bundesliga table after matchday 11\n- Bundesliga table after matchday 31\n- 2. Bundesliga table after matchday 28\n- Bundesliga table after matchday 6\n- Table of 2. Bundesliga after matchday 13\n- Bundesliga Table after week 15\n- Bundesliga table after matchday 22\n- Bundesliga Table after Matchday 21\n- The Bundesliga table while Sebastien Haller was absent and the table since his return to Dortmund after beating testicular cancer\n- Bundesliga table after Matchday 18 / MD 16 and 17 to be completed in 10 days.\n- Final Bundesliga table (matchweek 34)\n- Table of 2. Bundesliga after matchday 7\n- Bundesliga table Home vs Away form after matchday 11\n- Bundesliga table after matchday 7\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bundesliga Table\", \"purpose\": \"Displaying the current standings and matchday information of the Bundesliga\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to the Bundesliga table, including matchdays, weeks, and league standings\", \"inclusion_cues\": [\"Bundesliga table after Matchday 9\", \"Bundesliga table after matchday 1\", \"Bundesliga league table after matchday 10\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Bundesliga Table",
+      "purpose": "Displaying the current standings and matchday information of the Bundesliga",
+      "emotion_tone": "informative",
+      "description": "Posts related to the Bundesliga table, including matchdays, weeks, and league standings",
+      "inclusion_cues": [
+       "Bundesliga table after Matchday 9",
+       "Bundesliga table after matchday 1",
+       "Bundesliga league table after matchday 10"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 114,
+   "seed": 2647388456,
+   "seconds": 0.66
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: bundesliga table, table bundesliga, matchday bundesliga, matchdays bundesliga, bundesliga matchday, week bundesliga, season bundesliga, bundesliga league, matches bundesliga, 10 bundesliga, 11 bundesliga, bundesliga form, bundesliga 24, bundesliga scorers, bundesliga gw\nPosts (one per line, title first):\n- 2. Bundesliga table after Matchday 9\n- Bundesliga table after matchday 1\n- Bundesliga Table after Matchday 3\n- Bundesliga table after Matchday 5\n- 2. Bundesliga table after Matchday 8\n- Bundesliga table after Matchday 7\n- Bundesliga table after matchday 32\n- Bundesliga after match day 4\n- German Bundesliga table after week 32 with 2 matches to go\n- Table of 2. Bundesliga after matchday 17\n- Table of 2. Bundesliga after matchday 15\n- Bundesliga Table after Matchday 27\n- Bundesliga table after match day 5\n- Bundesliga table after GW 9\n- Bundesliga league table after matchday 10\n- [StatsUltra] Bundesliga Forecast after Matchday 8\n- 2. Bundesliga table before winter break (17/34)\n- Table of 2. Bundesliga after matchday 14\n- Bundesliga table after matchday 19\n- Bundesliga table after Matchday 33\n- Table of 1. Bundesliga after matchday 10\n- Bundesliga Table Matchday 29\n- 2. Bundesliga Table [Matchday 11/34]\n- Bundesliga table after GW 8\n- [2. Bundesliga] table after week 8\n- 2025/26 Bundesliga Table after MD 2\n- Bundesliga table after matchday 11\n- Bundesliga table after matchday 31\n- 2. Bundesliga table after matchday 28\n- Bundesliga table after matchday 6\n- Table of 2. Bundesliga after matchday 13\n- Bundesliga Table after week 15\n- Bundesliga table after matchday 22\n- Bundesliga Table after Matchday 21\n- The Bundesliga table while Sebastien Haller was absent and the table since his return to Dortmund after beating testicular cancer\n- Bundesliga table after Matchday 18 / MD 16 and 17 to be completed in 10 days.\n- Final Bundesliga table (matchweek 34)\n- Table of 2. Bundesliga after matchday 7\n- Bundesliga table Home vs Away form after matchday 11\n- Bundesliga table after matchday 7\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bundesliga Table\", \"purpose\": \"Displaying the current standings and matchday information of the Bundesliga\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to the Bundesliga table, matchday, and league standings\", \"inclusion_cues\": [\"Bundesliga table after Matchday 9\", \"Bundesliga table after matchday 1\", \"Bundesliga Table after Matchday 3\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Bundesliga Table",
+      "purpose": "Displaying the current standings and matchday information of the Bundesliga",
+      "emotion_tone": "informative",
+      "description": "Posts related to the Bundesliga table, matchday, and league standings",
+      "inclusion_cues": [
+       "Bundesliga table after Matchday 9",
+       "Bundesliga table after matchday 1",
+       "Bundesliga Table after Matchday 3"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 109,
+   "seed": 1618821952,
+   "seconds": 0.69
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: bundesliga table, table bundesliga, matchday bundesliga, matchdays bundesliga, bundesliga matchday, week bundesliga, season bundesliga, bundesliga league, matches bundesliga, 10 bundesliga, 11 bundesliga, bundesliga form, bundesliga 24, bundesliga scorers, bundesliga gw\nPosts (one per line, title first):\n- 2. Bundesliga table after Matchday 9\n- Bundesliga table after matchday 1\n- Bundesliga Table after Matchday 3\n- Bundesliga table after Matchday 5\n- 2. Bundesliga table after Matchday 8\n- Bundesliga table after Matchday 7\n- Bundesliga table after matchday 32\n- Bundesliga after match day 4\n- German Bundesliga table after week 32 with 2 matches to go\n- Table of 2. Bundesliga after matchday 17\n- Table of 2. Bundesliga after matchday 15\n- Bundesliga Table after Matchday 27\n- Bundesliga table after match day 5\n- Bundesliga table after GW 9\n- Bundesliga league table after matchday 10\n- [StatsUltra] Bundesliga Forecast after Matchday 8\n- 2. Bundesliga table before winter break (17/34)\n- Table of 2. Bundesliga after matchday 14\n- Bundesliga table after matchday 19\n- Bundesliga table after Matchday 33\n- Table of 1. Bundesliga after matchday 10\n- Bundesliga Table Matchday 29\n- 2. Bundesliga Table [Matchday 11/34]\n- Bundesliga table after GW 8\n- [2. Bundesliga] table after week 8\n- 2025/26 Bundesliga Table after MD 2\n- Bundesliga table after matchday 11\n- Bundesliga table after matchday 31\n- 2. Bundesliga table after matchday 28\n- Bundesliga table after matchday 6\n- Table of 2. Bundesliga after matchday 13\n- Bundesliga Table after week 15\n- Bundesliga table after matchday 22\n- Bundesliga Table after Matchday 21\n- The Bundesliga table while Sebastien Haller was absent and the table since his return to Dortmund after beating testicular cancer\n- Bundesliga table after Matchday 18 / MD 16 and 17 to be completed in 10 days.\n- Final Bundesliga table (matchweek 34)\n- Table of 2. Bundesliga after matchday 7\n- Bundesliga table Home vs Away form after matchday 11\n- Bundesliga table after matchday 7\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bundesliga Table\", \"purpose\": \"Displaying the current standings and matchday information of the Bundesliga\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to the Bundesliga table, including matchdays, weeks, and league standings\", \"inclusion_cues\": [\"Bundesliga table after Matchday 9\", \"Bundesliga table after matchday 1\", \"Bundesliga league table after matchday 10\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bundesliga Table\", \"purpose\": \"Displaying the current standings and matchday information of the Bundesliga\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to the Bundesliga table, matchday, and league standings\", \"inclusion_cues\": [\"Bundesliga table after Matchday 9\", \"Bundesliga table after matchday 1\", \"Bundesliga Table after Matchday 3\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Bundesliga Table\", \"purpose\": \"Displaying the current standings and matchday information of the Bundesliga\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to the Bundesliga table, matchdays, weeks, and league standings\", \"inclusion_cues\": [\"Bundesliga table after Matchday 9\", \"Bundesliga table after matchday 1\", \"Bundesliga Table after Matchday 3\"]]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 413)",
+   "n_tokens": 110,
+   "seed": 3144664020,
+   "seconds": 0.67
+  }
+ ]
+}

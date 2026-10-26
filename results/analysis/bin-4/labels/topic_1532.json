@@ -1,0 +1,210 @@
+{
+ "period_bin": 4,
+ "topic_id": 1532,
+ "keywords": "manager doncaster, rotherham manager, manager rotherham, rangers manager, mcclaren newcastle, united coach, manager neil, assistant valencia, manager graham, united rotherham, doncaster rovers, position leeds, company manager, leeds confirm, appoint ian",
+ "n_sample_posts": 26,
+ "sample_ids": [
+  "39h3dy",
+  "3dht4s",
+  "44r70d",
+  "7mv2c7",
+  "5god9v",
+  "5z4l53",
+  "2rmppb",
+  "5h08ic",
+  "4g4tr9",
+  "3dhwr4",
+  "3b2ihx",
+  "7qi76u",
+  "39fav1",
+  "5mx867",
+  "70iczi",
+  "6quyes",
+  "6wkcev",
+  "4lwh2k",
+  "2kz62c",
+  "3bnw0x",
+  "5gn48y",
+  "7lrqhg",
+  "3m2mtf",
+  "3mz6iu",
+  "5gq2r8",
+  "3motdw"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Manager Changes",
+  "purpose": "Tracking managerial appointments and departures in football clubs",
+  "emotion_tone": "neutral",
+  "description": "Posts related to managerial changes, including appointments and departures of managers and assistants in various football clubs.",
+  "inclusion_cues": [
+   "manager doncaster",
+   "rotherham manager",
+   "manager rotherham",
+   "rangers manager",
+   "mcclaren newcastle",
+   "united coach",
+   "manager neil",
+   "assistant valencia",
+   "manager graham",
+   "united rotherham"
+  ],
+  "n_cues_given": 15
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Manager Changes",
+    "purpose": "Tracking managerial appointments and departures in football clubs",
+    "emotion_tone": "neutral",
+    "description": "Posts related to managerial changes, including new appointments, resignations, and club departures",
+    "inclusion_cues": [
+     "manager doncaster",
+     "rotherham manager",
+     "manager rotherham",
+     "rangers manager",
+     "mcclaren newcastle",
+     "united coach",
+     "manager neil",
+     "assistant valencia",
+     "manager graham",
+     "united rotherham"
+    ],
+    "n_cues_given": 15
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Manager Changes",
+    "purpose": "Tracking managerial appointments and departures in football clubs",
+    "emotion_tone": "neutral",
+    "description": "Posts related to managerial changes, including appointments and departures of managers and assistants in various football clubs.",
+    "inclusion_cues": [
+     "manager doncaster",
+     "rotherham manager",
+     "manager rotherham",
+     "rangers manager",
+     "mcclaren newcastle",
+     "united coach",
+     "manager neil",
+     "assistant valencia",
+     "manager graham",
+     "united rotherham"
+    ],
+    "n_cues_given": 15
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: manager doncaster, rotherham manager, manager rotherham, rangers manager, mcclaren newcastle, united coach, manager neil, assistant valencia, manager graham, united rotherham, doncaster rovers, position leeds, company manager, leeds confirm, appoint ian\nPosts (one per line, title first):\n- Valencia: Scottish Assistant manager Ian Cathro exits La Liga club\n- Leeds United coach (and former Manager) Neil Redfearn resigns from academy position. Claims position was \"Untenable\".\n- Rotherham part company with manager Neil Redfearn\n- Former Leeds United and Rotherham manager Neil Redfearn named new manager of Doncaster Rovers Belles\n- Hearts appoint 30-year-old ex-Valencia and Newcastle United assistant manager Ian Cathro as head coach\n- Wigan Athletic part company with Manager Warren Joyce\n- Ian Cathro lined up for Rangers manager job\n- Why appointment of Ian Cathro at Hearts has inadvertently condemned all humans to extinction\n- Peterborough parts with manager Graham Westley\n- BBC Sport - Neil Redfearn: Leeds United coach resigns from academy position\n- Ian Cathro is to become Steve McClaren's Newcastle assistant\n- Bury FC part company with Manager Chris Lucketti and his Assistant Joe Parkinson.\n- Neil Redfearn returns to academy role.\n- Northampton Town part company with manager Rob Page\n- Chesterfield part company with boss Gary Caldwell\n- Ian Cathro leaves Hearts\n- Hearts director of football Craig Levein returns to dugout as manager\n- Leeds part company with manager Steve Evans.\n- Leeds confirm the appointment of Neil Redfearn as head coach.\n- Leicester City Parts Company With Nigel Pearson\n- Hearts aim for coaching team of Ian Cathro and Austin MacPhee\n- Middlesbrough part company with Garry Monk\n- Motherwell FC part company with Ian Baraclough.\n- BBC Sport - Graham Alexander: Fleetwood Town part company with manager\n- Hearts appoint Ian Cathro as their new Head Coach\n- Rotherham United part company with Steve Evans\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Manager Changes\", \"purpose\": \"Tracking managerial appointments and departures in football clubs\", \"emotion_tone\": \"neutral\", \"description\": \"Posts related to managerial changes, including new appointments, resignations, and club departures\", \"inclusion_cues\": [\"manager doncaster\", \"rotherham manager\", \"manager rotherham\", \"rangers manager\", \"mcclaren newcastle\", \"united coach\", \"manager neil\", \"assistant valencia\", \"manager graham\", \"united rotherham\", \"doncaster rovers\", \"position leeds\", \"company manager\", \"leeds confirm\", \"appoint ian\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Manager Changes",
+      "purpose": "Tracking managerial appointments and departures in football clubs",
+      "emotion_tone": "neutral",
+      "description": "Posts related to managerial changes, including new appointments, resignations, and club departures",
+      "inclusion_cues": [
+       "manager doncaster",
+       "rotherham manager",
+       "manager rotherham",
+       "rangers manager",
+       "mcclaren newcastle",
+       "united coach",
+       "manager neil",
+       "assistant valencia",
+       "manager graham",
+       "united rotherham"
+      ],
+      "n_cues_given": 15
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 151,
+   "seed": 1930888632,
+   "seconds": 1.09
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: manager doncaster, rotherham manager, manager rotherham, rangers manager, mcclaren newcastle, united coach, manager neil, assistant valencia, manager graham, united rotherham, doncaster rovers, position leeds, company manager, leeds confirm, appoint ian\nPosts (one per line, title first):\n- Valencia: Scottish Assistant manager Ian Cathro exits La Liga club\n- Leeds United coach (and former Manager) Neil Redfearn resigns from academy position. Claims position was \"Untenable\".\n- Rotherham part company with manager Neil Redfearn\n- Former Leeds United and Rotherham manager Neil Redfearn named new manager of Doncaster Rovers Belles\n- Hearts appoint 30-year-old ex-Valencia and Newcastle United assistant manager Ian Cathro as head coach\n- Wigan Athletic part company with Manager Warren Joyce\n- Ian Cathro lined up for Rangers manager job\n- Why appointment of Ian Cathro at Hearts has inadvertently condemned all humans to extinction\n- Peterborough parts with manager Graham Westley\n- BBC Sport - Neil Redfearn: Leeds United coach resigns from academy position\n- Ian Cathro is to become Steve McClaren's Newcastle assistant\n- Bury FC part company with Manager Chris Lucketti and his Assistant Joe Parkinson.\n- Neil Redfearn returns to academy role.\n- Northampton Town part company with manager Rob Page\n- Chesterfield part company with boss Gary Caldwell\n- Ian Cathro leaves Hearts\n- Hearts director of football Craig Levein returns to dugout as manager\n- Leeds part company with manager Steve Evans.\n- Leeds confirm the appointment of Neil Redfearn as head coach.\n- Leicester City Parts Company With Nigel Pearson\n- Hearts aim for coaching team of Ian Cathro and Austin MacPhee\n- Middlesbrough part company with Garry Monk\n- Motherwell FC part company with Ian Baraclough.\n- BBC Sport - Graham Alexander: Fleetwood Town part company with manager\n- Hearts appoint Ian Cathro as their new Head Coach\n- Rotherham United part company with Steve Evans\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Manager Changes\", \"purpose\": \"Tracking managerial appointments and departures in football clubs\", \"emotion_tone\": \"neutral\", \"description\": \"Posts related to managerial changes, including appointments and departures of managers and assistants in various football clubs.\", \"inclusion_cues\": [\"manager doncaster\", \"rotherham manager\", \"manager rotherham\", \"rangers manager\", \"mcclaren newcastle\", \"united coach\", \"manager neil\", \"assistant valencia\", \"manager graham\", \"united rotherham\", \"doncaster rovers\", \"position leeds\", \"company manager\", \"leeds confirm\", \"appoint ian\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Manager Changes",
+      "purpose": "Tracking managerial appointments and departures in football clubs",
+      "emotion_tone": "neutral",
+      "description": "Posts related to managerial changes, including appointments and departures of managers and assistants in various football clubs.",
+      "inclusion_cues": [
+       "manager doncaster",
+       "rotherham manager",
+       "manager rotherham",
+       "rangers manager",
+       "mcclaren newcastle",
+       "united coach",
+       "manager neil",
+       "assistant valencia",
+       "manager graham",
+       "united rotherham"
+      ],
+      "n_cues_given": 15
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 153,
+   "seed": 2141917969,
+   "seconds": 0.97
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: manager doncaster, rotherham manager, manager rotherham, rangers manager, mcclaren newcastle, united coach, manager neil, assistant valencia, manager graham, united rotherham, doncaster rovers, position leeds, company manager, leeds confirm, appoint ian\nPosts (one per line, title first):\n- Valencia: Scottish Assistant manager Ian Cathro exits La Liga club\n- Leeds United coach (and former Manager) Neil Redfearn resigns from academy position. Claims position was \"Untenable\".\n- Rotherham part company with manager Neil Redfearn\n- Former Leeds United and Rotherham manager Neil Redfearn named new manager of Doncaster Rovers Belles\n- Hearts appoint 30-year-old ex-Valencia and Newcastle United assistant manager Ian Cathro as head coach\n- Wigan Athletic part company with Manager Warren Joyce\n- Ian Cathro lined up for Rangers manager job\n- Why appointment of Ian Cathro at Hearts has inadvertently condemned all humans to extinction\n- Peterborough parts with manager Graham Westley\n- BBC Sport - Neil Redfearn: Leeds United coach resigns from academy position\n- Ian Cathro is to become Steve McClaren's Newcastle assistant\n- Bury FC part company with Manager Chris Lucketti and his Assistant Joe Parkinson.\n- Neil Redfearn returns to academy role.\n- Northampton Town part company with manager Rob Page\n- Chesterfield part company with boss Gary Caldwell\n- Ian Cathro leaves Hearts\n- Hearts director of football Craig Levein returns to dugout as manager\n- Leeds part company with manager Steve Evans.\n- Leeds confirm the appointment of Neil Redfearn as head coach.\n- Leicester City Parts Company With Nigel Pearson\n- Hearts aim for coaching team of Ian Cathro and Austin MacPhee\n- Middlesbrough part company with Garry Monk\n- Motherwell FC part company with Ian Baraclough.\n- BBC Sport - Graham Alexander: Fleetwood Town part company with manager\n- Hearts appoint Ian Cathro as their new Head Coach\n- Rotherham United part company with Steve Evans\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Manager Changes\", \"purpose\": \"Tracking managerial appointments and departures in football clubs\", \"emotion_tone\": \"neutral\", \"description\": \"Posts related to managerial changes, including new appointments, resignations, and club departures\", \"inclusion_cues\": [\"manager doncaster\", \"rotherham manager\", \"manager rotherham\", \"rangers manager\", \"mcclaren newcastle\", \"united coach\", \"manager neil\", \"assistant valencia\", \"manager graham\", \"united rotherham\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Manager Changes\", \"purpose\": \"Tracking managerial appointments and departures in football clubs\", \"emotion_tone\": \"neutral\", \"description\": \"Posts related to managerial changes, including appointments and departures of managers and assistants in various football clubs.\", \"inclusion_cues\": [\"manager doncaster\", \"rotherham manager\", \"manager rotherham\", \"rangers manager\", \"mcclaren newcastle\", \"united coach\", \"manager neil\", \"assistant valencia\", \"manager graham\", \"united rotherham\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Manager Changes\", \"purpose\": \"Tracking managerial appointments and departures in football clubs\", \"emotion_tone\": \"neutral\", \"description\": \"Posts related to managerial changes, including new appointments, resignations, and club departures\", \"inclusion_cues\": [\"manager doncaster\", \"rotherham manager\", \"manager rotherham\", \"rangers manager\", \"mcclaren newcastle\", \"united coach\", \"manager neil\", \"assistant valencia\", \"manager graham\", \"united rotherham\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 125,
+   "seed": 3600486402,
+   "seconds": 0.53
+  }
+ ]
+}

@@ -1,0 +1,178 @@
+{
+ "period_bin": 2,
+ "topic_id": 725,
+ "keywords": "ranger arrested, nile ranger, arrested newcastle, ranger just, footballer rape, newcastle striker, rangers new, charged rape, ex newcastle, head newcastle, newcastle, news newcastle, video newcastle, convicted assault, face newcastle",
+ "n_sample_posts": 32,
+ "sample_ids": [
+  "lv8j0",
+  "1j5nu6",
+  "1792in",
+  "1791k5",
+  "1792mv",
+  "wtn87",
+  "1khq76",
+  "ezhvd",
+  "1j7ao3",
+  "1j7n79",
+  "17fd5l",
+  "11iyt0",
+  "1hv320",
+  "1j60bc",
+  "1kc98t",
+  "1j61rd",
+  "1733b8",
+  "1khyhw",
+  "1791wp",
+  "1j6ak5",
+  "1hw5pp",
+  "1khqjf",
+  "1j5t23",
+  "1aa5cp",
+  "170swx",
+  "19h6mn",
+  "1j6i8v",
+  "z49qx",
+  "1lugoc",
+  "1j6gto",
+  "1j6oha",
+  "1hv1ym"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Nile Ranger Arrests",
+  "purpose": "Reporting on arrests of Nile Ranger",
+  "emotion_tone": "Neutral",
+  "description": "Posts about Nile Ranger's arrests, including rape and assault charges, and related news.",
+  "inclusion_cues": [
+   "Nile Ranger arrested on suspicion of rape",
+   "Nile Ranger charged with rape",
+   "Nile Ranger arrested on suspicion of assault"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Nile Ranger Arrests",
+    "purpose": "Reporting on arrests of Nile Ranger",
+    "emotion_tone": "Neutral",
+    "description": "Posts about Nile Ranger's arrests, including charges of rape and assault, and related news.",
+    "inclusion_cues": [
+     "Nile Ranger arrested on suspicion of rape",
+     "BBC News - Nile Ranger: Ex-Newcastle United footballer on rape charge",
+     "Nile Ranger convicted of assault against two police officers",
+     "Nile Ranger questioned on suspicion of rape"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Nile Ranger Arrests",
+    "purpose": "Reporting on arrests of Nile Ranger",
+    "emotion_tone": "Neutral",
+    "description": "Posts about Nile Ranger's arrests, including rape and assault charges, and related news.",
+    "inclusion_cues": [
+     "Nile Ranger arrested on suspicion of rape",
+     "Nile Ranger charged with rape",
+     "Nile Ranger arrested on suspicion of assault"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: ranger arrested, nile ranger, arrested newcastle, ranger just, footballer rape, newcastle striker, rangers new, charged rape, ex newcastle, head newcastle, newcastle, news newcastle, video newcastle, convicted assault, face newcastle\nPosts (one per line, title first):\n- Nile Ranger Arrested Again\n- Former Newcastle United striker Nile Ranger tattoos surname on side of his head\n- BBC News - Newcastle United's Nile Ranger Has Been Arrested On Suspicion Of Rape\n- Newcastle United striker Nile Ranger arrested on suspicion of rape\n- Newcastle United striker Nile Ranger has been arrested on suspicion of rape\n- Nile Ranger has just sent out the most astonishingly confusing tweet.\n- Swindon Town sign Nile Ranger [OFFICIAL]\n- Newcastle's Nile Ranger chooses a weird place to have a tattoo\n- Former Newcastle Striker Nile Ranger gets his name tattooed on his forehead\n- Former Newcastle United striker Nile Ranger gets his last name tattooed to his forehead. Metro News' interpretive caption makes it for me.\n- Nile Ranger best of video\n- Newcastle's Nile Ranger convicted of assault against two police officers\n- BBC News - Nile Ranger: Ex-Newcastle United footballer on rape charge\n- Nile Rangers new tattoo (When you thought it couldn't get worse)\n- Fans' favourite Nile Ranger tattoos his surname on his face\n- Nile Ranger gets tattoo of own name on forehead.\n- A true Geordie's view on Nile Ranger\n- Swindon announce the signing of striker Nile Ranger on a one year deal\n- Nile ranger questioned on suspicion of rape\n- Former magpie Nile Ranger tattoos his name on his face\n- Nile Ranger: Ex-Newcastle United footballer on rape charge.\n- Swindon Town sign Nile Ranger on 2 year deal.\n- \"'My name RINGS BELLS #POWERFUL #RANGER #INKKING.\" Former Newcastle United striker Nile Ranger tattoos his surname on his head.\n- Nile Ranger arrested on suspicion of assault.\n- Geordie View on Nile Ranger....\n- Nile Ranger leaves Newcastle United by mutual consent\n- Nile Ranger's stupid new face tattoo\n- Awesome tattoo (left arm), his nickname is Spider Man!\n- Nile Ranger tattoos his own name...on his forehead.\n- Former Newcastle striker Nile Ranger tattoos his own name on face.\n- This is just horrible!! Nile Ranger a free agent currently with Newcastle\n- Former Newcastle United striker Nile Ranger charged with rape\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Nile Ranger Arrests\", \"purpose\": \"Reporting on arrests of Nile Ranger\", \"emotion_tone\": \"Neutral\", \"description\": \"Posts about Nile Ranger's arrests, including charges of rape and assault, and related news.\", \"inclusion_cues\": [\"Nile Ranger arrested on suspicion of rape\", \"BBC News - Nile Ranger: Ex-Newcastle United footballer on rape charge\", \"Nile Ranger convicted of assault against two police officers\", \"Nile Ranger questioned on suspicion of rape\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Nile Ranger Arrests",
+      "purpose": "Reporting on arrests of Nile Ranger",
+      "emotion_tone": "Neutral",
+      "description": "Posts about Nile Ranger's arrests, including charges of rape and assault, and related news.",
+      "inclusion_cues": [
+       "Nile Ranger arrested on suspicion of rape",
+       "BBC News - Nile Ranger: Ex-Newcastle United footballer on rape charge",
+       "Nile Ranger convicted of assault against two police officers",
+       "Nile Ranger questioned on suspicion of rape"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 119,
+   "seed": 3250224161,
+   "seconds": 0.97
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: ranger arrested, nile ranger, arrested newcastle, ranger just, footballer rape, newcastle striker, rangers new, charged rape, ex newcastle, head newcastle, newcastle, news newcastle, video newcastle, convicted assault, face newcastle\nPosts (one per line, title first):\n- Nile Ranger Arrested Again\n- Former Newcastle United striker Nile Ranger tattoos surname on side of his head\n- BBC News - Newcastle United's Nile Ranger Has Been Arrested On Suspicion Of Rape\n- Newcastle United striker Nile Ranger arrested on suspicion of rape\n- Newcastle United striker Nile Ranger has been arrested on suspicion of rape\n- Nile Ranger has just sent out the most astonishingly confusing tweet.\n- Swindon Town sign Nile Ranger [OFFICIAL]\n- Newcastle's Nile Ranger chooses a weird place to have a tattoo\n- Former Newcastle Striker Nile Ranger gets his name tattooed on his forehead\n- Former Newcastle United striker Nile Ranger gets his last name tattooed to his forehead. Metro News' interpretive caption makes it for me.\n- Nile Ranger best of video\n- Newcastle's Nile Ranger convicted of assault against two police officers\n- BBC News - Nile Ranger: Ex-Newcastle United footballer on rape charge\n- Nile Rangers new tattoo (When you thought it couldn't get worse)\n- Fans' favourite Nile Ranger tattoos his surname on his face\n- Nile Ranger gets tattoo of own name on forehead.\n- A true Geordie's view on Nile Ranger\n- Swindon announce the signing of striker Nile Ranger on a one year deal\n- Nile ranger questioned on suspicion of rape\n- Former magpie Nile Ranger tattoos his name on his face\n- Nile Ranger: Ex-Newcastle United footballer on rape charge.\n- Swindon Town sign Nile Ranger on 2 year deal.\n- \"'My name RINGS BELLS #POWERFUL #RANGER #INKKING.\" Former Newcastle United striker Nile Ranger tattoos his surname on his head.\n- Nile Ranger arrested on suspicion of assault.\n- Geordie View on Nile Ranger....\n- Nile Ranger leaves Newcastle United by mutual consent\n- Nile Ranger's stupid new face tattoo\n- Awesome tattoo (left arm), his nickname is Spider Man!\n- Nile Ranger tattoos his own name...on his forehead.\n- Former Newcastle striker Nile Ranger tattoos his own name on face.\n- This is just horrible!! Nile Ranger a free agent currently with Newcastle\n- Former Newcastle United striker Nile Ranger charged with rape\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Nile Ranger Arrests\", \"purpose\": \"Reporting on arrests of Nile Ranger\", \"emotion_tone\": \"Neutral\", \"description\": \"Posts about Nile Ranger's arrests, including rape and assault charges, and related news.\", \"inclusion_cues\": [\"Nile Ranger arrested on suspicion of rape\", \"Nile Ranger charged with rape\", \"Nile Ranger arrested on suspicion of assault\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Nile Ranger Arrests",
+      "purpose": "Reporting on arrests of Nile Ranger",
+      "emotion_tone": "Neutral",
+      "description": "Posts about Nile Ranger's arrests, including rape and assault charges, and related news.",
+      "inclusion_cues": [
+       "Nile Ranger arrested on suspicion of rape",
+       "Nile Ranger charged with rape",
+       "Nile Ranger arrested on suspicion of assault"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 97,
+   "seed": 1175419455,
+   "seconds": 0.55
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: ranger arrested, nile ranger, arrested newcastle, ranger just, footballer rape, newcastle striker, rangers new, charged rape, ex newcastle, head newcastle, newcastle, news newcastle, video newcastle, convicted assault, face newcastle\nPosts (one per line, title first):\n- Nile Ranger Arrested Again\n- Former Newcastle United striker Nile Ranger tattoos surname on side of his head\n- BBC News - Newcastle United's Nile Ranger Has Been Arrested On Suspicion Of Rape\n- Newcastle United striker Nile Ranger arrested on suspicion of rape\n- Newcastle United striker Nile Ranger has been arrested on suspicion of rape\n- Nile Ranger has just sent out the most astonishingly confusing tweet.\n- Swindon Town sign Nile Ranger [OFFICIAL]\n- Newcastle's Nile Ranger chooses a weird place to have a tattoo\n- Former Newcastle Striker Nile Ranger gets his name tattooed on his forehead\n- Former Newcastle United striker Nile Ranger gets his last name tattooed to his forehead. Metro News' interpretive caption makes it for me.\n- Nile Ranger best of video\n- Newcastle's Nile Ranger convicted of assault against two police officers\n- BBC News - Nile Ranger: Ex-Newcastle United footballer on rape charge\n- Nile Rangers new tattoo (When you thought it couldn't get worse)\n- Fans' favourite Nile Ranger tattoos his surname on his face\n- Nile Ranger gets tattoo of own name on forehead.\n- A true Geordie's view on Nile Ranger\n- Swindon announce the signing of striker Nile Ranger on a one year deal\n- Nile ranger questioned on suspicion of rape\n- Former magpie Nile Ranger tattoos his name on his face\n- Nile Ranger: Ex-Newcastle United footballer on rape charge.\n- Swindon Town sign Nile Ranger on 2 year deal.\n- \"'My name RINGS BELLS #POWERFUL #RANGER #INKKING.\" Former Newcastle United striker Nile Ranger tattoos his surname on his head.\n- Nile Ranger arrested on suspicion of assault.\n- Geordie View on Nile Ranger....\n- Nile Ranger leaves Newcastle United by mutual consent\n- Nile Ranger's stupid new face tattoo\n- Awesome tattoo (left arm), his nickname is Spider Man!\n- Nile Ranger tattoos his own name...on his forehead.\n- Former Newcastle striker Nile Ranger tattoos his own name on face.\n- This is just horrible!! Nile Ranger a free agent currently with Newcastle\n- Former Newcastle United striker Nile Ranger charged with rape\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Nile Ranger Arrests\", \"purpose\": \"Reporting on arrests of Nile Ranger\", \"emotion_tone\": \"Neutral\", \"description\": \"Posts about Nile Ranger's arrests, including charges of rape and assault, and related news.\", \"inclusion_cues\": [\"Nile Ranger arrested on suspicion of rape\", \"BBC News - Nile Ranger: Ex-Newcastle United footballer on rape charge\", \"Nile Ranger convicted of assault against two police officers\", \"Nile Ranger questioned on suspicion of rape\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Nile Ranger Arrests\", \"purpose\": \"Reporting on arrests of Nile Ranger\", \"emotion_tone\": \"Neutral\", \"description\": \"Posts about Nile Ranger's arrests, including rape and assault charges, and related news.\", \"inclusion_cues\": [\"Nile Ranger arrested on suspicion of rape\", \"Nile Ranger charged with rape\", \"Nile Ranger arrested on suspicion of assault\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Nile Ranger Arrests\", \"purpose\": \"Reporting on arrests of Nile Ranger\", \"emotion_tone\": \"Neutral\", \"description\": \"Posts about Nile Ranger's arrests, including charges of rape and assault, and related news.\", \"inclusion_cues\": [\"Nile Ranger arrested on suspicion of rape\", \"Nile Ranger charged with rape\", \"Nile Ranger arrested on suspicion of assault\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 96,
+   "seed": 1528965427,
+   "seconds": 0.63
+  }
+ ]
+}

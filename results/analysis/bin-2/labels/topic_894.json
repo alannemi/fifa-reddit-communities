@@ -1,0 +1,179 @@
+{
+ "period_bin": 2,
+ "topic_id": 894,
+ "keywords": "game watford, watford win, watford football, leicester game, goals watford, watford championship, win watford, leicester watford, leicester play, watford today, leicester championship, epl championship, goal video, playoff final, goal win",
+ "n_sample_posts": 25,
+ "sample_ids": [
+  "1e6vod",
+  "1e9n95",
+  "1e7dn5",
+  "1e7h68",
+  "1e9l21",
+  "1eak3z",
+  "1e6ta1",
+  "1e6mkq",
+  "1e6lfn",
+  "16wtqg",
+  "1e6pxs",
+  "1e7lkp",
+  "1e8p2q",
+  "1e6t4d",
+  "1e0xnf",
+  "1e84h2",
+  "1eallo",
+  "1eakvu",
+  "yg3uy",
+  "1e78zb",
+  "1e71l9",
+  "1e8tb4",
+  "ozswz",
+  "1e6nz1",
+  "1eaj9t"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Watford vs Leicester Playoff Final",
+  "purpose": "Report on the playoff final match between Watford and Leicester City",
+  "emotion_tone": "excited",
+  "description": "Posts discussing the dramatic playoff final between Watford and Leicester City, focusing on the final goal, penalty shootout, and the emotional impact of the match.",
+  "inclusion_cues": [
+   "last minutes of Watford V Leicester",
+   "Watford reach playoff final on 97th-minute penalty double save and counter-attack winner",
+   "EPL Championship Playoffs: Watford scores a goal on a counter after a penalty shot is missed by Leicester in the last minute of the game",
+   "Watford vs Leicester 3-1 (Agg: 3-2) - Crazy Reaction!",
+   "VIDEO: Championship playoff: Leicester-Watford 1:0"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Watford vs Leicester Playoff Final",
+    "purpose": "Report on the playoff final match between Watford and Leicester City",
+    "emotion_tone": "excited",
+    "description": "Posts about the dramatic playoff final between Watford and Leicester City, focusing on the final goal, penalty shootout, and the emotional impact of the match.",
+    "inclusion_cues": [
+     "Watford reach playoff final",
+     "penalty double save and counter-attack winner",
+     "goal win",
+     "playoff final",
+     "EPL Championship Playoffs"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Watford vs Leicester Playoff Final",
+    "purpose": "Report on the playoff final match between Watford and Leicester City",
+    "emotion_tone": "excited",
+    "description": "Posts discussing the dramatic playoff final between Watford and Leicester City, focusing on the final goal, penalty shootout, and the emotional impact of the match.",
+    "inclusion_cues": [
+     "last minutes of Watford V Leicester",
+     "Watford reach playoff final on 97th-minute penalty double save and counter-attack winner",
+     "EPL Championship Playoffs: Watford scores a goal on a counter after a penalty shot is missed by Leicester in the last minute of the game",
+     "Watford vs Leicester 3-1 (Agg: 3-2) - Crazy Reaction!",
+     "VIDEO: Championship playoff: Leicester-Watford 1:0"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: game watford, watford win, watford football, leicester game, goals watford, watford championship, win watford, leicester watford, leicester play, watford today, leicester championship, epl championship, goal video, playoff final, goal win\nPosts (one per line, title first):\n- Last Minutes of Watford V Leicester\n- Watford reach playoff final on 97th-minute penalty double save and counter-attack winner | Dirty Tackle\n- The incredible end to the Watford vs Leicester game!\n- Unbelievable End To Watford v Leicester Play off Semi Final 2nd Leg\n- Unbelievable End To Watford v Leicester Play off Semi Final 2nd Leg [3:28]\n- EPL Championship Playoffs: Watford scores a goal on a counter after a penalty shot is missed by Leicester in the last minute of the game!\n- Watford vs Leicester 3-1 (Agg: 3-2) - Crazy Reaction!\n- Video of the Incredible Finish at Watford Today vs Leicester\n- The dramatic ending to Watford vs. Leicester City\n- Championship team Watford score a fantastic Tiki-taka style goal in a 4-0 win over Huddersfield.\n- Video highlights of one of the best finishes in history... Watford!\n- Wow! - Watford score in last seconds after Leics missed pen\n- Commentators go wild as Watford win\n- Watford 3-1 Leicester | Final Two Minutes | Penalty + Troy Deeney Goal\n- VIDEO: Championship playoff: Leicester-Watford 1:0\n- Watford scores a goal in 97th minute after missed opposing team misses PK\n- Watford v. Leicester, final goal\n- VIDEO - Watford vs Leicester amazing's playoff ending\n- Watford win on two late 'Udinese' goals\n- Wow! - Watford score in last seconds after Leics missed pen\n- SKY Sports' Johnny Phillips reaction to the late winner at Vicarage Road. The fans in the background makes this incredible! Well done Watford!\n- Absolutely stunning finish between Watford and Leicester City\n- Watford produced a special edition programme for today's match against Spurs, featuring the two managers on the cover.\n- Football at its best - Watford vs Leicester\n- Watford scoring a breathtaking goal on aggregate time vs Leicester in the Championship semifinal playoffs to see who gets a place in the EPL next year\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Watford vs Leicester Playoff Final\", \"purpose\": \"Report on the playoff final match between Watford and Leicester City\", \"emotion_tone\": \"excited\", \"description\": \"Posts about the dramatic playoff final between Watford and Leicester City, focusing on the final goal, penalty shootout, and the emotional impact of the match.\", \"inclusion_cues\": [\"Watford reach playoff final\", \"penalty double save and counter-attack winner\", \"goal win\", \"playoff final\", \"EPL Championship Playoffs\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Watford vs Leicester Playoff Final",
+      "purpose": "Report on the playoff final match between Watford and Leicester City",
+      "emotion_tone": "excited",
+      "description": "Posts about the dramatic playoff final between Watford and Leicester City, focusing on the final goal, penalty shootout, and the emotional impact of the match.",
+      "inclusion_cues": [
+       "Watford reach playoff final",
+       "penalty double save and counter-attack winner",
+       "goal win",
+       "playoff final",
+       "EPL Championship Playoffs"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 124,
+   "seed": 3346942786,
+   "seconds": 0.49
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: game watford, watford win, watford football, leicester game, goals watford, watford championship, win watford, leicester watford, leicester play, watford today, leicester championship, epl championship, goal video, playoff final, goal win\nPosts (one per line, title first):\n- Last Minutes of Watford V Leicester\n- Watford reach playoff final on 97th-minute penalty double save and counter-attack winner | Dirty Tackle\n- The incredible end to the Watford vs Leicester game!\n- Unbelievable End To Watford v Leicester Play off Semi Final 2nd Leg\n- Unbelievable End To Watford v Leicester Play off Semi Final 2nd Leg [3:28]\n- EPL Championship Playoffs: Watford scores a goal on a counter after a penalty shot is missed by Leicester in the last minute of the game!\n- Watford vs Leicester 3-1 (Agg: 3-2) - Crazy Reaction!\n- Video of the Incredible Finish at Watford Today vs Leicester\n- The dramatic ending to Watford vs. Leicester City\n- Championship team Watford score a fantastic Tiki-taka style goal in a 4-0 win over Huddersfield.\n- Video highlights of one of the best finishes in history... Watford!\n- Wow! - Watford score in last seconds after Leics missed pen\n- Commentators go wild as Watford win\n- Watford 3-1 Leicester | Final Two Minutes | Penalty + Troy Deeney Goal\n- VIDEO: Championship playoff: Leicester-Watford 1:0\n- Watford scores a goal in 97th minute after missed opposing team misses PK\n- Watford v. Leicester, final goal\n- VIDEO - Watford vs Leicester amazing's playoff ending\n- Watford win on two late 'Udinese' goals\n- Wow! - Watford score in last seconds after Leics missed pen\n- SKY Sports' Johnny Phillips reaction to the late winner at Vicarage Road. The fans in the background makes this incredible! Well done Watford!\n- Absolutely stunning finish between Watford and Leicester City\n- Watford produced a special edition programme for today's match against Spurs, featuring the two managers on the cover.\n- Football at its best - Watford vs Leicester\n- Watford scoring a breathtaking goal on aggregate time vs Leicester in the Championship semifinal playoffs to see who gets a place in the EPL next year\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Watford vs Leicester Playoff Final\", \"purpose\": \"Report on the playoff final match between Watford and Leicester City\", \"emotion_tone\": \"excited\", \"description\": \"Posts discussing the dramatic playoff final between Watford and Leicester City, focusing on the final goal, penalty shootout, and the emotional impact of the match.\", \"inclusion_cues\": [\"last minutes of Watford V Leicester\", \"Watford reach playoff final on 97th-minute penalty double save and counter-attack winner\", \"EPL Championship Playoffs: Watford scores a goal on a counter after a penalty shot is missed by Leicester in the last minute of the game\", \"Watford vs Leicester 3-1 (Agg: 3-2) - Crazy Reaction!\", \"VIDEO: Championship playoff: Leicester-Watford 1:0\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Watford vs Leicester Playoff Final",
+      "purpose": "Report on the playoff final match between Watford and Leicester City",
+      "emotion_tone": "excited",
+      "description": "Posts discussing the dramatic playoff final between Watford and Leicester City, focusing on the final goal, penalty shootout, and the emotional impact of the match.",
+      "inclusion_cues": [
+       "last minutes of Watford V Leicester",
+       "Watford reach playoff final on 97th-minute penalty double save and counter-attack winner",
+       "EPL Championship Playoffs: Watford scores a goal on a counter after a penalty shot is missed by Leicester in the last minute of the game",
+       "Watford vs Leicester 3-1 (Agg: 3-2) - Crazy Reaction!",
+       "VIDEO: Championship playoff: Leicester-Watford 1:0"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 188,
+   "seed": 1277024944,
+   "seconds": 0.63
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: game watford, watford win, watford football, leicester game, goals watford, watford championship, win watford, leicester watford, leicester play, watford today, leicester championship, epl championship, goal video, playoff final, goal win\nPosts (one per line, title first):\n- Last Minutes of Watford V Leicester\n- Watford reach playoff final on 97th-minute penalty double save and counter-attack winner | Dirty Tackle\n- The incredible end to the Watford vs Leicester game!\n- Unbelievable End To Watford v Leicester Play off Semi Final 2nd Leg\n- Unbelievable End To Watford v Leicester Play off Semi Final 2nd Leg [3:28]\n- EPL Championship Playoffs: Watford scores a goal on a counter after a penalty shot is missed by Leicester in the last minute of the game!\n- Watford vs Leicester 3-1 (Agg: 3-2) - Crazy Reaction!\n- Video of the Incredible Finish at Watford Today vs Leicester\n- The dramatic ending to Watford vs. Leicester City\n- Championship team Watford score a fantastic Tiki-taka style goal in a 4-0 win over Huddersfield.\n- Video highlights of one of the best finishes in history... Watford!\n- Wow! - Watford score in last seconds after Leics missed pen\n- Commentators go wild as Watford win\n- Watford 3-1 Leicester | Final Two Minutes | Penalty + Troy Deeney Goal\n- VIDEO: Championship playoff: Leicester-Watford 1:0\n- Watford scores a goal in 97th minute after missed opposing team misses PK\n- Watford v. Leicester, final goal\n- VIDEO - Watford vs Leicester amazing's playoff ending\n- Watford win on two late 'Udinese' goals\n- Wow! - Watford score in last seconds after Leics missed pen\n- SKY Sports' Johnny Phillips reaction to the late winner at Vicarage Road. The fans in the background makes this incredible! Well done Watford!\n- Absolutely stunning finish between Watford and Leicester City\n- Watford produced a special edition programme for today's match against Spurs, featuring the two managers on the cover.\n- Football at its best - Watford vs Leicester\n- Watford scoring a breathtaking goal on aggregate time vs Leicester in the Championship semifinal playoffs to see who gets a place in the EPL next year\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Watford vs Leicester Playoff Final\", \"purpose\": \"Report on the playoff final match between Watford and Leicester City\", \"emotion_tone\": \"excited\", \"description\": \"Posts about the dramatic playoff final between Watford and Leicester City, focusing on the final goal, penalty shootout, and the emotional impact of the match.\", \"inclusion_cues\": [\"Watford reach playoff final\", \"penalty double save and counter-attack winner\", \"goal win\", \"playoff final\", \"EPL Championship Playoffs\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Watford vs Leicester Playoff Final\", \"purpose\": \"Report on the playoff final match between Watford and Leicester City\", \"emotion_tone\": \"excited\", \"description\": \"Posts discussing the dramatic playoff final between Watford and Leicester City, focusing on the final goal, penalty shootout, and the emotional impact of the match.\", \"inclusion_cues\": [\"last minutes of Watford V Leicester\", \"Watford reach playoff final on 97th-minute penalty double save and counter-attack winner\", \"EPL Championship Playoffs: Watford scores a goal on a counter after a penalty shot is missed by Leicester in the last minute of the game\", \"Watford vs Leicester 3-1 (Agg: 3-2) - Crazy Reaction!\", \"VIDEO: Championship playoff: Leicester-Watford 1:0\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Watford vs Leicester Playoff Final\", \"purpose\": \"Report on the playoff final match between Watford and Leicester City\", \"emotion_tone\": \"excited\", \"description\": \"Posts about the dramatic playoff final between Watford and Leicester City, focusing on the final goal, penalty shootout, and the emotional impact of the match.\", \"inclusion_cues\": [\"Last Minutes of Watford V Leicester\", \"Watford reach playoff final on 97th-minute penalty double save and counter-attack winner\", \"EPL Championship Playoffs: Watford scores a goal on a counter after a penalty shot is missed by Leicester in the last minute of the game\", \"Watford vs Leicester 3-1 (Agg: 3-2) - Crazy Reaction!\", \"VIDEO: Championship playoff: Leicester-Watford 1:0\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 187,
+   "seed": 3664046554,
+   "seconds": 0.63
+  }
+ ]
+}

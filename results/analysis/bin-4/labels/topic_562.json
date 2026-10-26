@@ -1,0 +1,171 @@
+{
+ "period_bin": 4,
+ "topic_id": 562,
+ "keywords": "fans chelsea, fans portsmouth, ham fans, newcastle fans, fan southampton, fans aston, mocking liverpool, love chelsea, entertained chelsea, honour fans, fans defeat, represent club, video sunderland, going leicester, swansea club",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "2weu5o",
+  "4ki5ub",
+  "5xioui",
+  "5xioui",
+  "2wftm8",
+  "68fo6u",
+  "66s0eh",
+  "6lko9d",
+  "6y423n",
+  "6b4ghd",
+  "4ib6go",
+  "60a5e0",
+  "3brlye",
+  "3v7s21",
+  "53qibr",
+  "2ws6ph",
+  "337jnk",
+  "2yadrk",
+  "42kj72",
+  "2ktqnr",
+  "771hsf",
+  "34meqe",
+  "3ji6dj",
+  "7tm0on",
+  "53etbq",
+  "2wra5b",
+  "4ixxq2",
+  "5tn3z6",
+  "3cmzhu",
+  "4zlxd0",
+  "6zf4ng",
+  "5xincq",
+  "43algh",
+  "478w1o",
+  "69erlc",
+  "2wr3d4",
+  "6kt8p0",
+  "2nexmr",
+  "4uduau",
+  "2xh8wg"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "identical",
+ "round_iterations": 1,
+ "needs_review": false,
+ "label": {
+  "name": "West Ham Fans",
+  "purpose": "Express support and solidarity",
+  "emotion_tone": "positive",
+  "description": "Posts about West Ham fans showing support, solidarity, and humor, including gestures like lap of honor and banter with schoolboys.",
+  "inclusion_cues": [
+   "West Ham fans right now",
+   "West Ham's players coming back out here to do a lap of honour in front of a few hundred fans",
+   "West Ham fans give a school kids sick. He takes it like man",
+   "Classy West Ham Fans"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "West Ham Fans",
+    "purpose": "Express support and solidarity",
+    "emotion_tone": "positive",
+    "description": "Posts about West Ham fans showing support, solidarity, and humor, including gestures like lap of honor and banter with schoolboys.",
+    "inclusion_cues": [
+     "West Ham fans right now",
+     "West Ham's players coming back out here to do a lap of honour in front of a few hundred fans",
+     "West Ham fans give a school kids sick. He takes it like man",
+     "Classy West Ham Fans"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "West Ham Fans",
+    "purpose": "Express support and solidarity",
+    "emotion_tone": "Positive",
+    "description": "Posts about West Ham fans showing support, solidarity, and humor, including gestures like lap of honor and banter with schoolboys.",
+    "inclusion_cues": [
+     "West Ham fans right now",
+     "West Ham's players coming back out here to do a lap of honour in front of a few hundred fans",
+     "West Ham fans give a school kids sick. He takes it like man",
+     "Classy West Ham Fans"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: fans chelsea, fans portsmouth, ham fans, newcastle fans, fan southampton, fans aston, mocking liverpool, love chelsea, entertained chelsea, honour fans, fans defeat, represent club, video sunderland, going leicester, swansea club\nPosts (one per line, title first):\n- These fans don't deserve to represent our club. I think this sums up our response. [X-post from /r/ChelseaFC]\n- West Ham fans right now\n- Manchester United fans every time there's a chance to rise above 6th and get the season going\n- Manchester United fans every time there's a chance to rise above 6th and get the season going\n- These fans don't deserve to represent our club. I think this video sums up our response.(x-post r/ChelseaFC\n- Man U fans right now\n- Do NOT fuck with West Ham fans...\n- Manchester united indo fans\n- Barcelona fans right now\n- West Ham's players coming back out here to do a lap of honour in front of a few hundred fans. The other 56,000 have got off.\n- Villa fans troll Newcastle after 0-0 draw\n- Man United fans right now\n- Man United supporters and Clyne (xpost r/liverpool)\n- All us LFC fans right now!\n- Everybody needs to look up to this fan, proper lad\n- Brilliant stuff from West Ham fans.\n- Nice gesture from Leicester City\n- Man city fans\n- Chelsea fans being awful\n- West ham fans share a bit of banter with a schoolboy\n- All Liverpool fans right now!\n- Newcastle fans after the 3-0 defeat to Leicester\n- Saw a big Chelsea fan today\n- Newcastle fans entertaining themselves while 3-0 down away to Chelsea\n- Majority of Manchester City fans in a nutshell.\n- Chelsea fans after yesterday's game\n- Newcastle Fan getting beat down in the comments too.\n- Leicester fans right now\n- Southampton fans when the see Toby at Spurs.\n- Classy West Ham Fans\n- Palace fans today\n- Manchester United fans every time there's a chance to rise above 6th and get the season going\n- United fans today\n- Arsenal fans right now\n- A depressing sight for West Ham fans\n- This is how it's done at West Ham\n- Chelsea fans react badly to club's unveiling of FIFA 18 star Alex Hunter\n- West Ham fans give a school kids sick. He takes it like man.\n- Liverpool fans right now. Just a bit of humor.\n- Worcester City FC went to Chorley today and saw this...?\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"West Ham Fans\", \"purpose\": \"Express support and solidarity\", \"emotion_tone\": \"positive\", \"description\": \"Posts about West Ham fans showing support, solidarity, and humor, including gestures like lap of honor and banter with schoolboys.\", \"inclusion_cues\": [\"West Ham fans right now\", \"West Ham's players coming back out here to do a lap of honour in front of a few hundred fans\", \"West Ham fans give a school kids sick. He takes it like man\", \"Classy West Ham Fans\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "West Ham Fans",
+      "purpose": "Express support and solidarity",
+      "emotion_tone": "positive",
+      "description": "Posts about West Ham fans showing support, solidarity, and humor, including gestures like lap of honor and banter with schoolboys.",
+      "inclusion_cues": [
+       "West Ham fans right now",
+       "West Ham's players coming back out here to do a lap of honour in front of a few hundred fans",
+       "West Ham fans give a school kids sick. He takes it like man",
+       "Classy West Ham Fans"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 127,
+   "seed": 216711641,
+   "seconds": 3.64
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: fans chelsea, fans portsmouth, ham fans, newcastle fans, fan southampton, fans aston, mocking liverpool, love chelsea, entertained chelsea, honour fans, fans defeat, represent club, video sunderland, going leicester, swansea club\nPosts (one per line, title first):\n- These fans don't deserve to represent our club. I think this sums up our response. [X-post from /r/ChelseaFC]\n- West Ham fans right now\n- Manchester United fans every time there's a chance to rise above 6th and get the season going\n- Manchester United fans every time there's a chance to rise above 6th and get the season going\n- These fans don't deserve to represent our club. I think this video sums up our response.(x-post r/ChelseaFC\n- Man U fans right now\n- Do NOT fuck with West Ham fans...\n- Manchester united indo fans\n- Barcelona fans right now\n- West Ham's players coming back out here to do a lap of honour in front of a few hundred fans. The other 56,000 have got off.\n- Villa fans troll Newcastle after 0-0 draw\n- Man United fans right now\n- Man United supporters and Clyne (xpost r/liverpool)\n- All us LFC fans right now!\n- Everybody needs to look up to this fan, proper lad\n- Brilliant stuff from West Ham fans.\n- Nice gesture from Leicester City\n- Man city fans\n- Chelsea fans being awful\n- West ham fans share a bit of banter with a schoolboy\n- All Liverpool fans right now!\n- Newcastle fans after the 3-0 defeat to Leicester\n- Saw a big Chelsea fan today\n- Newcastle fans entertaining themselves while 3-0 down away to Chelsea\n- Majority of Manchester City fans in a nutshell.\n- Chelsea fans after yesterday's game\n- Newcastle Fan getting beat down in the comments too.\n- Leicester fans right now\n- Southampton fans when the see Toby at Spurs.\n- Classy West Ham Fans\n- Palace fans today\n- Manchester United fans every time there's a chance to rise above 6th and get the season going\n- United fans today\n- Arsenal fans right now\n- A depressing sight for West Ham fans\n- This is how it's done at West Ham\n- Chelsea fans react badly to club's unveiling of FIFA 18 star Alex Hunter\n- West Ham fans give a school kids sick. He takes it like man.\n- Liverpool fans right now. Just a bit of humor.\n- Worcester City FC went to Chorley today and saw this...?\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"West Ham Fans\", \"purpose\": \"Express support and solidarity\", \"emotion_tone\": \"Positive\", \"description\": \"Posts about West Ham fans showing support, solidarity, and humor, including gestures like lap of honor and banter with schoolboys.\", \"inclusion_cues\": [\"West Ham fans right now\", \"West Ham's players coming back out here to do a lap of honour in front of a few hundred fans\", \"West Ham fans give a school kids sick. He takes it like man\", \"Classy West Ham Fans\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "West Ham Fans",
+      "purpose": "Express support and solidarity",
+      "emotion_tone": "Positive",
+      "description": "Posts about West Ham fans showing support, solidarity, and humor, including gestures like lap of honor and banter with schoolboys.",
+      "inclusion_cues": [
+       "West Ham fans right now",
+       "West Ham's players coming back out here to do a lap of honour in front of a few hundred fans",
+       "West Ham fans give a school kids sick. He takes it like man",
+       "Classy West Ham Fans"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 127,
+   "seed": 3640920219,
+   "seconds": 1.06
+  }
+ ]
+}

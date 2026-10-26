@@ -1,0 +1,179 @@
+{
+ "period_bin": 8,
+ "topic_id": 845,
+ "keywords": "corner kick, ruled goal, replay penalty, goalkeeper saves, ghost goal, ball crosses, kick ref, penalty sweden, newcastle goal, penalty box, handling ball, derby penalty, goals came, replays, goal jørgen",
+ "n_sample_posts": 29,
+ "sample_ids": [
+  "1ddmbtg",
+  "17dzjpq",
+  "1b2carf",
+  "1jue5zl",
+  "1qouoim",
+  "17nubns",
+  "1k71qgl",
+  "1ddk8tk",
+  "1ankx1h",
+  "18rehc7",
+  "17o039h",
+  "1df3i4w",
+  "1ca5fp1",
+  "1ddkain",
+  "1nj7338",
+  "1j9yg9u",
+  "1ddl75a",
+  "144dhuk",
+  "1c9rxez",
+  "1il4s9z",
+  "1ddlad2",
+  "13d693h",
+  "17nu0tt",
+  "15jpitg",
+  "18t3rjy",
+  "1c9taz1",
+  "1ddlbix",
+  "1c9rnyt",
+  "17nuai3"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "goal line disputes",
+  "purpose": "analyze disputes over whether the ball crossed the goal line",
+  "emotion_tone": "confused",
+  "description": "Posts discussing whether the ball crossed the goal line, including replay analyses, VAR decisions, and goal line technology",
+  "inclusion_cues": [
+   "ball crossed the line",
+   "replays of the ball going past the line",
+   "goal line technology",
+   "VAR decisions",
+   "goal line disputes"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "VAR Replays",
+    "purpose": "Explain disputed goals via video analysis",
+    "emotion_tone": "Neutral",
+    "description": "Posts discussing replay decisions, goal line technology, and ball crossing analysis",
+    "inclusion_cues": [
+     "Replays of the ball going past the line",
+     "VAR decisions on goals",
+     "Ball crossing analysis"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "goal line disputes",
+    "purpose": "analyze disputes over whether the ball crossed the goal line",
+    "emotion_tone": "confused",
+    "description": "Posts discussing whether the ball crossed the goal line, including replay analyses, VAR decisions, and goal line technology",
+    "inclusion_cues": [
+     "ball crossed the line",
+     "replays of the ball going past the line",
+     "goal line technology",
+     "VAR decisions",
+     "goal line disputes"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: corner kick, ruled goal, replay penalty, goalkeeper saves, ghost goal, ball crosses, kick ref, penalty sweden, newcastle goal, penalty box, handling ball, derby penalty, goals came, replays, goal jørgen\nPosts (one per line, title first):\n- Replays of the ball going past the line before Qatar's goal\n- [Jørgen Tjærnås] In Norway, Oppsal's goalkeeper saves and rolls the ball to his teammate, who handles it thinking it is a goal kick. Ref correctly gives a penalty but then bizarrely changes his mind and gives a goal kick\n- [ArchivoVar] 3D analysis reveals the ball [seems to] have crossed the line completely in yesterday's Copa del Rey semi-final. It would have put La Real 2-1 up in extra time (ended 1-1, Mallorca advanced on penalties).\n- Could someone explain to me what happened with two goals in my sons game? / I don't fully understand the rules of soccer but could someone explain how two goals came about in this game? At 59:32, there is some sort of penalty on a corner kick that results in the other team basically having a free sh\n- Rules Question Goalies / A ball is on the goal line but still inside the penalty box area. The Goalie walks behind the ball standing completed outside the field of play and pickus up the ball. It now crosses the goal line and out of the field of play and out of the penalty box. Is this a corner kick\n- Image from TV footage clearly shows the ball play out play.\n- Still of the moment a shot by PSV possibly crossed the line in FC Twente - PSV. The shot was not ruled a goal thanks to VAR, there is no goal line technology available\n- Replays of the ball going past the line before Qatar's goal\n- Offside camera angle on lead-up to foul on Afif, eventually leading to Qatari third penalty\n- Replay showing the incident that prevented Gakpo’s goal from standing.\n- beINSPORTS show ball was in for Newcastle goal\n- [The Khel India] Qatari broadcaster confirms Qatar’s equaliser against India was and ball was clearly out through projection\n- [ArchivoVar] Video analysis of Barca’s “ghost” goal against Real Madrid: it is a goal, the ball completely crossed the line.\n- Replays of the ball going past the line before Qatar's goal\n- Replay of the penalty given to Dortmund\n- The ball can move during a penalty kick even without being touched by the player\n- Replays of the ball going past the line before Qatar's goal\n- SJK scores directly from a throw-in during a game in Finland. If the goalkeeper hadn't touched it, the goal would have been disallowed\n- [@_BeFootball] Images from Canal+ show, that the ball has not crossed the line.\n- Close up of the Madrid derby penalty incident\n- Replays of the ball going past the line before Qatar's goal\n- Beinsports claim the ball went out before De Bruyne's goal\n- [@centregoals] BeiN Sports' technology reveals that the ball did not go past the line for Newcastle's goal.\n- [ESPN] An image showing the tiny distance between the line and ball for Naeher's winning penalty for Sweden against the USA\n- Still frames of the ball on West Ham’s goal.\n- [Canal +] They report that the ball did NOT cross the line.\n- Replays of the ball going past the line before Qatar's goal\n- [Canal+ Premium] The ball hasn't crossed the line completely.\n- was the ball actually out? trying to show how close it was (oc)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"VAR Replays\", \"purpose\": \"Explain disputed goals via video analysis\", \"emotion_tone\": \"Neutral\", \"description\": \"Posts discussing replay decisions, goal line technology, and ball crossing analysis\", \"inclusion_cues\": [\"Replays of the ball going past the line\", \"VAR decisions on goals\", \"Ball crossing analysis\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "VAR Replays",
+      "purpose": "Explain disputed goals via video analysis",
+      "emotion_tone": "Neutral",
+      "description": "Posts discussing replay decisions, goal line technology, and ball crossing analysis",
+      "inclusion_cues": [
+       "Replays of the ball going past the line",
+       "VAR decisions on goals",
+       "Ball crossing analysis"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 87,
+   "seed": 3546416494,
+   "seconds": 0.75
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: corner kick, ruled goal, replay penalty, goalkeeper saves, ghost goal, ball crosses, kick ref, penalty sweden, newcastle goal, penalty box, handling ball, derby penalty, goals came, replays, goal jørgen\nPosts (one per line, title first):\n- Replays of the ball going past the line before Qatar's goal\n- [Jørgen Tjærnås] In Norway, Oppsal's goalkeeper saves and rolls the ball to his teammate, who handles it thinking it is a goal kick. Ref correctly gives a penalty but then bizarrely changes his mind and gives a goal kick\n- [ArchivoVar] 3D analysis reveals the ball [seems to] have crossed the line completely in yesterday's Copa del Rey semi-final. It would have put La Real 2-1 up in extra time (ended 1-1, Mallorca advanced on penalties).\n- Could someone explain to me what happened with two goals in my sons game? / I don't fully understand the rules of soccer but could someone explain how two goals came about in this game? At 59:32, there is some sort of penalty on a corner kick that results in the other team basically having a free sh\n- Rules Question Goalies / A ball is on the goal line but still inside the penalty box area. The Goalie walks behind the ball standing completed outside the field of play and pickus up the ball. It now crosses the goal line and out of the field of play and out of the penalty box. Is this a corner kick\n- Image from TV footage clearly shows the ball play out play.\n- Still of the moment a shot by PSV possibly crossed the line in FC Twente - PSV. The shot was not ruled a goal thanks to VAR, there is no goal line technology available\n- Replays of the ball going past the line before Qatar's goal\n- Offside camera angle on lead-up to foul on Afif, eventually leading to Qatari third penalty\n- Replay showing the incident that prevented Gakpo’s goal from standing.\n- beINSPORTS show ball was in for Newcastle goal\n- [The Khel India] Qatari broadcaster confirms Qatar’s equaliser against India was and ball was clearly out through projection\n- [ArchivoVar] Video analysis of Barca’s “ghost” goal against Real Madrid: it is a goal, the ball completely crossed the line.\n- Replays of the ball going past the line before Qatar's goal\n- Replay of the penalty given to Dortmund\n- The ball can move during a penalty kick even without being touched by the player\n- Replays of the ball going past the line before Qatar's goal\n- SJK scores directly from a throw-in during a game in Finland. If the goalkeeper hadn't touched it, the goal would have been disallowed\n- [@_BeFootball] Images from Canal+ show, that the ball has not crossed the line.\n- Close up of the Madrid derby penalty incident\n- Replays of the ball going past the line before Qatar's goal\n- Beinsports claim the ball went out before De Bruyne's goal\n- [@centregoals] BeiN Sports' technology reveals that the ball did not go past the line for Newcastle's goal.\n- [ESPN] An image showing the tiny distance between the line and ball for Naeher's winning penalty for Sweden against the USA\n- Still frames of the ball on West Ham’s goal.\n- [Canal +] They report that the ball did NOT cross the line.\n- Replays of the ball going past the line before Qatar's goal\n- [Canal+ Premium] The ball hasn't crossed the line completely.\n- was the ball actually out? trying to show how close it was (oc)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"goal line disputes\", \"purpose\": \"analyze disputes over whether the ball crossed the goal line\", \"emotion_tone\": \"confused\", \"description\": \"Posts discussing whether the ball crossed the goal line, including replay analyses, VAR decisions, and goal line technology\", \"inclusion_cues\": [\"ball crossed the line\", \"replays of the ball going past the line\", \"goal line technology\", \"VAR decisions\", \"goal line disputes\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "goal line disputes",
+      "purpose": "analyze disputes over whether the ball crossed the goal line",
+      "emotion_tone": "confused",
+      "description": "Posts discussing whether the ball crossed the goal line, including replay analyses, VAR decisions, and goal line technology",
+      "inclusion_cues": [
+       "ball crossed the line",
+       "replays of the ball going past the line",
+       "goal line technology",
+       "VAR decisions",
+       "goal line disputes"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 108,
+   "seed": 1089193328,
+   "seconds": 0.73
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: corner kick, ruled goal, replay penalty, goalkeeper saves, ghost goal, ball crosses, kick ref, penalty sweden, newcastle goal, penalty box, handling ball, derby penalty, goals came, replays, goal jørgen\nPosts (one per line, title first):\n- Replays of the ball going past the line before Qatar's goal\n- [Jørgen Tjærnås] In Norway, Oppsal's goalkeeper saves and rolls the ball to his teammate, who handles it thinking it is a goal kick. Ref correctly gives a penalty but then bizarrely changes his mind and gives a goal kick\n- [ArchivoVar] 3D analysis reveals the ball [seems to] have crossed the line completely in yesterday's Copa del Rey semi-final. It would have put La Real 2-1 up in extra time (ended 1-1, Mallorca advanced on penalties).\n- Could someone explain to me what happened with two goals in my sons game? / I don't fully understand the rules of soccer but could someone explain how two goals came about in this game? At 59:32, there is some sort of penalty on a corner kick that results in the other team basically having a free sh\n- Rules Question Goalies / A ball is on the goal line but still inside the penalty box area. The Goalie walks behind the ball standing completed outside the field of play and pickus up the ball. It now crosses the goal line and out of the field of play and out of the penalty box. Is this a corner kick\n- Image from TV footage clearly shows the ball play out play.\n- Still of the moment a shot by PSV possibly crossed the line in FC Twente - PSV. The shot was not ruled a goal thanks to VAR, there is no goal line technology available\n- Replays of the ball going past the line before Qatar's goal\n- Offside camera angle on lead-up to foul on Afif, eventually leading to Qatari third penalty\n- Replay showing the incident that prevented Gakpo’s goal from standing.\n- beINSPORTS show ball was in for Newcastle goal\n- [The Khel India] Qatari broadcaster confirms Qatar’s equaliser against India was and ball was clearly out through projection\n- [ArchivoVar] Video analysis of Barca’s “ghost” goal against Real Madrid: it is a goal, the ball completely crossed the line.\n- Replays of the ball going past the line before Qatar's goal\n- Replay of the penalty given to Dortmund\n- The ball can move during a penalty kick even without being touched by the player\n- Replays of the ball going past the line before Qatar's goal\n- SJK scores directly from a throw-in during a game in Finland. If the goalkeeper hadn't touched it, the goal would have been disallowed\n- [@_BeFootball] Images from Canal+ show, that the ball has not crossed the line.\n- Close up of the Madrid derby penalty incident\n- Replays of the ball going past the line before Qatar's goal\n- Beinsports claim the ball went out before De Bruyne's goal\n- [@centregoals] BeiN Sports' technology reveals that the ball did not go past the line for Newcastle's goal.\n- [ESPN] An image showing the tiny distance between the line and ball for Naeher's winning penalty for Sweden against the USA\n- Still frames of the ball on West Ham’s goal.\n- [Canal +] They report that the ball did NOT cross the line.\n- Replays of the ball going past the line before Qatar's goal\n- [Canal+ Premium] The ball hasn't crossed the line completely.\n- was the ball actually out? trying to show how close it was (oc)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"VAR Replays\", \"purpose\": \"Explain disputed goals via video analysis\", \"emotion_tone\": \"Neutral\", \"description\": \"Posts discussing replay decisions, goal line technology, and ball crossing analysis\", \"inclusion_cues\": [\"Replays of the ball going past the line\", \"VAR decisions on goals\", \"Ball crossing analysis\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"goal line disputes\", \"purpose\": \"analyze disputes over whether the ball crossed the goal line\", \"emotion_tone\": \"confused\", \"description\": \"Posts discussing whether the ball crossed the goal line, including replay analyses, VAR decisions, and goal line technology\", \"inclusion_cues\": [\"ball crossed the line\", \"replays of the ball going past the line\", \"goal line technology\", \"VAR decisions\", \"goal line disputes\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"goal line disputes\", \"purpose\": \"analyze disputes over whether the ball crossed the goal line\", \"emotion_tone\": \"confused\", \"description\": \"Posts discussing whether the ball crossed the goal line, including replay analyses, VAR decisions, and goal line technology\", \"inclusion_cues\": [\"ball crossed the line\", \"replays of the ball going past the line\", \"goal line technology\", \"VAR decisions\", \"goal line disputes\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 107,
+   "seed": 1106718708,
+   "seconds": 0.68
+  }
+ ]
+}

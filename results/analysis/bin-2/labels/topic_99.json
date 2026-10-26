@@ -1,0 +1,224 @@
+{
+ "period_bin": 2,
+ "topic_id": 99,
+ "keywords": "happy birthday, birthday today, birthday zlatan, birthday zizou, suarez birthday, birthday best, today birthday, 65th birthday, birthday ryan, happy 40th, happy 50th, congrats johan, galatasaray legend, messi happy, sport congrats",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "mtdee",
+  "1gyg5t",
+  "1aqdhl",
+  "srgi4",
+  "srgg9",
+  "hlh4e",
+  "t2mr9",
+  "pckaq",
+  "1ainzf",
+  "190tsa",
+  "17b8mi",
+  "y3l4i",
+  "o8heq",
+  "10vcnv",
+  "1f4kiy",
+  "10v5d0",
+  "12wsmp",
+  "1wdf32",
+  "vhcci",
+  "1cm1kf",
+  "viwa7",
+  "1qwg36",
+  "1hur9d",
+  "vh8vv",
+  "urjqg",
+  "15q75v",
+  "tg9va",
+  "rpmke",
+  "1tnvcp",
+  "1c5arf",
+  "1ve8wm",
+  "vjev9",
+  "i7yjv",
+  "10w7oc",
+  "1to23k",
+  "1q0tu5",
+  "1dy736",
+  "1qiwwm",
+  "1qewvj",
+  "1w3jxh"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Birthday Celebrations",
+  "purpose": "Celebrate birthdays of footballers and legends",
+  "emotion_tone": "Happy, nostalgic, respectful",
+  "description": "Posts celebrating birthdays of footballers, including legends, with wishes, congrats, and nostalgic reflections",
+  "inclusion_cues": [
+   "Happy Birthday",
+   "birthday today",
+   "65th birthday",
+   "Happy 40th",
+   "Happy 50th",
+   "Congrats Johan",
+   "Happy Birthday to Zlatan",
+   "Happy Birthday to Paul Gascoigne",
+   "Happy Birthday to Ibrahimovic",
+   "Happy Birthday to Zizou"
+  ],
+  "n_cues_given": 28
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Birthday Wishes",
+    "purpose": "Expressing well-wishes for footballers' birthdays",
+    "emotion_tone": "Celebratory",
+    "description": "Posts celebrating birthdays of footballers, including wishes, commemorations, and tributes to legendary players",
+    "inclusion_cues": [
+     "Happy Birthday",
+     "birthday today",
+     "65th birthday",
+     "Happy 40th",
+     "Happy 50th",
+     "Congrats Johan",
+     "Happy Birthday to Zlatan",
+     "Happy Birthday to Paul Gascoigne",
+     "Happy Birthday to Ibrahimovic",
+     "Happy Birthday to Zizou"
+    ],
+    "n_cues_given": 20
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Birthday Celebrations",
+    "purpose": "Celebrate birthdays of footballers and legends",
+    "emotion_tone": "Happy, nostalgic, respectful",
+    "description": "Posts celebrating birthdays of footballers, including legends, with wishes, congrats, and nostalgic reflections",
+    "inclusion_cues": [
+     "Happy Birthday",
+     "birthday today",
+     "65th birthday",
+     "Happy 40th",
+     "Happy 50th",
+     "Congrats Johan",
+     "Happy Birthday to Zlatan",
+     "Happy Birthday to Paul Gascoigne",
+     "Happy Birthday to Ibrahimovic",
+     "Happy Birthday to Zizou"
+    ],
+    "n_cues_given": 28
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: happy birthday, birthday today, birthday zlatan, birthday zizou, suarez birthday, birthday best, today birthday, 65th birthday, birthday ryan, happy 40th, happy 50th, congrats johan, galatasaray legend, messi happy, sport congrats\nPosts (one per line, title first):\n- Happy Birthday, you legend.\n- Happy Birthday Messi!\n- Happy Birthday Cloughie\n- On the 25th of april 1947 a boy was born in Amsterdam that was raised in the shadow of \"De Meer\", the old stadium of Ajax. He would play there and impact the world as a player, a coach and a philosopher of the sport. Congrats Johan Cruijff with your 65th birthday.\n- On the 25th of april 1947 a boy was born in Amsterdam that was raised in the shadow of \"De Meer\", the old stadium of Ajax. He would play there and would impact the world as a player, a coach and a philosopher of the sport. Congrats Johan Cruijff with your 65th birthday.\n- Happy Birthday, Gazza! Here's a great interview with Ally McCoist on one of Gascoigne's many pranks during his stay at Rangers.\n- Happy 37th birthday to David Beckham. Make your wishes.\n- Neymar turned 20 today.\n- Happy birthday Ajax!\n- After his recent battle with cancer, Brian Laudrup celebrates his 44th birthday today! One of Rangers' greatest ever players. Happy Birthday, 'God'.\n- This guy turns 50 today.\n- Happy Birthday to Balotelli, who turns 22 today.\n- best birthday ever :)\n- Happy birthday to Zlatan\n- Happy birthday to Paul Gascoigne, 46 today\n- Happy Birthday, Ibrahimovic!\n- Happy B'Day Del Piero. Brilliant video for a brilliant player.\n- Happy 36th Birthday, Gigi Buffon!\n- I would like to wish a happy birthday to this legend who turns 40 today.\n- Happy Birthday Freddie Ljunberg\n- Happy 25th birthday Lionel Messi!\n- Happy 50th birthday Peter Schmeichel [0:35]\n- Christian Abbiati's(GK) Birthday! / I'm not sure if this is the right subreddit, but im sure many would like to know this and wish him a happy birthday. Happy birthday to one of italy's best keepers, Christian Abbiati who turns 36!\n- Happy 40th Birthday Zizou!\n- Happy birthday Javier Mascherano!\n- Happy 71st Birthday to this wonderful man!\n- Happy Birthday Dennis Bergkamp!\n- Tomorrow's Tim Kruls birthday / so here's a video showing what a great season he has had\n- Happy birthday, Zlatan Ibrahimovic!\n- My favorite player and author of this magnificent goal Roberto Carlos turned 40. Thank you!\n- On this day 26 years ago a legend was born\n- It's the birthday of one of the greatest players to ever come out of Argentina: Riquelme turns 34 today and he's still a beast.\n- Lionel Messi is 24 years old today. Happy Birthday!\n- Happy Birthday to this Magnificent Bastard\n- THANK YOU BASED DENG!\n- Happy birthday Schuerrle.\n- Happy Birthday to the forgotten Brazilian World Cup Winner and Galatasaray Legend, Cláudio Taffarel\n- Today is Mokhtar Dahari's birthday. Heres a video of him playing against Arsenal\n- Herzlichen Glückwunsch, you wonderful man! Happy Birthday, Philipp!\n- Happy 33rd Birthday Xavi Hernandez\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Birthday Wishes\", \"purpose\": \"Expressing well-wishes for footballers' birthdays\", \"emotion_tone\": \"Celebratory\", \"description\": \"Posts celebrating birthdays of footballers, including wishes, commemorations, and tributes to legendary players\", \"inclusion_cues\": [\"Happy Birthday\", \"birthday today\", \"65th birthday\", \"Happy 40th\", \"Happy 50th\", \"Congrats Johan\", \"Happy Birthday to Zlatan\", \"Happy Birthday to Paul Gascoigne\", \"Happy Birthday to Ibrahimovic\", \"Happy Birthday to Zizou\", \"Happy Birthday to Balotelli\", \"Happy Birthday to Messi\", \"Happy Birthday to Ronaldo\", \"Happy Birthday to Schmeichel\", \"Happy Birthday to Dennis Bergkamp\", \"Happy Birthday to Schuerrle\", \"Happy Birthday to Taffarel\", \"Happy Birthday to Mokhtar Dahari\", \"Happy Birthday to Philipp\", \"Happy Birthday to Xavi Hernandez\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Birthday Wishes",
+      "purpose": "Expressing well-wishes for footballers' birthdays",
+      "emotion_tone": "Celebratory",
+      "description": "Posts celebrating birthdays of footballers, including wishes, commemorations, and tributes to legendary players",
+      "inclusion_cues": [
+       "Happy Birthday",
+       "birthday today",
+       "65th birthday",
+       "Happy 40th",
+       "Happy 50th",
+       "Congrats Johan",
+       "Happy Birthday to Zlatan",
+       "Happy Birthday to Paul Gascoigne",
+       "Happy Birthday to Ibrahimovic",
+       "Happy Birthday to Zizou"
+      ],
+      "n_cues_given": 20
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 218,
+   "seed": 733608353,
+   "seconds": 3.87
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: happy birthday, birthday today, birthday zlatan, birthday zizou, suarez birthday, birthday best, today birthday, 65th birthday, birthday ryan, happy 40th, happy 50th, congrats johan, galatasaray legend, messi happy, sport congrats\nPosts (one per line, title first):\n- Happy Birthday, you legend.\n- Happy Birthday Messi!\n- Happy Birthday Cloughie\n- On the 25th of april 1947 a boy was born in Amsterdam that was raised in the shadow of \"De Meer\", the old stadium of Ajax. He would play there and impact the world as a player, a coach and a philosopher of the sport. Congrats Johan Cruijff with your 65th birthday.\n- On the 25th of april 1947 a boy was born in Amsterdam that was raised in the shadow of \"De Meer\", the old stadium of Ajax. He would play there and would impact the world as a player, a coach and a philosopher of the sport. Congrats Johan Cruijff with your 65th birthday.\n- Happy Birthday, Gazza! Here's a great interview with Ally McCoist on one of Gascoigne's many pranks during his stay at Rangers.\n- Happy 37th birthday to David Beckham. Make your wishes.\n- Neymar turned 20 today.\n- Happy birthday Ajax!\n- After his recent battle with cancer, Brian Laudrup celebrates his 44th birthday today! One of Rangers' greatest ever players. Happy Birthday, 'God'.\n- This guy turns 50 today.\n- Happy Birthday to Balotelli, who turns 22 today.\n- best birthday ever :)\n- Happy birthday to Zlatan\n- Happy birthday to Paul Gascoigne, 46 today\n- Happy Birthday, Ibrahimovic!\n- Happy B'Day Del Piero. Brilliant video for a brilliant player.\n- Happy 36th Birthday, Gigi Buffon!\n- I would like to wish a happy birthday to this legend who turns 40 today.\n- Happy Birthday Freddie Ljunberg\n- Happy 25th birthday Lionel Messi!\n- Happy 50th birthday Peter Schmeichel [0:35]\n- Christian Abbiati's(GK) Birthday! / I'm not sure if this is the right subreddit, but im sure many would like to know this and wish him a happy birthday. Happy birthday to one of italy's best keepers, Christian Abbiati who turns 36!\n- Happy 40th Birthday Zizou!\n- Happy birthday Javier Mascherano!\n- Happy 71st Birthday to this wonderful man!\n- Happy Birthday Dennis Bergkamp!\n- Tomorrow's Tim Kruls birthday / so here's a video showing what a great season he has had\n- Happy birthday, Zlatan Ibrahimovic!\n- My favorite player and author of this magnificent goal Roberto Carlos turned 40. Thank you!\n- On this day 26 years ago a legend was born\n- It's the birthday of one of the greatest players to ever come out of Argentina: Riquelme turns 34 today and he's still a beast.\n- Lionel Messi is 24 years old today. Happy Birthday!\n- Happy Birthday to this Magnificent Bastard\n- THANK YOU BASED DENG!\n- Happy birthday Schuerrle.\n- Happy Birthday to the forgotten Brazilian World Cup Winner and Galatasaray Legend, Cláudio Taffarel\n- Today is Mokhtar Dahari's birthday. Heres a video of him playing against Arsenal\n- Herzlichen Glückwunsch, you wonderful man! Happy Birthday, Philipp!\n- Happy 33rd Birthday Xavi Hernandez\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Birthday Celebrations\", \"purpose\": \"Celebrate birthdays of footballers and legends\", \"emotion_tone\": \"Happy, nostalgic, respectful\", \"description\": \"Posts celebrating birthdays of footballers, including legends, with wishes, congrats, and nostalgic reflections\", \"inclusion_cues\": [\"Happy Birthday\", \"birthday today\", \"65th birthday\", \"Happy 40th\", \"Happy 50th\", \"Congrats Johan\", \"Happy Birthday to Zlatan\", \"Happy Birthday to Paul Gascoigne\", \"Happy Birthday to Ibrahimovic\", \"Happy Birthday to Zizou\", \"Happy Birthday to Ronaldo\", \"Happy Birthday to Messi\", \"Happy Birthday to Ronaldo\", \"Happy Birthday to Schuerrle\", \"Happy Birthday to Taffarel\", \"Happy Birthday to Claudio Taffarel\", \"Happy Birthday to Dennis Bergkamp\", \"Happy Birthday to Tim Kruls\", \"Happy Birthday to Riquelme\", \"Happy Birthday to Lionel Messi\", \"Happy Birthday to Roberto Carlos\", \"Happy Birthday to Xavi Hernandez\", \"Happy Birthday to Philipp\", \"Happy Birthday to Mokhtar Dahari\", \"Happy Birthday to Claudio Taffarel\", \"Happy Birthday to Galatasaray Legend\", \"Happy Birthday to Galatasaray Legend\", \"Happy Birthday to Galatasaray Legend\"]}]}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Birthday Celebrations",
+      "purpose": "Celebrate birthdays of footballers and legends",
+      "emotion_tone": "Happy, nostalgic, respectful",
+      "description": "Posts celebrating birthdays of footballers, including legends, with wishes, congrats, and nostalgic reflections",
+      "inclusion_cues": [
+       "Happy Birthday",
+       "birthday today",
+       "65th birthday",
+       "Happy 40th",
+       "Happy 50th",
+       "Congrats Johan",
+       "Happy Birthday to Zlatan",
+       "Happy Birthday to Paul Gascoigne",
+       "Happy Birthday to Ibrahimovic",
+       "Happy Birthday to Zizou"
+      ],
+      "n_cues_given": 28
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 290,
+   "seed": 3748962052,
+   "seconds": 0.93
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: happy birthday, birthday today, birthday zlatan, birthday zizou, suarez birthday, birthday best, today birthday, 65th birthday, birthday ryan, happy 40th, happy 50th, congrats johan, galatasaray legend, messi happy, sport congrats\nPosts (one per line, title first):\n- Happy Birthday, you legend.\n- Happy Birthday Messi!\n- Happy Birthday Cloughie\n- On the 25th of april 1947 a boy was born in Amsterdam that was raised in the shadow of \"De Meer\", the old stadium of Ajax. He would play there and impact the world as a player, a coach and a philosopher of the sport. Congrats Johan Cruijff with your 65th birthday.\n- On the 25th of april 1947 a boy was born in Amsterdam that was raised in the shadow of \"De Meer\", the old stadium of Ajax. He would play there and would impact the world as a player, a coach and a philosopher of the sport. Congrats Johan Cruijff with your 65th birthday.\n- Happy Birthday, Gazza! Here's a great interview with Ally McCoist on one of Gascoigne's many pranks during his stay at Rangers.\n- Happy 37th birthday to David Beckham. Make your wishes.\n- Neymar turned 20 today.\n- Happy birthday Ajax!\n- After his recent battle with cancer, Brian Laudrup celebrates his 44th birthday today! One of Rangers' greatest ever players. Happy Birthday, 'God'.\n- This guy turns 50 today.\n- Happy Birthday to Balotelli, who turns 22 today.\n- best birthday ever :)\n- Happy birthday to Zlatan\n- Happy birthday to Paul Gascoigne, 46 today\n- Happy Birthday, Ibrahimovic!\n- Happy B'Day Del Piero. Brilliant video for a brilliant player.\n- Happy 36th Birthday, Gigi Buffon!\n- I would like to wish a happy birthday to this legend who turns 40 today.\n- Happy Birthday Freddie Ljunberg\n- Happy 25th birthday Lionel Messi!\n- Happy 50th birthday Peter Schmeichel [0:35]\n- Christian Abbiati's(GK) Birthday! / I'm not sure if this is the right subreddit, but im sure many would like to know this and wish him a happy birthday. Happy birthday to one of italy's best keepers, Christian Abbiati who turns 36!\n- Happy 40th Birthday Zizou!\n- Happy birthday Javier Mascherano!\n- Happy 71st Birthday to this wonderful man!\n- Happy Birthday Dennis Bergkamp!\n- Tomorrow's Tim Kruls birthday / so here's a video showing what a great season he has had\n- Happy birthday, Zlatan Ibrahimovic!\n- My favorite player and author of this magnificent goal Roberto Carlos turned 40. Thank you!\n- On this day 26 years ago a legend was born\n- It's the birthday of one of the greatest players to ever come out of Argentina: Riquelme turns 34 today and he's still a beast.\n- Lionel Messi is 24 years old today. Happy Birthday!\n- Happy Birthday to this Magnificent Bastard\n- THANK YOU BASED DENG!\n- Happy birthday Schuerrle.\n- Happy Birthday to the forgotten Brazilian World Cup Winner and Galatasaray Legend, Cláudio Taffarel\n- Today is Mokhtar Dahari's birthday. Heres a video of him playing against Arsenal\n- Herzlichen Glückwunsch, you wonderful man! Happy Birthday, Philipp!\n- Happy 33rd Birthday Xavi Hernandez\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Birthday Wishes\", \"purpose\": \"Expressing well-wishes for footballers' birthdays\", \"emotion_tone\": \"Celebratory\", \"description\": \"Posts celebrating birthdays of footballers, including wishes, commemorations, and tributes to legendary players\", \"inclusion_cues\": [\"Happy Birthday\", \"birthday today\", \"65th birthday\", \"Happy 40th\", \"Happy 50th\", \"Congrats Johan\", \"Happy Birthday to Zlatan\", \"Happy Birthday to Paul Gascoigne\", \"Happy Birthday to Ibrahimovic\", \"Happy Birthday to Zizou\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Birthday Celebrations\", \"purpose\": \"Celebrate birthdays of footballers and legends\", \"emotion_tone\": \"Happy, nostalgic, respectful\", \"description\": \"Posts celebrating birthdays of footballers, including legends, with wishes, congrats, and nostalgic reflections\", \"inclusion_cues\": [\"Happy Birthday\", \"birthday today\", \"65th birthday\", \"Happy 40th\", \"Happy 50th\", \"Congrats Johan\", \"Happy Birthday to Zlatan\", \"Happy Birthday to Paul Gascoigne\", \"Happy Birthday to Ibrahimovic\", \"Happy Birthday to Zizou\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Birthday Celebrations\", \"purpose\": \"Celebrate birthdays of footballers and legends\", \"emotion_tone\": \"Happy, nostalgic, respectful\", \"description\": \"Posts celebrating birthdays of footballers, including legends, with wishes, congrats, and nostalgic reflections\", \"inclusion_cues\": [\"Happy Birthday\", \"birthday today\", \"65th birthday\", \"Happy 40th\", \"Happy 50th\", \"Congrats Johan\", \"Happy Birthday to Zlatan\", \"Happy Birthday to Paul Gascoigne\", \"Happy Birthday to Ibrahimovic\", \"Happy Birthday to Zizou\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 140,
+   "seed": 1884350639,
+   "seconds": 0.79
+  }
+ ]
+}

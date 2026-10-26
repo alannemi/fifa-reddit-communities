@@ -1,0 +1,195 @@
+{
+ "period_bin": 4,
+ "topic_id": 1393,
+ "keywords": "rankings brazil, rankings fifa, fifa ranking, fifa rankings, rankings germany, argentina ranked, germany 2nd, world ranking, rankings argentina, 2nd argentina, belgium 2nd, brazil fifa, position fifa, rankings belgium, argentina belgium",
+ "n_sample_posts": 29,
+ "sample_ids": [
+  "58g5qi",
+  "58g5fl",
+  "63ti0x",
+  "5jqo69",
+  "4o27bj",
+  "74xxfu",
+  "3fzbyt",
+  "5dbhdl",
+  "6st3x1",
+  "63ta0a",
+  "2px931",
+  "4dq848",
+  "5eoget",
+  "6q2thn",
+  "51r8kv",
+  "4dq8yq",
+  "5nizi1",
+  "5enee2",
+  "6lm2x1",
+  "38i50r",
+  "62566b",
+  "2vojhb",
+  "701lyz",
+  "7l94rs",
+  "5q7jhf",
+  "6sshej",
+  "63t27y",
+  "6lkxfz",
+  "48r98q"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "FIFA Rankings",
+  "purpose": "Tracking and discussing FIFA world rankings and national team positions",
+  "emotion_tone": "informative and competitive",
+  "description": "Posts discussing FIFA world rankings, national team positions, and related updates",
+  "inclusion_cues": [
+   "FIFA ranking",
+   "world ranking",
+   "Germany 2nd",
+   "Brazil 3rd",
+   "Argentina 1st",
+   "Belgium 2nd",
+   "Germany 1st",
+   "Brazil top",
+   "position fifa"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "FIFA World Rankings",
+    "purpose": "Tracking the global standing of football teams",
+    "emotion_tone": "positive",
+    "description": "Posts discussing the latest FIFA world rankings, team positions, and updates on team placements.",
+    "inclusion_cues": [
+     "FIFA ranking",
+     "world ranking",
+     "team positions",
+     "top teams",
+     "ranked teams"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "FIFA Rankings",
+    "purpose": "Tracking and discussing FIFA world rankings and national team positions",
+    "emotion_tone": "informative and competitive",
+    "description": "Posts discussing FIFA world rankings, national team positions, and related updates",
+    "inclusion_cues": [
+     "FIFA ranking",
+     "world ranking",
+     "Germany 2nd",
+     "Brazil 3rd",
+     "Argentina 1st",
+     "Belgium 2nd",
+     "Germany 1st",
+     "Brazil top",
+     "position fifa"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: rankings brazil, rankings fifa, fifa ranking, fifa rankings, rankings germany, argentina ranked, germany 2nd, world ranking, rankings argentina, 2nd argentina, belgium 2nd, brazil fifa, position fifa, rankings belgium, argentina belgium\nPosts (one per line, title first):\n- New FIFA ranking (20 oct 2016) Germany go 2nd, Brazil 3rd\n- New FIFA world ranking (20 oct 2016) Germany go 2nd, Brazil 3rd\n- Brazil top the FIFA/Coca-Cola World Ranking for the first time since 2010. Argentina, Germany, Chile and Colombia round out the top 5 in the newest rankings.\n- End of the year FIFA world rankings out: Argentina finish the year out in 1st, Brazil 2nd, Germany 3rd, Chile 4th, and Belgium 5th.\n- The top three football nations according to FIFA's world ranking are Argentinia, Belgium and Colombia / I wanted to look up where Germany was in the rankings and i was very surprised to see it on \"only\" the fourth place. I don't know how this list is calculated but i think it's clear that it doesn't\n- Germany taking the lead of World Football Elo Ratings for the first time since May 2016\n- Argentina first, Belgium second in new FIFA rankings\n- Am I using this tool right? Does this mean that next FIFA ranking update, Poland will be ahead of Italy?\n- Fifa ranking: Brasil again at first place and Poland reachs best position ever.\n- Brazil reclaim top spot in FIFA rankings\n- Germany ousts USWNT from top spot in FIFA rankings\n- Argentina ranked as #1 in the world, Above Belgien now\n- Germany third in world rankings\n- Brazil to return to top of FIFA Ranking as Switzerland and Poland climb to 4th and 5th\n- New FIFA world ranking for September. Argentina remain first, Belgium second, Germany move up to third, while Brazil and Colombia are joint 4th.\n- Argentina overtake Belgium as #1 in the world above Belgium, Chile, Columbia and Germany (official FIFA rankings)\n- FIFA Ranking (January) - Argentina stay top\n- New FIFA ranking (24 nov 2016) Brazil go 2nd, Chile 4th\n- Germany back atop FIFA rankings with Confederations Cup win\n- Latest FIFA world rankings. Germany 1st, Belgium 2nd, Argentina 3rd...\n- Brazil have now overtaken Argentina as the top team in FIFA's rankings\n- Germany Remain Top of FIFA World Rankings\n- Champions Germany replace Brazil at top of Fifa world rankings\n- Germany remains first at the FIFA World Rankings\n- Brazil overtakes Argentina for the #1 spot in the FIFA Ranking following 1-0 win against Colombia\n- FIFA World Ranking Update - Brazil pips Germany for #1, Switzerland jump to #4, USA rises 9 places to #26\n- Brazil top FIFA rankings for first time in seven years\n- GERMANY RECLAIM TOP SPOT OF THE FIFA WORLD RANKINGS\n- March 2016 FIFA Mens World Rankings: Belgium retain top spot at #1, Argentina #2 and Spain #3.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"FIFA World Rankings\", \"purpose\": \"Tracking the global standing of football teams\", \"emotion_tone\": \"positive\", \"description\": \"Posts discussing the latest FIFA world rankings, team positions, and updates on team placements.\", \"inclusion_cues\": [\"FIFA ranking\", \"world ranking\", \"team positions\", \"top teams\", \"ranked teams\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "FIFA World Rankings",
+      "purpose": "Tracking the global standing of football teams",
+      "emotion_tone": "positive",
+      "description": "Posts discussing the latest FIFA world rankings, team positions, and updates on team placements.",
+      "inclusion_cues": [
+       "FIFA ranking",
+       "world ranking",
+       "team positions",
+       "top teams",
+       "ranked teams"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 91,
+   "seed": 1213190296,
+   "seconds": 1.05
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: rankings brazil, rankings fifa, fifa ranking, fifa rankings, rankings germany, argentina ranked, germany 2nd, world ranking, rankings argentina, 2nd argentina, belgium 2nd, brazil fifa, position fifa, rankings belgium, argentina belgium\nPosts (one per line, title first):\n- New FIFA ranking (20 oct 2016) Germany go 2nd, Brazil 3rd\n- New FIFA world ranking (20 oct 2016) Germany go 2nd, Brazil 3rd\n- Brazil top the FIFA/Coca-Cola World Ranking for the first time since 2010. Argentina, Germany, Chile and Colombia round out the top 5 in the newest rankings.\n- End of the year FIFA world rankings out: Argentina finish the year out in 1st, Brazil 2nd, Germany 3rd, Chile 4th, and Belgium 5th.\n- The top three football nations according to FIFA's world ranking are Argentinia, Belgium and Colombia / I wanted to look up where Germany was in the rankings and i was very surprised to see it on \"only\" the fourth place. I don't know how this list is calculated but i think it's clear that it doesn't\n- Germany taking the lead of World Football Elo Ratings for the first time since May 2016\n- Argentina first, Belgium second in new FIFA rankings\n- Am I using this tool right? Does this mean that next FIFA ranking update, Poland will be ahead of Italy?\n- Fifa ranking: Brasil again at first place and Poland reachs best position ever.\n- Brazil reclaim top spot in FIFA rankings\n- Germany ousts USWNT from top spot in FIFA rankings\n- Argentina ranked as #1 in the world, Above Belgien now\n- Germany third in world rankings\n- Brazil to return to top of FIFA Ranking as Switzerland and Poland climb to 4th and 5th\n- New FIFA world ranking for September. Argentina remain first, Belgium second, Germany move up to third, while Brazil and Colombia are joint 4th.\n- Argentina overtake Belgium as #1 in the world above Belgium, Chile, Columbia and Germany (official FIFA rankings)\n- FIFA Ranking (January) - Argentina stay top\n- New FIFA ranking (24 nov 2016) Brazil go 2nd, Chile 4th\n- Germany back atop FIFA rankings with Confederations Cup win\n- Latest FIFA world rankings. Germany 1st, Belgium 2nd, Argentina 3rd...\n- Brazil have now overtaken Argentina as the top team in FIFA's rankings\n- Germany Remain Top of FIFA World Rankings\n- Champions Germany replace Brazil at top of Fifa world rankings\n- Germany remains first at the FIFA World Rankings\n- Brazil overtakes Argentina for the #1 spot in the FIFA Ranking following 1-0 win against Colombia\n- FIFA World Ranking Update - Brazil pips Germany for #1, Switzerland jump to #4, USA rises 9 places to #26\n- Brazil top FIFA rankings for first time in seven years\n- GERMANY RECLAIM TOP SPOT OF THE FIFA WORLD RANKINGS\n- March 2016 FIFA Mens World Rankings: Belgium retain top spot at #1, Argentina #2 and Spain #3.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"FIFA Rankings\", \"purpose\": \"Tracking and discussing FIFA world rankings and national team positions\", \"emotion_tone\": \"informative and competitive\", \"description\": \"Posts discussing FIFA world rankings, national team positions, and related updates\", \"inclusion_cues\": [\"FIFA ranking\", \"world ranking\", \"Germany 2nd\", \"Brazil 3rd\", \"Argentina 1st\", \"Belgium 2nd\", \"Germany 1st\", \"Brazil top\", \"position fifa\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "FIFA Rankings",
+      "purpose": "Tracking and discussing FIFA world rankings and national team positions",
+      "emotion_tone": "informative and competitive",
+      "description": "Posts discussing FIFA world rankings, national team positions, and related updates",
+      "inclusion_cues": [
+       "FIFA ranking",
+       "world ranking",
+       "Germany 2nd",
+       "Brazil 3rd",
+       "Argentina 1st",
+       "Belgium 2nd",
+       "Germany 1st",
+       "Brazil top",
+       "position fifa"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 120,
+   "seed": 2940745296,
+   "seconds": 0.87
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: rankings brazil, rankings fifa, fifa ranking, fifa rankings, rankings germany, argentina ranked, germany 2nd, world ranking, rankings argentina, 2nd argentina, belgium 2nd, brazil fifa, position fifa, rankings belgium, argentina belgium\nPosts (one per line, title first):\n- New FIFA ranking (20 oct 2016) Germany go 2nd, Brazil 3rd\n- New FIFA world ranking (20 oct 2016) Germany go 2nd, Brazil 3rd\n- Brazil top the FIFA/Coca-Cola World Ranking for the first time since 2010. Argentina, Germany, Chile and Colombia round out the top 5 in the newest rankings.\n- End of the year FIFA world rankings out: Argentina finish the year out in 1st, Brazil 2nd, Germany 3rd, Chile 4th, and Belgium 5th.\n- The top three football nations according to FIFA's world ranking are Argentinia, Belgium and Colombia / I wanted to look up where Germany was in the rankings and i was very surprised to see it on \"only\" the fourth place. I don't know how this list is calculated but i think it's clear that it doesn't\n- Germany taking the lead of World Football Elo Ratings for the first time since May 2016\n- Argentina first, Belgium second in new FIFA rankings\n- Am I using this tool right? Does this mean that next FIFA ranking update, Poland will be ahead of Italy?\n- Fifa ranking: Brasil again at first place and Poland reachs best position ever.\n- Brazil reclaim top spot in FIFA rankings\n- Germany ousts USWNT from top spot in FIFA rankings\n- Argentina ranked as #1 in the world, Above Belgien now\n- Germany third in world rankings\n- Brazil to return to top of FIFA Ranking as Switzerland and Poland climb to 4th and 5th\n- New FIFA world ranking for September. Argentina remain first, Belgium second, Germany move up to third, while Brazil and Colombia are joint 4th.\n- Argentina overtake Belgium as #1 in the world above Belgium, Chile, Columbia and Germany (official FIFA rankings)\n- FIFA Ranking (January) - Argentina stay top\n- New FIFA ranking (24 nov 2016) Brazil go 2nd, Chile 4th\n- Germany back atop FIFA rankings with Confederations Cup win\n- Latest FIFA world rankings. Germany 1st, Belgium 2nd, Argentina 3rd...\n- Brazil have now overtaken Argentina as the top team in FIFA's rankings\n- Germany Remain Top of FIFA World Rankings\n- Champions Germany replace Brazil at top of Fifa world rankings\n- Germany remains first at the FIFA World Rankings\n- Brazil overtakes Argentina for the #1 spot in the FIFA Ranking following 1-0 win against Colombia\n- FIFA World Ranking Update - Brazil pips Germany for #1, Switzerland jump to #4, USA rises 9 places to #26\n- Brazil top FIFA rankings for first time in seven years\n- GERMANY RECLAIM TOP SPOT OF THE FIFA WORLD RANKINGS\n- March 2016 FIFA Mens World Rankings: Belgium retain top spot at #1, Argentina #2 and Spain #3.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"FIFA World Rankings\", \"purpose\": \"Tracking the global standing of football teams\", \"emotion_tone\": \"positive\", \"description\": \"Posts discussing the latest FIFA world rankings, team positions, and updates on team placements.\", \"inclusion_cues\": [\"FIFA ranking\", \"world ranking\", \"team positions\", \"top teams\", \"ranked teams\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"FIFA Rankings\", \"purpose\": \"Tracking and discussing FIFA world rankings and national team positions\", \"emotion_tone\": \"informative and competitive\", \"description\": \"Posts discussing FIFA world rankings, national team positions, and related updates\", \"inclusion_cues\": [\"FIFA ranking\", \"world ranking\", \"Germany 2nd\", \"Brazil 3rd\", \"Argentina 1st\", \"Belgium 2nd\", \"Germany 1st\", \"Brazil top\", \"position fifa\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"FIFA World Rankings\", \"purpose\": \"Tracking the global standing of football teams\", \"emotion_tone\": \"positive\", \"description\": \"Posts discussing the latest FIFA world rankings, team positions, and updates on team placements.\", \"inclusion_cues\": [\"FIFA ranking\", \"world ranking\", \"team positions\", \"top teams\", \"ranked teams\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 90,
+   "seed": 4212673014,
+   "seconds": 0.46
+  }
+ ]
+}

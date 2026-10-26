@@ -1,0 +1,188 @@
+{
+ "period_bin": 2,
+ "topic_id": 719,
+ "keywords": "falcao injured, radamel falcao, falcão, falcao striker, knee injury, falcao tears, match falcao, falcao surprised, suffers ligament, falcao 50, falcao hasn, monaco striker, head injury, cup spanish, radamel",
+ "n_sample_posts": 32,
+ "sample_ids": [
+  "1vw33b",
+  "1vv8r2",
+  "1vwjay",
+  "1vy3qm",
+  "1w523f",
+  "1vvj93",
+  "1vxy08",
+  "1w4mf5",
+  "1vv7m8",
+  "12m1ya",
+  "1vy0id",
+  "1w4k72",
+  "1vxzum",
+  "1rf5x8",
+  "1vvoox",
+  "1ufcwy",
+  "1vy4gy",
+  "1qmd3x",
+  "1vwa8v",
+  "1qt04d",
+  "1vwap6",
+  "1ir3r3",
+  "1vvegd",
+  "1vv8pp",
+  "110kki",
+  "1isw71",
+  "1rrmpf",
+  "1w4aq7",
+  "1w4bfk",
+  "1wh1bq",
+  "1vvlkq",
+  "1vzu7h"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Falcao Injuries and World Cup Absence",
+  "purpose": "Report on Radamel Falcao's injuries and World Cup participation status",
+  "emotion_tone": "Concerned",
+  "description": "Posts discussing Falcao's injuries, surgery, and World Cup eligibility",
+  "inclusion_cues": [
+   "Falcao's knee injury",
+   "World Cup absence",
+   "Surgery and recovery",
+   "Injury severity",
+   "Medical assessments"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "World Cup Injuries",
+    "purpose": "Report on Radamel Falcao's injury status and World Cup implications",
+    "emotion_tone": "Concerned",
+    "description": "Posts discussing Falcao's injury, surgery, and World Cup participation",
+    "inclusion_cues": [
+     "Falcao injured",
+     "knee injury",
+     "World Cup",
+     "surgery",
+     "injury in match",
+     "out for World Cup"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Falcao Injuries and World Cup Absence",
+    "purpose": "Report on Radamel Falcao's injuries and World Cup participation status",
+    "emotion_tone": "Concerned",
+    "description": "Posts discussing Falcao's injuries, surgery, and World Cup eligibility",
+    "inclusion_cues": [
+     "Falcao's knee injury",
+     "World Cup absence",
+     "Surgery and recovery",
+     "Injury severity",
+     "Medical assessments"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: falcao injured, radamel falcao, falcão, falcao striker, knee injury, falcao tears, match falcao, falcao surprised, suffers ligament, falcao 50, falcao hasn, monaco striker, head injury, cup spanish, radamel\nPosts (one per line, title first):\n- Radamel Falcao's World Cup in doubt after 'serious' knee injury\n- Falcao Suffers Knee Injury in Coupe de France, Could Miss World Cup\n- Radamel Falcao: Striker suffers knee injury in Monaco win\n- \"Following Wednesday's injury, Radamel Falcao made a diagnostic examination. It appears that the player is suffering from trauma in the left knee with lesion of ligament anterior cruciate.\"\n- Radamel Falcao has a 50/50 chance he does play in the World Cup after a successful surgery.\n- Radamel Falcao suffers potentially serious injury in Monaco's 3-0 League cup victory.\n- Falcao tears ACL, will miss world cup(spanish)\n- Falcao given \"a better than 50% chance of making the World Cup\" by the doctor who preformed the surgery.\n- Falcao suffers ligament injury in Coupe de France match\n- Falcao posts head injury pic on Twitter after collision with Soldado\n- Confirmed: Falcao to miss 2014 World Cup\n- Falcao given 50% chance to make the world Cup\n- Falcao confirmed to be out for the World Cup\n- Radamel Falcao surprised by his substitution\n- Radamel Falcao injured, doubtful for World Cup\n- Falcao fit again.\n- Falcao out for world cup!\n- BBC Sport - Marton Fulop ready to play after tumour operation\n- Falcao is almost out of the World Cup.\n- Socceroos player Mark Bresciano may miss next years WC after a suspension from FIFA relating to his transfer to Qatari club.\n- Falcao might miss WC due to injury sustained in todays game.\n- Falcao losing it in friendly game versus FC Augsburg\n- World Cup fears for Falcao due to suspected knee injury in Monaco cup clash\n- Falcao injured in cup match against Chasselay\n- Falcao hasn't been playing because he's too busy being a coach, chairman and fan\n- Falcao is not happy about losing.\n- Falcao is not used to getting substituted\n- Falcao before his knee surgery\n- Falcao before his knee surgery\n- Monaco striker Falcão released a video of his knee surgery\n- Falcao might have damaged his ACL tonight, and could miss the rest of the season and the World Cup\n- Falcao Needs Knee Surgery, Could Miss World Cup NOOOOOOOOO\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"World Cup Injuries\", \"purpose\": \"Report on Radamel Falcao's injury status and World Cup implications\", \"emotion_tone\": \"Concerned\", \"description\": \"Posts discussing Falcao's injury, surgery, and World Cup participation\", \"inclusion_cues\": [\"Falcao injured\", \"knee injury\", \"World Cup\", \"surgery\", \"injury in match\", \"out for World Cup\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "World Cup Injuries",
+      "purpose": "Report on Radamel Falcao's injury status and World Cup implications",
+      "emotion_tone": "Concerned",
+      "description": "Posts discussing Falcao's injury, surgery, and World Cup participation",
+      "inclusion_cues": [
+       "Falcao injured",
+       "knee injury",
+       "World Cup",
+       "surgery",
+       "injury in match",
+       "out for World Cup"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 103,
+   "seed": 3577727091,
+   "seconds": 0.74
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: falcao injured, radamel falcao, falcão, falcao striker, knee injury, falcao tears, match falcao, falcao surprised, suffers ligament, falcao 50, falcao hasn, monaco striker, head injury, cup spanish, radamel\nPosts (one per line, title first):\n- Radamel Falcao's World Cup in doubt after 'serious' knee injury\n- Falcao Suffers Knee Injury in Coupe de France, Could Miss World Cup\n- Radamel Falcao: Striker suffers knee injury in Monaco win\n- \"Following Wednesday's injury, Radamel Falcao made a diagnostic examination. It appears that the player is suffering from trauma in the left knee with lesion of ligament anterior cruciate.\"\n- Radamel Falcao has a 50/50 chance he does play in the World Cup after a successful surgery.\n- Radamel Falcao suffers potentially serious injury in Monaco's 3-0 League cup victory.\n- Falcao tears ACL, will miss world cup(spanish)\n- Falcao given \"a better than 50% chance of making the World Cup\" by the doctor who preformed the surgery.\n- Falcao suffers ligament injury in Coupe de France match\n- Falcao posts head injury pic on Twitter after collision with Soldado\n- Confirmed: Falcao to miss 2014 World Cup\n- Falcao given 50% chance to make the world Cup\n- Falcao confirmed to be out for the World Cup\n- Radamel Falcao surprised by his substitution\n- Radamel Falcao injured, doubtful for World Cup\n- Falcao fit again.\n- Falcao out for world cup!\n- BBC Sport - Marton Fulop ready to play after tumour operation\n- Falcao is almost out of the World Cup.\n- Socceroos player Mark Bresciano may miss next years WC after a suspension from FIFA relating to his transfer to Qatari club.\n- Falcao might miss WC due to injury sustained in todays game.\n- Falcao losing it in friendly game versus FC Augsburg\n- World Cup fears for Falcao due to suspected knee injury in Monaco cup clash\n- Falcao injured in cup match against Chasselay\n- Falcao hasn't been playing because he's too busy being a coach, chairman and fan\n- Falcao is not happy about losing.\n- Falcao is not used to getting substituted\n- Falcao before his knee surgery\n- Falcao before his knee surgery\n- Monaco striker Falcão released a video of his knee surgery\n- Falcao might have damaged his ACL tonight, and could miss the rest of the season and the World Cup\n- Falcao Needs Knee Surgery, Could Miss World Cup NOOOOOOOOO\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Falcao Injuries and World Cup Absence\", \"purpose\": \"Report on Radamel Falcao's injuries and World Cup participation status\", \"emotion_tone\": \"Concerned\", \"description\": \"Posts discussing Falcao's injuries, surgery, and World Cup eligibility\", \"inclusion_cues\": [\"Falcao's knee injury\", \"World Cup absence\", \"Surgery and recovery\", \"Injury severity\", \"Medical assessments\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Falcao Injuries and World Cup Absence",
+      "purpose": "Report on Radamel Falcao's injuries and World Cup participation status",
+      "emotion_tone": "Concerned",
+      "description": "Posts discussing Falcao's injuries, surgery, and World Cup eligibility",
+      "inclusion_cues": [
+       "Falcao's knee injury",
+       "World Cup absence",
+       "Surgery and recovery",
+       "Injury severity",
+       "Medical assessments"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 105,
+   "seed": 1302022677,
+   "seconds": 0.71
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: falcao injured, radamel falcao, falcão, falcao striker, knee injury, falcao tears, match falcao, falcao surprised, suffers ligament, falcao 50, falcao hasn, monaco striker, head injury, cup spanish, radamel\nPosts (one per line, title first):\n- Radamel Falcao's World Cup in doubt after 'serious' knee injury\n- Falcao Suffers Knee Injury in Coupe de France, Could Miss World Cup\n- Radamel Falcao: Striker suffers knee injury in Monaco win\n- \"Following Wednesday's injury, Radamel Falcao made a diagnostic examination. It appears that the player is suffering from trauma in the left knee with lesion of ligament anterior cruciate.\"\n- Radamel Falcao has a 50/50 chance he does play in the World Cup after a successful surgery.\n- Radamel Falcao suffers potentially serious injury in Monaco's 3-0 League cup victory.\n- Falcao tears ACL, will miss world cup(spanish)\n- Falcao given \"a better than 50% chance of making the World Cup\" by the doctor who preformed the surgery.\n- Falcao suffers ligament injury in Coupe de France match\n- Falcao posts head injury pic on Twitter after collision with Soldado\n- Confirmed: Falcao to miss 2014 World Cup\n- Falcao given 50% chance to make the world Cup\n- Falcao confirmed to be out for the World Cup\n- Radamel Falcao surprised by his substitution\n- Radamel Falcao injured, doubtful for World Cup\n- Falcao fit again.\n- Falcao out for world cup!\n- BBC Sport - Marton Fulop ready to play after tumour operation\n- Falcao is almost out of the World Cup.\n- Socceroos player Mark Bresciano may miss next years WC after a suspension from FIFA relating to his transfer to Qatari club.\n- Falcao might miss WC due to injury sustained in todays game.\n- Falcao losing it in friendly game versus FC Augsburg\n- World Cup fears for Falcao due to suspected knee injury in Monaco cup clash\n- Falcao injured in cup match against Chasselay\n- Falcao hasn't been playing because he's too busy being a coach, chairman and fan\n- Falcao is not happy about losing.\n- Falcao is not used to getting substituted\n- Falcao before his knee surgery\n- Falcao before his knee surgery\n- Monaco striker Falcão released a video of his knee surgery\n- Falcao might have damaged his ACL tonight, and could miss the rest of the season and the World Cup\n- Falcao Needs Knee Surgery, Could Miss World Cup NOOOOOOOOO\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"World Cup Injuries\", \"purpose\": \"Report on Radamel Falcao's injury status and World Cup implications\", \"emotion_tone\": \"Concerned\", \"description\": \"Posts discussing Falcao's injury, surgery, and World Cup participation\", \"inclusion_cues\": [\"Falcao injured\", \"knee injury\", \"World Cup\", \"surgery\", \"injury in match\", \"out for World Cup\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Falcao Injuries and World Cup Absence\", \"purpose\": \"Report on Radamel Falcao's injuries and World Cup participation status\", \"emotion_tone\": \"Concerned\", \"description\": \"Posts discussing Falcao's injuries, surgery, and World Cup eligibility\", \"inclusion_cues\": [\"Falcao's knee injury\", \"World Cup absence\", \"Surgery and recovery\", \"Injury severity\", \"Medical assessments\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Falcao Injuries and World Cup Absence\", \"purpose\": \"Report on Radamel Falcao's injuries and World Cup participation status\", \"emotion_tone\": \"Concerned\", \"description\": \"Posts discussing Falcao's injuries, surgery, and World Cup eligibility\", \"inclusion_cues\": [\"Falcao's knee injury\", \"World Cup absence\", \"Surgery and recovery\", \"Injury severity\", \"Medical assessments\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 104,
+   "seed": 3626711266,
+   "seconds": 0.58
+  }
+ ]
+}

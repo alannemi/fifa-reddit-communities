@@ -1,0 +1,190 @@
+{
+ "period_bin": 6,
+ "topic_id": 363,
+ "keywords": "goal brighton, newcastle brighton, brighton liverpool, brighton newcastle, 90 brighton, brighton burnley, brighton leeds, united brighton, brighton league, 81 brighton, palace brighton, southampton brighton, 77 brighton, 79 brighton, 17 brighton",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "ukih79",
+  "qea49i",
+  "bnpiua",
+  "iwdhh8",
+  "j04y1d",
+  "rrjdun",
+  "l3e5e4",
+  "f0w1rj",
+  "qe8el1",
+  "qo6taf",
+  "ukjli8",
+  "bi1rs1",
+  "nfhklu",
+  "az36wl",
+  "iwf33h",
+  "aoveqn",
+  "n2jlr4",
+  "nfjx00",
+  "a3549w",
+  "kgub8b",
+  "az3snz",
+  "eo8sum",
+  "j2ts7o",
+  "kwmwwa",
+  "pv7rs0",
+  "hsgko7",
+  "k2n5bb",
+  "hnoaz5",
+  "fegaos",
+  "qe8rx9",
+  "k8q4d2",
+  "m9go8r",
+  "nfjcul",
+  "hphatq",
+  "hshwzt",
+  "m4u9xv",
+  "nfk23c",
+  "m4ajc2",
+  "ebl2gh",
+  "j05y3t"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Brighton League Goals",
+  "purpose": "Tracking Brighton's league goals in matches",
+  "emotion_tone": "positive",
+  "description": "Posts related to Brighton's league goals, including match results, goal celebrations, and notable performances",
+  "inclusion_cues": [
+   "Brighton [x] - [y] [z] - ...",
+   "Brighton [x]-[y] [z] ...",
+   "Brighton [x] - [y] [z] ...",
+   "Brighton [x] - [y] [z] ...",
+   "Brighton [x] - [y] [z] ..."
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Brighton League Goals",
+    "purpose": "Tracking Brighton's league goals",
+    "emotion_tone": "positive",
+    "description": "Posts related to Brighton's league goals, including match results and goal celebrations",
+    "inclusion_cues": [
+     "Brighton [1]-0 Manchester Utd",
+     "Brighton [1]-3 Burnley",
+     "Brighton [3]-0 Newcastle"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Brighton League Goals",
+    "purpose": "Tracking Brighton's league goals in matches",
+    "emotion_tone": "positive",
+    "description": "Posts related to Brighton's league goals, including match results, goal celebrations, and notable performances",
+    "inclusion_cues": [
+     "Brighton [x] - [y] [z] - ...",
+     "Brighton [x]-[y] [z] ...",
+     "Brighton [x] - [y] [z] ...",
+     "Brighton [x] - [y] [z] ...",
+     "Brighton [x] - [y] [z] ..."
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: goal brighton, newcastle brighton, brighton liverpool, brighton newcastle, 90 brighton, brighton burnley, brighton leeds, united brighton, brighton league, 81 brighton, palace brighton, southampton brighton, 77 brighton, 79 brighton, 17 brighton\nPosts (one per line, title first):\n- Brighton [3] - 0 Manchester United - Pascal Groß 58'\n- Brighton [1] - 3 Manchester City - Alexis Mac Allister penalty 81'\n- Brighton [1]-0 Manchester City : Murray 27'\n- Newcastle 0 - [1] Brighton - Neal Maupay penalty 4'\n- Brighton 1-0 Manchester Utd - Neal Maupay penalty 40' (+ call)\n- [Kinsella] That was Brighton's first league goal at Stamford Bridge, ever.\n- Brighton [1]-0 Blackpool - Yves Bissouma 27' (great goal)\n- Brighton & Hove Albion [1]-1 Watford - Mariappa OG 78'\n- Brighton 0 - [1] Manchester City - İlkay Gündoğan 13'\n- Brighton 1-[1] Newcastle - Isaac Hayden 66’\n- [OptaJoe] 4 - Brighton's 4-0 win over Manchester United saw them secure their biggest ever top-flight win in their history, in what was their 356th match at this level. Dreamland.\n- Brighton [1]-1 Newcastle United: Gross (First Goal Since March 9th)\n- Brighton 0 - [1] Manchester City - İlkay Gündoğan 2'\n- Crystal Palace 0-1 Brighton: Murray\n- Newcastle 0 - [3] Brighton - Connolly 83'\n- Brighton [1]-3 Burnley - Shane Duffy 76'\n- Brighton [1]-0 Leeds - Pascal Groß penalty 14'\n- Brighton [2] - 2 Manchester City - Adam Webster 72'\n- Brighton 3-[1] Crystal Palace - Luka Milivojevic penalty 81'\n- Brighton [1]-1 Sheffield United - Danny Welbeck 87'\n- Crystal Palace 1-[2] Brighton: Knockaert\n- Brighton U23 0-[1] Leicester City U23 - Josh Eppiah 10'\n- Brighton 0 - [2] Manchester United - Juan Mata 73'\n- Manchester City [1] - 0 Brighton - Philo Foden 44'\n- Watford 0-[1] Newcastle - S. Longstaff 23' [Great Goal]\n- Southampton 0 - [1] Brighton - Maupay 17'\n- Brighton 0 - 0 Liverpool - Neal Maupay (penalty miss) 20' + call\n- Brighton [1] - 2 Liverpool - Trossard 45'\n- Watford U23 [2]-0 Crystal Palace U23 - Quina 38' Great Goal\n- Brighton 0 - [3] Manchester City - Gabriel Jesus 31'\n- Brighton 1 - [2] Southampton - Danny Ings (penalty) 81'\n- Brighton [3] - 0 Newcastle - Neal Maupay 68'\n- Brighton [1] - 2 Manchester City - Leandro Trossard 50'\n- Brighton 0 - [5] Manchester City - Sterling Hat-trick 81'\n- Southampton [1] - 1 Brighton - Ings 66'\n- Southampton 0 - [1] Brighton - Lewis Dunk 16'\n- Brighton [3]-2 Manchester City - Dan Burn 77'\n- [Adam Leventhal] - Watford have scored from a direct free kick for the first time since April 30, 2016.\n- Crystal Palace 0-1 Brighton - Neal Maupay 54'\n- Brighton [2] - 2 Manchester United - Solly March 90+5'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Brighton League Goals\", \"purpose\": \"Tracking Brighton's league goals\", \"emotion_tone\": \"positive\", \"description\": \"Posts related to Brighton's league goals, including match results and goal celebrations\", \"inclusion_cues\": [\"Brighton [1]-0 Manchester Utd\", \"Brighton [1]-3 Burnley\", \"Brighton [3]-0 Newcastle\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Brighton League Goals",
+      "purpose": "Tracking Brighton's league goals",
+      "emotion_tone": "positive",
+      "description": "Posts related to Brighton's league goals, including match results and goal celebrations",
+      "inclusion_cues": [
+       "Brighton [1]-0 Manchester Utd",
+       "Brighton [1]-3 Burnley",
+       "Brighton [3]-0 Newcastle"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 95,
+   "seed": 809364808,
+   "seconds": 0.59
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: goal brighton, newcastle brighton, brighton liverpool, brighton newcastle, 90 brighton, brighton burnley, brighton leeds, united brighton, brighton league, 81 brighton, palace brighton, southampton brighton, 77 brighton, 79 brighton, 17 brighton\nPosts (one per line, title first):\n- Brighton [3] - 0 Manchester United - Pascal Groß 58'\n- Brighton [1] - 3 Manchester City - Alexis Mac Allister penalty 81'\n- Brighton [1]-0 Manchester City : Murray 27'\n- Newcastle 0 - [1] Brighton - Neal Maupay penalty 4'\n- Brighton 1-0 Manchester Utd - Neal Maupay penalty 40' (+ call)\n- [Kinsella] That was Brighton's first league goal at Stamford Bridge, ever.\n- Brighton [1]-0 Blackpool - Yves Bissouma 27' (great goal)\n- Brighton & Hove Albion [1]-1 Watford - Mariappa OG 78'\n- Brighton 0 - [1] Manchester City - İlkay Gündoğan 13'\n- Brighton 1-[1] Newcastle - Isaac Hayden 66’\n- [OptaJoe] 4 - Brighton's 4-0 win over Manchester United saw them secure their biggest ever top-flight win in their history, in what was their 356th match at this level. Dreamland.\n- Brighton [1]-1 Newcastle United: Gross (First Goal Since March 9th)\n- Brighton 0 - [1] Manchester City - İlkay Gündoğan 2'\n- Crystal Palace 0-1 Brighton: Murray\n- Newcastle 0 - [3] Brighton - Connolly 83'\n- Brighton [1]-3 Burnley - Shane Duffy 76'\n- Brighton [1]-0 Leeds - Pascal Groß penalty 14'\n- Brighton [2] - 2 Manchester City - Adam Webster 72'\n- Brighton 3-[1] Crystal Palace - Luka Milivojevic penalty 81'\n- Brighton [1]-1 Sheffield United - Danny Welbeck 87'\n- Crystal Palace 1-[2] Brighton: Knockaert\n- Brighton U23 0-[1] Leicester City U23 - Josh Eppiah 10'\n- Brighton 0 - [2] Manchester United - Juan Mata 73'\n- Manchester City [1] - 0 Brighton - Philo Foden 44'\n- Watford 0-[1] Newcastle - S. Longstaff 23' [Great Goal]\n- Southampton 0 - [1] Brighton - Maupay 17'\n- Brighton 0 - 0 Liverpool - Neal Maupay (penalty miss) 20' + call\n- Brighton [1] - 2 Liverpool - Trossard 45'\n- Watford U23 [2]-0 Crystal Palace U23 - Quina 38' Great Goal\n- Brighton 0 - [3] Manchester City - Gabriel Jesus 31'\n- Brighton 1 - [2] Southampton - Danny Ings (penalty) 81'\n- Brighton [3] - 0 Newcastle - Neal Maupay 68'\n- Brighton [1] - 2 Manchester City - Leandro Trossard 50'\n- Brighton 0 - [5] Manchester City - Sterling Hat-trick 81'\n- Southampton [1] - 1 Brighton - Ings 66'\n- Southampton 0 - [1] Brighton - Lewis Dunk 16'\n- Brighton [3]-2 Manchester City - Dan Burn 77'\n- [Adam Leventhal] - Watford have scored from a direct free kick for the first time since April 30, 2016.\n- Crystal Palace 0-1 Brighton - Neal Maupay 54'\n- Brighton [2] - 2 Manchester United - Solly March 90+5'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Brighton League Goals\", \"purpose\": \"Tracking Brighton's league goals in matches\", \"emotion_tone\": \"positive\", \"description\": \"Posts related to Brighton's league goals, including match results, goal celebrations, and notable performances\", \"inclusion_cues\": [\"Brighton [x] - [y] [z] - ...\", \"Brighton [x]-[y] [z] ...\", \"Brighton [x] - [y] [z] ...\", \"Brighton [x] - [y] [z] ...\", \"Brighton [x] - [y] [z] ...\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Brighton League Goals",
+      "purpose": "Tracking Brighton's league goals in matches",
+      "emotion_tone": "positive",
+      "description": "Posts related to Brighton's league goals, including match results, goal celebrations, and notable performances",
+      "inclusion_cues": [
+       "Brighton [x] - [y] [z] - ...",
+       "Brighton [x]-[y] [z] ...",
+       "Brighton [x] - [y] [z] ...",
+       "Brighton [x] - [y] [z] ...",
+       "Brighton [x] - [y] [z] ..."
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 146,
+   "seed": 2680640685,
+   "seconds": 1.88
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: goal brighton, newcastle brighton, brighton liverpool, brighton newcastle, 90 brighton, brighton burnley, brighton leeds, united brighton, brighton league, 81 brighton, palace brighton, southampton brighton, 77 brighton, 79 brighton, 17 brighton\nPosts (one per line, title first):\n- Brighton [3] - 0 Manchester United - Pascal Groß 58'\n- Brighton [1] - 3 Manchester City - Alexis Mac Allister penalty 81'\n- Brighton [1]-0 Manchester City : Murray 27'\n- Newcastle 0 - [1] Brighton - Neal Maupay penalty 4'\n- Brighton 1-0 Manchester Utd - Neal Maupay penalty 40' (+ call)\n- [Kinsella] That was Brighton's first league goal at Stamford Bridge, ever.\n- Brighton [1]-0 Blackpool - Yves Bissouma 27' (great goal)\n- Brighton & Hove Albion [1]-1 Watford - Mariappa OG 78'\n- Brighton 0 - [1] Manchester City - İlkay Gündoğan 13'\n- Brighton 1-[1] Newcastle - Isaac Hayden 66’\n- [OptaJoe] 4 - Brighton's 4-0 win over Manchester United saw them secure their biggest ever top-flight win in their history, in what was their 356th match at this level. Dreamland.\n- Brighton [1]-1 Newcastle United: Gross (First Goal Since March 9th)\n- Brighton 0 - [1] Manchester City - İlkay Gündoğan 2'\n- Crystal Palace 0-1 Brighton: Murray\n- Newcastle 0 - [3] Brighton - Connolly 83'\n- Brighton [1]-3 Burnley - Shane Duffy 76'\n- Brighton [1]-0 Leeds - Pascal Groß penalty 14'\n- Brighton [2] - 2 Manchester City - Adam Webster 72'\n- Brighton 3-[1] Crystal Palace - Luka Milivojevic penalty 81'\n- Brighton [1]-1 Sheffield United - Danny Welbeck 87'\n- Crystal Palace 1-[2] Brighton: Knockaert\n- Brighton U23 0-[1] Leicester City U23 - Josh Eppiah 10'\n- Brighton 0 - [2] Manchester United - Juan Mata 73'\n- Manchester City [1] - 0 Brighton - Philo Foden 44'\n- Watford 0-[1] Newcastle - S. Longstaff 23' [Great Goal]\n- Southampton 0 - [1] Brighton - Maupay 17'\n- Brighton 0 - 0 Liverpool - Neal Maupay (penalty miss) 20' + call\n- Brighton [1] - 2 Liverpool - Trossard 45'\n- Watford U23 [2]-0 Crystal Palace U23 - Quina 38' Great Goal\n- Brighton 0 - [3] Manchester City - Gabriel Jesus 31'\n- Brighton 1 - [2] Southampton - Danny Ings (penalty) 81'\n- Brighton [3] - 0 Newcastle - Neal Maupay 68'\n- Brighton [1] - 2 Manchester City - Leandro Trossard 50'\n- Brighton 0 - [5] Manchester City - Sterling Hat-trick 81'\n- Southampton [1] - 1 Brighton - Ings 66'\n- Southampton 0 - [1] Brighton - Lewis Dunk 16'\n- Brighton [3]-2 Manchester City - Dan Burn 77'\n- [Adam Leventhal] - Watford have scored from a direct free kick for the first time since April 30, 2016.\n- Crystal Palace 0-1 Brighton - Neal Maupay 54'\n- Brighton [2] - 2 Manchester United - Solly March 90+5'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Brighton League Goals\", \"purpose\": \"Tracking Brighton's league goals\", \"emotion_tone\": \"positive\", \"description\": \"Posts related to Brighton's league goals, including match results and goal celebrations\", \"inclusion_cues\": [\"Brighton [1]-0 Manchester Utd\", \"Brighton [1]-3 Burnley\", \"Brighton [3]-0 Newcastle\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Brighton League Goals\", \"purpose\": \"Tracking Brighton's league goals in matches\", \"emotion_tone\": \"positive\", \"description\": \"Posts related to Brighton's league goals, including match results, goal celebrations, and notable performances\", \"inclusion_cues\": [\"Brighton [x] - [y] [z] - ...\", \"Brighton [x]-[y] [z] ...\", \"Brighton [x] - [y] [z] ...\", \"Brighton [x] - [y] [z] ...\", \"Brighton [x] - [y] [z] ...\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Brighton League Goals\", \"purpose\": \"Tracking Brighton's league goals in matches\", \"emotion_tone\": \"positive\", \"description\": \"Posts related to Brighton's league goals, including match results, goal celebrations, and notable performances\", \"inclusion_cues\": [\"Brighton [x] - [y] [z] - ...\", \"Brighton [x]-[y] [z] ...\", \"Brighton [x] - [y] [z] ...\", \"Brighton [x] - [y] [z] ...\", \"Brighton [x] - [y] [z] ...\"]}]",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 457)",
+   "n_tokens": 144,
+   "seed": 3037451741,
+   "seconds": 0.54
+  }
+ ]
+}

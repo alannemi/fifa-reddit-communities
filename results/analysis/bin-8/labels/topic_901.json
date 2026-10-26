@@ -1,0 +1,210 @@
+{
+ "period_bin": 8,
+ "topic_id": 901,
+ "keywords": "goal italy, italy israel, italy moise, italy davide, 41 italy, 90 italy, 72 italy, italy sandro, italy matteo, goal 87, penalty 41, goal 16, mancini 90, frattesi 38, italy giacomo",
+ "n_sample_posts": 26,
+ "sample_ids": [
+  "1nbx9sx",
+  "1g3od3b",
+  "1g3od36",
+  "1fcyza7",
+  "1nby4tk",
+  "1fczo8g",
+  "1o6poh6",
+  "1g3pqn4",
+  "1nbz2a7",
+  "1o6r577",
+  "1g3pqe6",
+  "1nbz3os",
+  "1nbwmk6",
+  "1fcxx9f",
+  "1o6qmvi",
+  "1nbwbmm",
+  "1g3pkew",
+  "1g3peej",
+  "1g3p3ua",
+  "1nby319",
+  "1nbyusw",
+  "1g3p4vy",
+  "1g3pkf5",
+  "1nbyzri",
+  "1fczp42",
+  "1nby91d"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Italy vs Israel Goals",
+  "purpose": "Tracking goals between Italy and Israel in football matches",
+  "emotion_tone": "competitive",
+  "description": "Posts discussing goals scored by Italy against Israel in football matches, including details about goals, penalties, and match outcomes.",
+  "inclusion_cues": [
+   "goal italy",
+   "italy israel",
+   "italy moise",
+   "italy davide",
+   "41 italy",
+   "90 italy",
+   "72 italy",
+   "italy sandro",
+   "italy matteo",
+   "goal 87"
+  ],
+  "n_cues_given": 15
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Italy vs Israel Goals",
+    "purpose": "Tracking goals between Italy and Israel in football matches",
+    "emotion_tone": "competitive",
+    "description": "Posts related to goals scored by or against Italy and Israel in football matches, including goal celebrations, penalties, and match outcomes.",
+    "inclusion_cues": [
+     "goal italy",
+     "italy israel",
+     "italy moise",
+     "italy davide",
+     "41 italy",
+     "90 italy",
+     "72 italy",
+     "italy sandro",
+     "italy matteo",
+     "goal 87"
+    ],
+    "n_cues_given": 15
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Italy vs Israel Goals",
+    "purpose": "Tracking goals between Italy and Israel in football matches",
+    "emotion_tone": "competitive",
+    "description": "Posts discussing goals scored by Italy against Israel in football matches, including details about goals, penalties, and match outcomes.",
+    "inclusion_cues": [
+     "goal italy",
+     "italy israel",
+     "italy moise",
+     "italy davide",
+     "41 italy",
+     "90 italy",
+     "72 italy",
+     "italy sandro",
+     "italy matteo",
+     "goal 87"
+    ],
+    "n_cues_given": 15
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: goal italy, italy israel, italy moise, italy davide, 41 italy, 90 italy, 72 italy, italy sandro, italy matteo, goal 87, penalty 41, goal 16, mancini 90, frattesi 38, italy giacomo\nPosts (one per line, title first):\n- Israel 1 - [1] Italy - Moise Kean 41'\n- Italy [1] - 0 Israel - Mateo Retegui (penalty) 41‎'‎\n- Italy [1] - 0 Israel - Mateo Retegui penalty 41'\n- Israel 0 - [2] Italy - Moise Kean 62‎'‎\n- Israel 2 - [2] Italy - Moise Kean 54'\n- Israel [1] - 2 Italy - Jehezkel 90‎'‎\n- Italy [1] - 0 Israel - Mateo Retegui (P) 45+2'\n- Italy [4] - 1 Israel - Giovanni Di Lorenzo 79'\n- Israel [4] - 4 Italy - Dor Peretz 90'\n- Italy [3] - 0 Israel - Gianluca Mancini 90+4'\n- Italy [4] - 1 Israel - Lorenzo 79‎'‎\n- Israel 4 - [5] Italy - Sandro Tonali 90+1'\n- Israel [1] - 0 Italy - Manuel Locatelli Own-goal 16'\n- Israel 0 - [1] Italy - Davide Frattesi 38‎'‎\n- Italy [2] - 0 Israel - Mateo Retegui Great-goal 75'\n- Israel disallowed goal against Italy 5'\n- Italy [3] - 1 Israel - Davide Frattesi 73'\n- Italy 2 - [1] Israel - Mohammad Abu Fani 66‎'‎\n- Italy [2] - 0 Israel - Lorenzo 54‎'‎\n- Israel [2] - 1 Italy - Dor Peretz 52'\n- Israel 2 - [4] Italy - Giacomo Raspadori 81'\n- Italy [2] - 0 Israel - Giovanni Di Lorenzo header 54'\n- Italy [3] - 1 Israel - Davide Frattesi 72‎'‎\n- Israel [3] - 4 Italy - Alessandro Bastoni Own-goal 87'\n- Israel [1] - 2 Italy - Mohammad Abu Fani 90'\n- Israel 2 - [3] Italy - Matteo Politano 59'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Italy vs Israel Goals\", \"purpose\": \"Tracking goals between Italy and Israel in football matches\", \"emotion_tone\": \"competitive\", \"description\": \"Posts related to goals scored by or against Italy and Israel in football matches, including goal celebrations, penalties, and match outcomes.\", \"inclusion_cues\": [\"goal italy\", \"italy israel\", \"italy moise\", \"italy davide\", \"41 italy\", \"90 italy\", \"72 italy\", \"italy sandro\", \"italy matteo\", \"goal 87\", \"penalty 41\", \"goal 16\", \"mancini 90\", \"frattesi 38\", \"italy giacomo\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Italy vs Israel Goals",
+      "purpose": "Tracking goals between Italy and Israel in football matches",
+      "emotion_tone": "competitive",
+      "description": "Posts related to goals scored by or against Italy and Israel in football matches, including goal celebrations, penalties, and match outcomes.",
+      "inclusion_cues": [
+       "goal italy",
+       "italy israel",
+       "italy moise",
+       "italy davide",
+       "41 italy",
+       "90 italy",
+       "72 italy",
+       "italy sandro",
+       "italy matteo",
+       "goal 87"
+      ],
+      "n_cues_given": 15
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 174,
+   "seed": 3613955903,
+   "seconds": 0.6
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: goal italy, italy israel, italy moise, italy davide, 41 italy, 90 italy, 72 italy, italy sandro, italy matteo, goal 87, penalty 41, goal 16, mancini 90, frattesi 38, italy giacomo\nPosts (one per line, title first):\n- Israel 1 - [1] Italy - Moise Kean 41'\n- Italy [1] - 0 Israel - Mateo Retegui (penalty) 41‎'‎\n- Italy [1] - 0 Israel - Mateo Retegui penalty 41'\n- Israel 0 - [2] Italy - Moise Kean 62‎'‎\n- Israel 2 - [2] Italy - Moise Kean 54'\n- Israel [1] - 2 Italy - Jehezkel 90‎'‎\n- Italy [1] - 0 Israel - Mateo Retegui (P) 45+2'\n- Italy [4] - 1 Israel - Giovanni Di Lorenzo 79'\n- Israel [4] - 4 Italy - Dor Peretz 90'\n- Italy [3] - 0 Israel - Gianluca Mancini 90+4'\n- Italy [4] - 1 Israel - Lorenzo 79‎'‎\n- Israel 4 - [5] Italy - Sandro Tonali 90+1'\n- Israel [1] - 0 Italy - Manuel Locatelli Own-goal 16'\n- Israel 0 - [1] Italy - Davide Frattesi 38‎'‎\n- Italy [2] - 0 Israel - Mateo Retegui Great-goal 75'\n- Israel disallowed goal against Italy 5'\n- Italy [3] - 1 Israel - Davide Frattesi 73'\n- Italy 2 - [1] Israel - Mohammad Abu Fani 66‎'‎\n- Italy [2] - 0 Israel - Lorenzo 54‎'‎\n- Israel [2] - 1 Italy - Dor Peretz 52'\n- Israel 2 - [4] Italy - Giacomo Raspadori 81'\n- Italy [2] - 0 Israel - Giovanni Di Lorenzo header 54'\n- Italy [3] - 1 Israel - Davide Frattesi 72‎'‎\n- Israel [3] - 4 Italy - Alessandro Bastoni Own-goal 87'\n- Israel [1] - 2 Italy - Mohammad Abu Fani 90'\n- Israel 2 - [3] Italy - Matteo Politano 59'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Italy vs Israel Goals\", \"purpose\": \"Tracking goals between Italy and Israel in football matches\", \"emotion_tone\": \"competitive\", \"description\": \"Posts discussing goals scored by Italy against Israel in football matches, including details about goals, penalties, and match outcomes.\", \"inclusion_cues\": [\"goal italy\", \"italy israel\", \"italy moise\", \"italy davide\", \"41 italy\", \"90 italy\", \"72 italy\", \"italy sandro\", \"italy matteo\", \"goal 87\", \"penalty 41\", \"goal 16\", \"mancini 90\", \"frattesi 38\", \"italy giacomo\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Italy vs Israel Goals",
+      "purpose": "Tracking goals between Italy and Israel in football matches",
+      "emotion_tone": "competitive",
+      "description": "Posts discussing goals scored by Italy against Israel in football matches, including details about goals, penalties, and match outcomes.",
+      "inclusion_cues": [
+       "goal italy",
+       "italy israel",
+       "italy moise",
+       "italy davide",
+       "41 italy",
+       "90 italy",
+       "72 italy",
+       "italy sandro",
+       "italy matteo",
+       "goal 87"
+      ],
+      "n_cues_given": 15
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 172,
+   "seed": 4260287335,
+   "seconds": 0.6
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: goal italy, italy israel, italy moise, italy davide, 41 italy, 90 italy, 72 italy, italy sandro, italy matteo, goal 87, penalty 41, goal 16, mancini 90, frattesi 38, italy giacomo\nPosts (one per line, title first):\n- Israel 1 - [1] Italy - Moise Kean 41'\n- Italy [1] - 0 Israel - Mateo Retegui (penalty) 41‎'‎\n- Italy [1] - 0 Israel - Mateo Retegui penalty 41'\n- Israel 0 - [2] Italy - Moise Kean 62‎'‎\n- Israel 2 - [2] Italy - Moise Kean 54'\n- Israel [1] - 2 Italy - Jehezkel 90‎'‎\n- Italy [1] - 0 Israel - Mateo Retegui (P) 45+2'\n- Italy [4] - 1 Israel - Giovanni Di Lorenzo 79'\n- Israel [4] - 4 Italy - Dor Peretz 90'\n- Italy [3] - 0 Israel - Gianluca Mancini 90+4'\n- Italy [4] - 1 Israel - Lorenzo 79‎'‎\n- Israel 4 - [5] Italy - Sandro Tonali 90+1'\n- Israel [1] - 0 Italy - Manuel Locatelli Own-goal 16'\n- Israel 0 - [1] Italy - Davide Frattesi 38‎'‎\n- Italy [2] - 0 Israel - Mateo Retegui Great-goal 75'\n- Israel disallowed goal against Italy 5'\n- Italy [3] - 1 Israel - Davide Frattesi 73'\n- Italy 2 - [1] Israel - Mohammad Abu Fani 66‎'‎\n- Italy [2] - 0 Israel - Lorenzo 54‎'‎\n- Israel [2] - 1 Italy - Dor Peretz 52'\n- Israel 2 - [4] Italy - Giacomo Raspadori 81'\n- Italy [2] - 0 Israel - Giovanni Di Lorenzo header 54'\n- Italy [3] - 1 Israel - Davide Frattesi 72‎'‎\n- Israel [3] - 4 Italy - Alessandro Bastoni Own-goal 87'\n- Israel [1] - 2 Italy - Mohammad Abu Fani 90'\n- Israel 2 - [3] Italy - Matteo Politano 59'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Italy vs Israel Goals\", \"purpose\": \"Tracking goals between Italy and Israel in football matches\", \"emotion_tone\": \"competitive\", \"description\": \"Posts related to goals scored by or against Italy and Israel in football matches, including goal celebrations, penalties, and match outcomes.\", \"inclusion_cues\": [\"goal italy\", \"italy israel\", \"italy moise\", \"italy davide\", \"41 italy\", \"90 italy\", \"72 italy\", \"italy sandro\", \"italy matteo\", \"goal 87\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Italy vs Israel Goals\", \"purpose\": \"Tracking goals between Italy and Israel in football matches\", \"emotion_tone\": \"competitive\", \"description\": \"Posts discussing goals scored by Italy against Israel in football matches, including details about goals, penalties, and match outcomes.\", \"inclusion_cues\": [\"goal italy\", \"italy israel\", \"italy moise\", \"italy davide\", \"41 italy\", \"90 italy\", \"72 italy\", \"italy sandro\", \"italy matteo\", \"goal 87\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Italy vs Israel Goals\", \"purpose\": \"Tracking goals between Italy and Israel in football matches\", \"emotion_tone\": \"competitive\", \"description\": \"Posts discussing goals scored by Italy against Israel in football matches, including details about goals, penalties, and match outcomes.\", \"inclusion_cues\": [\"goal italy\", \"italy israel\", \"italy moise\", \"italy davide\", \"41 italy\", \"90 italy\", \"72 italy\", \"italy sandro\", \"italy matteo\", \"goal 87\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 135,
+   "seed": 2319288334,
+   "seconds": 0.64
+  }
+ ]
+}

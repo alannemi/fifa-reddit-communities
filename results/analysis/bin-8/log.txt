@@ -1,0 +1,1241 @@
+2026-10-26 04:33:40,297 | INFO | === stage embed, bin 8 === args: {'stage': 'embed', 'bin': 8, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': False, 'keep_umap': False, 'grid': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-26 04:33:56,179 | INFO | bin 8: 217303 documents from years [2023, 2024, 2025, 2026]
+2026-10-26 04:33:56,377 | INFO | embeddings: cache hit 2023.npz (70334 docs)
+2026-10-26 04:34:02,455 | INFO | TensorFlow version 2.21.0 available.
+2026-10-26 04:34:02,456 | INFO | JAX version 0.11.1 available.
+2026-10-26 04:34:03,979 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-26 04:34:03,980 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-26 04:34:03,988 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/modules.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22 "HTTP/1.1 200 OK"
+2026-10-26 04:34:04,093 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-26 04:34:04,103 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/config_sentence_transformers.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22fd1b291129c607e5d49799f87cb219b27f98acdf%22 "HTTP/1.1 200 OK"
+2026-10-26 04:34:04,104 | INFO | Loading SentenceTransformer model from sentence-transformers/all-mpnet-base-v2.
+2026-10-26 04:34:04,205 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-26 04:34:04,214 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/config_sentence_transformers.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22fd1b291129c607e5d49799f87cb219b27f98acdf%22 "HTTP/1.1 200 OK"
+2026-10-26 04:34:04,314 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-10-26 04:34:04,322 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/README.md?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2FREADME.md=&etag=%221452a960a1189347d079efa950d3c87d5706c0d6%22 "HTTP/1.1 200 OK"
+2026-10-26 04:34:04,425 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-26 04:34:04,434 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/modules.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22 "HTTP/1.1 200 OK"
+2026-10-26 04:34:04,534 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-26 04:34:04,543 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/sentence_bert_config.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fsentence_bert_config.json=&etag=%224eb670bb4e7f34e9031acec2b86d39e5c921198e%22 "HTTP/1.1 200 OK"
+2026-10-26 04:34:04,644 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-10-26 04:34:04,748 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2 "HTTP/1.1 200 OK"
+2026-10-26 04:34:04,857 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2 "HTTP/1.1 200 OK"
+2026-10-26 04:34:05,131 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2 "HTTP/1.1 200 OK"
+2026-10-26 04:34:05,380 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-26 04:34:05,489 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-26 04:34:05,637 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-26 04:34:05,646 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/1_Pooling%2Fconfig.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2F1_Pooling%2Fconfig.json=&etag=%224e09f293dfe90bba49f87cfe7996271f07be2666%22 "HTTP/1.1 200 OK"
+2026-10-26 04:34:05,748 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/2_Normalize/config.json "HTTP/1.1 404 Not Found"
+2026-10-26 04:34:05,852 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2 "HTTP/1.1 200 OK"
+2026-10-26 04:34:06,249 | INFO | embeddings: encoding 76473 docs for 2024 with sentence-transformers/all-mpnet-base-v2 on cuda
+2026-10-26 04:35:08,798 | INFO | embeddings: cached /content/drive/MyDrive/fifa-communities/embeddings/sentence-transformers_all-mpnet-base-v2/2024.npz
+2026-10-26 04:35:08,804 | INFO | embeddings: encoding 74348 docs for 2025 with sentence-transformers/all-mpnet-base-v2 on cuda
+2026-10-26 04:36:10,846 | INFO | embeddings: cached /content/drive/MyDrive/fifa-communities/embeddings/sentence-transformers_all-mpnet-base-v2/2025.npz
+2026-10-26 04:36:10,893 | INFO | embeddings: cache hit 2026.npz (43692 docs)
+2026-10-26 04:36:15,704 | INFO | === stage topics, bin 8 === args: {'stage': 'topics', 'bin': 8, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': False, 'keep_umap': False, 'grid': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-26 04:36:30,412 | INFO | topics: bin 8 on backend cuml ({'backend': 'cuml', 'cuml_accel': True, 'cuml_version': '26.06.00', 'umap_class': 'umap.UMAP', 'hdbscan_class': 'hdbscan.HDBSCAN'})
+2026-10-26 04:36:44,801 | INFO | bin 8: 217303 documents from years [2023, 2024, 2025, 2026]
+2026-10-26 04:36:44,991 | INFO | embeddings: cache hit 2023.npz (70334 docs)
+2026-10-26 04:36:45,353 | INFO | embeddings: cache hit 2024.npz (76473 docs)
+2026-10-26 04:36:45,739 | INFO | embeddings: cache hit 2025.npz (74348 docs)
+2026-10-26 04:36:46,101 | INFO | embeddings: cache hit 2026.npz (43692 docs)
+2026-10-26 04:36:54,628 | INFO | UMAP: 216930 x 768 -> 5 dims in 0.1 min
+2026-10-26 04:36:56,572 | INFO | guard: min_cluster_size=25 -> 967 topics, 40.0 % outliers
+2026-10-26 04:36:56,572 | WARNING | guard: 967 topics at the floor min_cluster_size=25, below the target (1085, 1627) — floor-bound (decision D10: the floor wins, the bin stands)
+2026-10-26 04:37:02,712 | INFO | TensorFlow version 2.21.0 available.
+2026-10-26 04:37:02,713 | INFO | JAX version 0.11.1 available.
+2026-10-26 04:37:04,443 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-26 04:37:04,453 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/modules.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22 "HTTP/1.1 200 OK"
+2026-10-26 04:37:04,551 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-26 04:37:04,552 | WARNING | Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-10-26 04:37:04,561 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/config_sentence_transformers.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22fd1b291129c607e5d49799f87cb219b27f98acdf%22 "HTTP/1.1 200 OK"
+2026-10-26 04:37:04,562 | INFO | Loading SentenceTransformer model from sentence-transformers/all-mpnet-base-v2.
+2026-10-26 04:37:04,660 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-26 04:37:04,670 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/config_sentence_transformers.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fconfig_sentence_transformers.json=&etag=%22fd1b291129c607e5d49799f87cb219b27f98acdf%22 "HTTP/1.1 200 OK"
+2026-10-26 04:37:04,771 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-10-26 04:37:04,779 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/README.md?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2FREADME.md=&etag=%221452a960a1189347d079efa950d3c87d5706c0d6%22 "HTTP/1.1 200 OK"
+2026-10-26 04:37:04,881 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-26 04:37:04,891 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/modules.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fmodules.json=&etag=%22952a9b81c0bfd99800fabf352f69c7ccd46c5e43%22 "HTTP/1.1 200 OK"
+2026-10-26 04:37:04,992 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-26 04:37:05,002 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/sentence_bert_config.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2Fsentence_bert_config.json=&etag=%224eb670bb4e7f34e9031acec2b86d39e5c921198e%22 "HTTP/1.1 200 OK"
+2026-10-26 04:37:05,103 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-10-26 04:37:05,221 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2 "HTTP/1.1 200 OK"
+2026-10-26 04:37:05,330 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2 "HTTP/1.1 200 OK"
+2026-10-26 04:37:06,342 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2 "HTTP/1.1 200 OK"
+2026-10-26 04:37:06,451 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-26 04:37:06,557 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-26 04:37:06,699 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-10-26 04:37:06,709 | INFO | HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-mpnet-base-v2/e8c3b32edf5434bc2275fc9bab85f82640a19130/1_Pooling%2Fconfig.json?%2Fsentence-transformers%2Fall-mpnet-base-v2%2Fresolve%2Fmain%2F1_Pooling%2Fconfig.json=&etag=%224e09f293dfe90bba49f87cfe7996271f07be2666%22 "HTTP/1.1 200 OK"
+2026-10-26 04:37:06,810 | INFO | HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-mpnet-base-v2/resolve/main/2_Normalize/config.json "HTTP/1.1 404 Not Found"
+2026-10-26 04:37:06,914 | INFO | HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-mpnet-base-v2 "HTTP/1.1 200 OK"
+2026-10-26 04:41:05,218 | INFO | BERTopic renumbered 743 topic id(s) (ties in size): {49: 50, 50: 49, 59: 60, 60: 59, 68: 69, 69: 68, 71: 72, 72: 71, 83: 84, 84: 83}
+2026-10-26 04:41:15,129 | INFO | calibration: 4 band(s), 4 new sample file(s) in /content/drive/MyDrive/fifa-communities/results/bin-8/outlier_calibration
+2026-10-26 05:13:58,475 | INFO | report written: /content/drive/MyDrive/fifa-communities/results/bin-8/report.html
+2026-10-26 05:13:58,528 | INFO | topics: bin 8 done in 37.7 min — 967 topics, 40.0 % raw outliers; tiers T=0.615 C=0.7497 -> 17384 reassigned, 39079 dual, 14.0 % outliers left -> /content/drive/MyDrive/fifa-communities/results/bin-8
+2026-10-26 05:14:03,292 | INFO | === stage label, bin 8 === args: {'stage': 'label', 'bin': 8, 'bins': None, 'device': 'auto', 'embedding_model': 'sentence-transformers/all-mpnet-base-v2', 'llm': 'Qwen/Qwen3-1.7B', 'sampling': 'greedy', 'max_docs': 0, 'max_topics': 0, 'outlier_threshold': None, 'years': None, 'out_root': None, 'allow_partial': False, 'force': False, 'keep_umap': False, 'grid': None} | paths: {'pipeline_root': '/content/drive/MyDrive/fifa-communities', 'yearly_dir': '/content/data/yearly datasets', 'analysis_dir': '/content/drive/MyDrive/fifa-communities/results', 'analysis_data_dir': '/content/drive/MyDrive/fifa-communities/analysis', 'embed_cache_dir': '/content/drive/MyDrive/fifa-communities/embeddings', 'llm_cache_dir': '/content/hf-cache', 'out_root': None}
+2026-10-26 05:14:17,795 | INFO | bin 8: 217303 documents from years [2023, 2024, 2025, 2026]
+2026-10-26 05:14:25,082 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-10-26 05:14:25,192 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B/tree/70d244cc86ccca08cf5af4e1e306ecf908b1ad5e?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-10-26 05:14:25,714 | INFO | HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-1.7B "HTTP/1.1 200 OK"
+2026-10-26 05:14:27,924 | INFO | LLM loaded: Qwen/Qwen3-1.7B (revision 70d244cc86ccca08cf5af4e1e306ecf908b1ad5e) on cuda, bfloat16, batch 16, greedy decoding
+2026-10-26 05:14:27,935 | INFO | labelling bin 8: 967 topics, 0 already done, 967 to do
+2026-10-26 05:14:58,170 | INFO | LLM: 16 prompt(s) in 29.4s (1.8 s/prompt; cap 600 tokens)
+2026-10-26 05:15:15,385 | INFO | LLM: 16 prompt(s) in 17.1s (1.1 s/prompt; cap 600 tokens)
+2026-10-26 05:15:31,102 | INFO | LLM: 16 prompt(s) in 15.6s (1.0 s/prompt; cap 600 tokens)
+2026-10-26 05:15:44,010 | INFO | LLM: 16 prompt(s) in 12.8s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:15:56,972 | INFO | LLM: 16 prompt(s) in 12.8s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:16:26,393 | INFO | LLM: 16 prompt(s) in 29.3s (1.8 s/prompt; cap 600 tokens)
+2026-10-26 05:17:05,801 | INFO | LLM: 16 prompt(s) in 39.3s (2.5 s/prompt; cap 600 tokens)
+2026-10-26 05:17:19,963 | INFO | LLM: 16 prompt(s) in 14.0s (0.9 s/prompt; cap 600 tokens)
+2026-10-26 05:17:58,872 | INFO | LLM: 16 prompt(s) in 38.8s (2.4 s/prompt; cap 600 tokens)
+2026-10-26 05:18:16,132 | INFO | LLM: 16 prompt(s) in 17.1s (1.1 s/prompt; cap 600 tokens)
+2026-10-26 05:18:50,201 | INFO | LLM: 16 prompt(s) in 34.0s (2.1 s/prompt; cap 600 tokens)
+2026-10-26 05:19:00,908 | INFO | LLM: 16 prompt(s) in 10.6s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 05:19:10,516 | INFO | LLM: 16 prompt(s) in 9.5s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:19:48,276 | INFO | LLM: 16 prompt(s) in 37.6s (2.4 s/prompt; cap 600 tokens)
+2026-10-26 05:20:04,028 | INFO | LLM: 16 prompt(s) in 15.6s (1.0 s/prompt; cap 600 tokens)
+2026-10-26 05:20:45,897 | INFO | LLM: 16 prompt(s) in 41.7s (2.6 s/prompt; cap 600 tokens)
+2026-10-26 05:21:01,028 | INFO | LLM: 16 prompt(s) in 15.0s (0.9 s/prompt; cap 600 tokens)
+2026-10-26 05:21:14,111 | INFO | LLM: 16 prompt(s) in 13.0s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:21:25,892 | INFO | LLM: 16 prompt(s) in 11.7s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 05:22:05,494 | INFO | LLM: 16 prompt(s) in 39.5s (2.5 s/prompt; cap 600 tokens)
+2026-10-26 05:22:35,801 | INFO | LLM: 16 prompt(s) in 30.2s (1.9 s/prompt; cap 600 tokens)
+2026-10-26 05:22:53,175 | INFO | LLM: 16 prompt(s) in 17.2s (1.1 s/prompt; cap 600 tokens)
+2026-10-26 05:23:33,563 | INFO | LLM: 16 prompt(s) in 40.2s (2.5 s/prompt; cap 600 tokens)
+2026-10-26 05:23:45,442 | INFO | LLM: 16 prompt(s) in 11.8s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 05:24:01,699 | INFO | LLM: 16 prompt(s) in 16.2s (1.0 s/prompt; cap 600 tokens)
+2026-10-26 05:24:11,295 | INFO | LLM: 16 prompt(s) in 9.5s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:24:26,625 | INFO | LLM: 16 prompt(s) in 15.2s (1.0 s/prompt; cap 600 tokens)
+2026-10-26 05:24:39,516 | INFO | LLM: 16 prompt(s) in 12.8s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:24:54,515 | INFO | LLM: 16 prompt(s) in 14.9s (0.9 s/prompt; cap 600 tokens)
+2026-10-26 05:25:06,787 | INFO | LLM: 16 prompt(s) in 12.2s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:25:20,610 | INFO | LLM: 16 prompt(s) in 13.7s (0.9 s/prompt; cap 600 tokens)
+2026-10-26 05:25:32,330 | INFO | LLM: 16 prompt(s) in 11.6s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 05:25:43,561 | INFO | LLM: 16 prompt(s) in 11.1s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 05:25:53,168 | INFO | LLM: 16 prompt(s) in 9.5s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:26:03,306 | INFO | LLM: 16 prompt(s) in 10.0s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:26:43,547 | INFO | LLM: 16 prompt(s) in 40.1s (2.5 s/prompt; cap 600 tokens)
+2026-10-26 05:27:00,441 | INFO | LLM: 16 prompt(s) in 16.8s (1.0 s/prompt; cap 600 tokens)
+2026-10-26 05:27:18,931 | INFO | LLM: 16 prompt(s) in 18.4s (1.1 s/prompt; cap 600 tokens)
+2026-10-26 05:27:26,992 | INFO | LLM: 16 prompt(s) in 8.0s (0.5 s/prompt; cap 600 tokens)
+2026-10-26 05:27:37,473 | INFO | LLM: 16 prompt(s) in 10.4s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:27:50,599 | INFO | LLM: 16 prompt(s) in 13.0s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:28:02,345 | INFO | LLM: 16 prompt(s) in 11.6s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 05:28:11,321 | INFO | LLM: 16 prompt(s) in 8.9s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:28:19,983 | INFO | LLM: 16 prompt(s) in 8.6s (0.5 s/prompt; cap 600 tokens)
+2026-10-26 05:28:30,110 | INFO | LLM: 16 prompt(s) in 10.0s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:28:43,073 | INFO | LLM: 16 prompt(s) in 12.9s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:29:16,517 | INFO | LLM: 16 prompt(s) in 33.3s (2.1 s/prompt; cap 600 tokens)
+2026-10-26 05:29:36,396 | INFO | LLM: 16 prompt(s) in 19.8s (1.2 s/prompt; cap 600 tokens)
+2026-10-26 05:29:58,638 | INFO | LLM: 16 prompt(s) in 22.1s (1.4 s/prompt; cap 600 tokens)
+2026-10-26 05:30:08,891 | INFO | LLM: 16 prompt(s) in 10.2s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:30:24,519 | INFO | LLM: 16 prompt(s) in 15.6s (1.0 s/prompt; cap 600 tokens)
+2026-10-26 05:30:32,518 | INFO | LLM: 16 prompt(s) in 7.9s (0.5 s/prompt; cap 600 tokens)
+2026-10-26 05:30:44,590 | INFO | LLM: 16 prompt(s) in 12.0s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 05:30:53,019 | INFO | LLM: 16 prompt(s) in 8.3s (0.5 s/prompt; cap 600 tokens)
+2026-10-26 05:31:02,606 | INFO | LLM: 16 prompt(s) in 9.5s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:31:16,197 | INFO | LLM: 16 prompt(s) in 13.5s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:31:25,914 | INFO | LLM: 16 prompt(s) in 9.6s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:31:35,281 | INFO | LLM: 16 prompt(s) in 9.3s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:31:43,812 | INFO | LLM: 16 prompt(s) in 8.5s (0.5 s/prompt; cap 600 tokens)
+2026-10-26 05:31:51,917 | INFO | LLM: 16 prompt(s) in 8.0s (0.5 s/prompt; cap 600 tokens)
+2026-10-26 05:32:00,489 | INFO | LLM: 7 prompt(s) in 8.5s (1.2 s/prompt; cap 600 tokens)
+2026-10-26 05:32:09,399 | INFO | LLM: 14 prompt(s) in 8.8s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:32:38,845 | INFO | LLM: 16 prompt(s) in 29.4s (1.8 s/prompt; cap 600 tokens)
+2026-10-26 05:32:54,054 | INFO | LLM: 16 prompt(s) in 15.1s (0.9 s/prompt; cap 600 tokens)
+2026-10-26 05:33:35,856 | INFO | LLM: 16 prompt(s) in 41.7s (2.6 s/prompt; cap 600 tokens)
+2026-10-26 05:33:47,343 | INFO | LLM: 16 prompt(s) in 11.4s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 05:34:00,596 | INFO | LLM: 16 prompt(s) in 13.1s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:34:30,336 | INFO | LLM: 16 prompt(s) in 29.6s (1.9 s/prompt; cap 600 tokens)
+2026-10-26 05:35:09,645 | INFO | LLM: 16 prompt(s) in 39.2s (2.4 s/prompt; cap 600 tokens)
+2026-10-26 05:35:21,383 | INFO | LLM: 16 prompt(s) in 11.6s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 05:35:32,061 | INFO | LLM: 16 prompt(s) in 10.6s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 05:35:44,180 | INFO | LLM: 16 prompt(s) in 12.0s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 05:36:18,202 | INFO | LLM: 16 prompt(s) in 33.9s (2.1 s/prompt; cap 600 tokens)
+2026-10-26 05:36:29,349 | INFO | LLM: 16 prompt(s) in 11.0s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 05:36:38,946 | INFO | LLM: 16 prompt(s) in 9.5s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:37:16,747 | INFO | LLM: 16 prompt(s) in 37.7s (2.4 s/prompt; cap 600 tokens)
+2026-10-26 05:38:03,555 | INFO | LLM: 16 prompt(s) in 46.6s (2.9 s/prompt; cap 600 tokens)
+2026-10-26 05:38:15,620 | INFO | LLM: 16 prompt(s) in 11.9s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 05:38:33,708 | INFO | LLM: 16 prompt(s) in 18.0s (1.1 s/prompt; cap 600 tokens)
+2026-10-26 05:38:46,821 | INFO | LLM: 16 prompt(s) in 13.0s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:38:58,990 | INFO | LLM: 16 prompt(s) in 12.0s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:39:12,118 | INFO | LLM: 16 prompt(s) in 13.0s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:39:27,390 | INFO | LLM: 16 prompt(s) in 15.1s (0.9 s/prompt; cap 600 tokens)
+2026-10-26 05:40:09,366 | INFO | LLM: 16 prompt(s) in 41.8s (2.6 s/prompt; cap 600 tokens)
+2026-10-26 05:40:49,646 | INFO | LLM: 16 prompt(s) in 40.1s (2.5 s/prompt; cap 600 tokens)
+2026-10-26 05:41:01,595 | INFO | LLM: 16 prompt(s) in 11.8s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 05:41:39,885 | INFO | LLM: 16 prompt(s) in 38.2s (2.4 s/prompt; cap 600 tokens)
+2026-10-26 05:41:48,842 | INFO | LLM: 16 prompt(s) in 8.9s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:42:04,480 | INFO | LLM: 16 prompt(s) in 15.5s (1.0 s/prompt; cap 600 tokens)
+2026-10-26 05:42:18,429 | INFO | LLM: 16 prompt(s) in 13.8s (0.9 s/prompt; cap 600 tokens)
+2026-10-26 05:42:58,054 | INFO | LLM: 16 prompt(s) in 39.5s (2.5 s/prompt; cap 600 tokens)
+2026-10-26 05:43:09,790 | INFO | LLM: 16 prompt(s) in 11.6s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 05:43:23,371 | INFO | LLM: 16 prompt(s) in 13.5s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:43:35,917 | INFO | LLM: 16 prompt(s) in 12.4s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:43:48,040 | INFO | LLM: 16 prompt(s) in 12.0s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:43:58,401 | INFO | LLM: 16 prompt(s) in 10.3s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:44:09,568 | INFO | LLM: 16 prompt(s) in 11.0s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 05:44:22,135 | INFO | LLM: 16 prompt(s) in 12.4s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:44:44,252 | INFO | LLM: 16 prompt(s) in 22.0s (1.4 s/prompt; cap 600 tokens)
+2026-10-26 05:44:59,812 | INFO | LLM: 16 prompt(s) in 15.4s (1.0 s/prompt; cap 600 tokens)
+2026-10-26 05:45:09,345 | INFO | LLM: 16 prompt(s) in 9.4s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:45:19,535 | INFO | LLM: 16 prompt(s) in 10.1s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:45:37,287 | INFO | LLM: 16 prompt(s) in 17.6s (1.1 s/prompt; cap 600 tokens)
+2026-10-26 05:45:48,646 | INFO | LLM: 16 prompt(s) in 11.2s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 05:45:58,965 | INFO | LLM: 16 prompt(s) in 10.2s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:46:07,593 | INFO | LLM: 16 prompt(s) in 8.5s (0.5 s/prompt; cap 600 tokens)
+2026-10-26 05:46:16,685 | INFO | LLM: 16 prompt(s) in 9.0s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:46:25,643 | INFO | LLM: 16 prompt(s) in 8.9s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:46:48,235 | INFO | LLM: 16 prompt(s) in 22.5s (1.4 s/prompt; cap 600 tokens)
+2026-10-26 05:46:58,590 | INFO | LLM: 16 prompt(s) in 10.3s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:47:29,333 | INFO | LLM: 16 prompt(s) in 30.6s (1.9 s/prompt; cap 600 tokens)
+2026-10-26 05:47:39,817 | INFO | LLM: 16 prompt(s) in 10.4s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:47:48,477 | INFO | LLM: 16 prompt(s) in 8.6s (0.5 s/prompt; cap 600 tokens)
+2026-10-26 05:48:00,442 | INFO | LLM: 16 prompt(s) in 11.9s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 05:48:12,177 | INFO | LLM: 16 prompt(s) in 11.6s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 05:48:22,188 | INFO | LLM: 16 prompt(s) in 9.9s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:48:31,151 | INFO | LLM: 16 prompt(s) in 8.9s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:48:44,800 | INFO | LLM: 16 prompt(s) in 13.6s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:48:54,444 | INFO | LLM: 16 prompt(s) in 9.6s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:49:03,397 | INFO | LLM: 16 prompt(s) in 8.9s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:49:32,596 | INFO | LLM: 16 prompt(s) in 29.1s (1.8 s/prompt; cap 600 tokens)
+2026-10-26 05:49:42,997 | INFO | LLM: 16 prompt(s) in 10.3s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:49:53,255 | INFO | LLM: 7 prompt(s) in 10.2s (1.5 s/prompt; cap 600 tokens)
+2026-10-26 05:50:22,112 | INFO | LLM: 16 prompt(s) in 28.8s (1.8 s/prompt; cap 600 tokens)
+2026-10-26 05:50:26,367 | INFO | LLM: 1 prompt(s) in 4.2s (4.2 s/prompt; cap 600 tokens)
+2026-10-26 05:50:26,382 | INFO | topic 1: Inter vs. Serie A Teams [identical, 1 round(s)]
+2026-10-26 05:50:26,389 | INFO | topic 5: Red Card Events [identical, 1 round(s)]
+2026-10-26 05:50:26,397 | INFO | topic 14: Brasileirão Série A [identical, 1 round(s)]
+2026-10-26 05:50:26,404 | INFO | topic 19: Loan Signings [identical, 1 round(s)]
+2026-10-26 05:50:26,412 | INFO | topic 55: Gibraltar Football League Matches [identical, 1 round(s)]
+2026-10-26 05:50:26,420 | INFO | topic 78: Holstein Kiel [identical, 1 round(s)]
+2026-10-26 05:50:26,427 | INFO | topic 79: Arne Slot Liverpool Transition [identical, 1 round(s)]
+2026-10-26 05:50:26,446 | INFO | topic 98: Maracanazo [identical, 1 round(s)]
+2026-10-26 05:50:26,454 | INFO | topic 129: Bochum vs. Hoffenheim [identical, 1 round(s)]
+2026-10-26 05:50:26,461 | INFO | topic 134: Arsenal & Gyökeres Transfer [identical, 1 round(s)]
+2026-10-26 05:50:26,469 | INFO | topic 162: Bodo Glimt Agg [no_answer, 1 round(s)] NEEDS REVIEW
+2026-10-26 05:50:26,477 | INFO | topic 195: Mönchengladbach vs. Opponents [identical, 1 round(s)]
+2026-10-26 05:50:26,484 | INFO | topic 196: Morocco U20 [identical, 1 round(s)]
+2026-10-26 05:50:26,491 | INFO | topic 209: Ashworth Departure [identical, 1 round(s)]
+2026-10-26 05:50:26,500 | INFO | topic 246: Real Madrid Signings [identical, 1 round(s)]
+2026-10-26 05:50:26,507 | INFO | topic 247: João Félix Transfer [identical, 1 round(s)]
+2026-10-26 05:50:26,513 | INFO | topic 249: TV Rights & Broadcasting [identical, 1 round(s)]
+2026-10-26 05:50:26,522 | INFO | topic 291: Bundesliga Promotion [identical, 1 round(s)]
+2026-10-26 05:50:26,543 | INFO | topic 316: Yellow Card Analysis [identical, 1 round(s)]
+2026-10-26 05:50:26,550 | INFO | topic 320: Neymar's Career & Personal Life [identical, 1 round(s)]
+2026-10-26 05:50:26,558 | INFO | topic 334: Colombian League Finalists [identical, 1 round(s)]
+2026-10-26 05:50:26,567 | INFO | topic 379: Austria Wien vs Legia Warszawa [identical, 1 round(s)]
+2026-10-26 05:50:26,574 | INFO | topic 381: FA Cup Draw [identical, 1 round(s)]
+2026-10-26 05:50:26,581 | INFO | topic 393: Benfica Titles [identical, 1 round(s)]
+2026-10-26 05:50:26,589 | INFO | topic 401: Polish Ekstraklasa Standings [identical, 1 round(s)]
+2026-10-26 05:50:26,598 | INFO | topic 442: Copa del Rey Semifinals [identical, 1 round(s)]
+2026-10-26 05:50:26,605 | INFO | topic 457: Luton Town Match Thread [identical, 1 round(s)]
+2026-10-26 05:50:26,612 | INFO | topic 460: Thuram & Donnarumma Transfer [identical, 1 round(s)]
+2026-10-26 05:50:26,619 | INFO | topic 461: Modrić's Departure from Real Madrid [identical, 1 round(s)]
+2026-10-26 05:50:26,627 | INFO | topic 466: FIFA Sanctions [identical, 1 round(s)]
+2026-10-26 05:50:26,646 | INFO | topic 515: Premier League Projections [identical, 1 round(s)]
+2026-10-26 05:50:26,655 | INFO | topic 545: Fenerbahce vs Lugano [identical, 1 round(s)]
+2026-10-26 05:50:26,662 | INFO | topic 560: Squad Announcements [identical, 1 round(s)]
+2026-10-26 05:50:26,670 | INFO | topic 586: Vitória SC Goals [identical, 1 round(s)]
+2026-10-26 05:50:26,678 | INFO | topic 601: LaLiga Hypermotion Standings [identical, 1 round(s)]
+2026-10-26 05:50:26,687 | INFO | topic 644: St. Pauli Bundesliga [identical, 1 round(s)]
+2026-10-26 05:50:26,696 | INFO | topic 678: European League Analysis [identical, 1 round(s)]
+2026-10-26 05:50:26,706 | INFO | topic 747: Tottenham Leadership [identical, 1 round(s)]
+2026-10-26 05:50:26,715 | INFO | topic 792: Eredivisie Standings [identical, 1 round(s)]
+2026-10-26 05:50:26,725 | INFO | topic 860: Valencia vs Barcelona [identical, 1 round(s)]
+2026-10-26 05:50:26,732 | INFO | topic 871: Wolves' Struggles [identical, 1 round(s)]
+2026-10-26 05:50:26,751 | INFO | topic 884: CAF Champions League [identical, 1 round(s)]
+2026-10-26 05:50:26,758 | INFO | topic 885: Chelsea Willian Signing [identical, 1 round(s)]
+2026-10-26 05:50:26,765 | INFO | topic 889: Diaby Transfer [identical, 1 round(s)]
+2026-10-26 05:50:26,772 | INFO | topic 894: UEFA Travel Distance [identical, 1 round(s)]
+2026-10-26 05:50:26,780 | INFO | topic 919: Eintracht Frankfurt vs Union Berlin [identical, 1 round(s)]
+2026-10-26 05:50:26,787 | INFO | topic 929: Wolves Manager Changes [identical, 1 round(s)]
+2026-10-26 05:50:26,794 | INFO | topic 936: Timbers Transfer Activity [identical, 1 round(s)]
+2026-10-26 05:50:26,797 | INFO | label: round 1 done — 48/967 items resolved
+2026-10-26 05:50:35,624 | INFO | LLM: 16 prompt(s) in 8.7s (0.5 s/prompt; cap 600 tokens)
+2026-10-26 05:50:50,151 | INFO | LLM: 16 prompt(s) in 14.4s (0.9 s/prompt; cap 600 tokens)
+2026-10-26 05:51:05,355 | INFO | LLM: 16 prompt(s) in 15.1s (0.9 s/prompt; cap 600 tokens)
+2026-10-26 05:51:13,679 | INFO | LLM: 16 prompt(s) in 8.2s (0.5 s/prompt; cap 600 tokens)
+2026-10-26 05:51:26,437 | INFO | LLM: 16 prompt(s) in 12.6s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:51:39,509 | INFO | LLM: 16 prompt(s) in 13.0s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:51:53,164 | INFO | LLM: 16 prompt(s) in 13.5s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:52:03,889 | INFO | LLM: 16 prompt(s) in 10.6s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 05:52:19,412 | INFO | LLM: 16 prompt(s) in 15.4s (1.0 s/prompt; cap 600 tokens)
+2026-10-26 05:52:37,395 | INFO | LLM: 16 prompt(s) in 17.8s (1.1 s/prompt; cap 600 tokens)
+2026-10-26 05:52:48,320 | INFO | LLM: 16 prompt(s) in 10.8s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 05:52:57,504 | INFO | LLM: 16 prompt(s) in 9.1s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:53:08,484 | INFO | LLM: 16 prompt(s) in 10.8s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 05:53:22,123 | INFO | LLM: 16 prompt(s) in 13.5s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:53:34,870 | INFO | LLM: 16 prompt(s) in 12.6s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:53:51,981 | INFO | LLM: 16 prompt(s) in 17.0s (1.1 s/prompt; cap 600 tokens)
+2026-10-26 05:54:05,168 | INFO | LLM: 16 prompt(s) in 13.1s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:54:20,511 | INFO | LLM: 16 prompt(s) in 15.2s (1.0 s/prompt; cap 600 tokens)
+2026-10-26 05:54:34,384 | INFO | LLM: 16 prompt(s) in 13.7s (0.9 s/prompt; cap 600 tokens)
+2026-10-26 05:55:03,360 | INFO | LLM: 16 prompt(s) in 28.8s (1.8 s/prompt; cap 600 tokens)
+2026-10-26 05:55:16,768 | INFO | LLM: 16 prompt(s) in 13.3s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:55:31,413 | INFO | LLM: 16 prompt(s) in 14.5s (0.9 s/prompt; cap 600 tokens)
+2026-10-26 05:55:43,236 | INFO | LLM: 16 prompt(s) in 11.7s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 05:55:56,731 | INFO | LLM: 16 prompt(s) in 13.4s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:56:05,420 | INFO | LLM: 16 prompt(s) in 8.6s (0.5 s/prompt; cap 600 tokens)
+2026-10-26 05:56:21,794 | INFO | LLM: 16 prompt(s) in 16.2s (1.0 s/prompt; cap 600 tokens)
+2026-10-26 05:56:35,489 | INFO | LLM: 16 prompt(s) in 13.6s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:56:46,967 | INFO | LLM: 16 prompt(s) in 11.4s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 05:57:01,315 | INFO | LLM: 16 prompt(s) in 14.2s (0.9 s/prompt; cap 600 tokens)
+2026-10-26 05:57:13,761 | INFO | LLM: 16 prompt(s) in 12.3s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:57:26,660 | INFO | LLM: 16 prompt(s) in 12.8s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:57:36,346 | INFO | LLM: 16 prompt(s) in 9.6s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:57:47,555 | INFO | LLM: 16 prompt(s) in 11.1s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 05:58:02,098 | INFO | LLM: 16 prompt(s) in 14.4s (0.9 s/prompt; cap 600 tokens)
+2026-10-26 05:58:32,009 | INFO | LLM: 16 prompt(s) in 29.8s (1.9 s/prompt; cap 600 tokens)
+2026-10-26 05:58:48,521 | INFO | LLM: 16 prompt(s) in 16.4s (1.0 s/prompt; cap 600 tokens)
+2026-10-26 05:58:58,455 | INFO | LLM: 16 prompt(s) in 9.8s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 05:59:13,859 | INFO | LLM: 16 prompt(s) in 15.3s (1.0 s/prompt; cap 600 tokens)
+2026-10-26 05:59:26,090 | INFO | LLM: 16 prompt(s) in 12.1s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 05:59:37,607 | INFO | LLM: 16 prompt(s) in 11.4s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 05:59:46,376 | INFO | LLM: 16 prompt(s) in 8.7s (0.5 s/prompt; cap 600 tokens)
+2026-10-26 05:59:55,168 | INFO | LLM: 16 prompt(s) in 8.7s (0.5 s/prompt; cap 600 tokens)
+2026-10-26 06:00:04,173 | INFO | LLM: 16 prompt(s) in 8.9s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 06:00:16,757 | INFO | LLM: 16 prompt(s) in 12.5s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 06:00:28,514 | INFO | LLM: 16 prompt(s) in 11.6s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 06:00:37,906 | INFO | LLM: 16 prompt(s) in 9.3s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 06:00:50,340 | INFO | LLM: 16 prompt(s) in 12.3s (0.8 s/prompt; cap 600 tokens)
+2026-10-26 06:01:00,529 | INFO | LLM: 16 prompt(s) in 10.1s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 06:01:11,485 | INFO | LLM: 16 prompt(s) in 10.9s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 06:01:22,136 | INFO | LLM: 16 prompt(s) in 10.5s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 06:01:33,124 | INFO | LLM: 16 prompt(s) in 10.9s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 06:01:43,785 | INFO | LLM: 16 prompt(s) in 10.6s (0.7 s/prompt; cap 600 tokens)
+2026-10-26 06:01:51,956 | INFO | LLM: 16 prompt(s) in 8.1s (0.5 s/prompt; cap 600 tokens)
+2026-10-26 06:02:02,300 | INFO | LLM: 16 prompt(s) in 10.2s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 06:02:10,337 | INFO | LLM: 16 prompt(s) in 7.9s (0.5 s/prompt; cap 600 tokens)
+2026-10-26 06:02:18,520 | INFO | LLM: 16 prompt(s) in 8.1s (0.5 s/prompt; cap 600 tokens)
+2026-10-26 06:02:27,935 | INFO | LLM: 16 prompt(s) in 9.3s (0.6 s/prompt; cap 600 tokens)
+2026-10-26 06:02:38,059 | INFO | LLM: 7 prompt(s) in 10.1s (1.4 s/prompt; cap 600 tokens)
+2026-10-26 06:02:42,542 | INFO | LLM: 1 prompt(s) in 4.5s (4.5 s/prompt; cap 600 tokens)
+2026-10-26 06:02:42,553 | INFO | topic 0: League Match Results [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,561 | INFO | topic 2: Polish Ekstraklasa Matches [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,569 | INFO | topic 3: PSG vs. Other Teams [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,577 | INFO | topic 4: MLS Match Analysis [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,584 | INFO | topic 6: Benfica Matches [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,591 | INFO | topic 7: AZ Alkmaar vs. Competitors [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,598 | INFO | topic 8: Kaiserslautern vs. Opponents [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,604 | INFO | topic 9: Transfer News [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,610 | INFO | topic 10: U21 Nations League [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,616 | INFO | topic 11: AFC Asian Cup [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,623 | INFO | topic 12: Goalkeeper Saves [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,642 | INFO | topic 13: UEFA fines and fan behavior [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,648 | INFO | topic 15: World Cup Qualifying [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,654 | INFO | topic 16: Celtic vs. Other Clubs [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,661 | INFO | topic 17: UEFA Europa League [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,667 | INFO | topic 18: Consecutive Home Wins [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,674 | INFO | topic 20: Ajax transfers [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,680 | INFO | topic 21: Mbappé PSG Contract Dispute [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,687 | INFO | topic 22: ACL Injuries [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,694 | INFO | topic 23: Bundesliga Match Scorers [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,701 | INFO | topic 24: U23 Nations Cup [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,708 | INFO | topic 25: chance [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,727 | INFO | topic 26: Nassr vs Opponents [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,734 | INFO | topic 27: Liga MX Signings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,740 | INFO | topic 28: Match Highlights [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,746 | INFO | topic 29: Concacaf World Cup Qualifying [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,752 | INFO | topic 30: World Cup Qualifiers [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,759 | INFO | topic 31: Eredivisie Match Threads [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,765 | INFO | topic 33: Kane Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,772 | INFO | topic 34: Napoli Internazionale Match Thread [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,779 | INFO | topic 35: Bayern Munich Matches [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,785 | INFO | topic 36: Youthful Performances [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,791 | INFO | topic 37: Galatasaray vs. Other Clubs [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,809 | INFO | topic 38: Czech First League [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,816 | INFO | topic 39: Barcelona vs Atletico [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,823 | INFO | topic 40: Transfer Updates [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,829 | INFO | topic 41: Haaland & Guardiola [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,835 | INFO | topic 42: Coach Changes [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,841 | INFO | topic 43: Demirspor vs. Kayserispor [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,847 | INFO | topic 44: UEFA Draw [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,854 | INFO | topic 45: League Match Thread [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,860 | INFO | topic 46: United Manager Transition [stalemate, 2 round(s)] NEEDS REVIEW
+2026-10-26 06:02:42,867 | INFO | topic 47: Manager History [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,873 | INFO | topic 48: Croatian Player Signings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,892 | INFO | topic 49: retirement announcements [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,898 | INFO | topic 50: Betis vs. Other Clubs [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,904 | INFO | topic 51: Top 5 Leagues Goalscorers [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,910 | INFO | topic 52: Fenerbahce Goals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,918 | INFO | topic 53: Football Kit Design [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,924 | INFO | topic 54: Fan Deaths [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,931 | INFO | topic 56: U19 League [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,937 | INFO | topic 57: Netherlands vs. Opponents [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,944 | INFO | topic 58: Arteta's Departure [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,950 | INFO | topic 60: Premier League Standings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,957 | INFO | topic 61: VAR System [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,963 | INFO | topic 62: Libertadores [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,983 | INFO | topic 63: AFC Champions League [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,989 | INFO | topic 64: Man Utd Sale [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:42,995 | INFO | topic 65: Transfer Analysis [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,002 | INFO | topic 66: Sevilla Manager Changes [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,008 | INFO | topic 67: Manager Departure [stalemate, 2 round(s)] NEEDS REVIEW
+2026-10-26 06:02:43,014 | INFO | topic 68: Brugge vs Royale Union SG [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,020 | INFO | topic 69: Dortmund Goals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,026 | INFO | topic 70: Chivas Liga MX [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,033 | INFO | topic 71: Yamal & Messi Comparison [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,040 | INFO | topic 72: VfL Wolfsburg [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,046 | INFO | topic 73: Lyon vs Paris Saint-Germain [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,052 | INFO | topic 74: Disallowed Goals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,071 | INFO | topic 75: VAR offside [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,078 | INFO | topic 76: Messi vs Ronaldo Debate [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,084 | INFO | topic 77: Bayer Leverkusen [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,091 | INFO | topic 81: Racism in Spanish Football [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,098 | INFO | topic 82: Ballon D'Or Controversy & History [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,105 | INFO | topic 83: Salah's Records [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,112 | INFO | topic 84: MLS Attendance [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,118 | INFO | topic 85: A-League Men [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,124 | INFO | topic 86: penalty_misses [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,131 | INFO | topic 87: Al-Nassr vs. Opponents [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,137 | INFO | topic 88: Yellow Card Incidents [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,156 | INFO | topic 89: Mason Greenwood transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,162 | INFO | topic 90: Osasuna vs. Top Clubs [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,169 | INFO | topic 91: UEFA Euro 2024 Qualification [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,175 | INFO | topic 92: U21 Ireland vs. Other Nations [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,182 | INFO | topic 93: Saudi Pro League Matches [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,188 | INFO | topic 94: FIFA Trump [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,195 | INFO | topic 95: UEFA Team of the Week [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,202 | INFO | topic 96: Transfer Negotiations [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,208 | INFO | topic 97: Serbia vs. Slovenia [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,214 | INFO | topic 99: Celtic vs Rangers [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,221 | INFO | topic 100: Penalty Shouts [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,227 | INFO | topic 101: Rashford Loan [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,247 | INFO | topic 102: Eagles vs. Competitors [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,254 | INFO | topic 103: Isak Newcastle [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,261 | INFO | topic 104: Norwegian Cup [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,268 | INFO | topic 105: Girona Matches [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,275 | INFO | topic 106: Negreira Case [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,282 | INFO | topic 107: Swiss Cup [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,289 | INFO | topic 108: Hajduk Split vs. Competitors [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,295 | INFO | topic 109: River Plate [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,302 | INFO | topic 110: CONCACAF Nations League [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,308 | INFO | topic 111: Diogo Jota Tributes [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,315 | INFO | topic 112: RB Leipzig [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,336 | INFO | topic 113: World Cup Qualifying Matches [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,343 | INFO | topic 114: Mallorca vs. Top Clubs [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,351 | INFO | topic 115: Africa Cup of Nations Qualifying [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,358 | INFO | topic 116: K League 1 [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,366 | INFO | topic 117: Barcelona Unbeaten Run [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,373 | INFO | topic 118: UEFA Prize Money [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,381 | INFO | topic 119: Squad Updates [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,388 | INFO | topic 120: Stockholm Derby Atmosphere [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,395 | INFO | topic 121: Talleres vs Gimnasia y Esgrima de La Plata [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,402 | INFO | topic 122: PSG Champions League [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,410 | INFO | topic 123: Fallon D'Floor Nomination [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,428 | INFO | topic 124: Ajax Management [identical, 2 round(s)]
+2026-10-26 06:02:43,435 | INFO | topic 125: Union Berlin vs. Hoffenheim [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,442 | INFO | topic 126: Hertha BSC vs. BSC Teams [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,449 | INFO | topic 127: 2030 World Cup Hosts [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,455 | INFO | topic 128: Fixture Schedule & Broadcast Guide [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,462 | INFO | topic 130: Caicedo Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,469 | INFO | topic 131: Irish Football [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,476 | INFO | topic 132: ticket sales [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,482 | INFO | topic 133: Xabi Alonso Manager Controversy [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,489 | INFO | topic 135: Juventus Match Analysis [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,496 | INFO | topic 136: Match Competition [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,503 | INFO | topic 137: Dynamo Dresden [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,523 | INFO | topic 138: Bayer Leverkusen Unbeaten Streak [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,531 | INFO | topic 139: Rubiales Controversy [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,538 | INFO | topic 140: Premier League Match Thread [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,545 | INFO | topic 141: Neymar Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,551 | INFO | topic 142: Haaland's Goal Records [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,558 | INFO | topic 143: Espanyol vs Sevilla [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,564 | INFO | topic 144: AFC Qualifiers [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,571 | INFO | topic 145: Anti-Semitic Hooliganism [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,578 | INFO | topic 146: Football Instagram Posts [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,585 | INFO | topic 147: Wirtz Transfer Negotiations [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,591 | INFO | topic 148: Fan Chanting [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,611 | INFO | topic 149: League Promotion/Relegation [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,618 | INFO | topic 150: Villarreal vs. Sevilla [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,625 | INFO | topic 151: Goal Milestones [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,632 | INFO | topic 152: Benfica Matches [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,638 | INFO | topic 153: Zrinjski vs. Opponents [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,645 | INFO | topic 154: Brentford Match Thread [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,652 | INFO | topic 155: FIFA Women's World Cup [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,659 | INFO | topic 156: Penalty Shouts [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,665 | INFO | topic 157: Juventus Match Updates [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,672 | INFO | topic 158: UEFA Europa League [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,679 | INFO | topic 159: Racing Montevideo [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,699 | INFO | topic 160: Lens vs. Other Teams [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,706 | INFO | topic 161: City Legal Battle [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,713 | INFO | topic 163: UEFA Champions League [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,719 | INFO | topic 164: Club Brugge Matches [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,725 | INFO | topic 165: AC Milan signings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,732 | INFO | topic 166: Injury Updates [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,739 | INFO | topic 167: Salah Transfer Negotiations [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,745 | INFO | topic 168: Euro Qualifiers [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,751 | INFO | topic 169: Loan transfers [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,757 | INFO | topic 170: Boca Juniors Matches [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,765 | INFO | topic 172: Guardiola Man [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,782 | INFO | topic 173: Athletic Bilbao [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,790 | INFO | topic 174: missed chances [identical, 2 round(s)]
+2026-10-26 06:02:43,796 | INFO | topic 175: HNL Standings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,803 | INFO | topic 176: Promotion to Segunda Federación [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,810 | INFO | topic 177: Under19 Spain [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,816 | INFO | topic 178: messi mlss [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,822 | INFO | topic 179: Bundesliga Table [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,829 | INFO | topic 181: Goalkeeper Performance Analysis [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,835 | INFO | topic 182: Xavi Barça Support [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,842 | INFO | topic 183: Cyprus U21 Matches [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,849 | INFO | topic 184: Bournemouth Premier League [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,868 | INFO | topic 185: UCL Predictions [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,875 | INFO | topic 186: Romanian Superliga [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,883 | INFO | topic 187: Marc Guehi Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,890 | INFO | topic 188: Goalkeeper Signings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,896 | INFO | topic 189: Ancelotti and Real Madrid [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,905 | INFO | topic 190: Ballon d'Or Controversy [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,912 | INFO | topic 191: Onana Saves [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,919 | INFO | topic 192: Salzburg U19 [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,926 | INFO | topic 193: Sancho Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,933 | INFO | topic 194: Tributes to Michael Jones [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,940 | INFO | topic 197: juventus_games [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,947 | INFO | topic 198: Goal Line Clearance [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,966 | INFO | topic 199: Napoli Osimhen Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,973 | INFO | topic 200: Palhinha Bayern Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,980 | INFO | topic 201: Benfica & Porto Profitability [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,987 | INFO | topic 202: Betis Transfer Activity [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:43,994 | INFO | topic 203: UEFA Coefficient Tracking [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,000 | INFO | topic 204: Kane Bundesliga Goals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,007 | INFO | topic 205: Gundogan Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,014 | INFO | topic 206: Everton Takeover Controversy [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,020 | INFO | topic 207: Brasileirão Standings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,027 | INFO | topic 208: Turkish Super Lig Standings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,033 | INFO | topic 210: Postecoglou Spurs [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,052 | INFO | topic 211: Southgate Resignation [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,059 | INFO | topic 212: Müller's Legacy [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,065 | INFO | topic 213: Goal Contests [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,072 | INFO | topic 214: Mainz Matches [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,078 | INFO | topic 215: Pep Guardiola Reactions [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,085 | INFO | topic 216: OL coaching changes [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,091 | INFO | topic 217: offside rule changes [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,098 | INFO | topic 218: UEFA Champions League [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,104 | INFO | topic 219: Oceania Football [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,111 | INFO | topic 220: Belgian League Standings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,117 | INFO | topic 221: Youth Development [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,136 | INFO | topic 222: Saudi Football Expansion [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,143 | INFO | topic 223: Swiss Super League Standings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,150 | INFO | topic 224: Copa Libertadores [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,156 | INFO | topic 225: RB Leipzig Bundesliga [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,162 | INFO | topic 226: Motor Lublin [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,169 | INFO | topic 227: child abuse cases [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,176 | INFO | topic 228: Derby Matches [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,182 | INFO | topic 229: Mbappé's Goal Scoring [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,189 | INFO | topic 230: Serie A Standings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,195 | INFO | topic 231: Liga 1 [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,201 | INFO | topic 232: Højlund Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,220 | INFO | topic 233: Morecambe FC Crisis [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,227 | INFO | topic 234: Wolverhampton Wanderers Match Thread [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,233 | INFO | topic 235: MLS Expansion [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,239 | INFO | topic 236: Crystal Palace Match Thread [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,246 | INFO | topic 237: Jordan Henderson Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,252 | INFO | topic 238: Euro 2024 Qualification [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,259 | INFO | topic 239: UEFA Streaming [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,265 | INFO | topic 240: Saudi Football Debate [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,271 | INFO | topic 241: Concacaf Gold Cup Qualification [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,277 | INFO | topic 242: BBC Match of the Day Commentators [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,284 | INFO | topic 243: post hits [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,303 | INFO | topic 244: David Squires' Statements [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,310 | INFO | topic 245: RB Leipzig striker transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,316 | INFO | topic 248: Christmas Football [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,322 | INFO | topic 250: Football Media [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,329 | INFO | topic 251: Xavi Simons Loan Deals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,335 | INFO | topic 252: Serie A Goals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,341 | INFO | topic 253: Mainz Bundesliga Matches [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,348 | INFO | topic 254: Austrian Bundesliga Matches [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,354 | INFO | topic 255: Augsburg vs. Opponents [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,361 | INFO | topic 256: Passing Efficiency [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,368 | INFO | topic 257: Slovan Bratislava [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,388 | INFO | topic 258: Heidenheim vs. Opponents [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,395 | INFO | topic 259: U17/France [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,402 | INFO | topic 260: Pogba Juve Doping Ban [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,409 | INFO | topic 261: AFCON 2025 Dates [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,415 | INFO | topic 262: Bicycle Kick [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,421 | INFO | topic 263: UEFA Standings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,428 | INFO | topic 264: Serie A Match Thread [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,435 | INFO | topic 265: Fulham Match Updates [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,441 | INFO | topic 266: FA Cup history [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,448 | INFO | topic 267: AFCON Squad Updates [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,454 | INFO | topic 268: Augsburg FC Match Threads [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,460 | INFO | topic 269: Sancho Dispute [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,480 | INFO | topic 270: Barça vs Real Madrid [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,487 | INFO | topic 271: Antony's Career Transition [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,494 | INFO | topic 272: Rayo Vallecano vs. Competitors [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,500 | INFO | topic 273: CONCACAF Gold Cup [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,507 | INFO | topic 274: Referee Abuse [identical, 2 round(s)]
+2026-10-26 06:02:44,513 | INFO | topic 275: Football Announcement Videos [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,520 | INFO | topic 276: Besiktas Match Highlights [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,526 | INFO | topic 277: Transfer Negotiations [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,533 | INFO | topic 278: PSG Randal Kolo Muani Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,539 | INFO | topic 279: Saudia Football Ownership [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,545 | INFO | topic 280: U20 Nations Cup [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,565 | INFO | topic 281: Bayern Munich Loan Deal [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,572 | INFO | topic 282: Nutmegs [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,579 | INFO | topic 283: Eze Deal [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,586 | INFO | topic 284: Hansi Flick Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,592 | INFO | topic 285: Faroe Islands Match Thread [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,599 | INFO | topic 286: Chelsea Financial Loopholes [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,605 | INFO | topic 287: Yamal Dribble [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,612 | INFO | topic 289: Super League Opposition [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,619 | INFO | topic 290: Arsenal Merino Deals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,626 | INFO | topic 292: Korean Football [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,633 | INFO | topic 293: Nacional [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,654 | INFO | topic 294: Motor Lublin [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,661 | INFO | topic 295: Yamal Barcelona [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,669 | INFO | topic 296: 2034 World Cup Bid [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,676 | INFO | topic 297: Hellas Verona Matches [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,683 | INFO | topic 298: 1860 München vs. Competitors [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,690 | INFO | topic 299: gender equality in football [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,698 | INFO | topic 300: Nico Williams Transfer [stalemate, 2 round(s)] NEEDS REVIEW
+2026-10-26 06:02:44,705 | INFO | topic 301: River Plate transfers [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,713 | INFO | topic 302: SC Freiburg Match Thread [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,720 | INFO | topic 303: Palace & Chelsea Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,727 | INFO | topic 304: Argentinos Juniors Goals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,749 | INFO | topic 305: Racing Santander vs. Competitors [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,756 | INFO | topic 306: Spurs Legacy [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,764 | INFO | topic 307: Conor Gallagher Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,772 | INFO | topic 308: Bayer Leverkusen Match Thread [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,780 | INFO | topic 309: EPL Match Threads [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,787 | INFO | topic 310: Lukaku Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,795 | INFO | topic 313: Köln Goals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,802 | INFO | topic 314: Arsenal & Real Sociedad Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,809 | INFO | topic 315: U21 Friendly [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,816 | INFO | topic 317: Bundesliga Standings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,822 | INFO | topic 318: Alaves vs Sevilla [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,841 | INFO | topic 319: MOTM Awards [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,849 | INFO | topic 321: fantasy football [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,856 | INFO | topic 322: Stadium Development [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,863 | INFO | topic 323: Real Betis Match Analysis [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,870 | INFO | topic 324: Racism and Anti-Discrimination [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,877 | INFO | topic 325: Rodrygo Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,884 | INFO | topic 326: Ligue Table [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,890 | INFO | topic 327: Championship Table [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,897 | INFO | topic 328: Freiburg Bundesliga Goals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,904 | INFO | topic 329: Juventus Scandal [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,911 | INFO | topic 330: Gibraltar Football League [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,931 | INFO | topic 331: football adverts [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,938 | INFO | topic 332: Amorim's Leadership and Challenges [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,945 | INFO | topic 333: Vitesse License Crisis [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,952 | INFO | topic 335: Swiss Cup [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,958 | INFO | topic 336: Kobbie Mainoo Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,966 | INFO | topic 337: Yoro Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,972 | INFO | topic 338: Trevoh Chalobah Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,979 | INFO | topic 339: UEFA U17 Euro 2024 [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,986 | INFO | topic 340: Mbappé Goals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:44,995 | INFO | topic 341: Chelsea vs Liverpool Romeo Lavia Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,001 | INFO | topic 342: Genoa Match Thread [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,020 | INFO | topic 343: Uruguayan Cup [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,027 | INFO | topic 344: League Leaders [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,033 | INFO | topic 345: France vs. Colombia [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,040 | INFO | topic 346: Fulham Transfer Activity [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,047 | INFO | topic 347: Girona La Liga Matches [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,053 | INFO | topic 348: Partey Legal Case [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,059 | INFO | topic 349: Indian Football [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,066 | INFO | topic 350: Davies Bayern Contract [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,073 | INFO | topic 351: UEFA Women's Champions League [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,079 | INFO | topic 352: Galatasaray Match Thread [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,085 | INFO | topic 353: Squad Announcements [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,103 | INFO | topic 354: Arabic Commentary [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,110 | INFO | topic 355: Ekitike Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,117 | INFO | topic 356: Goal of the Month [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,123 | INFO | topic 357: England Squad Updates [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,130 | INFO | topic 358: Israel Football Ban [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,136 | INFO | topic 359: Tuchel England [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,143 | INFO | topic 360: Atalanta Lookman Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,149 | INFO | topic 361: Match Analysis [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,156 | INFO | topic 363: Bayern Munich vs Liverpool Luis Diaz [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,162 | INFO | topic 364: Transfer Negotiations [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,168 | INFO | topic 365: Cagliari Match Analysis [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,189 | INFO | topic 366: Osasuna La Liga Matches [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,197 | INFO | topic 367: Penalty Contests [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,205 | INFO | topic 368: LGBTQ+ Support [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,213 | INFO | topic 369: Benfica Neves Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,221 | INFO | topic 370: Kerala Blasters [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,229 | INFO | topic 371: Sunderland Transfer Activity [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,237 | INFO | topic 372: Best XI by Region [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,245 | INFO | topic 373: Raphinha's Goals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,252 | INFO | topic 374: Energie Cottbus Matches [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,261 | INFO | topic 375: Fulham Transfer Interest [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,269 | INFO | topic 376: Ligue 1 Unbeaten Streaks [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,288 | INFO | topic 377: Transfer Updates [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,295 | INFO | topic 378: Ansu Fati Loan Transfer [stalemate, 2 round(s)] NEEDS REVIEW
+2026-10-26 06:02:45,302 | INFO | topic 380: Copa Sudamericana Brawls [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,311 | INFO | topic 382: Concacaf Champions Cup [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,317 | INFO | topic 383: Palestinian Football Violence [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,324 | INFO | topic 384: Youth Prospects [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,330 | INFO | topic 385: Wolfsburg vs. Opponents [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,337 | INFO | topic 386: Eredivisie Standings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,343 | INFO | topic 387: Crvena Zvezda vs Barcelona [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,350 | INFO | topic 388: Barça Registration Conflict [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,356 | INFO | topic 389: Serie A Matchday Tables [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,376 | INFO | topic 390: Rapids transfers [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,383 | INFO | topic 391: FIFA Puskás Award Nominees [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,390 | INFO | topic 392: Liga Portugal Standings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,397 | INFO | topic 394: Premier League Refereeing Issues [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,404 | INFO | topic 395: Premier League Speed Records [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,410 | INFO | topic 396: Copenhagen FC [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,417 | INFO | topic 397: Aston Villa Match Threads [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,424 | INFO | topic 398: Le Mans vs. Competitors [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,431 | INFO | topic 399: Laliga Standings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,438 | INFO | topic 400: Fixture Broadcast Info [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,445 | INFO | topic 402: Zambia U17 vs. Opponents [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,464 | INFO | topic 403: Inter Miami Leagues Cup [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,472 | INFO | topic 404: Postecoglou's Second Season Mentions [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,479 | INFO | topic 405: Ter Stegen Injury [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,485 | INFO | topic 406: USMNT Coach Search [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,492 | INFO | topic 407: points deduction appeals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,498 | INFO | topic 408: Kalvin Phillips Loan Deals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,505 | INFO | topic 409: PSG Ultras & Fans Celebrations [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,511 | INFO | topic 410: World Cup Host Concerns [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,517 | INFO | topic 411: Cancelo Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,523 | INFO | topic 412: Manager of the Month Awards [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,530 | INFO | topic 413: Vinicius Jr Contract Negotiations [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,547 | INFO | topic 414: Toney Transfer [identical, 2 round(s)]
+2026-10-26 06:02:45,554 | INFO | topic 415: Besiktas-Benfica Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,561 | INFO | topic 416: Real Kakamora & Solomon Islands Football [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,568 | INFO | topic 417: Santa Clara vs. Sporting CP [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,574 | INFO | topic 418: Raphinha Barcelona Stats [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,581 | INFO | topic 419: Handball Rule Clarification [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,587 | INFO | topic 420: Bundesliga Teams [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,595 | INFO | topic 421: Ligue Relegation [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,603 | INFO | topic 422: Women's World Cup 2023 [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,610 | INFO | topic 423: 2025 Premier League Champions [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,618 | INFO | topic 424: Greek Superleague Standings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,625 | INFO | topic 425: DFB Pokal Match Analysis [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,643 | INFO | topic 426: Free Kick Highlights [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,650 | INFO | topic 427: Vitor Roque Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,656 | INFO | topic 428: Celtic Transfer Activity [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,663 | INFO | topic 429: Arminia Bielefeld [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,669 | INFO | topic 430: Injury Updates [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,676 | INFO | topic 431: FA Betting Investigation [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,682 | INFO | topic 432: Walker Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,688 | INFO | topic 433: Cherki Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,695 | INFO | topic 434: Fulham Contract Negotiations [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,701 | INFO | topic 435: Bayern Leadership [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,708 | INFO | topic 436: La Liga Standings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,727 | INFO | topic 437: England Squad [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,734 | INFO | topic 438: Juventus Chiesa Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,741 | INFO | topic 439: Segunda Federación Standings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,748 | INFO | topic 440: Chelsea Transfer Target [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,755 | INFO | topic 441: AFCON towel disputes [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,762 | INFO | topic 443: AFC Champions League [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,769 | INFO | topic 444: Olimpija Ljubljana [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,776 | INFO | topic 445: Sofyan Amrabat Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,783 | INFO | topic 446: Juve-Villa Swap [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,790 | INFO | topic 447: Inter Miami Signing [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,798 | INFO | topic 448: Tigres FC [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,822 | INFO | topic 449: CONCACAF Nations League [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,830 | INFO | topic 450: Olympiacos vs Real Madrid [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,838 | INFO | topic 451: SPL Table Updates [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,846 | INFO | topic 452: Levante vs. Competitors [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,853 | INFO | topic 453: Sterling Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,860 | INFO | topic 454: Qatari League [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,866 | INFO | topic 455: Arminia Bielefeld [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,873 | INFO | topic 456: Barcelona Women [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,880 | INFO | topic 458: Moldovan League Dynamics [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,886 | INFO | topic 459: Wales vs. Iceland [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,893 | INFO | topic 462: Panathinaikos vs. Other Teams [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,913 | INFO | topic 463: Sané Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,921 | INFO | topic 464: Chilean Superclásico [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,928 | INFO | topic 465: Antony Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,934 | INFO | topic 467: Sandro Tonali Betting Ban [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,941 | INFO | topic 468: Ticket Price Controversy [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,948 | INFO | topic 469: Barcelona & Milan Stadiums [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,955 | INFO | topic 470: Belgium Qualifiers [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,962 | INFO | topic 471: Pickford Everton [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,969 | INFO | topic 472: Barcelona Women's Triumphs [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,976 | INFO | topic 473: Sevilla Goals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:45,983 | INFO | topic 475: Broja Loan Deals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,002 | INFO | topic 476: Thiago Almada Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,010 | INFO | topic 477: Pavard Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,017 | INFO | topic 478: Chelsea Contract Negotiations [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,024 | INFO | topic 479: Football Betting Investigations [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,031 | INFO | topic 480: Kimmich Bayern [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,037 | INFO | topic 481: UEFA Champions League [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,044 | INFO | topic 482: Player of the Month Awards [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,054 | INFO | topic 483: Football Club Followers [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,061 | INFO | topic 484: San Marino Football [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,067 | INFO | topic 485: FC Heidenheim Bundesliga Match Thread [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,087 | INFO | topic 486: Cole Palmer's Stats [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,094 | INFO | topic 487: Barça vs Villarreal in Miami [stalemate, 2 round(s)] NEEDS REVIEW
+2026-10-26 06:02:46,102 | INFO | topic 488: Breiðablik [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,109 | INFO | topic 489: Darmstadt 98 Bundesliga [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,116 | INFO | topic 490: Bolivian Derby [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,123 | INFO | topic 491: FIFA Rankings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,129 | INFO | topic 492: U21 England vs Northern Ireland [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,136 | INFO | topic 493: FC Noah Conference League Qualification [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,143 | INFO | topic 494: Parma vs. Teams [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,149 | INFO | topic 495: Football Celebrations [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,157 | INFO | topic 496: England Fan Incidents [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,177 | INFO | topic 497: Ronaldo's Impact [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,186 | INFO | topic 498: Mudryk Doping & Ban [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,193 | INFO | topic 499: Bayern coach negotiations [stalemate, 2 round(s)] NEEDS REVIEW
+2026-10-26 06:02:46,199 | INFO | topic 500: Hacken vs. Opponents [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,205 | INFO | topic 501: HNL Standings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,212 | INFO | topic 502: Mallorca La Liga Match Threads [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,218 | INFO | topic 503: Polish Football Coach Changes [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,225 | INFO | topic 505: Bayern Transfer Talks [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,231 | INFO | topic 506: Korea Manager Sacking [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,238 | INFO | topic 507: Alves Trial [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,244 | INFO | topic 508: Amorim Sacking [identical, 2 round(s)]
+2026-10-26 06:02:46,262 | INFO | topic 509: Bundesliga Tables [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,269 | INFO | topic 510: Transfer Deals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,276 | INFO | topic 511: Eredivisie Coach Awards [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,282 | INFO | topic 512: Spain Squad Updates [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,288 | INFO | topic 513: Bayer Leverkusen Coach Sacking [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,295 | INFO | topic 514: VAR Interventions [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,302 | INFO | topic 516: Müller's Bundesliga Milestones [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,308 | INFO | topic 517: Havertz Arsenal [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,315 | INFO | topic 518: Dortmund Transfer Activity [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,323 | INFO | topic 519: Serie D Promotion Playoffs [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,330 | INFO | topic 520: Manager Analysis [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,350 | INFO | topic 521: UEFA Champions League Semifinals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,359 | INFO | topic 522: Rangers Transfer Activity [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,367 | INFO | topic 523: Arsenal Declan Rice Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,375 | INFO | topic 524: Ireland Premier Division [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,383 | INFO | topic 525: Palace Takeover [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,391 | INFO | topic 526: Valencia Penalty Goals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,399 | INFO | topic 527: Paquetá Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,408 | INFO | topic 528: Uruguay Qualification [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,415 | INFO | topic 529: PL Player of the Month [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,423 | INFO | topic 531: Dynamo Kyiv Matches [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,431 | INFO | topic 532: Klopp Red Bull [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,450 | INFO | topic 533: Reading FC Financial Crisis [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,457 | INFO | topic 534: Bot Issues [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,464 | INFO | topic 535: Estonian Football [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,470 | INFO | topic 536: Mason Mount Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,477 | INFO | topic 537: Samu Omorodion Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,483 | INFO | topic 538: De Bruyne Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,489 | INFO | topic 539: xg overperformers [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,496 | INFO | topic 540: Pedri's Skills [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,502 | INFO | topic 541: UEFA Champions League Qualification [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,509 | INFO | topic 542: PSG target [stalemate, 2 round(s)] NEEDS REVIEW
+2026-10-26 06:02:46,515 | INFO | topic 543: Woltemade Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,532 | INFO | topic 544: J1 League Standings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,540 | INFO | topic 546: Cristiano Ronaldo Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,546 | INFO | topic 547: Jamaica vs. Opponents [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,556 | INFO | topic 548: Turkish Amateur League Promotion [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,563 | INFO | topic 549: De Ligt Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,569 | INFO | topic 550: Cunha Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,575 | INFO | topic 551: Logo Updates [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,581 | INFO | topic 552: Loan Signings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,587 | INFO | topic 553: Ugarte Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,593 | INFO | topic 554: Lincoln Red Imps Match Thread [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,599 | INFO | topic 555: Bruno Fernandes Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,606 | INFO | topic 556: Stuttgart Bundesliga [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,627 | INFO | topic 557: Joao Felix and Atletico Madrid [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,635 | INFO | topic 558: Gravenberch Liverpool Deal [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,643 | INFO | topic 559: Napoli Kvaratskhelia Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,651 | INFO | topic 561: Bayern Eberl Transition [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,659 | INFO | topic 562: Xavi Stay at Barcelona [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,667 | INFO | topic 563: Udinese Serie A [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,675 | INFO | topic 564: Pochettino Chelsea Transition [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,682 | INFO | topic 565: Loan Signings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,689 | INFO | topic 566: Eddie Howe and Newcastle United [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,696 | INFO | topic 567: Referee Conduct and Allegations [stalemate, 2 round(s)] NEEDS REVIEW
+2026-10-26 06:02:46,702 | INFO | topic 568: League Standings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,721 | INFO | topic 569: Dutch Footballers and Drug Smuggling [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,728 | INFO | topic 570: Lewandowski Goals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,735 | INFO | topic 572: Arab Cup 2025 [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,741 | INFO | topic 573: U21 Match Analysis [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,750 | INFO | topic 574: Foden England [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,759 | INFO | topic 575: Spending Cap [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,767 | INFO | topic 576: Transfer Activity [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,775 | INFO | topic 577: Glasner Palace Manager [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,783 | INFO | topic 578: Marco Reus Departure [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,790 | INFO | topic 579: La Liga Match Threads [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,798 | INFO | topic 581: Player Medical Emergencies [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,820 | INFO | topic 582: Bernardo Silva Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,828 | INFO | topic 583: Garnacho Chelsea Deal [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,836 | INFO | topic 584: Coach Changes [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,844 | INFO | topic 585: Premier League 2025-26 Preview [identical, 2 round(s)]
+2026-10-26 06:02:46,853 | INFO | topic 588: UEFA Referees [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,861 | INFO | topic 589: Chinese Super League Promotions [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,868 | INFO | topic 590: Netherlands Squad [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,876 | INFO | topic 591: Turkish Football Betting Scandal [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,884 | INFO | topic 592: Brentford-Wissa Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,892 | INFO | topic 593: Boca Juniors Fan Chaos [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,900 | INFO | topic 594: Cliftonville vs St Joseph's [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,921 | INFO | topic 595: Bundesliga Matches [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,928 | INFO | topic 596: Wrexham Football Ownership [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,936 | INFO | topic 597: Sporting Gijon [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,943 | INFO | topic 598: Brentford Mbeumo Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,950 | INFO | topic 599: Al Ittihad & Al Ahli Tifo Displays [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,956 | INFO | topic 600: Transgender Inclusion in Women's Football [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,962 | INFO | topic 602: Portugal 9-0 Luxembourg [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,968 | INFO | topic 603: Scotland Euro 2024 Qualification [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,975 | INFO | topic 604: UEFA Draw [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,981 | INFO | topic 605: La Liga Table [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:46,988 | INFO | topic 606: Fulham & Fluminense Midfielder Deal [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,007 | INFO | topic 607: Loan Deals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,015 | INFO | topic 608: Real Oviedo LaLiga 2 [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,021 | INFO | topic 609: Big Match Golden Goals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,028 | INFO | topic 610: Wrexham Promotion [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,034 | INFO | topic 611: Lanús vs. Boca Juniors [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,040 | INFO | topic 612: Liam Delap Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,047 | INFO | topic 613: DFL Investor Deal Rejection [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,053 | INFO | topic 614: Sávio Girona [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,060 | INFO | topic 615: Baleba Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,067 | INFO | topic 616: Fenerbahçe Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,074 | INFO | topic 617: Dembélé PSG Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,092 | INFO | topic 618: Fortaleza [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,099 | INFO | topic 619: Multi-Club Ownership [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,105 | INFO | topic 620: Musiala Injury Updates [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,112 | INFO | topic 621: Roy Keane & Everton Fan Culture [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,118 | INFO | topic 622: FC Porto Manager Changes [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,125 | INFO | topic 623: Skill & Performance [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,131 | INFO | topic 624: Osimhen Galatasaray Support [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,137 | INFO | topic 625: UEFA Format Changes [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,144 | INFO | topic 626: Ivorian Striker Signings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,150 | INFO | topic 627: Real Madrid Women's CL Qualifiers [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,157 | INFO | topic 628: St. Pauli vs Schalke [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,175 | INFO | topic 629: Federación League Standings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,182 | INFO | topic 630: Baldness in Football [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,189 | INFO | topic 631: Fulham & Burnley Goalkeeper Deals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,195 | INFO | topic 632: Bournemouth Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,202 | INFO | topic 633: West Ham Loan Deals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,208 | INFO | topic 634: Juventus-Kean Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,214 | INFO | topic 635: Copa del Rey Draw [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,221 | INFO | topic 636: England Euro 2024 Qualification [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,227 | INFO | topic 637: Ronaldo & Trump [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,233 | INFO | topic 638: Memphis Depay Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,240 | INFO | topic 639: Liga MX Matches [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,258 | INFO | topic 640: Wales qualifiers [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,265 | INFO | topic 641: Jesse Lingard FC Seoul [identical, 2 round(s)]
+2026-10-26 06:02:47,271 | INFO | topic 642: Europa League Qualifiers [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,279 | INFO | topic 643: Serie A 2025/26 [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,287 | INFO | topic 645: Messi & Yamal Charity Photos [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,295 | INFO | topic 646: Dragusin Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,301 | INFO | topic 647: Anwar El Ghazi & Mainz 05 Contract Dispute [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,308 | INFO | topic 648: Ederson Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,315 | INFO | topic 649: Penalty Shootout [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,321 | INFO | topic 650: UEFA Youth League [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,332 | INFO | topic 651: Orlando City Transfers [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,352 | INFO | topic 652: Kudus Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,358 | INFO | topic 653: Official Comunicado [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,365 | INFO | topic 654: Neuer's Return to Bayern [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,371 | INFO | topic 655: Feyenoord-Atletico Hancko Negotiations [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,378 | INFO | topic 656: Bournemouth Kerkez Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,384 | INFO | topic 657: AFC Wimbledon Leagues [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,392 | INFO | topic 658: Suriname Cup [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,400 | INFO | topic 659: Eagles Match Thread [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,408 | INFO | topic 660: footballer arrest [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,415 | INFO | topic 661: Piracy & Legal Streaming [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,421 | INFO | topic 662: Ramsey Burnley Move [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,440 | INFO | topic 663: Ronaldo Suspension [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,446 | INFO | topic 664: AS Monaco Ligue 1 Matches [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,453 | INFO | topic 665: Rabiot Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,459 | INFO | topic 666: Serie B Matchday Updates [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,466 | INFO | topic 667: Everton Match Threads [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,472 | INFO | topic 668: Boston River vs. Montevideo Teams [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,479 | INFO | topic 669: Sadio Mané Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,485 | INFO | topic 670: Van Dijk's disciplinary actions [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,493 | INFO | topic 671: Chelsea Cole Signing [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,501 | INFO | topic 672: MLS Transfer Deals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,509 | INFO | topic 673: Benzema Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,528 | INFO | topic 674: Club Communication [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,536 | INFO | topic 675: Women Ballon D'Or [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,544 | INFO | topic 676: Great Goals [stalemate, 2 round(s)] NEEDS REVIEW
+2026-10-26 06:02:47,552 | INFO | topic 677: Olympic Drone Scandal [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,560 | INFO | topic 679: Korea U17 vs. Others [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,568 | INFO | topic 680: Beijing Guoan vs Rival Clubs [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,576 | INFO | topic 681: Napoli Osimhen Controversy [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,583 | INFO | topic 682: Segunda Division Relegation Race [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,592 | INFO | topic 683: WC Predictions & Analytics [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,599 | INFO | topic 684: Relegation Battle [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,607 | INFO | topic 685: Player Jersey Numbers [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,626 | INFO | topic 686: Yamal Goal Analysis [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,634 | INFO | topic 687: UEFA Financial Penalties [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,642 | INFO | topic 688: AC Milan vs Slavia Prague [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,650 | INFO | topic 689: Portugal vs Armenia Match Highlights [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,657 | INFO | topic 690: Borussia Dortmund Coach [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,664 | INFO | topic 691: Willian Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,672 | INFO | topic 692: Man United Decline [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,680 | INFO | topic 693: Bayern Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,688 | INFO | topic 694: Bakayoko Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,696 | INFO | topic 695: Women's World Cup Coverage [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,704 | INFO | topic 696: Man Utd coaching staff additions [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,726 | INFO | topic 697: Dog on Pitch [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,734 | INFO | topic 698: UEFA Unbeaten Teams [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,742 | INFO | topic 699: Wolves Matheus Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,750 | INFO | topic 700: Chelsea & Dortmund Loan Deals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,758 | INFO | topic 701: Arda Guler Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,766 | INFO | topic 702: Shakhtar vs Feyenoord [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,774 | INFO | topic 703: Granada Matches [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,781 | INFO | topic 704: Transfermarkt Valuations [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,789 | INFO | topic 705: Amorim's Managerial Performance [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,797 | INFO | topic 706: UEFA Club Rankings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,805 | INFO | topic 707: Mats Hummels' Future [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,825 | INFO | topic 708: Trabzonspor-Fenerbahce Conflict [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,833 | INFO | topic 709: Mamardashvili Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,841 | INFO | topic 710: Hertha BSC & Karlsruher SC Friendship [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,849 | INFO | topic 711: Villa Striker Negotiations [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,870 | INFO | topic 712: Mendy & Vini Cases [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,878 | INFO | topic 713: Sheffield Wednesday Crisis [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,886 | INFO | topic 714: FIFA World Cup Logos [identical, 2 round(s)]
+2026-10-26 06:02:47,894 | INFO | topic 715: Olympic U23 Matches [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,902 | INFO | topic 716: Goal Celebration [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,910 | INFO | topic 717: Brighton Performance [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,918 | INFO | topic 718: Barça & Girona Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,926 | INFO | topic 719: Laporte Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,946 | INFO | topic 720: Mathys Tel Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,954 | INFO | topic 721: Quincy Promes Legal Case [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,960 | INFO | topic 722: Gibraltar Football League [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,966 | INFO | topic 723: Olympiacos Signings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,972 | INFO | topic 724: Simeone & Family [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,978 | INFO | topic 725: Chelsea vs Leicester City Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,984 | INFO | topic 726: Real Madrid & Bournemouth Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,990 | INFO | topic 727: Elche vs. Top Clubs [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:47,997 | INFO | topic 728: league tables [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,003 | INFO | topic 729: Galatasaray Transfer Drama [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,010 | INFO | topic 730: Top Dribblers in Europe [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,028 | INFO | topic 731: Mental Health in Football [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,035 | INFO | topic 732: Official Match Ball [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,041 | INFO | topic 733: Marmoush Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,047 | INFO | topic 734: Transfer Negotiations [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,053 | INFO | topic 735: Spain vs Japan Match [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,060 | INFO | topic 736: UEFA Europa League Appeal [identical, 2 round(s)]
+2026-10-26 06:02:48,067 | INFO | topic 737: Vinicius Jr UCL Stats [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,074 | INFO | topic 738: Son Heung-min Transfer [identical, 2 round(s)]
+2026-10-26 06:02:48,080 | INFO | topic 739: UEFA Europa Conference League Qualifying [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,087 | INFO | topic 740: Feyenoord 1908 [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,103 | INFO | topic 741: Mitrović Fulham [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,110 | INFO | topic 742: Szczesny Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,117 | INFO | topic 743: double touch penalty [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,123 | INFO | topic 744: Portugal vs Poland [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,129 | INFO | topic 745: FIFA Corruption [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,135 | INFO | topic 746: Bellingham Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,142 | INFO | topic 748: Manager Sacking and Replacement [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,148 | INFO | topic 749: Lille Match Thread [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,155 | INFO | topic 750: Transfer Deals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,161 | INFO | topic 751: U19 League Matches [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,167 | INFO | topic 752: FIFA vs. Players' Union [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,184 | INFO | topic 753: Ukrainian Tragedies [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,191 | INFO | topic 754: Serie B Relegation [identical, 2 round(s)]
+2026-10-26 06:02:48,198 | INFO | topic 755: WSL Broadcast [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,204 | INFO | topic 756: Celtic Midfielder Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,210 | INFO | topic 757: Chelsea Injury Updates [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,216 | INFO | topic 758: Real Madrid Bus Arrivals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,222 | INFO | topic 759: UEFA Champions League Fixture Difficulty [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,229 | INFO | topic 760: Bournemouth Semenyo Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,235 | INFO | topic 761: Guardiola Contract Dynamics [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,242 | INFO | topic 762: Morata Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,248 | INFO | topic 763: Gabriel Moscardo Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,267 | INFO | topic 764: Ajax Transfer Activity [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,274 | INFO | topic 765: Tijjani Reijnders Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,282 | INFO | topic 766: Lionesses World Cup Halftime Show [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,289 | INFO | topic 767: offside var [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,296 | INFO | topic 768: Penalty Shootouts [identical, 2 round(s)]
+2026-10-26 06:02:48,303 | INFO | topic 769: Midfielder Creativity [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,310 | INFO | topic 770: U23 Nations League [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,317 | INFO | topic 771: Eibar vs. Top Clubs [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,324 | INFO | topic 772: Tragedy Chanting [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,330 | INFO | topic 773: Vinicius Skill [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,337 | INFO | topic 774: West Ham Match Thread [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,358 | INFO | topic 775: Lineker & Richards' Rabelais [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,365 | INFO | topic 776: Kepa Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,372 | INFO | topic 777: Assault Allegations [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,378 | INFO | topic 778: Club Statement [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,386 | INFO | topic 779: Barcelona Atletic [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,392 | INFO | topic 780: Bournemouth Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,399 | INFO | topic 781: Brazilian Club Dominance [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,405 | INFO | topic 782: European Trophies [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,412 | INFO | topic 783: Musiala Contract Negotiations [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,418 | INFO | topic 784: Taremi Inter Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,426 | INFO | topic 785: Nike & Barcelona Kit Deals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,446 | INFO | topic 786: Shirt Sponsorship Deals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,453 | INFO | topic 787: schedule overload [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,459 | INFO | topic 788: Viktor Gyökeres Goalscorer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,466 | INFO | topic 789: Córdoba Defensa [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,472 | INFO | topic 790: Messi Shirt Exchange [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,478 | INFO | topic 791: Real Sociedad Matches [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,484 | INFO | topic 793: Balogun Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,491 | INFO | topic 794: Egyptian Football [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,497 | INFO | topic 795: Austrian Bundesliga Table [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,503 | INFO | topic 796: Rudiger Defensive Actions [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,509 | INFO | topic 797: Serie A Champions [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,528 | INFO | topic 798: Van Dijk's Career & Reflections [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,534 | INFO | topic 799: Bundesliga Standings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,540 | INFO | topic 800: Barcelona De Jong Contract [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,546 | INFO | topic 801: European Golden Boot [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,557 | INFO | topic 802: Tenerife vs. Competitors [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,563 | INFO | topic 803: Portugal vs. Sweden [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,569 | INFO | topic 804: Nacho Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,576 | INFO | topic 805: Spain vs Georgia Goals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,582 | INFO | topic 806: Maguire Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,588 | INFO | topic 807: Leganes vs. Clubs [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,594 | INFO | topic 808: Real Madrid UCL Triumphs [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,613 | INFO | topic 809: Morocco AFCON Squad [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,619 | INFO | topic 810: Luis Diaz Kidnap Case [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,625 | INFO | topic 811: Striker Performance Analysis [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,632 | INFO | topic 812: Nuno Espírito Santo leaving Nottingham Forest [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,638 | INFO | topic 813: Neuer Saves [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,644 | INFO | topic 814: Aston Villa Transfer Activity [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,651 | INFO | topic 815: Brasileirão 2024 Standings [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,657 | INFO | topic 816: Dembélé Stats [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,663 | INFO | topic 817: Football Governance [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,670 | INFO | topic 818: U21 Spain vs. Opponents [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,676 | INFO | topic 819: Manager Sacking and Replacement [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,695 | INFO | topic 820: Match Analysis [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,701 | INFO | topic 821: Zirkzee Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,707 | INFO | topic 822: Real Madrid Signing of Franco Mastantuono [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,714 | INFO | topic 823: Napoli & Liverpool Striker Deals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,720 | INFO | topic 824: UEFA Player of the Match [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,727 | INFO | topic 825: Amorim Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,733 | INFO | topic 826: Bayern Munich's demands on Wirtz [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,739 | INFO | topic 827: Dortmund Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,745 | INFO | topic 828: Plymouth Argyle FA Cup [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,751 | INFO | topic 829: Raya Deal [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,758 | INFO | topic 830: U17 Youth Match [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,776 | INFO | topic 831: Tottenham Midfielder Moves [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,784 | INFO | topic 832: LIVERPOOL FRIMPONG TRANSFER [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,791 | INFO | topic 833: Boyacá Chicó [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,798 | INFO | topic 834: World Cup Qualifiers [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,804 | INFO | topic 835: Qualifying Round Seeding [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,811 | INFO | topic 836: FIFPRO Men's World XI [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,817 | INFO | topic 837: Soulé Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,824 | INFO | topic 838: Juventus Champions League [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,831 | INFO | topic 839: Midfielder Analysis [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,837 | INFO | topic 840: Hakan Çalhanoğlu Transfer Controversy [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,844 | INFO | topic 841: Benfica Di Maria [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,861 | INFO | topic 842: Brighton & Hove Albion Match Thread [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,869 | INFO | topic 843: Head Injury Advocacy [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,876 | INFO | topic 844: Champions League Home Games [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,882 | INFO | topic 845: goal line disputes [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,889 | INFO | topic 846: DFB Pokal Qualification [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,896 | INFO | topic 847: Tackle Reactions [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,902 | INFO | topic 848: U21 Match Analysis [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,909 | INFO | topic 849: Calafiori Transfer to Arsenal [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,916 | INFO | topic 850: Casemiro Transfer Rumors [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,922 | INFO | topic 851: Bundesliga Champions [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,930 | INFO | topic 852: Adams Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,938 | INFO | topic 853: Hertha BSC vs. Bundesliga Teams [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,958 | INFO | topic 854: Boca Juniors & Brighton Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,966 | INFO | topic 855: Cooper Sacked [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,974 | INFO | topic 856: La Liga Match Threads [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,982 | INFO | topic 857: UEFA Leadership [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,990 | INFO | topic 859: Galatasaray Penalty Shouts [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:48,997 | INFO | topic 861: Celta Vigo [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,005 | INFO | topic 862: Scotland vs. Greece [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,013 | INFO | topic 863: PSR Charges [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,021 | INFO | topic 864: Tom Lockyer Injury & Recovery [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,029 | INFO | topic 865: Gibraltar vs Scotland U21 [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,037 | INFO | topic 866: Carvalho Loan Deals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,057 | INFO | topic 867: Goal Scorers [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,066 | INFO | topic 868: World Cup Qualification [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,074 | INFO | topic 869: Switzerland Euro 2024 [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,082 | INFO | topic 870: Chelsea Marc Guiu Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,090 | INFO | topic 872: UEFA Pots [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,099 | INFO | topic 873: Assists [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,107 | INFO | topic 874: Madrid Fans Chanting [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,115 | INFO | topic 875: open-play chances [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,123 | INFO | topic 876: Colombian Fan Brawls [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,131 | INFO | topic 877: Belgium Squad [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,150 | INFO | topic 878: Gvardiol Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,159 | INFO | topic 879: Klopp's Management Style [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,167 | INFO | topic 880: Tifo Displays [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,175 | INFO | topic 881: Dier Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,182 | INFO | topic 882: Fabinho Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,191 | INFO | topic 883: Al Ittihad Manager Changes [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,198 | INFO | topic 886: Enzo Fernandez Controversy [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,206 | INFO | topic 887: Bernabéu Controversy [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,214 | INFO | topic 888: Manager Sacking [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,221 | INFO | topic 890: Dele Alli Career [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,229 | INFO | topic 891: Kante Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,246 | INFO | topic 892: Football Manager Passing [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,253 | INFO | topic 893: Estêvão and Ronaldo's Age Discussion [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,260 | INFO | topic 895: Liverpool Manager Success [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,266 | INFO | topic 896: UEFA Solidarity and Russian Football [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,273 | INFO | topic 897: Vardy's Departure from Leicester [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,279 | INFO | topic 898: Valverde's Role at Real Madrid [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,285 | INFO | topic 899: Lazio Falconer Controversy [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,291 | INFO | topic 900: Suriname Football [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,297 | INFO | topic 901: Italy vs Israel Goals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,304 | INFO | topic 902: Joan Garcia Saves [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,310 | INFO | topic 903: Timo Werner Loan Deals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,327 | INFO | topic 904: UEFA Europa League [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,336 | INFO | topic 905: Ajax Farioli Transition [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,343 | INFO | topic 906: Celtic Manager Transition [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,351 | INFO | topic 908: Greenlandic Football [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,359 | INFO | topic 909: Stuttgart Guirassy Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,367 | INFO | topic 910: Neuer Contract [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,373 | INFO | topic 911: Ajax Loan Deals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,380 | INFO | topic 912: Everton Stadium Renovations [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,386 | INFO | topic 913: Corners & Goals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,393 | INFO | topic 914: Super League Proposals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,400 | INFO | topic 915: Transfer Deals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,419 | INFO | topic 916: ISL Table [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,425 | INFO | topic 917: Granada La Liga Matches [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,431 | INFO | topic 918: Vlahovic Transfer [stalemate, 2 round(s)] NEEDS REVIEW
+2026-10-26 06:02:49,437 | INFO | topic 920: Leicester City 2015 Season [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,444 | INFO | topic 921: Haaland Penalty Misses [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,450 | INFO | topic 922: EPL Fan Satisfaction [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,457 | INFO | topic 923: Dwarf Exploitation in Football [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,463 | INFO | topic 924: Courtois Saves [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,469 | INFO | topic 925: Arsenal Dominance [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,475 | INFO | topic 926: Arsenal Saliba Contract [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,482 | INFO | topic 927: Ibrahima Konate Transfer [stalemate, 2 round(s)] NEEDS REVIEW
+2026-10-26 06:02:49,501 | INFO | topic 928: Shot Conversion & Efficiency [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,507 | INFO | topic 930: Friday Fixture Broadcast [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,514 | INFO | topic 931: Harry Maguire's Rise and Recognition [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,520 | INFO | topic 932: Copa America Trophy [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,526 | INFO | topic 933: refereeing reform [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,533 | INFO | topic 934: Barça Garcia Deal [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,539 | INFO | topic 935: MLS Valuation [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,546 | INFO | topic 937: De Gea Transfer [identical, 2 round(s)]
+2026-10-26 06:02:49,552 | INFO | topic 938: Zaha Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,558 | INFO | topic 939: Bellingham's Impact [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,565 | INFO | topic 940: Jamaica Coach Transition [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,584 | INFO | topic 941: Arsenal Noni Madueke Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,591 | INFO | topic 942: UEFA Women's Nations League [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,597 | INFO | topic 943: Player Recovery [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,603 | INFO | topic 944: AFCON Winners [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,609 | INFO | topic 945: Xhaka Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,615 | INFO | topic 946: Everton vs. Man Utd Contract Negotiations [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,621 | INFO | topic 947: Mateta Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,628 | INFO | topic 948: Netherlands Match Thread [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,634 | INFO | topic 949: Hertha BSC Management Changes [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,640 | INFO | topic 950: Naby Keita Transfer [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,647 | INFO | topic 951: Celta Vigo vs Valencia [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,666 | INFO | topic 952: Thiago Silva Transfer [identical, 2 round(s)]
+2026-10-26 06:02:49,673 | INFO | topic 953: Monkey Chants and Incidents [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,679 | INFO | topic 954: PFA Player of the Year [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,686 | INFO | topic 955: Liga Portugal Seasons [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,692 | INFO | topic 956: 2025 Brasileirão [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,699 | INFO | topic 957: Pyramids vs. Al Ahly [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,705 | INFO | topic 958: Wide Footed Soccer Boots [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,711 | INFO | topic 959: Gambling Sponsorship Ban [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,718 | INFO | topic 960: Thiago Alcantara's Return to Barcelona [identical, 2 round(s)]
+2026-10-26 06:02:49,724 | INFO | topic 961: Newcastle Signing [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,731 | INFO | topic 962: Bayern Stats [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,751 | INFO | topic 963: FIFA World Cup Host Criticism [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,757 | INFO | topic 964: Croatian SuperSport HNL [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,764 | INFO | topic 965: Liverpool & Aston Villa Loan Deals [accepted_by_A, 2 round(s)]
+2026-10-26 06:02:49,770 | INFO | topic 966: Lyon Ligue 1 Performance [accepted_by_A, 2 round(s)]
+2026-10-26 06:03:06,412 | INFO | LLM: 16 prompt(s) in 16.5s (1.0 s/prompt; cap 600 tokens)
+2026-10-26 06:03:12,496 | INFO | LLM: 1 prompt(s) in 6.1s (6.1 s/prompt; cap 600 tokens)
+2026-10-26 06:03:12,506 | INFO | topic 80: Goal Angle Analysis [accepted_by_B, 2 round(s)]
+2026-10-26 06:03:12,514 | INFO | topic 171: weather-related postponements [accepted_by_B, 2 round(s)]
+2026-10-26 06:03:12,521 | INFO | topic 180: Tuchel Bayern [accepted_by_B, 2 round(s)]
+2026-10-26 06:03:12,527 | INFO | topic 288: U20 Nations Cup [accepted_by_B, 2 round(s)]
+2026-10-26 06:03:12,534 | INFO | topic 311: Salah & Alexander-Arnold Departure [identical, 2 round(s)]
+2026-10-26 06:03:12,541 | INFO | topic 312: Chelsea Maresca Transition [accepted_by_B, 2 round(s)]
+2026-10-26 06:03:12,567 | INFO | topic 362: De Zerbi's Departure and Brighton Transition [accepted_by_B, 2 round(s)]
+2026-10-26 06:03:12,574 | INFO | topic 474: Player Altercation [accepted_by_B, 2 round(s)]
+2026-10-26 06:03:12,581 | INFO | topic 504: Barca Olmo Transfer [accepted_by_B, 2 round(s)]
+2026-10-26 06:03:12,587 | INFO | topic 530: Paris FC and Lyon Financial Dynamics [accepted_by_B, 2 round(s)]
+2026-10-26 06:03:12,593 | INFO | topic 571: Boateng Internship Controversy [accepted_by_B, 2 round(s)]
+2026-10-26 06:03:12,599 | INFO | topic 580: Italy Squad [accepted_by_B, 2 round(s)]
+2026-10-26 06:03:12,606 | INFO | topic 587: Beşiktaş Manager Changes [accepted_by_B, 2 round(s)]
+2026-10-26 06:03:12,612 | INFO | topic 858: Sweden coach [accepted_by_B, 2 round(s)]
+2026-10-26 06:03:12,612 | INFO | label: round 2 done — 964/967 items resolved
+2026-10-26 06:03:21,560 | INFO | LLM: 3 prompt(s) in 8.9s (3.0 s/prompt; cap 600 tokens)
+2026-10-26 06:03:21,573 | INFO | topic 32: Liga Matchday Venue [identical, 3 round(s)]
+2026-10-26 06:03:21,581 | INFO | topic 59: Messi & Ronaldo Reactions [accepted_by_A, 3 round(s)]
+2026-10-26 06:03:21,588 | INFO | topic 907: England Goalkeeper Spotlight [accepted_by_A, 3 round(s)]
+2026-10-26 06:03:21,588 | INFO | label: round 3 done — 967/967 items resolved
+2026-10-26 06:03:21,694 | INFO | labelling bin 8: 967 topics labelled, 12 need review -> /content/drive/MyDrive/fifa-communities/results/bin-8/topics_labelled.csv
+2026-10-26 06:03:21,835 | INFO | label: nearest_topic_name written into 4 outlier calibration sample file(s)
+2026-10-26 06:03:23,343 | INFO | report written: /content/drive/MyDrive/fifa-communities/results/bin-8/report.html

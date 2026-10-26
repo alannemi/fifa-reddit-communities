@@ -1,0 +1,188 @@
+{
+ "period_bin": 2,
+ "topic_id": 675,
+ "keywords": "lightning strike, strikes footballers, earthquake, players train, hits rangers, charge football, players killed, strikes, happen wrong, fans causing, storm real, match friday, football calls, napoli man, yes football",
+ "n_sample_posts": 34,
+ "sample_ids": [
+  "1aoyhg",
+  "ibmcl",
+  "1ivrr2",
+  "1s2omc",
+  "130egn",
+  "oqbfi",
+  "v3o8x",
+  "13e9n3",
+  "rdqmn",
+  "udzbx",
+  "pez89",
+  "1m1mgx",
+  "udqdw",
+  "rjr1q",
+  "16ybrf",
+  "l6ity",
+  "rhgo6",
+  "v3otb",
+  "rkwcy",
+  "rao86",
+  "1ivrdy",
+  "rq54w",
+  "106nyi",
+  "wncm6",
+  "1ixbdx",
+  "1vt4ou",
+  "v3lyt",
+  "re24z",
+  "xhhxu",
+  "10t3x3",
+  "muiww",
+  "13c2te",
+  "1w6ta3",
+  "1oa90p"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Lightning Strike Events",
+  "purpose": "Document and analyze lightning-related incidents in football",
+  "emotion_tone": "Urgent and alarming",
+  "description": "Posts about lightning strikes on footballers, pitches, and training grounds, including their impact and context",
+  "inclusion_cues": [
+   "lightning strikes footballers",
+   "lightning strikes the pitch",
+   "earthquake during soccer game",
+   "lightning kills entire team",
+   "lightning in training ground"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Lightning Strike Incidents",
+    "purpose": "Categorize posts about lightning strikes in football contexts",
+    "emotion_tone": "Fearsome, dramatic",
+    "description": "Posts discussing lightning strikes in football matches or training, including player deaths, stadium damage, and fan-related incidents",
+    "inclusion_cues": [
+     "lightning strikes footballers",
+     "lightning hits Rangers training ground",
+     "lightning kills an entire football team",
+     "earthquake during Chilean soccer game",
+     "lightning strikes the pitch"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Lightning Strike Events",
+    "purpose": "Document and analyze lightning-related incidents in football",
+    "emotion_tone": "Urgent and alarming",
+    "description": "Posts about lightning strikes on footballers, pitches, and training grounds, including their impact and context",
+    "inclusion_cues": [
+     "lightning strikes footballers",
+     "lightning strikes the pitch",
+     "earthquake during soccer game",
+     "lightning kills entire team",
+     "lightning in training ground"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: lightning strike, strikes footballers, earthquake, players train, hits rangers, charge football, players killed, strikes, happen wrong, fans causing, storm real, match friday, football calls, napoli man, yes football\nPosts (one per line, title first):\n- Italy's plane struck by lightning\n- North Korea coach blames defeat on players getting struck by lightning\n- 'Gers almost struck by lightning during training session\n- Stadium noise / NPR (National Public Radio) in America just had a story on the Seattle Seahawks fans causing a 1 or 2 magnitude earthquake during a recent game. I am wondering if anyone has ever been to a Boca Juniors game, where fans supposedly caused a magnitude 6 on the Richter scale, and can ver\n- I thought you might enjoy my brother's story from attending the Liberia-Nigeria African Cup qualifiers (lots of text) / I was holding my ticket as firmly as I could above my head so the riot police could see that I had payed to go to the game and decide not to beat the shit out of me with their nigh\n- Lightning strikes twice.\n- Lightning Over Donetsk\n- Tornado scores direct hit on Portuguese soccer stadium (and why was this guy hanging around to film it!)\n- Earthquake during Chilean soccer game. Brass ones from everyone, including those in commentary.\n- The TIL about the lightning strike reminded me of this: The five most bizarre things to happen on a South African soccer pitch.\n- A whole team killed by lightning whilst the opposition survive.\n- Bench collapses under fans at Maryland-Duke match on Friday\n- Lightning kills an entire football team!!!.....Anybody knows more about this\n- Earthquake? No problem.\n- A reminder of what happens when you have a snowy pitch and the only orange ball in the stadium bursts.\n- Repost from TIL. Standing 11 at game in Africa die from lightning strike.\n- Just an earthquake... play on!\n- Lightning killed an entire team of players in 1998\n- Earthquake or no earthquake, these guys play soccer.\n- TIL former Tottenham player John White was killed aged 27...by lightning.\n- Lightning hits Rangers training ground as players train. [0:37]\n- Tonight I was put in temporary charge of my football team. A cloud hung over the game; an apocalyptic cloud.\n- The Bloody Terraces of West Papuan Football | VICE\n- Two Texas soccer players killed by lightning - If it starts to storm, PLEASE find real shelter! (Sitting under trees is not safe.)\n- Lightning strikes Rangers training ground during training session. The reactions of the players are priceless\n- Lightning strikes footballers\n- Lightning strikes the pitch: a reminder of what can happen in the wrong conditions\n- Earthquake during Chilean soccer game. Play (and commentary) continue like bosses\n- WELCOME TO 1930: Earthquakes vs. Swansea City Radio Coverage\n- Crazy footage as a tornado attacks an amateur football match\n- Seismic activity in Naples during the Napoli - Man C game.\n- Tornado rips through Estádio Dr. Francisco Vieira, home of Silves FC (Portugal)\n- The lightening yesterday at Northampton.\n- A lightning bolt from the Aztec gods...\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Lightning Strike Incidents\", \"purpose\": \"Categorize posts about lightning strikes in football contexts\", \"emotion_tone\": \"Fearsome, dramatic\", \"description\": \"Posts discussing lightning strikes in football matches or training, including player deaths, stadium damage, and fan-related incidents\", \"inclusion_cues\": [\"lightning strikes footballers\", \"lightning hits Rangers training ground\", \"lightning kills an entire football team\", \"earthquake during Chilean soccer game\", \"lightning strikes the pitch\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Lightning Strike Incidents",
+      "purpose": "Categorize posts about lightning strikes in football contexts",
+      "emotion_tone": "Fearsome, dramatic",
+      "description": "Posts discussing lightning strikes in football matches or training, including player deaths, stadium damage, and fan-related incidents",
+      "inclusion_cues": [
+       "lightning strikes footballers",
+       "lightning hits Rangers training ground",
+       "lightning kills an entire football team",
+       "earthquake during Chilean soccer game",
+       "lightning strikes the pitch"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 122,
+   "seed": 3590932873,
+   "seconds": 1.11
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: lightning strike, strikes footballers, earthquake, players train, hits rangers, charge football, players killed, strikes, happen wrong, fans causing, storm real, match friday, football calls, napoli man, yes football\nPosts (one per line, title first):\n- Italy's plane struck by lightning\n- North Korea coach blames defeat on players getting struck by lightning\n- 'Gers almost struck by lightning during training session\n- Stadium noise / NPR (National Public Radio) in America just had a story on the Seattle Seahawks fans causing a 1 or 2 magnitude earthquake during a recent game. I am wondering if anyone has ever been to a Boca Juniors game, where fans supposedly caused a magnitude 6 on the Richter scale, and can ver\n- I thought you might enjoy my brother's story from attending the Liberia-Nigeria African Cup qualifiers (lots of text) / I was holding my ticket as firmly as I could above my head so the riot police could see that I had payed to go to the game and decide not to beat the shit out of me with their nigh\n- Lightning strikes twice.\n- Lightning Over Donetsk\n- Tornado scores direct hit on Portuguese soccer stadium (and why was this guy hanging around to film it!)\n- Earthquake during Chilean soccer game. Brass ones from everyone, including those in commentary.\n- The TIL about the lightning strike reminded me of this: The five most bizarre things to happen on a South African soccer pitch.\n- A whole team killed by lightning whilst the opposition survive.\n- Bench collapses under fans at Maryland-Duke match on Friday\n- Lightning kills an entire football team!!!.....Anybody knows more about this\n- Earthquake? No problem.\n- A reminder of what happens when you have a snowy pitch and the only orange ball in the stadium bursts.\n- Repost from TIL. Standing 11 at game in Africa die from lightning strike.\n- Just an earthquake... play on!\n- Lightning killed an entire team of players in 1998\n- Earthquake or no earthquake, these guys play soccer.\n- TIL former Tottenham player John White was killed aged 27...by lightning.\n- Lightning hits Rangers training ground as players train. [0:37]\n- Tonight I was put in temporary charge of my football team. A cloud hung over the game; an apocalyptic cloud.\n- The Bloody Terraces of West Papuan Football | VICE\n- Two Texas soccer players killed by lightning - If it starts to storm, PLEASE find real shelter! (Sitting under trees is not safe.)\n- Lightning strikes Rangers training ground during training session. The reactions of the players are priceless\n- Lightning strikes footballers\n- Lightning strikes the pitch: a reminder of what can happen in the wrong conditions\n- Earthquake during Chilean soccer game. Play (and commentary) continue like bosses\n- WELCOME TO 1930: Earthquakes vs. Swansea City Radio Coverage\n- Crazy footage as a tornado attacks an amateur football match\n- Seismic activity in Naples during the Napoli - Man C game.\n- Tornado rips through Estádio Dr. Francisco Vieira, home of Silves FC (Portugal)\n- The lightening yesterday at Northampton.\n- A lightning bolt from the Aztec gods...\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Lightning Strike Events\", \"purpose\": \"Document and analyze lightning-related incidents in football\", \"emotion_tone\": \"Urgent and alarming\", \"description\": \"Posts about lightning strikes on footballers, pitches, and training grounds, including their impact and context\", \"inclusion_cues\": [\"lightning strikes footballers\", \"lightning strikes the pitch\", \"earthquake during soccer game\", \"lightning kills entire team\", \"lightning in training ground\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Lightning Strike Events",
+      "purpose": "Document and analyze lightning-related incidents in football",
+      "emotion_tone": "Urgent and alarming",
+      "description": "Posts about lightning strikes on footballers, pitches, and training grounds, including their impact and context",
+      "inclusion_cues": [
+       "lightning strikes footballers",
+       "lightning strikes the pitch",
+       "earthquake during soccer game",
+       "lightning kills entire team",
+       "lightning in training ground"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 112,
+   "seed": 1828612688,
+   "seconds": 0.69
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: lightning strike, strikes footballers, earthquake, players train, hits rangers, charge football, players killed, strikes, happen wrong, fans causing, storm real, match friday, football calls, napoli man, yes football\nPosts (one per line, title first):\n- Italy's plane struck by lightning\n- North Korea coach blames defeat on players getting struck by lightning\n- 'Gers almost struck by lightning during training session\n- Stadium noise / NPR (National Public Radio) in America just had a story on the Seattle Seahawks fans causing a 1 or 2 magnitude earthquake during a recent game. I am wondering if anyone has ever been to a Boca Juniors game, where fans supposedly caused a magnitude 6 on the Richter scale, and can ver\n- I thought you might enjoy my brother's story from attending the Liberia-Nigeria African Cup qualifiers (lots of text) / I was holding my ticket as firmly as I could above my head so the riot police could see that I had payed to go to the game and decide not to beat the shit out of me with their nigh\n- Lightning strikes twice.\n- Lightning Over Donetsk\n- Tornado scores direct hit on Portuguese soccer stadium (and why was this guy hanging around to film it!)\n- Earthquake during Chilean soccer game. Brass ones from everyone, including those in commentary.\n- The TIL about the lightning strike reminded me of this: The five most bizarre things to happen on a South African soccer pitch.\n- A whole team killed by lightning whilst the opposition survive.\n- Bench collapses under fans at Maryland-Duke match on Friday\n- Lightning kills an entire football team!!!.....Anybody knows more about this\n- Earthquake? No problem.\n- A reminder of what happens when you have a snowy pitch and the only orange ball in the stadium bursts.\n- Repost from TIL. Standing 11 at game in Africa die from lightning strike.\n- Just an earthquake... play on!\n- Lightning killed an entire team of players in 1998\n- Earthquake or no earthquake, these guys play soccer.\n- TIL former Tottenham player John White was killed aged 27...by lightning.\n- Lightning hits Rangers training ground as players train. [0:37]\n- Tonight I was put in temporary charge of my football team. A cloud hung over the game; an apocalyptic cloud.\n- The Bloody Terraces of West Papuan Football | VICE\n- Two Texas soccer players killed by lightning - If it starts to storm, PLEASE find real shelter! (Sitting under trees is not safe.)\n- Lightning strikes Rangers training ground during training session. The reactions of the players are priceless\n- Lightning strikes footballers\n- Lightning strikes the pitch: a reminder of what can happen in the wrong conditions\n- Earthquake during Chilean soccer game. Play (and commentary) continue like bosses\n- WELCOME TO 1930: Earthquakes vs. Swansea City Radio Coverage\n- Crazy footage as a tornado attacks an amateur football match\n- Seismic activity in Naples during the Napoli - Man C game.\n- Tornado rips through Estádio Dr. Francisco Vieira, home of Silves FC (Portugal)\n- The lightening yesterday at Northampton.\n- A lightning bolt from the Aztec gods...\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Lightning Strike Incidents\", \"purpose\": \"Categorize posts about lightning strikes in football contexts\", \"emotion_tone\": \"Fearsome, dramatic\", \"description\": \"Posts discussing lightning strikes in football matches or training, including player deaths, stadium damage, and fan-related incidents\", \"inclusion_cues\": [\"lightning strikes footballers\", \"lightning hits Rangers training ground\", \"lightning kills an entire football team\", \"earthquake during Chilean soccer game\", \"lightning strikes the pitch\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Lightning Strike Events\", \"purpose\": \"Document and analyze lightning-related incidents in football\", \"emotion_tone\": \"Urgent and alarming\", \"description\": \"Posts about lightning strikes on footballers, pitches, and training grounds, including their impact and context\", \"inclusion_cues\": [\"lightning strikes footballers\", \"lightning strikes the pitch\", \"earthquake during soccer game\", \"lightning kills entire team\", \"lightning in training ground\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Lightning Strike Events\", \"purpose\": \"Document and analyze lightning-related incidents in football\", \"emotion_tone\": \"Urgent and alarming\", \"description\": \"Posts about lightning strikes on footballers, pitches, and training grounds, including their impact and context\", \"inclusion_cues\": [\"lightning strikes footballers\", \"lightning strikes the pitch\", \"earthquake during soccer game\", \"lightning kills entire team\", \"lightning in training ground\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 111,
+   "seed": 2755008539,
+   "seconds": 0.59
+  }
+ ]
+}

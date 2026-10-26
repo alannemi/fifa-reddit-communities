@@ -1,0 +1,203 @@
+{
+ "period_bin": 2,
+ "topic_id": 796,
+ "keywords": "know repost, repost fuck, repost great, repost photo, probably repost, old picture, saw old, old gem, forgot link, rediscovered, extremely heartwarming, photo extremely, time saw, memories, double saves",
+ "n_sample_posts": 29,
+ "sample_ids": [
+  "pem8g",
+  "of0w9",
+  "10fe06",
+  "kwish",
+  "i8eq9",
+  "vxtro",
+  "13q78d",
+  "yimt7",
+  "jvhd3",
+  "mrr2o",
+  "mxsed",
+  "wfutd",
+  "ho9u6",
+  "nhdf9",
+  "1tpyl6",
+  "sqkan",
+  "f5rje",
+  "1to2yq",
+  "udztx",
+  "dtjx7",
+  "qcx8z",
+  "1b8awj",
+  "10zkmg",
+  "1vljxw",
+  "ladol",
+  "1ixaip",
+  "hmgc0",
+  "sjyzw",
+  "14g81c"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "repost_analysis",
+  "purpose": "Analyze and categorize posts about reposts in football/soccer communities",
+  "emotion_tone": "neutral-to-positive",
+  "description": "Posts discussing reposts in football/soccer communities, focusing on their emotional impact and communicative purpose.",
+  "inclusion_cues": [
+   "repost",
+   "repost analysis",
+   "repost gem",
+   "repost photo",
+   "repost video",
+   "repost link",
+   "repost decision",
+   "repost decision",
+   "repost decision"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "repost_analysis",
+    "purpose": "Analyze reposts in football/soccer discussions",
+    "emotion_tone": "positive",
+    "description": "Posts discussing reposts in football/soccer communities, including emotional reactions to reposts and their context.",
+    "inclusion_cues": [
+     "repost",
+     "repost analysis",
+     "repost gem",
+     "repost photo",
+     "repost video",
+     "repost link",
+     "repost content",
+     "repost emotion",
+     "repost context"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "repost_analysis",
+    "purpose": "Analyze and categorize posts about reposts in football/soccer communities",
+    "emotion_tone": "neutral-to-positive",
+    "description": "Posts discussing reposts in football/soccer communities, focusing on their emotional impact and communicative purpose.",
+    "inclusion_cues": [
+     "repost",
+     "repost analysis",
+     "repost gem",
+     "repost photo",
+     "repost video",
+     "repost link",
+     "repost decision",
+     "repost decision",
+     "repost decision"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: know repost, repost fuck, repost great, repost photo, probably repost, old picture, saw old, old gem, forgot link, rediscovered, extremely heartwarming, photo extremely, time saw, memories, double saves\nPosts (one per line, title first):\n- Not sure if a repost, but this Vid brings good memories\n- Nuff Said (Not sure if this is a repost)\n- Was digging through my pre-Reddit photos when I came across this gem. Sorry if it's a repost.\n- I know it's old and probably a repost, but I find this photo extremely heartwarming.\n- Probably a repost but, fuck it! One of the best double saves I've ever seen! / I kinda forgot to put the link in before (my bad!)\n- found this gem the other day\n- A lil old but you dont see this very often\n- Don't know if repost but its a great ad video!\n- Found this gem recently.\n- Found an old picture!\n- This is an intentional repost. Came across this again today and it's just as awesome as the first time I saw it...\n- This is a repost. Downvote me but re-live the moment before you do.\n- Think this should go to a more loving home...\n- An old gem from 2006\n- Want to repost?\n- This is a repost, not from reddit yet i think though.\n- This was creative (probably a repost). :)\n- Found this indie gem you guys might enjoy\n- Sorry if repost but this is the funniest thing i saw all day\n- There are some absolute gems in here\n- Might be a repost but insane owngoal!\n- A gem you've probably never seen before.\n- Rediscovered an old gem!\n- Was looking at some pictures to modify when I came across this gem\n- Just saw this on 4chan. Repost?\n- Found this gem on FB, may be a repost.\n- This is a repost, but I feel it is more appropriate than ever.\n- Just found this gem!\n- Not sure if repost in this sub but you must like it\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"repost_analysis\", \"purpose\": \"Analyze reposts in football/soccer discussions\", \"emotion_tone\": \"positive\", \"description\": \"Posts discussing reposts in football/soccer communities, including emotional reactions to reposts and their context.\", \"inclusion_cues\": [\"repost\", \"repost analysis\", \"repost gem\", \"repost photo\", \"repost video\", \"repost link\", \"repost content\", \"repost emotion\", \"repost context\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "repost_analysis",
+      "purpose": "Analyze reposts in football/soccer discussions",
+      "emotion_tone": "positive",
+      "description": "Posts discussing reposts in football/soccer communities, including emotional reactions to reposts and their context.",
+      "inclusion_cues": [
+       "repost",
+       "repost analysis",
+       "repost gem",
+       "repost photo",
+       "repost video",
+       "repost link",
+       "repost content",
+       "repost emotion",
+       "repost context"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 117,
+   "seed": 1379573926,
+   "seconds": 0.88
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: know repost, repost fuck, repost great, repost photo, probably repost, old picture, saw old, old gem, forgot link, rediscovered, extremely heartwarming, photo extremely, time saw, memories, double saves\nPosts (one per line, title first):\n- Not sure if a repost, but this Vid brings good memories\n- Nuff Said (Not sure if this is a repost)\n- Was digging through my pre-Reddit photos when I came across this gem. Sorry if it's a repost.\n- I know it's old and probably a repost, but I find this photo extremely heartwarming.\n- Probably a repost but, fuck it! One of the best double saves I've ever seen! / I kinda forgot to put the link in before (my bad!)\n- found this gem the other day\n- A lil old but you dont see this very often\n- Don't know if repost but its a great ad video!\n- Found this gem recently.\n- Found an old picture!\n- This is an intentional repost. Came across this again today and it's just as awesome as the first time I saw it...\n- This is a repost. Downvote me but re-live the moment before you do.\n- Think this should go to a more loving home...\n- An old gem from 2006\n- Want to repost?\n- This is a repost, not from reddit yet i think though.\n- This was creative (probably a repost). :)\n- Found this indie gem you guys might enjoy\n- Sorry if repost but this is the funniest thing i saw all day\n- There are some absolute gems in here\n- Might be a repost but insane owngoal!\n- A gem you've probably never seen before.\n- Rediscovered an old gem!\n- Was looking at some pictures to modify when I came across this gem\n- Just saw this on 4chan. Repost?\n- Found this gem on FB, may be a repost.\n- This is a repost, but I feel it is more appropriate than ever.\n- Just found this gem!\n- Not sure if repost in this sub but you must like it\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"repost_analysis\", \"purpose\": \"Analyze and categorize posts about reposts in football/soccer communities\", \"emotion_tone\": \"neutral-to-positive\", \"description\": \"Posts discussing reposts in football/soccer communities, focusing on their emotional impact and communicative purpose.\", \"inclusion_cues\": [\"repost\", \"repost analysis\", \"repost gem\", \"repost photo\", \"repost video\", \"repost link\", \"repost decision\", \"repost decision\", \"repost decision\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "repost_analysis",
+      "purpose": "Analyze and categorize posts about reposts in football/soccer communities",
+      "emotion_tone": "neutral-to-positive",
+      "description": "Posts discussing reposts in football/soccer communities, focusing on their emotional impact and communicative purpose.",
+      "inclusion_cues": [
+       "repost",
+       "repost analysis",
+       "repost gem",
+       "repost photo",
+       "repost video",
+       "repost link",
+       "repost decision",
+       "repost decision",
+       "repost decision"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 124,
+   "seed": 982055771,
+   "seconds": 0.5
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: know repost, repost fuck, repost great, repost photo, probably repost, old picture, saw old, old gem, forgot link, rediscovered, extremely heartwarming, photo extremely, time saw, memories, double saves\nPosts (one per line, title first):\n- Not sure if a repost, but this Vid brings good memories\n- Nuff Said (Not sure if this is a repost)\n- Was digging through my pre-Reddit photos when I came across this gem. Sorry if it's a repost.\n- I know it's old and probably a repost, but I find this photo extremely heartwarming.\n- Probably a repost but, fuck it! One of the best double saves I've ever seen! / I kinda forgot to put the link in before (my bad!)\n- found this gem the other day\n- A lil old but you dont see this very often\n- Don't know if repost but its a great ad video!\n- Found this gem recently.\n- Found an old picture!\n- This is an intentional repost. Came across this again today and it's just as awesome as the first time I saw it...\n- This is a repost. Downvote me but re-live the moment before you do.\n- Think this should go to a more loving home...\n- An old gem from 2006\n- Want to repost?\n- This is a repost, not from reddit yet i think though.\n- This was creative (probably a repost). :)\n- Found this indie gem you guys might enjoy\n- Sorry if repost but this is the funniest thing i saw all day\n- There are some absolute gems in here\n- Might be a repost but insane owngoal!\n- A gem you've probably never seen before.\n- Rediscovered an old gem!\n- Was looking at some pictures to modify when I came across this gem\n- Just saw this on 4chan. Repost?\n- Found this gem on FB, may be a repost.\n- This is a repost, but I feel it is more appropriate than ever.\n- Just found this gem!\n- Not sure if repost in this sub but you must like it\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"repost_analysis\", \"purpose\": \"Analyze reposts in football/soccer discussions\", \"emotion_tone\": \"positive\", \"description\": \"Posts discussing reposts in football/soccer communities, including emotional reactions to reposts and their context.\", \"inclusion_cues\": [\"repost\", \"repost analysis\", \"repost gem\", \"repost photo\", \"repost video\", \"repost link\", \"repost content\", \"repost emotion\", \"repost context\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"repost_analysis\", \"purpose\": \"Analyze and categorize posts about reposts in football/soccer communities\", \"emotion_tone\": \"neutral-to-positive\", \"description\": \"Posts discussing reposts in football/soccer communities, focusing on their emotional impact and communicative purpose.\", \"inclusion_cues\": [\"repost\", \"repost analysis\", \"repost gem\", \"repost photo\", \"repost video\", \"repost link\", \"repost decision\", \"repost decision\", \"repost decision\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"repost_analysis\", \"purpose\": \"Analyze and categorize posts about reposts in football/soccer communities\", \"emotion_tone\": \"neutral-to-positive\", \"description\": \"Posts discussing reposts in football/soccer communities, focusing on their emotional impact and communicative purpose.\", \"inclusion_cues\": [\"repost\", \"repost analysis\", \"repost gem\", \"repost photo\", \"repost video\", \"repost link\", \"repost decision\", \"repost context\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 118,
+   "seed": 3711560427,
+   "seconds": 1.28
+  }
+ ]
+}

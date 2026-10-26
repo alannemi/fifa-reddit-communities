@@ -1,0 +1,221 @@
+{
+ "period_bin": 4,
+ "topic_id": 875,
+ "keywords": "barbershop, roofing, contractor, nyc, brooklyn ny, queens, fort worth, san antonio, arlington, hollywood ca, jump start, services, marina del, city north, company",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "70v53m",
+  "71frms",
+  "70rpj7",
+  "6pjtpm",
+  "6gjcbj",
+  "70s28c",
+  "70ym1r",
+  "70n5dm",
+  "715b27",
+  "70z7kv",
+  "70zgmd",
+  "714loz",
+  "715rkj",
+  "715ngw",
+  "70r3wk",
+  "70w5yu",
+  "7153jy",
+  "73azaj",
+  "714any",
+  "739lxk",
+  "70n2g3",
+  "70yqjc",
+  "6pz0e7",
+  "70rdj1",
+  "715fvo",
+  "70v1v6",
+  "70rgo4",
+  "70w9i0",
+  "715k5y",
+  "70l3v9",
+  "70rj7c",
+  "70rw24",
+  "714pj8",
+  "713kq2",
+  "5m0hnk",
+  "714gza",
+  "3q0s7z",
+  "70s0nf",
+  "70wdf6",
+  "70ryl2"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Locksmith Services",
+  "purpose": "Providing locksmith services",
+  "emotion_tone": "Professional",
+  "description": "Posts related to locksmith services in various locations, including NYC, Brooklyn, Queens, and other cities. Includes services like lock replacement, key making, and emergency locksmith assistance.",
+  "inclusion_cues": [
+   "Locksmith",
+   "NYC",
+   "Brooklyn NY",
+   "Queens",
+   "San Antonio",
+   "Arlington",
+   "Hollywood CA",
+   "Marina Del",
+   "City North",
+   "Locksmith Service"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Locksmith Services",
+    "purpose": "Providing locksmith services",
+    "emotion_tone": "Professional",
+    "description": "Posts related to locksmith services in various locations, including Manhattan, Brooklyn, Queens, and others.",
+    "inclusion_cues": [
+     "LOCKSMITH",
+     "MANHATTAN",
+     "BROOKLYN NY",
+     "QUEENS",
+     "SAN ANTONIO",
+     "LOS ANGELES",
+     "HOLLYWOOD CA",
+     "MARINA DEL",
+     "CITY NORTH",
+     "LOCKSMITHS"
+    ],
+    "n_cues_given": 15
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Locksmith Services",
+    "purpose": "Providing locksmith services",
+    "emotion_tone": "Professional",
+    "description": "Posts related to locksmith services in various locations, including NYC, Brooklyn, Queens, and other cities. Includes services like lock replacement, key making, and emergency locksmith assistance.",
+    "inclusion_cues": [
+     "Locksmith",
+     "NYC",
+     "Brooklyn NY",
+     "Queens",
+     "San Antonio",
+     "Arlington",
+     "Hollywood CA",
+     "Marina Del",
+     "City North",
+     "Locksmith Service"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: barbershop, roofing, contractor, nyc, brooklyn ny, queens, fort worth, san antonio, arlington, hollywood ca, jump start, services, marina del, city north, company\nPosts (one per line, title first):\n- MANHATTAN LOCKSMITH SERVICE\n- Roofing Company Miami | Roofer Mike Inc | 305-519-7879\n- JUMP START LOS ANGELES\n- Barbershop Manhattan New York Stubble Barber\n- Roofing Contractors Bronx - Guaranteed Best Construction Worker\n- LOCKSMITH QUEENS NEW YORK\n- FORT WORTH LOCKSMITH\n- NORTH HOLLYWOOD CA LOCKSMITH\n- SAN JOSE LOCAL LOCKSMITH\n- LOCKSMITH SAN ANTONIO\n- SAN ANTONIO LOCKSMITH PROS\n- LOCKSMITH MORGAN HILL\n- SAN JOSE LOCK SERVICE\n- SAN JOSE LOCKSMITH SERVICE\n- TOWING LOS ANGELES CITY\n- LOCKSMITHS BROOKLYN NY\n- LOS GATOS LOCKSMITH\n- DOWNERS GROVE IL LOCKSMITH\n- LOCKSMITH LEXINGTON HILLS\n- CAROL STREAM IL LOCKSMITH\n- ORANGE COUNTY LOCKSMITHS\n- LOCAL HOUSTON LOCKSMITH\n- Siding contractor Chicago\n- BATTERY REPLACEMENT LOS ANGELES\n- SANTA CLARA COUNTY LOCKSMITH\n- LOCKSMITH SERVICE MANHATTAN\n- GAS DELIVERY LOS ANGELES\n- LOCKSMITH BRONX NY\n- SANTA CLARA LOCKSMITH\n- MARINA DEL REY CA LOCKSMITH\n- TIRE CHANGE LOS ANGELES\n- BROOKLYN NY LOCKSMITH\n- LOCKSMITH SAN MATEO\n- LOCKSMITH LITTLETON CO\n- 24 hour emergency professional locksmith services in Long-Island\n- LOCKSMITH MILPITAS CA\n- Apparently John Snow robbed our Pawn Shop a few days ago.\n- LOCAL LOCKSMITH NYC\n- LOCKSMITH STATEN ISLAND\n- CAR LOCKSMITH MANHATTAN\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Locksmith Services\", \"purpose\": \"Providing locksmith services\", \"emotion_tone\": \"Professional\", \"description\": \"Posts related to locksmith services in various locations, including Manhattan, Brooklyn, Queens, and others.\", \"inclusion_cues\": [\"LOCKSMITH\", \"MANHATTAN\", \"BROOKLYN NY\", \"QUEENS\", \"SAN ANTONIO\", \"LOS ANGELES\", \"HOLLYWOOD CA\", \"MARINA DEL\", \"CITY NORTH\", \"LOCKSMITHS\", \"TOWING\", \"BATTERY REPLACEMENT\", \"SANDING\", \"SIZING\", \"TIRE CHANGE\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Locksmith Services",
+      "purpose": "Providing locksmith services",
+      "emotion_tone": "Professional",
+      "description": "Posts related to locksmith services in various locations, including Manhattan, Brooklyn, Queens, and others.",
+      "inclusion_cues": [
+       "LOCKSMITH",
+       "MANHATTAN",
+       "BROOKLYN NY",
+       "QUEENS",
+       "SAN ANTONIO",
+       "LOS ANGELES",
+       "HOLLYWOOD CA",
+       "MARINA DEL",
+       "CITY NORTH",
+       "LOCKSMITHS"
+      ],
+      "n_cues_given": 15
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 150,
+   "seed": 4047230995,
+   "seconds": 6.67
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: barbershop, roofing, contractor, nyc, brooklyn ny, queens, fort worth, san antonio, arlington, hollywood ca, jump start, services, marina del, city north, company\nPosts (one per line, title first):\n- MANHATTAN LOCKSMITH SERVICE\n- Roofing Company Miami | Roofer Mike Inc | 305-519-7879\n- JUMP START LOS ANGELES\n- Barbershop Manhattan New York Stubble Barber\n- Roofing Contractors Bronx - Guaranteed Best Construction Worker\n- LOCKSMITH QUEENS NEW YORK\n- FORT WORTH LOCKSMITH\n- NORTH HOLLYWOOD CA LOCKSMITH\n- SAN JOSE LOCAL LOCKSMITH\n- LOCKSMITH SAN ANTONIO\n- SAN ANTONIO LOCKSMITH PROS\n- LOCKSMITH MORGAN HILL\n- SAN JOSE LOCK SERVICE\n- SAN JOSE LOCKSMITH SERVICE\n- TOWING LOS ANGELES CITY\n- LOCKSMITHS BROOKLYN NY\n- LOS GATOS LOCKSMITH\n- DOWNERS GROVE IL LOCKSMITH\n- LOCKSMITH LEXINGTON HILLS\n- CAROL STREAM IL LOCKSMITH\n- ORANGE COUNTY LOCKSMITHS\n- LOCAL HOUSTON LOCKSMITH\n- Siding contractor Chicago\n- BATTERY REPLACEMENT LOS ANGELES\n- SANTA CLARA COUNTY LOCKSMITH\n- LOCKSMITH SERVICE MANHATTAN\n- GAS DELIVERY LOS ANGELES\n- LOCKSMITH BRONX NY\n- SANTA CLARA LOCKSMITH\n- MARINA DEL REY CA LOCKSMITH\n- TIRE CHANGE LOS ANGELES\n- BROOKLYN NY LOCKSMITH\n- LOCKSMITH SAN MATEO\n- LOCKSMITH LITTLETON CO\n- 24 hour emergency professional locksmith services in Long-Island\n- LOCKSMITH MILPITAS CA\n- Apparently John Snow robbed our Pawn Shop a few days ago.\n- LOCAL LOCKSMITH NYC\n- LOCKSMITH STATEN ISLAND\n- CAR LOCKSMITH MANHATTAN\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Locksmith Services\", \"purpose\": \"Providing locksmith services\", \"emotion_tone\": \"Professional\", \"description\": \"Posts related to locksmith services in various locations, including NYC, Brooklyn, Queens, and other cities. Includes services like lock replacement, key making, and emergency locksmith assistance.\", \"inclusion_cues\": [\"Locksmith\", \"NYC\", \"Brooklyn NY\", \"Queens\", \"San Antonio\", \"Arlington\", \"Hollywood CA\", \"Marina Del\", \"City North\", \"Locksmith Service\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Locksmith Services",
+      "purpose": "Providing locksmith services",
+      "emotion_tone": "Professional",
+      "description": "Posts related to locksmith services in various locations, including NYC, Brooklyn, Queens, and other cities. Includes services like lock replacement, key making, and emergency locksmith assistance.",
+      "inclusion_cues": [
+       "Locksmith",
+       "NYC",
+       "Brooklyn NY",
+       "Queens",
+       "San Antonio",
+       "Arlington",
+       "Hollywood CA",
+       "Marina Del",
+       "City North",
+       "Locksmith Service"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 127,
+   "seed": 3933267344,
+   "seconds": 3.14
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: barbershop, roofing, contractor, nyc, brooklyn ny, queens, fort worth, san antonio, arlington, hollywood ca, jump start, services, marina del, city north, company\nPosts (one per line, title first):\n- MANHATTAN LOCKSMITH SERVICE\n- Roofing Company Miami | Roofer Mike Inc | 305-519-7879\n- JUMP START LOS ANGELES\n- Barbershop Manhattan New York Stubble Barber\n- Roofing Contractors Bronx - Guaranteed Best Construction Worker\n- LOCKSMITH QUEENS NEW YORK\n- FORT WORTH LOCKSMITH\n- NORTH HOLLYWOOD CA LOCKSMITH\n- SAN JOSE LOCAL LOCKSMITH\n- LOCKSMITH SAN ANTONIO\n- SAN ANTONIO LOCKSMITH PROS\n- LOCKSMITH MORGAN HILL\n- SAN JOSE LOCK SERVICE\n- SAN JOSE LOCKSMITH SERVICE\n- TOWING LOS ANGELES CITY\n- LOCKSMITHS BROOKLYN NY\n- LOS GATOS LOCKSMITH\n- DOWNERS GROVE IL LOCKSMITH\n- LOCKSMITH LEXINGTON HILLS\n- CAROL STREAM IL LOCKSMITH\n- ORANGE COUNTY LOCKSMITHS\n- LOCAL HOUSTON LOCKSMITH\n- Siding contractor Chicago\n- BATTERY REPLACEMENT LOS ANGELES\n- SANTA CLARA COUNTY LOCKSMITH\n- LOCKSMITH SERVICE MANHATTAN\n- GAS DELIVERY LOS ANGELES\n- LOCKSMITH BRONX NY\n- SANTA CLARA LOCKSMITH\n- MARINA DEL REY CA LOCKSMITH\n- TIRE CHANGE LOS ANGELES\n- BROOKLYN NY LOCKSMITH\n- LOCKSMITH SAN MATEO\n- LOCKSMITH LITTLETON CO\n- 24 hour emergency professional locksmith services in Long-Island\n- LOCKSMITH MILPITAS CA\n- Apparently John Snow robbed our Pawn Shop a few days ago.\n- LOCAL LOCKSMITH NYC\n- LOCKSMITH STATEN ISLAND\n- CAR LOCKSMITH MANHATTAN\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Locksmith Services\", \"purpose\": \"Providing locksmith services\", \"emotion_tone\": \"Professional\", \"description\": \"Posts related to locksmith services in various locations, including Manhattan, Brooklyn, Queens, and others.\", \"inclusion_cues\": [\"LOCKSMITH\", \"MANHATTAN\", \"BROOKLYN NY\", \"QUEENS\", \"SAN ANTONIO\", \"LOS ANGELES\", \"HOLLYWOOD CA\", \"MARINA DEL\", \"CITY NORTH\", \"LOCKSMITHS\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Locksmith Services\", \"purpose\": \"Providing locksmith services\", \"emotion_tone\": \"Professional\", \"description\": \"Posts related to locksmith services in various locations, including NYC, Brooklyn, Queens, and other cities. Includes services like lock replacement, key making, and emergency locksmith assistance.\", \"inclusion_cues\": [\"Locksmith\", \"NYC\", \"Brooklyn NY\", \"Queens\", \"San Antonio\", \"Arlington\", \"Hollywood CA\", \"Marina Del\", \"City North\", \"Locksmith Service\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Locksmith Services\", \"purpose\": \"Providing locksmith services\", \"emotion_tone\": \"Professional\", \"description\": \"Posts related to locksmith services in various locations, including NYC, Brooklyn, Queens, and other cities. Includes services like lock replacement, key making, and emergency locksmith assistance.\", \"inclusion_cues\": [\"Locksmith\", \"NYC\", \"Brooklyn NY\", \"Queens\", \"San Antonio\", \"Arlington\", \"Hollywood CA\", \"Marina Del\", \"City North\", \"Locksmith Service\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 126,
+   "seed": 1787034744,
+   "seconds": 0.87
+  }
+ ]
+}

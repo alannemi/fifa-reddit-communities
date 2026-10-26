@@ -1,0 +1,211 @@
+{
+ "period_bin": 4,
+ "topic_id": 1470,
+ "keywords": "mannequin challenge, portugal squad, challenge cristiano, challenge portugal, challenge ronaldo, players cristiano, ronaldo reus, portuguese national, ronaldo marco, trophy, antoine griezmann, feat chelsea, didier drogba, jesse lingard, juventus bayern",
+ "n_sample_posts": 27,
+ "sample_ids": [
+  "5d31vq",
+  "5cl41h",
+  "5cmouz",
+  "5d8bfy",
+  "5cmerh",
+  "5cmc47",
+  "5lfmi2",
+  "5e3vzt",
+  "5dbavo",
+  "5dzsm2",
+  "6n6iuh",
+  "5cmulk",
+  "5bfcsu",
+  "5clkjn",
+  "5dye1b",
+  "5d56i9",
+  "5dznv7",
+  "5cordy",
+  "5ci04j",
+  "5cw65v",
+  "5chy0s",
+  "5d65eu",
+  "5d5cyh",
+  "5d7p3e",
+  "5dn2s4",
+  "5mzv11",
+  "5dahis"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Mannequin Challenge",
+  "purpose": "Celebrating football players and teams through humorous visual challenges",
+  "emotion_tone": "Lighthearted, humorous",
+  "description": "Posts featuring mannequin-like challenges involving football players, teams, and fans, often with a humorous or playful tone.",
+  "inclusion_cues": [
+   "mannequin challenge",
+   "portugal squad",
+   "crisanto ronaldo",
+   "players cristiano",
+   "ronaldo reus",
+   "portuguese national",
+   "ronaldo marco",
+   "trophy",
+   "antoine griezmann",
+   "feat chelsea"
+  ],
+  "n_cues_given": 21
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Mannequin Challenge",
+    "purpose": "Celebrating football players and teams through humorous visual challenges",
+    "emotion_tone": "Lighthearted, humorous",
+    "description": "Posts featuring mannequin-style challenges involving football players, teams, and squads, often with a humorous or playful tone",
+    "inclusion_cues": [
+     "mannequin challenge",
+     "portugal squad",
+     "crisanto ronaldo",
+     "players cristiano",
+     "ronaldo reus",
+     "portuguese national",
+     "antonio griezmann",
+     "feat chelsea",
+     "didier drogba",
+     "jesse lingard"
+    ],
+    "n_cues_given": 19
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Mannequin Challenge",
+    "purpose": "Celebrating football players and teams through humorous visual challenges",
+    "emotion_tone": "Lighthearted, humorous",
+    "description": "Posts featuring mannequin-like challenges involving football players, teams, and fans, often with a humorous or playful tone.",
+    "inclusion_cues": [
+     "mannequin challenge",
+     "portugal squad",
+     "crisanto ronaldo",
+     "players cristiano",
+     "ronaldo reus",
+     "portuguese national",
+     "ronaldo marco",
+     "trophy",
+     "antoine griezmann",
+     "feat chelsea"
+    ],
+    "n_cues_given": 21
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: mannequin challenge, portugal squad, challenge cristiano, challenge portugal, challenge ronaldo, players cristiano, ronaldo reus, portuguese national, ronaldo marco, trophy, antoine griezmann, feat chelsea, didier drogba, jesse lingard, juventus bayern\nPosts (one per line, title first):\n- Belgium's mannequin challenge\n- Portugal Mannequin Challenge\n- Portugal's \"Mannequin Challenge\"\n- Spain mannequin challenge\n- Cristiano Ronaldo Mannequin Challenge | Portugal Squad Mannequin Challenge\n- Portugal's mannequin challenge, ie. Ronaldo flexing.\n- Antoine Griezmann Mannequin Challenge\n- Rosenborg Mannequin Challenge lifting the trophy\n- Spanish Mannequin challenge after 2-2 draw with England\n- Some sucker took the time to cut together many of the football mannequin challenges so you don't have to\n- Great Mannequin Challenges from Juventus, Bayern, Spain NT, Belgian NT, and Portugal NT (and more)\n- Mannequin Challenge ● Football Players (Cristiano Ronaldo, Marco Reus, Raheem Sterling, Mario Götze)\n- BVB Mannequin Challenge\n- Portugal Squad Do Mannequin Challenge\n- Assistant-manager AZ Alkmaar says his team today looked like the mannequin challenge, no movement at all.\n- jamie vardy Mannequin Challenge celebration England VS spain\n- Top Amazing Football Mannequin Challenge ● Cristiano Ronaldo ● Reus ● Spain & Others\n- Portuguese National Team Mannequin Challenge\n- Montreal Impact Mannequin Challenge (feat. Drogba)\n- Jesse Lingard & Marcus Rashford Mannequin Challenge\n- Montreal Impact Mannequin challenge (feat. Chelsea and Ivoirian legendary striker Didier Drogba\n- Spanish NT mannequin challenge\n- England vs Spain: Jamie Vardy mannequin challenge goal celebration delights Wembley fans\n- Spain Mannequin Challenge bananas\n- Spain does Mannequin challenge in Wembley locker room\n- Video: AC Amsterdam Mannequin Challenge\n- Spain NT's Mannequin Challenge After England vs Spain\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Mannequin Challenge\", \"purpose\": \"Celebrating football players and teams through humorous visual challenges\", \"emotion_tone\": \"Lighthearted, humorous\", \"description\": \"Posts featuring mannequin-style challenges involving football players, teams, and squads, often with a humorous or playful tone\", \"inclusion_cues\": [\"mannequin challenge\", \"portugal squad\", \"crisanto ronaldo\", \"players cristiano\", \"ronaldo reus\", \"portuguese national\", \"antonio griezmann\", \"feat chelsea\", \"didier drogba\", \"jesse lingard\", \"juventus bayern\", \"spanish nt\", \"belgian nt\", \"montreal impact\", \"spain nt\", \"england vs spain\", \"trophy\", \"feat chelsea\", \"mannequin challenge\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Mannequin Challenge",
+      "purpose": "Celebrating football players and teams through humorous visual challenges",
+      "emotion_tone": "Lighthearted, humorous",
+      "description": "Posts featuring mannequin-style challenges involving football players, teams, and squads, often with a humorous or playful tone",
+      "inclusion_cues": [
+       "mannequin challenge",
+       "portugal squad",
+       "crisanto ronaldo",
+       "players cristiano",
+       "ronaldo reus",
+       "portuguese national",
+       "antonio griezmann",
+       "feat chelsea",
+       "didier drogba",
+       "jesse lingard"
+      ],
+      "n_cues_given": 19
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 195,
+   "seed": 3077177399,
+   "seconds": 1.12
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: mannequin challenge, portugal squad, challenge cristiano, challenge portugal, challenge ronaldo, players cristiano, ronaldo reus, portuguese national, ronaldo marco, trophy, antoine griezmann, feat chelsea, didier drogba, jesse lingard, juventus bayern\nPosts (one per line, title first):\n- Belgium's mannequin challenge\n- Portugal Mannequin Challenge\n- Portugal's \"Mannequin Challenge\"\n- Spain mannequin challenge\n- Cristiano Ronaldo Mannequin Challenge | Portugal Squad Mannequin Challenge\n- Portugal's mannequin challenge, ie. Ronaldo flexing.\n- Antoine Griezmann Mannequin Challenge\n- Rosenborg Mannequin Challenge lifting the trophy\n- Spanish Mannequin challenge after 2-2 draw with England\n- Some sucker took the time to cut together many of the football mannequin challenges so you don't have to\n- Great Mannequin Challenges from Juventus, Bayern, Spain NT, Belgian NT, and Portugal NT (and more)\n- Mannequin Challenge ● Football Players (Cristiano Ronaldo, Marco Reus, Raheem Sterling, Mario Götze)\n- BVB Mannequin Challenge\n- Portugal Squad Do Mannequin Challenge\n- Assistant-manager AZ Alkmaar says his team today looked like the mannequin challenge, no movement at all.\n- jamie vardy Mannequin Challenge celebration England VS spain\n- Top Amazing Football Mannequin Challenge ● Cristiano Ronaldo ● Reus ● Spain & Others\n- Portuguese National Team Mannequin Challenge\n- Montreal Impact Mannequin Challenge (feat. Drogba)\n- Jesse Lingard & Marcus Rashford Mannequin Challenge\n- Montreal Impact Mannequin challenge (feat. Chelsea and Ivoirian legendary striker Didier Drogba\n- Spanish NT mannequin challenge\n- England vs Spain: Jamie Vardy mannequin challenge goal celebration delights Wembley fans\n- Spain Mannequin Challenge bananas\n- Spain does Mannequin challenge in Wembley locker room\n- Video: AC Amsterdam Mannequin Challenge\n- Spain NT's Mannequin Challenge After England vs Spain\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Mannequin Challenge\", \"purpose\": \"Celebrating football players and teams through humorous visual challenges\", \"emotion_tone\": \"Lighthearted, humorous\", \"description\": \"Posts featuring mannequin-like challenges involving football players, teams, and fans, often with a humorous or playful tone.\", \"inclusion_cues\": [\"mannequin challenge\", \"portugal squad\", \"crisanto ronaldo\", \"players cristiano\", \"ronaldo reus\", \"portuguese national\", \"ronaldo marco\", \"trophy\", \"antoine griezmann\", \"feat chelsea\", \"didier drogba\", \"jesse lingard\", \"juventus bayern\", \"spanish nt\", \"belgian nt\", \"montréal impact\", \"spain nt\", \"england vs spain\", \"mannequin challenge\", \"mannequin challenge\", \"mannequin challenge\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Mannequin Challenge",
+      "purpose": "Celebrating football players and teams through humorous visual challenges",
+      "emotion_tone": "Lighthearted, humorous",
+      "description": "Posts featuring mannequin-like challenges involving football players, teams, and fans, often with a humorous or playful tone.",
+      "inclusion_cues": [
+       "mannequin challenge",
+       "portugal squad",
+       "crisanto ronaldo",
+       "players cristiano",
+       "ronaldo reus",
+       "portuguese national",
+       "ronaldo marco",
+       "trophy",
+       "antoine griezmann",
+       "feat chelsea"
+      ],
+      "n_cues_given": 21
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 208,
+   "seed": 1299050692,
+   "seconds": 1.27
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: mannequin challenge, portugal squad, challenge cristiano, challenge portugal, challenge ronaldo, players cristiano, ronaldo reus, portuguese national, ronaldo marco, trophy, antoine griezmann, feat chelsea, didier drogba, jesse lingard, juventus bayern\nPosts (one per line, title first):\n- Belgium's mannequin challenge\n- Portugal Mannequin Challenge\n- Portugal's \"Mannequin Challenge\"\n- Spain mannequin challenge\n- Cristiano Ronaldo Mannequin Challenge | Portugal Squad Mannequin Challenge\n- Portugal's mannequin challenge, ie. Ronaldo flexing.\n- Antoine Griezmann Mannequin Challenge\n- Rosenborg Mannequin Challenge lifting the trophy\n- Spanish Mannequin challenge after 2-2 draw with England\n- Some sucker took the time to cut together many of the football mannequin challenges so you don't have to\n- Great Mannequin Challenges from Juventus, Bayern, Spain NT, Belgian NT, and Portugal NT (and more)\n- Mannequin Challenge ● Football Players (Cristiano Ronaldo, Marco Reus, Raheem Sterling, Mario Götze)\n- BVB Mannequin Challenge\n- Portugal Squad Do Mannequin Challenge\n- Assistant-manager AZ Alkmaar says his team today looked like the mannequin challenge, no movement at all.\n- jamie vardy Mannequin Challenge celebration England VS spain\n- Top Amazing Football Mannequin Challenge ● Cristiano Ronaldo ● Reus ● Spain & Others\n- Portuguese National Team Mannequin Challenge\n- Montreal Impact Mannequin Challenge (feat. Drogba)\n- Jesse Lingard & Marcus Rashford Mannequin Challenge\n- Montreal Impact Mannequin challenge (feat. Chelsea and Ivoirian legendary striker Didier Drogba\n- Spanish NT mannequin challenge\n- England vs Spain: Jamie Vardy mannequin challenge goal celebration delights Wembley fans\n- Spain Mannequin Challenge bananas\n- Spain does Mannequin challenge in Wembley locker room\n- Video: AC Amsterdam Mannequin Challenge\n- Spain NT's Mannequin Challenge After England vs Spain\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Mannequin Challenge\", \"purpose\": \"Celebrating football players and teams through humorous visual challenges\", \"emotion_tone\": \"Lighthearted, humorous\", \"description\": \"Posts featuring mannequin-style challenges involving football players, teams, and squads, often with a humorous or playful tone\", \"inclusion_cues\": [\"mannequin challenge\", \"portugal squad\", \"crisanto ronaldo\", \"players cristiano\", \"ronaldo reus\", \"portuguese national\", \"antonio griezmann\", \"feat chelsea\", \"didier drogba\", \"jesse lingard\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Mannequin Challenge\", \"purpose\": \"Celebrating football players and teams through humorous visual challenges\", \"emotion_tone\": \"Lighthearted, humorous\", \"description\": \"Posts featuring mannequin-like challenges involving football players, teams, and fans, often with a humorous or playful tone.\", \"inclusion_cues\": [\"mannequin challenge\", \"portugal squad\", \"crisanto ronaldo\", \"players cristiano\", \"ronaldo reus\", \"portuguese national\", \"ronaldo marco\", \"trophy\", \"antoine griezmann\", \"feat chelsea\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Mannequin Challenge\", \"purpose\": \"Celebrating football players and teams through humorous visual challenges\", \"emotion_tone\": \"Lighthearted, humorous\", \"description\": \"Posts featuring mannequin-style challenges involving football players, teams, and fans, often with a humorous or playful tone.\", \"inclusion_cues\": [\"mannequin challenge\", \"portugal squad\", \"crisanto ronaldo\", \"players cristiano\", \"ronaldo reus\", \"portuguese national\", \"ronaldo marco\", \"trophy\", \"antoine griezmann\", \"feat chelsea\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 143,
+   "seed": 2158196178,
+   "seconds": 0.82
+  }
+ ]
+}

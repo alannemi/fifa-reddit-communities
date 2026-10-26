@@ -1,0 +1,201 @@
+{
+ "period_bin": 6,
+ "topic_id": 1242,
+ "keywords": "monday fixtures, oc schedule, wednesday fixtures, tuesday fixtures, thursday fixtures, schedule oc, fixtures schedule, today schedule, oc saturday, today games, schedule schedule, games oc, wednesday slate, fixtures oc, sheet saturday",
+ "n_sample_posts": 30,
+ "sample_ids": [
+  "l7nipu",
+  "l7nipu",
+  "l38jbj",
+  "l606wt",
+  "l606wt",
+  "kuyb23",
+  "kz2uac",
+  "l8hj8a",
+  "kqtyny",
+  "ks8y39",
+  "kvntgx",
+  "ksyp4t",
+  "l97qs5",
+  "l9ynkc",
+  "l6rmnm",
+  "kzqmij",
+  "l3vmxt",
+  "pt3nh2",
+  "l59p51",
+  "l0fj7m",
+  "kwc9r4",
+  "ldtqm1",
+  "l2jj3r",
+  "kx1pov",
+  "laqr6u",
+  "l1sxy8",
+  "kuax4r",
+  "kyfc5a",
+  "kxq4ti",
+  "l153r5"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "OC Fixtures Schedule",
+  "purpose": "Provide a schedule for football games",
+  "emotion_tone": "informative",
+  "description": "Posts related to scheduling football fixtures, including Monday, Tuesday, Wednesday, Thursday, and Saturday games, with a focus on the OC (Olympic City) region.",
+  "inclusion_cues": [
+   "OC schedule",
+   "fixtures schedule",
+   "today schedule",
+   "schedule sheet",
+   "games OC",
+   "schedule sheet for Monday",
+   "schedule sheet for Tuesday",
+   "schedule sheet for Wednesday",
+   "schedule sheet for Thursday",
+   "schedule sheet for Saturday"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "OC Schedule",
+    "purpose": "Provide a schedule for football games",
+    "emotion_tone": "informative",
+    "description": "Posts related to scheduling football games on OC (Olympic Club) and their associated schedules",
+    "inclusion_cues": [
+     "OC schedule",
+     "schedule OC",
+     "fixtures schedule",
+     "today schedule",
+     "sheet schedule",
+     "games OC"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "OC Fixtures Schedule",
+    "purpose": "Provide a schedule for football games",
+    "emotion_tone": "informative",
+    "description": "Posts related to scheduling football fixtures, including Monday, Tuesday, Wednesday, Thursday, and Saturday games, with a focus on the OC (Olympic City) region.",
+    "inclusion_cues": [
+     "OC schedule",
+     "fixtures schedule",
+     "today schedule",
+     "schedule sheet",
+     "games OC",
+     "schedule sheet for Monday",
+     "schedule sheet for Tuesday",
+     "schedule sheet for Wednesday",
+     "schedule sheet for Thursday",
+     "schedule sheet for Saturday"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: monday fixtures, oc schedule, wednesday fixtures, tuesday fixtures, thursday fixtures, schedule oc, fixtures schedule, today schedule, oc saturday, today games, schedule schedule, games oc, wednesday slate, fixtures oc, sheet saturday\nPosts (one per line, title first):\n- [OC] Friday's Fixtures: A Quick Look at Today's Schedule\n- [OC] Friday's Fixtures: A Quick Look at Today's Schedule\n- [OC] Saturday's Fixtures: A Quick Look at Today's Schedule\n- [OC] Wednesday's Fixtures: A Quick Look at Today's Schedule\n- [OC] Wednesday's Fixtures: A Quick Look at Today's Schedule\n- [OC] A Schedule Sheet for Monday's Fixtures\n- A Schedule Sheet for Sunday's Fixtures\n- [OC] Saturday's Fixtures: A Look at Today's Schedule Sheet\n- [OC] A Schedule Sheet for Tuesday's Fixtures\n- [OC] A Schedule Cheat Sheet for a Light Thursday\n- [OC] A Quick Schedule Sheet for Tuesday's Fixtures\n- [OC] A Schedule Cheat Sheet for Friday's Fixtures\n- [OC] A Schedule Sheet for Sunday's Fixtures\n- [OC] A Schedule Sheet & Quick Look at Monday's Fixtures\n- [OC] Thursday's Fixtures: A Quick Look at Today's Schedule\n- A Schedule Sheet for Monday's Fixtures\n- [OC] Sunday's Fixtures: A Quick Look at Today's Schedule\n- [OC] Wednesday's Slate of Fixtures\n- [OC] Tuesday's Fixtures: A Schedule Sheet & Viewing Guide for Today's Games\n- A Schedule Sheet for Tuesday's Fixtures\n- [OC] A Quick Schedule Sheet for Wednesday's Fixtures\n- [OC] A Schedule Cheat Sheet for Saturday's Fixtures\n- [OC] Friday's Fixtures: A Quick Look at Today's Schedule\n- [OC] A Quick Schedule Sheet for Thursday's Fixtures\n- [OC] A Schedule Sheet for Tuesday's Fixtures\n- [OC] Thursday's Fixtures: A Quick Look at Today's Schedule\n- [OC] A Schedule Sheet for Sunday's Fixtures\n- [OC] A Quick Schedule Sheet for Saturday's Fixtures\n- [OC] A Quick Schedule Sheet for Friday's Fixtures\n- [OC] Wednesday's Fixtures: A Quick Look at Today's Schedule\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"OC Schedule\", \"purpose\": \"Provide a schedule for football games\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to scheduling football games on OC (Olympic Club) and their associated schedules\", \"inclusion_cues\": [\"OC schedule\", \"schedule OC\", \"fixtures schedule\", \"today schedule\", \"sheet schedule\", \"games OC\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "OC Schedule",
+      "purpose": "Provide a schedule for football games",
+      "emotion_tone": "informative",
+      "description": "Posts related to scheduling football games on OC (Olympic Club) and their associated schedules",
+      "inclusion_cues": [
+       "OC schedule",
+       "schedule OC",
+       "fixtures schedule",
+       "today schedule",
+       "sheet schedule",
+       "games OC"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 94,
+   "seed": 3398945009,
+   "seconds": 0.77
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: monday fixtures, oc schedule, wednesday fixtures, tuesday fixtures, thursday fixtures, schedule oc, fixtures schedule, today schedule, oc saturday, today games, schedule schedule, games oc, wednesday slate, fixtures oc, sheet saturday\nPosts (one per line, title first):\n- [OC] Friday's Fixtures: A Quick Look at Today's Schedule\n- [OC] Friday's Fixtures: A Quick Look at Today's Schedule\n- [OC] Saturday's Fixtures: A Quick Look at Today's Schedule\n- [OC] Wednesday's Fixtures: A Quick Look at Today's Schedule\n- [OC] Wednesday's Fixtures: A Quick Look at Today's Schedule\n- [OC] A Schedule Sheet for Monday's Fixtures\n- A Schedule Sheet for Sunday's Fixtures\n- [OC] Saturday's Fixtures: A Look at Today's Schedule Sheet\n- [OC] A Schedule Sheet for Tuesday's Fixtures\n- [OC] A Schedule Cheat Sheet for a Light Thursday\n- [OC] A Quick Schedule Sheet for Tuesday's Fixtures\n- [OC] A Schedule Cheat Sheet for Friday's Fixtures\n- [OC] A Schedule Sheet for Sunday's Fixtures\n- [OC] A Schedule Sheet & Quick Look at Monday's Fixtures\n- [OC] Thursday's Fixtures: A Quick Look at Today's Schedule\n- A Schedule Sheet for Monday's Fixtures\n- [OC] Sunday's Fixtures: A Quick Look at Today's Schedule\n- [OC] Wednesday's Slate of Fixtures\n- [OC] Tuesday's Fixtures: A Schedule Sheet & Viewing Guide for Today's Games\n- A Schedule Sheet for Tuesday's Fixtures\n- [OC] A Quick Schedule Sheet for Wednesday's Fixtures\n- [OC] A Schedule Cheat Sheet for Saturday's Fixtures\n- [OC] Friday's Fixtures: A Quick Look at Today's Schedule\n- [OC] A Quick Schedule Sheet for Thursday's Fixtures\n- [OC] A Schedule Sheet for Tuesday's Fixtures\n- [OC] Thursday's Fixtures: A Quick Look at Today's Schedule\n- [OC] A Schedule Sheet for Sunday's Fixtures\n- [OC] A Quick Schedule Sheet for Saturday's Fixtures\n- [OC] A Quick Schedule Sheet for Friday's Fixtures\n- [OC] Wednesday's Fixtures: A Quick Look at Today's Schedule\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"OC Fixtures Schedule\", \"purpose\": \"Provide a schedule for football games\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to scheduling football fixtures, including Monday, Tuesday, Wednesday, Thursday, and Saturday games, with a focus on the OC (Olympic City) region.\", \"inclusion_cues\": [\"OC schedule\", \"fixtures schedule\", \"today schedule\", \"schedule sheet\", \"games OC\", \"schedule sheet for Monday\", \"schedule sheet for Tuesday\", \"schedule sheet for Wednesday\", \"schedule sheet for Thursday\", \"schedule sheet for Saturday\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "OC Fixtures Schedule",
+      "purpose": "Provide a schedule for football games",
+      "emotion_tone": "informative",
+      "description": "Posts related to scheduling football fixtures, including Monday, Tuesday, Wednesday, Thursday, and Saturday games, with a focus on the OC (Olympic City) region.",
+      "inclusion_cues": [
+       "OC schedule",
+       "fixtures schedule",
+       "today schedule",
+       "schedule sheet",
+       "games OC",
+       "schedule sheet for Monday",
+       "schedule sheet for Tuesday",
+       "schedule sheet for Wednesday",
+       "schedule sheet for Thursday",
+       "schedule sheet for Saturday"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 137,
+   "seed": 2468713723,
+   "seconds": 0.82
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: monday fixtures, oc schedule, wednesday fixtures, tuesday fixtures, thursday fixtures, schedule oc, fixtures schedule, today schedule, oc saturday, today games, schedule schedule, games oc, wednesday slate, fixtures oc, sheet saturday\nPosts (one per line, title first):\n- [OC] Friday's Fixtures: A Quick Look at Today's Schedule\n- [OC] Friday's Fixtures: A Quick Look at Today's Schedule\n- [OC] Saturday's Fixtures: A Quick Look at Today's Schedule\n- [OC] Wednesday's Fixtures: A Quick Look at Today's Schedule\n- [OC] Wednesday's Fixtures: A Quick Look at Today's Schedule\n- [OC] A Schedule Sheet for Monday's Fixtures\n- A Schedule Sheet for Sunday's Fixtures\n- [OC] Saturday's Fixtures: A Look at Today's Schedule Sheet\n- [OC] A Schedule Sheet for Tuesday's Fixtures\n- [OC] A Schedule Cheat Sheet for a Light Thursday\n- [OC] A Quick Schedule Sheet for Tuesday's Fixtures\n- [OC] A Schedule Cheat Sheet for Friday's Fixtures\n- [OC] A Schedule Sheet for Sunday's Fixtures\n- [OC] A Schedule Sheet & Quick Look at Monday's Fixtures\n- [OC] Thursday's Fixtures: A Quick Look at Today's Schedule\n- A Schedule Sheet for Monday's Fixtures\n- [OC] Sunday's Fixtures: A Quick Look at Today's Schedule\n- [OC] Wednesday's Slate of Fixtures\n- [OC] Tuesday's Fixtures: A Schedule Sheet & Viewing Guide for Today's Games\n- A Schedule Sheet for Tuesday's Fixtures\n- [OC] A Quick Schedule Sheet for Wednesday's Fixtures\n- [OC] A Schedule Cheat Sheet for Saturday's Fixtures\n- [OC] Friday's Fixtures: A Quick Look at Today's Schedule\n- [OC] A Quick Schedule Sheet for Thursday's Fixtures\n- [OC] A Schedule Sheet for Tuesday's Fixtures\n- [OC] Thursday's Fixtures: A Quick Look at Today's Schedule\n- [OC] A Schedule Sheet for Sunday's Fixtures\n- [OC] A Quick Schedule Sheet for Saturday's Fixtures\n- [OC] A Quick Schedule Sheet for Friday's Fixtures\n- [OC] Wednesday's Fixtures: A Quick Look at Today's Schedule\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"OC Schedule\", \"purpose\": \"Provide a schedule for football games\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to scheduling football games on OC (Olympic Club) and their associated schedules\", \"inclusion_cues\": [\"OC schedule\", \"schedule OC\", \"fixtures schedule\", \"today schedule\", \"sheet schedule\", \"games OC\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"OC Fixtures Schedule\", \"purpose\": \"Provide a schedule for football games\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to scheduling football fixtures, including Monday, Tuesday, Wednesday, Thursday, and Saturday games, with a focus on the OC (Olympic City) region.\", \"inclusion_cues\": [\"OC schedule\", \"fixtures schedule\", \"today schedule\", \"schedule sheet\", \"games OC\", \"schedule sheet for Monday\", \"schedule sheet for Tuesday\", \"schedule sheet for Wednesday\", \"schedule sheet for Thursday\", \"schedule sheet for Saturday\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"OC Fixtures Schedule\", \"purpose\": \"Provide a schedule for football games\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to scheduling football fixtures, including Monday, Tuesday, Wednesday, Thursday, and Saturday games, with a focus on the OC (Olympic City) region.\", \"inclusion_cues\": [\"OC schedule\", \"fixtures schedule\", \"today schedule\", \"schedule sheet\", \"games OC\", \"schedule sheet for Monday\", \"schedule sheet for Tuesday\", \"schedule sheet for Wednesday\", \"schedule sheet for Thursday\", \"schedule sheet for Saturday\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 135,
+   "seed": 1401460059,
+   "seconds": 0.66
+  }
+ ]
+}

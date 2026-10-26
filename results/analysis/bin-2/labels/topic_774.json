@@ -1,0 +1,214 @@
+{
+ "period_bin": 2,
+ "topic_id": 774,
+ "keywords": "beautiful bbc, love bbc, does bbc, bbc, right bbc, work bbc, oh bbc, bbc good, remember bbc, think bbc, bbc silly, bbc don, bbc tonight, bbc bbc, question bbc",
+ "n_sample_posts": 30,
+ "sample_ids": [
+  "ykvx9",
+  "145owf",
+  "vrffl",
+  "pmn07",
+  "1a3mdp",
+  "o46lw",
+  "f8cow",
+  "ykpj1",
+  "m3kri",
+  "sfysr",
+  "hmfxq",
+  "w9zyc",
+  "sqk11",
+  "sqlkf",
+  "s4hv3",
+  "1ck7dh",
+  "yfi81",
+  "pautl",
+  "ihfwn",
+  "11kzn3",
+  "qwfhq",
+  "rbi3s",
+  "yficf",
+  "tfgy5",
+  "hhbex",
+  "f8cwe",
+  "qgj87",
+  "1sbchv",
+  "1usjmx",
+  "ykmwr"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "BBC Football Critique",
+  "purpose": "Critique of BBC's football coverage and content",
+  "emotion_tone": "Critical, sarcastic, amused",
+  "description": "Posts expressing dissatisfaction, amusement, or praise towards BBC's football coverage, including mix-ups, poor decisions, and humorous moments.",
+  "inclusion_cues": [
+   "BBC advertising gone horribly",
+   "Nice work BBC",
+   "BBC getting confused",
+   "BBC spends license payers money",
+   "BBC News homepage - mega double-take",
+   "BBC Nails it",
+   "BBC seem to be having some issues here",
+   "BBC Mix-Up",
+   "BBC granting me elation",
+   "BBC Mix-Up"
+  ],
+  "n_cues_given": 22
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "BBC Football Critique",
+    "purpose": "Critique of BBC's football coverage and content",
+    "emotion_tone": "Critical, sarcastic, humorous",
+    "description": "Posts expressing dissatisfaction or humor about BBC's football coverage, including mix-ups, poor decisions, and humorous moments",
+    "inclusion_cues": [
+     "BBC advertising gone horribly",
+     "Nice work BBC",
+     "BBC getting confused",
+     "BBC spends license payers money",
+     "BBC News homepage - mega double-take",
+     "BBC Nails it",
+     "BBC seem to be having some issues here",
+     "BBC Mix-Up",
+     "BBC granting me elation",
+     "BBC Mix-Up"
+    ],
+    "n_cues_given": 15
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "BBC Football Critique",
+    "purpose": "Critique of BBC's football coverage and content",
+    "emotion_tone": "Critical, sarcastic, amused",
+    "description": "Posts expressing dissatisfaction, amusement, or praise towards BBC's football coverage, including mix-ups, poor decisions, and humorous moments.",
+    "inclusion_cues": [
+     "BBC advertising gone horribly",
+     "Nice work BBC",
+     "BBC getting confused",
+     "BBC spends license payers money",
+     "BBC News homepage - mega double-take",
+     "BBC Nails it",
+     "BBC seem to be having some issues here",
+     "BBC Mix-Up",
+     "BBC granting me elation",
+     "BBC Mix-Up"
+    ],
+    "n_cues_given": 22
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: beautiful bbc, love bbc, does bbc, bbc, right bbc, work bbc, oh bbc, bbc good, remember bbc, think bbc, bbc silly, bbc don, bbc tonight, bbc bbc, question bbc\nPosts (one per line, title first):\n- BBC advertising gone horribly, horribly wrong...\n- Nice work BBC.\n- Nice work, BBC.\n- BBC getting confused. Bigger things happened this evening.\n- BBC spends license payers money on Pat Nevin analysing screenshots from ISS Pro\n- Saw a section on the BBC that made me laugh\n- Errrr, not quite BBC\n- Fake BBC poster... O_o\n- Remember BBC, subtle.\n- BBC News homepage - mega double-take\n- BBC Nails it\n- I don't think the BBC heard the news\n- Even the BBC couldn't believe it\n- I don't think so BBC...\n- Why I love the BBC\n- Wierd coincidences on BBC tonight\n- BBC seem to be having some issues here\n- Thanks for that BBC, would never have guessed otherwise.\n- Oh BBC you so silly...\n- Absolutely Beautiful BBC does it again\n- Good work BBC...\n- Geez, the BBC is getting a bit right-wing these days...\n- BBC granting me elation, followed by confusion and the inevitable disappointment\n- Good Question, BBC\n- Someone at the BBC has too much time on their hands...\n- Not quite right BBC\n- BBC Mix-Up\n- How useful. Thanks BBC\n- What year is it, BBC?\n- I sincerely hope BBC aren't behind this.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"BBC Football Critique\", \"purpose\": \"Critique of BBC's football coverage and content\", \"emotion_tone\": \"Critical, sarcastic, humorous\", \"description\": \"Posts expressing dissatisfaction or humor about BBC's football coverage, including mix-ups, poor decisions, and humorous moments\", \"inclusion_cues\": [\"BBC advertising gone horribly\", \"Nice work BBC\", \"BBC getting confused\", \"BBC spends license payers money\", \"BBC News homepage - mega double-take\", \"BBC Nails it\", \"BBC seem to be having some issues here\", \"BBC Mix-Up\", \"BBC granting me elation\", \"BBC Mix-Up\", \"Good Question, BBC\", \"Someone at the BBC has too much time on their hands\", \"Not quite right BBC\", \"BBC Mix-Up\", \"What year is it, BBC?\"]]}]}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "BBC Football Critique",
+      "purpose": "Critique of BBC's football coverage and content",
+      "emotion_tone": "Critical, sarcastic, humorous",
+      "description": "Posts expressing dissatisfaction or humor about BBC's football coverage, including mix-ups, poor decisions, and humorous moments",
+      "inclusion_cues": [
+       "BBC advertising gone horribly",
+       "Nice work BBC",
+       "BBC getting confused",
+       "BBC spends license payers money",
+       "BBC News homepage - mega double-take",
+       "BBC Nails it",
+       "BBC seem to be having some issues here",
+       "BBC Mix-Up",
+       "BBC granting me elation",
+       "BBC Mix-Up"
+      ],
+      "n_cues_given": 15
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 749)",
+   "n_tokens": 187,
+   "seed": 106580288,
+   "seconds": 1.17
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: beautiful bbc, love bbc, does bbc, bbc, right bbc, work bbc, oh bbc, bbc good, remember bbc, think bbc, bbc silly, bbc don, bbc tonight, bbc bbc, question bbc\nPosts (one per line, title first):\n- BBC advertising gone horribly, horribly wrong...\n- Nice work BBC.\n- Nice work, BBC.\n- BBC getting confused. Bigger things happened this evening.\n- BBC spends license payers money on Pat Nevin analysing screenshots from ISS Pro\n- Saw a section on the BBC that made me laugh\n- Errrr, not quite BBC\n- Fake BBC poster... O_o\n- Remember BBC, subtle.\n- BBC News homepage - mega double-take\n- BBC Nails it\n- I don't think the BBC heard the news\n- Even the BBC couldn't believe it\n- I don't think so BBC...\n- Why I love the BBC\n- Wierd coincidences on BBC tonight\n- BBC seem to be having some issues here\n- Thanks for that BBC, would never have guessed otherwise.\n- Oh BBC you so silly...\n- Absolutely Beautiful BBC does it again\n- Good work BBC...\n- Geez, the BBC is getting a bit right-wing these days...\n- BBC granting me elation, followed by confusion and the inevitable disappointment\n- Good Question, BBC\n- Someone at the BBC has too much time on their hands...\n- Not quite right BBC\n- BBC Mix-Up\n- How useful. Thanks BBC\n- What year is it, BBC?\n- I sincerely hope BBC aren't behind this.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"BBC Football Critique\", \"purpose\": \"Critique of BBC's football coverage and content\", \"emotion_tone\": \"Critical, sarcastic, amused\", \"description\": \"Posts expressing dissatisfaction, amusement, or praise towards BBC's football coverage, including mix-ups, poor decisions, and humorous moments.\", \"inclusion_cues\": [\"BBC advertising gone horribly\", \"Nice work BBC\", \"BBC getting confused\", \"BBC spends license payers money\", \"BBC News homepage - mega double-take\", \"BBC Nails it\", \"BBC seem to be having some issues here\", \"BBC Mix-Up\", \"BBC granting me elation\", \"BBC Mix-Up\", \"Good work BBC\", \"Good Question, BBC\", \"Someone at the BBC has too much time on their hands\", \"Not quite right BBC\", \"BBC Mix-Up\", \"What year is it, BBC?\", \"I sincerely hope BBC aren't behind this\", \"Oh BBC you so silly\", \"Absolutely Beautiful BBC does it again\", \"Thanks for that BBC\", \"Geez, the BBC is getting a bit right-wing these days\", \"BBC granting me elation, followed by confusion and the inevitable disappointment\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "BBC Football Critique",
+      "purpose": "Critique of BBC's football coverage and content",
+      "emotion_tone": "Critical, sarcastic, amused",
+      "description": "Posts expressing dissatisfaction, amusement, or praise towards BBC's football coverage, including mix-ups, poor decisions, and humorous moments.",
+      "inclusion_cues": [
+       "BBC advertising gone horribly",
+       "Nice work BBC",
+       "BBC getting confused",
+       "BBC spends license payers money",
+       "BBC News homepage - mega double-take",
+       "BBC Nails it",
+       "BBC seem to be having some issues here",
+       "BBC Mix-Up",
+       "BBC granting me elation",
+       "BBC Mix-Up"
+      ],
+      "n_cues_given": 22
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 256,
+   "seed": 3054012316,
+   "seconds": 1.3
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: beautiful bbc, love bbc, does bbc, bbc, right bbc, work bbc, oh bbc, bbc good, remember bbc, think bbc, bbc silly, bbc don, bbc tonight, bbc bbc, question bbc\nPosts (one per line, title first):\n- BBC advertising gone horribly, horribly wrong...\n- Nice work BBC.\n- Nice work, BBC.\n- BBC getting confused. Bigger things happened this evening.\n- BBC spends license payers money on Pat Nevin analysing screenshots from ISS Pro\n- Saw a section on the BBC that made me laugh\n- Errrr, not quite BBC\n- Fake BBC poster... O_o\n- Remember BBC, subtle.\n- BBC News homepage - mega double-take\n- BBC Nails it\n- I don't think the BBC heard the news\n- Even the BBC couldn't believe it\n- I don't think so BBC...\n- Why I love the BBC\n- Wierd coincidences on BBC tonight\n- BBC seem to be having some issues here\n- Thanks for that BBC, would never have guessed otherwise.\n- Oh BBC you so silly...\n- Absolutely Beautiful BBC does it again\n- Good work BBC...\n- Geez, the BBC is getting a bit right-wing these days...\n- BBC granting me elation, followed by confusion and the inevitable disappointment\n- Good Question, BBC\n- Someone at the BBC has too much time on their hands...\n- Not quite right BBC\n- BBC Mix-Up\n- How useful. Thanks BBC\n- What year is it, BBC?\n- I sincerely hope BBC aren't behind this.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"BBC Football Critique\", \"purpose\": \"Critique of BBC's football coverage and content\", \"emotion_tone\": \"Critical, sarcastic, humorous\", \"description\": \"Posts expressing dissatisfaction or humor about BBC's football coverage, including mix-ups, poor decisions, and humorous moments\", \"inclusion_cues\": [\"BBC advertising gone horribly\", \"Nice work BBC\", \"BBC getting confused\", \"BBC spends license payers money\", \"BBC News homepage - mega double-take\", \"BBC Nails it\", \"BBC seem to be having some issues here\", \"BBC Mix-Up\", \"BBC granting me elation\", \"BBC Mix-Up\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"BBC Football Critique\", \"purpose\": \"Critique of BBC's football coverage and content\", \"emotion_tone\": \"Critical, sarcastic, amused\", \"description\": \"Posts expressing dissatisfaction, amusement, or praise towards BBC's football coverage, including mix-ups, poor decisions, and humorous moments.\", \"inclusion_cues\": [\"BBC advertising gone horribly\", \"Nice work BBC\", \"BBC getting confused\", \"BBC spends license payers money\", \"BBC News homepage - mega double-take\", \"BBC Nails it\", \"BBC seem to be having some issues here\", \"BBC Mix-Up\", \"BBC granting me elation\", \"BBC Mix-Up\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"BBC Football Critique\", \"purpose\": \"Critique of BBC's football coverage and content\", \"emotion_tone\": \"Critical, sarcastic, amused\", \"description\": \"Posts expressing dissatisfaction, amusement, or praise towards BBC's football coverage, including mix-ups, poor decisions, and humorous moments.\", \"inclusion_cues\": [\"BBC advertising gone horribly\", \"Nice work BBC\", \"BBC getting confused\", \"BBC spends license payers money\", \"BBC News homepage - mega double-take\", \"BBC Nails it\", \"BBC seem to be having some issues here\", \"BBC Mix-Up\", \"BBC granting me elation\", \"BBC Mix-Up\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 149,
+   "seed": 2029678903,
+   "seconds": 0.99
+  }
+ ]
+}

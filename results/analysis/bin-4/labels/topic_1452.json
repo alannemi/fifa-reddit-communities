@@ -1,0 +1,174 @@
+{
+ "period_bin": 4,
+ "topic_id": 1452,
+ "keywords": "rooney, rooney arrives, wayne rooney, star rooney, arrested drink, ferdinand wayne, drink driving, rooney given, driving ban, striker wayne, guilty plea, england footballer, news wayne, plea england, cheshire",
+ "n_sample_posts": 28,
+ "sample_ids": [
+  "6xd714",
+  "6xdwj8",
+  "6xdu88",
+  "713ptb",
+  "70txew",
+  "44h1rf",
+  "6xevk3",
+  "6xdrcn",
+  "7nn41a",
+  "77dmjn",
+  "70uscq",
+  "70ued5",
+  "4uo29p",
+  "7m1a6w",
+  "6xe6zv",
+  "70ua8b",
+  "7m7uek",
+  "7nlxgk",
+  "6xdr22",
+  "3vpjf6",
+  "6zlamm",
+  "6xdsas",
+  "6xdlk6",
+  "70u6yf",
+  "70tyns",
+  "6y7fgy",
+  "71qb07",
+  "6xe7ae"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Drink Driving Arrests",
+  "purpose": "Report on Wayne Rooney and others' drink-driving arrests and legal actions",
+  "emotion_tone": "Factual and concerned",
+  "description": "Posts about Wayne Rooney and others being arrested for drink-driving, including legal consequences and public reactions",
+  "inclusion_cues": [
+   "Wayne Rooney arrested on suspicion of drink-driving",
+   "Rooney banned from driving for 2 years after guilty plea",
+   "Ex-England footballer Ray Wilkins given suspended sentence for drink driving"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Drink Driving Arrests",
+    "purpose": "Report on Wayne Rooney and others' drink-driving arrests and legal actions",
+    "emotion_tone": "Factual and concerned",
+    "description": "Posts about Wayne Rooney and others being arrested for drink-driving, including legal consequences and public reactions",
+    "inclusion_cues": [
+     "Wayne Rooney arrested on suspicion of drink-driving",
+     "Rooney banned from driving for 2 years after guilty plea",
+     "Rooney pleads guilty to drink-driving charge",
+     "Alcohol found in Rooney's blood tests"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Drink Driving Arrests",
+    "purpose": "Report on Wayne Rooney and others' drink-driving arrests and legal actions",
+    "emotion_tone": "Factual and concerned",
+    "description": "Posts about Wayne Rooney and others being arrested for drink-driving, including legal consequences and public reactions",
+    "inclusion_cues": [
+     "Wayne Rooney arrested on suspicion of drink-driving",
+     "Rooney banned from driving for 2 years after guilty plea",
+     "Ex-England footballer Ray Wilkins given suspended sentence for drink driving"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: rooney, rooney arrives, wayne rooney, star rooney, arrested drink, ferdinand wayne, drink driving, rooney given, driving ban, striker wayne, guilty plea, england footballer, news wayne, plea england, cheshire\nPosts (one per line, title first):\n- Everton striker Wayne Rooney arrested on suspicion of drink-driving close to home in Cheshire\n- Wayne Rooney arrested on suspicion of drink-driving - BBC News\n- Wayne Rooney 'arrested on suspicion of drink-driving' near his Cheshire home\n- Rooney banned from driving for 2 years after pleading guilty to drink-driving charge\n- Wayne Rooney pleads guilty to drink-driving charge\n- Callum McGregor arrested on suspicion of drink-driving at 3am\n- Rio Ferdinand's take on Wayne Rooney being caught drunk driving\n- Breaking: Everton 'Star' Rooney Arrested for Drink Driving\n- Ex-England star Trevor Sinclair admits drink driving\n- Northern Ireland boss admits drink driving\n- Wayne Rooney arrives at court for drink driving charges\n- OMG! Rooney banned from driving after drink-drive guilty plea\n- Ex-England footballer Ray Wilkins given suspended sentence for drink driving, after admitting he's 'an addict'.\n- Dundee United player Jamie Robson seems to have been caught drink driving in his own Snapchat.\n- Rooney arrested on suspicion of drinking and driving near his home\n- England's all-time leading goal scorer pleads guilty to drink driving charges\n- Dundee United player Jamie Robson allegedly drink driving on Snapchat\n- Trevor Sinclair pleads guilty to drink driving and racially abusing a police officer\n- Wayne Rooney arrested for 'drink driving'\n- (Rumoured) Alcohol found in Wayne Rooney's blood tests, he is not injured\n- Football manager in drink-driving arrest\n- Wayne Rooney held overnight for driving ‘while three times over the limit’\n- Rooney arrested on suspicions of drink driving\n- Wayne Rooney banned (from driving) for 2 years after admitting drink-driving\n- Daniel Taylor on Twitter: Wayne Rooney has been given a two-year driving ban, a 12-month community order and 100 hours of unpaid work\n- Rooney Defends Drink Driving Charge: 'You Try Being In Liverpool Sober'\n- Ray Wilkins defends 'superstar' Wayne Rooney over drink-driving charge\n- Wayne Rooney has now been charged with drink-driving - BBC\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Drink Driving Arrests\", \"purpose\": \"Report on Wayne Rooney and others' drink-driving arrests and legal actions\", \"emotion_tone\": \"Factual and concerned\", \"description\": \"Posts about Wayne Rooney and others being arrested for drink-driving, including legal consequences and public reactions\", \"inclusion_cues\": [\"Wayne Rooney arrested on suspicion of drink-driving\", \"Rooney banned from driving for 2 years after guilty plea\", \"Rooney pleads guilty to drink-driving charge\", \"Alcohol found in Rooney's blood tests\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Drink Driving Arrests",
+      "purpose": "Report on Wayne Rooney and others' drink-driving arrests and legal actions",
+      "emotion_tone": "Factual and concerned",
+      "description": "Posts about Wayne Rooney and others being arrested for drink-driving, including legal consequences and public reactions",
+      "inclusion_cues": [
+       "Wayne Rooney arrested on suspicion of drink-driving",
+       "Rooney banned from driving for 2 years after guilty plea",
+       "Rooney pleads guilty to drink-driving charge",
+       "Alcohol found in Rooney's blood tests"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 126,
+   "seed": 954676872,
+   "seconds": 2.26
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: rooney, rooney arrives, wayne rooney, star rooney, arrested drink, ferdinand wayne, drink driving, rooney given, driving ban, striker wayne, guilty plea, england footballer, news wayne, plea england, cheshire\nPosts (one per line, title first):\n- Everton striker Wayne Rooney arrested on suspicion of drink-driving close to home in Cheshire\n- Wayne Rooney arrested on suspicion of drink-driving - BBC News\n- Wayne Rooney 'arrested on suspicion of drink-driving' near his Cheshire home\n- Rooney banned from driving for 2 years after pleading guilty to drink-driving charge\n- Wayne Rooney pleads guilty to drink-driving charge\n- Callum McGregor arrested on suspicion of drink-driving at 3am\n- Rio Ferdinand's take on Wayne Rooney being caught drunk driving\n- Breaking: Everton 'Star' Rooney Arrested for Drink Driving\n- Ex-England star Trevor Sinclair admits drink driving\n- Northern Ireland boss admits drink driving\n- Wayne Rooney arrives at court for drink driving charges\n- OMG! Rooney banned from driving after drink-drive guilty plea\n- Ex-England footballer Ray Wilkins given suspended sentence for drink driving, after admitting he's 'an addict'.\n- Dundee United player Jamie Robson seems to have been caught drink driving in his own Snapchat.\n- Rooney arrested on suspicion of drinking and driving near his home\n- England's all-time leading goal scorer pleads guilty to drink driving charges\n- Dundee United player Jamie Robson allegedly drink driving on Snapchat\n- Trevor Sinclair pleads guilty to drink driving and racially abusing a police officer\n- Wayne Rooney arrested for 'drink driving'\n- (Rumoured) Alcohol found in Wayne Rooney's blood tests, he is not injured\n- Football manager in drink-driving arrest\n- Wayne Rooney held overnight for driving ‘while three times over the limit’\n- Rooney arrested on suspicions of drink driving\n- Wayne Rooney banned (from driving) for 2 years after admitting drink-driving\n- Daniel Taylor on Twitter: Wayne Rooney has been given a two-year driving ban, a 12-month community order and 100 hours of unpaid work\n- Rooney Defends Drink Driving Charge: 'You Try Being In Liverpool Sober'\n- Ray Wilkins defends 'superstar' Wayne Rooney over drink-driving charge\n- Wayne Rooney has now been charged with drink-driving - BBC\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Drink Driving Arrests\", \"purpose\": \"Report on Wayne Rooney and others' drink-driving arrests and legal actions\", \"emotion_tone\": \"Factual and concerned\", \"description\": \"Posts about Wayne Rooney and others being arrested for drink-driving, including legal consequences and public reactions\", \"inclusion_cues\": [\"Wayne Rooney arrested on suspicion of drink-driving\", \"Rooney banned from driving for 2 years after guilty plea\", \"Ex-England footballer Ray Wilkins given suspended sentence for drink driving\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Drink Driving Arrests",
+      "purpose": "Report on Wayne Rooney and others' drink-driving arrests and legal actions",
+      "emotion_tone": "Factual and concerned",
+      "description": "Posts about Wayne Rooney and others being arrested for drink-driving, including legal consequences and public reactions",
+      "inclusion_cues": [
+       "Wayne Rooney arrested on suspicion of drink-driving",
+       "Rooney banned from driving for 2 years after guilty plea",
+       "Ex-England footballer Ray Wilkins given suspended sentence for drink driving"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 121,
+   "seed": 965979982,
+   "seconds": 0.71
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: rooney, rooney arrives, wayne rooney, star rooney, arrested drink, ferdinand wayne, drink driving, rooney given, driving ban, striker wayne, guilty plea, england footballer, news wayne, plea england, cheshire\nPosts (one per line, title first):\n- Everton striker Wayne Rooney arrested on suspicion of drink-driving close to home in Cheshire\n- Wayne Rooney arrested on suspicion of drink-driving - BBC News\n- Wayne Rooney 'arrested on suspicion of drink-driving' near his Cheshire home\n- Rooney banned from driving for 2 years after pleading guilty to drink-driving charge\n- Wayne Rooney pleads guilty to drink-driving charge\n- Callum McGregor arrested on suspicion of drink-driving at 3am\n- Rio Ferdinand's take on Wayne Rooney being caught drunk driving\n- Breaking: Everton 'Star' Rooney Arrested for Drink Driving\n- Ex-England star Trevor Sinclair admits drink driving\n- Northern Ireland boss admits drink driving\n- Wayne Rooney arrives at court for drink driving charges\n- OMG! Rooney banned from driving after drink-drive guilty plea\n- Ex-England footballer Ray Wilkins given suspended sentence for drink driving, after admitting he's 'an addict'.\n- Dundee United player Jamie Robson seems to have been caught drink driving in his own Snapchat.\n- Rooney arrested on suspicion of drinking and driving near his home\n- England's all-time leading goal scorer pleads guilty to drink driving charges\n- Dundee United player Jamie Robson allegedly drink driving on Snapchat\n- Trevor Sinclair pleads guilty to drink driving and racially abusing a police officer\n- Wayne Rooney arrested for 'drink driving'\n- (Rumoured) Alcohol found in Wayne Rooney's blood tests, he is not injured\n- Football manager in drink-driving arrest\n- Wayne Rooney held overnight for driving ‘while three times over the limit’\n- Rooney arrested on suspicions of drink driving\n- Wayne Rooney banned (from driving) for 2 years after admitting drink-driving\n- Daniel Taylor on Twitter: Wayne Rooney has been given a two-year driving ban, a 12-month community order and 100 hours of unpaid work\n- Rooney Defends Drink Driving Charge: 'You Try Being In Liverpool Sober'\n- Ray Wilkins defends 'superstar' Wayne Rooney over drink-driving charge\n- Wayne Rooney has now been charged with drink-driving - BBC\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Drink Driving Arrests\", \"purpose\": \"Report on Wayne Rooney and others' drink-driving arrests and legal actions\", \"emotion_tone\": \"Factual and concerned\", \"description\": \"Posts about Wayne Rooney and others being arrested for drink-driving, including legal consequences and public reactions\", \"inclusion_cues\": [\"Wayne Rooney arrested on suspicion of drink-driving\", \"Rooney banned from driving for 2 years after guilty plea\", \"Rooney pleads guilty to drink-driving charge\", \"Alcohol found in Rooney's blood tests\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Drink Driving Arrests\", \"purpose\": \"Report on Wayne Rooney and others' drink-driving arrests and legal actions\", \"emotion_tone\": \"Factual and concerned\", \"description\": \"Posts about Wayne Rooney and others being arrested for drink-driving, including legal consequences and public reactions\", \"inclusion_cues\": [\"Wayne Rooney arrested on suspicion of drink-driving\", \"Rooney banned from driving for 2 years after guilty plea\", \"Ex-England footballer Ray Wilkins given suspended sentence for drink driving\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Drink Driving Arrests\", \"purpose\": \"Report on Wayne Rooney and others' drink-driving arrests and legal actions\", \"emotion_tone\": \"Factual and concerned\", \"description\": \"Posts about Wayne Rooney and others being arrested for drink-driving, including legal consequences and public reactions\", \"inclusion_cues\": [\"Wayne Rooney arrested on suspicion of drink-driving\", \"Rooney banned from driving for 2 years after guilty plea\", \"Ex-England footballer Ray Wilkins given suspended sentence for drink driving\", \"Alcohol found in Rooney's blood tests\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 130,
+   "seed": 3065837939,
+   "seconds": 0.61
+  }
+ ]
+}

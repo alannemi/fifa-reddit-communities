@@ -1,0 +1,203 @@
+{
+ "period_bin": 8,
+ "topic_id": 778,
+ "keywords": "club statement, statement everton, everton club, chester fc, everton fc, fc club, forest nottingham, evertonians, united leeds, official club, united club, hearts club, everton everton, city club, southend",
+ "n_sample_posts": 31,
+ "sample_ids": [
+  "1bhwugv",
+  "1hvswru",
+  "12iqbj3",
+  "14bbnkf",
+  "18ibmmn",
+  "1cy92ch",
+  "1dl458t",
+  "18j077i",
+  "13juriq",
+  "12g8m3g",
+  "128rc8d",
+  "16ble0q",
+  "1ilbhls",
+  "199yt2r",
+  "13v69nk",
+  "188eie6",
+  "15uefvg",
+  "1kmkg3j",
+  "15zzoau",
+  "1ey2mil",
+  "1fy7ous",
+  "1dl46z0",
+  "1j8nugk",
+  "1bmtcbj",
+  "1jtv6es",
+  "1mew03l",
+  "1hvsxb4",
+  "1ff1nlg",
+  "1bhvtyo",
+  "1gfp0yj",
+  "1cafs7p"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Club Statement",
+  "purpose": "Announcement of club-related matters",
+  "emotion_tone": "Official and assertive",
+  "description": "Posts related to club statements, official announcements, and fan initiatives involving football clubs",
+  "inclusion_cues": [
+   "Club statement",
+   "Everton club",
+   "Forest nottingham",
+   "City club",
+   "United club",
+   "Hearts club",
+   "Southend"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Club Statement",
+    "purpose": "Announce club-related news or updates",
+    "emotion_tone": "Official and assertive",
+    "description": "Posts related to club announcements, statements, or official communications",
+    "inclusion_cues": [
+     "club statement",
+     "statement everton",
+     "everton club",
+     "fc club",
+     "forest nottingham",
+     "evertonians",
+     "united leeds",
+     "official club",
+     "united club",
+     "hearts club"
+    ],
+    "n_cues_given": 13
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Club Statement",
+    "purpose": "Announcement of club-related matters",
+    "emotion_tone": "Official and assertive",
+    "description": "Posts related to club statements, official announcements, and fan initiatives involving football clubs",
+    "inclusion_cues": [
+     "Club statement",
+     "Everton club",
+     "Forest nottingham",
+     "City club",
+     "United club",
+     "Hearts club",
+     "Southend"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: club statement, statement everton, everton club, chester fc, everton fc, fc club, forest nottingham, evertonians, united leeds, official club, united club, hearts club, everton everton, city club, southend\nPosts (one per line, title first):\n- [Nottingham Forest] Club statement\n- 2 of Crystal Palace/Palace for Life Foundation's staff members had gone missing while hiking in the Dolomites.\n- Nottingham Forest FC - Club statement: Filippo Giraldi\n- [Harry Tyrer, Everton FC] \"Chester FC treated me like one of their own from day one, an amazing club and I hope they can go one step further in 23/24! Thought I'd make a pledge to Boost the Budget.\"\n- @ElBobble A giant TV screen has now arrived at Premier League HQ courtesy of Everton fan group The 1878s. The message is loud and clear once again from Evertonians with a video being played in and around central London for 8 hours as fans continue to keep the heat on the Premier League hierarchy\n- [West Brom] Club statement\n- Everton - Club Statement\n- [North Shields FC] Club Statement\n- [Cefn Druids FC] Club Statement\n- [New York Red Bulls] club statement\n- [Manchester City] Club Statement\n- [Manchester United] Club statement.\n- [Leeds United] Club Statement\n- [FC_Cwmaman] Club Statement. The club could be denied promotion due to an admin error\n- [Leeds United] Club statement\n- [AVFC] Club statement\n- Everton by name Everton by nature / Ché Zach Everton Fred Adams Wonder what the back story is….\n- Man Utd won't hold end of season award dinner again\n- Charlton glimpse hope after dark times – with reluctant reality TV star at the helm\n- [Hashtag United] OFFICIAL CLUB STATEMENT.\n- [Man City Official] Club statement\n- [Everton] Club Statement\n- [Man Utd on Instagram] This is your future. Your home. Your United.\n- [JamsTarts] Hearts Club Statement: \"we've been done a belter\"\n- The accidental Shrimper: American student becomes Southend fan after boarding wrong boat\n- Textor and Marinakis discuss Botafogo's inclusion in Nottingham Forest's club network\n- 2 of Crystal Palace/Palace for Life Foundation's staff have gone missing while hiking in the Dolomites.\n- Everton Club Statement\n- [Nottingham Forest] Nottingham Forest Club statement\n- [Cambridge United] reveal their new identity\n- [Nottingham Forest Statement] on X\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Club Statement\", \"purpose\": \"Announce club-related news or updates\", \"emotion_tone\": \"Official and assertive\", \"description\": \"Posts related to club announcements, statements, or official communications\", \"inclusion_cues\": [\"club statement\", \"statement everton\", \"everton club\", \"fc club\", \"forest nottingham\", \"evertonians\", \"united leeds\", \"official club\", \"united club\", \"hearts club\", \"everton everton\", \"city club\", \"southend\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Club Statement",
+      "purpose": "Announce club-related news or updates",
+      "emotion_tone": "Official and assertive",
+      "description": "Posts related to club announcements, statements, or official communications",
+      "inclusion_cues": [
+       "club statement",
+       "statement everton",
+       "everton club",
+       "fc club",
+       "forest nottingham",
+       "evertonians",
+       "united leeds",
+       "official club",
+       "united club",
+       "hearts club"
+      ],
+      "n_cues_given": 13
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 127,
+   "seed": 4019771922,
+   "seconds": 1.38
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: club statement, statement everton, everton club, chester fc, everton fc, fc club, forest nottingham, evertonians, united leeds, official club, united club, hearts club, everton everton, city club, southend\nPosts (one per line, title first):\n- [Nottingham Forest] Club statement\n- 2 of Crystal Palace/Palace for Life Foundation's staff members had gone missing while hiking in the Dolomites.\n- Nottingham Forest FC - Club statement: Filippo Giraldi\n- [Harry Tyrer, Everton FC] \"Chester FC treated me like one of their own from day one, an amazing club and I hope they can go one step further in 23/24! Thought I'd make a pledge to Boost the Budget.\"\n- @ElBobble A giant TV screen has now arrived at Premier League HQ courtesy of Everton fan group The 1878s. The message is loud and clear once again from Evertonians with a video being played in and around central London for 8 hours as fans continue to keep the heat on the Premier League hierarchy\n- [West Brom] Club statement\n- Everton - Club Statement\n- [North Shields FC] Club Statement\n- [Cefn Druids FC] Club Statement\n- [New York Red Bulls] club statement\n- [Manchester City] Club Statement\n- [Manchester United] Club statement.\n- [Leeds United] Club Statement\n- [FC_Cwmaman] Club Statement. The club could be denied promotion due to an admin error\n- [Leeds United] Club statement\n- [AVFC] Club statement\n- Everton by name Everton by nature / Ché Zach Everton Fred Adams Wonder what the back story is….\n- Man Utd won't hold end of season award dinner again\n- Charlton glimpse hope after dark times – with reluctant reality TV star at the helm\n- [Hashtag United] OFFICIAL CLUB STATEMENT.\n- [Man City Official] Club statement\n- [Everton] Club Statement\n- [Man Utd on Instagram] This is your future. Your home. Your United.\n- [JamsTarts] Hearts Club Statement: \"we've been done a belter\"\n- The accidental Shrimper: American student becomes Southend fan after boarding wrong boat\n- Textor and Marinakis discuss Botafogo's inclusion in Nottingham Forest's club network\n- 2 of Crystal Palace/Palace for Life Foundation's staff have gone missing while hiking in the Dolomites.\n- Everton Club Statement\n- [Nottingham Forest] Nottingham Forest Club statement\n- [Cambridge United] reveal their new identity\n- [Nottingham Forest Statement] on X\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Club Statement\", \"purpose\": \"Announcement of club-related matters\", \"emotion_tone\": \"Official and assertive\", \"description\": \"Posts related to club statements, official announcements, and fan initiatives involving football clubs\", \"inclusion_cues\": [\"Club statement\", \"Everton club\", \"Forest nottingham\", \"City club\", \"United club\", \"Hearts club\", \"Southend\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Club Statement",
+      "purpose": "Announcement of club-related matters",
+      "emotion_tone": "Official and assertive",
+      "description": "Posts related to club statements, official announcements, and fan initiatives involving football clubs",
+      "inclusion_cues": [
+       "Club statement",
+       "Everton club",
+       "Forest nottingham",
+       "City club",
+       "United club",
+       "Hearts club",
+       "Southend"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 99,
+   "seed": 3872847142,
+   "seconds": 1.92
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: club statement, statement everton, everton club, chester fc, everton fc, fc club, forest nottingham, evertonians, united leeds, official club, united club, hearts club, everton everton, city club, southend\nPosts (one per line, title first):\n- [Nottingham Forest] Club statement\n- 2 of Crystal Palace/Palace for Life Foundation's staff members had gone missing while hiking in the Dolomites.\n- Nottingham Forest FC - Club statement: Filippo Giraldi\n- [Harry Tyrer, Everton FC] \"Chester FC treated me like one of their own from day one, an amazing club and I hope they can go one step further in 23/24! Thought I'd make a pledge to Boost the Budget.\"\n- @ElBobble A giant TV screen has now arrived at Premier League HQ courtesy of Everton fan group The 1878s. The message is loud and clear once again from Evertonians with a video being played in and around central London for 8 hours as fans continue to keep the heat on the Premier League hierarchy\n- [West Brom] Club statement\n- Everton - Club Statement\n- [North Shields FC] Club Statement\n- [Cefn Druids FC] Club Statement\n- [New York Red Bulls] club statement\n- [Manchester City] Club Statement\n- [Manchester United] Club statement.\n- [Leeds United] Club Statement\n- [FC_Cwmaman] Club Statement. The club could be denied promotion due to an admin error\n- [Leeds United] Club statement\n- [AVFC] Club statement\n- Everton by name Everton by nature / Ché Zach Everton Fred Adams Wonder what the back story is….\n- Man Utd won't hold end of season award dinner again\n- Charlton glimpse hope after dark times – with reluctant reality TV star at the helm\n- [Hashtag United] OFFICIAL CLUB STATEMENT.\n- [Man City Official] Club statement\n- [Everton] Club Statement\n- [Man Utd on Instagram] This is your future. Your home. Your United.\n- [JamsTarts] Hearts Club Statement: \"we've been done a belter\"\n- The accidental Shrimper: American student becomes Southend fan after boarding wrong boat\n- Textor and Marinakis discuss Botafogo's inclusion in Nottingham Forest's club network\n- 2 of Crystal Palace/Palace for Life Foundation's staff have gone missing while hiking in the Dolomites.\n- Everton Club Statement\n- [Nottingham Forest] Nottingham Forest Club statement\n- [Cambridge United] reveal their new identity\n- [Nottingham Forest Statement] on X\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Club Statement\", \"purpose\": \"Announce club-related news or updates\", \"emotion_tone\": \"Official and assertive\", \"description\": \"Posts related to club announcements, statements, or official communications\", \"inclusion_cues\": [\"club statement\", \"statement everton\", \"everton club\", \"fc club\", \"forest nottingham\", \"evertonians\", \"united leeds\", \"official club\", \"united club\", \"hearts club\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Club Statement\", \"purpose\": \"Announcement of club-related matters\", \"emotion_tone\": \"Official and assertive\", \"description\": \"Posts related to club statements, official announcements, and fan initiatives involving football clubs\", \"inclusion_cues\": [\"Club statement\", \"Everton club\", \"Forest nottingham\", \"City club\", \"United club\", \"Hearts club\", \"Southend\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Club Statement\", \"purpose\": \"Announcement of club-related matters\", \"emotion_tone\": \"Official and assertive\", \"description\": \"Posts related to club statements, official announcements, and fan initiatives involving football clubs\", \"inclusion_cues\": [\"Club statement\", \"Everton club\", \"Forest nottingham\", \"City club\", \"United club\", \"Hearts club\", \"Southend\"]]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 407)",
+   "n_tokens": 98,
+   "seed": 1622913852,
+   "seconds": 0.77
+  }
+ ]
+}

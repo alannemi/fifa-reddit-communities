@@ -1,0 +1,185 @@
+{
+ "period_bin": 6,
+ "topic_id": 42,
+ "keywords": "sochaux nancy, le havre, fc sochaux, ajaccio lille, toulouse valenciennes, quevilly rouen, caen toulouse, clermont grenoble, valenciennes fc, paris fc, toulouse amiens, fc metz, fc auxerre, nancy fc, troyes nancy",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "bchyag",
+  "jpt4kx",
+  "lwabxw",
+  "moaf3l",
+  "jps27s",
+  "mm71si",
+  "j06u9p",
+  "aw8mly",
+  "axbpjk",
+  "tzz1m5",
+  "cxzj5d",
+  "nhzv1m",
+  "aw9dhm",
+  "ayuxp5",
+  "n2q38r",
+  "biu28g",
+  "urt951",
+  "atlj3q",
+  "bcgth8",
+  "n2ouq3",
+  "9vx3e9",
+  "bpw54l",
+  "kr5tt4",
+  "ukhsat",
+  "lwc05m",
+  "u7dhkg",
+  "am6k7g",
+  "m4f45g",
+  "uycjoz",
+  "ar0p3e",
+  "mjdxa3",
+  "n4u444",
+  "f0g3cg",
+  "kr6h66",
+  "sqyevs",
+  "u4zmc6",
+  "lkj4ij",
+  "srlcah",
+  "sn1b8m",
+  "mux8l6"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "League Matches",
+  "purpose": "Football matches between teams in the Ligue 1 and Ligue 2",
+  "emotion_tone": "neutral",
+  "description": "Posts about football matches involving teams from the French football league system, including matches between clubs in Ligue 1, Ligue 2, and their regional rivals.",
+  "inclusion_cues": [
+   "FC Sochaux vs. Nancy",
+   "Le Havre vs. Grenoble",
+   "Toulouse vs. Auxerre",
+   "Valenciennes vs. Clermont"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "League Match",
+    "purpose": "Football match between teams",
+    "emotion_tone": "competitive",
+    "description": "Posts about football matches between teams, including scores, goals, and player actions.",
+    "inclusion_cues": [
+     "FC Sochaux 1-[3] Le Havre AC - H. Bazile 89'",
+     "Grenoble Foot 2-0 Le Havre - Willy Semedo 82'"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "League Matches",
+    "purpose": "Football matches between teams in the Ligue 1 and Ligue 2",
+    "emotion_tone": "neutral",
+    "description": "Posts about football matches involving teams from the French football league system, including matches between clubs in Ligue 1, Ligue 2, and their regional rivals.",
+    "inclusion_cues": [
+     "FC Sochaux vs. Nancy",
+     "Le Havre vs. Grenoble",
+     "Toulouse vs. Auxerre",
+     "Valenciennes vs. Clermont"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: sochaux nancy, le havre, fc sochaux, ajaccio lille, toulouse valenciennes, quevilly rouen, caen toulouse, clermont grenoble, valenciennes fc, paris fc, toulouse amiens, fc metz, fc auxerre, nancy fc, troyes nancy\nPosts (one per line, title first):\n- FC Sochaux 1-[3] Le Havre AC - H. Bazile 89'\n- Grenoble Foot 2-0 Le Havre - Willy Semedo 82'\n- Le Havre 0-1 Grenoble Foot - Willy Semedo 18'\n- Le Havre 1-0 AC Ajaccio - Alexandre Bonnet penalty 33'\n- Grenoble Foot 1-0 Le Havre - Kevin Tapoko 41'\n- Saumur [1]-1 Toulouse - Wail Bouhoutt 33'\n- Toulouse 0-1 Auxerre - Mickael Le Bihan 58'\n- Gazélec Ajaccio 0-2 Clermont - F. Aye 20'\n- Le Havre AC 1-0 FC Metz - Z. Ferhat 21'\n- AC Ajaccio 1-0 Pau FC - Jean-Philippe Krasso 59'\n- Toulouse 2-0 Amiens SC - E. Koulouris 59'\n- Toulouse 1-0 Grenoble Foot - Stijn Spierings 3'\n- FC Sochaux 0-2 AS Nancy - S. N'Gom 73'\n- AS Nancy [3]-2 FC Lorient - A. Bassi 71'\n- Le Havre [2]-3 Chambly - Quentin Cornette free-kick 78'\n- Lorient [2]-1 Auxerre - Alexis Claude Maurice 62'\n- Paris FC - Sochaux 1 - 0 Mahamé Siby Assist: A. Gory\n- ES Troyes AC 1-0 Le Havre AC - Y. Touzghar 10' - Freekick\n- ES Troyes AC 1-0 Gazélec Ajaccio - B. Mbeumo 10'\n- Chateauroux 1-0 Troyes - Joseph Yanick Mbone 20'\n- Toulouse 0-1 Amiens - Alexis Blin 28'\n- Le Havre [2]-2 Lorient - Zinedine Ferhat 73'\n- AC Ajaccio 2-0 Pau FC - Riad Nouri PK 30'\n- Pau FC 0-1 Niort - Moataz Zemzemi 8'\n- Chambly 0-3 Troyes - Brandon Domingues 87'\n- Amiens 0-1 Le Havre - Nabil Alioui 59'\n- Sochaux [2]-1 Clermont - C. Bayala 82'\n- Dunkerque 2-0 Niort - Leverton Pierre 85'\n- Auxerre 0-1 Saint-Étienne - Zaydou Youssouf 15'\n- Châteauroux 0-1 US Orléans - H. Benkaid 51'\n- Sochaux 0-1 Paris FC - Gaetan Laura 6'\n- Le Havre 0-1 Toulouse - Manu Koné 28'\n- FC Chambly [1]-1 Paris FC - Lassana Doucouré 50'\n- Rodez 0-1 Niort - Dylan Louiserre 47'\n- Grenoble Foot 1-0 Sochaux - Jordan Tell 1'\n- Pau FC 0-1 Auxerre - Hamza Sakhi 5'\n- Sochaux 1-0 Valenciennes - Gaetan Weissbeck 14'\n- Clermont 1-[2] Saint-Étienne - Timothee Kolodziejczak 82'\n- Paris FC 2-0 AC Ajaccio - Morgan Guilavogui penalty 62'\n- Pau FC 1-0 Auxerre - Victor Lobry 37'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"League Match\", \"purpose\": \"Football match between teams\", \"emotion_tone\": \"competitive\", \"description\": \"Posts about football matches between teams, including scores, goals, and player actions.\", \"inclusion_cues\": [\"FC Sochaux 1-[3] Le Havre AC - H. Bazile 89'\", \"Grenoble Foot 2-0 Le Havre - Willy Semedo 82'\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "League Match",
+      "purpose": "Football match between teams",
+      "emotion_tone": "competitive",
+      "description": "Posts about football matches between teams, including scores, goals, and player actions.",
+      "inclusion_cues": [
+       "FC Sochaux 1-[3] Le Havre AC - H. Bazile 89'",
+       "Grenoble Foot 2-0 Le Havre - Willy Semedo 82'"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 108,
+   "seed": 428622470,
+   "seconds": 1.75
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: sochaux nancy, le havre, fc sochaux, ajaccio lille, toulouse valenciennes, quevilly rouen, caen toulouse, clermont grenoble, valenciennes fc, paris fc, toulouse amiens, fc metz, fc auxerre, nancy fc, troyes nancy\nPosts (one per line, title first):\n- FC Sochaux 1-[3] Le Havre AC - H. Bazile 89'\n- Grenoble Foot 2-0 Le Havre - Willy Semedo 82'\n- Le Havre 0-1 Grenoble Foot - Willy Semedo 18'\n- Le Havre 1-0 AC Ajaccio - Alexandre Bonnet penalty 33'\n- Grenoble Foot 1-0 Le Havre - Kevin Tapoko 41'\n- Saumur [1]-1 Toulouse - Wail Bouhoutt 33'\n- Toulouse 0-1 Auxerre - Mickael Le Bihan 58'\n- Gazélec Ajaccio 0-2 Clermont - F. Aye 20'\n- Le Havre AC 1-0 FC Metz - Z. Ferhat 21'\n- AC Ajaccio 1-0 Pau FC - Jean-Philippe Krasso 59'\n- Toulouse 2-0 Amiens SC - E. Koulouris 59'\n- Toulouse 1-0 Grenoble Foot - Stijn Spierings 3'\n- FC Sochaux 0-2 AS Nancy - S. N'Gom 73'\n- AS Nancy [3]-2 FC Lorient - A. Bassi 71'\n- Le Havre [2]-3 Chambly - Quentin Cornette free-kick 78'\n- Lorient [2]-1 Auxerre - Alexis Claude Maurice 62'\n- Paris FC - Sochaux 1 - 0 Mahamé Siby Assist: A. Gory\n- ES Troyes AC 1-0 Le Havre AC - Y. Touzghar 10' - Freekick\n- ES Troyes AC 1-0 Gazélec Ajaccio - B. Mbeumo 10'\n- Chateauroux 1-0 Troyes - Joseph Yanick Mbone 20'\n- Toulouse 0-1 Amiens - Alexis Blin 28'\n- Le Havre [2]-2 Lorient - Zinedine Ferhat 73'\n- AC Ajaccio 2-0 Pau FC - Riad Nouri PK 30'\n- Pau FC 0-1 Niort - Moataz Zemzemi 8'\n- Chambly 0-3 Troyes - Brandon Domingues 87'\n- Amiens 0-1 Le Havre - Nabil Alioui 59'\n- Sochaux [2]-1 Clermont - C. Bayala 82'\n- Dunkerque 2-0 Niort - Leverton Pierre 85'\n- Auxerre 0-1 Saint-Étienne - Zaydou Youssouf 15'\n- Châteauroux 0-1 US Orléans - H. Benkaid 51'\n- Sochaux 0-1 Paris FC - Gaetan Laura 6'\n- Le Havre 0-1 Toulouse - Manu Koné 28'\n- FC Chambly [1]-1 Paris FC - Lassana Doucouré 50'\n- Rodez 0-1 Niort - Dylan Louiserre 47'\n- Grenoble Foot 1-0 Sochaux - Jordan Tell 1'\n- Pau FC 0-1 Auxerre - Hamza Sakhi 5'\n- Sochaux 1-0 Valenciennes - Gaetan Weissbeck 14'\n- Clermont 1-[2] Saint-Étienne - Timothee Kolodziejczak 82'\n- Paris FC 2-0 AC Ajaccio - Morgan Guilavogui penalty 62'\n- Pau FC 1-0 Auxerre - Victor Lobry 37'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"League Matches\", \"purpose\": \"Football matches between teams in the Ligue 1 and Ligue 2\", \"emotion_tone\": \"neutral\", \"description\": \"Posts about football matches involving teams from the French football league system, including matches between clubs in Ligue 1, Ligue 2, and their regional rivals.\", \"inclusion_cues\": [\"FC Sochaux vs. Nancy\", \"Le Havre vs. Grenoble\", \"Toulouse vs. Auxerre\", \"Valenciennes vs. Clermont\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "League Matches",
+      "purpose": "Football matches between teams in the Ligue 1 and Ligue 2",
+      "emotion_tone": "neutral",
+      "description": "Posts about football matches involving teams from the French football league system, including matches between clubs in Ligue 1, Ligue 2, and their regional rivals.",
+      "inclusion_cues": [
+       "FC Sochaux vs. Nancy",
+       "Le Havre vs. Grenoble",
+       "Toulouse vs. Auxerre",
+       "Valenciennes vs. Clermont"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 126,
+   "seed": 3419947368,
+   "seconds": 1.43
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: sochaux nancy, le havre, fc sochaux, ajaccio lille, toulouse valenciennes, quevilly rouen, caen toulouse, clermont grenoble, valenciennes fc, paris fc, toulouse amiens, fc metz, fc auxerre, nancy fc, troyes nancy\nPosts (one per line, title first):\n- FC Sochaux 1-[3] Le Havre AC - H. Bazile 89'\n- Grenoble Foot 2-0 Le Havre - Willy Semedo 82'\n- Le Havre 0-1 Grenoble Foot - Willy Semedo 18'\n- Le Havre 1-0 AC Ajaccio - Alexandre Bonnet penalty 33'\n- Grenoble Foot 1-0 Le Havre - Kevin Tapoko 41'\n- Saumur [1]-1 Toulouse - Wail Bouhoutt 33'\n- Toulouse 0-1 Auxerre - Mickael Le Bihan 58'\n- Gazélec Ajaccio 0-2 Clermont - F. Aye 20'\n- Le Havre AC 1-0 FC Metz - Z. Ferhat 21'\n- AC Ajaccio 1-0 Pau FC - Jean-Philippe Krasso 59'\n- Toulouse 2-0 Amiens SC - E. Koulouris 59'\n- Toulouse 1-0 Grenoble Foot - Stijn Spierings 3'\n- FC Sochaux 0-2 AS Nancy - S. N'Gom 73'\n- AS Nancy [3]-2 FC Lorient - A. Bassi 71'\n- Le Havre [2]-3 Chambly - Quentin Cornette free-kick 78'\n- Lorient [2]-1 Auxerre - Alexis Claude Maurice 62'\n- Paris FC - Sochaux 1 - 0 Mahamé Siby Assist: A. Gory\n- ES Troyes AC 1-0 Le Havre AC - Y. Touzghar 10' - Freekick\n- ES Troyes AC 1-0 Gazélec Ajaccio - B. Mbeumo 10'\n- Chateauroux 1-0 Troyes - Joseph Yanick Mbone 20'\n- Toulouse 0-1 Amiens - Alexis Blin 28'\n- Le Havre [2]-2 Lorient - Zinedine Ferhat 73'\n- AC Ajaccio 2-0 Pau FC - Riad Nouri PK 30'\n- Pau FC 0-1 Niort - Moataz Zemzemi 8'\n- Chambly 0-3 Troyes - Brandon Domingues 87'\n- Amiens 0-1 Le Havre - Nabil Alioui 59'\n- Sochaux [2]-1 Clermont - C. Bayala 82'\n- Dunkerque 2-0 Niort - Leverton Pierre 85'\n- Auxerre 0-1 Saint-Étienne - Zaydou Youssouf 15'\n- Châteauroux 0-1 US Orléans - H. Benkaid 51'\n- Sochaux 0-1 Paris FC - Gaetan Laura 6'\n- Le Havre 0-1 Toulouse - Manu Koné 28'\n- FC Chambly [1]-1 Paris FC - Lassana Doucouré 50'\n- Rodez 0-1 Niort - Dylan Louiserre 47'\n- Grenoble Foot 1-0 Sochaux - Jordan Tell 1'\n- Pau FC 0-1 Auxerre - Hamza Sakhi 5'\n- Sochaux 1-0 Valenciennes - Gaetan Weissbeck 14'\n- Clermont 1-[2] Saint-Étienne - Timothee Kolodziejczak 82'\n- Paris FC 2-0 AC Ajaccio - Morgan Guilavogui penalty 62'\n- Pau FC 1-0 Auxerre - Victor Lobry 37'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"League Match\", \"purpose\": \"Football match between teams\", \"emotion_tone\": \"competitive\", \"description\": \"Posts about football matches between teams, including scores, goals, and player actions.\", \"inclusion_cues\": [\"FC Sochaux 1-[3] Le Havre AC - H. Bazile 89'\", \"Grenoble Foot 2-0 Le Havre - Willy Semedo 82'\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"League Matches\", \"purpose\": \"Football matches between teams in the Ligue 1 and Ligue 2\", \"emotion_tone\": \"neutral\", \"description\": \"Posts about football matches involving teams from the French football league system, including matches between clubs in Ligue 1, Ligue 2, and their regional rivals.\", \"inclusion_cues\": [\"FC Sochaux vs. Nancy\", \"Le Havre vs. Grenoble\", \"Toulouse vs. Auxerre\", \"Valenciennes vs. Clermont\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"League Matches\", \"purpose\": \"Football matches between teams in the French football league system\", \"emotion_tone\": \"neutral\", \"description\": \"Posts about football matches involving teams from the French football league system, including matches between clubs in Ligue 1, Ligue 2, and their regional rivals.\", \"inclusion_cues\": [\"FC Sochaux 1-[3] Le Havre AC - H. Bazile 89'\", \"Grenoble Foot 2-0 Le Havre - Willy Semedo 82'\", \"Le Havre 0-1 AC Ajaccio - Alexandre Bonnet penalty 33'\", \"Toulouse 0-1 Auxerre - Mickael Le Bihan 58'\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 170,
+   "seed": 3637620137,
+   "seconds": 0.96
+  }
+ ]
+}

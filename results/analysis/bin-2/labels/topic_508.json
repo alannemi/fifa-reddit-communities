@@ -1,0 +1,203 @@
+{
+ "period_bin": 2,
+ "topic_id": 508,
+ "keywords": "crazy chelsea, feel chelsea, true chelsea, fuck chelsea, enjoy chelsea, hey chelsea, comments chelsea, best chelsea, chelsea fan, fellow chelsea, learned chelsea, thing chelsea, chelsea cl, chelsea bad, ve chelsea",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "k5jwk",
+  "sqmdv",
+  "11yqxp",
+  "u0aii",
+  "1uhmrb",
+  "nirhf",
+  "15fpb0",
+  "160f5e",
+  "1287vt",
+  "kh12x",
+  "1cdel2",
+  "u22mh",
+  "mn6eg",
+  "u3494",
+  "rax96",
+  "rbitu",
+  "sgmpr",
+  "y8bjp",
+  "1a57pi",
+  "qiug2",
+  "1sc8yx",
+  "m6rci",
+  "pc25n",
+  "oq8d6",
+  "srzv4",
+  "1ebjm0",
+  "1ansrk",
+  "k1tlx",
+  "nintz",
+  "qkn9m",
+  "1dv6pw",
+  "ts7iw",
+  "v9s7m",
+  "qg29u",
+  "u0jzz",
+  "uco8b",
+  "nf4p5",
+  "13jc82",
+  "x631r",
+  "sgvt3"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Chelsea Fan Emotions",
+  "purpose": "Categorize posts expressing Chelsea fan sentiment and emotional response",
+  "emotion_tone": "Excited, frustrated, nostalgic, and supportive",
+  "description": "Posts expressing Chelsea fan feelings, including support, frustration, nostalgia, and excitement for the club",
+  "inclusion_cues": [
+   "Chelsea fans expressing emotions",
+   "Emotional responses to Chelsea matches",
+   "Fan sentiments and reactions to Chelsea's performance",
+   "Fan expressions of support and excitement for Chelsea"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Chelsea Fan Emotions",
+    "purpose": "Categorize posts expressing Chelsea fan sentiment and emotional response",
+    "emotion_tone": "Excited, frustrated, nostalgic",
+    "description": "Posts expressing feelings about Chelsea FC, including support, frustration, nostalgia, and admiration",
+    "inclusion_cues": [
+     "Chelsea fan",
+     "feel chelsea",
+     "crazy chelsea",
+     "fuck chelsea",
+     "enjoy chelsea",
+     "hey chelsea",
+     "comments chelsea",
+     "best chelsea",
+     "chelsea fan",
+     "fellow chelsea"
+    ],
+    "n_cues_given": 15
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Chelsea Fan Emotions",
+    "purpose": "Categorize posts expressing Chelsea fan sentiment and emotional response",
+    "emotion_tone": "Excited, frustrated, nostalgic, and supportive",
+    "description": "Posts expressing Chelsea fan feelings, including support, frustration, nostalgia, and excitement for the club",
+    "inclusion_cues": [
+     "Chelsea fans expressing emotions",
+     "Emotional responses to Chelsea matches",
+     "Fan sentiments and reactions to Chelsea's performance",
+     "Fan expressions of support and excitement for Chelsea"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: crazy chelsea, feel chelsea, true chelsea, fuck chelsea, enjoy chelsea, hey chelsea, comments chelsea, best chelsea, chelsea fan, fellow chelsea, learned chelsea, thing chelsea, chelsea cl, chelsea bad, ve chelsea\nPosts (one per line, title first):\n- I like my Chelsea players how I like my coffee... / ... I don't like coffee\n- How Chelsea fans are probably feeling at the moment / That match had pretty much everything, wow.\n- (Chelsea Fan) How I feel watching the UCL game against Shakhtar today.\n- I know it may seem like beating a dead horse but this man explains Chelsea's CL quest for glory with a little message to everyone who thought they were lucky.\n- Does any Chelsea fan remember that season where under Mourinho's first management, you went on a spree of victorys by 4 - 0 , 4-1, 4-0, 4-something and at the same point Chelsea fans start chanting \"Who let the dogs out? Who, who, who, who\"? / This was the best Chelsea season and I'll never forget t\n- Pretty much the only reason I sit through watching an entire Chelsea match.\n- Thanks to my father I can now sleep like a true Chelsea FC fan!\n- Best part about watching Chelsea...\n- Chelsea are a big bunch of thugs.\n- If this happens I will stop being a Chelsea fan temporarily.\n- How I think most Chelsea fans where feeling this afternoon\n- haha so true (chelsea fans)\n- Godfuckingdammit. / Why do you do this shit Chelsea!?!?!\n- Chelsea Put on Cinderella's Slipper and Never Looked Back\n- I've never been a Chelsea fan, but this is still infuriating to watch.\n- How I felt watching the first half of the Chelsea-Spurs game\n- How I feel as a Chelsea fan right now\n- 5 Things We Learned About Chelsea Last Year\n- If you think Chelsea are bad then check this out!\n- State of Chelsea FC\n- How I feel about Manchester United right now\n- How embarrassing for Chelsea. | Metro.co.uk\n- How I feel as a Man Utd fan.\n- I love reading the comments on the Chelsea FB page after a poor performance\n- [The Daily Mash] Even Chelsea fans a bit disappointed\n- As a Chelsea Fan...\n- As a Chelsea fan I have to say this\n- Well I guess it's official: I'm a Chelsea fan.\n- The only thing that gets me through watching a Chelsea match.\n- How do you solve a problem like Chelsea?\n- Looks like Chelsea are as excited about the new season of Arrested Development as I am (@ 00:14)\n- Chelsea earning admiration in adversity - ESPN Soccernet\n- You give Chelsea's staff an inch and they take a mile\n- Two reasons why I enjoy Chelsea matches\n- The Real Motivation for Chelsea's Champions League Victory.\n- Good news for my fellow chelsea fans\n- As a Chelsea fan, I just threw up.\n- How do you fix Chelsea?\n- Chelsea, you so crazy...\n- My favourite thing about Chelsea F.C\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Chelsea Fan Emotions\", \"purpose\": \"Categorize posts expressing Chelsea fan sentiment and emotional response\", \"emotion_tone\": \"Excited, frustrated, nostalgic\", \"description\": \"Posts expressing feelings about Chelsea FC, including support, frustration, nostalgia, and admiration\", \"inclusion_cues\": [\"Chelsea fan\", \"feel chelsea\", \"crazy chelsea\", \"fuck chelsea\", \"enjoy chelsea\", \"hey chelsea\", \"comments chelsea\", \"best chelsea\", \"chelsea fan\", \"fellow chelsea\", \"learned chelsea\", \"thing chelsea\", \"chelsea cl\", \"chelsea bad\", \"ve chelsea\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Chelsea Fan Emotions",
+      "purpose": "Categorize posts expressing Chelsea fan sentiment and emotional response",
+      "emotion_tone": "Excited, frustrated, nostalgic",
+      "description": "Posts expressing feelings about Chelsea FC, including support, frustration, nostalgia, and admiration",
+      "inclusion_cues": [
+       "Chelsea fan",
+       "feel chelsea",
+       "crazy chelsea",
+       "fuck chelsea",
+       "enjoy chelsea",
+       "hey chelsea",
+       "comments chelsea",
+       "best chelsea",
+       "chelsea fan",
+       "fellow chelsea"
+      ],
+      "n_cues_given": 15
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 156,
+   "seed": 3588420943,
+   "seconds": 0.98
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: crazy chelsea, feel chelsea, true chelsea, fuck chelsea, enjoy chelsea, hey chelsea, comments chelsea, best chelsea, chelsea fan, fellow chelsea, learned chelsea, thing chelsea, chelsea cl, chelsea bad, ve chelsea\nPosts (one per line, title first):\n- I like my Chelsea players how I like my coffee... / ... I don't like coffee\n- How Chelsea fans are probably feeling at the moment / That match had pretty much everything, wow.\n- (Chelsea Fan) How I feel watching the UCL game against Shakhtar today.\n- I know it may seem like beating a dead horse but this man explains Chelsea's CL quest for glory with a little message to everyone who thought they were lucky.\n- Does any Chelsea fan remember that season where under Mourinho's first management, you went on a spree of victorys by 4 - 0 , 4-1, 4-0, 4-something and at the same point Chelsea fans start chanting \"Who let the dogs out? Who, who, who, who\"? / This was the best Chelsea season and I'll never forget t\n- Pretty much the only reason I sit through watching an entire Chelsea match.\n- Thanks to my father I can now sleep like a true Chelsea FC fan!\n- Best part about watching Chelsea...\n- Chelsea are a big bunch of thugs.\n- If this happens I will stop being a Chelsea fan temporarily.\n- How I think most Chelsea fans where feeling this afternoon\n- haha so true (chelsea fans)\n- Godfuckingdammit. / Why do you do this shit Chelsea!?!?!\n- Chelsea Put on Cinderella's Slipper and Never Looked Back\n- I've never been a Chelsea fan, but this is still infuriating to watch.\n- How I felt watching the first half of the Chelsea-Spurs game\n- How I feel as a Chelsea fan right now\n- 5 Things We Learned About Chelsea Last Year\n- If you think Chelsea are bad then check this out!\n- State of Chelsea FC\n- How I feel about Manchester United right now\n- How embarrassing for Chelsea. | Metro.co.uk\n- How I feel as a Man Utd fan.\n- I love reading the comments on the Chelsea FB page after a poor performance\n- [The Daily Mash] Even Chelsea fans a bit disappointed\n- As a Chelsea Fan...\n- As a Chelsea fan I have to say this\n- Well I guess it's official: I'm a Chelsea fan.\n- The only thing that gets me through watching a Chelsea match.\n- How do you solve a problem like Chelsea?\n- Looks like Chelsea are as excited about the new season of Arrested Development as I am (@ 00:14)\n- Chelsea earning admiration in adversity - ESPN Soccernet\n- You give Chelsea's staff an inch and they take a mile\n- Two reasons why I enjoy Chelsea matches\n- The Real Motivation for Chelsea's Champions League Victory.\n- Good news for my fellow chelsea fans\n- As a Chelsea fan, I just threw up.\n- How do you fix Chelsea?\n- Chelsea, you so crazy...\n- My favourite thing about Chelsea F.C\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Chelsea Fan Emotions\", \"purpose\": \"Categorize posts expressing Chelsea fan sentiment and emotional response\", \"emotion_tone\": \"Excited, frustrated, nostalgic, and supportive\", \"description\": \"Posts expressing Chelsea fan feelings, including support, frustration, nostalgia, and excitement for the club\", \"inclusion_cues\": [\"Chelsea fans expressing emotions\", \"Emotional responses to Chelsea matches\", \"Fan sentiments and reactions to Chelsea's performance\", \"Fan expressions of support and excitement for Chelsea\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Chelsea Fan Emotions",
+      "purpose": "Categorize posts expressing Chelsea fan sentiment and emotional response",
+      "emotion_tone": "Excited, frustrated, nostalgic, and supportive",
+      "description": "Posts expressing Chelsea fan feelings, including support, frustration, nostalgia, and excitement for the club",
+      "inclusion_cues": [
+       "Chelsea fans expressing emotions",
+       "Emotional responses to Chelsea matches",
+       "Fan sentiments and reactions to Chelsea's performance",
+       "Fan expressions of support and excitement for Chelsea"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 117,
+   "seed": 45402,
+   "seconds": 0.53
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: crazy chelsea, feel chelsea, true chelsea, fuck chelsea, enjoy chelsea, hey chelsea, comments chelsea, best chelsea, chelsea fan, fellow chelsea, learned chelsea, thing chelsea, chelsea cl, chelsea bad, ve chelsea\nPosts (one per line, title first):\n- I like my Chelsea players how I like my coffee... / ... I don't like coffee\n- How Chelsea fans are probably feeling at the moment / That match had pretty much everything, wow.\n- (Chelsea Fan) How I feel watching the UCL game against Shakhtar today.\n- I know it may seem like beating a dead horse but this man explains Chelsea's CL quest for glory with a little message to everyone who thought they were lucky.\n- Does any Chelsea fan remember that season where under Mourinho's first management, you went on a spree of victorys by 4 - 0 , 4-1, 4-0, 4-something and at the same point Chelsea fans start chanting \"Who let the dogs out? Who, who, who, who\"? / This was the best Chelsea season and I'll never forget t\n- Pretty much the only reason I sit through watching an entire Chelsea match.\n- Thanks to my father I can now sleep like a true Chelsea FC fan!\n- Best part about watching Chelsea...\n- Chelsea are a big bunch of thugs.\n- If this happens I will stop being a Chelsea fan temporarily.\n- How I think most Chelsea fans where feeling this afternoon\n- haha so true (chelsea fans)\n- Godfuckingdammit. / Why do you do this shit Chelsea!?!?!\n- Chelsea Put on Cinderella's Slipper and Never Looked Back\n- I've never been a Chelsea fan, but this is still infuriating to watch.\n- How I felt watching the first half of the Chelsea-Spurs game\n- How I feel as a Chelsea fan right now\n- 5 Things We Learned About Chelsea Last Year\n- If you think Chelsea are bad then check this out!\n- State of Chelsea FC\n- How I feel about Manchester United right now\n- How embarrassing for Chelsea. | Metro.co.uk\n- How I feel as a Man Utd fan.\n- I love reading the comments on the Chelsea FB page after a poor performance\n- [The Daily Mash] Even Chelsea fans a bit disappointed\n- As a Chelsea Fan...\n- As a Chelsea fan I have to say this\n- Well I guess it's official: I'm a Chelsea fan.\n- The only thing that gets me through watching a Chelsea match.\n- How do you solve a problem like Chelsea?\n- Looks like Chelsea are as excited about the new season of Arrested Development as I am (@ 00:14)\n- Chelsea earning admiration in adversity - ESPN Soccernet\n- You give Chelsea's staff an inch and they take a mile\n- Two reasons why I enjoy Chelsea matches\n- The Real Motivation for Chelsea's Champions League Victory.\n- Good news for my fellow chelsea fans\n- As a Chelsea fan, I just threw up.\n- How do you fix Chelsea?\n- Chelsea, you so crazy...\n- My favourite thing about Chelsea F.C\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Chelsea Fan Emotions\", \"purpose\": \"Categorize posts expressing Chelsea fan sentiment and emotional response\", \"emotion_tone\": \"Excited, frustrated, nostalgic\", \"description\": \"Posts expressing feelings about Chelsea FC, including support, frustration, nostalgia, and admiration\", \"inclusion_cues\": [\"Chelsea fan\", \"feel chelsea\", \"crazy chelsea\", \"fuck chelsea\", \"enjoy chelsea\", \"hey chelsea\", \"comments chelsea\", \"best chelsea\", \"chelsea fan\", \"fellow chelsea\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Chelsea Fan Emotions\", \"purpose\": \"Categorize posts expressing Chelsea fan sentiment and emotional response\", \"emotion_tone\": \"Excited, frustrated, nostalgic, and supportive\", \"description\": \"Posts expressing Chelsea fan feelings, including support, frustration, nostalgia, and excitement for the club\", \"inclusion_cues\": [\"Chelsea fans expressing emotions\", \"Emotional responses to Chelsea matches\", \"Fan sentiments and reactions to Chelsea's performance\", \"Fan expressions of support and excitement for Chelsea\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Chelsea Fan Emotions\", \"purpose\": \"Categorize posts expressing Chelsea fan sentiment and emotional response\", \"emotion_tone\": \"Excited, frustrated, nostalgic, and supportive\", \"description\": \"Posts expressing Chelsea fan feelings, including support, frustration, nostalgia, and excitement for the club\", \"inclusion_cues\": [\"Chelsea fans expressing emotions\", \"Emotional responses to Chelsea matches\", \"Fan sentiments and reactions to Chelsea's performance\", \"Fan expressions of support and excitement for Chelsea\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 116,
+   "seed": 1550660235,
+   "seconds": 0.86
+  }
+ ]
+}

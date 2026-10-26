@@ -1,0 +1,188 @@
+{
+ "period_bin": 2,
+ "topic_id": 884,
+ "keywords": "gazza, gazza moment, drunk, wazza, liver, charity event, father died, comic relief, til cr7, swearing, faces england, football legend, pubs, offences, intensive care",
+ "n_sample_posts": 26,
+ "sample_ids": [
+  "17wmjm",
+  "17v3rz",
+  "vbnp5",
+  "v632p",
+  "vbne0",
+  "duxd2",
+  "u4egq",
+  "ndnw5",
+  "og6x9",
+  "1i10lm",
+  "u9adk",
+  "1d9j5l",
+  "188ti7",
+  "1tbn8q",
+  "13e9h2",
+  "npgu4",
+  "17z7r5",
+  "1exst3",
+  "n6e3p",
+  "f9ytt",
+  "18ak45",
+  "187xsj",
+  "1ir0w8",
+  "h4l55",
+  "1hqgt2",
+  "1i3qb9"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Gazza's Health & Alcohol Issues",
+  "purpose": "Examine Gazza's health, alcohol consumption, and related incidents",
+  "emotion_tone": "tragic, somber, reflective",
+  "description": "Posts discussing Gazza's health, alcohol use, and related incidents, including his health scare, alcohol-related issues, and public reactions to his behavior.",
+  "inclusion_cues": [
+   "Gazza in a bad way speaking at the charity event",
+   "Gazza first drank alcohol at age fourteen...",
+   "Gazza in intensive care following collapse",
+   "Gazza 'close to death', The Sun",
+   "Gazza charged with assault and disorder offences",
+   "Gazza's moment of madness - 20 years on",
+   "Gazza 'drunk' arrested after attack"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Gazza's Health & Alcohol Issues",
+    "purpose": "Analyzing Gazza's health, alcohol consumption, and related incidents",
+    "emotion_tone": "tragic, somber, concerned",
+    "description": "Posts discussing Gazza's health, alcohol use, and related incidents, including his health scare, alcohol-related issues, and public reactions to his behavior.",
+    "inclusion_cues": [
+     "Gazza in a bad way",
+     "drunk Gazza arrested",
+     "Gazza in intensive care",
+     "Gazza's moment of madness",
+     "Gazza's health scare",
+     "Gazza's alcohol use"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Gazza's Health & Alcohol Issues",
+    "purpose": "Examine Gazza's health, alcohol consumption, and related incidents",
+    "emotion_tone": "tragic, somber, reflective",
+    "description": "Posts discussing Gazza's health, alcohol use, and related incidents, including his health scare, alcohol-related issues, and public reactions to his behavior.",
+    "inclusion_cues": [
+     "Gazza in a bad way speaking at the charity event",
+     "Gazza first drank alcohol at age fourteen...",
+     "Gazza in intensive care following collapse",
+     "Gazza 'close to death', The Sun",
+     "Gazza charged with assault and disorder offences",
+     "Gazza's moment of madness - 20 years on",
+     "Gazza 'drunk' arrested after attack"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: gazza, gazza moment, drunk, wazza, liver, charity event, father died, comic relief, til cr7, swearing, faces england, football legend, pubs, offences, intensive care\nPosts (one per line, title first):\n- Gazza in a bad way speaking at the charity event\n- Raw video of Gazza at the now infamous charity event - Absolutely tragic\n- TIL - CR7 does not drink alcohol as his father died from an alcohol related liver condition.\n- Gazza first drank alcohol at age fourteen, but ill effects led to him swearing off alcohol FOR LIFE. He did not drink again until he was eighteen. :\\\n- TIL - CR7 does not drink alcohol as his father died from alcohol related liver failure, sued the Daily Mirror for claiming he does.\n- Problem? - Wazza Edition\n- Gazza: One of the Faces Of England\n- A forgotten classic from Gazza.\n- Gazza Interupts Interview\n- [Article in PT but w/ Pic] Gazza inebriated at a hotel, poor guy has seen better days\n- Gazza debunking some myths.\n- Gazza and comic relief (nsfrw)\n- Gazza in intensive care following collapse\n- L'Equipe - Looking for Gazza - One of the best articles I have read in a long time.\n- List of mad stuff that Gazza did\n- How did Gazza play? (Warning: Possible lump in throat moment)\n- Good luck Gazza :(\n- Met gazza tonight...\n- One of the many reasons I love Gazza.\n- What wrong wit wazza???\n- Gazza up and about after health scare.\n- Football legend Gazza 'close to death', The Sun\n- \"Gazza\" charged with assault and disorder offences\n- Gazza's moment of madness - 20 years on\n- 'Drunk' Gazza arrested after attack :-/\n- Our plea to pubs, shops and fans: Don’t give Gazza drink\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Gazza's Health & Alcohol Issues\", \"purpose\": \"Analyzing Gazza's health, alcohol consumption, and related incidents\", \"emotion_tone\": \"tragic, somber, concerned\", \"description\": \"Posts discussing Gazza's health, alcohol use, and related incidents, including his health scare, alcohol-related issues, and public reactions to his behavior.\", \"inclusion_cues\": [\"Gazza in a bad way\", \"drunk Gazza arrested\", \"Gazza in intensive care\", \"Gazza's moment of madness\", \"Gazza's health scare\", \"Gazza's alcohol use\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Gazza's Health & Alcohol Issues",
+      "purpose": "Analyzing Gazza's health, alcohol consumption, and related incidents",
+      "emotion_tone": "tragic, somber, concerned",
+      "description": "Posts discussing Gazza's health, alcohol use, and related incidents, including his health scare, alcohol-related issues, and public reactions to his behavior.",
+      "inclusion_cues": [
+       "Gazza in a bad way",
+       "drunk Gazza arrested",
+       "Gazza in intensive care",
+       "Gazza's moment of madness",
+       "Gazza's health scare",
+       "Gazza's alcohol use"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 147,
+   "seed": 2542698635,
+   "seconds": 0.49
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: gazza, gazza moment, drunk, wazza, liver, charity event, father died, comic relief, til cr7, swearing, faces england, football legend, pubs, offences, intensive care\nPosts (one per line, title first):\n- Gazza in a bad way speaking at the charity event\n- Raw video of Gazza at the now infamous charity event - Absolutely tragic\n- TIL - CR7 does not drink alcohol as his father died from an alcohol related liver condition.\n- Gazza first drank alcohol at age fourteen, but ill effects led to him swearing off alcohol FOR LIFE. He did not drink again until he was eighteen. :\\\n- TIL - CR7 does not drink alcohol as his father died from alcohol related liver failure, sued the Daily Mirror for claiming he does.\n- Problem? - Wazza Edition\n- Gazza: One of the Faces Of England\n- A forgotten classic from Gazza.\n- Gazza Interupts Interview\n- [Article in PT but w/ Pic] Gazza inebriated at a hotel, poor guy has seen better days\n- Gazza debunking some myths.\n- Gazza and comic relief (nsfrw)\n- Gazza in intensive care following collapse\n- L'Equipe - Looking for Gazza - One of the best articles I have read in a long time.\n- List of mad stuff that Gazza did\n- How did Gazza play? (Warning: Possible lump in throat moment)\n- Good luck Gazza :(\n- Met gazza tonight...\n- One of the many reasons I love Gazza.\n- What wrong wit wazza???\n- Gazza up and about after health scare.\n- Football legend Gazza 'close to death', The Sun\n- \"Gazza\" charged with assault and disorder offences\n- Gazza's moment of madness - 20 years on\n- 'Drunk' Gazza arrested after attack :-/\n- Our plea to pubs, shops and fans: Don’t give Gazza drink\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Gazza's Health & Alcohol Issues\", \"purpose\": \"Examine Gazza's health, alcohol consumption, and related incidents\", \"emotion_tone\": \"tragic, somber, reflective\", \"description\": \"Posts discussing Gazza's health, alcohol use, and related incidents, including his health scare, alcohol-related issues, and public reactions to his behavior.\", \"inclusion_cues\": [\"Gazza in a bad way speaking at the charity event\", \"Gazza first drank alcohol at age fourteen...\", \"Gazza in intensive care following collapse\", \"Gazza 'close to death', The Sun\", \"Gazza charged with assault and disorder offences\", \"Gazza's moment of madness - 20 years on\", \"Gazza 'drunk' arrested after attack\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Gazza's Health & Alcohol Issues",
+      "purpose": "Examine Gazza's health, alcohol consumption, and related incidents",
+      "emotion_tone": "tragic, somber, reflective",
+      "description": "Posts discussing Gazza's health, alcohol use, and related incidents, including his health scare, alcohol-related issues, and public reactions to his behavior.",
+      "inclusion_cues": [
+       "Gazza in a bad way speaking at the charity event",
+       "Gazza first drank alcohol at age fourteen...",
+       "Gazza in intensive care following collapse",
+       "Gazza 'close to death', The Sun",
+       "Gazza charged with assault and disorder offences",
+       "Gazza's moment of madness - 20 years on",
+       "Gazza 'drunk' arrested after attack"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 183,
+   "seed": 1449204946,
+   "seconds": 0.63
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: gazza, gazza moment, drunk, wazza, liver, charity event, father died, comic relief, til cr7, swearing, faces england, football legend, pubs, offences, intensive care\nPosts (one per line, title first):\n- Gazza in a bad way speaking at the charity event\n- Raw video of Gazza at the now infamous charity event - Absolutely tragic\n- TIL - CR7 does not drink alcohol as his father died from an alcohol related liver condition.\n- Gazza first drank alcohol at age fourteen, but ill effects led to him swearing off alcohol FOR LIFE. He did not drink again until he was eighteen. :\\\n- TIL - CR7 does not drink alcohol as his father died from alcohol related liver failure, sued the Daily Mirror for claiming he does.\n- Problem? - Wazza Edition\n- Gazza: One of the Faces Of England\n- A forgotten classic from Gazza.\n- Gazza Interupts Interview\n- [Article in PT but w/ Pic] Gazza inebriated at a hotel, poor guy has seen better days\n- Gazza debunking some myths.\n- Gazza and comic relief (nsfrw)\n- Gazza in intensive care following collapse\n- L'Equipe - Looking for Gazza - One of the best articles I have read in a long time.\n- List of mad stuff that Gazza did\n- How did Gazza play? (Warning: Possible lump in throat moment)\n- Good luck Gazza :(\n- Met gazza tonight...\n- One of the many reasons I love Gazza.\n- What wrong wit wazza???\n- Gazza up and about after health scare.\n- Football legend Gazza 'close to death', The Sun\n- \"Gazza\" charged with assault and disorder offences\n- Gazza's moment of madness - 20 years on\n- 'Drunk' Gazza arrested after attack :-/\n- Our plea to pubs, shops and fans: Don’t give Gazza drink\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Gazza's Health & Alcohol Issues\", \"purpose\": \"Analyzing Gazza's health, alcohol consumption, and related incidents\", \"emotion_tone\": \"tragic, somber, concerned\", \"description\": \"Posts discussing Gazza's health, alcohol use, and related incidents, including his health scare, alcohol-related issues, and public reactions to his behavior.\", \"inclusion_cues\": [\"Gazza in a bad way\", \"drunk Gazza arrested\", \"Gazza in intensive care\", \"Gazza's moment of madness\", \"Gazza's health scare\", \"Gazza's alcohol use\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Gazza's Health & Alcohol Issues\", \"purpose\": \"Examine Gazza's health, alcohol consumption, and related incidents\", \"emotion_tone\": \"tragic, somber, reflective\", \"description\": \"Posts discussing Gazza's health, alcohol use, and related incidents, including his health scare, alcohol-related issues, and public reactions to his behavior.\", \"inclusion_cues\": [\"Gazza in a bad way speaking at the charity event\", \"Gazza first drank alcohol at age fourteen...\", \"Gazza in intensive care following collapse\", \"Gazza 'close to death', The Sun\", \"Gazza charged with assault and disorder offences\", \"Gazza's moment of madness - 20 years on\", \"Gazza 'drunk' arrested after attack\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Gazza's Health & Alcohol Issues\", \"purpose\": \"Examine Gazza's health, alcohol consumption, and related incidents\", \"emotion_tone\": \"tragic, somber, reflective\", \"description\": \"Posts discussing Gazza's health, alcohol use, and related incidents, including his health scare, alcohol-related issues, and public reactions to his behavior.\", \"inclusion_cues\": [\"Gazza in a bad way speaking at the charity event\", \"Gazza first drank alcohol at age fourteen...\", \"Gazza in intensive care following collapse\", \"Gazza 'close to death', The Sun\", \"Gazza charged with assault and disorder offences\", \"Gazza's moment of madness - 20 years on\", \"Gazza 'drunk' arrested after attack\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 182,
+   "seed": 3569721229,
+   "seconds": 0.57
+  }
+ ]
+}

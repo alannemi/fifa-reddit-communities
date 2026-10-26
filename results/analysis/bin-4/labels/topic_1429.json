@@ -1,0 +1,200 @@
+{
+ "period_bin": 4,
+ "topic_id": 1429,
+ "keywords": "penalties mls, penalty shootout, game penalties, poor officiating, shootout mls, penalties awarded, shootouts, mls game, penalties decide, penalties penalty, rules mls, penalties 90, tied games, mls playoffs, minutes ref",
+ "n_sample_posts": 28,
+ "sample_ids": [
+  "3doatp",
+  "6b81v2",
+  "4umb3r",
+  "5quojp",
+  "59p51o",
+  "3dhftf",
+  "5eegnj",
+  "57r5tc",
+  "5q68op",
+  "6bcvaf",
+  "57yzjc",
+  "5wfcse",
+  "6ek1fm",
+  "362y33",
+  "57tay9",
+  "5eelcm",
+  "2wsep4",
+  "3f2wkk",
+  "2xcje4",
+  "5ote6m",
+  "3dluj7",
+  "473dyl",
+  "4yc7ij",
+  "5eeo05",
+  "57xdhj",
+  "7tt305",
+  "5q662s",
+  "31be50"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "MLS Penalty History",
+  "purpose": "Explore historical methods of deciding tied games in MLS",
+  "emotion_tone": "informative",
+  "description": "Posts discussing the evolution of penalties and shootouts in MLS, including past practices and comparisons with other leagues.",
+  "inclusion_cues": [
+   "MLS penalties",
+   "penalty shootout",
+   "MLS game",
+   "tied games",
+   "shootouts",
+   "penalties awarded",
+   "rules mls"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "MLS Penalty Shootout History",
+    "purpose": "Document and analyze historical methods of determining game outcomes through penalties in MLS",
+    "emotion_tone": "informative",
+    "description": "Posts discussing the evolution of penalties in MLS, including historical practices, alternative methods, and comparisons with other leagues",
+    "inclusion_cues": [
+     "MLS penalty shootout history",
+     "penalties in MLS",
+     "shootout mls",
+     "penalties awarded",
+     "rules mls",
+     "penalties 90",
+     "shootouts",
+     "mls game",
+     "penalties decide",
+     "penalties penalty"
+    ],
+    "n_cues_given": 15
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "MLS Penalty History",
+    "purpose": "Explore historical methods of deciding tied games in MLS",
+    "emotion_tone": "informative",
+    "description": "Posts discussing the evolution of penalties and shootouts in MLS, including past practices and comparisons with other leagues.",
+    "inclusion_cues": [
+     "MLS penalties",
+     "penalty shootout",
+     "MLS game",
+     "tied games",
+     "shootouts",
+     "penalties awarded",
+     "rules mls"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: penalties mls, penalty shootout, game penalties, poor officiating, shootout mls, penalties awarded, shootouts, mls game, penalties decide, penalties penalty, rules mls, penalties 90, tied games, mls playoffs, minutes ref\nPosts (one per line, title first):\n- Tampa Bay Rowdies' players heading the ball to each other in the locker room. Nice skills.\n- Timely goal produces commentary gold for Tampa Bay Rowdies vs. Louisville City game.\n- Tampa Bay Rowdies (NASL) post video highlighting poor officiating over 2016 season\n- How the MLS took penalties in the 90's (Marco Van Basten's FIFA proposal to replace a normal penalty shoot-out with this)\n- Back in the 70s, the NASL had shoot outs (not penalties) to decide the winner after tied games. Here's how Cosmos' Brazilian star Carlos Alberto Torres (who died this week) proceeded with his first ever shoot out attempt to keep the NY Cosmos alive in the 1978 playoffs\n- This is pretty cool from the Tampa Bay Rowdies..\n- Kickoff to Montreal vs Toronto in the MLS Playoffs has been delayed because the penalty area isn't the correct size\n- How penalties used to be taken in the MLS. Thoughts?\n- Ebbsfleet United put Marco van Basten's alternative penalty shootout idea to the test\n- Tampa Bay Rowdies deny Louisville City bagels.\n- This is how MLS used to take its penalties\n- The Delicious Way the MLS took their penalties in the '90s\n- There was once an MLS game in which 3 penalties were awarded and the final score was 0-0\n- Back in the days when the MLS had shootouts instead of ties, this is how it worked: Clash vs. DC United\n- Penalty shootout in 90s MLS.\n- MLS game between Montreal and Toronto held up by 35 minutes after Ref realises the penalty box is 2 yards too narrow\n- When MLS had shootouts instead of penalty kicks\n- TIL that in the NASL instead of penalties they used to run towards the goal from 35 yards out and try to score\n- Weird MLS Shootout (Like a Hockey shootout)\n- FIFA's van Basten interested in old-school MLS shootouts to break ties\n- The header challenge by the Tampa Bay Rowdies is pretty cool!\n- Throwback-1980 Penalty Shootout Between NY Cosmos and Washington Diplomats with some hilarious penalty rules.\n- The shootouts in MLS were taken quite differently in the 90s\n- Montreal vs Toronto MLS playoff game delayed because the penalty box was painted too small\n- How the MLS used to take penalties\n- This is how penalties were taken in the MLS in the 90s.\n- Ebbsfleet United put Marco van Basten's penalty shootout idea to the test\n- Penalty has to be taken 3 times in an MLS game (2012 - DC Utd vs. Portand Timbers)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"MLS Penalty Shootout History\", \"purpose\": \"Document and analyze historical methods of determining game outcomes through penalties in MLS\", \"emotion_tone\": \"informative\", \"description\": \"Posts discussing the evolution of penalties in MLS, including historical practices, alternative methods, and comparisons with other leagues\", \"inclusion_cues\": [\"MLS penalty shootout history\", \"penalties in MLS\", \"shootout mls\", \"penalties awarded\", \"rules mls\", \"penalties 90\", \"shootouts\", \"mls game\", \"penalties decide\", \"penalties penalty\", \"rules mls\", \"penalties 90\", \"tied games\", \"mls playoffs\", \"minutes ref\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "MLS Penalty Shootout History",
+      "purpose": "Document and analyze historical methods of determining game outcomes through penalties in MLS",
+      "emotion_tone": "informative",
+      "description": "Posts discussing the evolution of penalties in MLS, including historical practices, alternative methods, and comparisons with other leagues",
+      "inclusion_cues": [
+       "MLS penalty shootout history",
+       "penalties in MLS",
+       "shootout mls",
+       "penalties awarded",
+       "rules mls",
+       "penalties 90",
+       "shootouts",
+       "mls game",
+       "penalties decide",
+       "penalties penalty"
+      ],
+      "n_cues_given": 15
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 162,
+   "seed": 3294648775,
+   "seconds": 0.82
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: penalties mls, penalty shootout, game penalties, poor officiating, shootout mls, penalties awarded, shootouts, mls game, penalties decide, penalties penalty, rules mls, penalties 90, tied games, mls playoffs, minutes ref\nPosts (one per line, title first):\n- Tampa Bay Rowdies' players heading the ball to each other in the locker room. Nice skills.\n- Timely goal produces commentary gold for Tampa Bay Rowdies vs. Louisville City game.\n- Tampa Bay Rowdies (NASL) post video highlighting poor officiating over 2016 season\n- How the MLS took penalties in the 90's (Marco Van Basten's FIFA proposal to replace a normal penalty shoot-out with this)\n- Back in the 70s, the NASL had shoot outs (not penalties) to decide the winner after tied games. Here's how Cosmos' Brazilian star Carlos Alberto Torres (who died this week) proceeded with his first ever shoot out attempt to keep the NY Cosmos alive in the 1978 playoffs\n- This is pretty cool from the Tampa Bay Rowdies..\n- Kickoff to Montreal vs Toronto in the MLS Playoffs has been delayed because the penalty area isn't the correct size\n- How penalties used to be taken in the MLS. Thoughts?\n- Ebbsfleet United put Marco van Basten's alternative penalty shootout idea to the test\n- Tampa Bay Rowdies deny Louisville City bagels.\n- This is how MLS used to take its penalties\n- The Delicious Way the MLS took their penalties in the '90s\n- There was once an MLS game in which 3 penalties were awarded and the final score was 0-0\n- Back in the days when the MLS had shootouts instead of ties, this is how it worked: Clash vs. DC United\n- Penalty shootout in 90s MLS.\n- MLS game between Montreal and Toronto held up by 35 minutes after Ref realises the penalty box is 2 yards too narrow\n- When MLS had shootouts instead of penalty kicks\n- TIL that in the NASL instead of penalties they used to run towards the goal from 35 yards out and try to score\n- Weird MLS Shootout (Like a Hockey shootout)\n- FIFA's van Basten interested in old-school MLS shootouts to break ties\n- The header challenge by the Tampa Bay Rowdies is pretty cool!\n- Throwback-1980 Penalty Shootout Between NY Cosmos and Washington Diplomats with some hilarious penalty rules.\n- The shootouts in MLS were taken quite differently in the 90s\n- Montreal vs Toronto MLS playoff game delayed because the penalty box was painted too small\n- How the MLS used to take penalties\n- This is how penalties were taken in the MLS in the 90s.\n- Ebbsfleet United put Marco van Basten's penalty shootout idea to the test\n- Penalty has to be taken 3 times in an MLS game (2012 - DC Utd vs. Portand Timbers)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"MLS Penalty History\", \"purpose\": \"Explore historical methods of deciding tied games in MLS\", \"emotion_tone\": \"informative\", \"description\": \"Posts discussing the evolution of penalties and shootouts in MLS, including past practices and comparisons with other leagues.\", \"inclusion_cues\": [\"MLS penalties\", \"penalty shootout\", \"MLS game\", \"tied games\", \"shootouts\", \"penalties awarded\", \"rules mls\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "MLS Penalty History",
+      "purpose": "Explore historical methods of deciding tied games in MLS",
+      "emotion_tone": "informative",
+      "description": "Posts discussing the evolution of penalties and shootouts in MLS, including past practices and comparisons with other leagues.",
+      "inclusion_cues": [
+       "MLS penalties",
+       "penalty shootout",
+       "MLS game",
+       "tied games",
+       "shootouts",
+       "penalties awarded",
+       "rules mls"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 107,
+   "seed": 4207504271,
+   "seconds": 0.7
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: penalties mls, penalty shootout, game penalties, poor officiating, shootout mls, penalties awarded, shootouts, mls game, penalties decide, penalties penalty, rules mls, penalties 90, tied games, mls playoffs, minutes ref\nPosts (one per line, title first):\n- Tampa Bay Rowdies' players heading the ball to each other in the locker room. Nice skills.\n- Timely goal produces commentary gold for Tampa Bay Rowdies vs. Louisville City game.\n- Tampa Bay Rowdies (NASL) post video highlighting poor officiating over 2016 season\n- How the MLS took penalties in the 90's (Marco Van Basten's FIFA proposal to replace a normal penalty shoot-out with this)\n- Back in the 70s, the NASL had shoot outs (not penalties) to decide the winner after tied games. Here's how Cosmos' Brazilian star Carlos Alberto Torres (who died this week) proceeded with his first ever shoot out attempt to keep the NY Cosmos alive in the 1978 playoffs\n- This is pretty cool from the Tampa Bay Rowdies..\n- Kickoff to Montreal vs Toronto in the MLS Playoffs has been delayed because the penalty area isn't the correct size\n- How penalties used to be taken in the MLS. Thoughts?\n- Ebbsfleet United put Marco van Basten's alternative penalty shootout idea to the test\n- Tampa Bay Rowdies deny Louisville City bagels.\n- This is how MLS used to take its penalties\n- The Delicious Way the MLS took their penalties in the '90s\n- There was once an MLS game in which 3 penalties were awarded and the final score was 0-0\n- Back in the days when the MLS had shootouts instead of ties, this is how it worked: Clash vs. DC United\n- Penalty shootout in 90s MLS.\n- MLS game between Montreal and Toronto held up by 35 minutes after Ref realises the penalty box is 2 yards too narrow\n- When MLS had shootouts instead of penalty kicks\n- TIL that in the NASL instead of penalties they used to run towards the goal from 35 yards out and try to score\n- Weird MLS Shootout (Like a Hockey shootout)\n- FIFA's van Basten interested in old-school MLS shootouts to break ties\n- The header challenge by the Tampa Bay Rowdies is pretty cool!\n- Throwback-1980 Penalty Shootout Between NY Cosmos and Washington Diplomats with some hilarious penalty rules.\n- The shootouts in MLS were taken quite differently in the 90s\n- Montreal vs Toronto MLS playoff game delayed because the penalty box was painted too small\n- How the MLS used to take penalties\n- This is how penalties were taken in the MLS in the 90s.\n- Ebbsfleet United put Marco van Basten's penalty shootout idea to the test\n- Penalty has to be taken 3 times in an MLS game (2012 - DC Utd vs. Portand Timbers)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"MLS Penalty Shootout History\", \"purpose\": \"Document and analyze historical methods of determining game outcomes through penalties in MLS\", \"emotion_tone\": \"informative\", \"description\": \"Posts discussing the evolution of penalties in MLS, including historical practices, alternative methods, and comparisons with other leagues\", \"inclusion_cues\": [\"MLS penalty shootout history\", \"penalties in MLS\", \"shootout mls\", \"penalties awarded\", \"rules mls\", \"penalties 90\", \"shootouts\", \"mls game\", \"penalties decide\", \"penalties penalty\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"MLS Penalty History\", \"purpose\": \"Explore historical methods of deciding tied games in MLS\", \"emotion_tone\": \"informative\", \"description\": \"Posts discussing the evolution of penalties and shootouts in MLS, including past practices and comparisons with other leagues.\", \"inclusion_cues\": [\"MLS penalties\", \"penalty shootout\", \"MLS game\", \"tied games\", \"shootouts\", \"penalties awarded\", \"rules mls\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"MLS Penalty History\", \"purpose\": \"Explore historical methods of deciding tied games in MLS\", \"emotion_tone\": \"informative\", \"description\": \"Posts discussing the evolution of penalties and shootouts in MLS, including past practices and comparisons with other leagues.\", \"inclusion_cues\": [\"MLS penalties\", \"penalty shootout\", \"MLS game\", \"tied games\", \"shootouts\", \"penalties awarded\", \"rules mls\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 106,
+   "seed": 685883975,
+   "seconds": 0.53
+  }
+ ]
+}

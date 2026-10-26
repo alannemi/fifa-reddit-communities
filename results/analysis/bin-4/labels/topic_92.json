@@ -1,0 +1,186 @@
+{
+ "period_bin": 4,
+ "topic_id": 92,
+ "keywords": "footballer names, famous footballers, famous footballer, footballer famous, player names, favorite footballer, famous football, footballers past, players famous, rules footballer, footballers like, footballer look, players benfica, players family, autograph",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "302idx",
+  "302jot",
+  "3f3eu2",
+  "47uo38",
+  "6rsdoe",
+  "3eg1om",
+  "2wfrza",
+  "339sye",
+  "3wfvu4",
+  "62k1k6",
+  "611qbx",
+  "3d9e5f",
+  "3053pg",
+  "45s404",
+  "44xf0o",
+  "59gz1r",
+  "2q8hkj",
+  "4ok0rf",
+  "4m13kw",
+  "7seyew",
+  "2v2etf",
+  "2ur7sr",
+  "3d2hkk",
+  "625ft6",
+  "2l7j17",
+  "2jkkim",
+  "2zjdou",
+  "3wfa0c",
+  "7prgra",
+  "2prguk",
+  "3ac2lr",
+  "30469m",
+  "6799tc",
+  "2xxrth",
+  "68lmrq",
+  "49uhen",
+  "3llqfr",
+  "347bsz",
+  "3d12xr",
+  "3dnrgf"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Footballer Names and Autographs",
+  "purpose": "Identify and discuss footballer names and autographs",
+  "emotion_tone": "curious, enthusiastic",
+  "description": "Posts about footballer names, autographs, and stories related to meeting famous players",
+  "inclusion_cues": [
+   "Footballer's names that could correctly end a question",
+   "Autograph-related stories",
+   "Stories about meeting famous players"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Footballer Autographs",
+    "purpose": "Discuss autographs and experiences",
+    "emotion_tone": "Curious, nostalgic",
+    "description": "Posts about autographs, meeting footballers, and stories related to autographs",
+    "inclusion_cues": [
+     "autograph",
+     "meeting footballer",
+     "autographed jerseys",
+     "autograph experiences"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Footballer Names and Autographs",
+    "purpose": "Identify and discuss footballer names and autographs",
+    "emotion_tone": "curious, enthusiastic",
+    "description": "Posts about footballer names, autographs, and stories related to meeting famous players",
+    "inclusion_cues": [
+     "Footballer's names that could correctly end a question",
+     "Autograph-related stories",
+     "Stories about meeting famous players"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: footballer names, famous footballers, famous footballer, footballer famous, player names, favorite footballer, famous football, footballers past, players famous, rules footballer, footballers like, footballer look, players benfica, players family, autograph\nPosts (one per line, title first):\n- Footballer's names that could correctly end a question, for example, \"is Wes Brown?\" or \"Can Peter Crouch?\" ([xpost] ( from /r/football) / Rules 1. The footballer's name must end the question, the surname being the last word. 2. The footballer's name can't be modified. E.g. \"How big is Dean's Gurkin\n- Footballer's names that could correctly end a question, for example, \"is Wes Brown?\" or \"Can Peter Crouch?\" (xpost from /r/football) / Rules 1. The footballer's name must end the question, the surname being the last word. 2. The footballer's name can't be modified. E.g. \"How big is Dean's Gurkin?\" -\n- Best experience when getting an autograph from a soccer/football player / I personally have great stories leading up to the autograph. I'm curious to hear your guy's stories. I have autographed jerseys by Brazil players, Benfica players, Sporting players, and NY Red Bulls. I know that feeling when t\n- Brothers who play football / I want to know all the brothers who actively play professional football... Not necessarily on the same team... I'll start the ball rolling with Ricardo, Roberto and Francisco Rodriguez (wolfsburg, St Gallen, wolfsburg) Rogelio and Ramiro Funes Mori (Monterrey and Everton\n- Can you guess the players from their lips? / This maybe an interesting thread, so you post a picture of a player's lips and other users have to guess who the footballer is. May something a bit different than 20 \"Can you guess the players\" threads. I'll start: 1. Number 1 1. Number 2 1. Number 3 1. N\n- TIL Zimbabwe football players have some really hilarious nicknames...Japhet “Short Cat” Mparutsa, Edward “Twinkle-Toes Madhobha” Katsvere, Ernest “Mr. Cool” Mutano, Kenneth”Computer” Jere, Mercedes “Rambo” Sibanda, Alexander “Cool Ruler” Maseko & many more\n- Which player's name has a unique meaning if it is translated to your native language? / For example, Mata means \"eye\" and Salah means \"wrong\" in my language. Any others?\n- Do you think there is some famous footballer on this sub? / There is a lot of people on Reddit, maybe some famous footballer can be here..\n- Who am I? I played with Frederic Kanoute, Adebayor, Deco, Vucinic and Mateja Kezman / Hint Freddie Kanoute was his first club Adebayor second deco third vucinic fourth kezman 5th\n- Can you figure out who this player is?\n- Who is this player? A new intriguing question!\n- Russia's new manager has one of the best surnames in football. Any other examples?\n- Fun football quiz from the Guardian: Guess a player by his playing career.\n- Who here's met a famous footballer? What were they like? / Met Paul McGrath myself a few times, pretty sound guy!\n- Looking for pun names off of real players for my 5 a side team. Examples such as Piqué Boo, Zoombia, or Neymarvellous.\n- Footballers with their face swapped!\n- What is the funniest name in professional football?\n- Biggest bromance in football? / Videos showcasing the bromance if possible\n- Can you guess the name of the player who's on top? without opening the link!!\n- The best name in history of soccer\n- People of Reddit who knew a footballer before they were famous, how has fame changed them?\n- Have anyone here been lucky enough to meet any players? What happened and how were they? / Just saw the video of Totti shaking hands with that kid and it reminded me of the time I met Navarro Montoya in Buenos Aries when I was 9. I was frozen solid and he was super cool, gave me a hug and everything\n- Pretend that technology enables you to genetically engineer the \"perfect footballer\". You can only choose to give him body parts and qualities that are an exact copy of famous footballers (past and present). Based on who do you build him?\n- A friend posted this on Facebook. Trying to figure out if there's a player matching the description.\n- What are some fun stories about players' names? / I'll start: I dunno if everybody here knows this, but Lamela's name in spanish translates to \"lick it\", where the \"it\" could be anything but it's mostly, well, you know... what a fun childhood he must had had.\n- TL;DR a player, and we have to guess who it is\n- Lets play a game! / Comment initials (*JUST* initials, no kit number) and let people guess who you thought of. * Eg: CR = Cristiano Ronaldo. I'll start us off. Who is XS?\n- Who am I? I played with Ronaldinho, Samuel Eto'o, Juanfran, and Talal El Karkouri.\n- Can You Name These Soccer Players ?\n- What footballers have you met? Were they cool or not?\n- What are some best friends in soccer? / It is a well known fact that Evra and Park are best buddies. What other duos share a lasting bond?\n- Has anyone met a famous footballer and what was your experience like?\n- QUIZ № 4 FOOTBALL PLAYER-SINGER\n- Name the player\n- Any info on any of these players?\n- Do you have any interesting stories about meeting your footballing heroes? / I managed to meet King Kenny a few years ago. LFC were opening a new store in Belfast and me and my mum being huge LFC fans decided to go to the opening expecting to meet maybe a bench player. When we got down there about 8\n- A football trivia puzzle for you!! / I played in the top flights of England, Italy, Spain, France and Portugal. I won 72 caps for my non-European nation. I'm 37. Who am I?\n- Players whom you remember by altering their name? / There are certain players whose names may be either too confusing or similar to other words which is why one may remember them by entirely different names. Name any player who you remember with a different name. I'll start Player: Thomas Hitzlsperg\n- On the Tip of my tongue: Who is this Footballer?\n- What are some of the best bromances in football?\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Footballer Autographs\", \"purpose\": \"Discuss autographs and experiences\", \"emotion_tone\": \"Curious, nostalgic\", \"description\": \"Posts about autographs, meeting footballers, and stories related to autographs\", \"inclusion_cues\": [\"autograph\", \"meeting footballer\", \"autographed jerseys\", \"autograph experiences\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Footballer Autographs",
+      "purpose": "Discuss autographs and experiences",
+      "emotion_tone": "Curious, nostalgic",
+      "description": "Posts about autographs, meeting footballers, and stories related to autographs",
+      "inclusion_cues": [
+       "autograph",
+       "meeting footballer",
+       "autographed jerseys",
+       "autograph experiences"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 88,
+   "seed": 1333808250,
+   "seconds": 1.67
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: footballer names, famous footballers, famous footballer, footballer famous, player names, favorite footballer, famous football, footballers past, players famous, rules footballer, footballers like, footballer look, players benfica, players family, autograph\nPosts (one per line, title first):\n- Footballer's names that could correctly end a question, for example, \"is Wes Brown?\" or \"Can Peter Crouch?\" ([xpost] ( from /r/football) / Rules 1. The footballer's name must end the question, the surname being the last word. 2. The footballer's name can't be modified. E.g. \"How big is Dean's Gurkin\n- Footballer's names that could correctly end a question, for example, \"is Wes Brown?\" or \"Can Peter Crouch?\" (xpost from /r/football) / Rules 1. The footballer's name must end the question, the surname being the last word. 2. The footballer's name can't be modified. E.g. \"How big is Dean's Gurkin?\" -\n- Best experience when getting an autograph from a soccer/football player / I personally have great stories leading up to the autograph. I'm curious to hear your guy's stories. I have autographed jerseys by Brazil players, Benfica players, Sporting players, and NY Red Bulls. I know that feeling when t\n- Brothers who play football / I want to know all the brothers who actively play professional football... Not necessarily on the same team... I'll start the ball rolling with Ricardo, Roberto and Francisco Rodriguez (wolfsburg, St Gallen, wolfsburg) Rogelio and Ramiro Funes Mori (Monterrey and Everton\n- Can you guess the players from their lips? / This maybe an interesting thread, so you post a picture of a player's lips and other users have to guess who the footballer is. May something a bit different than 20 \"Can you guess the players\" threads. I'll start: 1. Number 1 1. Number 2 1. Number 3 1. N\n- TIL Zimbabwe football players have some really hilarious nicknames...Japhet “Short Cat” Mparutsa, Edward “Twinkle-Toes Madhobha” Katsvere, Ernest “Mr. Cool” Mutano, Kenneth”Computer” Jere, Mercedes “Rambo” Sibanda, Alexander “Cool Ruler” Maseko & many more\n- Which player's name has a unique meaning if it is translated to your native language? / For example, Mata means \"eye\" and Salah means \"wrong\" in my language. Any others?\n- Do you think there is some famous footballer on this sub? / There is a lot of people on Reddit, maybe some famous footballer can be here..\n- Who am I? I played with Frederic Kanoute, Adebayor, Deco, Vucinic and Mateja Kezman / Hint Freddie Kanoute was his first club Adebayor second deco third vucinic fourth kezman 5th\n- Can you figure out who this player is?\n- Who is this player? A new intriguing question!\n- Russia's new manager has one of the best surnames in football. Any other examples?\n- Fun football quiz from the Guardian: Guess a player by his playing career.\n- Who here's met a famous footballer? What were they like? / Met Paul McGrath myself a few times, pretty sound guy!\n- Looking for pun names off of real players for my 5 a side team. Examples such as Piqué Boo, Zoombia, or Neymarvellous.\n- Footballers with their face swapped!\n- What is the funniest name in professional football?\n- Biggest bromance in football? / Videos showcasing the bromance if possible\n- Can you guess the name of the player who's on top? without opening the link!!\n- The best name in history of soccer\n- People of Reddit who knew a footballer before they were famous, how has fame changed them?\n- Have anyone here been lucky enough to meet any players? What happened and how were they? / Just saw the video of Totti shaking hands with that kid and it reminded me of the time I met Navarro Montoya in Buenos Aries when I was 9. I was frozen solid and he was super cool, gave me a hug and everything\n- Pretend that technology enables you to genetically engineer the \"perfect footballer\". You can only choose to give him body parts and qualities that are an exact copy of famous footballers (past and present). Based on who do you build him?\n- A friend posted this on Facebook. Trying to figure out if there's a player matching the description.\n- What are some fun stories about players' names? / I'll start: I dunno if everybody here knows this, but Lamela's name in spanish translates to \"lick it\", where the \"it\" could be anything but it's mostly, well, you know... what a fun childhood he must had had.\n- TL;DR a player, and we have to guess who it is\n- Lets play a game! / Comment initials (*JUST* initials, no kit number) and let people guess who you thought of. * Eg: CR = Cristiano Ronaldo. I'll start us off. Who is XS?\n- Who am I? I played with Ronaldinho, Samuel Eto'o, Juanfran, and Talal El Karkouri.\n- Can You Name These Soccer Players ?\n- What footballers have you met? Were they cool or not?\n- What are some best friends in soccer? / It is a well known fact that Evra and Park are best buddies. What other duos share a lasting bond?\n- Has anyone met a famous footballer and what was your experience like?\n- QUIZ № 4 FOOTBALL PLAYER-SINGER\n- Name the player\n- Any info on any of these players?\n- Do you have any interesting stories about meeting your footballing heroes? / I managed to meet King Kenny a few years ago. LFC were opening a new store in Belfast and me and my mum being huge LFC fans decided to go to the opening expecting to meet maybe a bench player. When we got down there about 8\n- A football trivia puzzle for you!! / I played in the top flights of England, Italy, Spain, France and Portugal. I won 72 caps for my non-European nation. I'm 37. Who am I?\n- Players whom you remember by altering their name? / There are certain players whose names may be either too confusing or similar to other words which is why one may remember them by entirely different names. Name any player who you remember with a different name. I'll start Player: Thomas Hitzlsperg\n- On the Tip of my tongue: Who is this Footballer?\n- What are some of the best bromances in football?\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Footballer Names and Autographs\", \"purpose\": \"Identify and discuss footballer names and autographs\", \"emotion_tone\": \"curious, enthusiastic\", \"description\": \"Posts about footballer names, autographs, and stories related to meeting famous players\", \"inclusion_cues\": [\"Footballer's names that could correctly end a question\", \"Autograph-related stories\", \"Stories about meeting famous players\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Footballer Names and Autographs",
+      "purpose": "Identify and discuss footballer names and autographs",
+      "emotion_tone": "curious, enthusiastic",
+      "description": "Posts about footballer names, autographs, and stories related to meeting famous players",
+      "inclusion_cues": [
+       "Footballer's names that could correctly end a question",
+       "Autograph-related stories",
+       "Stories about meeting famous players"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 102,
+   "seed": 4175183143,
+   "seconds": 1.44
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: footballer names, famous footballers, famous footballer, footballer famous, player names, favorite footballer, famous football, footballers past, players famous, rules footballer, footballers like, footballer look, players benfica, players family, autograph\nPosts (one per line, title first):\n- Footballer's names that could correctly end a question, for example, \"is Wes Brown?\" or \"Can Peter Crouch?\" ([xpost] ( from /r/football) / Rules 1. The footballer's name must end the question, the surname being the last word. 2. The footballer's name can't be modified. E.g. \"How big is Dean's Gurkin\n- Footballer's names that could correctly end a question, for example, \"is Wes Brown?\" or \"Can Peter Crouch?\" (xpost from /r/football) / Rules 1. The footballer's name must end the question, the surname being the last word. 2. The footballer's name can't be modified. E.g. \"How big is Dean's Gurkin?\" -\n- Best experience when getting an autograph from a soccer/football player / I personally have great stories leading up to the autograph. I'm curious to hear your guy's stories. I have autographed jerseys by Brazil players, Benfica players, Sporting players, and NY Red Bulls. I know that feeling when t\n- Brothers who play football / I want to know all the brothers who actively play professional football... Not necessarily on the same team... I'll start the ball rolling with Ricardo, Roberto and Francisco Rodriguez (wolfsburg, St Gallen, wolfsburg) Rogelio and Ramiro Funes Mori (Monterrey and Everton\n- Can you guess the players from their lips? / This maybe an interesting thread, so you post a picture of a player's lips and other users have to guess who the footballer is. May something a bit different than 20 \"Can you guess the players\" threads. I'll start: 1. Number 1 1. Number 2 1. Number 3 1. N\n- TIL Zimbabwe football players have some really hilarious nicknames...Japhet “Short Cat” Mparutsa, Edward “Twinkle-Toes Madhobha” Katsvere, Ernest “Mr. Cool” Mutano, Kenneth”Computer” Jere, Mercedes “Rambo” Sibanda, Alexander “Cool Ruler” Maseko & many more\n- Which player's name has a unique meaning if it is translated to your native language? / For example, Mata means \"eye\" and Salah means \"wrong\" in my language. Any others?\n- Do you think there is some famous footballer on this sub? / There is a lot of people on Reddit, maybe some famous footballer can be here..\n- Who am I? I played with Frederic Kanoute, Adebayor, Deco, Vucinic and Mateja Kezman / Hint Freddie Kanoute was his first club Adebayor second deco third vucinic fourth kezman 5th\n- Can you figure out who this player is?\n- Who is this player? A new intriguing question!\n- Russia's new manager has one of the best surnames in football. Any other examples?\n- Fun football quiz from the Guardian: Guess a player by his playing career.\n- Who here's met a famous footballer? What were they like? / Met Paul McGrath myself a few times, pretty sound guy!\n- Looking for pun names off of real players for my 5 a side team. Examples such as Piqué Boo, Zoombia, or Neymarvellous.\n- Footballers with their face swapped!\n- What is the funniest name in professional football?\n- Biggest bromance in football? / Videos showcasing the bromance if possible\n- Can you guess the name of the player who's on top? without opening the link!!\n- The best name in history of soccer\n- People of Reddit who knew a footballer before they were famous, how has fame changed them?\n- Have anyone here been lucky enough to meet any players? What happened and how were they? / Just saw the video of Totti shaking hands with that kid and it reminded me of the time I met Navarro Montoya in Buenos Aries when I was 9. I was frozen solid and he was super cool, gave me a hug and everything\n- Pretend that technology enables you to genetically engineer the \"perfect footballer\". You can only choose to give him body parts and qualities that are an exact copy of famous footballers (past and present). Based on who do you build him?\n- A friend posted this on Facebook. Trying to figure out if there's a player matching the description.\n- What are some fun stories about players' names? / I'll start: I dunno if everybody here knows this, but Lamela's name in spanish translates to \"lick it\", where the \"it\" could be anything but it's mostly, well, you know... what a fun childhood he must had had.\n- TL;DR a player, and we have to guess who it is\n- Lets play a game! / Comment initials (*JUST* initials, no kit number) and let people guess who you thought of. * Eg: CR = Cristiano Ronaldo. I'll start us off. Who is XS?\n- Who am I? I played with Ronaldinho, Samuel Eto'o, Juanfran, and Talal El Karkouri.\n- Can You Name These Soccer Players ?\n- What footballers have you met? Were they cool or not?\n- What are some best friends in soccer? / It is a well known fact that Evra and Park are best buddies. What other duos share a lasting bond?\n- Has anyone met a famous footballer and what was your experience like?\n- QUIZ № 4 FOOTBALL PLAYER-SINGER\n- Name the player\n- Any info on any of these players?\n- Do you have any interesting stories about meeting your footballing heroes? / I managed to meet King Kenny a few years ago. LFC were opening a new store in Belfast and me and my mum being huge LFC fans decided to go to the opening expecting to meet maybe a bench player. When we got down there about 8\n- A football trivia puzzle for you!! / I played in the top flights of England, Italy, Spain, France and Portugal. I won 72 caps for my non-European nation. I'm 37. Who am I?\n- Players whom you remember by altering their name? / There are certain players whose names may be either too confusing or similar to other words which is why one may remember them by entirely different names. Name any player who you remember with a different name. I'll start Player: Thomas Hitzlsperg\n- On the Tip of my tongue: Who is this Footballer?\n- What are some of the best bromances in football?\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Footballer Autographs\", \"purpose\": \"Discuss autographs and experiences\", \"emotion_tone\": \"Curious, nostalgic\", \"description\": \"Posts about autographs, meeting footballers, and stories related to autographs\", \"inclusion_cues\": [\"autograph\", \"meeting footballer\", \"autographed jerseys\", \"autograph experiences\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Footballer Names and Autographs\", \"purpose\": \"Identify and discuss footballer names and autographs\", \"emotion_tone\": \"curious, enthusiastic\", \"description\": \"Posts about footballer names, autographs, and stories related to meeting famous players\", \"inclusion_cues\": [\"Footballer's names that could correctly end a question\", \"Autograph-related stories\", \"Stories about meeting famous players\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Footballer Autographs and Names\", \"purpose\": \"Discuss footballer names, autographs, and related experiences\", \"emotion_tone\": \"curious, enthusiastic\", \"description\": \"Posts about footballer names, autographs, and stories related to meeting famous players\", \"inclusion_cues\": [\"Footballer's names that could correctly end a question\", \"Autograph-related stories\", \"Stories about meeting famous players\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 102,
+   "seed": 744833027,
+   "seconds": 0.86
+  }
+ ]
+}

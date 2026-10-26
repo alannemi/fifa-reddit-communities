@@ -1,0 +1,224 @@
+{
+ "period_bin": 6,
+ "topic_id": 4,
+ "keywords": "yellow card, yellow cards, red cards, card foul, card atlético, card dortmund, card liverpool, card napoli, card tottenham, card benfica, card roma, card chelsea, card barcelona, card fenerbahce, card leicester",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "ujtvgw",
+  "duhr5t",
+  "r1fvtm",
+  "e2mslt",
+  "dheunj",
+  "fdm2u2",
+  "f7xb8g",
+  "jdhn9o",
+  "cv93tg",
+  "tw90f9",
+  "sole3l",
+  "u4wd7f",
+  "mobv05",
+  "f4pr7o",
+  "hb0u7n",
+  "jw19of",
+  "luiwuz",
+  "9zsaak",
+  "td9ro0",
+  "u86b29",
+  "k7t5lq",
+  "n3f812",
+  "orhgex",
+  "u0lxr1",
+  "qebgen",
+  "lozkxv",
+  "lowcwn",
+  "uuqx5r",
+  "hawof1",
+  "jm5hlb",
+  "ehra6j",
+  "tzvk1x",
+  "ti60ri",
+  "jqdvkt",
+  "ioy0l8",
+  "t2tpi9",
+  "q0iihk",
+  "hu5cia",
+  "hhza6i",
+  "b1tz4a"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Red and Yellow Cards",
+  "purpose": "Tracking red and yellow card incidents in football matches",
+  "emotion_tone": "Neutral to slightly negative",
+  "description": "Posts discussing red and yellow cards in football matches, including red cards, yellow cards, and related incidents.",
+  "inclusion_cues": [
+   "red card",
+   "yellow card",
+   "card foul",
+   "card atlético",
+   "card dortmund",
+   "card liverpool",
+   "card napoli",
+   "card tottenham",
+   "card benfica",
+   "card roma"
+  ],
+  "n_cues_given": 14
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Red Card",
+    "purpose": "Player ejection for misconduct",
+    "emotion_tone": "serious",
+    "description": "Posts involving direct red cards or severe disciplinary actions",
+    "inclusion_cues": [
+     "straight red card",
+     "second yellow card",
+     "red card against",
+     "card foul",
+     "card atlético",
+     "card dortmund",
+     "card liverpool",
+     "card napoli",
+     "card tottenham",
+     "card benfica"
+    ],
+    "n_cues_given": 15
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Red and Yellow Cards",
+    "purpose": "Tracking red and yellow card incidents in football matches",
+    "emotion_tone": "Neutral to slightly negative",
+    "description": "Posts discussing red and yellow cards in football matches, including red cards, yellow cards, and related incidents.",
+    "inclusion_cues": [
+     "red card",
+     "yellow card",
+     "card foul",
+     "card atlético",
+     "card dortmund",
+     "card liverpool",
+     "card napoli",
+     "card tottenham",
+     "card benfica",
+     "card roma"
+    ],
+    "n_cues_given": 14
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: yellow card, yellow cards, red cards, card foul, card atlético, card dortmund, card liverpool, card napoli, card tottenham, card benfica, card roma, card chelsea, card barcelona, card fenerbahce, card leicester\nPosts (one per line, title first):\n- Daniel Ginczek (Dusseldorf) straight red card and Klaus Gjasula (Darmstadt) second yellow card 88'\n- Alvaro (Marseille) straight red card against Lyon 64'\n- Emre Can straight red card vs Sporting CP 73’\n- Mazrazoui choketackle from behind, no second yellow\n- E. Can (Germany) Straight red card against Estonia 15'\n- Acunã (Tigre) straight red card against Palmeiras - Libertadores - 61'\n- Lazaro V. (Newcastle) red card against Crystal Palace 90+5'\n- L. Dunk (Brighton) straight red card vs Crystal Palace 90+4'\n- Lee Cattermole received a yellow card for his first ever foul in the Eredivisie.\n- Raphael Calvet (Sedan) straight red card against Laval 69'\n- Christopher Ibayi (Versailles 78) second yellow card against Bergerac 79'\n- Kulusevski yellow card Vs Brighton 26'\n- Stephen Antunes Eustaquio (Paços Ferreira) straight red card against Benfica 22'\n- Ruben Dias agression vs Braga, Yellow Card\n- Ali Elmusrati (Rio Ave) second yellow card against Benfica 62'\n- Marko Rog (Croatia) second yellow card against Portugal 51'\n- Charalampos Lykogiannis (Cagliari) second yellow card vs. Crotone (75')\n- Rafael (Lyon) straight red card against Saint-Etienne 70'\n- [Opta] 100 - Jonjoe Kenny received Everton’s 100th Premier League red card; only the second club to be given as many, after Arsenal (101). Bath.\n- Marcus Coco (Nantes) second yellow card against Marseille 90'+4'\n- Sinan Bakis (Heracles) second yellow card against Feyenoord 66'\n- Maxence Caqueret (Lyon) second yellow card against Monaco 70'\n- Nacho Fernandez second yellow card : Rangers 1-1 Real Madrid 75'\n- Mario Lemina (Nice) second yellow card against Lens 57'\n- Adama Soumaoro (Bologna) straight red card against Milan 20'\n- Aboubakar Kamara (Dijon) straight red card against Lens 74'\n- Vladislav Bragin Igorevich (SKA Khabarovsk) straight red card against CSKA Moscow 52'\n- Baris Basdas (Yeni Malatyaspor) straight red card against Fenerbahce 23'\n- Can Bozdogan (Schalke) second yellow card vs. Eintracht Frankfurt (77')\n- Jose Fontan (Celta Vigo) second yellow card against Real Sociedad 90'+3'\n- Krystian Bielik (Derby County) straight red card vs Charlton 17'\n- Aleksandr Chernikov (Krasnodar) second yellow card against Kazan 90'+3'\n- Tim Weah (Lille) straight red card vs. Nantes (64')\n- Sebastiano Luperto (Crotone) second yellow card against Torino 87'\n- Visar Musliu (North Macedonia) red card vs. Georgia (64')\n- Kelvin Amian (Spezia) second yellow card against Roma 45'\n- Stefanelli second yellow card for taking off shirt - AIK 1 - 0 Djurgården\n- Vedat Muriqi (Fenerbahce) straight red card vs Besiktas 26'\n- Egídio (Fluminense) red card versus Volta Redonda in the RJ State Championship first match post pandemic.\n- Gareth Bale yellow card vs Celta 45'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Red Card\", \"purpose\": \"Player ejection for misconduct\", \"emotion_tone\": \"serious\", \"description\": \"Posts involving direct red cards or severe disciplinary actions\", \"inclusion_cues\": [\"straight red card\", \"second yellow card\", \"red card against\", \"card foul\", \"card atlético\", \"card dortmund\", \"card liverpool\", \"card napoli\", \"card tottenham\", \"card benfica\", \"card roma\", \"card chelsea\", \"card barcelona\", \"card fenerbahce\", \"card leicester\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Red Card",
+      "purpose": "Player ejection for misconduct",
+      "emotion_tone": "serious",
+      "description": "Posts involving direct red cards or severe disciplinary actions",
+      "inclusion_cues": [
+       "straight red card",
+       "second yellow card",
+       "red card against",
+       "card foul",
+       "card atlético",
+       "card dortmund",
+       "card liverpool",
+       "card napoli",
+       "card tottenham",
+       "card benfica"
+      ],
+      "n_cues_given": 15
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 134,
+   "seed": 3428992973,
+   "seconds": 2.69
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: yellow card, yellow cards, red cards, card foul, card atlético, card dortmund, card liverpool, card napoli, card tottenham, card benfica, card roma, card chelsea, card barcelona, card fenerbahce, card leicester\nPosts (one per line, title first):\n- Daniel Ginczek (Dusseldorf) straight red card and Klaus Gjasula (Darmstadt) second yellow card 88'\n- Alvaro (Marseille) straight red card against Lyon 64'\n- Emre Can straight red card vs Sporting CP 73’\n- Mazrazoui choketackle from behind, no second yellow\n- E. Can (Germany) Straight red card against Estonia 15'\n- Acunã (Tigre) straight red card against Palmeiras - Libertadores - 61'\n- Lazaro V. (Newcastle) red card against Crystal Palace 90+5'\n- L. Dunk (Brighton) straight red card vs Crystal Palace 90+4'\n- Lee Cattermole received a yellow card for his first ever foul in the Eredivisie.\n- Raphael Calvet (Sedan) straight red card against Laval 69'\n- Christopher Ibayi (Versailles 78) second yellow card against Bergerac 79'\n- Kulusevski yellow card Vs Brighton 26'\n- Stephen Antunes Eustaquio (Paços Ferreira) straight red card against Benfica 22'\n- Ruben Dias agression vs Braga, Yellow Card\n- Ali Elmusrati (Rio Ave) second yellow card against Benfica 62'\n- Marko Rog (Croatia) second yellow card against Portugal 51'\n- Charalampos Lykogiannis (Cagliari) second yellow card vs. Crotone (75')\n- Rafael (Lyon) straight red card against Saint-Etienne 70'\n- [Opta] 100 - Jonjoe Kenny received Everton’s 100th Premier League red card; only the second club to be given as many, after Arsenal (101). Bath.\n- Marcus Coco (Nantes) second yellow card against Marseille 90'+4'\n- Sinan Bakis (Heracles) second yellow card against Feyenoord 66'\n- Maxence Caqueret (Lyon) second yellow card against Monaco 70'\n- Nacho Fernandez second yellow card : Rangers 1-1 Real Madrid 75'\n- Mario Lemina (Nice) second yellow card against Lens 57'\n- Adama Soumaoro (Bologna) straight red card against Milan 20'\n- Aboubakar Kamara (Dijon) straight red card against Lens 74'\n- Vladislav Bragin Igorevich (SKA Khabarovsk) straight red card against CSKA Moscow 52'\n- Baris Basdas (Yeni Malatyaspor) straight red card against Fenerbahce 23'\n- Can Bozdogan (Schalke) second yellow card vs. Eintracht Frankfurt (77')\n- Jose Fontan (Celta Vigo) second yellow card against Real Sociedad 90'+3'\n- Krystian Bielik (Derby County) straight red card vs Charlton 17'\n- Aleksandr Chernikov (Krasnodar) second yellow card against Kazan 90'+3'\n- Tim Weah (Lille) straight red card vs. Nantes (64')\n- Sebastiano Luperto (Crotone) second yellow card against Torino 87'\n- Visar Musliu (North Macedonia) red card vs. Georgia (64')\n- Kelvin Amian (Spezia) second yellow card against Roma 45'\n- Stefanelli second yellow card for taking off shirt - AIK 1 - 0 Djurgården\n- Vedat Muriqi (Fenerbahce) straight red card vs Besiktas 26'\n- Egídio (Fluminense) red card versus Volta Redonda in the RJ State Championship first match post pandemic.\n- Gareth Bale yellow card vs Celta 45'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Red and Yellow Cards\", \"purpose\": \"Tracking red and yellow card incidents in football matches\", \"emotion_tone\": \"Neutral to slightly negative\", \"description\": \"Posts discussing red and yellow cards in football matches, including red cards, yellow cards, and related incidents.\", \"inclusion_cues\": [\"red card\", \"yellow card\", \"card foul\", \"card atlético\", \"card dortmund\", \"card liverpool\", \"card napoli\", \"card tottenham\", \"card benfica\", \"card roma\", \"card chelsea\", \"card barcelona\", \"card fenerbahce\", \"card leicester\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Red and Yellow Cards",
+      "purpose": "Tracking red and yellow card incidents in football matches",
+      "emotion_tone": "Neutral to slightly negative",
+      "description": "Posts discussing red and yellow cards in football matches, including red cards, yellow cards, and related incidents.",
+      "inclusion_cues": [
+       "red card",
+       "yellow card",
+       "card foul",
+       "card atlético",
+       "card dortmund",
+       "card liverpool",
+       "card napoli",
+       "card tottenham",
+       "card benfica",
+       "card roma"
+      ],
+      "n_cues_given": 14
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 147,
+   "seed": 3376920676,
+   "seconds": 0.85
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: yellow card, yellow cards, red cards, card foul, card atlético, card dortmund, card liverpool, card napoli, card tottenham, card benfica, card roma, card chelsea, card barcelona, card fenerbahce, card leicester\nPosts (one per line, title first):\n- Daniel Ginczek (Dusseldorf) straight red card and Klaus Gjasula (Darmstadt) second yellow card 88'\n- Alvaro (Marseille) straight red card against Lyon 64'\n- Emre Can straight red card vs Sporting CP 73’\n- Mazrazoui choketackle from behind, no second yellow\n- E. Can (Germany) Straight red card against Estonia 15'\n- Acunã (Tigre) straight red card against Palmeiras - Libertadores - 61'\n- Lazaro V. (Newcastle) red card against Crystal Palace 90+5'\n- L. Dunk (Brighton) straight red card vs Crystal Palace 90+4'\n- Lee Cattermole received a yellow card for his first ever foul in the Eredivisie.\n- Raphael Calvet (Sedan) straight red card against Laval 69'\n- Christopher Ibayi (Versailles 78) second yellow card against Bergerac 79'\n- Kulusevski yellow card Vs Brighton 26'\n- Stephen Antunes Eustaquio (Paços Ferreira) straight red card against Benfica 22'\n- Ruben Dias agression vs Braga, Yellow Card\n- Ali Elmusrati (Rio Ave) second yellow card against Benfica 62'\n- Marko Rog (Croatia) second yellow card against Portugal 51'\n- Charalampos Lykogiannis (Cagliari) second yellow card vs. Crotone (75')\n- Rafael (Lyon) straight red card against Saint-Etienne 70'\n- [Opta] 100 - Jonjoe Kenny received Everton’s 100th Premier League red card; only the second club to be given as many, after Arsenal (101). Bath.\n- Marcus Coco (Nantes) second yellow card against Marseille 90'+4'\n- Sinan Bakis (Heracles) second yellow card against Feyenoord 66'\n- Maxence Caqueret (Lyon) second yellow card against Monaco 70'\n- Nacho Fernandez second yellow card : Rangers 1-1 Real Madrid 75'\n- Mario Lemina (Nice) second yellow card against Lens 57'\n- Adama Soumaoro (Bologna) straight red card against Milan 20'\n- Aboubakar Kamara (Dijon) straight red card against Lens 74'\n- Vladislav Bragin Igorevich (SKA Khabarovsk) straight red card against CSKA Moscow 52'\n- Baris Basdas (Yeni Malatyaspor) straight red card against Fenerbahce 23'\n- Can Bozdogan (Schalke) second yellow card vs. Eintracht Frankfurt (77')\n- Jose Fontan (Celta Vigo) second yellow card against Real Sociedad 90'+3'\n- Krystian Bielik (Derby County) straight red card vs Charlton 17'\n- Aleksandr Chernikov (Krasnodar) second yellow card against Kazan 90'+3'\n- Tim Weah (Lille) straight red card vs. Nantes (64')\n- Sebastiano Luperto (Crotone) second yellow card against Torino 87'\n- Visar Musliu (North Macedonia) red card vs. Georgia (64')\n- Kelvin Amian (Spezia) second yellow card against Roma 45'\n- Stefanelli second yellow card for taking off shirt - AIK 1 - 0 Djurgården\n- Vedat Muriqi (Fenerbahce) straight red card vs Besiktas 26'\n- Egídio (Fluminense) red card versus Volta Redonda in the RJ State Championship first match post pandemic.\n- Gareth Bale yellow card vs Celta 45'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Red Card\", \"purpose\": \"Player ejection for misconduct\", \"emotion_tone\": \"serious\", \"description\": \"Posts involving direct red cards or severe disciplinary actions\", \"inclusion_cues\": [\"straight red card\", \"second yellow card\", \"red card against\", \"card foul\", \"card atlético\", \"card dortmund\", \"card liverpool\", \"card napoli\", \"card tottenham\", \"card benfica\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Red and Yellow Cards\", \"purpose\": \"Tracking red and yellow card incidents in football matches\", \"emotion_tone\": \"Neutral to slightly negative\", \"description\": \"Posts discussing red and yellow cards in football matches, including red cards, yellow cards, and related incidents.\", \"inclusion_cues\": [\"red card\", \"yellow card\", \"card foul\", \"card atlético\", \"card dortmund\", \"card liverpool\", \"card napoli\", \"card tottenham\", \"card benfica\", \"card roma\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Red and Yellow Cards\", \"purpose\": \"Tracking red and yellow card incidents in football matches\", \"emotion_tone\": \"Neutral to slightly negative\", \"description\": \"Posts discussing red and yellow cards in football matches, including red cards, yellow cards, and related incidents.\", \"inclusion_cues\": [\"red card\", \"yellow card\", \"card foul\", \"card atlético\", \"card dortmund\", \"card liverpool\", \"card napoli\", \"card tottenham\", \"card benfica\", \"card roma\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 125,
+   "seed": 2553204452,
+   "seconds": 0.87
+  }
+ ]
+}

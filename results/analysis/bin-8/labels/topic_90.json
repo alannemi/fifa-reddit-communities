@@ -1,0 +1,212 @@
+{
+ "period_bin": 8,
+ "topic_id": 90,
+ "keywords": "osasuna atletico, osasuna barcelona, sociedad osasuna, barcelona osasuna, goal osasuna, madrid osasuna, osasuna levante, osasuna granada, osasuna athletic, ca osasuna, osasuna girona, osasuna valencia, osasuna almeria, bilbao osasuna, osasuna mallorca",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "1qfkm4t",
+  "1ogrsur",
+  "1gdkmvs",
+  "1ankzre",
+  "1bg8h0k",
+  "1kppyuf",
+  "1f6h01t",
+  "1j20jvm",
+  "1azvfhe",
+  "1frnq5o",
+  "1f098lj",
+  "1h9pu6l",
+  "16urslp",
+  "1ngyirt",
+  "1h9ozc5",
+  "13nymqv",
+  "1697h7w",
+  "1gna8z4",
+  "1gnaec9",
+  "1nqddro",
+  "1cf8du1",
+  "184gp7y",
+  "1j210ry",
+  "13gkj1b",
+  "1cfa4gy",
+  "12fncn4",
+  "13rtbid",
+  "1hzqk89",
+  "1q2zkx6",
+  "13gkn3v",
+  "1gnaeag",
+  "1brkghh",
+  "19c3m76",
+  "17cjg82",
+  "1jcsj1l",
+  "13a2sxn",
+  "1qc4zos",
+  "172929u",
+  "1plt52z",
+  "1qc50qa"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Osasuna vs. Top Clubs",
+  "purpose": "Matches between Osasuna and top Spanish clubs",
+  "emotion_tone": "Excitement and pride",
+  "description": "Posts discussing matches between Osasuna and major Spanish football clubs, highlighting goals, key players, and match outcomes.",
+  "inclusion_cues": [
+   "Osasuna vs. Real Madrid",
+   "Osasuna vs. Barcelona",
+   "Osasuna vs. Real Sociedad",
+   "Osasuna vs. Real Madrid",
+   "Osasuna vs. Alaves",
+   "Osasuna vs. Getafe",
+   "Osasuna vs. Valencia",
+   "Osasuna vs. Rayo Vallecano",
+   "Osasuna vs. Athletic Bilbao",
+   "Osasuna vs. Granada"
+  ],
+  "n_cues_given": 11
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Osasuna vs. Top Clubs",
+    "purpose": "Matches between Osasuna and top Spanish clubs",
+    "emotion_tone": "Competitive",
+    "description": "Posts featuring Osasuna playing against top-tier teams in Spanish football, highlighting goals and match outcomes",
+    "inclusion_cues": [
+     "Osasuna vs. Real Madrid",
+     "Osasuna vs. Barcelona",
+     "Osasuna vs. Real Sociedad",
+     "Osasuna vs. Real Madrid",
+     "Osasuna vs. Atlético Madrid"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Osasuna vs. Top Clubs",
+    "purpose": "Matches between Osasuna and top Spanish clubs",
+    "emotion_tone": "Excitement and pride",
+    "description": "Posts discussing matches between Osasuna and major Spanish football clubs, highlighting goals, key players, and match outcomes.",
+    "inclusion_cues": [
+     "Osasuna vs. Real Madrid",
+     "Osasuna vs. Barcelona",
+     "Osasuna vs. Real Sociedad",
+     "Osasuna vs. Real Madrid",
+     "Osasuna vs. Alaves",
+     "Osasuna vs. Getafe",
+     "Osasuna vs. Valencia",
+     "Osasuna vs. Rayo Vallecano",
+     "Osasuna vs. Athletic Bilbao",
+     "Osasuna vs. Granada"
+    ],
+    "n_cues_given": 11
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: osasuna atletico, osasuna barcelona, sociedad osasuna, barcelona osasuna, goal osasuna, madrid osasuna, osasuna levante, osasuna granada, osasuna athletic, ca osasuna, osasuna girona, osasuna valencia, osasuna almeria, bilbao osasuna, osasuna mallorca\nPosts (one per line, title first):\n- Osasuna [1]-1 Real Oviedo - Ante Budimir 45'\n- Osasuna [2]-1 Celta Vigo - Ante Budimir 45'+1'\n- Real Sociedad 0-2 Osasuna - Ante Budimir 34'\n- Real Sociedad 0-1 Osasuna - Ante Budimir 49'\n- Osasuna [1] - 1 Real Madrid - Ante Budimir 7'\n- Osasuna 1-0 Espanyol - Ante Budimir 17'\n- Osasuna 1-0 Celta Vigo - Flavien Boyomo 21'\n- Osasuna [1]-1 Valencia - Aimar Oroz 26'\n- Las Palmas [1]-1 Osasuna - Kirian Rodriguez 52'\n- Osasuna [4] - 1 Barcelona - Abel Bretones great goal 85'\n- Osasuna - Mallorca 1 - 0 R. García\n- Osasuna [1]-1 Alaves - Ante Budimir 54'\n- Osasuna 0 - [2] Atletico Madrid - Rodrigo Riquelme 81'\n- Osasuna 2-0 Rayo Vallecano - Iker Benito 77'\n- Osasuna 0-1 Alaves - Kike Garcia 1'\n- Atletico Madrid [3] - 0 Osasuna - Angel Correa 82'\n- Osasuna [1] - 1 Barcelona - Ezequiel Avila 76‎'‎\n- Real Madrid [1] - 0 Osasuna - Vinicius Junior 34'\n- Real Madrid [2] - 0 Osasuna - J. Bellingham 42'\n- Osasuna 1-0 Elche - Victor Munoz 10'\n- Granada [1] - 0 Osasuna - Facundo Pellistri 30'\n- Villarreal CF [2] - 0 CA Osasuna - 71' - Morales' great goal\n- Osasuna [3]-2 Valencia - Ante Budimir penalty 45'\n- Osasuna [1] - 0 Almeria - Ante Budimir 46'\n- Granada [3] - 0 Osasuna - Lucas Boye 90+5'\n- Osasuna [1] - 1 Elche - Abde 71'\n- Osasuna 2-0 Athletic Bilbao - Lucas Torro 77'\n- Atlético Madrid [1] - 0 Osasuna - Julian Alvarez 55'\n- Osasuna 1-[1] Athletic Club - Gorka Guruzeta 71'\n- Osasuna [2] - 0 Almeria - Abde Ezzalzouli 51'\n- Real Madrid [2] - 0 Osasuna - Jude Bellingham 42'\n- Almeria 0 - [2] Osasuna - Ante Budimir 9'\n- Osasuna [2] - 0 Getafe - Iker Munoz 31' (Great-strike)\n- Osasuna [1] - 0 Granada - Ante Budimir 14'\n- Osasuna 1-[1] Getafe - Ramon Terrats 55'\n- Real Madrid [2] - 1 Osasuna - Rodrygo 69'\n- Real Sociedad 0-2 Osasuna - Mikel Oyarzabal OG 17'\n- Real Madrid [2] - 0 Osasuna - Jude Bellingham 54'\n- Barcelona [1] - 0 Osasuna - Raphinha 70'\n- Real Sociedad [2]-2 Osasuna - Igor Zubeldia 90'+2'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Osasuna vs. Top Clubs\", \"purpose\": \"Matches between Osasuna and top Spanish clubs\", \"emotion_tone\": \"Competitive\", \"description\": \"Posts featuring Osasuna playing against top-tier teams in Spanish football, highlighting goals and match outcomes\", \"inclusion_cues\": [\"Osasuna vs. Real Madrid\", \"Osasuna vs. Barcelona\", \"Osasuna vs. Real Sociedad\", \"Osasuna vs. Real Madrid\", \"Osasuna vs. Atlético Madrid\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Osasuna vs. Top Clubs",
+      "purpose": "Matches between Osasuna and top Spanish clubs",
+      "emotion_tone": "Competitive",
+      "description": "Posts featuring Osasuna playing against top-tier teams in Spanish football, highlighting goals and match outcomes",
+      "inclusion_cues": [
+       "Osasuna vs. Real Madrid",
+       "Osasuna vs. Barcelona",
+       "Osasuna vs. Real Sociedad",
+       "Osasuna vs. Real Madrid",
+       "Osasuna vs. Atlético Madrid"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 124,
+   "seed": 238136880,
+   "seconds": 1.83
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: osasuna atletico, osasuna barcelona, sociedad osasuna, barcelona osasuna, goal osasuna, madrid osasuna, osasuna levante, osasuna granada, osasuna athletic, ca osasuna, osasuna girona, osasuna valencia, osasuna almeria, bilbao osasuna, osasuna mallorca\nPosts (one per line, title first):\n- Osasuna [1]-1 Real Oviedo - Ante Budimir 45'\n- Osasuna [2]-1 Celta Vigo - Ante Budimir 45'+1'\n- Real Sociedad 0-2 Osasuna - Ante Budimir 34'\n- Real Sociedad 0-1 Osasuna - Ante Budimir 49'\n- Osasuna [1] - 1 Real Madrid - Ante Budimir 7'\n- Osasuna 1-0 Espanyol - Ante Budimir 17'\n- Osasuna 1-0 Celta Vigo - Flavien Boyomo 21'\n- Osasuna [1]-1 Valencia - Aimar Oroz 26'\n- Las Palmas [1]-1 Osasuna - Kirian Rodriguez 52'\n- Osasuna [4] - 1 Barcelona - Abel Bretones great goal 85'\n- Osasuna - Mallorca 1 - 0 R. García\n- Osasuna [1]-1 Alaves - Ante Budimir 54'\n- Osasuna 0 - [2] Atletico Madrid - Rodrigo Riquelme 81'\n- Osasuna 2-0 Rayo Vallecano - Iker Benito 77'\n- Osasuna 0-1 Alaves - Kike Garcia 1'\n- Atletico Madrid [3] - 0 Osasuna - Angel Correa 82'\n- Osasuna [1] - 1 Barcelona - Ezequiel Avila 76‎'‎\n- Real Madrid [1] - 0 Osasuna - Vinicius Junior 34'\n- Real Madrid [2] - 0 Osasuna - J. Bellingham 42'\n- Osasuna 1-0 Elche - Victor Munoz 10'\n- Granada [1] - 0 Osasuna - Facundo Pellistri 30'\n- Villarreal CF [2] - 0 CA Osasuna - 71' - Morales' great goal\n- Osasuna [3]-2 Valencia - Ante Budimir penalty 45'\n- Osasuna [1] - 0 Almeria - Ante Budimir 46'\n- Granada [3] - 0 Osasuna - Lucas Boye 90+5'\n- Osasuna [1] - 1 Elche - Abde 71'\n- Osasuna 2-0 Athletic Bilbao - Lucas Torro 77'\n- Atlético Madrid [1] - 0 Osasuna - Julian Alvarez 55'\n- Osasuna 1-[1] Athletic Club - Gorka Guruzeta 71'\n- Osasuna [2] - 0 Almeria - Abde Ezzalzouli 51'\n- Real Madrid [2] - 0 Osasuna - Jude Bellingham 42'\n- Almeria 0 - [2] Osasuna - Ante Budimir 9'\n- Osasuna [2] - 0 Getafe - Iker Munoz 31' (Great-strike)\n- Osasuna [1] - 0 Granada - Ante Budimir 14'\n- Osasuna 1-[1] Getafe - Ramon Terrats 55'\n- Real Madrid [2] - 1 Osasuna - Rodrygo 69'\n- Real Sociedad 0-2 Osasuna - Mikel Oyarzabal OG 17'\n- Real Madrid [2] - 0 Osasuna - Jude Bellingham 54'\n- Barcelona [1] - 0 Osasuna - Raphinha 70'\n- Real Sociedad [2]-2 Osasuna - Igor Zubeldia 90'+2'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Osasuna vs. Top Clubs\", \"purpose\": \"Matches between Osasuna and top Spanish clubs\", \"emotion_tone\": \"Excitement and pride\", \"description\": \"Posts discussing matches between Osasuna and major Spanish football clubs, highlighting goals, key players, and match outcomes.\", \"inclusion_cues\": [\"Osasuna vs. Real Madrid\", \"Osasuna vs. Barcelona\", \"Osasuna vs. Real Sociedad\", \"Osasuna vs. Real Madrid\", \"Osasuna vs. Alaves\", \"Osasuna vs. Getafe\", \"Osasuna vs. Valencia\", \"Osasuna vs. Rayo Vallecano\", \"Osasuna vs. Athletic Bilbao\", \"Osasuna vs. Granada\", \"Osasuna vs. Villarreal\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Osasuna vs. Top Clubs",
+      "purpose": "Matches between Osasuna and top Spanish clubs",
+      "emotion_tone": "Excitement and pride",
+      "description": "Posts discussing matches between Osasuna and major Spanish football clubs, highlighting goals, key players, and match outcomes.",
+      "inclusion_cues": [
+       "Osasuna vs. Real Madrid",
+       "Osasuna vs. Barcelona",
+       "Osasuna vs. Real Sociedad",
+       "Osasuna vs. Real Madrid",
+       "Osasuna vs. Alaves",
+       "Osasuna vs. Getafe",
+       "Osasuna vs. Valencia",
+       "Osasuna vs. Rayo Vallecano",
+       "Osasuna vs. Athletic Bilbao",
+       "Osasuna vs. Granada"
+      ],
+      "n_cues_given": 11
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 187,
+   "seed": 3654152504,
+   "seconds": 1.85
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: osasuna atletico, osasuna barcelona, sociedad osasuna, barcelona osasuna, goal osasuna, madrid osasuna, osasuna levante, osasuna granada, osasuna athletic, ca osasuna, osasuna girona, osasuna valencia, osasuna almeria, bilbao osasuna, osasuna mallorca\nPosts (one per line, title first):\n- Osasuna [1]-1 Real Oviedo - Ante Budimir 45'\n- Osasuna [2]-1 Celta Vigo - Ante Budimir 45'+1'\n- Real Sociedad 0-2 Osasuna - Ante Budimir 34'\n- Real Sociedad 0-1 Osasuna - Ante Budimir 49'\n- Osasuna [1] - 1 Real Madrid - Ante Budimir 7'\n- Osasuna 1-0 Espanyol - Ante Budimir 17'\n- Osasuna 1-0 Celta Vigo - Flavien Boyomo 21'\n- Osasuna [1]-1 Valencia - Aimar Oroz 26'\n- Las Palmas [1]-1 Osasuna - Kirian Rodriguez 52'\n- Osasuna [4] - 1 Barcelona - Abel Bretones great goal 85'\n- Osasuna - Mallorca 1 - 0 R. García\n- Osasuna [1]-1 Alaves - Ante Budimir 54'\n- Osasuna 0 - [2] Atletico Madrid - Rodrigo Riquelme 81'\n- Osasuna 2-0 Rayo Vallecano - Iker Benito 77'\n- Osasuna 0-1 Alaves - Kike Garcia 1'\n- Atletico Madrid [3] - 0 Osasuna - Angel Correa 82'\n- Osasuna [1] - 1 Barcelona - Ezequiel Avila 76‎'‎\n- Real Madrid [1] - 0 Osasuna - Vinicius Junior 34'\n- Real Madrid [2] - 0 Osasuna - J. Bellingham 42'\n- Osasuna 1-0 Elche - Victor Munoz 10'\n- Granada [1] - 0 Osasuna - Facundo Pellistri 30'\n- Villarreal CF [2] - 0 CA Osasuna - 71' - Morales' great goal\n- Osasuna [3]-2 Valencia - Ante Budimir penalty 45'\n- Osasuna [1] - 0 Almeria - Ante Budimir 46'\n- Granada [3] - 0 Osasuna - Lucas Boye 90+5'\n- Osasuna [1] - 1 Elche - Abde 71'\n- Osasuna 2-0 Athletic Bilbao - Lucas Torro 77'\n- Atlético Madrid [1] - 0 Osasuna - Julian Alvarez 55'\n- Osasuna 1-[1] Athletic Club - Gorka Guruzeta 71'\n- Osasuna [2] - 0 Almeria - Abde Ezzalzouli 51'\n- Real Madrid [2] - 0 Osasuna - Jude Bellingham 42'\n- Almeria 0 - [2] Osasuna - Ante Budimir 9'\n- Osasuna [2] - 0 Getafe - Iker Munoz 31' (Great-strike)\n- Osasuna [1] - 0 Granada - Ante Budimir 14'\n- Osasuna 1-[1] Getafe - Ramon Terrats 55'\n- Real Madrid [2] - 1 Osasuna - Rodrygo 69'\n- Real Sociedad 0-2 Osasuna - Mikel Oyarzabal OG 17'\n- Real Madrid [2] - 0 Osasuna - Jude Bellingham 54'\n- Barcelona [1] - 0 Osasuna - Raphinha 70'\n- Real Sociedad [2]-2 Osasuna - Igor Zubeldia 90'+2'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Osasuna vs. Top Clubs\", \"purpose\": \"Matches between Osasuna and top Spanish clubs\", \"emotion_tone\": \"Competitive\", \"description\": \"Posts featuring Osasuna playing against top-tier teams in Spanish football, highlighting goals and match outcomes\", \"inclusion_cues\": [\"Osasuna vs. Real Madrid\", \"Osasuna vs. Barcelona\", \"Osasuna vs. Real Sociedad\", \"Osasuna vs. Real Madrid\", \"Osasuna vs. Atlético Madrid\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Osasuna vs. Top Clubs\", \"purpose\": \"Matches between Osasuna and top Spanish clubs\", \"emotion_tone\": \"Excitement and pride\", \"description\": \"Posts discussing matches between Osasuna and major Spanish football clubs, highlighting goals, key players, and match outcomes.\", \"inclusion_cues\": [\"Osasuna vs. Real Madrid\", \"Osasuna vs. Barcelona\", \"Osasuna vs. Real Sociedad\", \"Osasuna vs. Real Madrid\", \"Osasuna vs. Alaves\", \"Osasuna vs. Getafe\", \"Osasuna vs. Valencia\", \"Osasuna vs. Rayo Vallecano\", \"Osasuna vs. Athletic Bilbao\", \"Osasuna vs. Granada\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Osasuna vs. Top Clubs\", \"purpose\": \"Matches between Osasuna and top Spanish clubs\", \"emotion_tone\": \"Excitement and pride\", \"description\": \"Posts discussing matches between Osasuna and major Spanish football clubs, highlighting goals, key players, and match outcomes.\", \"inclusion_cues\": [\"Osasuna vs. Real Madrid\", \"Osasuna vs. Barcelona\", \"Osasuna vs. Real Sociedad\", \"Osasuna vs. Real Madrid\", \"Osasuna vs. Alaves\", \"Osasuna vs. Getafe\", \"Osasuna vs. Valencia\", \"Osasuna vs. Rayo Vallecano\", \"Osasuna vs. Athletic Bilbao\", \"Osasuna vs. Granada\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 175,
+   "seed": 1708976337,
+   "seconds": 0.81
+  }
+ ]
+}

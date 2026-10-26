@@ -1,0 +1,180 @@
+{
+ "period_bin": 4,
+ "topic_id": 1384,
+ "keywords": "fans iraqi, iraqi fans, fans iraq, madrid supporters, madrid fans, isis attack, madrid fan, madrid victory, league iraqi, madrid president, match iraq, club champions, madrid florentino, islamic state, fans erupt",
+ "n_sample_posts": 29,
+ "sample_ids": [
+  "4lhy8v",
+  "4lla4v",
+  "4ljm7k",
+  "4jsk2p",
+  "4j6fsv",
+  "4ls652",
+  "3r7cel",
+  "5b9u6y",
+  "4ll3ze",
+  "4byvri",
+  "4j7fau",
+  "4llps5",
+  "4j6syg",
+  "2szpwq",
+  "4lme3l",
+  "4j6lun",
+  "4lwct6",
+  "7ild2s",
+  "612bah",
+  "4lli7x",
+  "39hikp",
+  "2t3qh8",
+  "2pfvls",
+  "39hjez",
+  "4c11an",
+  "30hd8m",
+  "4j6gfr",
+  "4lsvqy",
+  "2k15u1"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Iraqi Football Violence",
+  "purpose": "Report and analyze incidents of violence against Real Madrid fans in Iraq",
+  "emotion_tone": "tragic, urgent, somber",
+  "description": "Posts discussing attacks on Real Madrid fans in Iraq, including ISIS-related incidents, fan reactions, and calls for solidarity.",
+  "inclusion_cues": [
+   "Real Madrid fans killed in ISIS attack",
+   "Terrorist attack on Real Madrid supporters in Iraq",
+   "Dedication of Champions League victory to Iraqi fans",
+   "Fan club attacks and casualties"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Iraqi Football Violence",
+    "purpose": "Report and analyze football-related violence in Iraq",
+    "emotion_tone": "tragic, urgent, somber",
+    "description": "Posts discussing attacks on Real Madrid fan clubs in Iraq, including ISIS-related violence, fan reactions, and survivor accounts.",
+    "inclusion_cues": [
+     "Real Madrid fans killed in ISIS attack",
+     "Iraqi fan clubs attacked",
+     "ISIS responsibility claimed",
+     "Survivor statements",
+     "Football-related violence in Iraq"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Iraqi Football Violence",
+    "purpose": "Report and analyze incidents of violence against Real Madrid fans in Iraq",
+    "emotion_tone": "tragic, urgent, somber",
+    "description": "Posts discussing attacks on Real Madrid fans in Iraq, including ISIS-related incidents, fan reactions, and calls for solidarity.",
+    "inclusion_cues": [
+     "Real Madrid fans killed in ISIS attack",
+     "Terrorist attack on Real Madrid supporters in Iraq",
+     "Dedication of Champions League victory to Iraqi fans",
+     "Fan club attacks and casualties"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: fans iraqi, iraqi fans, fans iraq, madrid supporters, madrid fans, isis attack, madrid fan, madrid victory, league iraqi, madrid president, match iraq, club champions, madrid florentino, islamic state, fans erupt\nPosts (one per line, title first):\n- Madrid president dedicates Champions League to Iraqi fans killed in ISIS attack\n- Terrorist attack on Real Madrid supporters club in Iraq, Baakouba has claimed the live of 12 fans, who were celebrating the UCL-Final.\n- Iraqi fans erupt with joy at Real Madrid's victory, in the same Real Madrid fan club where ISIS killed 13 supporters two weeks ago in Iraq\n- Survivors of ISIS attack on Real Madrid fan club in Iraq: \"It's the only place we can go to escape our problems with life in Iraq. At least Real Madrid reacted better than our government who remained silent.\"\n- Truly appalling scenes in Iraq - 14 dead after ISIS attack Real Madrid supporters' club\n- Real Madrid's Florentino Perez dedicates Champions League victory to Iraqi fans killed by ISIS\n- News Thump: Islamic State claim responsibility for devastating start to Chelsea’s season\n- Iraqi goalkeeper Munir Abid has his wife and four kids killed by ISIS. [Arabic Link]\n- Spanish media reporting another attack on another Real Madrid supporters club in Iraq, 12 dead\n- Isis just took responsibility for an attack on a soccer game, more then 100 killed/injuries in Iraq.\n- Real Madrid's Official Announcement regarding the death of 16 fans in Iraq.\n- Iraqi terrorists attack yet another Real Madrid fan club during Champions League evening - 12 dead, 8 injured\n- The Real Madrid supporters club in Iraq suffered a terrorist attack this morning, 14 people were killed and 20 injured. (Slightly NSFW)\n- ISIS execute 13 teenage football fans for watching Iraq play Jordan on TV. RIP fellow football/soccer fans.\n- ISIS attacks Iraqi Real Madrid supporters again, this time killing 12\n- ISIS kill 14 Real Madrid fans.\n- Isis storm Real Madrid fan club in Iraq, shooting 12 dead during Champions League final\n- London soccer club hosts relatives of Israelis killed in terrorist attacks\n- Iraq child 'suicide bomber' caught in full Chelsea kit\n- ISIS second attack on Iraqi Real Madrid fans\n- Yezidi Militias Killed 21 Arab Civilians in Iraq Revenge Attack\n- ISIS publicly executes 13 teenagers for watching Asian Cup match Iraq v Jordan\n- TubeChop - 18 WARNING GRAPHIC: ISIS Death Squads Killing Without Mercy on Iraq Roads (00:31)\n- Yezidi Militias Killed 21 Arab Civilians in Iraq Revenge Attack\n- Islamic State suicide bomber kills dozens at soccer game in Iraq\n- ISIS aren't big fans of El Clasico...\n- Real Madrid supporters club in Iraq attacked, 14 dead, 20 injured\n- Real Madrid president Florentino Pérez said that he would like to \"Dedicate this cup to our fans in Iraq.\" after ISIS kills 12 Real Madrid fans watching the finals\n- Terrorist who killed baby in Jerusalem attack dies of his wounds\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Iraqi Football Violence\", \"purpose\": \"Report and analyze football-related violence in Iraq\", \"emotion_tone\": \"tragic, urgent, somber\", \"description\": \"Posts discussing attacks on Real Madrid fan clubs in Iraq, including ISIS-related violence, fan reactions, and survivor accounts.\", \"inclusion_cues\": [\"Real Madrid fans killed in ISIS attack\", \"Iraqi fan clubs attacked\", \"ISIS responsibility claimed\", \"Survivor statements\", \"Football-related violence in Iraq\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Iraqi Football Violence",
+      "purpose": "Report and analyze football-related violence in Iraq",
+      "emotion_tone": "tragic, urgent, somber",
+      "description": "Posts discussing attacks on Real Madrid fan clubs in Iraq, including ISIS-related violence, fan reactions, and survivor accounts.",
+      "inclusion_cues": [
+       "Real Madrid fans killed in ISIS attack",
+       "Iraqi fan clubs attacked",
+       "ISIS responsibility claimed",
+       "Survivor statements",
+       "Football-related violence in Iraq"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 115,
+   "seed": 2716748330,
+   "seconds": 1.1
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: fans iraqi, iraqi fans, fans iraq, madrid supporters, madrid fans, isis attack, madrid fan, madrid victory, league iraqi, madrid president, match iraq, club champions, madrid florentino, islamic state, fans erupt\nPosts (one per line, title first):\n- Madrid president dedicates Champions League to Iraqi fans killed in ISIS attack\n- Terrorist attack on Real Madrid supporters club in Iraq, Baakouba has claimed the live of 12 fans, who were celebrating the UCL-Final.\n- Iraqi fans erupt with joy at Real Madrid's victory, in the same Real Madrid fan club where ISIS killed 13 supporters two weeks ago in Iraq\n- Survivors of ISIS attack on Real Madrid fan club in Iraq: \"It's the only place we can go to escape our problems with life in Iraq. At least Real Madrid reacted better than our government who remained silent.\"\n- Truly appalling scenes in Iraq - 14 dead after ISIS attack Real Madrid supporters' club\n- Real Madrid's Florentino Perez dedicates Champions League victory to Iraqi fans killed by ISIS\n- News Thump: Islamic State claim responsibility for devastating start to Chelsea’s season\n- Iraqi goalkeeper Munir Abid has his wife and four kids killed by ISIS. [Arabic Link]\n- Spanish media reporting another attack on another Real Madrid supporters club in Iraq, 12 dead\n- Isis just took responsibility for an attack on a soccer game, more then 100 killed/injuries in Iraq.\n- Real Madrid's Official Announcement regarding the death of 16 fans in Iraq.\n- Iraqi terrorists attack yet another Real Madrid fan club during Champions League evening - 12 dead, 8 injured\n- The Real Madrid supporters club in Iraq suffered a terrorist attack this morning, 14 people were killed and 20 injured. (Slightly NSFW)\n- ISIS execute 13 teenage football fans for watching Iraq play Jordan on TV. RIP fellow football/soccer fans.\n- ISIS attacks Iraqi Real Madrid supporters again, this time killing 12\n- ISIS kill 14 Real Madrid fans.\n- Isis storm Real Madrid fan club in Iraq, shooting 12 dead during Champions League final\n- London soccer club hosts relatives of Israelis killed in terrorist attacks\n- Iraq child 'suicide bomber' caught in full Chelsea kit\n- ISIS second attack on Iraqi Real Madrid fans\n- Yezidi Militias Killed 21 Arab Civilians in Iraq Revenge Attack\n- ISIS publicly executes 13 teenagers for watching Asian Cup match Iraq v Jordan\n- TubeChop - 18 WARNING GRAPHIC: ISIS Death Squads Killing Without Mercy on Iraq Roads (00:31)\n- Yezidi Militias Killed 21 Arab Civilians in Iraq Revenge Attack\n- Islamic State suicide bomber kills dozens at soccer game in Iraq\n- ISIS aren't big fans of El Clasico...\n- Real Madrid supporters club in Iraq attacked, 14 dead, 20 injured\n- Real Madrid president Florentino Pérez said that he would like to \"Dedicate this cup to our fans in Iraq.\" after ISIS kills 12 Real Madrid fans watching the finals\n- Terrorist who killed baby in Jerusalem attack dies of his wounds\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Iraqi Football Violence\", \"purpose\": \"Report and analyze incidents of violence against Real Madrid fans in Iraq\", \"emotion_tone\": \"tragic, urgent, somber\", \"description\": \"Posts discussing attacks on Real Madrid fans in Iraq, including ISIS-related incidents, fan reactions, and calls for solidarity.\", \"inclusion_cues\": [\"Real Madrid fans killed in ISIS attack\", \"Terrorist attack on Real Madrid supporters in Iraq\", \"Dedication of Champions League victory to Iraqi fans\", \"Fan club attacks and casualties\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Iraqi Football Violence",
+      "purpose": "Report and analyze incidents of violence against Real Madrid fans in Iraq",
+      "emotion_tone": "tragic, urgent, somber",
+      "description": "Posts discussing attacks on Real Madrid fans in Iraq, including ISIS-related incidents, fan reactions, and calls for solidarity.",
+      "inclusion_cues": [
+       "Real Madrid fans killed in ISIS attack",
+       "Terrorist attack on Real Madrid supporters in Iraq",
+       "Dedication of Champions League victory to Iraqi fans",
+       "Fan club attacks and casualties"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 126,
+   "seed": 1157399459,
+   "seconds": 0.74
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: fans iraqi, iraqi fans, fans iraq, madrid supporters, madrid fans, isis attack, madrid fan, madrid victory, league iraqi, madrid president, match iraq, club champions, madrid florentino, islamic state, fans erupt\nPosts (one per line, title first):\n- Madrid president dedicates Champions League to Iraqi fans killed in ISIS attack\n- Terrorist attack on Real Madrid supporters club in Iraq, Baakouba has claimed the live of 12 fans, who were celebrating the UCL-Final.\n- Iraqi fans erupt with joy at Real Madrid's victory, in the same Real Madrid fan club where ISIS killed 13 supporters two weeks ago in Iraq\n- Survivors of ISIS attack on Real Madrid fan club in Iraq: \"It's the only place we can go to escape our problems with life in Iraq. At least Real Madrid reacted better than our government who remained silent.\"\n- Truly appalling scenes in Iraq - 14 dead after ISIS attack Real Madrid supporters' club\n- Real Madrid's Florentino Perez dedicates Champions League victory to Iraqi fans killed by ISIS\n- News Thump: Islamic State claim responsibility for devastating start to Chelsea’s season\n- Iraqi goalkeeper Munir Abid has his wife and four kids killed by ISIS. [Arabic Link]\n- Spanish media reporting another attack on another Real Madrid supporters club in Iraq, 12 dead\n- Isis just took responsibility for an attack on a soccer game, more then 100 killed/injuries in Iraq.\n- Real Madrid's Official Announcement regarding the death of 16 fans in Iraq.\n- Iraqi terrorists attack yet another Real Madrid fan club during Champions League evening - 12 dead, 8 injured\n- The Real Madrid supporters club in Iraq suffered a terrorist attack this morning, 14 people were killed and 20 injured. (Slightly NSFW)\n- ISIS execute 13 teenage football fans for watching Iraq play Jordan on TV. RIP fellow football/soccer fans.\n- ISIS attacks Iraqi Real Madrid supporters again, this time killing 12\n- ISIS kill 14 Real Madrid fans.\n- Isis storm Real Madrid fan club in Iraq, shooting 12 dead during Champions League final\n- London soccer club hosts relatives of Israelis killed in terrorist attacks\n- Iraq child 'suicide bomber' caught in full Chelsea kit\n- ISIS second attack on Iraqi Real Madrid fans\n- Yezidi Militias Killed 21 Arab Civilians in Iraq Revenge Attack\n- ISIS publicly executes 13 teenagers for watching Asian Cup match Iraq v Jordan\n- TubeChop - 18 WARNING GRAPHIC: ISIS Death Squads Killing Without Mercy on Iraq Roads (00:31)\n- Yezidi Militias Killed 21 Arab Civilians in Iraq Revenge Attack\n- Islamic State suicide bomber kills dozens at soccer game in Iraq\n- ISIS aren't big fans of El Clasico...\n- Real Madrid supporters club in Iraq attacked, 14 dead, 20 injured\n- Real Madrid president Florentino Pérez said that he would like to \"Dedicate this cup to our fans in Iraq.\" after ISIS kills 12 Real Madrid fans watching the finals\n- Terrorist who killed baby in Jerusalem attack dies of his wounds\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Iraqi Football Violence\", \"purpose\": \"Report and analyze football-related violence in Iraq\", \"emotion_tone\": \"tragic, urgent, somber\", \"description\": \"Posts discussing attacks on Real Madrid fan clubs in Iraq, including ISIS-related violence, fan reactions, and survivor accounts.\", \"inclusion_cues\": [\"Real Madrid fans killed in ISIS attack\", \"Iraqi fan clubs attacked\", \"ISIS responsibility claimed\", \"Survivor statements\", \"Football-related violence in Iraq\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Iraqi Football Violence\", \"purpose\": \"Report and analyze incidents of violence against Real Madrid fans in Iraq\", \"emotion_tone\": \"tragic, urgent, somber\", \"description\": \"Posts discussing attacks on Real Madrid fans in Iraq, including ISIS-related incidents, fan reactions, and calls for solidarity.\", \"inclusion_cues\": [\"Real Madrid fans killed in ISIS attack\", \"Terrorist attack on Real Madrid supporters in Iraq\", \"Dedication of Champions League victory to Iraqi fans\", \"Fan club attacks and casualties\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Iraqi Football Violence\", \"purpose\": \"Report and analyze incidents of violence against Real Madrid fans in Iraq\", \"emotion_tone\": \"tragic, urgent, somber\", \"description\": \"Posts discussing attacks on Real Madrid fans in Iraq, including ISIS-related incidents, fan reactions, and calls for solidarity.\", \"inclusion_cues\": [\"Real Madrid fans killed in ISIS attack\", \"Terrorist attack on Real Madrid supporters in Iraq\", \"Dedication of Champions League victory to Iraqi fans\", \"Fan club attacks and casualties\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 125,
+   "seed": 844411397,
+   "seconds": 0.6
+  }
+ ]
+}

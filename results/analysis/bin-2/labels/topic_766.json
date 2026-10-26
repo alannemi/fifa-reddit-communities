@@ -1,0 +1,186 @@
+{
+ "period_bin": 2,
+ "topic_id": 766,
+ "keywords": "bieber, trains barcelona, train barcelona, barcelona think, celebrity football, train, becks, plays fifa, lampard fernando, celebrity, got train, stamford bridge, people psg, chelsea jersey, respect club",
+ "n_sample_posts": 30,
+ "sample_ids": [
+  "gl88k",
+  "gksle",
+  "169fij",
+  "glujp",
+  "gktk5",
+  "z2jyq",
+  "10geqw",
+  "nda6z",
+  "14crqs",
+  "19fhxh",
+  "ncnzm",
+  "1dyfb2",
+  "s9tts",
+  "hf213",
+  "gjilk",
+  "vvy8o",
+  "l3abu",
+  "nco09",
+  "hfogu",
+  "nchlk",
+  "eqcic",
+  "wyu0g",
+  "m10xo",
+  "l39vw",
+  "1tp4hf",
+  "1tnob9",
+  "g2bls",
+  "naz4v",
+  "zm929",
+  "1bwv0v"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Celebrity Football",
+  "purpose": "Analysis of celebrity involvement in football",
+  "emotion_tone": "Positive, humorous, critical",
+  "description": "Posts discussing Justin Bieber's involvement with Barcelona, Snoop Dogg's loyalty, and other celebrities' football-related activities, including their support for clubs and their football skills.",
+  "inclusion_cues": [
+   "Justin Bieber trains with Barcelona",
+   "Snoop Dogg's loyalty",
+   "Celebrity football team discussions",
+   "Celebrity support for clubs",
+   "Football skills of celebrities"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Celebrity Football",
+    "purpose": "Analysis of celebrity involvement in football",
+    "emotion_tone": "Critical and amused",
+    "description": "Posts discussing Justin Bieber's involvement in football, including training with Barcelona, wearing Chelsea jersey, and interactions with footballers like Lampard and Torres. Includes commentary on celebrity football and fan reactions.",
+    "inclusion_cues": [
+     "Justin Bieber trains with Barcelona",
+     "Chelsea jersey",
+     "Frank Lampard & Fernando Torres",
+     "Snoop Dogg",
+     "Bieber fever",
+     "Celebrity football"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Celebrity Football",
+    "purpose": "Analysis of celebrity involvement in football",
+    "emotion_tone": "Positive, humorous, critical",
+    "description": "Posts discussing Justin Bieber's involvement with Barcelona, Snoop Dogg's loyalty, and other celebrities' football-related activities, including their support for clubs and their football skills.",
+    "inclusion_cues": [
+     "Justin Bieber trains with Barcelona",
+     "Snoop Dogg's loyalty",
+     "Celebrity football team discussions",
+     "Celebrity support for clubs",
+     "Football skills of celebrities"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: bieber, trains barcelona, train barcelona, barcelona think, celebrity football, train, becks, plays fifa, lampard fernando, celebrity, got train, stamford bridge, people psg, chelsea jersey, respect club\nPosts (one per line, title first):\n- Was anyone genuinely upset or at least kind of upset that Justin Bieber got to train with Barcelona? / I think I actually lost a bit of respect for the club.\n- Justin Bieber Trains with Barcelona... ಠ_ಠ\n- Justin Bieber: The Next Pele...as if.\n- Justin Bieber Trains with Barcelona\n- Justin Bieber trains with Barca\n- Snoop Dogg, loyalty personified...\n- Snoop Lion taking a PK\n- Justin Bieber in Chelsea jersey, that is all.\n- Snoop Lion's favorite players per his AMA\n- Alaba listening to a Justin Bieber song\n- Justin Bieber - Meets Frank Lampard & Fernando Torres.\n- Snoop Dog: The most loyal fan ever\n- Jay DeMerit Has Bieber Fever At World Cup!\n- Snoop Dogg is a Red!\n- Justin Bieber is a bandwagoner\n- Canadian rapper Drake may actually be the ultimate bandwagon jumper.\n- Does Snoop Dogg just really like French people? / First this And now he's a PSG supporter?\n- /fun fact, justin beiber can actually play football O.O\n- \"Hey Snoop Dogg, what team do you support?\" \"EVERY ONE OF THEM\"\n- Justin Bieber chilling with Lampard and Torres at Stamford Bridge\n- TIL Snoop Dogg plays FIFA. that is all.\n- Justin Bieber wants David Beckham to manage his celebrity football team (because you know Becks is one of the best managers around)\n- Snoop Doggy Dogg calls out \"Ney-more\" for his show in Brazil\n- Does Snoop Dogg just like French people?\n- Breaking News: Snoop Lion signed by everybody\n- Justin Bieber retires. Finally, though I never suspected him breaking into the first team.\n- Lupe Fiasco a Spur fan?\n- Bieber fever at Stamford Bridge!\n- Justin Bieber has got some skills!\n- Justin Bieber shows off his football skills backstage, not bad at all!\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Celebrity Football\", \"purpose\": \"Analysis of celebrity involvement in football\", \"emotion_tone\": \"Critical and amused\", \"description\": \"Posts discussing Justin Bieber's involvement in football, including training with Barcelona, wearing Chelsea jersey, and interactions with footballers like Lampard and Torres. Includes commentary on celebrity football and fan reactions.\", \"inclusion_cues\": [\"Justin Bieber trains with Barcelona\", \"Chelsea jersey\", \"Frank Lampard & Fernando Torres\", \"Snoop Dogg\", \"Bieber fever\", \"Celebrity football\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Celebrity Football",
+      "purpose": "Analysis of celebrity involvement in football",
+      "emotion_tone": "Critical and amused",
+      "description": "Posts discussing Justin Bieber's involvement in football, including training with Barcelona, wearing Chelsea jersey, and interactions with footballers like Lampard and Torres. Includes commentary on celebrity football and fan reactions.",
+      "inclusion_cues": [
+       "Justin Bieber trains with Barcelona",
+       "Chelsea jersey",
+       "Frank Lampard & Fernando Torres",
+       "Snoop Dogg",
+       "Bieber fever",
+       "Celebrity football"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 125,
+   "seed": 1018394989,
+   "seconds": 0.95
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: bieber, trains barcelona, train barcelona, barcelona think, celebrity football, train, becks, plays fifa, lampard fernando, celebrity, got train, stamford bridge, people psg, chelsea jersey, respect club\nPosts (one per line, title first):\n- Was anyone genuinely upset or at least kind of upset that Justin Bieber got to train with Barcelona? / I think I actually lost a bit of respect for the club.\n- Justin Bieber Trains with Barcelona... ಠ_ಠ\n- Justin Bieber: The Next Pele...as if.\n- Justin Bieber Trains with Barcelona\n- Justin Bieber trains with Barca\n- Snoop Dogg, loyalty personified...\n- Snoop Lion taking a PK\n- Justin Bieber in Chelsea jersey, that is all.\n- Snoop Lion's favorite players per his AMA\n- Alaba listening to a Justin Bieber song\n- Justin Bieber - Meets Frank Lampard & Fernando Torres.\n- Snoop Dog: The most loyal fan ever\n- Jay DeMerit Has Bieber Fever At World Cup!\n- Snoop Dogg is a Red!\n- Justin Bieber is a bandwagoner\n- Canadian rapper Drake may actually be the ultimate bandwagon jumper.\n- Does Snoop Dogg just really like French people? / First this And now he's a PSG supporter?\n- /fun fact, justin beiber can actually play football O.O\n- \"Hey Snoop Dogg, what team do you support?\" \"EVERY ONE OF THEM\"\n- Justin Bieber chilling with Lampard and Torres at Stamford Bridge\n- TIL Snoop Dogg plays FIFA. that is all.\n- Justin Bieber wants David Beckham to manage his celebrity football team (because you know Becks is one of the best managers around)\n- Snoop Doggy Dogg calls out \"Ney-more\" for his show in Brazil\n- Does Snoop Dogg just like French people?\n- Breaking News: Snoop Lion signed by everybody\n- Justin Bieber retires. Finally, though I never suspected him breaking into the first team.\n- Lupe Fiasco a Spur fan?\n- Bieber fever at Stamford Bridge!\n- Justin Bieber has got some skills!\n- Justin Bieber shows off his football skills backstage, not bad at all!\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Celebrity Football\", \"purpose\": \"Analysis of celebrity involvement in football\", \"emotion_tone\": \"Positive, humorous, critical\", \"description\": \"Posts discussing Justin Bieber's involvement with Barcelona, Snoop Dogg's loyalty, and other celebrities' football-related activities, including their support for clubs and their football skills.\", \"inclusion_cues\": [\"Justin Bieber trains with Barcelona\", \"Snoop Dogg's loyalty\", \"Celebrity football team discussions\", \"Celebrity support for clubs\", \"Football skills of celebrities\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Celebrity Football",
+      "purpose": "Analysis of celebrity involvement in football",
+      "emotion_tone": "Positive, humorous, critical",
+      "description": "Posts discussing Justin Bieber's involvement with Barcelona, Snoop Dogg's loyalty, and other celebrities' football-related activities, including their support for clubs and their football skills.",
+      "inclusion_cues": [
+       "Justin Bieber trains with Barcelona",
+       "Snoop Dogg's loyalty",
+       "Celebrity football team discussions",
+       "Celebrity support for clubs",
+       "Football skills of celebrities"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 123,
+   "seed": 3157094556,
+   "seconds": 0.54
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: bieber, trains barcelona, train barcelona, barcelona think, celebrity football, train, becks, plays fifa, lampard fernando, celebrity, got train, stamford bridge, people psg, chelsea jersey, respect club\nPosts (one per line, title first):\n- Was anyone genuinely upset or at least kind of upset that Justin Bieber got to train with Barcelona? / I think I actually lost a bit of respect for the club.\n- Justin Bieber Trains with Barcelona... ಠ_ಠ\n- Justin Bieber: The Next Pele...as if.\n- Justin Bieber Trains with Barcelona\n- Justin Bieber trains with Barca\n- Snoop Dogg, loyalty personified...\n- Snoop Lion taking a PK\n- Justin Bieber in Chelsea jersey, that is all.\n- Snoop Lion's favorite players per his AMA\n- Alaba listening to a Justin Bieber song\n- Justin Bieber - Meets Frank Lampard & Fernando Torres.\n- Snoop Dog: The most loyal fan ever\n- Jay DeMerit Has Bieber Fever At World Cup!\n- Snoop Dogg is a Red!\n- Justin Bieber is a bandwagoner\n- Canadian rapper Drake may actually be the ultimate bandwagon jumper.\n- Does Snoop Dogg just really like French people? / First this And now he's a PSG supporter?\n- /fun fact, justin beiber can actually play football O.O\n- \"Hey Snoop Dogg, what team do you support?\" \"EVERY ONE OF THEM\"\n- Justin Bieber chilling with Lampard and Torres at Stamford Bridge\n- TIL Snoop Dogg plays FIFA. that is all.\n- Justin Bieber wants David Beckham to manage his celebrity football team (because you know Becks is one of the best managers around)\n- Snoop Doggy Dogg calls out \"Ney-more\" for his show in Brazil\n- Does Snoop Dogg just like French people?\n- Breaking News: Snoop Lion signed by everybody\n- Justin Bieber retires. Finally, though I never suspected him breaking into the first team.\n- Lupe Fiasco a Spur fan?\n- Bieber fever at Stamford Bridge!\n- Justin Bieber has got some skills!\n- Justin Bieber shows off his football skills backstage, not bad at all!\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Celebrity Football\", \"purpose\": \"Analysis of celebrity involvement in football\", \"emotion_tone\": \"Critical and amused\", \"description\": \"Posts discussing Justin Bieber's involvement in football, including training with Barcelona, wearing Chelsea jersey, and interactions with footballers like Lampard and Torres. Includes commentary on celebrity football and fan reactions.\", \"inclusion_cues\": [\"Justin Bieber trains with Barcelona\", \"Chelsea jersey\", \"Frank Lampard & Fernando Torres\", \"Snoop Dogg\", \"Bieber fever\", \"Celebrity football\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Celebrity Football\", \"purpose\": \"Analysis of celebrity involvement in football\", \"emotion_tone\": \"Positive, humorous, critical\", \"description\": \"Posts discussing Justin Bieber's involvement with Barcelona, Snoop Dogg's loyalty, and other celebrities' football-related activities, including their support for clubs and their football skills.\", \"inclusion_cues\": [\"Justin Bieber trains with Barcelona\", \"Snoop Dogg's loyalty\", \"Celebrity football team discussions\", \"Celebrity support for clubs\", \"Football skills of celebrities\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Celebrity Football\", \"purpose\": \"Analysis of celebrity involvement in football\", \"emotion_tone\": \"Positive, humorous, critical\", \"description\": \"Posts discussing Justin Bieber's involvement with Barcelona, Snoop Dogg's loyalty, and other celebrities' football-related activities, including their support for clubs and their football skills.\", \"inclusion_cues\": [\"Justin Bieber trains with Barcelona\", \"Snoop Dogg's loyalty\", \"Celebrity football team discussions\", \"Celebrity support for clubs\", \"Football skills of celebrities\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 122,
+   "seed": 210490489,
+   "seconds": 0.59
+  }
+ ]
+}

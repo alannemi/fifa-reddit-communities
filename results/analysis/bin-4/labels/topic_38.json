@@ -1,0 +1,209 @@
+{
+ "period_bin": 4,
+ "topic_id": 38,
+ "keywords": "fc dallas, fc houston, nycfc, sporting kc, dallas toronto, toronto fc, red bulls, atlanta united, miami fc, timbers minnesota, orlando city, la galaxy, fc sebastian, luis silva, seattle clint",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "6s1tcl",
+  "6s1lc0",
+  "6f4oiu",
+  "6f4odd",
+  "6f4ogn",
+  "6ejq3e",
+  "6rvpsm",
+  "6lazx6",
+  "6w2lat",
+  "726set",
+  "6laj1m",
+  "6b1043",
+  "6cic1t",
+  "6dpgyx",
+  "6dwb2s",
+  "6cidr1",
+  "788usl",
+  "6iqokb",
+  "6jilli",
+  "79s86m",
+  "6dqzrb",
+  "782ybu",
+  "6lawtl",
+  "6vnl8g",
+  "6f2u37",
+  "6lbsdh",
+  "3thm80",
+  "7a0iwp",
+  "6kqkrh",
+  "70j4py",
+  "7iq29b",
+  "72xq3f",
+  "6qesp4",
+  "6s1ugb",
+  "70ktwg",
+  "69ovkx",
+  "6cdsqk",
+  "7b0g0w",
+  "70jarc",
+  "6iq96p"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "MLS Teams",
+  "purpose": "Identify matches involving MLS teams",
+  "emotion_tone": "neutral",
+  "description": "Posts about matches between MLS teams, including teams like NYCFC, FC Dallas, Houston, Seattle, Toronto FC, LA Galaxy, etc.",
+  "inclusion_cues": [
+   "MLS teams",
+   "match results",
+   "player names",
+   "team names",
+   "scorelines",
+   "goals"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "MLS Teams",
+    "purpose": "Identify matches involving MLS teams",
+    "emotion_tone": "neutral",
+    "description": "Posts mentioning MLS teams and their matches, including scores and player actions",
+    "inclusion_cues": [
+     "fc dallas",
+     "fc houston",
+     "nycfc",
+     "sporting kc",
+     "dallas toronto",
+     "toronto fc",
+     "red bulls",
+     "atlanta united",
+     "miami fc",
+     "timbers minnesota"
+    ],
+    "n_cues_given": 15
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "MLS Teams",
+    "purpose": "Identify matches involving MLS teams",
+    "emotion_tone": "neutral",
+    "description": "Posts about matches between MLS teams, including teams like NYCFC, FC Dallas, Houston, Seattle, Toronto FC, LA Galaxy, etc.",
+    "inclusion_cues": [
+     "MLS teams",
+     "match results",
+     "player names",
+     "team names",
+     "scorelines",
+     "goals"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: fc dallas, fc houston, nycfc, sporting kc, dallas toronto, toronto fc, red bulls, atlanta united, miami fc, timbers minnesota, orlando city, la galaxy, fc sebastian, luis silva, seattle clint\nPosts (one per line, title first):\n- NYCFC 1-[2] NY Red Bulls - Bradley Wright-Phillips\n- NYCFC 1-1 NY Red Bulls - Bradley Wright-Phillips 41'\n- FC Dallas 4-0 Real Salt Lake - Maximiliano Urruti 39'\n- FC Dallas 2-0 Real Salt Lake - Roland Lamah 22'\n- FC Dallas 3-0 Real Salt Lake - Roland Lamah (hat trick) 31'\n- Houston 5-1 Real Salt Lake - Leonardo 68'\n- Minnesota United 0-4 Seattle - Clint Dempsey 73'\n- Colorado 0-1 Seattle - Clint Dempsey 6'\n- NY Red Bulls [1]-1 NYCFC - Gonzalo Verón (penalty) 70'\n- Sporting Kansas City [1]-0 Los Angeles Galaxy - Daniel Salloi\n- Atlanta United 0-1 San Jose - Tommy Thompson 2'\n- D.C. United 0-1 Philadelphia - Haris Medunjanin 39'\n- New England 1-1 Columbus - Diego Fagundez 24'\n- Seattle 1-0 Portland - Cristian Roldan 4'\n- Atlanta United 1-0 NYCFC - Miguel Almirón 16'\n- New England 2-1 Columbus - Diego Fagundez solo goal 34'\n- New York Red Bulls [1] - DC United 1 - Murillo goal (Great Buildup)\n- Colorado 1-2 LA Galaxy - Jack McBean 63'\n- Portland 0-1 Seattle - Joevin Jones 27'\n- New York Red Bulls 1-[2] Toronto FC - Sebastian Giovinco free-kick\n- Colorado 1-0 Sporting KC - Kortne Ford 11'\n- Philadelphia 4-0 Orlando City - Fabrice-Jean Picault 38'\n- Atlanta United 2-2 San Jose - Chris Wondolowski 66'\n- Toronto FC 3-0 Philadelphia - Jozy Altidore 57'\n- Philadelphia 1-1 NYCFC - Maxime Chanot 80'\n- LA Galaxy 1-5 Real Salt Lake - Jefferson Savarino 77'\n- MLS scoring champ Kei Kamara escapes civil war, thrives with Columbus Crew\n- Columbus Crew 3-0 New York City FC - Justin Meram\n- Chicago 4-0 Vancouver - Michael de Leeuw 84'\n- Atlanta United 0-[1] Orlando City - Dominic Dwyer\n- Toronto FC [1]-0 Seattle Sounders - Jozy Altidore 66'\n- San Jose 0-1 Chicago - Djordje Mihailovic 14'\n- San Jose 1-0 Colorado - Nick Lima outside the box goal 59'\n- NYCFC [2]-2 NY Red Bulls - David Villa\n- Montreal Impact 2-[3] Minnesota United - Abu Danladi 89'\n- Houston 1-0 Orlando City - Elis 23'\n- Atlanta United 2-0 Houston - Miguel Almirón 42'\n- Toronto FC 0-1 New York Red Bulls - Bradley Wright-Phillips\n- Atlanta United 1-[2] Orlando City - Dominic Dwyer\n- Minnesota United 2-1 Portland - Christian Ramirez 47'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"MLS Teams\", \"purpose\": \"Identify matches involving MLS teams\", \"emotion_tone\": \"neutral\", \"description\": \"Posts mentioning MLS teams and their matches, including scores and player actions\", \"inclusion_cues\": [\"fc dallas\", \"fc houston\", \"nycfc\", \"sporting kc\", \"dallas toronto\", \"toronto fc\", \"red bulls\", \"atlanta united\", \"miami fc\", \"timbers minnesota\", \"orlando city\", \"la galaxy\", \"fc sebastian\", \"luis silva\", \"seattle clint\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "MLS Teams",
+      "purpose": "Identify matches involving MLS teams",
+      "emotion_tone": "neutral",
+      "description": "Posts mentioning MLS teams and their matches, including scores and player actions",
+      "inclusion_cues": [
+       "fc dallas",
+       "fc houston",
+       "nycfc",
+       "sporting kc",
+       "dallas toronto",
+       "toronto fc",
+       "red bulls",
+       "atlanta united",
+       "miami fc",
+       "timbers minnesota"
+      ],
+      "n_cues_given": 15
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 140,
+   "seed": 4188591391,
+   "seconds": 1.44
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: fc dallas, fc houston, nycfc, sporting kc, dallas toronto, toronto fc, red bulls, atlanta united, miami fc, timbers minnesota, orlando city, la galaxy, fc sebastian, luis silva, seattle clint\nPosts (one per line, title first):\n- NYCFC 1-[2] NY Red Bulls - Bradley Wright-Phillips\n- NYCFC 1-1 NY Red Bulls - Bradley Wright-Phillips 41'\n- FC Dallas 4-0 Real Salt Lake - Maximiliano Urruti 39'\n- FC Dallas 2-0 Real Salt Lake - Roland Lamah 22'\n- FC Dallas 3-0 Real Salt Lake - Roland Lamah (hat trick) 31'\n- Houston 5-1 Real Salt Lake - Leonardo 68'\n- Minnesota United 0-4 Seattle - Clint Dempsey 73'\n- Colorado 0-1 Seattle - Clint Dempsey 6'\n- NY Red Bulls [1]-1 NYCFC - Gonzalo Verón (penalty) 70'\n- Sporting Kansas City [1]-0 Los Angeles Galaxy - Daniel Salloi\n- Atlanta United 0-1 San Jose - Tommy Thompson 2'\n- D.C. United 0-1 Philadelphia - Haris Medunjanin 39'\n- New England 1-1 Columbus - Diego Fagundez 24'\n- Seattle 1-0 Portland - Cristian Roldan 4'\n- Atlanta United 1-0 NYCFC - Miguel Almirón 16'\n- New England 2-1 Columbus - Diego Fagundez solo goal 34'\n- New York Red Bulls [1] - DC United 1 - Murillo goal (Great Buildup)\n- Colorado 1-2 LA Galaxy - Jack McBean 63'\n- Portland 0-1 Seattle - Joevin Jones 27'\n- New York Red Bulls 1-[2] Toronto FC - Sebastian Giovinco free-kick\n- Colorado 1-0 Sporting KC - Kortne Ford 11'\n- Philadelphia 4-0 Orlando City - Fabrice-Jean Picault 38'\n- Atlanta United 2-2 San Jose - Chris Wondolowski 66'\n- Toronto FC 3-0 Philadelphia - Jozy Altidore 57'\n- Philadelphia 1-1 NYCFC - Maxime Chanot 80'\n- LA Galaxy 1-5 Real Salt Lake - Jefferson Savarino 77'\n- MLS scoring champ Kei Kamara escapes civil war, thrives with Columbus Crew\n- Columbus Crew 3-0 New York City FC - Justin Meram\n- Chicago 4-0 Vancouver - Michael de Leeuw 84'\n- Atlanta United 0-[1] Orlando City - Dominic Dwyer\n- Toronto FC [1]-0 Seattle Sounders - Jozy Altidore 66'\n- San Jose 0-1 Chicago - Djordje Mihailovic 14'\n- San Jose 1-0 Colorado - Nick Lima outside the box goal 59'\n- NYCFC [2]-2 NY Red Bulls - David Villa\n- Montreal Impact 2-[3] Minnesota United - Abu Danladi 89'\n- Houston 1-0 Orlando City - Elis 23'\n- Atlanta United 2-0 Houston - Miguel Almirón 42'\n- Toronto FC 0-1 New York Red Bulls - Bradley Wright-Phillips\n- Atlanta United 1-[2] Orlando City - Dominic Dwyer\n- Minnesota United 2-1 Portland - Christian Ramirez 47'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"MLS Teams\", \"purpose\": \"Identify matches involving MLS teams\", \"emotion_tone\": \"neutral\", \"description\": \"Posts about matches between MLS teams, including teams like NYCFC, FC Dallas, Houston, Seattle, Toronto FC, LA Galaxy, etc.\", \"inclusion_cues\": [\"MLS teams\", \"match results\", \"player names\", \"team names\", \"scorelines\", \"goals\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "MLS Teams",
+      "purpose": "Identify matches involving MLS teams",
+      "emotion_tone": "neutral",
+      "description": "Posts about matches between MLS teams, including teams like NYCFC, FC Dallas, Houston, Seattle, Toronto FC, LA Galaxy, etc.",
+      "inclusion_cues": [
+       "MLS teams",
+       "match results",
+       "player names",
+       "team names",
+       "scorelines",
+       "goals"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 100,
+   "seed": 1248316749,
+   "seconds": 0.86
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: fc dallas, fc houston, nycfc, sporting kc, dallas toronto, toronto fc, red bulls, atlanta united, miami fc, timbers minnesota, orlando city, la galaxy, fc sebastian, luis silva, seattle clint\nPosts (one per line, title first):\n- NYCFC 1-[2] NY Red Bulls - Bradley Wright-Phillips\n- NYCFC 1-1 NY Red Bulls - Bradley Wright-Phillips 41'\n- FC Dallas 4-0 Real Salt Lake - Maximiliano Urruti 39'\n- FC Dallas 2-0 Real Salt Lake - Roland Lamah 22'\n- FC Dallas 3-0 Real Salt Lake - Roland Lamah (hat trick) 31'\n- Houston 5-1 Real Salt Lake - Leonardo 68'\n- Minnesota United 0-4 Seattle - Clint Dempsey 73'\n- Colorado 0-1 Seattle - Clint Dempsey 6'\n- NY Red Bulls [1]-1 NYCFC - Gonzalo Verón (penalty) 70'\n- Sporting Kansas City [1]-0 Los Angeles Galaxy - Daniel Salloi\n- Atlanta United 0-1 San Jose - Tommy Thompson 2'\n- D.C. United 0-1 Philadelphia - Haris Medunjanin 39'\n- New England 1-1 Columbus - Diego Fagundez 24'\n- Seattle 1-0 Portland - Cristian Roldan 4'\n- Atlanta United 1-0 NYCFC - Miguel Almirón 16'\n- New England 2-1 Columbus - Diego Fagundez solo goal 34'\n- New York Red Bulls [1] - DC United 1 - Murillo goal (Great Buildup)\n- Colorado 1-2 LA Galaxy - Jack McBean 63'\n- Portland 0-1 Seattle - Joevin Jones 27'\n- New York Red Bulls 1-[2] Toronto FC - Sebastian Giovinco free-kick\n- Colorado 1-0 Sporting KC - Kortne Ford 11'\n- Philadelphia 4-0 Orlando City - Fabrice-Jean Picault 38'\n- Atlanta United 2-2 San Jose - Chris Wondolowski 66'\n- Toronto FC 3-0 Philadelphia - Jozy Altidore 57'\n- Philadelphia 1-1 NYCFC - Maxime Chanot 80'\n- LA Galaxy 1-5 Real Salt Lake - Jefferson Savarino 77'\n- MLS scoring champ Kei Kamara escapes civil war, thrives with Columbus Crew\n- Columbus Crew 3-0 New York City FC - Justin Meram\n- Chicago 4-0 Vancouver - Michael de Leeuw 84'\n- Atlanta United 0-[1] Orlando City - Dominic Dwyer\n- Toronto FC [1]-0 Seattle Sounders - Jozy Altidore 66'\n- San Jose 0-1 Chicago - Djordje Mihailovic 14'\n- San Jose 1-0 Colorado - Nick Lima outside the box goal 59'\n- NYCFC [2]-2 NY Red Bulls - David Villa\n- Montreal Impact 2-[3] Minnesota United - Abu Danladi 89'\n- Houston 1-0 Orlando City - Elis 23'\n- Atlanta United 2-0 Houston - Miguel Almirón 42'\n- Toronto FC 0-1 New York Red Bulls - Bradley Wright-Phillips\n- Atlanta United 1-[2] Orlando City - Dominic Dwyer\n- Minnesota United 2-1 Portland - Christian Ramirez 47'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"MLS Teams\", \"purpose\": \"Identify matches involving MLS teams\", \"emotion_tone\": \"neutral\", \"description\": \"Posts mentioning MLS teams and their matches, including scores and player actions\", \"inclusion_cues\": [\"fc dallas\", \"fc houston\", \"nycfc\", \"sporting kc\", \"dallas toronto\", \"toronto fc\", \"red bulls\", \"atlanta united\", \"miami fc\", \"timbers minnesota\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"MLS Teams\", \"purpose\": \"Identify matches involving MLS teams\", \"emotion_tone\": \"neutral\", \"description\": \"Posts about matches between MLS teams, including teams like NYCFC, FC Dallas, Houston, Seattle, Toronto FC, LA Galaxy, etc.\", \"inclusion_cues\": [\"MLS teams\", \"match results\", \"player names\", \"team names\", \"scorelines\", \"goals\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"MLS Teams\", \"purpose\": \"Identify matches involving MLS teams\", \"emotion_tone\": \"neutral\", \"description\": \"Posts about matches between MLS teams, including teams like NYCFC, FC Dallas, Houston, Seattle, Toronto FC, LA Galaxy, etc.\", \"inclusion_cues\": [\"MLS teams\", \"match results\", \"player names\", \"team names\", \"scorelines\", \"goals\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 99,
+   "seed": 2455897593,
+   "seconds": 0.69
+  }
+ ]
+}

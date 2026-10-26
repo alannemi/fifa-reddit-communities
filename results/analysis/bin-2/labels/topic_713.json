@@ -1,0 +1,192 @@
+{
+ "period_bin": 2,
+ "topic_id": 713,
+ "keywords": "brazilian protests, brazil protests, protests brazil, brazil riots, violence brazil, stadium brazil, fans brazil, people brazil, final maracanã, brazilian teams, conditions brazil, brazilian fa, brazilian confederation, brazil ahead, brazil biggest",
+ "n_sample_posts": 33,
+ "sample_ids": [
+  "1iotct",
+  "1gyt38",
+  "1hcec8",
+  "1hceeg",
+  "j4vtf",
+  "1gktie",
+  "1gkhqp",
+  "ri6ud",
+  "1rb9dy",
+  "1w46ls",
+  "1p2smv",
+  "1gss6i",
+  "1gnry4",
+  "1oknu7",
+  "1wbcm7",
+  "riixd",
+  "1ql1kf",
+  "1otocl",
+  "19t3b8",
+  "1ijs1n",
+  "1h1dja",
+  "i09do",
+  "1qkpys",
+  "1h7h57",
+  "1gh66e",
+  "1bhpq0",
+  "1h2jcy",
+  "re27i",
+  "17fw6y",
+  "1gyds1",
+  "pghov",
+  "1s8xfu",
+  "1gsbvt"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Brazilian Protests",
+  "purpose": "Report and analyze protests in Brazil related to World Cup events",
+  "emotion_tone": "Concern and urgency",
+  "description": "Posts discussing protests in Brazil related to World Cup events, including violence, government response, and fan reactions.",
+  "inclusion_cues": [
+   "Brazilian protests",
+   "World Cup events",
+   "violence",
+   "government response",
+   "fan reactions",
+   "protests against CBF"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Brazilian Protests",
+    "purpose": "Report and analyze protests in Brazil related to World Cup",
+    "emotion_tone": "Critical",
+    "description": "Posts discussing protests in Brazil, including violence, stadium issues, and political dissent, with focus on World Cup context.",
+    "inclusion_cues": [
+     "Brazilian protests",
+     "World Cup context",
+     "violence and dissent",
+     "stadium issues",
+     "political dissent",
+     "protests against CBF"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Brazilian Protests",
+    "purpose": "Report and analyze protests in Brazil related to World Cup events",
+    "emotion_tone": "Concern and urgency",
+    "description": "Posts discussing protests in Brazil related to World Cup events, including violence, government response, and fan reactions.",
+    "inclusion_cues": [
+     "Brazilian protests",
+     "World Cup events",
+     "violence",
+     "government response",
+     "fan reactions",
+     "protests against CBF"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: brazilian protests, brazil protests, protests brazil, brazil riots, violence brazil, stadium brazil, fans brazil, people brazil, final maracanã, brazilian teams, conditions brazil, brazilian fa, brazilian confederation, brazil ahead, brazil biggest\nPosts (one per line, title first):\n- Brazil Protests / Are they still going on, press coverage of them here in the states has been horrible. Considering how much the game is loved there its been a major news event...\n- Concise and articulate overview of the protests in Brazil. By Tim Vickery (6mins). From 2.45 mins to 8.30\n- Ahead of tomorrow's Confed Cup final at the Maracanã, an excellent first person account from the protests in Rio de Janiero\n- Ahead of tomorrow's Confed Cup final at the Maracanã, an excellent first person account from the protests in Rio de Janeiro\n- Pictures from the protest outside the Preliminary World Cup Draw in Rio. / I've been studying in Rio this summer, and yesterday a few buddies and I went to Marina da Glória, where the World Cup Draw was happening, in hopes that there would be a public viewing location. What we found instead was this\n- Protesters Flood Brazil Over World Cup Spending\n- The World Cup and the world’s protest in Brazil\n- Tickets to KC given to El Salvador players had US player names scratched out\n- New protest against CBF (Brazilian confederation) in the brazilian league today\n- Protests against the World Cup planned in Brazil\n- Brazil Riots Threaten World Cup as Nation Prepares for Games\n- Brazil protests: FIFA denies Confederations Cup cancellation\n- Protestors Block Access to Stadium where Brazil Vs. Mexico is Scheduled to Take Place\n- Brazil's biggest drug cartel promises 'World Cup of terror'\n- FIFA condemns Brazil protest violence\n- El Salvador traveled to Kansas with airplane tickets that had the names of the US Soccer Team\n- Brazilian teams exchange passes between them in protest against the CBF, the brazilian football confederation\n- Brazilian drugs gang issues 'World Cup of Terror' warning\n- Interesting video showcasing the problems citizens of Rio are having as the government prepares for the 2014 World Cup\n- Interesting video about the reasons for the massive protests in Brazil\n- Something needs to be done down in Brazil before next year. The protests are really getting out of hand (link inside). / This is just not going to fly when they have all those tourists and fans in Brazil in a little less than a year now. It will just be too dangerous for them\n- You never know, an e-mail from a Nigerian bank COULD be a trial\n- Brazilian players cross arms after the initial whistle in protest for better calendar and work conditions\n- Brilliant cartoon showcasing the problems in Brasil..\n- Confederations Cup: 39 injured & 30 arrests in Brazil protests\n- Romario leads 55,000-strong petition for Brazilian FA president to step down due to links with dictatorship\n- Can Brazil protests can be traced back to a 2003 Fifa decision?\n- In Brazil dissent gets you bitten by a police dog, then they'll learn\n- FIFA calls off event, sends sympathy to Brazil fire victims\n- The Brazilian Protests Are An Unprecedented Opportunity To Bring Power To The People\n- WCup workers threaten nationwide strike in Brazil\n- OTL: Generation June: How the youth of Brazil are protesting, and how their anger may consume the World Cup.\n- FIFA Threatens to cancel Confederations Cup, if violence in Brazil is not ceased. (Link in Portuguese)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Brazilian Protests\", \"purpose\": \"Report and analyze protests in Brazil related to World Cup\", \"emotion_tone\": \"Critical\", \"description\": \"Posts discussing protests in Brazil, including violence, stadium issues, and political dissent, with focus on World Cup context.\", \"inclusion_cues\": [\"Brazilian protests\", \"World Cup context\", \"violence and dissent\", \"stadium issues\", \"political dissent\", \"protests against CBF\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Brazilian Protests",
+      "purpose": "Report and analyze protests in Brazil related to World Cup",
+      "emotion_tone": "Critical",
+      "description": "Posts discussing protests in Brazil, including violence, stadium issues, and political dissent, with focus on World Cup context.",
+      "inclusion_cues": [
+       "Brazilian protests",
+       "World Cup context",
+       "violence and dissent",
+       "stadium issues",
+       "political dissent",
+       "protests against CBF"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 110,
+   "seed": 3847175944,
+   "seconds": 0.74
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: brazilian protests, brazil protests, protests brazil, brazil riots, violence brazil, stadium brazil, fans brazil, people brazil, final maracanã, brazilian teams, conditions brazil, brazilian fa, brazilian confederation, brazil ahead, brazil biggest\nPosts (one per line, title first):\n- Brazil Protests / Are they still going on, press coverage of them here in the states has been horrible. Considering how much the game is loved there its been a major news event...\n- Concise and articulate overview of the protests in Brazil. By Tim Vickery (6mins). From 2.45 mins to 8.30\n- Ahead of tomorrow's Confed Cup final at the Maracanã, an excellent first person account from the protests in Rio de Janiero\n- Ahead of tomorrow's Confed Cup final at the Maracanã, an excellent first person account from the protests in Rio de Janeiro\n- Pictures from the protest outside the Preliminary World Cup Draw in Rio. / I've been studying in Rio this summer, and yesterday a few buddies and I went to Marina da Glória, where the World Cup Draw was happening, in hopes that there would be a public viewing location. What we found instead was this\n- Protesters Flood Brazil Over World Cup Spending\n- The World Cup and the world’s protest in Brazil\n- Tickets to KC given to El Salvador players had US player names scratched out\n- New protest against CBF (Brazilian confederation) in the brazilian league today\n- Protests against the World Cup planned in Brazil\n- Brazil Riots Threaten World Cup as Nation Prepares for Games\n- Brazil protests: FIFA denies Confederations Cup cancellation\n- Protestors Block Access to Stadium where Brazil Vs. Mexico is Scheduled to Take Place\n- Brazil's biggest drug cartel promises 'World Cup of terror'\n- FIFA condemns Brazil protest violence\n- El Salvador traveled to Kansas with airplane tickets that had the names of the US Soccer Team\n- Brazilian teams exchange passes between them in protest against the CBF, the brazilian football confederation\n- Brazilian drugs gang issues 'World Cup of Terror' warning\n- Interesting video showcasing the problems citizens of Rio are having as the government prepares for the 2014 World Cup\n- Interesting video about the reasons for the massive protests in Brazil\n- Something needs to be done down in Brazil before next year. The protests are really getting out of hand (link inside). / This is just not going to fly when they have all those tourists and fans in Brazil in a little less than a year now. It will just be too dangerous for them\n- You never know, an e-mail from a Nigerian bank COULD be a trial\n- Brazilian players cross arms after the initial whistle in protest for better calendar and work conditions\n- Brilliant cartoon showcasing the problems in Brasil..\n- Confederations Cup: 39 injured & 30 arrests in Brazil protests\n- Romario leads 55,000-strong petition for Brazilian FA president to step down due to links with dictatorship\n- Can Brazil protests can be traced back to a 2003 Fifa decision?\n- In Brazil dissent gets you bitten by a police dog, then they'll learn\n- FIFA calls off event, sends sympathy to Brazil fire victims\n- The Brazilian Protests Are An Unprecedented Opportunity To Bring Power To The People\n- WCup workers threaten nationwide strike in Brazil\n- OTL: Generation June: How the youth of Brazil are protesting, and how their anger may consume the World Cup.\n- FIFA Threatens to cancel Confederations Cup, if violence in Brazil is not ceased. (Link in Portuguese)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Brazilian Protests\", \"purpose\": \"Report and analyze protests in Brazil related to World Cup events\", \"emotion_tone\": \"Concern and urgency\", \"description\": \"Posts discussing protests in Brazil related to World Cup events, including violence, government response, and fan reactions.\", \"inclusion_cues\": [\"Brazilian protests\", \"World Cup events\", \"violence\", \"government response\", \"fan reactions\", \"protests against CBF\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Brazilian Protests",
+      "purpose": "Report and analyze protests in Brazil related to World Cup events",
+      "emotion_tone": "Concern and urgency",
+      "description": "Posts discussing protests in Brazil related to World Cup events, including violence, government response, and fan reactions.",
+      "inclusion_cues": [
+       "Brazilian protests",
+       "World Cup events",
+       "violence",
+       "government response",
+       "fan reactions",
+       "protests against CBF"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 108,
+   "seed": 1813207531,
+   "seconds": 0.71
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: brazilian protests, brazil protests, protests brazil, brazil riots, violence brazil, stadium brazil, fans brazil, people brazil, final maracanã, brazilian teams, conditions brazil, brazilian fa, brazilian confederation, brazil ahead, brazil biggest\nPosts (one per line, title first):\n- Brazil Protests / Are they still going on, press coverage of them here in the states has been horrible. Considering how much the game is loved there its been a major news event...\n- Concise and articulate overview of the protests in Brazil. By Tim Vickery (6mins). From 2.45 mins to 8.30\n- Ahead of tomorrow's Confed Cup final at the Maracanã, an excellent first person account from the protests in Rio de Janiero\n- Ahead of tomorrow's Confed Cup final at the Maracanã, an excellent first person account from the protests in Rio de Janeiro\n- Pictures from the protest outside the Preliminary World Cup Draw in Rio. / I've been studying in Rio this summer, and yesterday a few buddies and I went to Marina da Glória, where the World Cup Draw was happening, in hopes that there would be a public viewing location. What we found instead was this\n- Protesters Flood Brazil Over World Cup Spending\n- The World Cup and the world’s protest in Brazil\n- Tickets to KC given to El Salvador players had US player names scratched out\n- New protest against CBF (Brazilian confederation) in the brazilian league today\n- Protests against the World Cup planned in Brazil\n- Brazil Riots Threaten World Cup as Nation Prepares for Games\n- Brazil protests: FIFA denies Confederations Cup cancellation\n- Protestors Block Access to Stadium where Brazil Vs. Mexico is Scheduled to Take Place\n- Brazil's biggest drug cartel promises 'World Cup of terror'\n- FIFA condemns Brazil protest violence\n- El Salvador traveled to Kansas with airplane tickets that had the names of the US Soccer Team\n- Brazilian teams exchange passes between them in protest against the CBF, the brazilian football confederation\n- Brazilian drugs gang issues 'World Cup of Terror' warning\n- Interesting video showcasing the problems citizens of Rio are having as the government prepares for the 2014 World Cup\n- Interesting video about the reasons for the massive protests in Brazil\n- Something needs to be done down in Brazil before next year. The protests are really getting out of hand (link inside). / This is just not going to fly when they have all those tourists and fans in Brazil in a little less than a year now. It will just be too dangerous for them\n- You never know, an e-mail from a Nigerian bank COULD be a trial\n- Brazilian players cross arms after the initial whistle in protest for better calendar and work conditions\n- Brilliant cartoon showcasing the problems in Brasil..\n- Confederations Cup: 39 injured & 30 arrests in Brazil protests\n- Romario leads 55,000-strong petition for Brazilian FA president to step down due to links with dictatorship\n- Can Brazil protests can be traced back to a 2003 Fifa decision?\n- In Brazil dissent gets you bitten by a police dog, then they'll learn\n- FIFA calls off event, sends sympathy to Brazil fire victims\n- The Brazilian Protests Are An Unprecedented Opportunity To Bring Power To The People\n- WCup workers threaten nationwide strike in Brazil\n- OTL: Generation June: How the youth of Brazil are protesting, and how their anger may consume the World Cup.\n- FIFA Threatens to cancel Confederations Cup, if violence in Brazil is not ceased. (Link in Portuguese)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Brazilian Protests\", \"purpose\": \"Report and analyze protests in Brazil related to World Cup\", \"emotion_tone\": \"Critical\", \"description\": \"Posts discussing protests in Brazil, including violence, stadium issues, and political dissent, with focus on World Cup context.\", \"inclusion_cues\": [\"Brazilian protests\", \"World Cup context\", \"violence and dissent\", \"stadium issues\", \"political dissent\", \"protests against CBF\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Brazilian Protests\", \"purpose\": \"Report and analyze protests in Brazil related to World Cup events\", \"emotion_tone\": \"Concern and urgency\", \"description\": \"Posts discussing protests in Brazil related to World Cup events, including violence, government response, and fan reactions.\", \"inclusion_cues\": [\"Brazilian protests\", \"World Cup events\", \"violence\", \"government response\", \"fan reactions\", \"protests against CBF\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Brazilian Protests\", \"purpose\": \"Report and analyze protests in Brazil related to World Cup events\", \"emotion_tone\": \"Concern and urgency\", \"description\": \"Posts discussing protests in Brazil related to World Cup events, including violence, government response, and fan reactions.\", \"inclusion_cues\": [\"Brazilian protests\", \"World Cup events\", \"violence\", \"government response\", \"fan reactions\", \"protests against CBF\"]]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 467)",
+   "n_tokens": 107,
+   "seed": 3152884551,
+   "seconds": 0.58
+  }
+ ]
+}

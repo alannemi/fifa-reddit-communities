@@ -1,0 +1,177 @@
+{
+ "period_bin": 6,
+ "topic_id": 1079,
+ "keywords": "thailand world, 60 thailand, 10 thailand, australia thailand, states thailand, thailand chile, cup match, sweden thailand, 86 france, uruguay matias, 12 france, uruguay cristhian, uruguay gaston, 54 united, goal world",
+ "n_sample_posts": 33,
+ "sample_ids": [
+  "bzhh7q",
+  "bzhiz3",
+  "bzhjrt",
+  "bzhrlx",
+  "bzhihg",
+  "bzhzep",
+  "bzgt4x",
+  "bzhuk7",
+  "aew4yn",
+  "c30uhk",
+  "bzgwl6",
+  "bzhsbl",
+  "bzhxdu",
+  "b5a2ev",
+  "bsvwbo",
+  "c3192x",
+  "c1a0bl",
+  "bsvq8y",
+  "c1ark0",
+  "b5a22b",
+  "bzh2ku",
+  "bzhw5x",
+  "se0imz",
+  "b5amxr",
+  "c1akpc",
+  "se1w2j",
+  "c19oqs",
+  "c1aopf",
+  "c1d45c",
+  "c19szr",
+  "bsvy9t",
+  "bzhtvt",
+  "b5ab4f"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "World Cup Match",
+  "purpose": "Reporting World Cup matches",
+  "emotion_tone": "Excitement",
+  "description": "Posts about World Cup matches, including scores, goals, and player performances.",
+  "inclusion_cues": [
+   "United States W 4-0 Thailand W",
+   "Thailand W 0-1 Chile W",
+   "France W 3-0 Thailand W"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "World Cup Match",
+    "purpose": "Reporting World Cup matches",
+    "emotion_tone": "Excitement",
+    "description": "Posts about World Cup matches, including scores, goals, and player performances",
+    "inclusion_cues": [
+     "United States W 13-0 Thailand W",
+     "Thailand 0-2 Uruguay - Gaston Pereiro 38'",
+     "France W 3-0 Thailand W - Kadidiatou Diani 86'"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "World Cup Match",
+    "purpose": "Reporting World Cup matches",
+    "emotion_tone": "Excitement",
+    "description": "Posts about World Cup matches, including scores, goals, and player performances.",
+    "inclusion_cues": [
+     "United States W 4-0 Thailand W",
+     "Thailand W 0-1 Chile W",
+     "France W 3-0 Thailand W"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: thailand world, 60 thailand, 10 thailand, australia thailand, states thailand, thailand chile, cup match, sweden thailand, 86 france, uruguay matias, 12 france, uruguay cristhian, uruguay gaston, 54 united, goal world\nPosts (one per line, title first):\n- United States W 4-0 Thailand W - S. Mewis 50'\n- United States W 6-0 Thailand W - Mewis 54'\n- United States W 7-0 Thailand W - Lavelle 56'\n- United States W 8-0 Thailand W - A. Morgan 74'\n- United States W 5-0 Thailand W - A. Morgan 53'\n- United States W 13-0 Thailand W - Lloyd 90+2'\n- United States W 1-0 Thailand W - Morgan 12'\n- United States W 10-0 Thailand W - Morgan 81' (4th personal goal)\n- China 2-0 Philippines ‘66 Wu Lei (Great Goal!!)\n- Thailand W 0-1 Chile W - Boonsing 48' (OG)\n- United States W 2-0 Thailand W - R. Lavelle 20'\n- United States 8 - Thailand 0 73 minutes in HAT TRICK\n- United States W 12-0 Thailand W - Morgan 87' - 5th personal goal\n- Thailand 0-2 Uruguay - Gaston Pereiro 38'\n- France W 2-0 Thailand W - Kadidiatou Diani 78'\n- Thailand W 0-2 Chile W - Urrutia 80'\n- Sweden W 3-0 Thailand W - Rolfö 42'\n- France W 1-0 Thailand W - Elise Bussaglia 60'\n- Sweden W [5]-1 Thailand W - E. Rubensson 90+6' (P)\n- Thailand 0-1 Uruguay - Matias Vecino 6'\n- United States W 3-0 Thailand W - L. Horan 32'\n- United States W 11-0 Thailand W - Pugh 85' Most goal in a world cup match\n- Australia W [1] - 0 Thailand W - Emily Van Egmond 39’\n- Thailand 0-4 Uruguay - Maxi Gomez 88'\n- Sweden W 4-0 Thailand W - L. Hurtig 81'\n- Australia W 2 - [1] Thailand W - Nipawan Panyosuk 90+3’ (great volley)\n- Sweden W 1-0 Thailand W - M. Ericsson 6'\n- Sweden W 4-[1] Thailand W - K. Sungngoen 90+1'\n- Thailand's first World Cup Goal vs Sweden (Full Celebration)\n- Sweden W 2-0 Thailand W - Asllani 19'\n- France W 3-0 Thailand W - Kadidiatou Diani 86'\n- United States W 9-0 Thailand W - Rapinoe 79'\n- Thailand 0-3 Uruguay - Cristhian Stuani 58'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"World Cup Match\", \"purpose\": \"Reporting World Cup matches\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts about World Cup matches, including scores, goals, and player performances\", \"inclusion_cues\": [\"United States W 13-0 Thailand W\", \"Thailand 0-2 Uruguay - Gaston Pereiro 38'\", \"France W 3-0 Thailand W - Kadidiatou Diani 86'\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "World Cup Match",
+      "purpose": "Reporting World Cup matches",
+      "emotion_tone": "Excitement",
+      "description": "Posts about World Cup matches, including scores, goals, and player performances",
+      "inclusion_cues": [
+       "United States W 13-0 Thailand W",
+       "Thailand 0-2 Uruguay - Gaston Pereiro 38'",
+       "France W 3-0 Thailand W - Kadidiatou Diani 86'"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 115,
+   "seed": 3732528702,
+   "seconds": 0.65
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: thailand world, 60 thailand, 10 thailand, australia thailand, states thailand, thailand chile, cup match, sweden thailand, 86 france, uruguay matias, 12 france, uruguay cristhian, uruguay gaston, 54 united, goal world\nPosts (one per line, title first):\n- United States W 4-0 Thailand W - S. Mewis 50'\n- United States W 6-0 Thailand W - Mewis 54'\n- United States W 7-0 Thailand W - Lavelle 56'\n- United States W 8-0 Thailand W - A. Morgan 74'\n- United States W 5-0 Thailand W - A. Morgan 53'\n- United States W 13-0 Thailand W - Lloyd 90+2'\n- United States W 1-0 Thailand W - Morgan 12'\n- United States W 10-0 Thailand W - Morgan 81' (4th personal goal)\n- China 2-0 Philippines ‘66 Wu Lei (Great Goal!!)\n- Thailand W 0-1 Chile W - Boonsing 48' (OG)\n- United States W 2-0 Thailand W - R. Lavelle 20'\n- United States 8 - Thailand 0 73 minutes in HAT TRICK\n- United States W 12-0 Thailand W - Morgan 87' - 5th personal goal\n- Thailand 0-2 Uruguay - Gaston Pereiro 38'\n- France W 2-0 Thailand W - Kadidiatou Diani 78'\n- Thailand W 0-2 Chile W - Urrutia 80'\n- Sweden W 3-0 Thailand W - Rolfö 42'\n- France W 1-0 Thailand W - Elise Bussaglia 60'\n- Sweden W [5]-1 Thailand W - E. Rubensson 90+6' (P)\n- Thailand 0-1 Uruguay - Matias Vecino 6'\n- United States W 3-0 Thailand W - L. Horan 32'\n- United States W 11-0 Thailand W - Pugh 85' Most goal in a world cup match\n- Australia W [1] - 0 Thailand W - Emily Van Egmond 39’\n- Thailand 0-4 Uruguay - Maxi Gomez 88'\n- Sweden W 4-0 Thailand W - L. Hurtig 81'\n- Australia W 2 - [1] Thailand W - Nipawan Panyosuk 90+3’ (great volley)\n- Sweden W 1-0 Thailand W - M. Ericsson 6'\n- Sweden W 4-[1] Thailand W - K. Sungngoen 90+1'\n- Thailand's first World Cup Goal vs Sweden (Full Celebration)\n- Sweden W 2-0 Thailand W - Asllani 19'\n- France W 3-0 Thailand W - Kadidiatou Diani 86'\n- United States W 9-0 Thailand W - Rapinoe 79'\n- Thailand 0-3 Uruguay - Cristhian Stuani 58'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"World Cup Match\", \"purpose\": \"Reporting World Cup matches\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts about World Cup matches, including scores, goals, and player performances.\", \"inclusion_cues\": [\"United States W 4-0 Thailand W\", \"Thailand W 0-1 Chile W\", \"France W 3-0 Thailand W\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "World Cup Match",
+      "purpose": "Reporting World Cup matches",
+      "emotion_tone": "Excitement",
+      "description": "Posts about World Cup matches, including scores, goals, and player performances.",
+      "inclusion_cues": [
+       "United States W 4-0 Thailand W",
+       "Thailand W 0-1 Chile W",
+       "France W 3-0 Thailand W"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 97,
+   "seed": 551378772,
+   "seconds": 0.69
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: thailand world, 60 thailand, 10 thailand, australia thailand, states thailand, thailand chile, cup match, sweden thailand, 86 france, uruguay matias, 12 france, uruguay cristhian, uruguay gaston, 54 united, goal world\nPosts (one per line, title first):\n- United States W 4-0 Thailand W - S. Mewis 50'\n- United States W 6-0 Thailand W - Mewis 54'\n- United States W 7-0 Thailand W - Lavelle 56'\n- United States W 8-0 Thailand W - A. Morgan 74'\n- United States W 5-0 Thailand W - A. Morgan 53'\n- United States W 13-0 Thailand W - Lloyd 90+2'\n- United States W 1-0 Thailand W - Morgan 12'\n- United States W 10-0 Thailand W - Morgan 81' (4th personal goal)\n- China 2-0 Philippines ‘66 Wu Lei (Great Goal!!)\n- Thailand W 0-1 Chile W - Boonsing 48' (OG)\n- United States W 2-0 Thailand W - R. Lavelle 20'\n- United States 8 - Thailand 0 73 minutes in HAT TRICK\n- United States W 12-0 Thailand W - Morgan 87' - 5th personal goal\n- Thailand 0-2 Uruguay - Gaston Pereiro 38'\n- France W 2-0 Thailand W - Kadidiatou Diani 78'\n- Thailand W 0-2 Chile W - Urrutia 80'\n- Sweden W 3-0 Thailand W - Rolfö 42'\n- France W 1-0 Thailand W - Elise Bussaglia 60'\n- Sweden W [5]-1 Thailand W - E. Rubensson 90+6' (P)\n- Thailand 0-1 Uruguay - Matias Vecino 6'\n- United States W 3-0 Thailand W - L. Horan 32'\n- United States W 11-0 Thailand W - Pugh 85' Most goal in a world cup match\n- Australia W [1] - 0 Thailand W - Emily Van Egmond 39’\n- Thailand 0-4 Uruguay - Maxi Gomez 88'\n- Sweden W 4-0 Thailand W - L. Hurtig 81'\n- Australia W 2 - [1] Thailand W - Nipawan Panyosuk 90+3’ (great volley)\n- Sweden W 1-0 Thailand W - M. Ericsson 6'\n- Sweden W 4-[1] Thailand W - K. Sungngoen 90+1'\n- Thailand's first World Cup Goal vs Sweden (Full Celebration)\n- Sweden W 2-0 Thailand W - Asllani 19'\n- France W 3-0 Thailand W - Kadidiatou Diani 86'\n- United States W 9-0 Thailand W - Rapinoe 79'\n- Thailand 0-3 Uruguay - Cristhian Stuani 58'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"World Cup Match\", \"purpose\": \"Reporting World Cup matches\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts about World Cup matches, including scores, goals, and player performances\", \"inclusion_cues\": [\"United States W 13-0 Thailand W\", \"Thailand 0-2 Uruguay - Gaston Pereiro 38'\", \"France W 3-0 Thailand W - Kadidiatou Diani 86'\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"World Cup Match\", \"purpose\": \"Reporting World Cup matches\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts about World Cup matches, including scores, goals, and player performances.\", \"inclusion_cues\": [\"United States W 4-0 Thailand W\", \"Thailand W 0-1 Chile W\", \"France W 3-0 Thailand W\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"World Cup Match\", \"purpose\": \"Reporting World Cup matches\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts about World Cup matches, including scores, goals, and player performances.\", \"inclusion_cues\": [\"United States W 4-0 Thailand W\", \"Thailand W 0-1 Chile W\", \"France W 3-0 Thailand W\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 95,
+   "seed": 1652831296,
+   "seconds": 1.07
+  }
+ ]
+}

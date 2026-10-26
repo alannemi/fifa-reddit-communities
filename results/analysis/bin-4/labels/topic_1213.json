@@ -1,0 +1,199 @@
+{
+ "period_bin": 4,
+ "topic_id": 1213,
+ "keywords": "movie trailer, war trailer, trailer 10, trailer watch, action movies, new movie, movie english, movie 2016, trailer new, online movie, 2015 movie, football film, avengers infinity, force awakens, imdb",
+ "n_sample_posts": 34,
+ "sample_ids": [
+  "35c3hj",
+  "7kkik5",
+  "3djndj",
+  "37hvs1",
+  "33n7hc",
+  "3ipemb",
+  "313m64",
+  "6j7dl7",
+  "3pi6gz",
+  "61702m",
+  "49m4de",
+  "5quiyi",
+  "3568w9",
+  "359jbc",
+  "35tk1j",
+  "4x7853",
+  "3l1mpi",
+  "3n606b",
+  "4k7twu",
+  "3hp7y8",
+  "3gatgr",
+  "7f5laz",
+  "65i6vh",
+  "5uggly",
+  "5rsw82",
+  "4wpphc",
+  "37l4gv",
+  "4wpqwr",
+  "3o0xma",
+  "4draoe",
+  "2vru7g",
+  "3523sd",
+  "6tensz",
+  "5n746p"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "football film trailer",
+  "purpose": "promotion of football-related movies",
+  "emotion_tone": "enthusiastic",
+  "description": "Posts related to football films, trailers, and their promotional content",
+  "inclusion_cues": [
+   "football film",
+   "trailer",
+   "movie",
+   "online movie",
+   "2015 movie",
+   "2016 movie",
+   "trailer watch",
+   "movie english"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Football Film Trailers",
+    "purpose": "Promotion of football-related movies and trailers",
+    "emotion_tone": "Excitement and anticipation",
+    "description": "Posts related to football films, trailers, and their promotional content",
+    "inclusion_cues": [
+     "football film",
+     "trailer",
+     "movie",
+     "2015",
+     "2016",
+     "online movie"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "football film trailer",
+    "purpose": "promotion of football-related movies",
+    "emotion_tone": "enthusiastic",
+    "description": "Posts related to football films, trailers, and their promotional content",
+    "inclusion_cues": [
+     "football film",
+     "trailer",
+     "movie",
+     "online movie",
+     "2015 movie",
+     "2016 movie",
+     "trailer watch",
+     "movie english"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: movie trailer, war trailer, trailer 10, trailer watch, action movies, new movie, movie english, movie 2016, trailer new, online movie, 2015 movie, football film, avengers infinity, force awakens, imdb\nPosts (one per line, title first):\n- The Trailer For The New Paul Gascoigne Film Is Spine Tingling\n- Avengers Infinity War Trailer ft. FC Barcelona\n- [Mega`Stars].. Watch #|*Mad Max: Fury Road*|# ~2015~ Full Movie Online HD Free (#Must watch!)\n- Action Movies 2014 Full Movie English - Watch Kick-Ass 2 Online Free Putlocker - Video4khmers.net\n- [Watch FULL] Unfriended online.. free.. stream.. full.. movie.. xvid.. horror.. divx / Unfriended online.. free.. stream.. full.. movie.. xvid.. horror.. divx Unfriended online.. free.. stream.. full.. movie.. xvid.. horror.. divx Unfriended online.. free.. stream.. full.. movie.. xvid.. horror.. di\n- [.<!uTorrent!>.]\"Fantastic Four\" English/Subtitle/Hollywood/HD.. (2015) Online Movie Free Full Streaming..\n- I know it's not r/movies, but here's a screenshot of the new movie, \"The Big Green\"\n- The Dream Begins (2005) Everything can happen if you believe in what you do (1h58)\n- The Manchester United Force Awakens Trailer\n- 1 Movies Website - Genre Animation\n- The Film We've (Almost) All Been Waiting For!\n- ((100%Super%hit))Split IMBD Full MOVIE\n- GASCOIGNE - Official Trailer\n- =WATCH=] AVENGERS: AGE OF ULTRON ONLINE FREE PUTLOCKER HD STREAM 2015\n- BR@NK@$!!!] Watch ^Avengers: Age of Ultron^ Full Movie Online $$[2015]$$~IMDB\n- The Angry Birds Movie 2016 720P TC Unmarked Masteredition x264 Hive CM8\n- Trailer for the new football film - I Believe in Miracles\n- Film 'Barça Dreams' - trailer (ENG)\n- Spurs - The Movie Trailer\n- Think it's a bit soon but its been made\n- Boruto: Naruto the Movie Online\n- Robot 2 Trailer | ROBOT 2.0 Official Trailer Rajinikanth, Akshay Kumar\n- Bale as Thor: Thor Ragnarok Trailer\n- DON'T TAKE ME HOME - OFFICIAL TRAILER\n- Best (George Best: All By Himself) - Official trailer\n- What do you think about this trailer ?/10\n- Alex Oxlade-Chamberlain's new film (trailer)\n- What do you think about this trailer ?\n- Jurgen Klopp - The Movie Trailer 2015\n- Star Wars: Rogue One trailer finally!\n- 50 Shades of Andy Gray Trailer\n- Gascoigne - Official Trailer\n- The Great Old Rises - The Official RAFC Movie Trailer\n- Alex Morgan Trailer - The beggining in France\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Football Film Trailers\", \"purpose\": \"Promotion of football-related movies and trailers\", \"emotion_tone\": \"Excitement and anticipation\", \"description\": \"Posts related to football films, trailers, and their promotional content\", \"inclusion_cues\": [\"football film\", \"trailer\", \"movie\", \"2015\", \"2016\", \"online movie\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Football Film Trailers",
+      "purpose": "Promotion of football-related movies and trailers",
+      "emotion_tone": "Excitement and anticipation",
+      "description": "Posts related to football films, trailers, and their promotional content",
+      "inclusion_cues": [
+       "football film",
+       "trailer",
+       "movie",
+       "2015",
+       "2016",
+       "online movie"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 97,
+   "seed": 556119735,
+   "seconds": 1.37
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: movie trailer, war trailer, trailer 10, trailer watch, action movies, new movie, movie english, movie 2016, trailer new, online movie, 2015 movie, football film, avengers infinity, force awakens, imdb\nPosts (one per line, title first):\n- The Trailer For The New Paul Gascoigne Film Is Spine Tingling\n- Avengers Infinity War Trailer ft. FC Barcelona\n- [Mega`Stars].. Watch #|*Mad Max: Fury Road*|# ~2015~ Full Movie Online HD Free (#Must watch!)\n- Action Movies 2014 Full Movie English - Watch Kick-Ass 2 Online Free Putlocker - Video4khmers.net\n- [Watch FULL] Unfriended online.. free.. stream.. full.. movie.. xvid.. horror.. divx / Unfriended online.. free.. stream.. full.. movie.. xvid.. horror.. divx Unfriended online.. free.. stream.. full.. movie.. xvid.. horror.. divx Unfriended online.. free.. stream.. full.. movie.. xvid.. horror.. di\n- [.<!uTorrent!>.]\"Fantastic Four\" English/Subtitle/Hollywood/HD.. (2015) Online Movie Free Full Streaming..\n- I know it's not r/movies, but here's a screenshot of the new movie, \"The Big Green\"\n- The Dream Begins (2005) Everything can happen if you believe in what you do (1h58)\n- The Manchester United Force Awakens Trailer\n- 1 Movies Website - Genre Animation\n- The Film We've (Almost) All Been Waiting For!\n- ((100%Super%hit))Split IMBD Full MOVIE\n- GASCOIGNE - Official Trailer\n- =WATCH=] AVENGERS: AGE OF ULTRON ONLINE FREE PUTLOCKER HD STREAM 2015\n- BR@NK@$!!!] Watch ^Avengers: Age of Ultron^ Full Movie Online $$[2015]$$~IMDB\n- The Angry Birds Movie 2016 720P TC Unmarked Masteredition x264 Hive CM8\n- Trailer for the new football film - I Believe in Miracles\n- Film 'Barça Dreams' - trailer (ENG)\n- Spurs - The Movie Trailer\n- Think it's a bit soon but its been made\n- Boruto: Naruto the Movie Online\n- Robot 2 Trailer | ROBOT 2.0 Official Trailer Rajinikanth, Akshay Kumar\n- Bale as Thor: Thor Ragnarok Trailer\n- DON'T TAKE ME HOME - OFFICIAL TRAILER\n- Best (George Best: All By Himself) - Official trailer\n- What do you think about this trailer ?/10\n- Alex Oxlade-Chamberlain's new film (trailer)\n- What do you think about this trailer ?\n- Jurgen Klopp - The Movie Trailer 2015\n- Star Wars: Rogue One trailer finally!\n- 50 Shades of Andy Gray Trailer\n- Gascoigne - Official Trailer\n- The Great Old Rises - The Official RAFC Movie Trailer\n- Alex Morgan Trailer - The beggining in France\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"football film trailer\", \"purpose\": \"promotion of football-related movies\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts related to football films, trailers, and their promotional content\", \"inclusion_cues\": [\"football film\", \"trailer\", \"movie\", \"online movie\", \"2015 movie\", \"2016 movie\", \"trailer watch\", \"movie english\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "football film trailer",
+      "purpose": "promotion of football-related movies",
+      "emotion_tone": "enthusiastic",
+      "description": "Posts related to football films, trailers, and their promotional content",
+      "inclusion_cues": [
+       "football film",
+       "trailer",
+       "movie",
+       "online movie",
+       "2015 movie",
+       "2016 movie",
+       "trailer watch",
+       "movie english"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 103,
+   "seed": 2904922402,
+   "seconds": 0.57
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: movie trailer, war trailer, trailer 10, trailer watch, action movies, new movie, movie english, movie 2016, trailer new, online movie, 2015 movie, football film, avengers infinity, force awakens, imdb\nPosts (one per line, title first):\n- The Trailer For The New Paul Gascoigne Film Is Spine Tingling\n- Avengers Infinity War Trailer ft. FC Barcelona\n- [Mega`Stars].. Watch #|*Mad Max: Fury Road*|# ~2015~ Full Movie Online HD Free (#Must watch!)\n- Action Movies 2014 Full Movie English - Watch Kick-Ass 2 Online Free Putlocker - Video4khmers.net\n- [Watch FULL] Unfriended online.. free.. stream.. full.. movie.. xvid.. horror.. divx / Unfriended online.. free.. stream.. full.. movie.. xvid.. horror.. divx Unfriended online.. free.. stream.. full.. movie.. xvid.. horror.. divx Unfriended online.. free.. stream.. full.. movie.. xvid.. horror.. di\n- [.<!uTorrent!>.]\"Fantastic Four\" English/Subtitle/Hollywood/HD.. (2015) Online Movie Free Full Streaming..\n- I know it's not r/movies, but here's a screenshot of the new movie, \"The Big Green\"\n- The Dream Begins (2005) Everything can happen if you believe in what you do (1h58)\n- The Manchester United Force Awakens Trailer\n- 1 Movies Website - Genre Animation\n- The Film We've (Almost) All Been Waiting For!\n- ((100%Super%hit))Split IMBD Full MOVIE\n- GASCOIGNE - Official Trailer\n- =WATCH=] AVENGERS: AGE OF ULTRON ONLINE FREE PUTLOCKER HD STREAM 2015\n- BR@NK@$!!!] Watch ^Avengers: Age of Ultron^ Full Movie Online $$[2015]$$~IMDB\n- The Angry Birds Movie 2016 720P TC Unmarked Masteredition x264 Hive CM8\n- Trailer for the new football film - I Believe in Miracles\n- Film 'Barça Dreams' - trailer (ENG)\n- Spurs - The Movie Trailer\n- Think it's a bit soon but its been made\n- Boruto: Naruto the Movie Online\n- Robot 2 Trailer | ROBOT 2.0 Official Trailer Rajinikanth, Akshay Kumar\n- Bale as Thor: Thor Ragnarok Trailer\n- DON'T TAKE ME HOME - OFFICIAL TRAILER\n- Best (George Best: All By Himself) - Official trailer\n- What do you think about this trailer ?/10\n- Alex Oxlade-Chamberlain's new film (trailer)\n- What do you think about this trailer ?\n- Jurgen Klopp - The Movie Trailer 2015\n- Star Wars: Rogue One trailer finally!\n- 50 Shades of Andy Gray Trailer\n- Gascoigne - Official Trailer\n- The Great Old Rises - The Official RAFC Movie Trailer\n- Alex Morgan Trailer - The beggining in France\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Football Film Trailers\", \"purpose\": \"Promotion of football-related movies and trailers\", \"emotion_tone\": \"Excitement and anticipation\", \"description\": \"Posts related to football films, trailers, and their promotional content\", \"inclusion_cues\": [\"football film\", \"trailer\", \"movie\", \"2015\", \"2016\", \"online movie\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"football film trailer\", \"purpose\": \"promotion of football-related movies\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts related to football films, trailers, and their promotional content\", \"inclusion_cues\": [\"football film\", \"trailer\", \"movie\", \"online movie\", \"2015 movie\", \"2016 movie\", \"trailer watch\", \"movie english\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"football film trailer\", \"purpose\": \"promotion of football-related movies\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts related to football films, trailers, and their promotional content\", \"inclusion_cues\": [\"football film\", \"trailer\", \"movie\", \"online movie\", \"2015 movie\", \"2016 movie\", \"trailer watch\", \"movie english\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 102,
+   "seed": 2669672579,
+   "seconds": 0.63
+  }
+ ]
+}

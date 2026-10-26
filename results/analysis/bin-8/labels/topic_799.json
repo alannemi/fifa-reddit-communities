@@ -1,0 +1,186 @@
+{
+ "period_bin": 8,
+ "topic_id": 799,
+ "keywords": "bundesliga standings, bundesliga table, current bundesliga, bundesliga points, season bundesliga, teams bundesliga, matchday bundesliga, games bundesliga, 11 bundesliga, leads bundesliga, bundesliga half, play bundesliga, germany bundesliga, liga germany, standings matchday",
+ "n_sample_posts": 30,
+ "sample_ids": [
+  "1bxlt2k",
+  "1pszsv1",
+  "1bbn4zo",
+  "1qnhu6q",
+  "1qe4swy",
+  "1gz0l7a",
+  "1iaedgq",
+  "1c9hw7r",
+  "18n5pwk",
+  "1kejso2",
+  "17u9re4",
+  "1bsb0a7",
+  "18nrs35",
+  "1jydmh0",
+  "1i57j7l",
+  "1hf1sqg",
+  "1j2e6x5",
+  "1cfb5l7",
+  "1iag4tl",
+  "1hf1mhj",
+  "1fn1dkt",
+  "1aiuw0h",
+  "1i2929u",
+  "1nyziao",
+  "1kesl29",
+  "1j1s0ya",
+  "1azzfnn",
+  "1h9k2xs",
+  "1nn7oz7",
+  "1j2f4vo"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Bundesliga Standings",
+  "purpose": "Tracking current Bundesliga table and standings",
+  "emotion_tone": "informative",
+  "description": "Posts related to Bundesliga table, standings, and matchday updates",
+  "inclusion_cues": [
+   "Bundesliga table",
+   "current standings",
+   "matchday updates",
+   "points and positions",
+   "team performance"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Bundesliga Standings",
+    "purpose": "Provide current league table and standings",
+    "emotion_tone": "informative",
+    "description": "Includes Bundesliga table, standings, and matchday information",
+    "inclusion_cues": [
+     "Bundesliga standings",
+     "current bundesliga",
+     "bundesliga table",
+     "bundesliga points",
+     "bundesliga half",
+     "bundesliga matchday"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Bundesliga Standings",
+    "purpose": "Tracking current Bundesliga table and standings",
+    "emotion_tone": "informative",
+    "description": "Posts related to Bundesliga table, standings, and matchday updates",
+    "inclusion_cues": [
+     "Bundesliga table",
+     "current standings",
+     "matchday updates",
+     "points and positions",
+     "team performance"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: bundesliga standings, bundesliga table, current bundesliga, bundesliga points, season bundesliga, teams bundesliga, matchday bundesliga, games bundesliga, 11 bundesliga, leads bundesliga, bundesliga half, play bundesliga, germany bundesliga, liga germany, standings matchday\nPosts (one per line, title first):\n- Bundesliga Rückrunde table. Bayern in 6th, have lost 5 in 11 and have the fourth-worst defense in the league during this period\n- 2. Bundesliga standings heading into the winter break. Schalke sits top of the table, despite having scored less goals than the bottom two teams.\n- Bundesliga table after week 25 2023/24 compared to last season 2022/23. Stuttgart is 33 points and 15 places better than one year ago.\n- Bundesliga table after MD19 / Bayern’s 2-1 lost to Augsburg, Bayern’s first loss in the league, means the gap at the top stands at 8 points. \\* St. Pauli, Leverkusen, Hoffenheim and Werder Bremen have played one less game due to games suspended for weather.\n- Bundesliga standings after MD17 - Halfway point / \\* 3 matches were postponed due to heavy snowfall in Germany. Bundesliga’s first half also known as the Hinrunde is mostly complete besides the postponed games. Bayern have also set a new record for the best first half of a season in Bundesliga histo\n- 3. Liga (Germany) 24/25 after matchday 15\n- Current Frauen-Bundesliga table. Genuine 4 way title race.\n- 2. Bundesliga Table with 4 games to go\n- Bundesliga standings match day 16.\n- 2. Bundesliga standings after Matchday 32 - Promotion race still close!\n- Bundesliga Standings After Match Day 11\n- 2. Bundesliga Table with 7 games to go\n- Points lost after leads per Bundesliga club in 23/24\n- Bundesliga standings after the 29th matchday\n- Bundesliga standings after matchday 18\n- 2. Bundesliga has 3 points between ranks 1 and 9 at this time of the season\n- 2. Bundesliga has 4 points between ranks 1 and 8 at this time of the season\n- Current Bundesliga table after Red Bull Salzburg - Sturm Graz ends in a 2:2 draw; 3 games left to play\n- 2. Bundesliga standings after Matchday 19\n- Bundesliga standings after matchday 14\n- German Bundesliga standings after week 4\n- Bundesliga standings after Matchday 20\n- Bundesliga standings after match day 17 / Hinrunde\n- 2. Bundesliga standings after matchday 8.\n- Bundesliga standings after the 32nd matchday\n- 2. Bundesliga after matchday 24 - the race for promotion is still as hot at its can be\n- total points won after trailing the game (Bundesliga)\n- 2nd Bundesliga table after 15 matchdays. Place 1-8 are seperated by 3 points.\n- Bundesliga Table / Standings after match four.\n- 2. Bundesliga has 4 points between ranks 1 and 8 at this time of the season (image source:\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bundesliga Standings\", \"purpose\": \"Provide current league table and standings\", \"emotion_tone\": \"informative\", \"description\": \"Includes Bundesliga table, standings, and matchday information\", \"inclusion_cues\": [\"Bundesliga standings\", \"current bundesliga\", \"bundesliga table\", \"bundesliga points\", \"bundesliga half\", \"bundesliga matchday\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Bundesliga Standings",
+      "purpose": "Provide current league table and standings",
+      "emotion_tone": "informative",
+      "description": "Includes Bundesliga table, standings, and matchday information",
+      "inclusion_cues": [
+       "Bundesliga standings",
+       "current bundesliga",
+       "bundesliga table",
+       "bundesliga points",
+       "bundesliga half",
+       "bundesliga matchday"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 107,
+   "seed": 1941842571,
+   "seconds": 0.64
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: bundesliga standings, bundesliga table, current bundesliga, bundesliga points, season bundesliga, teams bundesliga, matchday bundesliga, games bundesliga, 11 bundesliga, leads bundesliga, bundesliga half, play bundesliga, germany bundesliga, liga germany, standings matchday\nPosts (one per line, title first):\n- Bundesliga Rückrunde table. Bayern in 6th, have lost 5 in 11 and have the fourth-worst defense in the league during this period\n- 2. Bundesliga standings heading into the winter break. Schalke sits top of the table, despite having scored less goals than the bottom two teams.\n- Bundesliga table after week 25 2023/24 compared to last season 2022/23. Stuttgart is 33 points and 15 places better than one year ago.\n- Bundesliga table after MD19 / Bayern’s 2-1 lost to Augsburg, Bayern’s first loss in the league, means the gap at the top stands at 8 points. \\* St. Pauli, Leverkusen, Hoffenheim and Werder Bremen have played one less game due to games suspended for weather.\n- Bundesliga standings after MD17 - Halfway point / \\* 3 matches were postponed due to heavy snowfall in Germany. Bundesliga’s first half also known as the Hinrunde is mostly complete besides the postponed games. Bayern have also set a new record for the best first half of a season in Bundesliga histo\n- 3. Liga (Germany) 24/25 after matchday 15\n- Current Frauen-Bundesliga table. Genuine 4 way title race.\n- 2. Bundesliga Table with 4 games to go\n- Bundesliga standings match day 16.\n- 2. Bundesliga standings after Matchday 32 - Promotion race still close!\n- Bundesliga Standings After Match Day 11\n- 2. Bundesliga Table with 7 games to go\n- Points lost after leads per Bundesliga club in 23/24\n- Bundesliga standings after the 29th matchday\n- Bundesliga standings after matchday 18\n- 2. Bundesliga has 3 points between ranks 1 and 9 at this time of the season\n- 2. Bundesliga has 4 points between ranks 1 and 8 at this time of the season\n- Current Bundesliga table after Red Bull Salzburg - Sturm Graz ends in a 2:2 draw; 3 games left to play\n- 2. Bundesliga standings after Matchday 19\n- Bundesliga standings after matchday 14\n- German Bundesliga standings after week 4\n- Bundesliga standings after Matchday 20\n- Bundesliga standings after match day 17 / Hinrunde\n- 2. Bundesliga standings after matchday 8.\n- Bundesliga standings after the 32nd matchday\n- 2. Bundesliga after matchday 24 - the race for promotion is still as hot at its can be\n- total points won after trailing the game (Bundesliga)\n- 2nd Bundesliga table after 15 matchdays. Place 1-8 are seperated by 3 points.\n- Bundesliga Table / Standings after match four.\n- 2. Bundesliga has 4 points between ranks 1 and 8 at this time of the season (image source:\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bundesliga Standings\", \"purpose\": \"Tracking current Bundesliga table and standings\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to Bundesliga table, standings, and matchday updates\", \"inclusion_cues\": [\"Bundesliga table\", \"current standings\", \"matchday updates\", \"points and positions\", \"team performance\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Bundesliga Standings",
+      "purpose": "Tracking current Bundesliga table and standings",
+      "emotion_tone": "informative",
+      "description": "Posts related to Bundesliga table, standings, and matchday updates",
+      "inclusion_cues": [
+       "Bundesliga table",
+       "current standings",
+       "matchday updates",
+       "points and positions",
+       "team performance"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 92,
+   "seed": 1704947840,
+   "seconds": 0.65
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: bundesliga standings, bundesliga table, current bundesliga, bundesliga points, season bundesliga, teams bundesliga, matchday bundesliga, games bundesliga, 11 bundesliga, leads bundesliga, bundesliga half, play bundesliga, germany bundesliga, liga germany, standings matchday\nPosts (one per line, title first):\n- Bundesliga Rückrunde table. Bayern in 6th, have lost 5 in 11 and have the fourth-worst defense in the league during this period\n- 2. Bundesliga standings heading into the winter break. Schalke sits top of the table, despite having scored less goals than the bottom two teams.\n- Bundesliga table after week 25 2023/24 compared to last season 2022/23. Stuttgart is 33 points and 15 places better than one year ago.\n- Bundesliga table after MD19 / Bayern’s 2-1 lost to Augsburg, Bayern’s first loss in the league, means the gap at the top stands at 8 points. \\* St. Pauli, Leverkusen, Hoffenheim and Werder Bremen have played one less game due to games suspended for weather.\n- Bundesliga standings after MD17 - Halfway point / \\* 3 matches were postponed due to heavy snowfall in Germany. Bundesliga’s first half also known as the Hinrunde is mostly complete besides the postponed games. Bayern have also set a new record for the best first half of a season in Bundesliga histo\n- 3. Liga (Germany) 24/25 after matchday 15\n- Current Frauen-Bundesliga table. Genuine 4 way title race.\n- 2. Bundesliga Table with 4 games to go\n- Bundesliga standings match day 16.\n- 2. Bundesliga standings after Matchday 32 - Promotion race still close!\n- Bundesliga Standings After Match Day 11\n- 2. Bundesliga Table with 7 games to go\n- Points lost after leads per Bundesliga club in 23/24\n- Bundesliga standings after the 29th matchday\n- Bundesliga standings after matchday 18\n- 2. Bundesliga has 3 points between ranks 1 and 9 at this time of the season\n- 2. Bundesliga has 4 points between ranks 1 and 8 at this time of the season\n- Current Bundesliga table after Red Bull Salzburg - Sturm Graz ends in a 2:2 draw; 3 games left to play\n- 2. Bundesliga standings after Matchday 19\n- Bundesliga standings after matchday 14\n- German Bundesliga standings after week 4\n- Bundesliga standings after Matchday 20\n- Bundesliga standings after match day 17 / Hinrunde\n- 2. Bundesliga standings after matchday 8.\n- Bundesliga standings after the 32nd matchday\n- 2. Bundesliga after matchday 24 - the race for promotion is still as hot at its can be\n- total points won after trailing the game (Bundesliga)\n- 2nd Bundesliga table after 15 matchdays. Place 1-8 are seperated by 3 points.\n- Bundesliga Table / Standings after match four.\n- 2. Bundesliga has 4 points between ranks 1 and 8 at this time of the season (image source:\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bundesliga Standings\", \"purpose\": \"Provide current league table and standings\", \"emotion_tone\": \"informative\", \"description\": \"Includes Bundesliga table, standings, and matchday information\", \"inclusion_cues\": [\"Bundesliga standings\", \"current bundesliga\", \"bundesliga table\", \"bundesliga points\", \"bundesliga half\", \"bundesliga matchday\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bundesliga Standings\", \"purpose\": \"Tracking current Bundesliga table and standings\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to Bundesliga table, standings, and matchday updates\", \"inclusion_cues\": [\"Bundesliga table\", \"current standings\", \"matchday updates\", \"points and positions\", \"team performance\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Bundesliga Standings\", \"purpose\": \"Tracking current Bundesliga table and standings\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to Bundesliga table, standings, and matchday updates\", \"inclusion_cues\": [\"Bundesliga table\", \"current standings\", \"matchday updates\", \"points and positions\", \"team performance\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 91,
+   "seed": 1323775180,
+   "seconds": 0.63
+  }
+ ]
+}

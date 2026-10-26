@@ -1,0 +1,224 @@
+{
+ "period_bin": 2,
+ "topic_id": 5,
+ "keywords": "chuckle, makes laugh, brings smile, laugh time, things just, gonna leave, laughed hard, sense don, laugh, sudden realization, make laugh, noticed, awesome moment, face time, things change",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "12u1xs",
+  "10t567",
+  "10u1nl",
+  "lsd55",
+  "v0d2t",
+  "1toapc",
+  "1dr1g7",
+  "sx948",
+  "my4u2",
+  "r7476",
+  "vqzmi",
+  "iqlo0",
+  "vovf8",
+  "1jjm3r",
+  "1d8prc",
+  "1iqw3q",
+  "s9he1",
+  "12kotq",
+  "1irtvm",
+  "qudls",
+  "1kjk4k",
+  "oe28t",
+  "kjlyl",
+  "jf1fy",
+  "jbit8",
+  "1amp87",
+  "153w6g",
+  "1dz8yy",
+  "16c63l",
+  "vpg1j",
+  "kk2hn",
+  "zq54t",
+  "1gh19e",
+  "ozm5h",
+  "fpm2n",
+  "1eb2sy",
+  "1bxnpj",
+  "14alsd",
+  "15umpm",
+  "faqyn"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Soccer Moments",
+  "purpose": "Discuss football/soccer events and their impact",
+  "emotion_tone": "lighthearted, reflective",
+  "description": "Posts about football/soccer events that evoke laughter, realization, or reflection",
+  "inclusion_cues": [
+   "makes laugh",
+   "brings smile",
+   "laugh time",
+   "sudden realization",
+   "awesome moment",
+   "face time",
+   "things change",
+   "laugh",
+   "noticed",
+   "laughed hard"
+  ],
+  "n_cues_given": 18
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "football humor",
+    "purpose": "analyze football-related humor and reactions",
+    "emotion_tone": "light-hearted, sarcastic",
+    "description": "Posts discussing football moments, humor, and reactions with a focus on comedic or ironic take",
+    "inclusion_cues": [
+     "laugh",
+     "makes laugh",
+     "laugh time",
+     "sudden realization",
+     "awesome moment",
+     "face time",
+     "things change",
+     "sensed",
+     "noticed",
+     "laughed hard"
+    ],
+    "n_cues_given": 17
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Soccer Moments",
+    "purpose": "Discuss football/soccer events and their impact",
+    "emotion_tone": "lighthearted, reflective",
+    "description": "Posts about football/soccer events that evoke laughter, realization, or reflection",
+    "inclusion_cues": [
+     "makes laugh",
+     "brings smile",
+     "laugh time",
+     "sudden realization",
+     "awesome moment",
+     "face time",
+     "things change",
+     "laugh",
+     "noticed",
+     "laughed hard"
+    ],
+    "n_cues_given": 18
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: chuckle, makes laugh, brings smile, laugh time, things just, gonna leave, laughed hard, sense don, laugh, sudden realization, make laugh, noticed, awesome moment, face time, things change\nPosts (one per line, title first):\n- I know this is old, but it makes me laugh every time.\n- This brings a smile to my face every time. [FIXED]\n- Wanna get peoples opinions on this: I am not trying to say anything is going on, just seems a little fishy to a lot of people after what happened today. / Take a look at this and see what you think.\n- I'll just leave this here.\n- I'll just leave this here\n- I woke up this morning\n- anyone else think this is a little strange?\n- This always makes me laugh\n- Thought this belonged here\n- This made me laugh more than I should have.\n- Sometimes you gotta live on the bright side of life\n- This just never gets old...\n- Well, that didn't go as planned...\n- Not sure if this is the right subreddit...\n- That´s when you realize you´re screwed\n- What is up?\n- How it really went down.\n- That's just... brilliant.\n- Deal with it.\n- This is getting ridiculous now\n- Funny story (sorry if it doesn't belong here)\n- I honestly feel kind of stupid for not having noticed this earlier.\n- This just about sums it up.\n- Everyone's getting in on it now...\n- Its almost time...\n- I thought this my be well received here.\n- I think this belongs here [FB vid 0:50]\n- This would have been entertaining to see.\n- How to deal with this?\n- I think the write in option was abused here\n- What we should have seen today...\n- I'm at a loss for words\n- This was entertaining\n- I got this.....nevermind!\n- YOU'RE IN, YOU'RE IN!... You......ohhhhhhhhh\n- Smh this is getting ridiculous\n- a strange occurrence over the weekend, has this happened before?\n- This blew my mind\n- Not that there's anything wrong with that\n- How very apt.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"football humor\", \"purpose\": \"analyze football-related humor and reactions\", \"emotion_tone\": \"light-hearted, sarcastic\", \"description\": \"Posts discussing football moments, humor, and reactions with a focus on comedic or ironic take\", \"inclusion_cues\": [\"laugh\", \"makes laugh\", \"laugh time\", \"sudden realization\", \"awesome moment\", \"face time\", \"things change\", \"sensed\", \"noticed\", \"laughed hard\", \"laughed more than should have\", \"deal with it\", \"get in on it\", \"get ridiculous\", \"get stupid\", \"get in on it\", \"get in on it\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "football humor",
+      "purpose": "analyze football-related humor and reactions",
+      "emotion_tone": "light-hearted, sarcastic",
+      "description": "Posts discussing football moments, humor, and reactions with a focus on comedic or ironic take",
+      "inclusion_cues": [
+       "laugh",
+       "makes laugh",
+       "laugh time",
+       "sudden realization",
+       "awesome moment",
+       "face time",
+       "things change",
+       "sensed",
+       "noticed",
+       "laughed hard"
+      ],
+      "n_cues_given": 17
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 154,
+   "seed": 3940867596,
+   "seconds": 1.55
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: chuckle, makes laugh, brings smile, laugh time, things just, gonna leave, laughed hard, sense don, laugh, sudden realization, make laugh, noticed, awesome moment, face time, things change\nPosts (one per line, title first):\n- I know this is old, but it makes me laugh every time.\n- This brings a smile to my face every time. [FIXED]\n- Wanna get peoples opinions on this: I am not trying to say anything is going on, just seems a little fishy to a lot of people after what happened today. / Take a look at this and see what you think.\n- I'll just leave this here.\n- I'll just leave this here\n- I woke up this morning\n- anyone else think this is a little strange?\n- This always makes me laugh\n- Thought this belonged here\n- This made me laugh more than I should have.\n- Sometimes you gotta live on the bright side of life\n- This just never gets old...\n- Well, that didn't go as planned...\n- Not sure if this is the right subreddit...\n- That´s when you realize you´re screwed\n- What is up?\n- How it really went down.\n- That's just... brilliant.\n- Deal with it.\n- This is getting ridiculous now\n- Funny story (sorry if it doesn't belong here)\n- I honestly feel kind of stupid for not having noticed this earlier.\n- This just about sums it up.\n- Everyone's getting in on it now...\n- Its almost time...\n- I thought this my be well received here.\n- I think this belongs here [FB vid 0:50]\n- This would have been entertaining to see.\n- How to deal with this?\n- I think the write in option was abused here\n- What we should have seen today...\n- I'm at a loss for words\n- This was entertaining\n- I got this.....nevermind!\n- YOU'RE IN, YOU'RE IN!... You......ohhhhhhhhh\n- Smh this is getting ridiculous\n- a strange occurrence over the weekend, has this happened before?\n- This blew my mind\n- Not that there's anything wrong with that\n- How very apt.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Soccer Moments\", \"purpose\": \"Discuss football/soccer events and their impact\", \"emotion_tone\": \"lighthearted, reflective\", \"description\": \"Posts about football/soccer events that evoke laughter, realization, or reflection\", \"inclusion_cues\": [\"makes laugh\", \"brings smile\", \"laugh time\", \"sudden realization\", \"awesome moment\", \"face time\", \"things change\", \"laugh\", \"noticed\", \"laughed hard\", \"sense don\", \"laughed\", \"sudden realization\", \"make laugh\", \"noticed\", \"awesome moment\", \"face time\", \"things change\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Soccer Moments",
+      "purpose": "Discuss football/soccer events and their impact",
+      "emotion_tone": "lighthearted, reflective",
+      "description": "Posts about football/soccer events that evoke laughter, realization, or reflection",
+      "inclusion_cues": [
+       "makes laugh",
+       "brings smile",
+       "laugh time",
+       "sudden realization",
+       "awesome moment",
+       "face time",
+       "things change",
+       "laugh",
+       "noticed",
+       "laughed hard"
+      ],
+      "n_cues_given": 18
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 150,
+   "seed": 3020429670,
+   "seconds": 1.22
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: chuckle, makes laugh, brings smile, laugh time, things just, gonna leave, laughed hard, sense don, laugh, sudden realization, make laugh, noticed, awesome moment, face time, things change\nPosts (one per line, title first):\n- I know this is old, but it makes me laugh every time.\n- This brings a smile to my face every time. [FIXED]\n- Wanna get peoples opinions on this: I am not trying to say anything is going on, just seems a little fishy to a lot of people after what happened today. / Take a look at this and see what you think.\n- I'll just leave this here.\n- I'll just leave this here\n- I woke up this morning\n- anyone else think this is a little strange?\n- This always makes me laugh\n- Thought this belonged here\n- This made me laugh more than I should have.\n- Sometimes you gotta live on the bright side of life\n- This just never gets old...\n- Well, that didn't go as planned...\n- Not sure if this is the right subreddit...\n- That´s when you realize you´re screwed\n- What is up?\n- How it really went down.\n- That's just... brilliant.\n- Deal with it.\n- This is getting ridiculous now\n- Funny story (sorry if it doesn't belong here)\n- I honestly feel kind of stupid for not having noticed this earlier.\n- This just about sums it up.\n- Everyone's getting in on it now...\n- Its almost time...\n- I thought this my be well received here.\n- I think this belongs here [FB vid 0:50]\n- This would have been entertaining to see.\n- How to deal with this?\n- I think the write in option was abused here\n- What we should have seen today...\n- I'm at a loss for words\n- This was entertaining\n- I got this.....nevermind!\n- YOU'RE IN, YOU'RE IN!... You......ohhhhhhhhh\n- Smh this is getting ridiculous\n- a strange occurrence over the weekend, has this happened before?\n- This blew my mind\n- Not that there's anything wrong with that\n- How very apt.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"football humor\", \"purpose\": \"analyze football-related humor and reactions\", \"emotion_tone\": \"light-hearted, sarcastic\", \"description\": \"Posts discussing football moments, humor, and reactions with a focus on comedic or ironic take\", \"inclusion_cues\": [\"laugh\", \"makes laugh\", \"laugh time\", \"sudden realization\", \"awesome moment\", \"face time\", \"things change\", \"sensed\", \"noticed\", \"laughed hard\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Soccer Moments\", \"purpose\": \"Discuss football/soccer events and their impact\", \"emotion_tone\": \"lighthearted, reflective\", \"description\": \"Posts about football/soccer events that evoke laughter, realization, or reflection\", \"inclusion_cues\": [\"makes laugh\", \"brings smile\", \"laugh time\", \"sudden realization\", \"awesome moment\", \"face time\", \"things change\", \"laugh\", \"noticed\", \"laughed hard\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Soccer Moments\", \"purpose\": \"Discuss football/soccer events and their impact\", \"emotion_tone\": \"lighthearted, reflective\", \"description\": \"Posts about football/soccer events that evoke laughter, realization, or reflection\", \"inclusion_cues\": [\"makes laugh\", \"brings smile\", \"laugh time\", \"sudden realization\", \"awesome moment\", \"face time\", \"things change\", \"laugh\", \"noticed\", \"laughed hard\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 116,
+   "seed": 1999465415,
+   "seconds": 1.08
+  }
+ ]
+}

@@ -1,0 +1,216 @@
+{
+ "period_bin": 4,
+ "topic_id": 1432,
+ "keywords": "league table, premier league, weekend teams, weekend premier, weekend serie, change week, gameweek premier, league, table change, gameweek 25, gameweek, wednesday premier, teams face, serie table, december",
+ "n_sample_posts": 32,
+ "sample_ids": [
+  "5l2a92",
+  "5l2a92",
+  "5l2a92",
+  "5l2a92",
+  "5l2a92",
+  "5n3kpi",
+  "7mut8u",
+  "5lju1c",
+  "5kvjm6",
+  "77k9d6",
+  "682dip",
+  "7dj3kp",
+  "7lebw6",
+  "642pvh",
+  "44aqrn",
+  "7djpdw",
+  "4dw1qz",
+  "7087va",
+  "7jy720",
+  "7gt5ey",
+  "5rliyq",
+  "62cgy1",
+  "6aqpb0",
+  "637ecr",
+  "5b36r6",
+  "5sgmzs",
+  "5t0ubl",
+  "735qds",
+  "6ykz05",
+  "69670z",
+  "5x96d7",
+  "71p671"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Premier League Table Change",
+  "purpose": "Discuss potential changes in the Premier League table",
+  "emotion_tone": "curious",
+  "description": "Posts about potential table changes in the Premier League, including gameweeks, weekend matches, and comparisons with other leagues",
+  "inclusion_cues": [
+   "Premier League table change",
+   "Gameweek 25",
+   "Weekend teams",
+   "Serie A table change",
+   "Weekend premier",
+   "League table change",
+   "Table change",
+   "Gameweek",
+   "Wednesday premier",
+   "Teams face"
+  ],
+  "n_cues_given": 12
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Premier League Table Change",
+    "purpose": "Analyzing potential changes in the Premier League table",
+    "emotion_tone": "curious",
+    "description": "Posts discussing potential changes in the Premier League table, focusing on gameweeks, weekend matches, and table positions",
+    "inclusion_cues": [
+     "Premier League table change",
+     "gameweek 25",
+     "weekend teams",
+     "table change",
+     "gameweek premier",
+     "weekend premier",
+     "december",
+     "wednesday premier",
+     "teams face",
+     "serie table"
+    ],
+    "n_cues_given": 12
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Premier League Table Change",
+    "purpose": "Discuss potential changes in the Premier League table",
+    "emotion_tone": "curious",
+    "description": "Posts about potential table changes in the Premier League, including gameweeks, weekend matches, and comparisons with other leagues",
+    "inclusion_cues": [
+     "Premier League table change",
+     "Gameweek 25",
+     "Weekend teams",
+     "Serie A table change",
+     "Weekend premier",
+     "League table change",
+     "Table change",
+     "Gameweek",
+     "Wednesday premier",
+     "Teams face"
+    ],
+    "n_cues_given": 12
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: league table, premier league, weekend teams, weekend premier, weekend serie, change week, gameweek premier, league, table change, gameweek 25, gameweek, wednesday premier, teams face, serie table, december\nPosts (one per line, title first):\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier league table change? (December 30-31)\n- How much could the Premier League table change till Wednesday?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- Gameweek 25: How Much Could The Premier League Table Change this Gameweek\n- How much could Serie A table change this weekend? (6 out of first 7 teams face each other)\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change till Wednesday?\n- How much could the Premier League table change this week ?\n- How much could the Premier League table change this week ?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Premier League Table Change\", \"purpose\": \"Analyzing potential changes in the Premier League table\", \"emotion_tone\": \"curious\", \"description\": \"Posts discussing potential changes in the Premier League table, focusing on gameweeks, weekend matches, and table positions\", \"inclusion_cues\": [\"Premier League table change\", \"gameweek 25\", \"weekend teams\", \"table change\", \"gameweek premier\", \"weekend premier\", \"december\", \"wednesday premier\", \"teams face\", \"serie table\", \"gameweek 25\", \"weekend premier\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Premier League Table Change",
+      "purpose": "Analyzing potential changes in the Premier League table",
+      "emotion_tone": "curious",
+      "description": "Posts discussing potential changes in the Premier League table, focusing on gameweeks, weekend matches, and table positions",
+      "inclusion_cues": [
+       "Premier League table change",
+       "gameweek 25",
+       "weekend teams",
+       "table change",
+       "gameweek premier",
+       "weekend premier",
+       "december",
+       "wednesday premier",
+       "teams face",
+       "serie table"
+      ],
+      "n_cues_given": 12
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 144,
+   "seed": 1158056544,
+   "seconds": 0.82
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: league table, premier league, weekend teams, weekend premier, weekend serie, change week, gameweek premier, league, table change, gameweek 25, gameweek, wednesday premier, teams face, serie table, december\nPosts (one per line, title first):\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier league table change? (December 30-31)\n- How much could the Premier League table change till Wednesday?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- Gameweek 25: How Much Could The Premier League Table Change this Gameweek\n- How much could Serie A table change this weekend? (6 out of first 7 teams face each other)\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change till Wednesday?\n- How much could the Premier League table change this week ?\n- How much could the Premier League table change this week ?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Premier League Table Change\", \"purpose\": \"Discuss potential changes in the Premier League table\", \"emotion_tone\": \"curious\", \"description\": \"Posts about potential table changes in the Premier League, including gameweeks, weekend matches, and comparisons with other leagues\", \"inclusion_cues\": [\"Premier League table change\", \"Gameweek 25\", \"Weekend teams\", \"Serie A table change\", \"Weekend premier\", \"League table change\", \"Table change\", \"Gameweek\", \"Wednesday premier\", \"Teams face\", \"Serie table\", \"December\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Premier League Table Change",
+      "purpose": "Discuss potential changes in the Premier League table",
+      "emotion_tone": "curious",
+      "description": "Posts about potential table changes in the Premier League, including gameweeks, weekend matches, and comparisons with other leagues",
+      "inclusion_cues": [
+       "Premier League table change",
+       "Gameweek 25",
+       "Weekend teams",
+       "Serie A table change",
+       "Weekend premier",
+       "League table change",
+       "Table change",
+       "Gameweek",
+       "Wednesday premier",
+       "Teams face"
+      ],
+      "n_cues_given": 12
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 141,
+   "seed": 1646095274,
+   "seconds": 0.7
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: league table, premier league, weekend teams, weekend premier, weekend serie, change week, gameweek premier, league, table change, gameweek 25, gameweek, wednesday premier, teams face, serie table, december\nPosts (one per line, title first):\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier league table change? (December 30-31)\n- How much could the Premier League table change till Wednesday?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- Gameweek 25: How Much Could The Premier League Table Change this Gameweek\n- How much could Serie A table change this weekend? (6 out of first 7 teams face each other)\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change till Wednesday?\n- How much could the Premier League table change this week ?\n- How much could the Premier League table change this week ?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\n- How much could the Premier League table change this weekend?\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Premier League Table Change\", \"purpose\": \"Analyzing potential changes in the Premier League table\", \"emotion_tone\": \"curious\", \"description\": \"Posts discussing potential changes in the Premier League table, focusing on gameweeks, weekend matches, and table positions\", \"inclusion_cues\": [\"Premier League table change\", \"gameweek 25\", \"weekend teams\", \"table change\", \"gameweek premier\", \"weekend premier\", \"december\", \"wednesday premier\", \"teams face\", \"serie table\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Premier League Table Change\", \"purpose\": \"Discuss potential changes in the Premier League table\", \"emotion_tone\": \"curious\", \"description\": \"Posts about potential table changes in the Premier League, including gameweeks, weekend matches, and comparisons with other leagues\", \"inclusion_cues\": [\"Premier League table change\", \"Gameweek 25\", \"Weekend teams\", \"Serie A table change\", \"Weekend premier\", \"League table change\", \"Table change\", \"Gameweek\", \"Wednesday premier\", \"Teams face\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Premier League Table Change\", \"purpose\": \"Analyzing potential changes in the Premier League table\", \"emotion_tone\": \"curious\", \"description\": \"Posts discussing potential table changes in the Premier League, including gameweeks, weekend matches, and comparisons with other leagues\", \"inclusion_cues\": [\"Premier League table change\", \"Gameweek 25\", \"Weekend teams\", \"Serie A table change\", \"Weekend premier\", \"League table change\", \"Table change\", \"Gameweek\", \"Wednesday premier\", \"Teams face\"]]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 540)",
+   "n_tokens": 132,
+   "seed": 1307266118,
+   "seconds": 0.53
+  }
+ ]
+}

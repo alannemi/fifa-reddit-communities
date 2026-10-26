@@ -1,0 +1,225 @@
+{
+ "period_bin": 2,
+ "topic_id": 305,
+ "keywords": "worst misses, worst miss, football misses, football miss, football worst, season miss, shot worst, 2011 worst, football history, year worst, history worst, miss football, easily worst, miss year, 10 worst",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "edxdd",
+  "hoyhj",
+  "eiwyr",
+  "eahle",
+  "e79i3",
+  "vgflx",
+  "narlk",
+  "hfsek",
+  "hrhat",
+  "1bzi0e",
+  "g2tpg",
+  "14abx2",
+  "onh8s",
+  "1awxxq",
+  "1al3c1",
+  "qj111",
+  "wvfzd",
+  "fb73l",
+  "1rns4v",
+  "1a0skm",
+  "fgutd",
+  "12irem",
+  "1rklzn",
+  "jyh5u",
+  "dm8mz",
+  "tl9u6",
+  "1k82op",
+  "1fgu9w",
+  "12dfqg",
+  "10d11e",
+  "kjt9z",
+  "eablg",
+  "lgc6z",
+  "hpq7u",
+  "lwwmz",
+  "mta0r",
+  "rzzhp",
+  "jbivc",
+  "10ea9o",
+  "1rlk7c"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Worst Misses in Football History",
+  "purpose": "Identify and categorize the most egregious missed opportunities in football history",
+  "emotion_tone": "critical",
+  "description": "Posts discussing the most egregious missed opportunities in football history, including the worst misses, top 10 worst misses, and historical context of football misses.",
+  "inclusion_cues": [
+   "worst misses",
+   "top 10 worst misses",
+   "history worst",
+   "miss of the season",
+   "worst ever miss",
+   "worst miss ever"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "worst_misses",
+    "purpose": "identify the most egregious football misses",
+    "emotion_tone": "negative",
+    "description": "Posts discussing the most egregious football misses, including historical and seasonal references, with a focus on the worst misses in football history.",
+    "inclusion_cues": [
+     "worst misses",
+     "worst miss",
+     "football misses",
+     "football miss",
+     "football worst",
+     "season miss",
+     "shot worst",
+     "2011 worst",
+     "football history",
+     "year worst"
+    ],
+    "n_cues_given": 15
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Worst Misses in Football History",
+    "purpose": "Identify and categorize the most egregious missed opportunities in football history",
+    "emotion_tone": "critical",
+    "description": "Posts discussing the most egregious missed opportunities in football history, including the worst misses, top 10 worst misses, and historical context of football misses.",
+    "inclusion_cues": [
+     "worst misses",
+     "top 10 worst misses",
+     "history worst",
+     "miss of the season",
+     "worst ever miss",
+     "worst miss ever"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: worst misses, worst miss, football misses, football miss, football worst, season miss, shot worst, 2011 worst, football history, year worst, history worst, miss football, easily worst, miss year, 10 worst\nPosts (one per line, title first):\n- Some of the worst misses in football history.\n- Probably the worst miss I have ever seen in football history...\n- The top 10 worst misses in football history\n- Prompted by /r/soccer's recent postings of terrible misses (possibly), the Guardian responds with: 'The top 10 worst misses in football history'\n- Worst miss of the year?\n- Top 10 Misses that My Granny Could Have Scored\n- The Miss of the Year\n- Miss of the season!\n- Easily the worst miss ever.\n- Miss of the season contender by Andrea Ranocchia\n- Big Miss Today\n- Worst miss I have ever seen!\n- Miss of the season?\n- Possibly the worst miss of the WC qualifiers so far.\n- Worst ever miss?\n- What an amazing ... miss.\n- TOP 20 SOCCER (FOOTBALL) MISSES\n- Football miss of the year\n- Worst Miss Ever?\n- A very embarrassing miss\n- Top 10 worst misses\n- Greatest miss ever?\n- Is this the worst miss ever? Any worse out there?\n- Worse Miss of the Season Nominee - Israel Kahn\n- Worst Miss of all Time\n- Miss of the Season??\n- What's the worst miss you have ever seen? / This has got to be up there for me.\n- Miss of the summer\n- Havent had a good miss in a while...\n- Probably one of the worst misses this season\n- Don't worry guys, every big player has their fair share of horrific misses\n- Miss of the week, or year.\n- Very clever yet still, what a miss!\n- Worst miss ever.\n- Now that's what I call a miss....\n- Worst miss in the history?\n- Dirk Kuyt's submission for the \"Miss of the Season\"\n- Ridiculous miss (RFPL)\n- Wagner Love miss from inside the 6 yard box.\n- Quite possibly the worst miss of all time\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"worst_misses\", \"purpose\": \"identify the most egregious missed opportunities in football history or current season\", \"emotion_tone\": \"negative\", \"description\": \"Posts discussing the most egregious missed opportunities in football, often with a focus on historical or current season context\", \"inclusion_cues\": [\"worst misses\", \"worst miss\", \"football misses\", \"football miss\", \"football worst\", \"season miss\", \"shot worst\", \"2011 worst\", \"football history\", \"year worst\", \"history worst\", \"miss football\", \"easily worst\", \"miss year\", \"10 worst\", \"worst ever miss\", \"worst miss ever\", \"miss of the season\", \"miss of the year\", \"miss of the season contender\", \"miss of the summer\", \"miss of the week\", \"miss of the season\", \"worst miss ever\", \"worst miss in the history\", \"worst miss ever\", \"worst miss in the history\", \"worst miss ever\", \"worst miss in the season\", \"worst miss ever\", \"worst miss in the history\", \"worst miss ever\", \"worst miss in the season\", \"worst miss ever\", \"worst miss in the history\", \"worst miss ever\", \"worst miss in the season\", \"worst miss ever\", \"worst miss in the history\", \"worst miss ever\", \"worst miss in the season\", \"worst miss ever\", \"worst miss in the history\", \"worst miss ever\", \"worst miss in the season\", \"worst miss ever\", \"worst miss in the history\", \"worst miss ever\", \"worst miss in the season\", \"worst miss ever\", \"worst miss in the history\", \"worst miss ever\", \"worst miss in the season\", \"worst miss ever\", \"worst miss in the history\", \"worst miss ever\", \"worst miss in the season\", \"worst miss ever\", \"worst miss in the history\", \"worst miss ever\", \"worst miss in the season\", \"worst miss ever\", \"worst miss in the history\", \"worst miss ever\", \"worst miss in the season\", \"worst miss ever\", \"worst miss in the history\", \"worst miss ever\", \"worst miss in the season\", \"worst miss ever\", \"worst miss in the history\", \"worst miss ever\", \"worst miss in the season\", \"worst miss ever\", \"worst miss in the history\", \"worst miss ever\", \"worst miss in the season\", \"worst miss ever\", \"worst miss in the history\", \"worst miss ever\", \"worst miss in the season\", \"worst",
+   "parsed": null,
+   "error": "the answer was cut off at 600 tokens (invalid JSON (Unterminated string starting at at character 2148)); answer more concisely",
+   "truncated": true,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 600,
+   "seed": 1003668973,
+   "seconds": 3.52
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": true,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: worst misses, worst miss, football misses, football miss, football worst, season miss, shot worst, 2011 worst, football history, year worst, history worst, miss football, easily worst, miss year, 10 worst\nPosts (one per line, title first):\n- Some of the worst misses in football history.\n- Probably the worst miss I have ever seen in football history...\n- The top 10 worst misses in football history\n- Prompted by /r/soccer's recent postings of terrible misses (possibly), the Guardian responds with: 'The top 10 worst misses in football history'\n- Worst miss of the year?\n- Top 10 Misses that My Granny Could Have Scored\n- The Miss of the Year\n- Miss of the season!\n- Easily the worst miss ever.\n- Miss of the season contender by Andrea Ranocchia\n- Big Miss Today\n- Worst miss I have ever seen!\n- Miss of the season?\n- Possibly the worst miss of the WC qualifiers so far.\n- Worst ever miss?\n- What an amazing ... miss.\n- TOP 20 SOCCER (FOOTBALL) MISSES\n- Football miss of the year\n- Worst Miss Ever?\n- A very embarrassing miss\n- Top 10 worst misses\n- Greatest miss ever?\n- Is this the worst miss ever? Any worse out there?\n- Worse Miss of the Season Nominee - Israel Kahn\n- Worst Miss of all Time\n- Miss of the Season??\n- What's the worst miss you have ever seen? / This has got to be up there for me.\n- Miss of the summer\n- Havent had a good miss in a while...\n- Probably one of the worst misses this season\n- Don't worry guys, every big player has their fair share of horrific misses\n- Miss of the week, or year.\n- Very clever yet still, what a miss!\n- Worst miss ever.\n- Now that's what I call a miss....\n- Worst miss in the history?\n- Dirk Kuyt's submission for the \"Miss of the Season\"\n- Ridiculous miss (RFPL)\n- Wagner Love miss from inside the 6 yard box.\n- Quite possibly the worst miss of all time\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer could not be used: the answer was cut off at 600 tokens (invalid JSON (Unterminated string starting at at character 2148)); answer more concisely\nReturn the corrected answer with the same schema. JSON only; no prose or markdown.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"worst_misses\", \"purpose\": \"identify the most egregious football misses\", \"emotion_tone\": \"negative\", \"description\": \"Posts discussing the most egregious football misses, including historical and seasonal references, with a focus on the worst misses in football history.\", \"inclusion_cues\": [\"worst misses\", \"worst miss\", \"football misses\", \"football miss\", \"football worst\", \"season miss\", \"shot worst\", \"2011 worst\", \"football history\", \"year worst\", \"history worst\", \"miss football\", \"easily worst\", \"miss year\", \"10 worst\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "worst_misses",
+      "purpose": "identify the most egregious football misses",
+      "emotion_tone": "negative",
+      "description": "Posts discussing the most egregious football misses, including historical and seasonal references, with a focus on the worst misses in football history.",
+      "inclusion_cues": [
+       "worst misses",
+       "worst miss",
+       "football misses",
+       "football miss",
+       "football worst",
+       "season miss",
+       "shot worst",
+       "2011 worst",
+       "football history",
+       "year worst"
+      ],
+      "n_cues_given": 15
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 143,
+   "seed": 1523051015,
+   "seconds": 1.06
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: worst misses, worst miss, football misses, football miss, football worst, season miss, shot worst, 2011 worst, football history, year worst, history worst, miss football, easily worst, miss year, 10 worst\nPosts (one per line, title first):\n- Some of the worst misses in football history.\n- Probably the worst miss I have ever seen in football history...\n- The top 10 worst misses in football history\n- Prompted by /r/soccer's recent postings of terrible misses (possibly), the Guardian responds with: 'The top 10 worst misses in football history'\n- Worst miss of the year?\n- Top 10 Misses that My Granny Could Have Scored\n- The Miss of the Year\n- Miss of the season!\n- Easily the worst miss ever.\n- Miss of the season contender by Andrea Ranocchia\n- Big Miss Today\n- Worst miss I have ever seen!\n- Miss of the season?\n- Possibly the worst miss of the WC qualifiers so far.\n- Worst ever miss?\n- What an amazing ... miss.\n- TOP 20 SOCCER (FOOTBALL) MISSES\n- Football miss of the year\n- Worst Miss Ever?\n- A very embarrassing miss\n- Top 10 worst misses\n- Greatest miss ever?\n- Is this the worst miss ever? Any worse out there?\n- Worse Miss of the Season Nominee - Israel Kahn\n- Worst Miss of all Time\n- Miss of the Season??\n- What's the worst miss you have ever seen? / This has got to be up there for me.\n- Miss of the summer\n- Havent had a good miss in a while...\n- Probably one of the worst misses this season\n- Don't worry guys, every big player has their fair share of horrific misses\n- Miss of the week, or year.\n- Very clever yet still, what a miss!\n- Worst miss ever.\n- Now that's what I call a miss....\n- Worst miss in the history?\n- Dirk Kuyt's submission for the \"Miss of the Season\"\n- Ridiculous miss (RFPL)\n- Wagner Love miss from inside the 6 yard box.\n- Quite possibly the worst miss of all time\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Worst Misses in Football History\", \"purpose\": \"Identify and categorize the most egregious missed opportunities in football history\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing the most egregious missed opportunities in football history, including the worst misses, top 10 worst misses, and historical context of football misses.\", \"inclusion_cues\": [\"worst misses\", \"top 10 worst misses\", \"history worst\", \"miss of the season\", \"worst ever miss\", \"worst miss ever\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Worst Misses in Football History",
+      "purpose": "Identify and categorize the most egregious missed opportunities in football history",
+      "emotion_tone": "critical",
+      "description": "Posts discussing the most egregious missed opportunities in football history, including the worst misses, top 10 worst misses, and historical context of football misses.",
+      "inclusion_cues": [
+       "worst misses",
+       "top 10 worst misses",
+       "history worst",
+       "miss of the season",
+       "worst ever miss",
+       "worst miss ever"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 126,
+   "seed": 1096774993,
+   "seconds": 0.58
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: worst misses, worst miss, football misses, football miss, football worst, season miss, shot worst, 2011 worst, football history, year worst, history worst, miss football, easily worst, miss year, 10 worst\nPosts (one per line, title first):\n- Some of the worst misses in football history.\n- Probably the worst miss I have ever seen in football history...\n- The top 10 worst misses in football history\n- Prompted by /r/soccer's recent postings of terrible misses (possibly), the Guardian responds with: 'The top 10 worst misses in football history'\n- Worst miss of the year?\n- Top 10 Misses that My Granny Could Have Scored\n- The Miss of the Year\n- Miss of the season!\n- Easily the worst miss ever.\n- Miss of the season contender by Andrea Ranocchia\n- Big Miss Today\n- Worst miss I have ever seen!\n- Miss of the season?\n- Possibly the worst miss of the WC qualifiers so far.\n- Worst ever miss?\n- What an amazing ... miss.\n- TOP 20 SOCCER (FOOTBALL) MISSES\n- Football miss of the year\n- Worst Miss Ever?\n- A very embarrassing miss\n- Top 10 worst misses\n- Greatest miss ever?\n- Is this the worst miss ever? Any worse out there?\n- Worse Miss of the Season Nominee - Israel Kahn\n- Worst Miss of all Time\n- Miss of the Season??\n- What's the worst miss you have ever seen? / This has got to be up there for me.\n- Miss of the summer\n- Havent had a good miss in a while...\n- Probably one of the worst misses this season\n- Don't worry guys, every big player has their fair share of horrific misses\n- Miss of the week, or year.\n- Very clever yet still, what a miss!\n- Worst miss ever.\n- Now that's what I call a miss....\n- Worst miss in the history?\n- Dirk Kuyt's submission for the \"Miss of the Season\"\n- Ridiculous miss (RFPL)\n- Wagner Love miss from inside the 6 yard box.\n- Quite possibly the worst miss of all time\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"worst_misses\", \"purpose\": \"identify the most egregious football misses\", \"emotion_tone\": \"negative\", \"description\": \"Posts discussing the most egregious football misses, including historical and seasonal references, with a focus on the worst misses in football history.\", \"inclusion_cues\": [\"worst misses\", \"worst miss\", \"football misses\", \"football miss\", \"football worst\", \"season miss\", \"shot worst\", \"2011 worst\", \"football history\", \"year worst\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Worst Misses in Football History\", \"purpose\": \"Identify and categorize the most egregious missed opportunities in football history\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing the most egregious missed opportunities in football history, including the worst misses, top 10 worst misses, and historical context of football misses.\", \"inclusion_cues\": [\"worst misses\", \"top 10 worst misses\", \"history worst\", \"miss of the season\", \"worst ever miss\", \"worst miss ever\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Worst Misses in Football History\", \"purpose\": \"Identify and categorize the most egregious missed opportunities in football history\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing the most egregious missed opportunities in football history, including the worst misses, top 10 worst misses, and historical context of football misses.\", \"inclusion_cues\": [\"worst misses\", \"top 10 worst misses\", \"history worst\", \"miss of the season\", \"worst ever miss\", \"worst miss ever\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 125,
+   "seed": 1660608826,
+   "seconds": 1.16
+  }
+ ]
+}

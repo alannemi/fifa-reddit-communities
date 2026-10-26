@@ -1,0 +1,166 @@
+{
+ "period_bin": 6,
+ "topic_id": 1173,
+ "keywords": "league fixtures, fixtures announced, fixtures 2019, fixtures season, fixtures remaining, liga fixtures, epl fixture, leagues cup, bundesliga 2022, 23 fixtures, 2020 epl, laliga fixtures, 2020 leagues, official bundesliga, united playing",
+ "n_sample_posts": 30,
+ "sample_ids": [
+  "icopby",
+  "ve9lpv",
+  "gwlv7z",
+  "bykrsz",
+  "dmfq57",
+  "hj1nns",
+  "c86hc2",
+  "il42py",
+  "c1xig7",
+  "brlikc",
+  "vizr8w",
+  "gnvhhu",
+  "btnmj5",
+  "dh7hcp",
+  "id64c9",
+  "aj45c7",
+  "o1uw8b",
+  "c91sji",
+  "c0317o",
+  "dmi4xi",
+  "vjok5g",
+  "dmc6kw",
+  "ii6j4g",
+  "o0zoje",
+  "vdgqt2",
+  "aj4tfs",
+  "c03146",
+  "b8gchy",
+  "f6x3yz",
+  "i8ygr7"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "identical",
+ "round_iterations": 1,
+ "needs_review": false,
+ "label": {
+  "name": "Premier League Fixtures",
+  "purpose": "Announcement of upcoming matches",
+  "emotion_tone": "Informative",
+  "description": "Posts related to Premier League fixtures, including release dates, remaining matches, and planning for World Cup season.",
+  "inclusion_cues": [
+   "Premier League fixtures to be released on Thursday",
+   "Official: Bundesliga 2022/23 fixtures announced",
+   "Remaining Fixtures for 2019/20 A League Season Announced",
+   "All season Premier League Fixtures 2019/20",
+   "Premier League begins fixture planning for 2022 World Cup season"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Premier League Fixtures",
+    "purpose": "Announcement of upcoming matches",
+    "emotion_tone": "Informative",
+    "description": "Posts related to Premier League fixtures, including release dates, remaining matches, and planning for World Cup season.",
+    "inclusion_cues": [
+     "Premier League fixtures to be released on Thursday",
+     "Official: Bundesliga 2022/23 fixtures announced",
+     "Remaining Fixtures for 2019/20 A League Season Announced",
+     "All season Premier League Fixtures 2019/20",
+     "Premier League begins fixture planning for 2022 World Cup season"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Premier League Fixtures",
+    "purpose": "Announcement of upcoming matches",
+    "emotion_tone": "Informative",
+    "description": "Posts related to Premier League fixtures, including release dates, remaining matches, and planning for World Cup season.",
+    "inclusion_cues": [
+     "Premier League fixtures to be released on Thursday",
+     "Official: Bundesliga 2022/23 fixtures announced",
+     "Remaining Fixtures for 2019/20 A League Season Announced",
+     "All season Premier League Fixtures 2019/20",
+     "Premier League begins fixture planning for 2022 World Cup season"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: league fixtures, fixtures announced, fixtures 2019, fixtures season, fixtures remaining, liga fixtures, epl fixture, leagues cup, bundesliga 2022, 23 fixtures, 2020 epl, laliga fixtures, 2020 leagues, official bundesliga, united playing\nPosts (one per line, title first):\n- Premier League fixtures to be released on Thursday\n- Official: Bundesliga 2022/23 fixtures announced\n- Confirmed Premier League fixtures: List of matches for rest of 2019/20 season, dates and kick-off times\n- PSA: Premier League fixtures will be released at 09:00 UK time on Thursday 13th of June\n- Premier League begins fixture planning for 2022 World Cup season. Players could face the prospect of playing games nine days before the start of the World Cup.\n- Remaining Fixtures for 2019/20 A League Season Announced\n- All season Premier League Fixtures 2019/20\n- OFFICIAL SERIE A 20/21 FIXTURE SCHEDULE\n- Updated 2019-2020 EPL fixture list on google drive\n- From next season onwards, 2 teams will directly relegate from the Eredivisie, as opposed to just 1\n- 2022/23 LaLiga fixtures list\n- Premier League fixtures: What are the remaining matches to be played in the 2019/20 season?\n- Aston Villa, Norwich City and Sheffield United will be playing in the 2019/20 Premier League season!\n- 19th February 2019. [i love] this game.\n- Premier League fixtures for 2020/21\n- 2019 season's Jleague schedule released!\n- Ekstraklasa 2021/2022 fixtures released\n- Official: 2019–20 La Liga fixtures\n- Premier League fixtures for 2019/2020 announced\n- Premier League begins fixture planning for 2022 World Cup season\n- Serie A Complete 2022/23 Fixture Schedule\n- Premier League plan to play games NINE DAYS before start of the 2022 World Cup in Qatar\n- 2020/21 Cymru Premier first half fixtures announced\n- Premier League fixture calendar for the 2021/22 season\n- [Official] Premier League 2022/23 fixtures\n- Potential 2022/23 Fixture Calendar\n- Opening Premier League 2019/20 fixtures\n- Serie A scraps Boxing Day games\n- Dates announced for 2020 Leagues Cup\n- Premier League 2020/21 calendar dates announced\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Premier League Fixtures\", \"purpose\": \"Announcement of upcoming matches\", \"emotion_tone\": \"Informative\", \"description\": \"Posts related to Premier League fixtures, including release dates, remaining matches, and planning for World Cup season.\", \"inclusion_cues\": [\"Premier League fixtures to be released on Thursday\", \"Official: Bundesliga 2022/23 fixtures announced\", \"Remaining Fixtures for 2019/20 A League Season Announced\", \"All season Premier League Fixtures 2019/20\", \"Premier League begins fixture planning for 2022 World Cup season\"]}]}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Premier League Fixtures",
+      "purpose": "Announcement of upcoming matches",
+      "emotion_tone": "Informative",
+      "description": "Posts related to Premier League fixtures, including release dates, remaining matches, and planning for World Cup season.",
+      "inclusion_cues": [
+       "Premier League fixtures to be released on Thursday",
+       "Official: Bundesliga 2022/23 fixtures announced",
+       "Remaining Fixtures for 2019/20 A League Season Announced",
+       "All season Premier League Fixtures 2019/20",
+       "Premier League begins fixture planning for 2022 World Cup season"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 151,
+   "seed": 3980197304,
+   "seconds": 0.5
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: league fixtures, fixtures announced, fixtures 2019, fixtures season, fixtures remaining, liga fixtures, epl fixture, leagues cup, bundesliga 2022, 23 fixtures, 2020 epl, laliga fixtures, 2020 leagues, official bundesliga, united playing\nPosts (one per line, title first):\n- Premier League fixtures to be released on Thursday\n- Official: Bundesliga 2022/23 fixtures announced\n- Confirmed Premier League fixtures: List of matches for rest of 2019/20 season, dates and kick-off times\n- PSA: Premier League fixtures will be released at 09:00 UK time on Thursday 13th of June\n- Premier League begins fixture planning for 2022 World Cup season. Players could face the prospect of playing games nine days before the start of the World Cup.\n- Remaining Fixtures for 2019/20 A League Season Announced\n- All season Premier League Fixtures 2019/20\n- OFFICIAL SERIE A 20/21 FIXTURE SCHEDULE\n- Updated 2019-2020 EPL fixture list on google drive\n- From next season onwards, 2 teams will directly relegate from the Eredivisie, as opposed to just 1\n- 2022/23 LaLiga fixtures list\n- Premier League fixtures: What are the remaining matches to be played in the 2019/20 season?\n- Aston Villa, Norwich City and Sheffield United will be playing in the 2019/20 Premier League season!\n- 19th February 2019. [i love] this game.\n- Premier League fixtures for 2020/21\n- 2019 season's Jleague schedule released!\n- Ekstraklasa 2021/2022 fixtures released\n- Official: 2019–20 La Liga fixtures\n- Premier League fixtures for 2019/2020 announced\n- Premier League begins fixture planning for 2022 World Cup season\n- Serie A Complete 2022/23 Fixture Schedule\n- Premier League plan to play games NINE DAYS before start of the 2022 World Cup in Qatar\n- 2020/21 Cymru Premier first half fixtures announced\n- Premier League fixture calendar for the 2021/22 season\n- [Official] Premier League 2022/23 fixtures\n- Potential 2022/23 Fixture Calendar\n- Opening Premier League 2019/20 fixtures\n- Serie A scraps Boxing Day games\n- Dates announced for 2020 Leagues Cup\n- Premier League 2020/21 calendar dates announced\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Premier League Fixtures\", \"purpose\": \"Announcement of upcoming matches\", \"emotion_tone\": \"Informative\", \"description\": \"Posts related to Premier League fixtures, including release dates, remaining matches, and planning for World Cup season.\", \"inclusion_cues\": [\"Premier League fixtures to be released on Thursday\", \"Official: Bundesliga 2022/23 fixtures announced\", \"Remaining Fixtures for 2019/20 A League Season Announced\", \"All season Premier League Fixtures 2019/20\", \"Premier League begins fixture planning for 2022 World Cup season\"]}]}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Premier League Fixtures",
+      "purpose": "Announcement of upcoming matches",
+      "emotion_tone": "Informative",
+      "description": "Posts related to Premier League fixtures, including release dates, remaining matches, and planning for World Cup season.",
+      "inclusion_cues": [
+       "Premier League fixtures to be released on Thursday",
+       "Official: Bundesliga 2022/23 fixtures announced",
+       "Remaining Fixtures for 2019/20 A League Season Announced",
+       "All season Premier League Fixtures 2019/20",
+       "Premier League begins fixture planning for 2022 World Cup season"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 151,
+   "seed": 953733054,
+   "seconds": 0.62
+  }
+ ]
+}

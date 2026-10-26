@@ -1,0 +1,187 @@
+{
+ "period_bin": 4,
+ "topic_id": 1412,
+ "keywords": "fears ebola, african players, leone, africa gets, 2015 africa, malaria, africans, united african, club morocco, west africa, team struggles, nations hosts, morocco withdraw, game chile, use football",
+ "n_sample_posts": 30,
+ "sample_ids": [
+  "3knxq5",
+  "2ps7e0",
+  "2j7jp4",
+  "2j7jp4",
+  "2jmk3s",
+  "2jyo8h",
+  "3ecxkm",
+  "2lr56d",
+  "2jguw4",
+  "2j8oie",
+  "4gggvs",
+  "3ecpyk",
+  "4i4ppj",
+  "2k7y0r",
+  "2krzgi",
+  "2k5psg",
+  "2kfqdc",
+  "2k5nmv",
+  "2j3yej",
+  "2q9r9i",
+  "2inio9",
+  "2j3u2d",
+  "2ktksc",
+  "2lcvy2",
+  "2ks1ho",
+  "2it2bs",
+  "2o6gsy",
+  "2jjr5i",
+  "2mlf69",
+  "2iniro"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Ebola & Stigma",
+  "purpose": "Addressing the impact of Ebola on African football and the associated stigma",
+  "emotion_tone": "critical",
+  "description": "Posts discussing the Ebola outbreak's effect on African football, stigma, and efforts to combat it through football",
+  "inclusion_cues": [
+   "Ebola outbreak affecting African players",
+   "Stigma around Ebola in football",
+   "Football as a tool to combat Ebola",
+   "African players facing backlash"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Ebola & Stigma",
+    "purpose": "Addressing the impact of Ebola on African football and community perceptions",
+    "emotion_tone": "critical",
+    "description": "Posts discussing the stigma surrounding Ebola, the impact on African football teams, and efforts to combat the disease through football",
+    "inclusion_cues": [
+     "Ebola outbreak",
+     "African players",
+     "Stigma",
+     "Football teams",
+     "Ebola stigma",
+     "West Africa",
+     "Malaria",
+     "United African"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Ebola & Stigma",
+    "purpose": "Addressing the impact of Ebola on African football and the associated stigma",
+    "emotion_tone": "critical",
+    "description": "Posts discussing the Ebola outbreak's effect on African football, stigma, and efforts to combat it through football",
+    "inclusion_cues": [
+     "Ebola outbreak affecting African players",
+     "Stigma around Ebola in football",
+     "Football as a tool to combat Ebola",
+     "African players facing backlash"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: fears ebola, african players, leone, africa gets, 2015 africa, malaria, africans, united african, club morocco, west africa, team struggles, nations hosts, morocco withdraw, game chile, use football\nPosts (one per line, title first):\n- After Ebola: Survivors’ Soccer Club Helps Erase Stigma In Sierra Leone\n- How Ebola outbreak cost Sierra Leone manager Johnny McKinstry his job\n- Sierra Leone’s Soccer Team Struggles With Stigma Over Ebola Outbreak\n- Sierra Leone’s Soccer Team Struggles With Stigma Over Ebola Outbreak\n- African players starting to feel backlash of fears over Ebola outbreak | • Ivory Coast’s Siaka Tiéné examined by Montpellier on return • Sierra Leone’s John Kamara told to stay away by Greek club • Morocco may withdraw as 2015 Africa Cup of Nations hosts\n- What's the difference between Ebola and Manchester United?\n- Kenema Ebola Survivors Football Club. First Match. Sierra Leone (12min NYTimes)\n- Sierra Leonean footballer John Kamara wears a t-shirt reading: \"We are West Africans. We are not a virus.\" (x-post /r/Africa)\n- Alan Pardew and Newcastle have a strategy to combat Ebola. Considering how well Pardew is at strategy, this should go swimmingly.\n- The humilating and disgusting treatment of the Sierra Leone National Team because of the Ebola stigma\n- Brek Shea: #CallYourShot to Beat Malaria!\n- Ebola Survivors Football Club (NYT Video)\n- Russian mafia use football clubs for money laundering\n- Chile's Minister of Health tipped off the media that the Namibian National Homeless World Cup Team was bringing Ebola into Chile\n- Pardew trolled by Ebola announcement!\n- I know how to stop Ebola!\n- 'Ebola!' High school soccer player from West Africa gets taunted during Pennsylvania game\n- I know how to stop ebola!\n- Sierra Leone’s Soccer Team Struggles With Stigma Over Ebola Outbreak\n- The quarantine from hell: Banned for 99 years\n- Even Ebola is doing better than Mab\n- \"The odds he could beat. Ebola was a different matter\" The Irish Examiner interview Johnny McKinstry.\n- Pards getting parred off by Ebola announcement!\n- Sierra Leonean footballer John Kamara has a message for the world: \"We are West Africans. We are not a virus.\"\n- What's the difference between Man United and Ebola?\n- Maurice Edu, with Union teammates Michael Lahoud and Amobi Okugo have created a new campaign to fight Ebola\n- Toure, Muamba, Vieria band together to form West Africa vs. Ebola in a health campaign\n- BBC Sport - Sierra Leone's John Kamara banished by Greek club over Ebola\n- 11 players, 11 messages, 1 goal – Together, we can beat Ebola.\n- Even Ebola is doing better than Man Utd\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Ebola & Stigma\", \"purpose\": \"Addressing the impact of Ebola on African football and community perceptions\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing the stigma surrounding Ebola, the impact on African football teams, and efforts to combat the disease through football\", \"inclusion_cues\": [\"Ebola outbreak\", \"African players\", \"Stigma\", \"Football teams\", \"Ebola stigma\", \"West Africa\", \"Malaria\", \"United African\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Ebola & Stigma",
+      "purpose": "Addressing the impact of Ebola on African football and community perceptions",
+      "emotion_tone": "critical",
+      "description": "Posts discussing the stigma surrounding Ebola, the impact on African football teams, and efforts to combat the disease through football",
+      "inclusion_cues": [
+       "Ebola outbreak",
+       "African players",
+       "Stigma",
+       "Football teams",
+       "Ebola stigma",
+       "West Africa",
+       "Malaria",
+       "United African"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 116,
+   "seed": 2275301775,
+   "seconds": 0.94
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: fears ebola, african players, leone, africa gets, 2015 africa, malaria, africans, united african, club morocco, west africa, team struggles, nations hosts, morocco withdraw, game chile, use football\nPosts (one per line, title first):\n- After Ebola: Survivors’ Soccer Club Helps Erase Stigma In Sierra Leone\n- How Ebola outbreak cost Sierra Leone manager Johnny McKinstry his job\n- Sierra Leone’s Soccer Team Struggles With Stigma Over Ebola Outbreak\n- Sierra Leone’s Soccer Team Struggles With Stigma Over Ebola Outbreak\n- African players starting to feel backlash of fears over Ebola outbreak | • Ivory Coast’s Siaka Tiéné examined by Montpellier on return • Sierra Leone’s John Kamara told to stay away by Greek club • Morocco may withdraw as 2015 Africa Cup of Nations hosts\n- What's the difference between Ebola and Manchester United?\n- Kenema Ebola Survivors Football Club. First Match. Sierra Leone (12min NYTimes)\n- Sierra Leonean footballer John Kamara wears a t-shirt reading: \"We are West Africans. We are not a virus.\" (x-post /r/Africa)\n- Alan Pardew and Newcastle have a strategy to combat Ebola. Considering how well Pardew is at strategy, this should go swimmingly.\n- The humilating and disgusting treatment of the Sierra Leone National Team because of the Ebola stigma\n- Brek Shea: #CallYourShot to Beat Malaria!\n- Ebola Survivors Football Club (NYT Video)\n- Russian mafia use football clubs for money laundering\n- Chile's Minister of Health tipped off the media that the Namibian National Homeless World Cup Team was bringing Ebola into Chile\n- Pardew trolled by Ebola announcement!\n- I know how to stop Ebola!\n- 'Ebola!' High school soccer player from West Africa gets taunted during Pennsylvania game\n- I know how to stop ebola!\n- Sierra Leone’s Soccer Team Struggles With Stigma Over Ebola Outbreak\n- The quarantine from hell: Banned for 99 years\n- Even Ebola is doing better than Mab\n- \"The odds he could beat. Ebola was a different matter\" The Irish Examiner interview Johnny McKinstry.\n- Pards getting parred off by Ebola announcement!\n- Sierra Leonean footballer John Kamara has a message for the world: \"We are West Africans. We are not a virus.\"\n- What's the difference between Man United and Ebola?\n- Maurice Edu, with Union teammates Michael Lahoud and Amobi Okugo have created a new campaign to fight Ebola\n- Toure, Muamba, Vieria band together to form West Africa vs. Ebola in a health campaign\n- BBC Sport - Sierra Leone's John Kamara banished by Greek club over Ebola\n- 11 players, 11 messages, 1 goal – Together, we can beat Ebola.\n- Even Ebola is doing better than Man Utd\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Ebola & Stigma\", \"purpose\": \"Addressing the impact of Ebola on African football and the associated stigma\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing the Ebola outbreak's effect on African football, stigma, and efforts to combat it through football\", \"inclusion_cues\": [\"Ebola outbreak affecting African players\", \"Stigma around Ebola in football\", \"Football as a tool to combat Ebola\", \"African players facing backlash\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Ebola & Stigma",
+      "purpose": "Addressing the impact of Ebola on African football and the associated stigma",
+      "emotion_tone": "critical",
+      "description": "Posts discussing the Ebola outbreak's effect on African football, stigma, and efforts to combat it through football",
+      "inclusion_cues": [
+       "Ebola outbreak affecting African players",
+       "Stigma around Ebola in football",
+       "Football as a tool to combat Ebola",
+       "African players facing backlash"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 112,
+   "seed": 1773191768,
+   "seconds": 0.84
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: fears ebola, african players, leone, africa gets, 2015 africa, malaria, africans, united african, club morocco, west africa, team struggles, nations hosts, morocco withdraw, game chile, use football\nPosts (one per line, title first):\n- After Ebola: Survivors’ Soccer Club Helps Erase Stigma In Sierra Leone\n- How Ebola outbreak cost Sierra Leone manager Johnny McKinstry his job\n- Sierra Leone’s Soccer Team Struggles With Stigma Over Ebola Outbreak\n- Sierra Leone’s Soccer Team Struggles With Stigma Over Ebola Outbreak\n- African players starting to feel backlash of fears over Ebola outbreak | • Ivory Coast’s Siaka Tiéné examined by Montpellier on return • Sierra Leone’s John Kamara told to stay away by Greek club • Morocco may withdraw as 2015 Africa Cup of Nations hosts\n- What's the difference between Ebola and Manchester United?\n- Kenema Ebola Survivors Football Club. First Match. Sierra Leone (12min NYTimes)\n- Sierra Leonean footballer John Kamara wears a t-shirt reading: \"We are West Africans. We are not a virus.\" (x-post /r/Africa)\n- Alan Pardew and Newcastle have a strategy to combat Ebola. Considering how well Pardew is at strategy, this should go swimmingly.\n- The humilating and disgusting treatment of the Sierra Leone National Team because of the Ebola stigma\n- Brek Shea: #CallYourShot to Beat Malaria!\n- Ebola Survivors Football Club (NYT Video)\n- Russian mafia use football clubs for money laundering\n- Chile's Minister of Health tipped off the media that the Namibian National Homeless World Cup Team was bringing Ebola into Chile\n- Pardew trolled by Ebola announcement!\n- I know how to stop Ebola!\n- 'Ebola!' High school soccer player from West Africa gets taunted during Pennsylvania game\n- I know how to stop ebola!\n- Sierra Leone’s Soccer Team Struggles With Stigma Over Ebola Outbreak\n- The quarantine from hell: Banned for 99 years\n- Even Ebola is doing better than Mab\n- \"The odds he could beat. Ebola was a different matter\" The Irish Examiner interview Johnny McKinstry.\n- Pards getting parred off by Ebola announcement!\n- Sierra Leonean footballer John Kamara has a message for the world: \"We are West Africans. We are not a virus.\"\n- What's the difference between Man United and Ebola?\n- Maurice Edu, with Union teammates Michael Lahoud and Amobi Okugo have created a new campaign to fight Ebola\n- Toure, Muamba, Vieria band together to form West Africa vs. Ebola in a health campaign\n- BBC Sport - Sierra Leone's John Kamara banished by Greek club over Ebola\n- 11 players, 11 messages, 1 goal – Together, we can beat Ebola.\n- Even Ebola is doing better than Man Utd\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Ebola & Stigma\", \"purpose\": \"Addressing the impact of Ebola on African football and community perceptions\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing the stigma surrounding Ebola, the impact on African football teams, and efforts to combat the disease through football\", \"inclusion_cues\": [\"Ebola outbreak\", \"African players\", \"Stigma\", \"Football teams\", \"Ebola stigma\", \"West Africa\", \"Malaria\", \"United African\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Ebola & Stigma\", \"purpose\": \"Addressing the impact of Ebola on African football and the associated stigma\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing the Ebola outbreak's effect on African football, stigma, and efforts to combat it through football\", \"inclusion_cues\": [\"Ebola outbreak affecting African players\", \"Stigma around Ebola in football\", \"Football as a tool to combat Ebola\", \"African players facing backlash\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Ebola & Stigma\", \"purpose\": \"Addressing the impact of Ebola on African football and the associated stigma\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing the Ebola outbreak's effect on African football, stigma, and efforts to combat it through football\", \"inclusion_cues\": [\"Ebola outbreak affecting African players\", \"Stigma around Ebola in football\", \"Football as a tool to combat Ebola\", \"African players facing backlash\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 111,
+   "seed": 560296277,
+   "seconds": 0.71
+  }
+ ]
+}

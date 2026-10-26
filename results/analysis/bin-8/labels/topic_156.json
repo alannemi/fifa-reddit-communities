@@ -1,0 +1,194 @@
+{
+ "period_bin": 8,
+ "topic_id": 156,
+ "keywords": "barcelona penalty, penalty barcelona, madrid penalty, appeal barcelona, barcelona 90, madrid 36, madrid 22, 82 barcelona, barcelona 77, madrid 105, barcelona cubarsi, benfica 54, madrid 78, 90 barcelona, madrid 31",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "1kge00h",
+  "1k8ocbx",
+  "1ogp2ch",
+  "1q3sy13",
+  "12cuitj",
+  "1pietr1",
+  "1aj09x7",
+  "1i6url4",
+  "1iq4b9q",
+  "1ddmxfz",
+  "1f6oup2",
+  "1aiyxwu",
+  "1n1prfw",
+  "1ja3pxr",
+  "1i4iwxy",
+  "1axi2vj",
+  "17q27ef",
+  "1j17c3e",
+  "1hyebfd",
+  "1ny7ieq",
+  "1cmmapb",
+  "1j53g3z",
+  "1899n6l",
+  "1acdxvu",
+  "1irvjyh",
+  "1cabjhn",
+  "1c5qhxy",
+  "1i2zx4s",
+  "1f5rr1a",
+  "162xds9",
+  "1chvf9d",
+  "1kgg4lx",
+  "1b4xwj2",
+  "1eulvdv",
+  "1i31up2",
+  "1d3mt5v",
+  "12fxy82",
+  "12s8mrs",
+  "1funo9n",
+  "1ogyxgg"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Penalty Shouts",
+  "purpose": "Communication of penalty situations in football",
+  "emotion_tone": "Excitement and frustration",
+  "description": "Posts discussing penalty situations, appeals, and shoutings in football matches",
+  "inclusion_cues": [
+   "penalty situations",
+   "appeal",
+   "shout",
+   "football matches",
+   "penalty awarded"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Penalty Shouts",
+    "purpose": "Communication of penalty situations",
+    "emotion_tone": "Excitement/Anxiety",
+    "description": "Posts discussing penalty situations with emotional tone and communicative purpose",
+    "inclusion_cues": [
+     "Barcelona penalty shout against Real Madrid 90+4'",
+     "Real Madrid penalty shout against Barcelona 48'",
+     "Penalty situations in the Osasuna vs Real Madrid game",
+     "Real Madrid penalty shout against Atletico 54'",
+     "Real Madrid penalty shout against Villarreal 82'"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Penalty Shouts",
+    "purpose": "Communication of penalty situations in football",
+    "emotion_tone": "Excitement and frustration",
+    "description": "Posts discussing penalty situations, appeals, and shoutings in football matches",
+    "inclusion_cues": [
+     "penalty situations",
+     "appeal",
+     "shout",
+     "football matches",
+     "penalty awarded"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: barcelona penalty, penalty barcelona, madrid penalty, appeal barcelona, barcelona 90, madrid 36, madrid 22, 82 barcelona, barcelona 77, madrid 105, barcelona cubarsi, benfica 54, madrid 78, 90 barcelona, madrid 31\nPosts (one per line, title first):\n- Barcelona penalty shout against inter\n- Barcelona penalty shout against Real Madrid 90+4'\n- Real Madrid penalty shout against Barcelona 48'\n- Real Madrid penalty shout vs Real Betis 6´\n- Barcelona penalty shout against Real Madrid 3'\n- Some of the shots Real Madrid players took against Celta\n- Real Madrid penalty shout against Atletico 54'\n- Benfica penalty shout against Barcelona 90'+5'\n- Penalty situations in the Osasuna vs Real Madrid game.\n- Portugal penalty shout against Ireland 45+1'\n- Real Madrid penalty appeal vs Real Betis\n- Real Madrid penalty shout against Atletico 60'\n- Bayern Munich penalty shout against Wehen Wiesbaden 10'\n- Real Madrid players appealing for double touch in the shootout\n- Barcelona penalty shout vs Getafe\n- Roma Penalty Shout vs Feyenoord 56’\n- Barcelona penalty shout against Shakhtar Donetsk 82\n- Another angle on the potential penalty non awarded to Real Betis\n- Leverkusen penalty shout against Dortmund 45+3'\n- Real Madrid penalty shout against Villarreal\n- Paris Saint-Germain penalty shout against Borussia Dortmund 90'\n- Penalty awarded to Real Sociedad '69\n- Real Madrid penalty shout against Granada 44'\n- Las Palmas penalty shout against Real Madrid 31'\n- Barcelona penalty shout against Rayo Vallecano 71'\n- Real Madrid awarded the softest penalty during the 1960 European Cup\n- Barcelona 1-3 PSG 64' - Gundogan penalty shout/yellow for simulation\n- Celta Vigo penalty shout vs Real Madrid 36' (Multiple angles)\n- Flick after barca score their 7th goal\n- Bologna penalty shout against Juventus 72'\n- Borussia Dortmund penalty shout vs PSG.\n- Inter vs Barcelona - The ref ends the first half of extra time despite an attacking advantage 105+3'\n- Real Madrid penalty shout vs Valencia 24'\n- Ronaldo penalty shout vs Al Hilal 10'\n- Celta penalty shout vs Real Madrid 105'\n- Olympiacos Piraeus penalty shout against Fiorentina 95'\n- Real Madrid penalty shout against Villarreal 82'\n- Inter 1-1 Benfica - Potential penalty for Benfica 54'\n- Girona penalty shout vs Feyenoord 90'+5'\n- Bologna penalty shout against Fiorentina (81st min, 1-2 the result then)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Penalty Shouts\", \"purpose\": \"Communication of penalty situations\", \"emotion_tone\": \"Excitement/Anxiety\", \"description\": \"Posts discussing penalty situations with emotional tone and communicative purpose\", \"inclusion_cues\": [\"Barcelona penalty shout against Real Madrid 90+4'\", \"Real Madrid penalty shout against Barcelona 48'\", \"Penalty situations in the Osasuna vs Real Madrid game\", \"Real Madrid penalty shout against Atletico 54'\", \"Real Madrid penalty shout against Villarreal 82'\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Penalty Shouts",
+      "purpose": "Communication of penalty situations",
+      "emotion_tone": "Excitement/Anxiety",
+      "description": "Posts discussing penalty situations with emotional tone and communicative purpose",
+      "inclusion_cues": [
+       "Barcelona penalty shout against Real Madrid 90+4'",
+       "Real Madrid penalty shout against Barcelona 48'",
+       "Penalty situations in the Osasuna vs Real Madrid game",
+       "Real Madrid penalty shout against Atletico 54'",
+       "Real Madrid penalty shout against Villarreal 82'"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 132,
+   "seed": 3832583540,
+   "seconds": 1.07
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: barcelona penalty, penalty barcelona, madrid penalty, appeal barcelona, barcelona 90, madrid 36, madrid 22, 82 barcelona, barcelona 77, madrid 105, barcelona cubarsi, benfica 54, madrid 78, 90 barcelona, madrid 31\nPosts (one per line, title first):\n- Barcelona penalty shout against inter\n- Barcelona penalty shout against Real Madrid 90+4'\n- Real Madrid penalty shout against Barcelona 48'\n- Real Madrid penalty shout vs Real Betis 6´\n- Barcelona penalty shout against Real Madrid 3'\n- Some of the shots Real Madrid players took against Celta\n- Real Madrid penalty shout against Atletico 54'\n- Benfica penalty shout against Barcelona 90'+5'\n- Penalty situations in the Osasuna vs Real Madrid game.\n- Portugal penalty shout against Ireland 45+1'\n- Real Madrid penalty appeal vs Real Betis\n- Real Madrid penalty shout against Atletico 60'\n- Bayern Munich penalty shout against Wehen Wiesbaden 10'\n- Real Madrid players appealing for double touch in the shootout\n- Barcelona penalty shout vs Getafe\n- Roma Penalty Shout vs Feyenoord 56’\n- Barcelona penalty shout against Shakhtar Donetsk 82\n- Another angle on the potential penalty non awarded to Real Betis\n- Leverkusen penalty shout against Dortmund 45+3'\n- Real Madrid penalty shout against Villarreal\n- Paris Saint-Germain penalty shout against Borussia Dortmund 90'\n- Penalty awarded to Real Sociedad '69\n- Real Madrid penalty shout against Granada 44'\n- Las Palmas penalty shout against Real Madrid 31'\n- Barcelona penalty shout against Rayo Vallecano 71'\n- Real Madrid awarded the softest penalty during the 1960 European Cup\n- Barcelona 1-3 PSG 64' - Gundogan penalty shout/yellow for simulation\n- Celta Vigo penalty shout vs Real Madrid 36' (Multiple angles)\n- Flick after barca score their 7th goal\n- Bologna penalty shout against Juventus 72'\n- Borussia Dortmund penalty shout vs PSG.\n- Inter vs Barcelona - The ref ends the first half of extra time despite an attacking advantage 105+3'\n- Real Madrid penalty shout vs Valencia 24'\n- Ronaldo penalty shout vs Al Hilal 10'\n- Celta penalty shout vs Real Madrid 105'\n- Olympiacos Piraeus penalty shout against Fiorentina 95'\n- Real Madrid penalty shout against Villarreal 82'\n- Inter 1-1 Benfica - Potential penalty for Benfica 54'\n- Girona penalty shout vs Feyenoord 90'+5'\n- Bologna penalty shout against Fiorentina (81st min, 1-2 the result then)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Penalty Shouts\", \"purpose\": \"Communication of penalty situations in football\", \"emotion_tone\": \"Excitement and frustration\", \"description\": \"Posts discussing penalty situations, appeals, and shoutings in football matches\", \"inclusion_cues\": [\"penalty situations\", \"appeal\", \"shout\", \"football matches\", \"penalty awarded\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Penalty Shouts",
+      "purpose": "Communication of penalty situations in football",
+      "emotion_tone": "Excitement and frustration",
+      "description": "Posts discussing penalty situations, appeals, and shoutings in football matches",
+      "inclusion_cues": [
+       "penalty situations",
+       "appeal",
+       "shout",
+       "football matches",
+       "penalty awarded"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 91,
+   "seed": 3285028597,
+   "seconds": 0.75
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: barcelona penalty, penalty barcelona, madrid penalty, appeal barcelona, barcelona 90, madrid 36, madrid 22, 82 barcelona, barcelona 77, madrid 105, barcelona cubarsi, benfica 54, madrid 78, 90 barcelona, madrid 31\nPosts (one per line, title first):\n- Barcelona penalty shout against inter\n- Barcelona penalty shout against Real Madrid 90+4'\n- Real Madrid penalty shout against Barcelona 48'\n- Real Madrid penalty shout vs Real Betis 6´\n- Barcelona penalty shout against Real Madrid 3'\n- Some of the shots Real Madrid players took against Celta\n- Real Madrid penalty shout against Atletico 54'\n- Benfica penalty shout against Barcelona 90'+5'\n- Penalty situations in the Osasuna vs Real Madrid game.\n- Portugal penalty shout against Ireland 45+1'\n- Real Madrid penalty appeal vs Real Betis\n- Real Madrid penalty shout against Atletico 60'\n- Bayern Munich penalty shout against Wehen Wiesbaden 10'\n- Real Madrid players appealing for double touch in the shootout\n- Barcelona penalty shout vs Getafe\n- Roma Penalty Shout vs Feyenoord 56’\n- Barcelona penalty shout against Shakhtar Donetsk 82\n- Another angle on the potential penalty non awarded to Real Betis\n- Leverkusen penalty shout against Dortmund 45+3'\n- Real Madrid penalty shout against Villarreal\n- Paris Saint-Germain penalty shout against Borussia Dortmund 90'\n- Penalty awarded to Real Sociedad '69\n- Real Madrid penalty shout against Granada 44'\n- Las Palmas penalty shout against Real Madrid 31'\n- Barcelona penalty shout against Rayo Vallecano 71'\n- Real Madrid awarded the softest penalty during the 1960 European Cup\n- Barcelona 1-3 PSG 64' - Gundogan penalty shout/yellow for simulation\n- Celta Vigo penalty shout vs Real Madrid 36' (Multiple angles)\n- Flick after barca score their 7th goal\n- Bologna penalty shout against Juventus 72'\n- Borussia Dortmund penalty shout vs PSG.\n- Inter vs Barcelona - The ref ends the first half of extra time despite an attacking advantage 105+3'\n- Real Madrid penalty shout vs Valencia 24'\n- Ronaldo penalty shout vs Al Hilal 10'\n- Celta penalty shout vs Real Madrid 105'\n- Olympiacos Piraeus penalty shout against Fiorentina 95'\n- Real Madrid penalty shout against Villarreal 82'\n- Inter 1-1 Benfica - Potential penalty for Benfica 54'\n- Girona penalty shout vs Feyenoord 90'+5'\n- Bologna penalty shout against Fiorentina (81st min, 1-2 the result then)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Penalty Shouts\", \"purpose\": \"Communication of penalty situations\", \"emotion_tone\": \"Excitement/Anxiety\", \"description\": \"Posts discussing penalty situations with emotional tone and communicative purpose\", \"inclusion_cues\": [\"Barcelona penalty shout against Real Madrid 90+4'\", \"Real Madrid penalty shout against Barcelona 48'\", \"Penalty situations in the Osasuna vs Real Madrid game\", \"Real Madrid penalty shout against Atletico 54'\", \"Real Madrid penalty shout against Villarreal 82'\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Penalty Shouts\", \"purpose\": \"Communication of penalty situations in football\", \"emotion_tone\": \"Excitement and frustration\", \"description\": \"Posts discussing penalty situations, appeals, and shoutings in football matches\", \"inclusion_cues\": [\"penalty situations\", \"appeal\", \"shout\", \"football matches\", \"penalty awarded\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Penalty Shouts\", \"purpose\": \"Communication of penalty situations in football\", \"emotion_tone\": \"Excitement and frustration\", \"description\": \"Posts discussing penalty situations, appeals, and shoutings in football matches\", \"inclusion_cues\": [\"penalty situations\", \"appeal\", \"shout\", \"football matches\", \"penalty awarded\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 90,
+   "seed": 3833896801,
+   "seconds": 1.12
+  }
+ ]
+}

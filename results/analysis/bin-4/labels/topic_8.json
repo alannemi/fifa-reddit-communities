@@ -1,0 +1,212 @@
+{
+ "period_bin": 4,
+ "topic_id": 8,
+ "keywords": "marseille goal, montpellier goal, goal marseille, toulouse goal, nantes goal, lyon goal, goal lille, goal nantes, goal bordeaux, goal montpellier, goal toulouse, goal lyon, goal dijon, goal metz, goal sochaux",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "4a51v2",
+  "4a60s2",
+  "4849gq",
+  "3wok6a",
+  "4412qi",
+  "2idy4m",
+  "46g8kg",
+  "5j24er",
+  "3z9z06",
+  "3ktfdk",
+  "4ifne1",
+  "4yv2bt",
+  "59cgye",
+  "5wpjo0",
+  "4aa49g",
+  "3z9yyg",
+  "43fyy0",
+  "6cc4di",
+  "53v0k6",
+  "3llf74",
+  "421unq",
+  "631ypr",
+  "5wqj5b",
+  "3q5kzy",
+  "315vif",
+  "3za4d8",
+  "6cc8pg",
+  "59jmuf",
+  "53u9t2",
+  "4q69ty",
+  "5xn9yn",
+  "6lwiov",
+  "3i47xq",
+  "36d2uw",
+  "455d5y",
+  "5mr2s9",
+  "6py77b",
+  "48o7xm",
+  "33ticf",
+  "57i6ls"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Goal Scoring",
+  "purpose": "Identify and categorize football goals in French Ligue 1",
+  "emotion_tone": "positive",
+  "description": "Posts about goals scored in French Ligue 1, including details about the goal, team, and context.",
+  "inclusion_cues": [
+   "goal marseille",
+   "goal montpellier",
+   "goal toulouse",
+   "goal lyon",
+   "goal dijon",
+   "goal metz",
+   "goal sochaux"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Goal Scoring",
+    "purpose": "Identify and categorize football goals in the French Ligue 1",
+    "emotion_tone": "positive",
+    "description": "Posts containing goals scored in the French Ligue 1, including details about the goal, team, and context.",
+    "inclusion_cues": [
+     "goal marseille",
+     "goal montpellier",
+     "goal toulouse",
+     "goal lyon",
+     "goal dijon",
+     "goal metz",
+     "goal sochaux",
+     "goal nantes",
+     "goal lille",
+     "goal bordeaux"
+    ],
+    "n_cues_given": 25
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Goal Scoring",
+    "purpose": "Identify and categorize football goals in French Ligue 1",
+    "emotion_tone": "positive",
+    "description": "Posts about goals scored in French Ligue 1, including details about the goal, team, and context.",
+    "inclusion_cues": [
+     "goal marseille",
+     "goal montpellier",
+     "goal toulouse",
+     "goal lyon",
+     "goal dijon",
+     "goal metz",
+     "goal sochaux"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: marseille goal, montpellier goal, goal marseille, toulouse goal, nantes goal, lyon goal, goal lille, goal nantes, goal bordeaux, goal montpellier, goal toulouse, goal lyon, goal dijon, goal metz, goal sochaux\nPosts (one per line, title first):\n- Jimmy Briand (Guingamp) goal against Saint-Etienne (1-0)\n- Khalid Boutaib (GFC Ajaccio) goal against Caen (1-0)\n- Ronny Rodelin (Caen) goal against Saint-Etienne (0-2)\n- Michy Batshuayi (Marseille) goal against GFC Ajaccio (1-1)\n- Emiliano Sala (Nantes) goal against GFC Ajaccio (1-0)\n- Nantes' Nkoudou brilliant goal against Guingamp\n- Kevin Monnet-Paquet (Saint-Etienne) goal against Basel (2-0)\n- Ghezzal (Lyon) goal vs Monaco (0-1)\n- Grégory Gendrey (Fréjus) goal against Bordeaux (2-1)\n- Benjamin Mendy (Marseille) nice goal against Bastia (1-0)\n- This goal by Pierrick Capelle was voted the best goal of the season in the French Ligue 1\n- Jeremy Sorbon (Guingamp) goal against Marseille (2-0)\n- Kevin Berigaud (Montpellier) goal against Laval (0-2)\n- Neupocoussek Mendy (Fréjus St-Raphael) goal against Auxerre (1-0)\n- Fallou Diagne (Rennes) goal against Lyon (1-2)\n- Birahima Tandia (Tours) goal against Lorient (1-1)\n- Bryan Dabo (Montpellier) two great header goals vs Ajaccio\n- Younousse Sankhare (Bordeaux) goal against Lorient (0-1)\n- Giovanni Sio (Rennes) goal against Marseille (1-0)\n- Jeff Louis (Caen) goal against Montpellier (2-1)\n- Abdoulay Diaby goal vs Gent [0-1]\n- Francois Kamano (Bordeaux) huge miss against Nice\n- Gaetan Laborde (Bordeaux) goal against Lorient (2-1)\n- Bernardo Silva (Monaco) goal against Reims (0-1)\n- José Touré wonder goal, PSG - Nantes Coupe de France final, 1983.\n- Benjamin Jeannot (Lorient) goal against Tours (3-2)\n- Mustapha Diallo (Guingamp) goal against Metz (1-0)\n- Christophe Mandanne (Nancy) goal against Caen (3-1)\n- Paul Baysse (Nice) goal against Monaco (1-0)\n- Angelos Charisteas goal vs. France - EURO 2004 quarterfinal\n- Benjamin Moukandjo (Lorient) goal against Marseille (1-4)\n- Mboula (AS Monaco) goal vs. St. Polten\n- Lucas Ocampos bicycle kick goal vs Troyes (4-0)\n- Mandanne scissor goal vs Toulouse\n- Moryké Fofana (Lorient) goal against Sarre-Union (0-2)\n- Jimmy Durmaz (Toulouse) goal against Marseille (1-1)\n- Younousse Sankhare (Bordeaux) goal against Videoton (2-1)\n- Sekou Cissé (Sochaux) goal against Nantes (2-1)\n- 6 years ago, Tarik Sektioui scored this beauty against Marseille with an incredible run.\n- Martin Braithwaite (Toulouse) goal against Monaco (2-1)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Goal Scoring\", \"purpose\": \"Identify and categorize football goals in the French Ligue 1\", \"emotion_tone\": \"positive\", \"description\": \"Posts containing goals scored in the French Ligue 1, including details about the goal, team, and context.\", \"inclusion_cues\": [\"goal marseille\", \"goal montpellier\", \"goal toulouse\", \"goal lyon\", \"goal dijon\", \"goal metz\", \"goal sochaux\", \"goal nantes\", \"goal lille\", \"goal bordeaux\", \"goal caen\", \"goal gfc ajaccio\", \"goal guingamp\", \"goal laval\", \"goal auxerre\", \"goal rennes\", \"goal bordeaux\", \"goal lorient\", \"goal toulouse\", \"goal marseille\", \"goal nantes\", \"goal lyon\", \"goal dijon\", \"goal metz\", \"goal sochaux\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Goal Scoring",
+      "purpose": "Identify and categorize football goals in the French Ligue 1",
+      "emotion_tone": "positive",
+      "description": "Posts containing goals scored in the French Ligue 1, including details about the goal, team, and context.",
+      "inclusion_cues": [
+       "goal marseille",
+       "goal montpellier",
+       "goal toulouse",
+       "goal lyon",
+       "goal dijon",
+       "goal metz",
+       "goal sochaux",
+       "goal nantes",
+       "goal lille",
+       "goal bordeaux"
+      ],
+      "n_cues_given": 25
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 209,
+   "seed": 1598716071,
+   "seconds": 1.36
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: marseille goal, montpellier goal, goal marseille, toulouse goal, nantes goal, lyon goal, goal lille, goal nantes, goal bordeaux, goal montpellier, goal toulouse, goal lyon, goal dijon, goal metz, goal sochaux\nPosts (one per line, title first):\n- Jimmy Briand (Guingamp) goal against Saint-Etienne (1-0)\n- Khalid Boutaib (GFC Ajaccio) goal against Caen (1-0)\n- Ronny Rodelin (Caen) goal against Saint-Etienne (0-2)\n- Michy Batshuayi (Marseille) goal against GFC Ajaccio (1-1)\n- Emiliano Sala (Nantes) goal against GFC Ajaccio (1-0)\n- Nantes' Nkoudou brilliant goal against Guingamp\n- Kevin Monnet-Paquet (Saint-Etienne) goal against Basel (2-0)\n- Ghezzal (Lyon) goal vs Monaco (0-1)\n- Grégory Gendrey (Fréjus) goal against Bordeaux (2-1)\n- Benjamin Mendy (Marseille) nice goal against Bastia (1-0)\n- This goal by Pierrick Capelle was voted the best goal of the season in the French Ligue 1\n- Jeremy Sorbon (Guingamp) goal against Marseille (2-0)\n- Kevin Berigaud (Montpellier) goal against Laval (0-2)\n- Neupocoussek Mendy (Fréjus St-Raphael) goal against Auxerre (1-0)\n- Fallou Diagne (Rennes) goal against Lyon (1-2)\n- Birahima Tandia (Tours) goal against Lorient (1-1)\n- Bryan Dabo (Montpellier) two great header goals vs Ajaccio\n- Younousse Sankhare (Bordeaux) goal against Lorient (0-1)\n- Giovanni Sio (Rennes) goal against Marseille (1-0)\n- Jeff Louis (Caen) goal against Montpellier (2-1)\n- Abdoulay Diaby goal vs Gent [0-1]\n- Francois Kamano (Bordeaux) huge miss against Nice\n- Gaetan Laborde (Bordeaux) goal against Lorient (2-1)\n- Bernardo Silva (Monaco) goal against Reims (0-1)\n- José Touré wonder goal, PSG - Nantes Coupe de France final, 1983.\n- Benjamin Jeannot (Lorient) goal against Tours (3-2)\n- Mustapha Diallo (Guingamp) goal against Metz (1-0)\n- Christophe Mandanne (Nancy) goal against Caen (3-1)\n- Paul Baysse (Nice) goal against Monaco (1-0)\n- Angelos Charisteas goal vs. France - EURO 2004 quarterfinal\n- Benjamin Moukandjo (Lorient) goal against Marseille (1-4)\n- Mboula (AS Monaco) goal vs. St. Polten\n- Lucas Ocampos bicycle kick goal vs Troyes (4-0)\n- Mandanne scissor goal vs Toulouse\n- Moryké Fofana (Lorient) goal against Sarre-Union (0-2)\n- Jimmy Durmaz (Toulouse) goal against Marseille (1-1)\n- Younousse Sankhare (Bordeaux) goal against Videoton (2-1)\n- Sekou Cissé (Sochaux) goal against Nantes (2-1)\n- 6 years ago, Tarik Sektioui scored this beauty against Marseille with an incredible run.\n- Martin Braithwaite (Toulouse) goal against Monaco (2-1)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Goal Scoring\", \"purpose\": \"Identify and categorize football goals in French Ligue 1\", \"emotion_tone\": \"positive\", \"description\": \"Posts about goals scored in French Ligue 1, including details about the goal, team, and context.\", \"inclusion_cues\": [\"goal marseille\", \"goal montpellier\", \"goal toulouse\", \"goal lyon\", \"goal dijon\", \"goal metz\", \"goal sochaux\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Goal Scoring",
+      "purpose": "Identify and categorize football goals in French Ligue 1",
+      "emotion_tone": "positive",
+      "description": "Posts about goals scored in French Ligue 1, including details about the goal, team, and context.",
+      "inclusion_cues": [
+       "goal marseille",
+       "goal montpellier",
+       "goal toulouse",
+       "goal lyon",
+       "goal dijon",
+       "goal metz",
+       "goal sochaux"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 114,
+   "seed": 1023719107,
+   "seconds": 1.61
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: marseille goal, montpellier goal, goal marseille, toulouse goal, nantes goal, lyon goal, goal lille, goal nantes, goal bordeaux, goal montpellier, goal toulouse, goal lyon, goal dijon, goal metz, goal sochaux\nPosts (one per line, title first):\n- Jimmy Briand (Guingamp) goal against Saint-Etienne (1-0)\n- Khalid Boutaib (GFC Ajaccio) goal against Caen (1-0)\n- Ronny Rodelin (Caen) goal against Saint-Etienne (0-2)\n- Michy Batshuayi (Marseille) goal against GFC Ajaccio (1-1)\n- Emiliano Sala (Nantes) goal against GFC Ajaccio (1-0)\n- Nantes' Nkoudou brilliant goal against Guingamp\n- Kevin Monnet-Paquet (Saint-Etienne) goal against Basel (2-0)\n- Ghezzal (Lyon) goal vs Monaco (0-1)\n- Grégory Gendrey (Fréjus) goal against Bordeaux (2-1)\n- Benjamin Mendy (Marseille) nice goal against Bastia (1-0)\n- This goal by Pierrick Capelle was voted the best goal of the season in the French Ligue 1\n- Jeremy Sorbon (Guingamp) goal against Marseille (2-0)\n- Kevin Berigaud (Montpellier) goal against Laval (0-2)\n- Neupocoussek Mendy (Fréjus St-Raphael) goal against Auxerre (1-0)\n- Fallou Diagne (Rennes) goal against Lyon (1-2)\n- Birahima Tandia (Tours) goal against Lorient (1-1)\n- Bryan Dabo (Montpellier) two great header goals vs Ajaccio\n- Younousse Sankhare (Bordeaux) goal against Lorient (0-1)\n- Giovanni Sio (Rennes) goal against Marseille (1-0)\n- Jeff Louis (Caen) goal against Montpellier (2-1)\n- Abdoulay Diaby goal vs Gent [0-1]\n- Francois Kamano (Bordeaux) huge miss against Nice\n- Gaetan Laborde (Bordeaux) goal against Lorient (2-1)\n- Bernardo Silva (Monaco) goal against Reims (0-1)\n- José Touré wonder goal, PSG - Nantes Coupe de France final, 1983.\n- Benjamin Jeannot (Lorient) goal against Tours (3-2)\n- Mustapha Diallo (Guingamp) goal against Metz (1-0)\n- Christophe Mandanne (Nancy) goal against Caen (3-1)\n- Paul Baysse (Nice) goal against Monaco (1-0)\n- Angelos Charisteas goal vs. France - EURO 2004 quarterfinal\n- Benjamin Moukandjo (Lorient) goal against Marseille (1-4)\n- Mboula (AS Monaco) goal vs. St. Polten\n- Lucas Ocampos bicycle kick goal vs Troyes (4-0)\n- Mandanne scissor goal vs Toulouse\n- Moryké Fofana (Lorient) goal against Sarre-Union (0-2)\n- Jimmy Durmaz (Toulouse) goal against Marseille (1-1)\n- Younousse Sankhare (Bordeaux) goal against Videoton (2-1)\n- Sekou Cissé (Sochaux) goal against Nantes (2-1)\n- 6 years ago, Tarik Sektioui scored this beauty against Marseille with an incredible run.\n- Martin Braithwaite (Toulouse) goal against Monaco (2-1)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Goal Scoring\", \"purpose\": \"Identify and categorize football goals in the French Ligue 1\", \"emotion_tone\": \"positive\", \"description\": \"Posts containing goals scored in the French Ligue 1, including details about the goal, team, and context.\", \"inclusion_cues\": [\"goal marseille\", \"goal montpellier\", \"goal toulouse\", \"goal lyon\", \"goal dijon\", \"goal metz\", \"goal sochaux\", \"goal nantes\", \"goal lille\", \"goal bordeaux\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Goal Scoring\", \"purpose\": \"Identify and categorize football goals in French Ligue 1\", \"emotion_tone\": \"positive\", \"description\": \"Posts about goals scored in French Ligue 1, including details about the goal, team, and context.\", \"inclusion_cues\": [\"goal marseille\", \"goal montpellier\", \"goal toulouse\", \"goal lyon\", \"goal dijon\", \"goal metz\", \"goal sochaux\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Goal Scoring\", \"purpose\": \"Identify and categorize football goals in French Ligue 1\", \"emotion_tone\": \"positive\", \"description\": \"Posts about goals scored in French Ligue 1, including details about the goal, team, and context.\", \"inclusion_cues\": [\"goal marseille\", \"goal montpellier\", \"goal toulouse\", \"goal lyon\", \"goal dijon\", \"goal metz\", \"goal sochaux\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 113,
+   "seed": 2262457808,
+   "seconds": 0.78
+  }
+ ]
+}

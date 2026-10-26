@@ -1,0 +1,202 @@
+{
+ "period_bin": 2,
+ "topic_id": 248,
+ "keywords": "freestyle football, freestyle footballers, freestyle skills, freestyle tricks, football skills, amazing skills, awesome freestyle, freestyle, amazing football, freestylers, street football, street tricks, skill greatest, sickest football, football street",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "1jmopd",
+  "snczf",
+  "102x06",
+  "u7jl4",
+  "1jd4i1",
+  "10x6h2",
+  "xoyo4",
+  "ut87e",
+  "1lkoir",
+  "oe752",
+  "kxh93",
+  "1ax74o",
+  "1uo4ut",
+  "1g31zb",
+  "xo5jd",
+  "1pwyjk",
+  "198rpj",
+  "fnr6q",
+  "1tw5gy",
+  "1ul7vl",
+  "l06ul",
+  "1j96zt",
+  "1601il",
+  "15699c",
+  "1umq7x",
+  "1qorzf",
+  "i6lm1",
+  "fw1en",
+  "1f5sx3",
+  "19qf9p",
+  "yvkdk",
+  "148ll0",
+  "1f89be",
+  "i8qrq",
+  "1cabw2",
+  "1niis0",
+  "gq7xh",
+  "1jkids",
+  "146ujg",
+  "1b6j42"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Freestyle Football",
+  "purpose": "Highlighting skillful and creative football techniques and performances",
+  "emotion_tone": "Excitement and admiration",
+  "description": "Posts discussing freestyle football skills, techniques, and performances, including street football, freestyle tricks, and skill demonstrations",
+  "inclusion_cues": [
+   "freestyle football skills",
+   "street football",
+   "freestyle tricks",
+   "amazing skills",
+   "freestylers",
+   "sickest football",
+   "freestyle techniques"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Freestyle Football",
+    "purpose": "Highlighting skillful and creative football techniques",
+    "emotion_tone": "excited",
+    "description": "Posts about freestyle football skills, tricks, and street football, emphasizing creativity and athleticism.",
+    "inclusion_cues": [
+     "freestyle football skills",
+     "freestyle tricks",
+     "street football",
+     "amazing skills",
+     "freestyle techniques",
+     "freestylers"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Freestyle Football",
+    "purpose": "Highlighting skillful and creative football techniques and performances",
+    "emotion_tone": "Excitement and admiration",
+    "description": "Posts discussing freestyle football skills, techniques, and performances, including street football, freestyle tricks, and skill demonstrations",
+    "inclusion_cues": [
+     "freestyle football skills",
+     "street football",
+     "freestyle tricks",
+     "amazing skills",
+     "freestylers",
+     "sickest football",
+     "freestyle techniques"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: freestyle football, freestyle footballers, freestyle skills, freestyle tricks, football skills, amazing skills, awesome freestyle, freestyle, amazing football, freestylers, street football, street tricks, skill greatest, sickest football, football street\nPosts (one per line, title first):\n- Insane Football skills - World Freestyle champion Andrew Henderson\n- Amazing freestyle football skills\n- Amazing Freestyle Football Skills\n- AMAZING Freestyle Football Skills from F2\n- Freestyle techniques: Are they ever useful in game? Is there any footage of people using these techniques in an actual match? / For example, a lot of people I see doing freestyle will catch the ball between their heads/cheek and their shoulder. Would this be a legal way to carry the ball in Soccer? \n- I've been practicing freestyle daily for the past 3 weeks. Would you guys give me some feedback?\n- Me At 14 - Freestyle Skiller [video]\n- Ever wanted to learn how to do football moves? Here's a great YouTube channel.\n- F2 Freestylers - What the fuuuuu....\n- Éric Abidal demonstrates Seal Style Football\n- Freestyle football trickery competition in KL\n- Amazing Skills for a big guy\n- Insane STREET Football Skills\n- Tek Neek Soccer Freestyle\n- simply awesome freestyle\n- Man vs Dog freestyle (Séan Garnier)\n- Best Street Tricks I've Ever Seen. Hard to Believe This is Even Real\n- Greatest Freestyle I've Ever Seen\n- Sean Garnier Street Skills\n- Sean Garnier insane freestyle\n- UK football freestyler crowned world champion 2011 (1st World Freestyle Football Championship Tour)\n- Insane Football skills - World Freestyle champion Andrew Henderson\n- Crazy Football Skills\n- Pretty Incredible Skills\n- French Freestyler Sean Garnier Makes People Look Silly with Sick Handles\n- Zaha and F2 freestyles, lovely video!\n- Crazy freestyle featuring a triple, yes triple, around the world\n- Great bit of skill\n- CTRL - Online show where a world record holding freestyler find's out what it takes to be a professional footballer\n- Jason McAteer auditions for Shaolin Soccer 2 with neck high challenge\n- Amazing street skills.\n- Sickest Football(soccer) freestyler I've ever seen.\n- Which of all the professional players do you think is also the best freestyler?\n- F-touch football freestyle\n- Freestylers skills battle (Soccer AM)\n- Tek Neek and the Chamber of Freestyle\n- Chris Beavon: 360 Freestyle\n- One of the best pieces of skill I've seen\n- Football freestyling at its best [Facebook Vid] (Sorry guys couldnt find any other source)\n- Somewhat portly Welsh gentleman Andrew Cassidy shows off his impressive football skills.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Freestyle Football\", \"purpose\": \"Highlighting skillful and creative football techniques\", \"emotion_tone\": \"excited\", \"description\": \"Posts about freestyle football skills, tricks, and street football, emphasizing creativity and athleticism.\", \"inclusion_cues\": [\"freestyle football skills\", \"freestyle tricks\", \"street football\", \"amazing skills\", \"freestyle techniques\", \"freestylers\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Freestyle Football",
+      "purpose": "Highlighting skillful and creative football techniques",
+      "emotion_tone": "excited",
+      "description": "Posts about freestyle football skills, tricks, and street football, emphasizing creativity and athleticism.",
+      "inclusion_cues": [
+       "freestyle football skills",
+       "freestyle tricks",
+       "street football",
+       "amazing skills",
+       "freestyle techniques",
+       "freestylers"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 102,
+   "seed": 4290137989,
+   "seconds": 1.65
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: freestyle football, freestyle footballers, freestyle skills, freestyle tricks, football skills, amazing skills, awesome freestyle, freestyle, amazing football, freestylers, street football, street tricks, skill greatest, sickest football, football street\nPosts (one per line, title first):\n- Insane Football skills - World Freestyle champion Andrew Henderson\n- Amazing freestyle football skills\n- Amazing Freestyle Football Skills\n- AMAZING Freestyle Football Skills from F2\n- Freestyle techniques: Are they ever useful in game? Is there any footage of people using these techniques in an actual match? / For example, a lot of people I see doing freestyle will catch the ball between their heads/cheek and their shoulder. Would this be a legal way to carry the ball in Soccer? \n- I've been practicing freestyle daily for the past 3 weeks. Would you guys give me some feedback?\n- Me At 14 - Freestyle Skiller [video]\n- Ever wanted to learn how to do football moves? Here's a great YouTube channel.\n- F2 Freestylers - What the fuuuuu....\n- Éric Abidal demonstrates Seal Style Football\n- Freestyle football trickery competition in KL\n- Amazing Skills for a big guy\n- Insane STREET Football Skills\n- Tek Neek Soccer Freestyle\n- simply awesome freestyle\n- Man vs Dog freestyle (Séan Garnier)\n- Best Street Tricks I've Ever Seen. Hard to Believe This is Even Real\n- Greatest Freestyle I've Ever Seen\n- Sean Garnier Street Skills\n- Sean Garnier insane freestyle\n- UK football freestyler crowned world champion 2011 (1st World Freestyle Football Championship Tour)\n- Insane Football skills - World Freestyle champion Andrew Henderson\n- Crazy Football Skills\n- Pretty Incredible Skills\n- French Freestyler Sean Garnier Makes People Look Silly with Sick Handles\n- Zaha and F2 freestyles, lovely video!\n- Crazy freestyle featuring a triple, yes triple, around the world\n- Great bit of skill\n- CTRL - Online show where a world record holding freestyler find's out what it takes to be a professional footballer\n- Jason McAteer auditions for Shaolin Soccer 2 with neck high challenge\n- Amazing street skills.\n- Sickest Football(soccer) freestyler I've ever seen.\n- Which of all the professional players do you think is also the best freestyler?\n- F-touch football freestyle\n- Freestylers skills battle (Soccer AM)\n- Tek Neek and the Chamber of Freestyle\n- Chris Beavon: 360 Freestyle\n- One of the best pieces of skill I've seen\n- Football freestyling at its best [Facebook Vid] (Sorry guys couldnt find any other source)\n- Somewhat portly Welsh gentleman Andrew Cassidy shows off his impressive football skills.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Freestyle Football\", \"purpose\": \"Highlighting skillful and creative football techniques and performances\", \"emotion_tone\": \"Excitement and admiration\", \"description\": \"Posts discussing freestyle football skills, techniques, and performances, including street football, freestyle tricks, and skill demonstrations\", \"inclusion_cues\": [\"freestyle football skills\", \"street football\", \"freestyle tricks\", \"amazing skills\", \"freestylers\", \"sickest football\", \"freestyle techniques\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Freestyle Football",
+      "purpose": "Highlighting skillful and creative football techniques and performances",
+      "emotion_tone": "Excitement and admiration",
+      "description": "Posts discussing freestyle football skills, techniques, and performances, including street football, freestyle tricks, and skill demonstrations",
+      "inclusion_cues": [
+       "freestyle football skills",
+       "street football",
+       "freestyle tricks",
+       "amazing skills",
+       "freestylers",
+       "sickest football",
+       "freestyle techniques"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 118,
+   "seed": 3702633486,
+   "seconds": 0.79
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: freestyle football, freestyle footballers, freestyle skills, freestyle tricks, football skills, amazing skills, awesome freestyle, freestyle, amazing football, freestylers, street football, street tricks, skill greatest, sickest football, football street\nPosts (one per line, title first):\n- Insane Football skills - World Freestyle champion Andrew Henderson\n- Amazing freestyle football skills\n- Amazing Freestyle Football Skills\n- AMAZING Freestyle Football Skills from F2\n- Freestyle techniques: Are they ever useful in game? Is there any footage of people using these techniques in an actual match? / For example, a lot of people I see doing freestyle will catch the ball between their heads/cheek and their shoulder. Would this be a legal way to carry the ball in Soccer? \n- I've been practicing freestyle daily for the past 3 weeks. Would you guys give me some feedback?\n- Me At 14 - Freestyle Skiller [video]\n- Ever wanted to learn how to do football moves? Here's a great YouTube channel.\n- F2 Freestylers - What the fuuuuu....\n- Éric Abidal demonstrates Seal Style Football\n- Freestyle football trickery competition in KL\n- Amazing Skills for a big guy\n- Insane STREET Football Skills\n- Tek Neek Soccer Freestyle\n- simply awesome freestyle\n- Man vs Dog freestyle (Séan Garnier)\n- Best Street Tricks I've Ever Seen. Hard to Believe This is Even Real\n- Greatest Freestyle I've Ever Seen\n- Sean Garnier Street Skills\n- Sean Garnier insane freestyle\n- UK football freestyler crowned world champion 2011 (1st World Freestyle Football Championship Tour)\n- Insane Football skills - World Freestyle champion Andrew Henderson\n- Crazy Football Skills\n- Pretty Incredible Skills\n- French Freestyler Sean Garnier Makes People Look Silly with Sick Handles\n- Zaha and F2 freestyles, lovely video!\n- Crazy freestyle featuring a triple, yes triple, around the world\n- Great bit of skill\n- CTRL - Online show where a world record holding freestyler find's out what it takes to be a professional footballer\n- Jason McAteer auditions for Shaolin Soccer 2 with neck high challenge\n- Amazing street skills.\n- Sickest Football(soccer) freestyler I've ever seen.\n- Which of all the professional players do you think is also the best freestyler?\n- F-touch football freestyle\n- Freestylers skills battle (Soccer AM)\n- Tek Neek and the Chamber of Freestyle\n- Chris Beavon: 360 Freestyle\n- One of the best pieces of skill I've seen\n- Football freestyling at its best [Facebook Vid] (Sorry guys couldnt find any other source)\n- Somewhat portly Welsh gentleman Andrew Cassidy shows off his impressive football skills.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Freestyle Football\", \"purpose\": \"Highlighting skillful and creative football techniques\", \"emotion_tone\": \"excited\", \"description\": \"Posts about freestyle football skills, tricks, and street football, emphasizing creativity and athleticism.\", \"inclusion_cues\": [\"freestyle football skills\", \"freestyle tricks\", \"street football\", \"amazing skills\", \"freestyle techniques\", \"freestylers\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Freestyle Football\", \"purpose\": \"Highlighting skillful and creative football techniques and performances\", \"emotion_tone\": \"Excitement and admiration\", \"description\": \"Posts discussing freestyle football skills, techniques, and performances, including street football, freestyle tricks, and skill demonstrations\", \"inclusion_cues\": [\"freestyle football skills\", \"street football\", \"freestyle tricks\", \"amazing skills\", \"freestylers\", \"sickest football\", \"freestyle techniques\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Freestyle Football\", \"purpose\": \"Highlighting skillful and creative football techniques and performances\", \"emotion_tone\": \"Excitement and admiration\", \"description\": \"Posts discussing freestyle football skills, techniques, and performances, including street football, freestyle tricks, and skill demonstrations\", \"inclusion_cues\": [\"freestyle football skills\", \"street football\", \"freestyle tricks\", \"amazing skills\", \"freestylers\", \"sickest football\", \"freestyle techniques\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 117,
+   "seed": 781233017,
+   "seconds": 0.9
+  }
+ ]
+}

@@ -1,0 +1,192 @@
+{
+ "period_bin": 4,
+ "topic_id": 730,
+ "keywords": "rangers club, rangers situation, rangers old, scottish football, rangers, glasgow rangers, supporters rangers, record rangers, confirms rangers, rangers rangers, article rangers, rangers does, hate rangers, club status, king rangers",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "321gv7",
+  "3px6y2",
+  "373ac9",
+  "373a9s",
+  "380lun",
+  "5l9g6b",
+  "5gmhpr",
+  "2mr9jj",
+  "3q5cwv",
+  "2w2key",
+  "319cxs",
+  "2vl7bd",
+  "38ivea",
+  "6z13wm",
+  "6ldplr",
+  "3e83ln",
+  "2stjsw",
+  "2w2jgh",
+  "2stwnz",
+  "71y6vx",
+  "2retfe",
+  "3som9y",
+  "3s5npc",
+  "3fm6c8",
+  "2q77px",
+  "2uc6ji",
+  "2kp6q3",
+  "6lo1ra",
+  "4egcz3",
+  "4l7rsa",
+  "3hnujz",
+  "2ngzsf",
+  "2r85yq",
+  "2snytl",
+  "373nhg",
+  "2sqi9g",
+  "4trsbu",
+  "3c3s7p",
+  "2m738b",
+  "48z4q2"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Rangers Financial Crisis",
+  "purpose": "Explain the financial struggles and controversies of Glasgow Rangers",
+  "emotion_tone": "Critical",
+  "description": "Posts discussing Rangers' financial troubles, club status, and fan reactions to their situation",
+  "inclusion_cues": [
+   "Rangers' financial difficulties",
+   "Club status disputes",
+   "Fan protests and criticism",
+   "Financial mismanagement claims",
+   "Supporters' reactions to club's status"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Rangers Financial Crisis",
+    "purpose": "Explain financial struggles and club status",
+    "emotion_tone": "critical",
+    "description": "Posts discussing Rangers' financial issues, club status, and fan reactions to their financial troubles",
+    "inclusion_cues": [
+     "Rangers' financial situation",
+     "club status debate",
+     "fan protests and criticism",
+     "financial struggles and club identity"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Rangers Financial Crisis",
+    "purpose": "Explain the financial struggles and controversies of Glasgow Rangers",
+    "emotion_tone": "Critical",
+    "description": "Posts discussing Rangers' financial troubles, club status, and fan reactions to their situation",
+    "inclusion_cues": [
+     "Rangers' financial difficulties",
+     "Club status disputes",
+     "Fan protests and criticism",
+     "Financial mismanagement claims",
+     "Supporters' reactions to club's status"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: rangers club, rangers situation, rangers old, scottish football, rangers, glasgow rangers, supporters rangers, record rangers, confirms rangers, rangers rangers, article rangers, rangers does, hate rangers, club status, king rangers\nPosts (one per line, title first):\n- Why didn't Rangers focus on their youth to get them through the divisions? / It seems like rangers spent money on journeymen when they had the perfect opportunity to give the youth players a chance. Were there not any decent prospects or were there other reasons?\n- Scottish football fans: Why has your league gone a whole lot worse with even your best team struggling in the europa league, Rangers gone broke and no other team progressing?\n- FIFA step into new row over Rangers 'old or new club' status\n- FIFA step into new row over Rangers 'old or new club' status.\n- Rangers F.C. quection / Can anyone explain what happened to the Rangers? I'm an American and about 12 years ago my soccer team hosted a Scotish team while they played a couple games in the States. Two of their players stayed at my house and they were Rangers fans and I they told me about their histo\n- Rangers fans not even wasting a second\n- How Rangers became Espanyol fans’ second team\n- Redundancies at Rangers, with more expected to follow\n- Celtic consider franchise club in United States\n- Rangers' situation \"explained\" on Spanish TV\n- Neil Lennon: Celtic NEED Rangers and so does the rest of Scottish football - The Daily Record\n- Rangers fan group biggest in UK\n- 20 Reasons Why Celtic Fans Are Jealous Of Rangers (article)\n- Celtic issue response to the SFA's refusal to review events leading to liquidation of the Oldco Rangers\n- Rangers' loss in Luxembourg labelled as 'extremely embarrassing'\n- Dave King: Rangers will never be as big as Celtic until our fans outspend their supporters\n- How the mighty Glasgow Rangers have fallen | long-form article in The Guardian\n- Rangers situation \"explained\" on Spanish TV\n- How the mighty Glasgow Rangers have fallen\n- There must be a mole inside the rangers support\n- ELI5: Glasgow Rangers / Can anyone explain how they are in such financial difficulty. Again.\n- Celtic FC statement following the HMRC vs Rangers ruling\n- Rangers cheated at football the fraudulent silverware must go.\n- Vice: Does Scottish Football Need Rangers?\n- Rangers AGM Meeting Shenanigans\n- Can somebody explain exactly what is going on with the Rangers right now?\n- BBC Sport - Rangers: Why are the Ibrox club in such trouble?\n- Aberdeen Supporters' Trust calls for Rangers' titles to be stripped\n- Walter Smith: Rangers' bitterness towards clubs over 2012 will never fade\n- Rangers director Robertson: Singing The Billy Boys was better than invading the Hampden pitch\n- Why America's next top soccer star may have found the perfect fit in Rangers\n- Dysfunctional Rangers lose their must-win game at Hearts\n- What Rangers can learn from Hearts' remarkable rebirth\n- Could anyone explain what is currently going on at Rangers? / There is protests outside Ibrox and not heard much about why it is all happening.\n- FIFA confirms that Rangers are still Rangers with all previous titles and trophies\n- Glasgow Rangers: a club in danger of losing its identity\n- Siri answers that Rangers were formed in 2012\n- Rangers F.C.'s Wiki Page - ouch\n- BBC News - EC dismisses complaints over Celtic and council land deals\n- Rangers urge fans to ignore 'recent ill-considered' claims that they are a new club\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Rangers Financial Crisis\", \"purpose\": \"Explain financial struggles and club status\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing Rangers' financial issues, club status, and fan reactions to their financial troubles\", \"inclusion_cues\": [\"Rangers' financial situation\", \"club status debate\", \"fan protests and criticism\", \"financial struggles and club identity\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Rangers Financial Crisis",
+      "purpose": "Explain financial struggles and club status",
+      "emotion_tone": "critical",
+      "description": "Posts discussing Rangers' financial issues, club status, and fan reactions to their financial troubles",
+      "inclusion_cues": [
+       "Rangers' financial situation",
+       "club status debate",
+       "fan protests and criticism",
+       "financial struggles and club identity"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 95,
+   "seed": 2725248556,
+   "seconds": 1.71
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: rangers club, rangers situation, rangers old, scottish football, rangers, glasgow rangers, supporters rangers, record rangers, confirms rangers, rangers rangers, article rangers, rangers does, hate rangers, club status, king rangers\nPosts (one per line, title first):\n- Why didn't Rangers focus on their youth to get them through the divisions? / It seems like rangers spent money on journeymen when they had the perfect opportunity to give the youth players a chance. Were there not any decent prospects or were there other reasons?\n- Scottish football fans: Why has your league gone a whole lot worse with even your best team struggling in the europa league, Rangers gone broke and no other team progressing?\n- FIFA step into new row over Rangers 'old or new club' status\n- FIFA step into new row over Rangers 'old or new club' status.\n- Rangers F.C. quection / Can anyone explain what happened to the Rangers? I'm an American and about 12 years ago my soccer team hosted a Scotish team while they played a couple games in the States. Two of their players stayed at my house and they were Rangers fans and I they told me about their histo\n- Rangers fans not even wasting a second\n- How Rangers became Espanyol fans’ second team\n- Redundancies at Rangers, with more expected to follow\n- Celtic consider franchise club in United States\n- Rangers' situation \"explained\" on Spanish TV\n- Neil Lennon: Celtic NEED Rangers and so does the rest of Scottish football - The Daily Record\n- Rangers fan group biggest in UK\n- 20 Reasons Why Celtic Fans Are Jealous Of Rangers (article)\n- Celtic issue response to the SFA's refusal to review events leading to liquidation of the Oldco Rangers\n- Rangers' loss in Luxembourg labelled as 'extremely embarrassing'\n- Dave King: Rangers will never be as big as Celtic until our fans outspend their supporters\n- How the mighty Glasgow Rangers have fallen | long-form article in The Guardian\n- Rangers situation \"explained\" on Spanish TV\n- How the mighty Glasgow Rangers have fallen\n- There must be a mole inside the rangers support\n- ELI5: Glasgow Rangers / Can anyone explain how they are in such financial difficulty. Again.\n- Celtic FC statement following the HMRC vs Rangers ruling\n- Rangers cheated at football the fraudulent silverware must go.\n- Vice: Does Scottish Football Need Rangers?\n- Rangers AGM Meeting Shenanigans\n- Can somebody explain exactly what is going on with the Rangers right now?\n- BBC Sport - Rangers: Why are the Ibrox club in such trouble?\n- Aberdeen Supporters' Trust calls for Rangers' titles to be stripped\n- Walter Smith: Rangers' bitterness towards clubs over 2012 will never fade\n- Rangers director Robertson: Singing The Billy Boys was better than invading the Hampden pitch\n- Why America's next top soccer star may have found the perfect fit in Rangers\n- Dysfunctional Rangers lose their must-win game at Hearts\n- What Rangers can learn from Hearts' remarkable rebirth\n- Could anyone explain what is currently going on at Rangers? / There is protests outside Ibrox and not heard much about why it is all happening.\n- FIFA confirms that Rangers are still Rangers with all previous titles and trophies\n- Glasgow Rangers: a club in danger of losing its identity\n- Siri answers that Rangers were formed in 2012\n- Rangers F.C.'s Wiki Page - ouch\n- BBC News - EC dismisses complaints over Celtic and council land deals\n- Rangers urge fans to ignore 'recent ill-considered' claims that they are a new club\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Rangers Financial Crisis\", \"purpose\": \"Explain the financial struggles and controversies of Glasgow Rangers\", \"emotion_tone\": \"Critical\", \"description\": \"Posts discussing Rangers' financial troubles, club status, and fan reactions to their situation\", \"inclusion_cues\": [\"Rangers' financial difficulties\", \"Club status disputes\", \"Fan protests and criticism\", \"Financial mismanagement claims\", \"Supporters' reactions to club's status\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Rangers Financial Crisis",
+      "purpose": "Explain the financial struggles and controversies of Glasgow Rangers",
+      "emotion_tone": "Critical",
+      "description": "Posts discussing Rangers' financial troubles, club status, and fan reactions to their situation",
+      "inclusion_cues": [
+       "Rangers' financial difficulties",
+       "Club status disputes",
+       "Fan protests and criticism",
+       "Financial mismanagement claims",
+       "Supporters' reactions to club's status"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 106,
+   "seed": 3909346442,
+   "seconds": 2.43
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: rangers club, rangers situation, rangers old, scottish football, rangers, glasgow rangers, supporters rangers, record rangers, confirms rangers, rangers rangers, article rangers, rangers does, hate rangers, club status, king rangers\nPosts (one per line, title first):\n- Why didn't Rangers focus on their youth to get them through the divisions? / It seems like rangers spent money on journeymen when they had the perfect opportunity to give the youth players a chance. Were there not any decent prospects or were there other reasons?\n- Scottish football fans: Why has your league gone a whole lot worse with even your best team struggling in the europa league, Rangers gone broke and no other team progressing?\n- FIFA step into new row over Rangers 'old or new club' status\n- FIFA step into new row over Rangers 'old or new club' status.\n- Rangers F.C. quection / Can anyone explain what happened to the Rangers? I'm an American and about 12 years ago my soccer team hosted a Scotish team while they played a couple games in the States. Two of their players stayed at my house and they were Rangers fans and I they told me about their histo\n- Rangers fans not even wasting a second\n- How Rangers became Espanyol fans’ second team\n- Redundancies at Rangers, with more expected to follow\n- Celtic consider franchise club in United States\n- Rangers' situation \"explained\" on Spanish TV\n- Neil Lennon: Celtic NEED Rangers and so does the rest of Scottish football - The Daily Record\n- Rangers fan group biggest in UK\n- 20 Reasons Why Celtic Fans Are Jealous Of Rangers (article)\n- Celtic issue response to the SFA's refusal to review events leading to liquidation of the Oldco Rangers\n- Rangers' loss in Luxembourg labelled as 'extremely embarrassing'\n- Dave King: Rangers will never be as big as Celtic until our fans outspend their supporters\n- How the mighty Glasgow Rangers have fallen | long-form article in The Guardian\n- Rangers situation \"explained\" on Spanish TV\n- How the mighty Glasgow Rangers have fallen\n- There must be a mole inside the rangers support\n- ELI5: Glasgow Rangers / Can anyone explain how they are in such financial difficulty. Again.\n- Celtic FC statement following the HMRC vs Rangers ruling\n- Rangers cheated at football the fraudulent silverware must go.\n- Vice: Does Scottish Football Need Rangers?\n- Rangers AGM Meeting Shenanigans\n- Can somebody explain exactly what is going on with the Rangers right now?\n- BBC Sport - Rangers: Why are the Ibrox club in such trouble?\n- Aberdeen Supporters' Trust calls for Rangers' titles to be stripped\n- Walter Smith: Rangers' bitterness towards clubs over 2012 will never fade\n- Rangers director Robertson: Singing The Billy Boys was better than invading the Hampden pitch\n- Why America's next top soccer star may have found the perfect fit in Rangers\n- Dysfunctional Rangers lose their must-win game at Hearts\n- What Rangers can learn from Hearts' remarkable rebirth\n- Could anyone explain what is currently going on at Rangers? / There is protests outside Ibrox and not heard much about why it is all happening.\n- FIFA confirms that Rangers are still Rangers with all previous titles and trophies\n- Glasgow Rangers: a club in danger of losing its identity\n- Siri answers that Rangers were formed in 2012\n- Rangers F.C.'s Wiki Page - ouch\n- BBC News - EC dismisses complaints over Celtic and council land deals\n- Rangers urge fans to ignore 'recent ill-considered' claims that they are a new club\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Rangers Financial Crisis\", \"purpose\": \"Explain financial struggles and club status\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing Rangers' financial issues, club status, and fan reactions to their financial troubles\", \"inclusion_cues\": [\"Rangers' financial situation\", \"club status debate\", \"fan protests and criticism\", \"financial struggles and club identity\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Rangers Financial Crisis\", \"purpose\": \"Explain the financial struggles and controversies of Glasgow Rangers\", \"emotion_tone\": \"Critical\", \"description\": \"Posts discussing Rangers' financial troubles, club status, and fan reactions to their situation\", \"inclusion_cues\": [\"Rangers' financial difficulties\", \"Club status disputes\", \"Fan protests and criticism\", \"Financial mismanagement claims\", \"Supporters' reactions to club's status\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Rangers Financial Crisis\", \"purpose\": \"Explain financial struggles and club status\", \"emotion_tone\": \"Critical\", \"description\": \"Posts discussing Rangers' financial troubles, club status, and fan reactions to their situation\", \"inclusion_cues\": [\"Rangers' financial difficulties\", \"Club status disputes\", \"Fan protests and criticism\", \"Financial mismanagement claims\", \"Supporters' reactions to club's status\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 102,
+   "seed": 3119763008,
+   "seconds": 0.92
+  }
+ ]
+}

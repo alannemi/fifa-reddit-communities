@@ -1,0 +1,192 @@
+{
+ "period_bin": 4,
+ "topic_id": 1325,
+ "keywords": "mane injury, sadio mané, sadio mane, mane, mane liverpool, injury sadio, liverpool sadio, carlos mané, mané long, mane given, liverpool return, training liverpool, liverpool medical, start everton, weeks hamstring",
+ "n_sample_posts": 31,
+ "sample_ids": [
+  "7aja0v",
+  "7obp1u",
+  "63kobi",
+  "75hpf5",
+  "7cmp0a",
+  "518yp9",
+  "5qt7cf",
+  "777pqh",
+  "4pztoy",
+  "5tgvvy",
+  "763rri",
+  "7arnvm",
+  "6htwge",
+  "6mtp6s",
+  "4y7lf7",
+  "639td4",
+  "4y5nlp",
+  "2rutn0",
+  "75hllg",
+  "62t112",
+  "5quc0q",
+  "640ddf",
+  "4q2mhk",
+  "64iwbl",
+  "5qz3dp",
+  "6lm82o",
+  "7ad70k",
+  "7aro4u",
+  "5qzxz5",
+  "6o0jfv",
+  "6djhlz"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Mane Injury Updates",
+  "purpose": "Tracking Sadio Mane's injury status and recovery",
+  "emotion_tone": "Concerned",
+  "description": "Posts discussing Sadio Mane's injury, recovery, and return to training, including medical procedures and team concerns.",
+  "inclusion_cues": [
+   "Sadio Mane's injury status",
+   "Medical procedures",
+   "Recovery timeline",
+   "Team concerns",
+   "Return to training",
+   "Injury updates"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Mane Injury Updates",
+    "purpose": "Track Sadio Mane's injury status and recovery progress",
+    "emotion_tone": "Concerned",
+    "description": "Posts related to Sadio Mane's injury, recovery, and return to training, including medical updates and team reactions",
+    "inclusion_cues": [
+     "mane injury",
+     "sadio mané",
+     "liverpool sadio",
+     "knee surgery",
+     "hamstring injury",
+     "return to training",
+     "medical update"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Mane Injury Updates",
+    "purpose": "Tracking Sadio Mane's injury status and recovery",
+    "emotion_tone": "Concerned",
+    "description": "Posts discussing Sadio Mane's injury, recovery, and return to training, including medical procedures and team concerns.",
+    "inclusion_cues": [
+     "Sadio Mane's injury status",
+     "Medical procedures",
+     "Recovery timeline",
+     "Team concerns",
+     "Return to training",
+     "Injury updates"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: mane injury, sadio mané, sadio mane, mane, mane liverpool, injury sadio, liverpool sadio, carlos mané, mané long, mane given, liverpool return, training liverpool, liverpool medical, start everton, weeks hamstring\nPosts (one per line, title first):\n- Sadio Mane Returns to First Team Training Two Weeks Ahead of Schedule\n- Sadio Mane given all-clear to start vs Everton after returning from whirlwind trip to Africa\n- Liverpool's Sadio Mane to have knee surgery - could be out for rest of season.\n- Sadio Mane could be out for up to 6 weeks\n- Sadio Mane returns to Liverpool from international duty early with slight Hamstring worry\n- Sadio Mane not injured after Senegal scare, back in Liverpool training - This Is Anfield\n- Liverpool arrange private jet to fly Sadio Mané back in time to play Chelsea.\n- Sadio Mane called to national team despite being injured.\n- Sadio Mane to have medical at Liverpool in £30m deal\n- Sadio Mane dangerous slip due to stadium pitch design\n- Will Liverpool struggle without Sadio Mane?\n- Mané returns to the Liverpool XI\n- Stuttgart Sporting CEO about Carlos Mané: \"It could be a long time until he's back on his feet. I don't expect him to return this calendar year.\" Suggests his career might be at stake.\n- Sadio Mane back training with teammates although will miss the PL Asia Trophy.\n- Sadio Mane suffered a minor muscle injury, not a dislocation, in today's training session\n- Liverpool worried Sadio Mané could be out for the season with knee problem\n- (Paul Joyce) Liverpool's Sadio Mane taken to hospital for scans after injuring shoulder in training today.\n- 2015 Africa Cup of Nations: Sadio Mane included in Senegal squad\n- Sadio Mané out for up to 6 weeks due to hamstring injury.\n- Sadio Mane injury update\n- Sadio Mane: Liverpool to fly Senegal striker back from Africa Cup of Nations\n- Mane likely to miss rest of season, Klopp confirms\n- Sadio Mane currently having Liverpool medical\n- Sadio Mané will have knee surgery in London tomorrow. Two month recovery expected.\n- Liverpool fly Sadio Mane back in time for Chelsea clash\n- Liverpool forward Sadio Mane set to return to training within 10 days\n- Sadio Mane back in full training at Liverpool(James Pearce)\n- Mané returns to the Liverpool XI\n- Mane returns to a different Anfield.\n- Sadio Mane on schedule for Liverpool return\n- Liverpool constructed a prayer room & arranged for a special chef to accommodate the needs of Sadio Mané & Emre Can.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Mane Injury Updates\", \"purpose\": \"Track Sadio Mane's injury status and recovery progress\", \"emotion_tone\": \"Concerned\", \"description\": \"Posts related to Sadio Mane's injury, recovery, and return to training, including medical updates and team reactions\", \"inclusion_cues\": [\"mane injury\", \"sadio mané\", \"liverpool sadio\", \"knee surgery\", \"hamstring injury\", \"return to training\", \"medical update\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Mane Injury Updates",
+      "purpose": "Track Sadio Mane's injury status and recovery progress",
+      "emotion_tone": "Concerned",
+      "description": "Posts related to Sadio Mane's injury, recovery, and return to training, including medical updates and team reactions",
+      "inclusion_cues": [
+       "mane injury",
+       "sadio mané",
+       "liverpool sadio",
+       "knee surgery",
+       "hamstring injury",
+       "return to training",
+       "medical update"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 116,
+   "seed": 745507074,
+   "seconds": 1.42
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: mane injury, sadio mané, sadio mane, mane, mane liverpool, injury sadio, liverpool sadio, carlos mané, mané long, mane given, liverpool return, training liverpool, liverpool medical, start everton, weeks hamstring\nPosts (one per line, title first):\n- Sadio Mane Returns to First Team Training Two Weeks Ahead of Schedule\n- Sadio Mane given all-clear to start vs Everton after returning from whirlwind trip to Africa\n- Liverpool's Sadio Mane to have knee surgery - could be out for rest of season.\n- Sadio Mane could be out for up to 6 weeks\n- Sadio Mane returns to Liverpool from international duty early with slight Hamstring worry\n- Sadio Mane not injured after Senegal scare, back in Liverpool training - This Is Anfield\n- Liverpool arrange private jet to fly Sadio Mané back in time to play Chelsea.\n- Sadio Mane called to national team despite being injured.\n- Sadio Mane to have medical at Liverpool in £30m deal\n- Sadio Mane dangerous slip due to stadium pitch design\n- Will Liverpool struggle without Sadio Mane?\n- Mané returns to the Liverpool XI\n- Stuttgart Sporting CEO about Carlos Mané: \"It could be a long time until he's back on his feet. I don't expect him to return this calendar year.\" Suggests his career might be at stake.\n- Sadio Mane back training with teammates although will miss the PL Asia Trophy.\n- Sadio Mane suffered a minor muscle injury, not a dislocation, in today's training session\n- Liverpool worried Sadio Mané could be out for the season with knee problem\n- (Paul Joyce) Liverpool's Sadio Mane taken to hospital for scans after injuring shoulder in training today.\n- 2015 Africa Cup of Nations: Sadio Mane included in Senegal squad\n- Sadio Mané out for up to 6 weeks due to hamstring injury.\n- Sadio Mane injury update\n- Sadio Mane: Liverpool to fly Senegal striker back from Africa Cup of Nations\n- Mane likely to miss rest of season, Klopp confirms\n- Sadio Mane currently having Liverpool medical\n- Sadio Mané will have knee surgery in London tomorrow. Two month recovery expected.\n- Liverpool fly Sadio Mane back in time for Chelsea clash\n- Liverpool forward Sadio Mane set to return to training within 10 days\n- Sadio Mane back in full training at Liverpool(James Pearce)\n- Mané returns to the Liverpool XI\n- Mane returns to a different Anfield.\n- Sadio Mane on schedule for Liverpool return\n- Liverpool constructed a prayer room & arranged for a special chef to accommodate the needs of Sadio Mané & Emre Can.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Mane Injury Updates\", \"purpose\": \"Tracking Sadio Mane's injury status and recovery\", \"emotion_tone\": \"Concerned\", \"description\": \"Posts discussing Sadio Mane's injury, recovery, and return to training, including medical procedures and team concerns.\", \"inclusion_cues\": [\"Sadio Mane's injury status\", \"Medical procedures\", \"Recovery timeline\", \"Team concerns\", \"Return to training\", \"Injury updates\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Mane Injury Updates",
+      "purpose": "Tracking Sadio Mane's injury status and recovery",
+      "emotion_tone": "Concerned",
+      "description": "Posts discussing Sadio Mane's injury, recovery, and return to training, including medical procedures and team concerns.",
+      "inclusion_cues": [
+       "Sadio Mane's injury status",
+       "Medical procedures",
+       "Recovery timeline",
+       "Team concerns",
+       "Return to training",
+       "Injury updates"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 108,
+   "seed": 1942235672,
+   "seconds": 1.21
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: mane injury, sadio mané, sadio mane, mane, mane liverpool, injury sadio, liverpool sadio, carlos mané, mané long, mane given, liverpool return, training liverpool, liverpool medical, start everton, weeks hamstring\nPosts (one per line, title first):\n- Sadio Mane Returns to First Team Training Two Weeks Ahead of Schedule\n- Sadio Mane given all-clear to start vs Everton after returning from whirlwind trip to Africa\n- Liverpool's Sadio Mane to have knee surgery - could be out for rest of season.\n- Sadio Mane could be out for up to 6 weeks\n- Sadio Mane returns to Liverpool from international duty early with slight Hamstring worry\n- Sadio Mane not injured after Senegal scare, back in Liverpool training - This Is Anfield\n- Liverpool arrange private jet to fly Sadio Mané back in time to play Chelsea.\n- Sadio Mane called to national team despite being injured.\n- Sadio Mane to have medical at Liverpool in £30m deal\n- Sadio Mane dangerous slip due to stadium pitch design\n- Will Liverpool struggle without Sadio Mane?\n- Mané returns to the Liverpool XI\n- Stuttgart Sporting CEO about Carlos Mané: \"It could be a long time until he's back on his feet. I don't expect him to return this calendar year.\" Suggests his career might be at stake.\n- Sadio Mane back training with teammates although will miss the PL Asia Trophy.\n- Sadio Mane suffered a minor muscle injury, not a dislocation, in today's training session\n- Liverpool worried Sadio Mané could be out for the season with knee problem\n- (Paul Joyce) Liverpool's Sadio Mane taken to hospital for scans after injuring shoulder in training today.\n- 2015 Africa Cup of Nations: Sadio Mane included in Senegal squad\n- Sadio Mané out for up to 6 weeks due to hamstring injury.\n- Sadio Mane injury update\n- Sadio Mane: Liverpool to fly Senegal striker back from Africa Cup of Nations\n- Mane likely to miss rest of season, Klopp confirms\n- Sadio Mane currently having Liverpool medical\n- Sadio Mané will have knee surgery in London tomorrow. Two month recovery expected.\n- Liverpool fly Sadio Mane back in time for Chelsea clash\n- Liverpool forward Sadio Mane set to return to training within 10 days\n- Sadio Mane back in full training at Liverpool(James Pearce)\n- Mané returns to the Liverpool XI\n- Mane returns to a different Anfield.\n- Sadio Mane on schedule for Liverpool return\n- Liverpool constructed a prayer room & arranged for a special chef to accommodate the needs of Sadio Mané & Emre Can.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Mane Injury Updates\", \"purpose\": \"Track Sadio Mane's injury status and recovery progress\", \"emotion_tone\": \"Concerned\", \"description\": \"Posts related to Sadio Mane's injury, recovery, and return to training, including medical updates and team reactions\", \"inclusion_cues\": [\"mane injury\", \"sadio mané\", \"liverpool sadio\", \"knee surgery\", \"hamstring injury\", \"return to training\", \"medical update\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Mane Injury Updates\", \"purpose\": \"Tracking Sadio Mane's injury status and recovery\", \"emotion_tone\": \"Concerned\", \"description\": \"Posts discussing Sadio Mane's injury, recovery, and return to training, including medical procedures and team concerns.\", \"inclusion_cues\": [\"Sadio Mane's injury status\", \"Medical procedures\", \"Recovery timeline\", \"Team concerns\", \"Return to training\", \"Injury updates\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Mane Injury Updates\", \"purpose\": \"Track Sadio Mane's injury status and recovery progress\", \"emotion_tone\": \"Concerned\", \"description\": \"Posts related to Sadio Mane's injury, recovery, and return to training, including medical updates and team reactions\", \"inclusion_cues\": [\"mane injury\", \"sadio mané\", \"liverpool sadio\", \"knee surgery\", \"hamstring injury\", \"return to training\", \"medical update\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 115,
+   "seed": 3615441104,
+   "seconds": 0.76
+  }
+ ]
+}

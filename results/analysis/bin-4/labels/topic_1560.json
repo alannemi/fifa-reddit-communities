@@ -1,0 +1,182 @@
+{
+ "period_bin": 4,
+ "topic_id": 1560,
+ "keywords": "algerian league, ligue table, ligue relegation, league relegated, games algerian, play algerian, scored relegated, ligue team, algerian, ligue, league standings, algeria, premier leagues, teams title, number goals",
+ "n_sample_posts": 25,
+ "sample_ids": [
+  "37y4p0",
+  "38489v",
+  "34056o",
+  "340rue",
+  "33vhcz",
+  "3475ql",
+  "382td5",
+  "4i13ns",
+  "3416bt",
+  "34qnu8",
+  "340wcb",
+  "35h8f3",
+  "35hkhd",
+  "343507",
+  "340d0m",
+  "383o27",
+  "33x15g",
+  "340f0c",
+  "3423ab",
+  "34u3ru",
+  "341keb",
+  "341g1z",
+  "34xwtj",
+  "31cdgd",
+  "389sgn"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Algerian League Standings",
+  "purpose": "Tracking the current standings and potential relegation in the Algerian league",
+  "emotion_tone": "optimistic",
+  "description": "Posts discussing the tight competition in the Algerian league, focusing on standings, relegation risks, and mathematical chances for all teams",
+  "inclusion_cues": [
+   "Algerian league table",
+   "4 games to go",
+   "mathematical chances",
+   "relegation risks",
+   "top 16 teams",
+   "title race"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Algerian League Title Race",
+    "purpose": "Analyzing the competitiveness of the Algerian league",
+    "emotion_tone": "excited",
+    "description": "Posts discussing the tight title race in the Algerian league with 4 games left, emphasizing mathematical possibilities for any team to win or be relegated.",
+    "inclusion_cues": [
+     "Algerian league table",
+     "4 games to go",
+     "mathematical possibilities",
+     "any team can win or be relegated",
+     "all 16 teams in title race"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Algerian League Standings",
+    "purpose": "Tracking the current standings and potential relegation in the Algerian league",
+    "emotion_tone": "optimistic",
+    "description": "Posts discussing the tight competition in the Algerian league, focusing on standings, relegation risks, and mathematical chances for all teams",
+    "inclusion_cues": [
+     "Algerian league table",
+     "4 games to go",
+     "mathematical chances",
+     "relegation risks",
+     "top 16 teams",
+     "title race"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: algerian league, ligue table, ligue relegation, league relegated, games algerian, play algerian, scored relegated, ligue team, algerian, ligue, league standings, algeria, premier leagues, teams title, number goals\nPosts (one per line, title first):\n- [Algerian league] Team with most goals scored relegated\n- MC El-Eulma who is in the Algerian top league with the most goals scored has been relegated\n- The Algerian league table with 4 rounds left to play. Mathematically it looks like anyone from top to bottom can win the league.\n- With 4 games to go in the Algerian league, mathematically, any of the 16 teams can win the title.\n- Algerian league table: All 16 teams can still win the title with 4 games to go and just 11 points between top and bottom\n- 11 points separate top & bottom of Ligue 1 in Algeria. Anyone can win or be relegated.\n- The team who scored the most goals in the Algerian League got relegated\n- Senegalese premier league table with 5 weeks to go: 11 points between first and last place; any team can win the league or be relegated.\n- The Algerian Premier League title race is ridiculously tight\n- This is the top 16 of Algeria's First Division with 4 games to go\n- BBC Sport - Algerian Ligue 1: All 16 teams still in the title race\n- In the Algerian league, everybody can still win the title [Article in German]\n- Algerian league standings update with 3 matches to go\n- With 4 games to go, all 16 teams in the Algerian top division can still win the league.\n- Only 4 games left, but the last in Algerian league still can win the league\n- MC El-Eulma: Ligue 1 relegation for Algerian top scorers\n- Talking about close competitions, last Place of Algeria's league is still able to become champions\n- Meanwhile in Algeria, the last team has a mathematical chance of winning the league. [SOURCE: FIFA]\n- Algerian Premier Leagues tight finish\n- With 4 games to go, this is the table in the Algeria Ligue 1. Theoretically, even the bottom team can still win the league\n- Most competitive league in the world? With 4 matches to play in the Algerian Ligue 1, even the bottom team can still claim the title.\n- Algerian Ligue 1: All 16 teams still mathematically in the title race with only 4 games to play\n- 4 Matches to go in the Algerian league and ALL teams can still take the 1st place.\n- Current Algeria Ligue 1 Table with 6 rounds to go. Any of the 16 teams can still win the title.\n- The team that scored the highest number of goals got relegated in the Algerian league\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Algerian League Title Race\", \"purpose\": \"Analyzing the competitiveness of the Algerian league\", \"emotion_tone\": \"excited\", \"description\": \"Posts discussing the tight title race in the Algerian league with 4 games left, emphasizing mathematical possibilities for any team to win or be relegated.\", \"inclusion_cues\": [\"Algerian league table\", \"4 games to go\", \"mathematical possibilities\", \"any team can win or be relegated\", \"all 16 teams in title race\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Algerian League Title Race",
+      "purpose": "Analyzing the competitiveness of the Algerian league",
+      "emotion_tone": "excited",
+      "description": "Posts discussing the tight title race in the Algerian league with 4 games left, emphasizing mathematical possibilities for any team to win or be relegated.",
+      "inclusion_cues": [
+       "Algerian league table",
+       "4 games to go",
+       "mathematical possibilities",
+       "any team can win or be relegated",
+       "all 16 teams in title race"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 124,
+   "seed": 1220299635,
+   "seconds": 0.79
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: algerian league, ligue table, ligue relegation, league relegated, games algerian, play algerian, scored relegated, ligue team, algerian, ligue, league standings, algeria, premier leagues, teams title, number goals\nPosts (one per line, title first):\n- [Algerian league] Team with most goals scored relegated\n- MC El-Eulma who is in the Algerian top league with the most goals scored has been relegated\n- The Algerian league table with 4 rounds left to play. Mathematically it looks like anyone from top to bottom can win the league.\n- With 4 games to go in the Algerian league, mathematically, any of the 16 teams can win the title.\n- Algerian league table: All 16 teams can still win the title with 4 games to go and just 11 points between top and bottom\n- 11 points separate top & bottom of Ligue 1 in Algeria. Anyone can win or be relegated.\n- The team who scored the most goals in the Algerian League got relegated\n- Senegalese premier league table with 5 weeks to go: 11 points between first and last place; any team can win the league or be relegated.\n- The Algerian Premier League title race is ridiculously tight\n- This is the top 16 of Algeria's First Division with 4 games to go\n- BBC Sport - Algerian Ligue 1: All 16 teams still in the title race\n- In the Algerian league, everybody can still win the title [Article in German]\n- Algerian league standings update with 3 matches to go\n- With 4 games to go, all 16 teams in the Algerian top division can still win the league.\n- Only 4 games left, but the last in Algerian league still can win the league\n- MC El-Eulma: Ligue 1 relegation for Algerian top scorers\n- Talking about close competitions, last Place of Algeria's league is still able to become champions\n- Meanwhile in Algeria, the last team has a mathematical chance of winning the league. [SOURCE: FIFA]\n- Algerian Premier Leagues tight finish\n- With 4 games to go, this is the table in the Algeria Ligue 1. Theoretically, even the bottom team can still win the league\n- Most competitive league in the world? With 4 matches to play in the Algerian Ligue 1, even the bottom team can still claim the title.\n- Algerian Ligue 1: All 16 teams still mathematically in the title race with only 4 games to play\n- 4 Matches to go in the Algerian league and ALL teams can still take the 1st place.\n- Current Algeria Ligue 1 Table with 6 rounds to go. Any of the 16 teams can still win the title.\n- The team that scored the highest number of goals got relegated in the Algerian league\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Algerian League Standings\", \"purpose\": \"Tracking the current standings and potential relegation in the Algerian league\", \"emotion_tone\": \"optimistic\", \"description\": \"Posts discussing the tight competition in the Algerian league, focusing on standings, relegation risks, and mathematical chances for all teams\", \"inclusion_cues\": [\"Algerian league table\", \"4 games to go\", \"mathematical chances\", \"relegation risks\", \"top 16 teams\", \"title race\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Algerian League Standings",
+      "purpose": "Tracking the current standings and potential relegation in the Algerian league",
+      "emotion_tone": "optimistic",
+      "description": "Posts discussing the tight competition in the Algerian league, focusing on standings, relegation risks, and mathematical chances for all teams",
+      "inclusion_cues": [
+       "Algerian league table",
+       "4 games to go",
+       "mathematical chances",
+       "relegation risks",
+       "top 16 teams",
+       "title race"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 122,
+   "seed": 3064454115,
+   "seconds": 0.83
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: algerian league, ligue table, ligue relegation, league relegated, games algerian, play algerian, scored relegated, ligue team, algerian, ligue, league standings, algeria, premier leagues, teams title, number goals\nPosts (one per line, title first):\n- [Algerian league] Team with most goals scored relegated\n- MC El-Eulma who is in the Algerian top league with the most goals scored has been relegated\n- The Algerian league table with 4 rounds left to play. Mathematically it looks like anyone from top to bottom can win the league.\n- With 4 games to go in the Algerian league, mathematically, any of the 16 teams can win the title.\n- Algerian league table: All 16 teams can still win the title with 4 games to go and just 11 points between top and bottom\n- 11 points separate top & bottom of Ligue 1 in Algeria. Anyone can win or be relegated.\n- The team who scored the most goals in the Algerian League got relegated\n- Senegalese premier league table with 5 weeks to go: 11 points between first and last place; any team can win the league or be relegated.\n- The Algerian Premier League title race is ridiculously tight\n- This is the top 16 of Algeria's First Division with 4 games to go\n- BBC Sport - Algerian Ligue 1: All 16 teams still in the title race\n- In the Algerian league, everybody can still win the title [Article in German]\n- Algerian league standings update with 3 matches to go\n- With 4 games to go, all 16 teams in the Algerian top division can still win the league.\n- Only 4 games left, but the last in Algerian league still can win the league\n- MC El-Eulma: Ligue 1 relegation for Algerian top scorers\n- Talking about close competitions, last Place of Algeria's league is still able to become champions\n- Meanwhile in Algeria, the last team has a mathematical chance of winning the league. [SOURCE: FIFA]\n- Algerian Premier Leagues tight finish\n- With 4 games to go, this is the table in the Algeria Ligue 1. Theoretically, even the bottom team can still win the league\n- Most competitive league in the world? With 4 matches to play in the Algerian Ligue 1, even the bottom team can still claim the title.\n- Algerian Ligue 1: All 16 teams still mathematically in the title race with only 4 games to play\n- 4 Matches to go in the Algerian league and ALL teams can still take the 1st place.\n- Current Algeria Ligue 1 Table with 6 rounds to go. Any of the 16 teams can still win the title.\n- The team that scored the highest number of goals got relegated in the Algerian league\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Algerian League Title Race\", \"purpose\": \"Analyzing the competitiveness of the Algerian league\", \"emotion_tone\": \"excited\", \"description\": \"Posts discussing the tight title race in the Algerian league with 4 games left, emphasizing mathematical possibilities for any team to win or be relegated.\", \"inclusion_cues\": [\"Algerian league table\", \"4 games to go\", \"mathematical possibilities\", \"any team can win or be relegated\", \"all 16 teams in title race\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Algerian League Standings\", \"purpose\": \"Tracking the current standings and potential relegation in the Algerian league\", \"emotion_tone\": \"optimistic\", \"description\": \"Posts discussing the tight competition in the Algerian league, focusing on standings, relegation risks, and mathematical chances for all teams\", \"inclusion_cues\": [\"Algerian league table\", \"4 games to go\", \"mathematical chances\", \"relegation risks\", \"top 16 teams\", \"title race\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Algerian League Title Race\", \"purpose\": \"Analyzing the competitiveness of the Algerian league\", \"emotion_tone\": \"excited\", \"description\": \"Posts discussing the tight title race in the Algerian league with 4 games left, emphasizing mathematical possibilities for any team to win or be relegated.\", \"inclusion_cues\": [\"Algerian league table\", \"4 games to go\", \"mathematical possibilities\", \"any team can win or be relegated\", \"all 16 teams in title race\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 123,
+   "seed": 1079453712,
+   "seconds": 0.64
+  }
+ ]
+}

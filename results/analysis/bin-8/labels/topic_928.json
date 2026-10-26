@@ -1,0 +1,211 @@
+{
+ "period_bin": 8,
+ "topic_id": 928,
+ "keywords": "shot conversion, shooting efficiency, league stats, stats shots, tottenham overperforms, underperforms shot, shots touches, percentage goals, shot distance, goal shot, chances tottenham, clubs compared, jackson shot, leeds underperforms, conversion rates",
+ "n_sample_posts": 27,
+ "sample_ids": [
+  "1axzb1j",
+  "1jf4g8a",
+  "1paqxof",
+  "1f95nrz",
+  "1f95nrz",
+  "13omegf",
+  "1bejbuq",
+  "1pvz4po",
+  "1g0emc0",
+  "1q2pbx3",
+  "1f95349",
+  "1lk58km",
+  "16tkqhb",
+  "16mygqp",
+  "177tq2y",
+  "1b449rm",
+  "1puhgl8",
+  "1caabg6",
+  "1n6nidj",
+  "12oj5lv",
+  "1qge37z",
+  "1jpjrx7",
+  "1d1t704",
+  "16tp9tf",
+  "16r8rgn",
+  "1hot2id",
+  "1fi2pcc"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Shot Conversion & Efficiency",
+  "purpose": "Analyze shot conversion rates, shooting efficiency, and shot quality metrics in Premier League teams and players",
+  "emotion_tone": "analytical",
+  "description": "Focuses on shot conversion rates, shooting efficiency, and shot quality metrics in Premier League teams and players, including comparisons between clubs and individual performances.",
+  "inclusion_cues": [
+   "shot conversion rates",
+   "shooting efficiency",
+   "shot distance",
+   "goal shot",
+   "chances tottenham",
+   "leeds underperforms",
+   "conversion rates",
+   "shots touches",
+   "percentage goals",
+   "shot distance"
+  ],
+  "n_cues_given": 16
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Shot Conversion Analysis",
+    "purpose": "Examine shot conversion rates, efficiency, and performance metrics in Premier League teams",
+    "emotion_tone": "analytical",
+    "description": "Focuses on shot conversion rates, shooting efficiency, and comparison of shot performance across teams and leagues.",
+    "inclusion_cues": [
+     "shot conversion rates",
+     "shooting efficiency",
+     "shot distance",
+     "chances tottenham",
+     "leeds underperforms",
+     "tottenham overperforms",
+     "conversion rates",
+     "goal shot",
+     "shots touches",
+     "percentage goals"
+    ],
+    "n_cues_given": 17
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Shot Conversion & Efficiency",
+    "purpose": "Analyze shot conversion rates, shooting efficiency, and shot quality metrics in Premier League teams and players",
+    "emotion_tone": "analytical",
+    "description": "Focuses on shot conversion rates, shooting efficiency, and shot quality metrics in Premier League teams and players, including comparisons between clubs and individual performances.",
+    "inclusion_cues": [
+     "shot conversion rates",
+     "shooting efficiency",
+     "shot distance",
+     "goal shot",
+     "chances tottenham",
+     "leeds underperforms",
+     "conversion rates",
+     "shots touches",
+     "percentage goals",
+     "shot distance"
+    ],
+    "n_cues_given": 16
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: shot conversion, shooting efficiency, league stats, stats shots, tottenham overperforms, underperforms shot, shots touches, percentage goals, shot distance, goal shot, chances tottenham, clubs compared, jackson shot, leeds underperforms, conversion rates\nPosts (one per line, title first):\n- Premier League shot conversion rates since Christmas\n- [@statsbomb on threads.net] Open Play Buildup, Premier League 2024/25. A look at each team's most commonly played passes in open play buildup in the 2024/25 Premier League season.\n- Shot conversion vs big chances for Premier League teams this season - Wolves by far the worst, Leeds underperforms in shot conversion despite the chances while Tottenham overperforms for the lack of them\n- [WT Analysis] Premier League outside box open play shot conversion: 20/21 season to 23/24 season\n- [WT Analysis] Premier League outside box open play shot conversion: 20/21 season to 23/24 season\n- Evolution of the average distance of shots across Europe's top leagues\n- [CIES]: \" Shooting efficiency, 900 clubs compared\"\n- [OC] Shot quantity vs quality Premier League\n- Average shot distance (in metres) across Europe's top 5 leagues [2016-2024]\n- [Statty] Midseason PL 25-26: Goal distribution per Half\n- [WT Analysis] Premier League outside box open play shot conversion: 20/21 season to 23/24 season\n- Fewest shots per 90 minutes (top 50 leagues)\n- [OC] Premier League stats for Shots on Target and Expected Goal involvement (after 6 GW, played >2.8 90s)\n- [NumericalTiktok] Statistical analysis of how much larger the goal had to be for Nick Jackson's shot to go in\n- Premier League Shot Conversion%\n- PL Volume of Shots vs Dangerous Shots\n- [OC] Premier League Shot Quality vs Quantity Conceded\n- Europe's most prolific shooters ranked by finishing since 2017\n- All Premier League shot distribution metrics after GW3\n- [OC] Shooting ambidexterity in Europe’s top attackers (@EuroEliteScout on Twitter)\n- U19 Forward seasons of the last decade: Ground Eating vs Shot Creating / Source: @fc\\_mossman on Twitter\n- Shooting performance of players in top 7 leagues\n- Volume of shots vs Dangerous Shots conceded - PL 23/24\n- [OC] Big 5 European Teams Shots vs Touches (FBREF)\n- Percentage of goals scored in last 15 mins of both halves vs Total league goals. 23/24 season.\n- [OC] Goal kicks distribution heatmap for the 2015/2016 season\n- Percentage of goal and shot creating chances conceded from deadballs - Premier league\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Shot Conversion Analysis\", \"purpose\": \"Examine shot conversion rates, efficiency, and performance metrics in Premier League teams\", \"emotion_tone\": \"analytical\", \"description\": \"Focuses on shot conversion rates, shooting efficiency, and comparison of shot performance across teams and leagues.\", \"inclusion_cues\": [\"shot conversion rates\", \"shooting efficiency\", \"shot distance\", \"chances tottenham\", \"leeds underperforms\", \"tottenham overperforms\", \"conversion rates\", \"goal shot\", \"shots touches\", \"percentage goals\", \"shot distance\", \"goal shot\", \"chances tottenham\", \"clubs compared\", \"jackson shot\", \"leeds underperforms\", \"conversion rates\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Shot Conversion Analysis",
+      "purpose": "Examine shot conversion rates, efficiency, and performance metrics in Premier League teams",
+      "emotion_tone": "analytical",
+      "description": "Focuses on shot conversion rates, shooting efficiency, and comparison of shot performance across teams and leagues.",
+      "inclusion_cues": [
+       "shot conversion rates",
+       "shooting efficiency",
+       "shot distance",
+       "chances tottenham",
+       "leeds underperforms",
+       "tottenham overperforms",
+       "conversion rates",
+       "goal shot",
+       "shots touches",
+       "percentage goals"
+      ],
+      "n_cues_given": 17
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 166,
+   "seed": 204773060,
+   "seconds": 0.53
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: shot conversion, shooting efficiency, league stats, stats shots, tottenham overperforms, underperforms shot, shots touches, percentage goals, shot distance, goal shot, chances tottenham, clubs compared, jackson shot, leeds underperforms, conversion rates\nPosts (one per line, title first):\n- Premier League shot conversion rates since Christmas\n- [@statsbomb on threads.net] Open Play Buildup, Premier League 2024/25. A look at each team's most commonly played passes in open play buildup in the 2024/25 Premier League season.\n- Shot conversion vs big chances for Premier League teams this season - Wolves by far the worst, Leeds underperforms in shot conversion despite the chances while Tottenham overperforms for the lack of them\n- [WT Analysis] Premier League outside box open play shot conversion: 20/21 season to 23/24 season\n- [WT Analysis] Premier League outside box open play shot conversion: 20/21 season to 23/24 season\n- Evolution of the average distance of shots across Europe's top leagues\n- [CIES]: \" Shooting efficiency, 900 clubs compared\"\n- [OC] Shot quantity vs quality Premier League\n- Average shot distance (in metres) across Europe's top 5 leagues [2016-2024]\n- [Statty] Midseason PL 25-26: Goal distribution per Half\n- [WT Analysis] Premier League outside box open play shot conversion: 20/21 season to 23/24 season\n- Fewest shots per 90 minutes (top 50 leagues)\n- [OC] Premier League stats for Shots on Target and Expected Goal involvement (after 6 GW, played >2.8 90s)\n- [NumericalTiktok] Statistical analysis of how much larger the goal had to be for Nick Jackson's shot to go in\n- Premier League Shot Conversion%\n- PL Volume of Shots vs Dangerous Shots\n- [OC] Premier League Shot Quality vs Quantity Conceded\n- Europe's most prolific shooters ranked by finishing since 2017\n- All Premier League shot distribution metrics after GW3\n- [OC] Shooting ambidexterity in Europe’s top attackers (@EuroEliteScout on Twitter)\n- U19 Forward seasons of the last decade: Ground Eating vs Shot Creating / Source: @fc\\_mossman on Twitter\n- Shooting performance of players in top 7 leagues\n- Volume of shots vs Dangerous Shots conceded - PL 23/24\n- [OC] Big 5 European Teams Shots vs Touches (FBREF)\n- Percentage of goals scored in last 15 mins of both halves vs Total league goals. 23/24 season.\n- [OC] Goal kicks distribution heatmap for the 2015/2016 season\n- Percentage of goal and shot creating chances conceded from deadballs - Premier league\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Shot Conversion & Efficiency\", \"purpose\": \"Analyze shot conversion rates, shooting efficiency, and shot quality metrics in Premier League teams and players\", \"emotion_tone\": \"analytical\", \"description\": \"Focuses on shot conversion rates, shooting efficiency, and shot quality metrics in Premier League teams and players, including comparisons between clubs and individual performances.\", \"inclusion_cues\": [\"shot conversion rates\", \"shooting efficiency\", \"shot distance\", \"goal shot\", \"chances tottenham\", \"leeds underperforms\", \"conversion rates\", \"shots touches\", \"percentage goals\", \"shot distance\", \"goal shot\", \"chances tottenham\", \"clubs compared\", \"jackson shot\", \"leeds underperforms\", \"conversion rates\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Shot Conversion & Efficiency",
+      "purpose": "Analyze shot conversion rates, shooting efficiency, and shot quality metrics in Premier League teams and players",
+      "emotion_tone": "analytical",
+      "description": "Focuses on shot conversion rates, shooting efficiency, and shot quality metrics in Premier League teams and players, including comparisons between clubs and individual performances.",
+      "inclusion_cues": [
+       "shot conversion rates",
+       "shooting efficiency",
+       "shot distance",
+       "goal shot",
+       "chances tottenham",
+       "leeds underperforms",
+       "conversion rates",
+       "shots touches",
+       "percentage goals",
+       "shot distance"
+      ],
+      "n_cues_given": 16
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 173,
+   "seed": 3974125487,
+   "seconds": 1.82
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: shot conversion, shooting efficiency, league stats, stats shots, tottenham overperforms, underperforms shot, shots touches, percentage goals, shot distance, goal shot, chances tottenham, clubs compared, jackson shot, leeds underperforms, conversion rates\nPosts (one per line, title first):\n- Premier League shot conversion rates since Christmas\n- [@statsbomb on threads.net] Open Play Buildup, Premier League 2024/25. A look at each team's most commonly played passes in open play buildup in the 2024/25 Premier League season.\n- Shot conversion vs big chances for Premier League teams this season - Wolves by far the worst, Leeds underperforms in shot conversion despite the chances while Tottenham overperforms for the lack of them\n- [WT Analysis] Premier League outside box open play shot conversion: 20/21 season to 23/24 season\n- [WT Analysis] Premier League outside box open play shot conversion: 20/21 season to 23/24 season\n- Evolution of the average distance of shots across Europe's top leagues\n- [CIES]: \" Shooting efficiency, 900 clubs compared\"\n- [OC] Shot quantity vs quality Premier League\n- Average shot distance (in metres) across Europe's top 5 leagues [2016-2024]\n- [Statty] Midseason PL 25-26: Goal distribution per Half\n- [WT Analysis] Premier League outside box open play shot conversion: 20/21 season to 23/24 season\n- Fewest shots per 90 minutes (top 50 leagues)\n- [OC] Premier League stats for Shots on Target and Expected Goal involvement (after 6 GW, played >2.8 90s)\n- [NumericalTiktok] Statistical analysis of how much larger the goal had to be for Nick Jackson's shot to go in\n- Premier League Shot Conversion%\n- PL Volume of Shots vs Dangerous Shots\n- [OC] Premier League Shot Quality vs Quantity Conceded\n- Europe's most prolific shooters ranked by finishing since 2017\n- All Premier League shot distribution metrics after GW3\n- [OC] Shooting ambidexterity in Europe’s top attackers (@EuroEliteScout on Twitter)\n- U19 Forward seasons of the last decade: Ground Eating vs Shot Creating / Source: @fc\\_mossman on Twitter\n- Shooting performance of players in top 7 leagues\n- Volume of shots vs Dangerous Shots conceded - PL 23/24\n- [OC] Big 5 European Teams Shots vs Touches (FBREF)\n- Percentage of goals scored in last 15 mins of both halves vs Total league goals. 23/24 season.\n- [OC] Goal kicks distribution heatmap for the 2015/2016 season\n- Percentage of goal and shot creating chances conceded from deadballs - Premier league\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Shot Conversion Analysis\", \"purpose\": \"Examine shot conversion rates, efficiency, and performance metrics in Premier League teams\", \"emotion_tone\": \"analytical\", \"description\": \"Focuses on shot conversion rates, shooting efficiency, and comparison of shot performance across teams and leagues.\", \"inclusion_cues\": [\"shot conversion rates\", \"shooting efficiency\", \"shot distance\", \"chances tottenham\", \"leeds underperforms\", \"tottenham overperforms\", \"conversion rates\", \"goal shot\", \"shots touches\", \"percentage goals\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Shot Conversion & Efficiency\", \"purpose\": \"Analyze shot conversion rates, shooting efficiency, and shot quality metrics in Premier League teams and players\", \"emotion_tone\": \"analytical\", \"description\": \"Focuses on shot conversion rates, shooting efficiency, and shot quality metrics in Premier League teams and players, including comparisons between clubs and individual performances.\", \"inclusion_cues\": [\"shot conversion rates\", \"shooting efficiency\", \"shot distance\", \"goal shot\", \"chances tottenham\", \"leeds underperforms\", \"conversion rates\", \"shots touches\", \"percentage goals\", \"shot distance\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Shot Conversion & Efficiency\", \"purpose\": \"Analyze shot conversion rates, shooting efficiency, and shot quality metrics in Premier League teams and players\", \"emotion_tone\": \"analytical\", \"description\": \"Focuses on shot conversion rates, shooting efficiency, and shot quality metrics in Premier League teams and players, including comparisons between clubs and individual performances.\", \"inclusion_cues\": [\"shot conversion rates\", \"shooting efficiency\", \"shot distance\", \"goal shot\", \"chances tottenham\", \"leeds underperforms\", \"conversion rates\", \"shots touches\", \"percentage goals\", \"shot distance\"]]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 650)",
+   "n_tokens": 141,
+   "seed": 647072787,
+   "seconds": 0.51
+  }
+ ]
+}

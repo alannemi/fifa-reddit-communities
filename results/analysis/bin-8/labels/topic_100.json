@@ -1,0 +1,209 @@
+{
+ "period_bin": 8,
+ "topic_id": 100,
+ "keywords": "liverpool penalty, chelsea penalty, fulham penalty, ipswich penalty, southampton penalty, united penalty, bournemouth penalty, palace penalty, brighton penalty, foul newcastle, newcastle 20, liverpool concede, chelsea 84, liverpool 69, pen chelsea",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "1bahidq",
+  "1nsrqc1",
+  "1g81y9a",
+  "18kndd2",
+  "1n01n7b",
+  "1nstyx6",
+  "193kq3f",
+  "1c09di4",
+  "1q3pdhz",
+  "1msrkrw",
+  "1omibvt",
+  "1hoyofy",
+  "1gdfntu",
+  "1hthwqk",
+  "1bh0sr3",
+  "18rjdi6",
+  "1prpaal",
+  "1n52r88",
+  "1iywwzx",
+  "1oa2mfm",
+  "1gl68f6",
+  "1fs8wpc",
+  "1nsrp9n",
+  "1ofwfpv",
+  "15xj4uv",
+  "11onb56",
+  "1gajle5",
+  "1qmz2m5",
+  "1nxzk6r",
+  "1q7o9t2",
+  "1f0acuh",
+  "1pcktze",
+  "1j4d5d7",
+  "1jyc9px",
+  "1f5lbf8",
+  "1iyy2g9",
+  "1mmlwt3",
+  "1p3zg2m",
+  "1j916v6",
+  "1heyf5g"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Penalty Shouts",
+  "purpose": "Communication of penalty calls in football",
+  "emotion_tone": "Excitement",
+  "description": "Posts discussing penalty calls in football matches, often with emotional reactions or claims",
+  "inclusion_cues": [
+   "Penalty shout against Liverpool",
+   "Chelsea penalty shout",
+   "Fulham penalty shout",
+   "Ipswich penalty shout",
+   "Southampton penalty shout",
+   "United penalty shout",
+   "Bournemouth penalty shout",
+   "Palace penalty shout",
+   "Brighton penalty shout",
+   "Foul Newcastle"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Penalty Shouts",
+    "purpose": "Communication of penalty calls in football",
+    "emotion_tone": "Excitement",
+    "description": "Posts where players or teams shout penalties, often with emotional or dramatic intent",
+    "inclusion_cues": [
+     "Penalty shout against...",
+     "Penalty awarded...",
+     "Penalty claimed...",
+     "VAR checked...",
+     "Foul or misconduct..."
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Penalty Shouts",
+    "purpose": "Communication of penalty calls in football",
+    "emotion_tone": "Excitement",
+    "description": "Posts discussing penalty calls in football matches, often with emotional reactions or claims",
+    "inclusion_cues": [
+     "Penalty shout against Liverpool",
+     "Chelsea penalty shout",
+     "Fulham penalty shout",
+     "Ipswich penalty shout",
+     "Southampton penalty shout",
+     "United penalty shout",
+     "Bournemouth penalty shout",
+     "Palace penalty shout",
+     "Brighton penalty shout",
+     "Foul Newcastle"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: liverpool penalty, chelsea penalty, fulham penalty, ipswich penalty, southampton penalty, united penalty, bournemouth penalty, palace penalty, brighton penalty, foul newcastle, newcastle 20, liverpool concede, chelsea 84, liverpool 69, pen chelsea\nPosts (one per line, title first):\n- Manchester United penalty shout against Everton 45'\n- Newcastle united penalty shout vs Arsenal.\n- Chelsea penalty shout vs Liverpool\n- Liverpool penalty shout against Manchester United 86'\n- Newcastle United penalty shout against Liverpool 66'\n- Newcastle United penalty shout against Arsenal 86'\n- Liverpool possible penalty on Robinson (crosspost from r/LiverpoolFC)\n- Arsenal penalty shout, frame by frame.\n- Leeds United penalty shout against Manchester United 25'\n- Crystal Palace penalty shout vs Chelsea 45+4'\n- West Ham penalty shout against Newcastle 11'\n- Michael Oliver denies Leicester City the Penalty vs Manchester City - 51'\n- Arsenal penalty shout against Liverpool 31'\n- Chelsea penalty shout against Crystal Palace 62'\n- Strong Leeds United penalty claim. Millwall defender on a yellow. No foul.\n- Leicester City - Ipswich Town - Penalty shout not given 75'\n- Everton Penalty Shout vs Arsenal 57’\n- Aston Villa penalty shout against Crystal Palace 45+3'\n- Manchester Utd penalty shout against Ipswich 37'\n- Arsenal penalty shout against Fulham 68'\n- CRAZY / Penalty charged against Aston Villa\n- Manchester Utd penalty shout against Tottenham 60'\n- Arsenal penalty shout against Newcastle United 17'\n- Man United penalty shout vs Brighton 14'\n- Crystal Palace penalty shout against Arsenal 73'\n- Leicester penalty shout against Chelsea 44'\n- Liverpool Penalty shout vs RB Leipzig\n- Chelsea awarded a penalty against Crystal Palace from this exact scenario\n- Chelsea penalty shout against Liverpool 39'\n- Liverpool penalty shout against Arsenal (47')\n- Ipswich penalty shout v. Man City (VAR checked, not given)\n- Fulham penalty shout against Manchester City 84'\n- PSG penalty shout and possible red card on Konate\n- Manchester United penalty shout against Newcastle 48'\n- Arsenal penalty shout against Brighton 11'\n- Arsenal penalty shout against Nottingham 67'\n- Crystal Palace penalty shout against Liverpool 80'\n- Manchester City penalty shout against Newcastle United 18'\n- Liverpool penalty shout against PSG 45'\n- Manchester United Penalty Shout 64'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Penalty Shouts\", \"purpose\": \"Communication of penalty calls in football\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts where players or teams shout penalties, often with emotional or dramatic intent\", \"inclusion_cues\": [\"Penalty shout against...\", \"Penalty awarded...\", \"Penalty claimed...\", \"VAR checked...\", \"Foul or misconduct...\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Penalty Shouts",
+      "purpose": "Communication of penalty calls in football",
+      "emotion_tone": "Excitement",
+      "description": "Posts where players or teams shout penalties, often with emotional or dramatic intent",
+      "inclusion_cues": [
+       "Penalty shout against...",
+       "Penalty awarded...",
+       "Penalty claimed...",
+       "VAR checked...",
+       "Foul or misconduct..."
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 95,
+   "seed": 1305812322,
+   "seconds": 2.46
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: liverpool penalty, chelsea penalty, fulham penalty, ipswich penalty, southampton penalty, united penalty, bournemouth penalty, palace penalty, brighton penalty, foul newcastle, newcastle 20, liverpool concede, chelsea 84, liverpool 69, pen chelsea\nPosts (one per line, title first):\n- Manchester United penalty shout against Everton 45'\n- Newcastle united penalty shout vs Arsenal.\n- Chelsea penalty shout vs Liverpool\n- Liverpool penalty shout against Manchester United 86'\n- Newcastle United penalty shout against Liverpool 66'\n- Newcastle United penalty shout against Arsenal 86'\n- Liverpool possible penalty on Robinson (crosspost from r/LiverpoolFC)\n- Arsenal penalty shout, frame by frame.\n- Leeds United penalty shout against Manchester United 25'\n- Crystal Palace penalty shout vs Chelsea 45+4'\n- West Ham penalty shout against Newcastle 11'\n- Michael Oliver denies Leicester City the Penalty vs Manchester City - 51'\n- Arsenal penalty shout against Liverpool 31'\n- Chelsea penalty shout against Crystal Palace 62'\n- Strong Leeds United penalty claim. Millwall defender on a yellow. No foul.\n- Leicester City - Ipswich Town - Penalty shout not given 75'\n- Everton Penalty Shout vs Arsenal 57’\n- Aston Villa penalty shout against Crystal Palace 45+3'\n- Manchester Utd penalty shout against Ipswich 37'\n- Arsenal penalty shout against Fulham 68'\n- CRAZY / Penalty charged against Aston Villa\n- Manchester Utd penalty shout against Tottenham 60'\n- Arsenal penalty shout against Newcastle United 17'\n- Man United penalty shout vs Brighton 14'\n- Crystal Palace penalty shout against Arsenal 73'\n- Leicester penalty shout against Chelsea 44'\n- Liverpool Penalty shout vs RB Leipzig\n- Chelsea awarded a penalty against Crystal Palace from this exact scenario\n- Chelsea penalty shout against Liverpool 39'\n- Liverpool penalty shout against Arsenal (47')\n- Ipswich penalty shout v. Man City (VAR checked, not given)\n- Fulham penalty shout against Manchester City 84'\n- PSG penalty shout and possible red card on Konate\n- Manchester United penalty shout against Newcastle 48'\n- Arsenal penalty shout against Brighton 11'\n- Arsenal penalty shout against Nottingham 67'\n- Crystal Palace penalty shout against Liverpool 80'\n- Manchester City penalty shout against Newcastle United 18'\n- Liverpool penalty shout against PSG 45'\n- Manchester United Penalty Shout 64'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Penalty Shouts\", \"purpose\": \"Communication of penalty calls in football\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts discussing penalty calls in football matches, often with emotional reactions or claims\", \"inclusion_cues\": [\"Penalty shout against Liverpool\", \"Chelsea penalty shout\", \"Fulham penalty shout\", \"Ipswich penalty shout\", \"Southampton penalty shout\", \"United penalty shout\", \"Bournemouth penalty shout\", \"Palace penalty shout\", \"Brighton penalty shout\", \"Foul Newcastle\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Penalty Shouts",
+      "purpose": "Communication of penalty calls in football",
+      "emotion_tone": "Excitement",
+      "description": "Posts discussing penalty calls in football matches, often with emotional reactions or claims",
+      "inclusion_cues": [
+       "Penalty shout against Liverpool",
+       "Chelsea penalty shout",
+       "Fulham penalty shout",
+       "Ipswich penalty shout",
+       "Southampton penalty shout",
+       "United penalty shout",
+       "Bournemouth penalty shout",
+       "Palace penalty shout",
+       "Brighton penalty shout",
+       "Foul Newcastle"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 128,
+   "seed": 3124220649,
+   "seconds": 2.45
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: liverpool penalty, chelsea penalty, fulham penalty, ipswich penalty, southampton penalty, united penalty, bournemouth penalty, palace penalty, brighton penalty, foul newcastle, newcastle 20, liverpool concede, chelsea 84, liverpool 69, pen chelsea\nPosts (one per line, title first):\n- Manchester United penalty shout against Everton 45'\n- Newcastle united penalty shout vs Arsenal.\n- Chelsea penalty shout vs Liverpool\n- Liverpool penalty shout against Manchester United 86'\n- Newcastle United penalty shout against Liverpool 66'\n- Newcastle United penalty shout against Arsenal 86'\n- Liverpool possible penalty on Robinson (crosspost from r/LiverpoolFC)\n- Arsenal penalty shout, frame by frame.\n- Leeds United penalty shout against Manchester United 25'\n- Crystal Palace penalty shout vs Chelsea 45+4'\n- West Ham penalty shout against Newcastle 11'\n- Michael Oliver denies Leicester City the Penalty vs Manchester City - 51'\n- Arsenal penalty shout against Liverpool 31'\n- Chelsea penalty shout against Crystal Palace 62'\n- Strong Leeds United penalty claim. Millwall defender on a yellow. No foul.\n- Leicester City - Ipswich Town - Penalty shout not given 75'\n- Everton Penalty Shout vs Arsenal 57’\n- Aston Villa penalty shout against Crystal Palace 45+3'\n- Manchester Utd penalty shout against Ipswich 37'\n- Arsenal penalty shout against Fulham 68'\n- CRAZY / Penalty charged against Aston Villa\n- Manchester Utd penalty shout against Tottenham 60'\n- Arsenal penalty shout against Newcastle United 17'\n- Man United penalty shout vs Brighton 14'\n- Crystal Palace penalty shout against Arsenal 73'\n- Leicester penalty shout against Chelsea 44'\n- Liverpool Penalty shout vs RB Leipzig\n- Chelsea awarded a penalty against Crystal Palace from this exact scenario\n- Chelsea penalty shout against Liverpool 39'\n- Liverpool penalty shout against Arsenal (47')\n- Ipswich penalty shout v. Man City (VAR checked, not given)\n- Fulham penalty shout against Manchester City 84'\n- PSG penalty shout and possible red card on Konate\n- Manchester United penalty shout against Newcastle 48'\n- Arsenal penalty shout against Brighton 11'\n- Arsenal penalty shout against Nottingham 67'\n- Crystal Palace penalty shout against Liverpool 80'\n- Manchester City penalty shout against Newcastle United 18'\n- Liverpool penalty shout against PSG 45'\n- Manchester United Penalty Shout 64'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Penalty Shouts\", \"purpose\": \"Communication of penalty calls in football\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts where players or teams shout penalties, often with emotional or dramatic intent\", \"inclusion_cues\": [\"Penalty shout against...\", \"Penalty awarded...\", \"Penalty claimed...\", \"VAR checked...\", \"Foul or misconduct...\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Penalty Shouts\", \"purpose\": \"Communication of penalty calls in football\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts discussing penalty calls in football matches, often with emotional reactions or claims\", \"inclusion_cues\": [\"Penalty shout against Liverpool\", \"Chelsea penalty shout\", \"Fulham penalty shout\", \"Ipswich penalty shout\", \"Southampton penalty shout\", \"United penalty shout\", \"Bournemouth penalty shout\", \"Palace penalty shout\", \"Brighton penalty shout\", \"Foul Newcastle\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Penalty Shouts\", \"purpose\": \"Communication of penalty calls in football\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts discussing penalty calls in football matches, often with emotional reactions or claims\", \"inclusion_cues\": [\"Penalty shout against Liverpool\", \"Chelsea penalty shout\", \"Fulham penalty shout\", \"Ipswich penalty shout\", \"Southampton penalty shout\", \"United penalty shout\", \"Bournemouth penalty shout\", \"Palace penalty shout\", \"Brighton penalty shout\", \"Foul Newcastle\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 127,
+   "seed": 100717428,
+   "seconds": 0.81
+  }
+ ]
+}

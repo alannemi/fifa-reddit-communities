@@ -1,0 +1,175 @@
+{
+ "period_bin": 4,
+ "topic_id": 1462,
+ "keywords": "stadium cardiff, millennium stadium, madrid stadium, stadium madrid, atletico stadium, stadium atletico, final cardiff, host uefa, stadium confirmed, final uefa, place cardiff, stadium host, draw cardiff, new stadium, cardiff",
+ "n_sample_posts": 29,
+ "sample_ids": [
+  "3bmfv7",
+  "3aledo",
+  "3bma2g",
+  "3bm8of",
+  "3bm8of",
+  "52vr6s",
+  "438hhe",
+  "52v89j",
+  "3bnauu",
+  "5ruybg",
+  "609k3m",
+  "7aqj27",
+  "3bm7ac",
+  "7aqjcq",
+  "5hk01c",
+  "3t78fc",
+  "38tpmu",
+  "47eiou",
+  "3bm96v",
+  "3bm7pk",
+  "6dgn9y",
+  "6ftwak",
+  "3bm7ed",
+  "38todf",
+  "6airxk",
+  "71boj6",
+  "4lgwpx",
+  "7481z4",
+  "71c37f"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Champions League Final Venue",
+  "purpose": "Confirming the venue of the UEFA Champions League final",
+  "emotion_tone": "positive",
+  "description": "Posts discussing the venue of the UEFA Champions League final, including confirmation of Millennium Stadium in Cardiff, Kyiv, Baku, and Atletico Madrid's new stadium.",
+  "inclusion_cues": [
+   "UEFA confirm Millennium Stadium in Cardiff for 2017 Champions League final",
+   "2018 Champions League final in Kyiv, Ukraine",
+   "2019 Champions League final at Atletico Madrid's new stadium"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Champions League Final Venue",
+    "purpose": "Confirming the venue of the UEFA Champions League final",
+    "emotion_tone": "positive",
+    "description": "Posts discussing the venue of the UEFA Champions League final, including confirmation of the location and related events.",
+    "inclusion_cues": [
+     "Cardiff's Millennium Stadium confirmed as venue",
+     "UEFA confirm Kiev will host 2018 Champions League final",
+     "2019 Champions League final to be held in Baku or Madrid",
+     "Cardiff will host the UEFA Champions League Final 16/17"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Champions League Final Venue",
+    "purpose": "Confirming the venue of the UEFA Champions League final",
+    "emotion_tone": "positive",
+    "description": "Posts discussing the venue of the UEFA Champions League final, including confirmation of Millennium Stadium in Cardiff, Kyiv, Baku, and Atletico Madrid's new stadium.",
+    "inclusion_cues": [
+     "UEFA confirm Millennium Stadium in Cardiff for 2017 Champions League final",
+     "2018 Champions League final in Kyiv, Ukraine",
+     "2019 Champions League final at Atletico Madrid's new stadium"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: stadium cardiff, millennium stadium, madrid stadium, stadium madrid, atletico stadium, stadium atletico, final cardiff, host uefa, stadium confirmed, final uefa, place cardiff, stadium host, draw cardiff, new stadium, cardiff\nPosts (one per line, title first):\n- Cardiff's Millennium Stadium has been confirmed as the venue for the 2017 Champions League final by Uefa.\n- Millennium Stadium (Cardiff) to get 2017 Champions League Final\n- The Millennium Stadium in Cardiff will host the Champions League final in 2017\n- BREAKING: Millennium Stadium to host 2017 UEFA Champions League Final\n- BREAKING: Millennium Stadium to host 2017 UEFA Champions League Final\n- UEFA confirm Kiev will host the 2018 Champions League final.\n- Copa final will this season probably be played at Atletico's Vicente Calderon. Madrid don't allow finals at their stadium for now. [marca]\n- The 2018 UEFA Champions League Final will take place in Kyiv, Ukraine\n- Cardiff to host 2017 Champions League final\n- 2019 Champions League final to be held in Baku or Madrid, at Atleti's new stadium.\n- Champions League Final is taking place in Cardiff this year, did you know?\n- Wanda Metropolitano will host Copa del Rey final\n- @UEFA have just announced that the FAW has secured the @ChampionsLeague Final for #Cardiff in 2017.\n- Wanda Metropolitano will host Copa del Rey final\n- Lyon to host 2018 UEFA Europa League final\n- BBC Sport - Wales Sport Awards: Cardiff to host FA Cup third-round draw\n- Apparently the Champions League final is being held in the Captiol from The Hunger Games\n- The French Supercup will be played in Klagenfurt on the 6th of August [source in French]\n- Solna to host 2017 UEFA Europa League final\n- BREAKING: Millennium Stadium to host 2017 UEFA Champions League Final\n- Champions League final to be played under closed roof in Cardiff\n- 2019 Champions League final will be held in either Baku, Azerbaijan or at the new Atletico stadium in Madrid, say UEFA.\n- Cardiff Will host the Champions League Final at the Millennium Stadium in 2017\n- Apparently the Champions League final is being played in the Captial District from Then Hunger Games\n- A huge dragon just appeared on top of Cardiff Castle for the Champions League final\n- Wanda Metropolitano will host the final of the Champions League in 2019\n- Cardiff will host the UEFA Champions League Final 16/17\n- THE 2019 CHAMPIONS LEAGUE FINAL WILL BE PLAYED AT NEW ATLETICO MADRID'S STADIUM\n- Atletico Madrids New Stadium will host the 2019 CL Final\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Champions League Final Venue\", \"purpose\": \"Confirming the venue of the UEFA Champions League final\", \"emotion_tone\": \"positive\", \"description\": \"Posts discussing the venue of the UEFA Champions League final, including confirmation of the location and related events.\", \"inclusion_cues\": [\"Cardiff's Millennium Stadium confirmed as venue\", \"UEFA confirm Kiev will host 2018 Champions League final\", \"2019 Champions League final to be held in Baku or Madrid\", \"Cardiff will host the UEFA Champions League Final 16/17\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Champions League Final Venue",
+      "purpose": "Confirming the venue of the UEFA Champions League final",
+      "emotion_tone": "positive",
+      "description": "Posts discussing the venue of the UEFA Champions League final, including confirmation of the location and related events.",
+      "inclusion_cues": [
+       "Cardiff's Millennium Stadium confirmed as venue",
+       "UEFA confirm Kiev will host 2018 Champions League final",
+       "2019 Champions League final to be held in Baku or Madrid",
+       "Cardiff will host the UEFA Champions League Final 16/17"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 136,
+   "seed": 2468075893,
+   "seconds": 1.12
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: stadium cardiff, millennium stadium, madrid stadium, stadium madrid, atletico stadium, stadium atletico, final cardiff, host uefa, stadium confirmed, final uefa, place cardiff, stadium host, draw cardiff, new stadium, cardiff\nPosts (one per line, title first):\n- Cardiff's Millennium Stadium has been confirmed as the venue for the 2017 Champions League final by Uefa.\n- Millennium Stadium (Cardiff) to get 2017 Champions League Final\n- The Millennium Stadium in Cardiff will host the Champions League final in 2017\n- BREAKING: Millennium Stadium to host 2017 UEFA Champions League Final\n- BREAKING: Millennium Stadium to host 2017 UEFA Champions League Final\n- UEFA confirm Kiev will host the 2018 Champions League final.\n- Copa final will this season probably be played at Atletico's Vicente Calderon. Madrid don't allow finals at their stadium for now. [marca]\n- The 2018 UEFA Champions League Final will take place in Kyiv, Ukraine\n- Cardiff to host 2017 Champions League final\n- 2019 Champions League final to be held in Baku or Madrid, at Atleti's new stadium.\n- Champions League Final is taking place in Cardiff this year, did you know?\n- Wanda Metropolitano will host Copa del Rey final\n- @UEFA have just announced that the FAW has secured the @ChampionsLeague Final for #Cardiff in 2017.\n- Wanda Metropolitano will host Copa del Rey final\n- Lyon to host 2018 UEFA Europa League final\n- BBC Sport - Wales Sport Awards: Cardiff to host FA Cup third-round draw\n- Apparently the Champions League final is being held in the Captiol from The Hunger Games\n- The French Supercup will be played in Klagenfurt on the 6th of August [source in French]\n- Solna to host 2017 UEFA Europa League final\n- BREAKING: Millennium Stadium to host 2017 UEFA Champions League Final\n- Champions League final to be played under closed roof in Cardiff\n- 2019 Champions League final will be held in either Baku, Azerbaijan or at the new Atletico stadium in Madrid, say UEFA.\n- Cardiff Will host the Champions League Final at the Millennium Stadium in 2017\n- Apparently the Champions League final is being played in the Captial District from Then Hunger Games\n- A huge dragon just appeared on top of Cardiff Castle for the Champions League final\n- Wanda Metropolitano will host the final of the Champions League in 2019\n- Cardiff will host the UEFA Champions League Final 16/17\n- THE 2019 CHAMPIONS LEAGUE FINAL WILL BE PLAYED AT NEW ATLETICO MADRID'S STADIUM\n- Atletico Madrids New Stadium will host the 2019 CL Final\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Champions League Final Venue\", \"purpose\": \"Confirming the venue of the UEFA Champions League final\", \"emotion_tone\": \"positive\", \"description\": \"Posts discussing the venue of the UEFA Champions League final, including confirmation of Millennium Stadium in Cardiff, Kyiv, Baku, and Atletico Madrid's new stadium.\", \"inclusion_cues\": [\"UEFA confirm Millennium Stadium in Cardiff for 2017 Champions League final\", \"2018 Champions League final in Kyiv, Ukraine\", \"2019 Champions League final at Atletico Madrid's new stadium\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Champions League Final Venue",
+      "purpose": "Confirming the venue of the UEFA Champions League final",
+      "emotion_tone": "positive",
+      "description": "Posts discussing the venue of the UEFA Champions League final, including confirmation of Millennium Stadium in Cardiff, Kyiv, Baku, and Atletico Madrid's new stadium.",
+      "inclusion_cues": [
+       "UEFA confirm Millennium Stadium in Cardiff for 2017 Champions League final",
+       "2018 Champions League final in Kyiv, Ukraine",
+       "2019 Champions League final at Atletico Madrid's new stadium"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 139,
+   "seed": 857141731,
+   "seconds": 1.27
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: stadium cardiff, millennium stadium, madrid stadium, stadium madrid, atletico stadium, stadium atletico, final cardiff, host uefa, stadium confirmed, final uefa, place cardiff, stadium host, draw cardiff, new stadium, cardiff\nPosts (one per line, title first):\n- Cardiff's Millennium Stadium has been confirmed as the venue for the 2017 Champions League final by Uefa.\n- Millennium Stadium (Cardiff) to get 2017 Champions League Final\n- The Millennium Stadium in Cardiff will host the Champions League final in 2017\n- BREAKING: Millennium Stadium to host 2017 UEFA Champions League Final\n- BREAKING: Millennium Stadium to host 2017 UEFA Champions League Final\n- UEFA confirm Kiev will host the 2018 Champions League final.\n- Copa final will this season probably be played at Atletico's Vicente Calderon. Madrid don't allow finals at their stadium for now. [marca]\n- The 2018 UEFA Champions League Final will take place in Kyiv, Ukraine\n- Cardiff to host 2017 Champions League final\n- 2019 Champions League final to be held in Baku or Madrid, at Atleti's new stadium.\n- Champions League Final is taking place in Cardiff this year, did you know?\n- Wanda Metropolitano will host Copa del Rey final\n- @UEFA have just announced that the FAW has secured the @ChampionsLeague Final for #Cardiff in 2017.\n- Wanda Metropolitano will host Copa del Rey final\n- Lyon to host 2018 UEFA Europa League final\n- BBC Sport - Wales Sport Awards: Cardiff to host FA Cup third-round draw\n- Apparently the Champions League final is being held in the Captiol from The Hunger Games\n- The French Supercup will be played in Klagenfurt on the 6th of August [source in French]\n- Solna to host 2017 UEFA Europa League final\n- BREAKING: Millennium Stadium to host 2017 UEFA Champions League Final\n- Champions League final to be played under closed roof in Cardiff\n- 2019 Champions League final will be held in either Baku, Azerbaijan or at the new Atletico stadium in Madrid, say UEFA.\n- Cardiff Will host the Champions League Final at the Millennium Stadium in 2017\n- Apparently the Champions League final is being played in the Captial District from Then Hunger Games\n- A huge dragon just appeared on top of Cardiff Castle for the Champions League final\n- Wanda Metropolitano will host the final of the Champions League in 2019\n- Cardiff will host the UEFA Champions League Final 16/17\n- THE 2019 CHAMPIONS LEAGUE FINAL WILL BE PLAYED AT NEW ATLETICO MADRID'S STADIUM\n- Atletico Madrids New Stadium will host the 2019 CL Final\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Champions League Final Venue\", \"purpose\": \"Confirming the venue of the UEFA Champions League final\", \"emotion_tone\": \"positive\", \"description\": \"Posts discussing the venue of the UEFA Champions League final, including confirmation of the location and related events.\", \"inclusion_cues\": [\"Cardiff's Millennium Stadium confirmed as venue\", \"UEFA confirm Kiev will host 2018 Champions League final\", \"2019 Champions League final to be held in Baku or Madrid\", \"Cardiff will host the UEFA Champions League Final 16/17\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Champions League Final Venue\", \"purpose\": \"Confirming the venue of the UEFA Champions League final\", \"emotion_tone\": \"positive\", \"description\": \"Posts discussing the venue of the UEFA Champions League final, including confirmation of Millennium Stadium in Cardiff, Kyiv, Baku, and Atletico Madrid's new stadium.\", \"inclusion_cues\": [\"UEFA confirm Millennium Stadium in Cardiff for 2017 Champions League final\", \"2018 Champions League final in Kyiv, Ukraine\", \"2019 Champions League final at Atletico Madrid's new stadium\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Champions League Final Venue\", \"purpose\": \"Confirming the venue of the UEFA Champions League final\", \"emotion_tone\": \"positive\", \"description\": \"Posts discussing the venue of the UEFA Champions League final, including confirmation of Millennium Stadium in Cardiff, Kyiv, Baku, and Atletico Madrid's new stadium.\", \"inclusion_cues\": [\"UEFA confirm Millennium Stadium in Cardiff for 2017 Champions League final\", \"2018 Champions League final in Kyiv, Ukraine\", \"2019 Champions League final at Atletico Madrid's new stadium\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 138,
+   "seed": 1430135405,
+   "seconds": 0.99
+  }
+ ]
+}

@@ -1,0 +1,189 @@
+{
+ "period_bin": 8,
+ "topic_id": 805,
+ "keywords": "georgia spain, goal 18, spain mikel, goal 27, spain alvaro, 11 spain, oyarzabal 11, goal 72, 83 spain, 51 spain, spain taken, spain nico, game 90, eurocup, spain hits",
+ "n_sample_posts": 30,
+ "sample_ids": [
+  "1oxyye6",
+  "16dgok8",
+  "16dfg3f",
+  "1oxx46j",
+  "1oxx46k",
+  "1o45fxl",
+  "1oxxdry",
+  "1oxxdru",
+  "17z59sj",
+  "17z58yi",
+  "1o440ms",
+  "1dsyjh9",
+  "1dlxl2a",
+  "1b8y9wi",
+  "16dfes9",
+  "1dsaudc",
+  "16dgvmv",
+  "1ds956v",
+  "17z793j",
+  "17z6ud2",
+  "1dsaaxx",
+  "1oxxp49",
+  "16df1qu",
+  "16dgqbg",
+  "1ds95i0",
+  "1ds9lua",
+  "16df6fa",
+  "1oxxp4a",
+  "1o45b85",
+  "1dsb0s1"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Spain vs Georgia Goals",
+  "purpose": "Tracking goals and key moments in Spain vs Georgia matches",
+  "emotion_tone": "Excitement and anticipation",
+  "description": "Posts related to goals, goalkeepers, and key moments in Spain vs Georgia matches, including specific goal times and player actions.",
+  "inclusion_cues": [
+   "Spain vs Georgia",
+   "goal",
+   "goal time",
+   "player action",
+   "goalkeeper",
+   "match result"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Spain vs Georgia Goals",
+    "purpose": "Tracking goals and key moments in Spain vs Georgia matches",
+    "emotion_tone": "Excitement and anticipation",
+    "description": "Posts related to goals, goalkeepers, and key moments in Spain vs Georgia matches, including specific player names and match statistics.",
+    "inclusion_cues": [
+     "Spain vs Georgia",
+     "goal",
+     "player name",
+     "match statistic",
+     "goalkeeper",
+     "match result"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Spain vs Georgia Goals",
+    "purpose": "Tracking goals and key moments in Spain vs Georgia matches",
+    "emotion_tone": "Excitement and anticipation",
+    "description": "Posts related to goals, goalkeepers, and key moments in Spain vs Georgia matches, including specific goal times and player actions.",
+    "inclusion_cues": [
+     "Spain vs Georgia",
+     "goal",
+     "goal time",
+     "player action",
+     "goalkeeper",
+     "match result"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: georgia spain, goal 18, spain mikel, goal 27, spain alvaro, 11 spain, oyarzabal 11, goal 72, 83 spain, 51 spain, spain taken, spain nico, game 90, eurocup, spain hits\nPosts (one per line, title first):\n- Georgia 0 - [4] Spain - Mikel Oyarzabal 63'\n- Georgia 1 - [5] Spain - Alvaro Morata hat-trick 66'\n- Georgia 0 - [4] Spain - Alvaro Morata 40'\n- Georgia 0 - 1 Spain - Mikel Oyarzabal 11'\n- Georgia 0 - [1] Spain - Mikel Oyarzabal 11'\n- Spain 2 - 0 Georgia - Mikel Oyarzabal 64'\n- Georgia 0 - 2 Spain - Martín Zubimendi 22'\n- Georgia 0 - [2] Spain - Martín Zubimendi 22'\n- Spain [1] - 0 Georgia - Robin Le Normand 4‎'‎\n- Spain [1] - 0 Georgia - Robin Le Normand 4‎'‎\n- Spain 1 - 0 Georgia - Yeremy Pino 24'\n- [OptaJose] 35 - Spain has taken 35 shots against Georgia, its best total in a major tournament match (World Cup/Eurocup) since 1980. It is the fourth-best performance in a tie between the two tournaments since then. Exhibition\n- Huge chance for Georgia with the final kick of the game 90+5'\n- Georgia Legends 0 - [1] Inter Milan Legends - Luis Figo 22’\n- Georgia 0 - [3] Spain - Dani Olmo 38'\n- Spain [3] - 1 Georgia - Nico Williams 75'\n- Georgia 1 - [7] Spain - Lamina Yamal great finish 74'\n- Spain 0 - [1] Georgia - Robin Le Normand (own goal) 18‎'‎\n- Spain [3] - 1 Georgia - Luka Lochoshvili (own goal) 72‎'‎\n- Spain [2] - 1 Georgia - Ferran Torres 55‎'‎\n- Spain [2] - 1 Georgia - Fabian Ruiz 51'\n- Georgia 0 - 3 Spain - Ferran Torres 35'\n- Georgia 0 - [1] Spain - Alvaro Morata 22'\n- Georgia 1 - [6] Spain - Nico Williams 68'\n- Spain 0 - [1] Georgia - Robin Le Normand OG 18'\n- Spain [1] - 1 Georgia - Rodri 39'\n- Georgia 0 - [2] Spain - Solomon Kvirkvelia own-goal 27'\n- Georgia 0 - [3] Spain - Ferran Torres 35'\n- Spain hits the post twice in a row against Georgia 53'\n- Spain [4] - 1 Georgia - Dani Olmo 83'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Spain vs Georgia Goals\", \"purpose\": \"Tracking goals and key moments in Spain vs Georgia matches\", \"emotion_tone\": \"Excitement and anticipation\", \"description\": \"Posts related to goals, goalkeepers, and key moments in Spain vs Georgia matches, including specific player names and match statistics.\", \"inclusion_cues\": [\"Spain vs Georgia\", \"goal\", \"player name\", \"match statistic\", \"goalkeeper\", \"match result\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Spain vs Georgia Goals",
+      "purpose": "Tracking goals and key moments in Spain vs Georgia matches",
+      "emotion_tone": "Excitement and anticipation",
+      "description": "Posts related to goals, goalkeepers, and key moments in Spain vs Georgia matches, including specific player names and match statistics.",
+      "inclusion_cues": [
+       "Spain vs Georgia",
+       "goal",
+       "player name",
+       "match statistic",
+       "goalkeeper",
+       "match result"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 108,
+   "seed": 4152212051,
+   "seconds": 0.97
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: georgia spain, goal 18, spain mikel, goal 27, spain alvaro, 11 spain, oyarzabal 11, goal 72, 83 spain, 51 spain, spain taken, spain nico, game 90, eurocup, spain hits\nPosts (one per line, title first):\n- Georgia 0 - [4] Spain - Mikel Oyarzabal 63'\n- Georgia 1 - [5] Spain - Alvaro Morata hat-trick 66'\n- Georgia 0 - [4] Spain - Alvaro Morata 40'\n- Georgia 0 - 1 Spain - Mikel Oyarzabal 11'\n- Georgia 0 - [1] Spain - Mikel Oyarzabal 11'\n- Spain 2 - 0 Georgia - Mikel Oyarzabal 64'\n- Georgia 0 - 2 Spain - Martín Zubimendi 22'\n- Georgia 0 - [2] Spain - Martín Zubimendi 22'\n- Spain [1] - 0 Georgia - Robin Le Normand 4‎'‎\n- Spain [1] - 0 Georgia - Robin Le Normand 4‎'‎\n- Spain 1 - 0 Georgia - Yeremy Pino 24'\n- [OptaJose] 35 - Spain has taken 35 shots against Georgia, its best total in a major tournament match (World Cup/Eurocup) since 1980. It is the fourth-best performance in a tie between the two tournaments since then. Exhibition\n- Huge chance for Georgia with the final kick of the game 90+5'\n- Georgia Legends 0 - [1] Inter Milan Legends - Luis Figo 22’\n- Georgia 0 - [3] Spain - Dani Olmo 38'\n- Spain [3] - 1 Georgia - Nico Williams 75'\n- Georgia 1 - [7] Spain - Lamina Yamal great finish 74'\n- Spain 0 - [1] Georgia - Robin Le Normand (own goal) 18‎'‎\n- Spain [3] - 1 Georgia - Luka Lochoshvili (own goal) 72‎'‎\n- Spain [2] - 1 Georgia - Ferran Torres 55‎'‎\n- Spain [2] - 1 Georgia - Fabian Ruiz 51'\n- Georgia 0 - 3 Spain - Ferran Torres 35'\n- Georgia 0 - [1] Spain - Alvaro Morata 22'\n- Georgia 1 - [6] Spain - Nico Williams 68'\n- Spain 0 - [1] Georgia - Robin Le Normand OG 18'\n- Spain [1] - 1 Georgia - Rodri 39'\n- Georgia 0 - [2] Spain - Solomon Kvirkvelia own-goal 27'\n- Georgia 0 - [3] Spain - Ferran Torres 35'\n- Spain hits the post twice in a row against Georgia 53'\n- Spain [4] - 1 Georgia - Dani Olmo 83'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Spain vs Georgia Goals\", \"purpose\": \"Tracking goals and key moments in Spain vs Georgia matches\", \"emotion_tone\": \"Excitement and anticipation\", \"description\": \"Posts related to goals, goalkeepers, and key moments in Spain vs Georgia matches, including specific goal times and player actions.\", \"inclusion_cues\": [\"Spain vs Georgia\", \"goal\", \"goal time\", \"player action\", \"goalkeeper\", \"match result\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Spain vs Georgia Goals",
+      "purpose": "Tracking goals and key moments in Spain vs Georgia matches",
+      "emotion_tone": "Excitement and anticipation",
+      "description": "Posts related to goals, goalkeepers, and key moments in Spain vs Georgia matches, including specific goal times and player actions.",
+      "inclusion_cues": [
+       "Spain vs Georgia",
+       "goal",
+       "goal time",
+       "player action",
+       "goalkeeper",
+       "match result"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 108,
+   "seed": 2217250154,
+   "seconds": 0.54
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: georgia spain, goal 18, spain mikel, goal 27, spain alvaro, 11 spain, oyarzabal 11, goal 72, 83 spain, 51 spain, spain taken, spain nico, game 90, eurocup, spain hits\nPosts (one per line, title first):\n- Georgia 0 - [4] Spain - Mikel Oyarzabal 63'\n- Georgia 1 - [5] Spain - Alvaro Morata hat-trick 66'\n- Georgia 0 - [4] Spain - Alvaro Morata 40'\n- Georgia 0 - 1 Spain - Mikel Oyarzabal 11'\n- Georgia 0 - [1] Spain - Mikel Oyarzabal 11'\n- Spain 2 - 0 Georgia - Mikel Oyarzabal 64'\n- Georgia 0 - 2 Spain - Martín Zubimendi 22'\n- Georgia 0 - [2] Spain - Martín Zubimendi 22'\n- Spain [1] - 0 Georgia - Robin Le Normand 4‎'‎\n- Spain [1] - 0 Georgia - Robin Le Normand 4‎'‎\n- Spain 1 - 0 Georgia - Yeremy Pino 24'\n- [OptaJose] 35 - Spain has taken 35 shots against Georgia, its best total in a major tournament match (World Cup/Eurocup) since 1980. It is the fourth-best performance in a tie between the two tournaments since then. Exhibition\n- Huge chance for Georgia with the final kick of the game 90+5'\n- Georgia Legends 0 - [1] Inter Milan Legends - Luis Figo 22’\n- Georgia 0 - [3] Spain - Dani Olmo 38'\n- Spain [3] - 1 Georgia - Nico Williams 75'\n- Georgia 1 - [7] Spain - Lamina Yamal great finish 74'\n- Spain 0 - [1] Georgia - Robin Le Normand (own goal) 18‎'‎\n- Spain [3] - 1 Georgia - Luka Lochoshvili (own goal) 72‎'‎\n- Spain [2] - 1 Georgia - Ferran Torres 55‎'‎\n- Spain [2] - 1 Georgia - Fabian Ruiz 51'\n- Georgia 0 - 3 Spain - Ferran Torres 35'\n- Georgia 0 - [1] Spain - Alvaro Morata 22'\n- Georgia 1 - [6] Spain - Nico Williams 68'\n- Spain 0 - [1] Georgia - Robin Le Normand OG 18'\n- Spain [1] - 1 Georgia - Rodri 39'\n- Georgia 0 - [2] Spain - Solomon Kvirkvelia own-goal 27'\n- Georgia 0 - [3] Spain - Ferran Torres 35'\n- Spain hits the post twice in a row against Georgia 53'\n- Spain [4] - 1 Georgia - Dani Olmo 83'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Spain vs Georgia Goals\", \"purpose\": \"Tracking goals and key moments in Spain vs Georgia matches\", \"emotion_tone\": \"Excitement and anticipation\", \"description\": \"Posts related to goals, goalkeepers, and key moments in Spain vs Georgia matches, including specific player names and match statistics.\", \"inclusion_cues\": [\"Spain vs Georgia\", \"goal\", \"player name\", \"match statistic\", \"goalkeeper\", \"match result\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Spain vs Georgia Goals\", \"purpose\": \"Tracking goals and key moments in Spain vs Georgia matches\", \"emotion_tone\": \"Excitement and anticipation\", \"description\": \"Posts related to goals, goalkeepers, and key moments in Spain vs Georgia matches, including specific goal times and player actions.\", \"inclusion_cues\": [\"Spain vs Georgia\", \"goal\", \"goal time\", \"player action\", \"goalkeeper\", \"match result\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Spain vs Georgia Goals\", \"purpose\": \"Tracking goals and key moments in Spain vs Georgia matches\", \"emotion_tone\": \"Excitement and anticipation\", \"description\": \"Posts related to goals, goalkeepers, and key moments in Spain vs Georgia matches, including specific goal times, player actions, and match statistics.\", \"inclusion_cues\": [\"Spain vs Georgia\", \"goal\", \"goal time\", \"player action\", \"goalkeeper\", \"match result\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 111,
+   "seed": 1298922846,
+   "seconds": 0.63
+  }
+ ]
+}

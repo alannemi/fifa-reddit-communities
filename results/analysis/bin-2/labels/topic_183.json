@@ -1,0 +1,200 @@
+{
+ "period_bin": 2,
+ "topic_id": 183,
+ "keywords": "headline guardian, daily mail, headlines, sun uk, headline, news headline, newspapers, headline day, best headline, daily record, article love, headline year, sub news, articles page, article indian",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "l38ec",
+  "160hlk",
+  "hkl1r",
+  "w9sgo",
+  "idbi2",
+  "p1nx7",
+  "1586cy",
+  "1okquz",
+  "wdush",
+  "1w305b",
+  "soe2c",
+  "ovfko",
+  "pjld5",
+  "f5027",
+  "kg4eo",
+  "1dvt3l",
+  "1ldpax",
+  "1lt34z",
+  "op1xh",
+  "19stfq",
+  "feftb",
+  "18b44h",
+  "tmfws",
+  "130apx",
+  "rec0r",
+  "1g1m8e",
+  "khpux",
+  "s5zs2",
+  "gp0jr",
+  "hh8g5",
+  "wh5xn",
+  "vjhsr",
+  "1clmek",
+  "1baxnj",
+  "tmhud",
+  "1k327m",
+  "vv6pu",
+  "jse58",
+  "zsgou",
+  "p0ihk"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "news_headlines",
+  "purpose": "analyze and critique football news headlines",
+  "emotion_tone": "critical",
+  "description": "Posts discussing football news headlines, their accuracy, impact, and perceived bias, often linking to newspapers like The Sun, Daily Mail, Guardian, and others.",
+  "inclusion_cues": [
+   "headlines",
+   "newspapers",
+   "critique",
+   "bias",
+   "accuracy"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "newsheadlines",
+    "purpose": "critique of major news outlets in football context",
+    "emotion_tone": "critical",
+    "description": "Posts discussing criticism of major newspapers' headlines and articles, focusing on their impact on football community.",
+    "inclusion_cues": [
+     "Sun",
+     "Daily Mail",
+     "Guardian",
+     "Daily Record",
+     "sub news",
+     "article love",
+     "headlines",
+     "news headline"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "news_headlines",
+    "purpose": "analyze and critique football news headlines",
+    "emotion_tone": "critical",
+    "description": "Posts discussing football news headlines, their accuracy, impact, and perceived bias, often linking to newspapers like The Sun, Daily Mail, Guardian, and others.",
+    "inclusion_cues": [
+     "headlines",
+     "newspapers",
+     "critique",
+     "bias",
+     "accuracy"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: headline guardian, daily mail, headlines, sun uk, headline, news headline, newspapers, headline day, best headline, daily record, article love, headline year, sub news, articles page, article indian\nPosts (one per line, title first):\n- Is there ever a good reason to submit an article from the Sun? / If you all don't think so we should make it one of r/soccer's guidelines. I keep seeing The Sun articles on the front-page and in my opinion they have no place on this sub-reddit.\n- Typo in the Sky Sports minute-by-minute coverage of Bournemouth vs. Wigan (41st minute).\n- If you don't read F365's Mediawatch, you should. It calls out newspapers on sensationalist headlines, wrong predictions and ridicules claims of EXCLUSIVES!\n- Just a reminder as to why we should never link to the Daily Mail. / I think everyone is sick of seeing Daily Mail links being posted. Here are results from the first page of Google results alone. QPR spending spree set to continue with Hoilett next on Hughes' wishlist Hoilett blow for Blackburn with\n- Why I love the Guardian. What do you use for your football/sports news? / \"And now for a Daily Mail/Royal family coverage check, and you'll be pleased to know that today's Mail has a two-page feature about Princess Diana - including a mock-up of what her Facebook page might have looked like had she \n- Really Daily Mail? The arrow was absolutely necessary?\n- Next lot of top 100 up from the Guardian\n- The Sun thinks Sarif Industries, from the Deus Ex video game, actually exists\n- Perhaps this is nitpicking, but can we all agree to not re-post stories from the major news outlets - Guardian, Independent, BBC, and the like / I think the majority of us have already chewed on that stick of gum\n- The likes of the Daily Mail, the Daily Mirror, etc. this goes out you\n- Nice Going, Times Of India...\n- How did nobody at the BBC catch this typo? It's been up for hours.\n- The neutrality of this article is disputed / of course it is...\n- The Sun & Charlie Wyett are content thieves\n- I've plenty of respect for the Guardian, but it's articles like this that irritate me.\n- Unfortunate Typo For Swansea Twitter Page.\n- Oh, Daily Mail!\n- Is this article a joke?\n- My local newspaper is fail\n- Slow news day...\n- (Not) in the news this week\n- Probably the most misleading headline of all time.\n- First past the post you say.....\n- Sun’s Arshavin saving McDonald’s vouchers story misleading\n- The latest headlines...\n- And you thought the Daily Mail was bad....\n- This is a quite brilliant headline.\n- Towards he end the article goes into pun overload\n- This is one of the most bitter articles I have ever read.\n- Utterly extraordinary front page of the Sunday Herald in Scotland this morning\n- Yeah... I think you got that headline wrong\n- The Sun headline tomorrow....\n- The truth - why the Telegraph dropped Kelvin MacKenzie's column\n- Anybody else notice the mistake on The Sun's website?\n- Early Doors with a great article about yesterday's drama.\n- Breaking News: Man arrives at work\n- Saw this in The Sun's comments section..\n- Anyone else see the irony in this headline?\n- All of Britain's tabloids' headlines for tomorrow\n- After watching the game, something about the Wikipedia page seems wrong.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"newsheadlines\", \"purpose\": \"critique of major news outlets in football context\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing criticism of major newspapers' headlines and articles, focusing on their impact on football community.\", \"inclusion_cues\": [\"Sun\", \"Daily Mail\", \"Guardian\", \"Daily Record\", \"sub news\", \"article love\", \"headlines\", \"news headline\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "newsheadlines",
+      "purpose": "critique of major news outlets in football context",
+      "emotion_tone": "critical",
+      "description": "Posts discussing criticism of major newspapers' headlines and articles, focusing on their impact on football community.",
+      "inclusion_cues": [
+       "Sun",
+       "Daily Mail",
+       "Guardian",
+       "Daily Record",
+       "sub news",
+       "article love",
+       "headlines",
+       "news headline"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 103,
+   "seed": 1019909738,
+   "seconds": 4.14
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: headline guardian, daily mail, headlines, sun uk, headline, news headline, newspapers, headline day, best headline, daily record, article love, headline year, sub news, articles page, article indian\nPosts (one per line, title first):\n- Is there ever a good reason to submit an article from the Sun? / If you all don't think so we should make it one of r/soccer's guidelines. I keep seeing The Sun articles on the front-page and in my opinion they have no place on this sub-reddit.\n- Typo in the Sky Sports minute-by-minute coverage of Bournemouth vs. Wigan (41st minute).\n- If you don't read F365's Mediawatch, you should. It calls out newspapers on sensationalist headlines, wrong predictions and ridicules claims of EXCLUSIVES!\n- Just a reminder as to why we should never link to the Daily Mail. / I think everyone is sick of seeing Daily Mail links being posted. Here are results from the first page of Google results alone. QPR spending spree set to continue with Hoilett next on Hughes' wishlist Hoilett blow for Blackburn with\n- Why I love the Guardian. What do you use for your football/sports news? / \"And now for a Daily Mail/Royal family coverage check, and you'll be pleased to know that today's Mail has a two-page feature about Princess Diana - including a mock-up of what her Facebook page might have looked like had she \n- Really Daily Mail? The arrow was absolutely necessary?\n- Next lot of top 100 up from the Guardian\n- The Sun thinks Sarif Industries, from the Deus Ex video game, actually exists\n- Perhaps this is nitpicking, but can we all agree to not re-post stories from the major news outlets - Guardian, Independent, BBC, and the like / I think the majority of us have already chewed on that stick of gum\n- The likes of the Daily Mail, the Daily Mirror, etc. this goes out you\n- Nice Going, Times Of India...\n- How did nobody at the BBC catch this typo? It's been up for hours.\n- The neutrality of this article is disputed / of course it is...\n- The Sun & Charlie Wyett are content thieves\n- I've plenty of respect for the Guardian, but it's articles like this that irritate me.\n- Unfortunate Typo For Swansea Twitter Page.\n- Oh, Daily Mail!\n- Is this article a joke?\n- My local newspaper is fail\n- Slow news day...\n- (Not) in the news this week\n- Probably the most misleading headline of all time.\n- First past the post you say.....\n- Sun’s Arshavin saving McDonald’s vouchers story misleading\n- The latest headlines...\n- And you thought the Daily Mail was bad....\n- This is a quite brilliant headline.\n- Towards he end the article goes into pun overload\n- This is one of the most bitter articles I have ever read.\n- Utterly extraordinary front page of the Sunday Herald in Scotland this morning\n- Yeah... I think you got that headline wrong\n- The Sun headline tomorrow....\n- The truth - why the Telegraph dropped Kelvin MacKenzie's column\n- Anybody else notice the mistake on The Sun's website?\n- Early Doors with a great article about yesterday's drama.\n- Breaking News: Man arrives at work\n- Saw this in The Sun's comments section..\n- Anyone else see the irony in this headline?\n- All of Britain's tabloids' headlines for tomorrow\n- After watching the game, something about the Wikipedia page seems wrong.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"news_headlines\", \"purpose\": \"analyze and critique football news headlines\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing football news headlines, their accuracy, impact, and perceived bias, often linking to newspapers like The Sun, Daily Mail, Guardian, and others.\", \"inclusion_cues\": [\"headlines\", \"newspapers\", \"critique\", \"bias\", \"accuracy\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "news_headlines",
+      "purpose": "analyze and critique football news headlines",
+      "emotion_tone": "critical",
+      "description": "Posts discussing football news headlines, their accuracy, impact, and perceived bias, often linking to newspapers like The Sun, Daily Mail, Guardian, and others.",
+      "inclusion_cues": [
+       "headlines",
+       "newspapers",
+       "critique",
+       "bias",
+       "accuracy"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 100,
+   "seed": 1926681086,
+   "seconds": 0.67
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: headline guardian, daily mail, headlines, sun uk, headline, news headline, newspapers, headline day, best headline, daily record, article love, headline year, sub news, articles page, article indian\nPosts (one per line, title first):\n- Is there ever a good reason to submit an article from the Sun? / If you all don't think so we should make it one of r/soccer's guidelines. I keep seeing The Sun articles on the front-page and in my opinion they have no place on this sub-reddit.\n- Typo in the Sky Sports minute-by-minute coverage of Bournemouth vs. Wigan (41st minute).\n- If you don't read F365's Mediawatch, you should. It calls out newspapers on sensationalist headlines, wrong predictions and ridicules claims of EXCLUSIVES!\n- Just a reminder as to why we should never link to the Daily Mail. / I think everyone is sick of seeing Daily Mail links being posted. Here are results from the first page of Google results alone. QPR spending spree set to continue with Hoilett next on Hughes' wishlist Hoilett blow for Blackburn with\n- Why I love the Guardian. What do you use for your football/sports news? / \"And now for a Daily Mail/Royal family coverage check, and you'll be pleased to know that today's Mail has a two-page feature about Princess Diana - including a mock-up of what her Facebook page might have looked like had she \n- Really Daily Mail? The arrow was absolutely necessary?\n- Next lot of top 100 up from the Guardian\n- The Sun thinks Sarif Industries, from the Deus Ex video game, actually exists\n- Perhaps this is nitpicking, but can we all agree to not re-post stories from the major news outlets - Guardian, Independent, BBC, and the like / I think the majority of us have already chewed on that stick of gum\n- The likes of the Daily Mail, the Daily Mirror, etc. this goes out you\n- Nice Going, Times Of India...\n- How did nobody at the BBC catch this typo? It's been up for hours.\n- The neutrality of this article is disputed / of course it is...\n- The Sun & Charlie Wyett are content thieves\n- I've plenty of respect for the Guardian, but it's articles like this that irritate me.\n- Unfortunate Typo For Swansea Twitter Page.\n- Oh, Daily Mail!\n- Is this article a joke?\n- My local newspaper is fail\n- Slow news day...\n- (Not) in the news this week\n- Probably the most misleading headline of all time.\n- First past the post you say.....\n- Sun’s Arshavin saving McDonald’s vouchers story misleading\n- The latest headlines...\n- And you thought the Daily Mail was bad....\n- This is a quite brilliant headline.\n- Towards he end the article goes into pun overload\n- This is one of the most bitter articles I have ever read.\n- Utterly extraordinary front page of the Sunday Herald in Scotland this morning\n- Yeah... I think you got that headline wrong\n- The Sun headline tomorrow....\n- The truth - why the Telegraph dropped Kelvin MacKenzie's column\n- Anybody else notice the mistake on The Sun's website?\n- Early Doors with a great article about yesterday's drama.\n- Breaking News: Man arrives at work\n- Saw this in The Sun's comments section..\n- Anyone else see the irony in this headline?\n- All of Britain's tabloids' headlines for tomorrow\n- After watching the game, something about the Wikipedia page seems wrong.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"newsheadlines\", \"purpose\": \"critique of major news outlets in football context\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing criticism of major newspapers' headlines and articles, focusing on their impact on football community.\", \"inclusion_cues\": [\"Sun\", \"Daily Mail\", \"Guardian\", \"Daily Record\", \"sub news\", \"article love\", \"headlines\", \"news headline\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"news_headlines\", \"purpose\": \"analyze and critique football news headlines\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing football news headlines, their accuracy, impact, and perceived bias, often linking to newspapers like The Sun, Daily Mail, Guardian, and others.\", \"inclusion_cues\": [\"headlines\", \"newspapers\", \"critique\", \"bias\", \"accuracy\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"news_headlines\", \"purpose\": \"analyze and critique football news headlines\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing football news headlines, their accuracy, impact, and perceived bias, often linking to newspapers like The Sun, Daily Mail, Guardian, and others.\", \"inclusion_cues\": [\"headlines\", \"newspapers\", \"critique\", \"bias\", \"accuracy\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 99,
+   "seed": 4085564243,
+   "seconds": 0.5
+  }
+ ]
+}

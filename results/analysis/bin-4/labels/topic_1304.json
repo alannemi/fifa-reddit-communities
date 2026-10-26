@@ -1,0 +1,162 @@
+{
+ "period_bin": 4,
+ "topic_id": 1304,
+ "keywords": "mcclaren newcastle, manager newcastle, newcastle boss, steve mcclaren, mcclaren steve, mcclaren, newcastle appoint, coach newcastle, mcclaren sacking, newcastle owner, sacked newcastle, newcastle expected, changes newcastle, season newcastle, newcastle relegation",
+ "n_sample_posts": 31,
+ "sample_ids": [
+  "38jqnp",
+  "38f9r8",
+  "38lvtn",
+  "39bg8z",
+  "39bnii",
+  "33g9l5",
+  "49qlpp",
+  "3897mk",
+  "49yeqp",
+  "34tcdc",
+  "4yded1",
+  "31z8rt",
+  "34ohd4",
+  "49yemz",
+  "39fayh",
+  "3vbx0p",
+  "48s086",
+  "49796e",
+  "39bgrt",
+  "39bg58",
+  "6ioftg",
+  "573gsu",
+  "3fs7h9",
+  "4971my",
+  "49evae",
+  "6s5f1v",
+  "49yeyl",
+  "39bn16",
+  "39arwo",
+  "2ybv9g",
+  "390m8c"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "identical",
+ "round_iterations": 1,
+ "needs_review": false,
+ "label": {
+  "name": "Newcastle Manager Changes",
+  "purpose": "Tracking updates on Newcastle United's managerial changes",
+  "emotion_tone": "Neutral to urgent",
+  "description": "Posts related to Newcastle United's manager, including appointments, sacking, and changes in coaching staff",
+  "inclusion_cues": [
+   "Newcastle United: Steve McClaren set to be named boss next week",
+   "Steve McClaren set to be named Newcastle boss next week",
+   "Steve McClaren appointed Newcastle Head Coach",
+   "Newcastle United sack Steve McClaren"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Newcastle Manager Changes",
+    "purpose": "Tracking updates on Newcastle United's managerial changes",
+    "emotion_tone": "Neutral to urgent",
+    "description": "Posts related to Newcastle United's manager, including appointments, sacking, and changes in coaching staff",
+    "inclusion_cues": [
+     "Newcastle United: Steve McClaren set to be named boss next week",
+     "Steve McClaren set to be named Newcastle boss next week",
+     "Steve McClaren appointed Newcastle Head Coach",
+     "Newcastle United sack Steve McClaren"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Newcastle Manager Changes",
+    "purpose": "Tracking updates on Newcastle United's managerial changes",
+    "emotion_tone": "Neutral to urgent",
+    "description": "Posts related to Newcastle United's manager, including appointments, sacking, and changes in coaching staff.",
+    "inclusion_cues": [
+     "Newcastle United: Steve McClaren set to be named boss next week",
+     "Steve McClaren set to be named Newcastle boss next week",
+     "Steve McClaren appointed Newcastle Head Coach",
+     "Newcastle United sack Steve McClaren"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: mcclaren newcastle, manager newcastle, newcastle boss, steve mcclaren, mcclaren steve, mcclaren, newcastle appoint, coach newcastle, mcclaren sacking, newcastle owner, sacked newcastle, newcastle expected, changes newcastle, season newcastle, newcastle relegation\nPosts (one per line, title first):\n- Newcastle United: Steve McClaren set to be named boss next week\n- Steve McClaren set to be named Newcastle boss next week\n- Steve McClaren Set to be New Newcastle United Head Coach\n- BBC Sport: Steve McClaren appointed Newcastle Head Coach\n- BBC Sport - Steve McClaren: Newcastle appoint ex-England manager\n- Newcastle United to unveil head coach by the end of May. Just two candidates in John Carver and Steve McClaren.\n- Steve McClaren: Newcastle head coach remains in charge after talks\n- EXCLUSIVE - Steve McClaren is the new manager of Newcastle United\n- Newcastle United have sacked head coach Steve McClaren.\n- Steve McClaren rejects Newcastle's offer to take over for the last three games of the season\n- Steve Harper rejoins Newcastle as an academy coach\n- The Northern Premier League is sorry to have to announce that Norton United have tendered their resignation as at the end of the current playing season. The club have indicated that they will be running only junior teams next season.\n- Newcastle United to approach Derby County's Steve McClaren in the next 24 hours in a bid to keep the club in the Premier League.\n- Newcastle United sack Steve McClaren\n- Steve McClaren says he is 'up for the job' after being set a target of ending Newcastle's 46-year wait for a trophy.\n- Steve McClaren set to make big changes for Newcastle United's clash with Liverpool\n- Steve McClaren insists he is still the man to save Newcastle from relegation despite their latest Premier League defeat\n- Newcastle's former owner Sir John Hall calls for Steve McClaren's sacking\n- Steve McClaren has been appointed Newcastle United head coach.\n- Steve McClaren is the new head coach of Newcastle [SSN]\n- Newcastle United part ways with Chief Scout Graham Carr\n- Steve McClaren being interviewed today about possible return to Derby.\n- BBC Sport - Steve McClaren: Newcastle boss wants Coloccini & Sissoko to stay\n- Steve McClaren's open invitation to sack him\n- Guardian: Newcastle expected to sack Steve McClaren within 48 hours\n- Steve McClaren shortlisted for the Hearts job\n- BBC Sport - Steve McClaren sacked as Newcastle United head coach\n- Newcastle appoint Steve McClaren as new manager\n- Sky Sports News: Steve McClaren to be named Newcastle manager.\n- Newcastle United's chief scout Graham Carr prepares for his biggest summer yet with over ten transfers expected and a new manager to contend with.\n- Steve McClaren will be confirmed as Newcastle’s new head coach in the next 48 hours, and will meet Lee Charnley to reiterate the need for a clutch of domestic signings this summer\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Newcastle Manager Changes\", \"purpose\": \"Tracking updates on Newcastle United's managerial changes\", \"emotion_tone\": \"Neutral to urgent\", \"description\": \"Posts related to Newcastle United's manager, including appointments, sacking, and changes in coaching staff\", \"inclusion_cues\": [\"Newcastle United: Steve McClaren set to be named boss next week\", \"Steve McClaren set to be named Newcastle boss next week\", \"Steve McClaren appointed Newcastle Head Coach\", \"Newcastle United sack Steve McClaren\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Newcastle Manager Changes",
+      "purpose": "Tracking updates on Newcastle United's managerial changes",
+      "emotion_tone": "Neutral to urgent",
+      "description": "Posts related to Newcastle United's manager, including appointments, sacking, and changes in coaching staff",
+      "inclusion_cues": [
+       "Newcastle United: Steve McClaren set to be named boss next week",
+       "Steve McClaren set to be named Newcastle boss next week",
+       "Steve McClaren appointed Newcastle Head Coach",
+       "Newcastle United sack Steve McClaren"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 122,
+   "seed": 822752354,
+   "seconds": 3.14
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: mcclaren newcastle, manager newcastle, newcastle boss, steve mcclaren, mcclaren steve, mcclaren, newcastle appoint, coach newcastle, mcclaren sacking, newcastle owner, sacked newcastle, newcastle expected, changes newcastle, season newcastle, newcastle relegation\nPosts (one per line, title first):\n- Newcastle United: Steve McClaren set to be named boss next week\n- Steve McClaren set to be named Newcastle boss next week\n- Steve McClaren Set to be New Newcastle United Head Coach\n- BBC Sport: Steve McClaren appointed Newcastle Head Coach\n- BBC Sport - Steve McClaren: Newcastle appoint ex-England manager\n- Newcastle United to unveil head coach by the end of May. Just two candidates in John Carver and Steve McClaren.\n- Steve McClaren: Newcastle head coach remains in charge after talks\n- EXCLUSIVE - Steve McClaren is the new manager of Newcastle United\n- Newcastle United have sacked head coach Steve McClaren.\n- Steve McClaren rejects Newcastle's offer to take over for the last three games of the season\n- Steve Harper rejoins Newcastle as an academy coach\n- The Northern Premier League is sorry to have to announce that Norton United have tendered their resignation as at the end of the current playing season. The club have indicated that they will be running only junior teams next season.\n- Newcastle United to approach Derby County's Steve McClaren in the next 24 hours in a bid to keep the club in the Premier League.\n- Newcastle United sack Steve McClaren\n- Steve McClaren says he is 'up for the job' after being set a target of ending Newcastle's 46-year wait for a trophy.\n- Steve McClaren set to make big changes for Newcastle United's clash with Liverpool\n- Steve McClaren insists he is still the man to save Newcastle from relegation despite their latest Premier League defeat\n- Newcastle's former owner Sir John Hall calls for Steve McClaren's sacking\n- Steve McClaren has been appointed Newcastle United head coach.\n- Steve McClaren is the new head coach of Newcastle [SSN]\n- Newcastle United part ways with Chief Scout Graham Carr\n- Steve McClaren being interviewed today about possible return to Derby.\n- BBC Sport - Steve McClaren: Newcastle boss wants Coloccini & Sissoko to stay\n- Steve McClaren's open invitation to sack him\n- Guardian: Newcastle expected to sack Steve McClaren within 48 hours\n- Steve McClaren shortlisted for the Hearts job\n- BBC Sport - Steve McClaren sacked as Newcastle United head coach\n- Newcastle appoint Steve McClaren as new manager\n- Sky Sports News: Steve McClaren to be named Newcastle manager.\n- Newcastle United's chief scout Graham Carr prepares for his biggest summer yet with over ten transfers expected and a new manager to contend with.\n- Steve McClaren will be confirmed as Newcastle’s new head coach in the next 48 hours, and will meet Lee Charnley to reiterate the need for a clutch of domestic signings this summer\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Newcastle Manager Changes\", \"purpose\": \"Tracking updates on Newcastle United's managerial changes\", \"emotion_tone\": \"Neutral to urgent\", \"description\": \"Posts related to Newcastle United's manager, including appointments, sacking, and changes in coaching staff.\", \"inclusion_cues\": [\"Newcastle United: Steve McClaren set to be named boss next week\", \"Steve McClaren set to be named Newcastle boss next week\", \"Steve McClaren appointed Newcastle Head Coach\", \"Newcastle United sack Steve McClaren\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Newcastle Manager Changes",
+      "purpose": "Tracking updates on Newcastle United's managerial changes",
+      "emotion_tone": "Neutral to urgent",
+      "description": "Posts related to Newcastle United's manager, including appointments, sacking, and changes in coaching staff.",
+      "inclusion_cues": [
+       "Newcastle United: Steve McClaren set to be named boss next week",
+       "Steve McClaren set to be named Newcastle boss next week",
+       "Steve McClaren appointed Newcastle Head Coach",
+       "Newcastle United sack Steve McClaren"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 122,
+   "seed": 4041356781,
+   "seconds": 1.86
+  }
+ ]
+}

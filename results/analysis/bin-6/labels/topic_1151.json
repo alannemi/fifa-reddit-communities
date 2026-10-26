@@ -1,0 +1,194 @@
+{
+ "period_bin": 6,
+ "topic_id": 1151,
+ "keywords": "scottish cup, scottishcup, cup scottish, scottish league, finals scottish, scotland football, scottish team, scottish challenge, dundee rangers, sport scottish, johnstone dundee, 2019 scottish, round draw, bbc scotland, uk scottish",
+ "n_sample_posts": 30,
+ "sample_ids": [
+  "mz8psk",
+  "mjw96m",
+  "ssmflg",
+  "kejwbw",
+  "qhovha",
+  "bu2mjw",
+  "owg2qw",
+  "e14ima",
+  "sag0vd",
+  "nmx5aa",
+  "f1ebue",
+  "ou2mcz",
+  "9l3bxw",
+  "p4xg4z",
+  "te8uoa",
+  "9onts4",
+  "n76s13",
+  "kucorb",
+  "orh0iv",
+  "r5rmib",
+  "pu4uh6",
+  "a6gw4n",
+  "k3fj15",
+  "qevp7d",
+  "klxzan",
+  "pe08qh",
+  "pr67y1",
+  "ppz8kz",
+  "orgt7s",
+  "ku92vt"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Scottish Cup Draws",
+  "purpose": "Reporting on Scottish Cup draw schedules and fixtures",
+  "emotion_tone": "informative",
+  "description": "Posts about Scottish Cup draw dates, teams, and matches, including semi-finals, quarters, and third rounds.",
+  "inclusion_cues": [
+   "Scottish Cup Semi Final Draw",
+   "Scottish Cup Fourth + Fifth Round Draw",
+   "Scottish Cup Quarter Final draw",
+   "Betfred Cup Semi-Final Draw",
+   "Scottish Cup Third Round Draw",
+   "Scottish Cup 2nd Round Draw",
+   "Scottish Cup 1st Round Draw"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Scottish Cup Draws",
+    "purpose": "Reporting on Scottish Cup draw schedules and fixtures",
+    "emotion_tone": "informative",
+    "description": "Posts related to the Scottish Cup draw schedules, fixtures, and associated events",
+    "inclusion_cues": [
+     "Scottish Cup Semi Final Draw",
+     "Scottish Cup Fourth + Fifth Round Draw",
+     "Scottish Cup Quarter Final draw",
+     "Betfred Cup Semi-Final Draw",
+     "Scottish Cup Third Round Draw",
+     "Scottish Cup 2nd Round Draw",
+     "Scottish Cup 1st Round Draw"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Scottish Cup Draws",
+    "purpose": "Reporting on Scottish Cup draw schedules and fixtures",
+    "emotion_tone": "informative",
+    "description": "Posts about Scottish Cup draw dates, teams, and matches, including semi-finals, quarters, and third rounds.",
+    "inclusion_cues": [
+     "Scottish Cup Semi Final Draw",
+     "Scottish Cup Fourth + Fifth Round Draw",
+     "Scottish Cup Quarter Final draw",
+     "Betfred Cup Semi-Final Draw",
+     "Scottish Cup Third Round Draw",
+     "Scottish Cup 2nd Round Draw",
+     "Scottish Cup 1st Round Draw"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: scottish cup, scottishcup, cup scottish, scottish league, finals scottish, scotland football, scottish team, scottish challenge, dundee rangers, sport scottish, johnstone dundee, 2019 scottish, round draw, bbc scotland, uk scottish\nPosts (one per line, title first):\n- Scottish Cup Semi Final Draw / *cover photo* St Mirren vs St Johnstone Dundee United vs Hibernian Ties to be played on the 8th/9th May. Hampden Park.\n- Scottish Cup Fourth + Fifth Round Draw. Fourth Round to be played weekend of 17th April; Fifth Round to be played weekend of 24th April.\n- Scottish Cup Quarter Final draw / Heart of Midlothian vs St Mirren Dundee United vs Celtic Dundee vs Rangers Motherwell vs Hibs -------- Played on weekend of 12th March\n- Betfred Cup Semi-Final Draw | Ties to be played on the weekend of January 23rd - 24th / Hibernian vs St Johnstone Livingston vs St Mirren\n- [Scottish Cup] Brechin City (Lowland League, Tier 5) vs Darvel (West of Scotland Football League Premier Division, Tier 6) has been selected as the televised Scottish Cup third round match. The tie will be played on Monday 29th November, 7:45 PM KO, and will be shown live on BBC Scotland in the UK\n- 2019 Scottish League Cup Group Stage Full Draw\n- Breakdown of the draws for each Scottish team in Europe\n- Scottish cup 4th round draw\n- Scottish Cup Fifth Round draw\n- Scottish League Cup 2021/22 Group Stage draw.\n- Scottish cup Quarter Finals draw\n- [Sky Sports Scotland] A drunken Rod Stewart does the Scottish Cup 5th Round draw\n- Kickoff times for Scottish league cup semi finals\n- Scottish League Cup quarter final draw\n- [Scottish Cup] A tale of two cities... The Semi-Finals will be played over the weekend of Saturday 16 & Sunday 17 April.\n- Scottish Challenge Cup draw\n- [BBC Sport] Scottish Cup semi-finals: Anticipations high after mad-cap quarters set up wide open semi-final showdown.\n- Scottish Cup Third Round Draw in full. Ties to be on the weekend of the 30th January.\n- Scottish League Cup second round draw.\n- Scottish Cup Fourth Round draw\n- Scottish League Cup semi-final draw\n- All ten Scottish Championship teams drew today.\n- Betfred Cup Quarter Final Draw | Midweek of December 15th - 17th / St Mirren [SP] vs Rangers [SP] Alloa Athletic [SC] vs Hibernian [SP] Livingston [SP] vs Ross County [SP] Dunfermline Athletic [SC] vs St Johnstone [SP]\n- Scottish Cup Third Round draw\n- [Scottish Cup] Scottish Cup 2nd Round Draw. Ties to be played Saturday 9th January.\n- Scottish Cup first round draw\n- Scottish Cup second round draw\n- Scottish Cup first round fixture list and map\n- Scottish League Cup group stage final standings.\n- [Scottish Cup] The numbers for this morning’s Scottish Cup 3rd round draw, set to take place at 11am live on @ScottishCup’s Twitter, Facebook & YouTube.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Scottish Cup Draws\", \"purpose\": \"Reporting on Scottish Cup draw schedules and fixtures\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to the Scottish Cup draw schedules, fixtures, and associated events\", \"inclusion_cues\": [\"Scottish Cup Semi Final Draw\", \"Scottish Cup Fourth + Fifth Round Draw\", \"Scottish Cup Quarter Final draw\", \"Betfred Cup Semi-Final Draw\", \"Scottish Cup Third Round Draw\", \"Scottish Cup 2nd Round Draw\", \"Scottish Cup 1st Round Draw\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Scottish Cup Draws",
+      "purpose": "Reporting on Scottish Cup draw schedules and fixtures",
+      "emotion_tone": "informative",
+      "description": "Posts related to the Scottish Cup draw schedules, fixtures, and associated events",
+      "inclusion_cues": [
+       "Scottish Cup Semi Final Draw",
+       "Scottish Cup Fourth + Fifth Round Draw",
+       "Scottish Cup Quarter Final draw",
+       "Betfred Cup Semi-Final Draw",
+       "Scottish Cup Third Round Draw",
+       "Scottish Cup 2nd Round Draw",
+       "Scottish Cup 1st Round Draw"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 132,
+   "seed": 1510213728,
+   "seconds": 0.74
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: scottish cup, scottishcup, cup scottish, scottish league, finals scottish, scotland football, scottish team, scottish challenge, dundee rangers, sport scottish, johnstone dundee, 2019 scottish, round draw, bbc scotland, uk scottish\nPosts (one per line, title first):\n- Scottish Cup Semi Final Draw / *cover photo* St Mirren vs St Johnstone Dundee United vs Hibernian Ties to be played on the 8th/9th May. Hampden Park.\n- Scottish Cup Fourth + Fifth Round Draw. Fourth Round to be played weekend of 17th April; Fifth Round to be played weekend of 24th April.\n- Scottish Cup Quarter Final draw / Heart of Midlothian vs St Mirren Dundee United vs Celtic Dundee vs Rangers Motherwell vs Hibs -------- Played on weekend of 12th March\n- Betfred Cup Semi-Final Draw | Ties to be played on the weekend of January 23rd - 24th / Hibernian vs St Johnstone Livingston vs St Mirren\n- [Scottish Cup] Brechin City (Lowland League, Tier 5) vs Darvel (West of Scotland Football League Premier Division, Tier 6) has been selected as the televised Scottish Cup third round match. The tie will be played on Monday 29th November, 7:45 PM KO, and will be shown live on BBC Scotland in the UK\n- 2019 Scottish League Cup Group Stage Full Draw\n- Breakdown of the draws for each Scottish team in Europe\n- Scottish cup 4th round draw\n- Scottish Cup Fifth Round draw\n- Scottish League Cup 2021/22 Group Stage draw.\n- Scottish cup Quarter Finals draw\n- [Sky Sports Scotland] A drunken Rod Stewart does the Scottish Cup 5th Round draw\n- Kickoff times for Scottish league cup semi finals\n- Scottish League Cup quarter final draw\n- [Scottish Cup] A tale of two cities... The Semi-Finals will be played over the weekend of Saturday 16 & Sunday 17 April.\n- Scottish Challenge Cup draw\n- [BBC Sport] Scottish Cup semi-finals: Anticipations high after mad-cap quarters set up wide open semi-final showdown.\n- Scottish Cup Third Round Draw in full. Ties to be on the weekend of the 30th January.\n- Scottish League Cup second round draw.\n- Scottish Cup Fourth Round draw\n- Scottish League Cup semi-final draw\n- All ten Scottish Championship teams drew today.\n- Betfred Cup Quarter Final Draw | Midweek of December 15th - 17th / St Mirren [SP] vs Rangers [SP] Alloa Athletic [SC] vs Hibernian [SP] Livingston [SP] vs Ross County [SP] Dunfermline Athletic [SC] vs St Johnstone [SP]\n- Scottish Cup Third Round draw\n- [Scottish Cup] Scottish Cup 2nd Round Draw. Ties to be played Saturday 9th January.\n- Scottish Cup first round draw\n- Scottish Cup second round draw\n- Scottish Cup first round fixture list and map\n- Scottish League Cup group stage final standings.\n- [Scottish Cup] The numbers for this morning’s Scottish Cup 3rd round draw, set to take place at 11am live on @ScottishCup’s Twitter, Facebook & YouTube.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Scottish Cup Draws\", \"purpose\": \"Reporting on Scottish Cup draw schedules and fixtures\", \"emotion_tone\": \"informative\", \"description\": \"Posts about Scottish Cup draw dates, teams, and matches, including semi-finals, quarters, and third rounds.\", \"inclusion_cues\": [\"Scottish Cup Semi Final Draw\", \"Scottish Cup Fourth + Fifth Round Draw\", \"Scottish Cup Quarter Final draw\", \"Betfred Cup Semi-Final Draw\", \"Scottish Cup Third Round Draw\", \"Scottish Cup 2nd Round Draw\", \"Scottish Cup 1st Round Draw\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Scottish Cup Draws",
+      "purpose": "Reporting on Scottish Cup draw schedules and fixtures",
+      "emotion_tone": "informative",
+      "description": "Posts about Scottish Cup draw dates, teams, and matches, including semi-finals, quarters, and third rounds.",
+      "inclusion_cues": [
+       "Scottish Cup Semi Final Draw",
+       "Scottish Cup Fourth + Fifth Round Draw",
+       "Scottish Cup Quarter Final draw",
+       "Betfred Cup Semi-Final Draw",
+       "Scottish Cup Third Round Draw",
+       "Scottish Cup 2nd Round Draw",
+       "Scottish Cup 1st Round Draw"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 139,
+   "seed": 2125590607,
+   "seconds": 0.95
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: scottish cup, scottishcup, cup scottish, scottish league, finals scottish, scotland football, scottish team, scottish challenge, dundee rangers, sport scottish, johnstone dundee, 2019 scottish, round draw, bbc scotland, uk scottish\nPosts (one per line, title first):\n- Scottish Cup Semi Final Draw / *cover photo* St Mirren vs St Johnstone Dundee United vs Hibernian Ties to be played on the 8th/9th May. Hampden Park.\n- Scottish Cup Fourth + Fifth Round Draw. Fourth Round to be played weekend of 17th April; Fifth Round to be played weekend of 24th April.\n- Scottish Cup Quarter Final draw / Heart of Midlothian vs St Mirren Dundee United vs Celtic Dundee vs Rangers Motherwell vs Hibs -------- Played on weekend of 12th March\n- Betfred Cup Semi-Final Draw | Ties to be played on the weekend of January 23rd - 24th / Hibernian vs St Johnstone Livingston vs St Mirren\n- [Scottish Cup] Brechin City (Lowland League, Tier 5) vs Darvel (West of Scotland Football League Premier Division, Tier 6) has been selected as the televised Scottish Cup third round match. The tie will be played on Monday 29th November, 7:45 PM KO, and will be shown live on BBC Scotland in the UK\n- 2019 Scottish League Cup Group Stage Full Draw\n- Breakdown of the draws for each Scottish team in Europe\n- Scottish cup 4th round draw\n- Scottish Cup Fifth Round draw\n- Scottish League Cup 2021/22 Group Stage draw.\n- Scottish cup Quarter Finals draw\n- [Sky Sports Scotland] A drunken Rod Stewart does the Scottish Cup 5th Round draw\n- Kickoff times for Scottish league cup semi finals\n- Scottish League Cup quarter final draw\n- [Scottish Cup] A tale of two cities... The Semi-Finals will be played over the weekend of Saturday 16 & Sunday 17 April.\n- Scottish Challenge Cup draw\n- [BBC Sport] Scottish Cup semi-finals: Anticipations high after mad-cap quarters set up wide open semi-final showdown.\n- Scottish Cup Third Round Draw in full. Ties to be on the weekend of the 30th January.\n- Scottish League Cup second round draw.\n- Scottish Cup Fourth Round draw\n- Scottish League Cup semi-final draw\n- All ten Scottish Championship teams drew today.\n- Betfred Cup Quarter Final Draw | Midweek of December 15th - 17th / St Mirren [SP] vs Rangers [SP] Alloa Athletic [SC] vs Hibernian [SP] Livingston [SP] vs Ross County [SP] Dunfermline Athletic [SC] vs St Johnstone [SP]\n- Scottish Cup Third Round draw\n- [Scottish Cup] Scottish Cup 2nd Round Draw. Ties to be played Saturday 9th January.\n- Scottish Cup first round draw\n- Scottish Cup second round draw\n- Scottish Cup first round fixture list and map\n- Scottish League Cup group stage final standings.\n- [Scottish Cup] The numbers for this morning’s Scottish Cup 3rd round draw, set to take place at 11am live on @ScottishCup’s Twitter, Facebook & YouTube.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Scottish Cup Draws\", \"purpose\": \"Reporting on Scottish Cup draw schedules and fixtures\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to the Scottish Cup draw schedules, fixtures, and associated events\", \"inclusion_cues\": [\"Scottish Cup Semi Final Draw\", \"Scottish Cup Fourth + Fifth Round Draw\", \"Scottish Cup Quarter Final draw\", \"Betfred Cup Semi-Final Draw\", \"Scottish Cup Third Round Draw\", \"Scottish Cup 2nd Round Draw\", \"Scottish Cup 1st Round Draw\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Scottish Cup Draws\", \"purpose\": \"Reporting on Scottish Cup draw schedules and fixtures\", \"emotion_tone\": \"informative\", \"description\": \"Posts about Scottish Cup draw dates, teams, and matches, including semi-finals, quarters, and third rounds.\", \"inclusion_cues\": [\"Scottish Cup Semi Final Draw\", \"Scottish Cup Fourth + Fifth Round Draw\", \"Scottish Cup Quarter Final draw\", \"Betfred Cup Semi-Final Draw\", \"Scottish Cup Third Round Draw\", \"Scottish Cup 2nd Round Draw\", \"Scottish Cup 1st Round Draw\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Scottish Cup Draws\", \"purpose\": \"Reporting on Scottish Cup draw schedules and fixtures\", \"emotion_tone\": \"informative\", \"description\": \"Posts about Scottish Cup draw dates, teams, and matches, including semi-finals, quarters, and third rounds.\", \"inclusion_cues\": [\"Scottish Cup Semi Final Draw\", \"Scottish Cup Fourth + Fifth Round Draw\", \"Scottish Cup Quarter Final draw\", \"Betfred Cup Semi-Final Draw\", \"Scottish Cup Third Round Draw\", \"Scottish Cup 2nd Round Draw\", \"Scottish Cup 1st Round Draw\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 137,
+   "seed": 72121807,
+   "seconds": 0.64
+  }
+ ]
+}

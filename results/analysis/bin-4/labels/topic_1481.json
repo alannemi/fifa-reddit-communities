@@ -1,0 +1,211 @@
+{
+ "period_bin": 4,
+ "topic_id": 1481,
+ "keywords": "private, mods going, sub goes, main sub, day tottenham, meta, coys, dear mods, tottenham, following newcastle, soccercirclejerk, newcastle spurs, sub dark, protest, support victoria",
+ "n_sample_posts": 27,
+ "sample_ids": [
+  "3by0y5",
+  "4jgn90",
+  "3byy77",
+  "4jgndt",
+  "3byfou",
+  "37qaf3",
+  "3byl8y",
+  "3bzher",
+  "3bz0o0",
+  "4jgo1p",
+  "3byfr6",
+  "3bzfla",
+  "2qc7z3",
+  "3byssn",
+  "3c0t6d",
+  "3bz9cr",
+  "3bykoj",
+  "3bz866",
+  "3bz2mi",
+  "3bzjq8",
+  "311yla",
+  "3byv25",
+  "3bylb9",
+  "3by928",
+  "2o37p1",
+  "3c7wlq",
+  "3bykgy"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Subreddit Blackout/Privatization",
+  "purpose": "Discussion about subreddit privatization or blackout for political or social reasons",
+  "emotion_tone": "activist",
+  "description": "Posts discussing the potential privatization or blackout of /r/soccer, often related to protests, solidarity, and support for specific teams or individuals.",
+  "inclusion_cues": [
+   "private",
+   "mods going",
+   "sub goes",
+   "main sub",
+   "day tottenham",
+   "meta",
+   "coys",
+   "dear mods",
+   "tottenham",
+   "following newcastle"
+  ],
+  "n_cues_given": 15
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Private Subreddit Movement",
+    "purpose": "Discuss subreddit privatization and protest actions",
+    "emotion_tone": "Activist and protest-oriented",
+    "description": "Posts discussing subreddit privatization, protests, and support for specific teams or individuals, with a focus on community and solidarity.",
+    "inclusion_cues": [
+     "private",
+     "mods going",
+     "sub goes",
+     "main sub",
+     "day tottenham",
+     "meta",
+     "coys",
+     "dear mods",
+     "tottenham",
+     "following newcastle"
+    ],
+    "n_cues_given": 15
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Subreddit Blackout/Privatization",
+    "purpose": "Discussion about subreddit privatization or blackout for political or social reasons",
+    "emotion_tone": "activist",
+    "description": "Posts discussing the potential privatization or blackout of /r/soccer, often related to protests, solidarity, and support for specific teams or individuals.",
+    "inclusion_cues": [
+     "private",
+     "mods going",
+     "sub goes",
+     "main sub",
+     "day tottenham",
+     "meta",
+     "coys",
+     "dear mods",
+     "tottenham",
+     "following newcastle"
+    ],
+    "n_cues_given": 15
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: private, mods going, sub goes, main sub, day tottenham, meta, coys, dear mods, tottenham, following newcastle, soccercirclejerk, newcastle spurs, sub dark, protest, support victoria\nPosts (one per line, title first):\n- [Meta] In light of recent events, should r/soccer go private in solidarity?\n- /r/coys has gone private following Newcastle 5-1 Spurs\n- [META] Dear Mods, are we staying open or going private?\n- r/Coys has been set to private following the 5-1 Newcastle defeat.\n- /r/soccer, will sub go dark to support the solidarity protest going on in the rest of the main sub's on reddit right this moment?\n- Could the mods opt out of /r/All?\n- Is /r/soccer going private?\n- Should /r/soccer blackout?\n- is /r/soccer going to be private?\n- Tottenham sub-reddit goes private after today's results\n- [meta] Should we consider a shutdown?\n- Have the mods made a statement about joining/not joining the blackout?\n- Are the mods going to disappear again this year so we can all post what we want?\n- [OFF TOPIC] Are we going to go private?\n- A bit unrelated, but will r/soccer have any part in the Reddit blackout?\n- Will /r/soccer be made private?\n- Will r/soccer become private?\n- please close this subreddit we need to support victoria\n- Should we become private?\n- Is this subreddit going private as well?\n- So on april 1st /r/soccer basically becomes /r/soccercirclejerk for a day?\n- Will /r/soccer go private?\n- META: Can /r/soccer go private?\n- [META] I propose that the subreddit go dark (at least temporarily) to protest /u/chooter's (Victoria's) sacking.\n- Will there ever be change to the subreddit style?\n- Meta: Should r/soccer join the blackout on July 10th?\n- Will r/soccer be going private?\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Private Subreddit Movement\", \"purpose\": \"Discuss subreddit privatization and protest actions\", \"emotion_tone\": \"Activist and protest-oriented\", \"description\": \"Posts discussing subreddit privatization, protests, and support for specific teams or individuals, with a focus on community and solidarity.\", \"inclusion_cues\": [\"private\", \"mods going\", \"sub goes\", \"main sub\", \"day tottenham\", \"meta\", \"coys\", \"dear mods\", \"tottenham\", \"following newcastle\", \"soccercirclejerk\", \"newcastle spurs\", \"sub dark\", \"protest\", \"support victoria\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Private Subreddit Movement",
+      "purpose": "Discuss subreddit privatization and protest actions",
+      "emotion_tone": "Activist and protest-oriented",
+      "description": "Posts discussing subreddit privatization, protests, and support for specific teams or individuals, with a focus on community and solidarity.",
+      "inclusion_cues": [
+       "private",
+       "mods going",
+       "sub goes",
+       "main sub",
+       "day tottenham",
+       "meta",
+       "coys",
+       "dear mods",
+       "tottenham",
+       "following newcastle"
+      ],
+      "n_cues_given": 15
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 149,
+   "seed": 2536101123,
+   "seconds": 1.05
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: private, mods going, sub goes, main sub, day tottenham, meta, coys, dear mods, tottenham, following newcastle, soccercirclejerk, newcastle spurs, sub dark, protest, support victoria\nPosts (one per line, title first):\n- [Meta] In light of recent events, should r/soccer go private in solidarity?\n- /r/coys has gone private following Newcastle 5-1 Spurs\n- [META] Dear Mods, are we staying open or going private?\n- r/Coys has been set to private following the 5-1 Newcastle defeat.\n- /r/soccer, will sub go dark to support the solidarity protest going on in the rest of the main sub's on reddit right this moment?\n- Could the mods opt out of /r/All?\n- Is /r/soccer going private?\n- Should /r/soccer blackout?\n- is /r/soccer going to be private?\n- Tottenham sub-reddit goes private after today's results\n- [meta] Should we consider a shutdown?\n- Have the mods made a statement about joining/not joining the blackout?\n- Are the mods going to disappear again this year so we can all post what we want?\n- [OFF TOPIC] Are we going to go private?\n- A bit unrelated, but will r/soccer have any part in the Reddit blackout?\n- Will /r/soccer be made private?\n- Will r/soccer become private?\n- please close this subreddit we need to support victoria\n- Should we become private?\n- Is this subreddit going private as well?\n- So on april 1st /r/soccer basically becomes /r/soccercirclejerk for a day?\n- Will /r/soccer go private?\n- META: Can /r/soccer go private?\n- [META] I propose that the subreddit go dark (at least temporarily) to protest /u/chooter's (Victoria's) sacking.\n- Will there ever be change to the subreddit style?\n- Meta: Should r/soccer join the blackout on July 10th?\n- Will r/soccer be going private?\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Subreddit Blackout/Privatization\", \"purpose\": \"Discussion about subreddit privatization or blackout for political or social reasons\", \"emotion_tone\": \"activist\", \"description\": \"Posts discussing the potential privatization or blackout of /r/soccer, often related to protests, solidarity, and support for specific teams or individuals.\", \"inclusion_cues\": [\"private\", \"mods going\", \"sub goes\", \"main sub\", \"day tottenham\", \"meta\", \"coys\", \"dear mods\", \"tottenham\", \"following newcastle\", \"soccercirclejerk\", \"newcastle spurs\", \"sub dark\", \"protest\", \"support victoria\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Subreddit Blackout/Privatization",
+      "purpose": "Discussion about subreddit privatization or blackout for political or social reasons",
+      "emotion_tone": "activist",
+      "description": "Posts discussing the potential privatization or blackout of /r/soccer, often related to protests, solidarity, and support for specific teams or individuals.",
+      "inclusion_cues": [
+       "private",
+       "mods going",
+       "sub goes",
+       "main sub",
+       "day tottenham",
+       "meta",
+       "coys",
+       "dear mods",
+       "tottenham",
+       "following newcastle"
+      ],
+      "n_cues_given": 15
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 160,
+   "seed": 4056823181,
+   "seconds": 1.2
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: private, mods going, sub goes, main sub, day tottenham, meta, coys, dear mods, tottenham, following newcastle, soccercirclejerk, newcastle spurs, sub dark, protest, support victoria\nPosts (one per line, title first):\n- [Meta] In light of recent events, should r/soccer go private in solidarity?\n- /r/coys has gone private following Newcastle 5-1 Spurs\n- [META] Dear Mods, are we staying open or going private?\n- r/Coys has been set to private following the 5-1 Newcastle defeat.\n- /r/soccer, will sub go dark to support the solidarity protest going on in the rest of the main sub's on reddit right this moment?\n- Could the mods opt out of /r/All?\n- Is /r/soccer going private?\n- Should /r/soccer blackout?\n- is /r/soccer going to be private?\n- Tottenham sub-reddit goes private after today's results\n- [meta] Should we consider a shutdown?\n- Have the mods made a statement about joining/not joining the blackout?\n- Are the mods going to disappear again this year so we can all post what we want?\n- [OFF TOPIC] Are we going to go private?\n- A bit unrelated, but will r/soccer have any part in the Reddit blackout?\n- Will /r/soccer be made private?\n- Will r/soccer become private?\n- please close this subreddit we need to support victoria\n- Should we become private?\n- Is this subreddit going private as well?\n- So on april 1st /r/soccer basically becomes /r/soccercirclejerk for a day?\n- Will /r/soccer go private?\n- META: Can /r/soccer go private?\n- [META] I propose that the subreddit go dark (at least temporarily) to protest /u/chooter's (Victoria's) sacking.\n- Will there ever be change to the subreddit style?\n- Meta: Should r/soccer join the blackout on July 10th?\n- Will r/soccer be going private?\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Private Subreddit Movement\", \"purpose\": \"Discuss subreddit privatization and protest actions\", \"emotion_tone\": \"Activist and protest-oriented\", \"description\": \"Posts discussing subreddit privatization, protests, and support for specific teams or individuals, with a focus on community and solidarity.\", \"inclusion_cues\": [\"private\", \"mods going\", \"sub goes\", \"main sub\", \"day tottenham\", \"meta\", \"coys\", \"dear mods\", \"tottenham\", \"following newcastle\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Subreddit Blackout/Privatization\", \"purpose\": \"Discussion about subreddit privatization or blackout for political or social reasons\", \"emotion_tone\": \"activist\", \"description\": \"Posts discussing the potential privatization or blackout of /r/soccer, often related to protests, solidarity, and support for specific teams or individuals.\", \"inclusion_cues\": [\"private\", \"mods going\", \"sub goes\", \"main sub\", \"day tottenham\", \"meta\", \"coys\", \"dear mods\", \"tottenham\", \"following newcastle\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Subreddit Blackout/Privatization\", \"purpose\": \"Discussion about subreddit privatization or blackout for political or social reasons\", \"emotion_tone\": \"activist\", \"description\": \"Posts discussing the potential privatization or blackout of /r/soccer, often related to protests, solidarity, and support for specific teams or individuals.\", \"inclusion_cues\": [\"private\", \"mods going\", \"sub goes\", \"main sub\", \"day tottenham\", \"meta\", \"coys\", \"dear mods\", \"tottenham\", \"following newcastle\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 132,
+   "seed": 1743655958,
+   "seconds": 0.82
+  }
+ ]
+}

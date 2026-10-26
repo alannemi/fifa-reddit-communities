@@ -1,0 +1,224 @@
+{
+ "period_bin": 4,
+ "topic_id": 937,
+ "keywords": "player distance, league distance, distance run, liverpool run, distance covered, porto ran, average distance, 13km, arsenal highest, players run, epl forwards, longest game, sprints, furthest distance, run uefa",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "544qcu",
+  "2qbw7c",
+  "5rgdso",
+  "33jchr",
+  "32tmn7",
+  "52833h",
+  "4pwvjm",
+  "3wd1i6",
+  "2qbw4x",
+  "3woy8y",
+  "2pvpef",
+  "6n1ylg",
+  "4equ74",
+  "41pkhc",
+  "37fth8",
+  "33btfb",
+  "2yjhgw",
+  "3xfe8i",
+  "4k31lp",
+  "7f2dvq",
+  "5yb3pj",
+  "5yz5cr",
+  "4gnl4j",
+  "4xtgzn",
+  "5gslzb",
+  "5u7nia",
+  "5zd2tl",
+  "6bvpnb",
+  "3foaha",
+  "6c57dy",
+  "534qyj",
+  "7bepdm",
+  "478uki",
+  "3p4zxg",
+  "4cutjb",
+  "4a9f6h",
+  "3ptld9",
+  "67bnsy",
+  "2m3n07",
+  "2s6o2o"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Player Distance Analysis",
+  "purpose": "Analyzing player distance covered in football matches and leagues",
+  "emotion_tone": "Inquisitive",
+  "description": "Posts discussing player distance covered in matches, leagues, and stats related to running distances, sprints, and record-breaking performances.",
+  "inclusion_cues": [
+   "distance covered",
+   "player distance",
+   "average distance",
+   "longest game",
+   "sprints",
+   "furthest distance",
+   "run uefa",
+   "13km",
+   "epl forwards",
+   "liverpool run"
+  ],
+  "n_cues_given": 19
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Distance Covered Analysis",
+    "purpose": "Analyzing player and team distance covered in matches and seasons",
+    "emotion_tone": "Inquisitive",
+    "description": "Focuses on player and team distance covered in matches, including averages, records, and comparisons across leagues and seasons.",
+    "inclusion_cues": [
+     "player distance covered",
+     "league distance",
+     "distance run",
+     "liverpool run",
+     "distance covered",
+     "porto ran",
+     "average distance",
+     "13km",
+     "arsenal highest",
+     "players run"
+    ],
+    "n_cues_given": 15
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Player Distance Analysis",
+    "purpose": "Analyzing player distance covered in football matches and leagues",
+    "emotion_tone": "Inquisitive",
+    "description": "Posts discussing player distance covered in matches, leagues, and stats related to running distances, sprints, and record-breaking performances.",
+    "inclusion_cues": [
+     "distance covered",
+     "player distance",
+     "average distance",
+     "longest game",
+     "sprints",
+     "furthest distance",
+     "run uefa",
+     "13km",
+     "epl forwards",
+     "liverpool run"
+    ],
+    "n_cues_given": 19
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: player distance, league distance, distance run, liverpool run, distance covered, porto ran, average distance, 13km, arsenal highest, players run, epl forwards, longest game, sprints, furthest distance, run uefa\nPosts (one per line, title first):\n- Top 10 players for distance covered - Premier League 16/17\n- Barcelona's average distance covered per match for each player, this season\n- Top 5 Premier League players by Average Distance Covered - Eriksen (11.96km), Henderson (11.91km), Kanté (11.60km), Firmino (11.43km), and Milner (11.36km).\n- Where can one find distance covered stats for tonight's games? / UEFA has that stat, but you can only see it for all games so far, not per game. whoscored and fourfourtwo also don't seem to have it. Anyone knows? EDIT: Just to clarify, I mean per-player distance covered.\n- FC Porto is the team who runs the most in this Champions League. Real Madrid the least. / Among the teams that are still in competition, no team runs as much on average per game as FC Porto. This evidence was more or less obvious in the game Wednesday with Bayern Munich, when it saw the players of F\n- Adam Lallana ran 13.1 km v Leicester City - the most a player has covered in a Premier League game so far in 2016-17!\n- Where can I see distance covered by player stats for Euro 2016?\n- Opta: Liverpool run 6.9kms more on average under Klopp\n- Barcelona's distance covered per game for each player, this season\n- Aaron Ramsey covered 12.37km today against Villa. A Premier League record this season! (x-post r/Gunners)\n- Most Miles run by EPL forwards this season\n- Gylfi Sigurdsson (433 km) covered more ground than any player in the Premier league in 2016-17\n- Fit: Atleti covered 12km more than Barça. Saul and Koke lead all.\n- Which players runs the longest each game? / Some players runs a lot during games (>13km) but which players runs the most?\n- TIL: Juventus has 6 players in the top 10 in distance traveled for this years UEFA Champions League throughout the final phase.\n- Collective Km ran per match by Champions League quarter finalists\n- Distance covered by Arsenal players since February\n- Bournemouth players have run 119.1km per match in the BPL this season - 3.7km further than any other team.\n- On average Bournemouth players ran the most per game during 15.16 EPl season.Aston Villa players ran the least.\n- Barcelona players ran the least amount of kilometers in UCL this season amongst all 32 teams participating. (490)\n- Distance covered by Sanchez, Ozil and Giroud\n- Non-Pen Goals per 90 in the Premier League 2016/17\n- Lucas Vazquez(Real Madrid) ran more than 13 km last night against City. The most by a RM player this season and almost 2 km more than De Bruyne and Fernandinho, who lead City in that category\n- Liverpool covered 117.6km against Arsenal, their highest distance ever in the Premier League.\n- [Opta] 120.8km- Boro covered more ground vs Hull than any other team in any other game this season\n- Messi covered 7.7km in the match against PSG\n- Gylfi Sigurdsson has covered more ground (318.2km) than any other player in the Premier League this season.\n- Christian Eriksen has the highest average distance travelled per match in Premier League this season (11.97km), Gylfi Sigurdsson has run the most distance in total (422.36km)\n- What is the most someone has ever run during a match? / sorry if this is a shitpost but I'm genuinely curious what the record for most distance covered during a match is.\n- Artur Moraes (Chapecoense's goalkeeper) on Facebook about making over 24,000km in 28 days: \"10 games in 30 days! 26 days in planes, hotels or buses! We haven't trained this month.\"\n- Most ground covered in Premier League after GW4.\n- Top 10 of players who had run more in UEFA Champions League\n- The lengths when goes to\n- Liverpool's distance covered and total sprints this season. Highest in Klopp's first game\n- 15km - The furthest distance run in a single match was by Loic Remy v Aston Villa, 14.7km while warming up.\n- Most ground covered in a single Premier League match this season\n- Lucas Vázquez ran the most against PSG with 12KM\n- Barça ran 7km more than Real Madrid last night, and Piqué was the fastest player (33.33km per hour)\n- This seasons top five running distances per match (Bundesliga)\n- Most distance covered in the last 10 EPL games.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Distance Covered Analysis\", \"purpose\": \"Analyzing player and team distance covered in matches and seasons\", \"emotion_tone\": \"Inquisitive\", \"description\": \"Focuses on player and team distance covered in matches, including averages, records, and comparisons across leagues and seasons.\", \"inclusion_cues\": [\"player distance covered\", \"league distance\", \"distance run\", \"liverpool run\", \"distance covered\", \"porto ran\", \"average distance\", \"13km\", \"arsenal highest\", \"players run\", \"epl forwards\", \"longest game\", \"sprints\", \"furthest distance\", \"run uefa\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Distance Covered Analysis",
+      "purpose": "Analyzing player and team distance covered in matches and seasons",
+      "emotion_tone": "Inquisitive",
+      "description": "Focuses on player and team distance covered in matches, including averages, records, and comparisons across leagues and seasons.",
+      "inclusion_cues": [
+       "player distance covered",
+       "league distance",
+       "distance run",
+       "liverpool run",
+       "distance covered",
+       "porto ran",
+       "average distance",
+       "13km",
+       "arsenal highest",
+       "players run"
+      ],
+      "n_cues_given": 15
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 149,
+   "seed": 406551008,
+   "seconds": 1.58
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: player distance, league distance, distance run, liverpool run, distance covered, porto ran, average distance, 13km, arsenal highest, players run, epl forwards, longest game, sprints, furthest distance, run uefa\nPosts (one per line, title first):\n- Top 10 players for distance covered - Premier League 16/17\n- Barcelona's average distance covered per match for each player, this season\n- Top 5 Premier League players by Average Distance Covered - Eriksen (11.96km), Henderson (11.91km), Kanté (11.60km), Firmino (11.43km), and Milner (11.36km).\n- Where can one find distance covered stats for tonight's games? / UEFA has that stat, but you can only see it for all games so far, not per game. whoscored and fourfourtwo also don't seem to have it. Anyone knows? EDIT: Just to clarify, I mean per-player distance covered.\n- FC Porto is the team who runs the most in this Champions League. Real Madrid the least. / Among the teams that are still in competition, no team runs as much on average per game as FC Porto. This evidence was more or less obvious in the game Wednesday with Bayern Munich, when it saw the players of F\n- Adam Lallana ran 13.1 km v Leicester City - the most a player has covered in a Premier League game so far in 2016-17!\n- Where can I see distance covered by player stats for Euro 2016?\n- Opta: Liverpool run 6.9kms more on average under Klopp\n- Barcelona's distance covered per game for each player, this season\n- Aaron Ramsey covered 12.37km today against Villa. A Premier League record this season! (x-post r/Gunners)\n- Most Miles run by EPL forwards this season\n- Gylfi Sigurdsson (433 km) covered more ground than any player in the Premier league in 2016-17\n- Fit: Atleti covered 12km more than Barça. Saul and Koke lead all.\n- Which players runs the longest each game? / Some players runs a lot during games (>13km) but which players runs the most?\n- TIL: Juventus has 6 players in the top 10 in distance traveled for this years UEFA Champions League throughout the final phase.\n- Collective Km ran per match by Champions League quarter finalists\n- Distance covered by Arsenal players since February\n- Bournemouth players have run 119.1km per match in the BPL this season - 3.7km further than any other team.\n- On average Bournemouth players ran the most per game during 15.16 EPl season.Aston Villa players ran the least.\n- Barcelona players ran the least amount of kilometers in UCL this season amongst all 32 teams participating. (490)\n- Distance covered by Sanchez, Ozil and Giroud\n- Non-Pen Goals per 90 in the Premier League 2016/17\n- Lucas Vazquez(Real Madrid) ran more than 13 km last night against City. The most by a RM player this season and almost 2 km more than De Bruyne and Fernandinho, who lead City in that category\n- Liverpool covered 117.6km against Arsenal, their highest distance ever in the Premier League.\n- [Opta] 120.8km- Boro covered more ground vs Hull than any other team in any other game this season\n- Messi covered 7.7km in the match against PSG\n- Gylfi Sigurdsson has covered more ground (318.2km) than any other player in the Premier League this season.\n- Christian Eriksen has the highest average distance travelled per match in Premier League this season (11.97km), Gylfi Sigurdsson has run the most distance in total (422.36km)\n- What is the most someone has ever run during a match? / sorry if this is a shitpost but I'm genuinely curious what the record for most distance covered during a match is.\n- Artur Moraes (Chapecoense's goalkeeper) on Facebook about making over 24,000km in 28 days: \"10 games in 30 days! 26 days in planes, hotels or buses! We haven't trained this month.\"\n- Most ground covered in Premier League after GW4.\n- Top 10 of players who had run more in UEFA Champions League\n- The lengths when goes to\n- Liverpool's distance covered and total sprints this season. Highest in Klopp's first game\n- 15km - The furthest distance run in a single match was by Loic Remy v Aston Villa, 14.7km while warming up.\n- Most ground covered in a single Premier League match this season\n- Lucas Vázquez ran the most against PSG with 12KM\n- Barça ran 7km more than Real Madrid last night, and Piqué was the fastest player (33.33km per hour)\n- This seasons top five running distances per match (Bundesliga)\n- Most distance covered in the last 10 EPL games.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Player Distance Analysis\", \"purpose\": \"Analyzing player distance covered in football matches and leagues\", \"emotion_tone\": \"Inquisitive\", \"description\": \"Posts discussing player distance covered in matches, leagues, and stats related to running distances, sprints, and record-breaking performances.\", \"inclusion_cues\": [\"distance covered\", \"player distance\", \"average distance\", \"longest game\", \"sprints\", \"furthest distance\", \"run uefa\", \"13km\", \"epl forwards\", \"liverpool run\", \"porto ran\", \"arsenal highest\", \"players run\", \"distance run\", \"epl forwards\", \"longest game\", \"sprints\", \"furthest distance\", \"run uefa\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Player Distance Analysis",
+      "purpose": "Analyzing player distance covered in football matches and leagues",
+      "emotion_tone": "Inquisitive",
+      "description": "Posts discussing player distance covered in matches, leagues, and stats related to running distances, sprints, and record-breaking performances.",
+      "inclusion_cues": [
+       "distance covered",
+       "player distance",
+       "average distance",
+       "longest game",
+       "sprints",
+       "furthest distance",
+       "run uefa",
+       "13km",
+       "epl forwards",
+       "liverpool run"
+      ],
+      "n_cues_given": 19
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 169,
+   "seed": 3326280059,
+   "seconds": 1.6
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: player distance, league distance, distance run, liverpool run, distance covered, porto ran, average distance, 13km, arsenal highest, players run, epl forwards, longest game, sprints, furthest distance, run uefa\nPosts (one per line, title first):\n- Top 10 players for distance covered - Premier League 16/17\n- Barcelona's average distance covered per match for each player, this season\n- Top 5 Premier League players by Average Distance Covered - Eriksen (11.96km), Henderson (11.91km), Kanté (11.60km), Firmino (11.43km), and Milner (11.36km).\n- Where can one find distance covered stats for tonight's games? / UEFA has that stat, but you can only see it for all games so far, not per game. whoscored and fourfourtwo also don't seem to have it. Anyone knows? EDIT: Just to clarify, I mean per-player distance covered.\n- FC Porto is the team who runs the most in this Champions League. Real Madrid the least. / Among the teams that are still in competition, no team runs as much on average per game as FC Porto. This evidence was more or less obvious in the game Wednesday with Bayern Munich, when it saw the players of F\n- Adam Lallana ran 13.1 km v Leicester City - the most a player has covered in a Premier League game so far in 2016-17!\n- Where can I see distance covered by player stats for Euro 2016?\n- Opta: Liverpool run 6.9kms more on average under Klopp\n- Barcelona's distance covered per game for each player, this season\n- Aaron Ramsey covered 12.37km today against Villa. A Premier League record this season! (x-post r/Gunners)\n- Most Miles run by EPL forwards this season\n- Gylfi Sigurdsson (433 km) covered more ground than any player in the Premier league in 2016-17\n- Fit: Atleti covered 12km more than Barça. Saul and Koke lead all.\n- Which players runs the longest each game? / Some players runs a lot during games (>13km) but which players runs the most?\n- TIL: Juventus has 6 players in the top 10 in distance traveled for this years UEFA Champions League throughout the final phase.\n- Collective Km ran per match by Champions League quarter finalists\n- Distance covered by Arsenal players since February\n- Bournemouth players have run 119.1km per match in the BPL this season - 3.7km further than any other team.\n- On average Bournemouth players ran the most per game during 15.16 EPl season.Aston Villa players ran the least.\n- Barcelona players ran the least amount of kilometers in UCL this season amongst all 32 teams participating. (490)\n- Distance covered by Sanchez, Ozil and Giroud\n- Non-Pen Goals per 90 in the Premier League 2016/17\n- Lucas Vazquez(Real Madrid) ran more than 13 km last night against City. The most by a RM player this season and almost 2 km more than De Bruyne and Fernandinho, who lead City in that category\n- Liverpool covered 117.6km against Arsenal, their highest distance ever in the Premier League.\n- [Opta] 120.8km- Boro covered more ground vs Hull than any other team in any other game this season\n- Messi covered 7.7km in the match against PSG\n- Gylfi Sigurdsson has covered more ground (318.2km) than any other player in the Premier League this season.\n- Christian Eriksen has the highest average distance travelled per match in Premier League this season (11.97km), Gylfi Sigurdsson has run the most distance in total (422.36km)\n- What is the most someone has ever run during a match? / sorry if this is a shitpost but I'm genuinely curious what the record for most distance covered during a match is.\n- Artur Moraes (Chapecoense's goalkeeper) on Facebook about making over 24,000km in 28 days: \"10 games in 30 days! 26 days in planes, hotels or buses! We haven't trained this month.\"\n- Most ground covered in Premier League after GW4.\n- Top 10 of players who had run more in UEFA Champions League\n- The lengths when goes to\n- Liverpool's distance covered and total sprints this season. Highest in Klopp's first game\n- 15km - The furthest distance run in a single match was by Loic Remy v Aston Villa, 14.7km while warming up.\n- Most ground covered in a single Premier League match this season\n- Lucas Vázquez ran the most against PSG with 12KM\n- Barça ran 7km more than Real Madrid last night, and Piqué was the fastest player (33.33km per hour)\n- This seasons top five running distances per match (Bundesliga)\n- Most distance covered in the last 10 EPL games.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Distance Covered Analysis\", \"purpose\": \"Analyzing player and team distance covered in matches and seasons\", \"emotion_tone\": \"Inquisitive\", \"description\": \"Focuses on player and team distance covered in matches, including averages, records, and comparisons across leagues and seasons.\", \"inclusion_cues\": [\"player distance covered\", \"league distance\", \"distance run\", \"liverpool run\", \"distance covered\", \"porto ran\", \"average distance\", \"13km\", \"arsenal highest\", \"players run\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Player Distance Analysis\", \"purpose\": \"Analyzing player distance covered in football matches and leagues\", \"emotion_tone\": \"Inquisitive\", \"description\": \"Posts discussing player distance covered in matches, leagues, and stats related to running distances, sprints, and record-breaking performances.\", \"inclusion_cues\": [\"distance covered\", \"player distance\", \"average distance\", \"longest game\", \"sprints\", \"furthest distance\", \"run uefa\", \"13km\", \"epl forwards\", \"liverpool run\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Player Distance Analysis\", \"purpose\": \"Analyzing player distance covered in football matches and leagues\", \"emotion_tone\": \"Inquisitive\", \"description\": \"Posts discussing player distance covered in matches, leagues, and stats related to running distances, sprints, and record-breaking performances.\", \"inclusion_cues\": [\"distance covered\", \"player distance\", \"average distance\", \"longest game\", \"sprints\", \"furthest distance\", \"run uefa\", \"13km\", \"epl forwards\", \"liverpool run\"]]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 527)",
+   "n_tokens": 127,
+   "seed": 3759709491,
+   "seconds": 1.02
+  }
+ ]
+}

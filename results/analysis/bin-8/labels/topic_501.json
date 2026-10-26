@@ -1,0 +1,192 @@
+{
+ "period_bin": 8,
+ "topic_id": 501,
+ "keywords": "hnl standings, standings matchday, lig standings, standings match, standings gameweek, standings, standings heading, standings end, matchday supersport, results hnl, season supersport, matchday hnl, mls superdraft, gameweek 26, european football",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "1nntn15",
+  "1f6sb89",
+  "1epw6fb",
+  "1fsz2ie",
+  "1evjspx",
+  "1cvwlai",
+  "1hezb35",
+  "1p4xl37",
+  "1aiuw4c",
+  "1gztg8s",
+  "1mz93xc",
+  "18f9n5v",
+  "11wgk95",
+  "1ad9y54",
+  "1jd0le2",
+  "1psf67z",
+  "1hivqua",
+  "1f1mr8j",
+  "1keq9vz",
+  "1c9nofs",
+  "15x2ru6",
+  "1giupw4",
+  "17j9ltm",
+  "1psdyt8",
+  "1aof1nt",
+  "1bygfpi",
+  "1h4a9l7",
+  "1gdj89n",
+  "1bbopag",
+  "1nywsnw",
+  "1k68q3h",
+  "1azv2b9",
+  "1pc46zr",
+  "1g85lzy",
+  "1633noy",
+  "1mho149",
+  "18krbuj",
+  "1osrw6n",
+  "1ohphaz",
+  "1mt2s7o"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "HNL Standings",
+  "purpose": "Tracking and updating football league standings",
+  "emotion_tone": "informative",
+  "description": "Posts related to HNL standings, matchdays, gameweeks, and seasonal updates",
+  "inclusion_cues": [
+   "HNL standings after matchday",
+   "HNL standings after gameweek",
+   "HNL standings heading into winter break",
+   "SuperSport HNL standings after matchday",
+   "HNL standings after match day"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "HNL Standings",
+    "purpose": "Tracking HNL league standings",
+    "emotion_tone": "informative",
+    "description": "Posts related to HNL league standings, including matchday, gameweek, and season updates",
+    "inclusion_cues": [
+     "HNL standings after matchday",
+     "HNL standings after gameweek",
+     "HNL standings after matchday 26",
+     "HNL standings heading into winter break"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "HNL Standings",
+    "purpose": "Tracking and updating football league standings",
+    "emotion_tone": "informative",
+    "description": "Posts related to HNL standings, matchdays, gameweeks, and seasonal updates",
+    "inclusion_cues": [
+     "HNL standings after matchday",
+     "HNL standings after gameweek",
+     "HNL standings heading into winter break",
+     "SuperSport HNL standings after matchday",
+     "HNL standings after match day"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: hnl standings, standings matchday, lig standings, standings match, standings gameweek, standings, standings heading, standings end, matchday supersport, results hnl, season supersport, matchday hnl, mls superdraft, gameweek 26, european football\nPosts (one per line, title first):\n- Supersport HNL standings after matchday 7\n- Supersport HNL standings after matchday 5\n- Supersport HNL standings after matchday 2\n- SuperSport HNL standings after Matchday 8\n- Supersport HNL standings after matchday 3\n- SuperSport HNL standings after Matchday 35\n- HNL standings after match day 17\n- HNL standings after matchday 14\n- HNL Standings After Matchday 21\n- HNL standings after Matchday 14.\n- SuperSport HNL standings after Matchday 4\n- SuperSport HNL standings after matchday 18\n- SuperSport HNL standings after matchday 26.\n- HNL standings after match day 20\n- HNL standings after match day 26\n- SuperSport HNL standings heading into the winter break\n- MLS SuperDraft Results\n- SuperSport HNL standings after Matchday 4\n- HNL standings after match day 33\n- Supersport 1. HNLŽ standings after the end of the regular season\n- SuperSport HNL standings after match day 5 / A lot of postponed games due to European football\n- SuperSport HNL standings after Matchday 12\n- SuperSport HNL standings after matchday 13\n- HNL standings heading into winter break\n- HNL after match day 22\n- Supersport HNL standings after matchday 29\n- HNL standings after match day 15\n- SuperSport HNL standings after Matchday 11\n- HNL standings after gameweek 26\n- HNL standings after matchday 9\n- HNL Standings After Match Day 31 And All Title Runners Losing Today\n- HNL after match day 24\n- 1. HNL standings after matchday 15\n- SuperSport HNL standings after Matchday 10\n- HNL standings after match day 6\n- HNL standings after match day 1\n- Supersport HNL after the 19th round - The last round before the winter break.\n- Supersport HNL standings after matchday 13\n- SuperSport HNL standings after Matchday 11\n- SuperSport HNL table after 3rd matchday\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"HNL Standings\", \"purpose\": \"Tracking HNL league standings\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to HNL league standings, including matchday, gameweek, and season updates\", \"inclusion_cues\": [\"HNL standings after matchday\", \"HNL standings after gameweek\", \"HNL standings after matchday 26\", \"HNL standings heading into winter break\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "HNL Standings",
+      "purpose": "Tracking HNL league standings",
+      "emotion_tone": "informative",
+      "description": "Posts related to HNL league standings, including matchday, gameweek, and season updates",
+      "inclusion_cues": [
+       "HNL standings after matchday",
+       "HNL standings after gameweek",
+       "HNL standings after matchday 26",
+       "HNL standings heading into winter break"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 108,
+   "seed": 3098141450,
+   "seconds": 0.73
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: hnl standings, standings matchday, lig standings, standings match, standings gameweek, standings, standings heading, standings end, matchday supersport, results hnl, season supersport, matchday hnl, mls superdraft, gameweek 26, european football\nPosts (one per line, title first):\n- Supersport HNL standings after matchday 7\n- Supersport HNL standings after matchday 5\n- Supersport HNL standings after matchday 2\n- SuperSport HNL standings after Matchday 8\n- Supersport HNL standings after matchday 3\n- SuperSport HNL standings after Matchday 35\n- HNL standings after match day 17\n- HNL standings after matchday 14\n- HNL Standings After Matchday 21\n- HNL standings after Matchday 14.\n- SuperSport HNL standings after Matchday 4\n- SuperSport HNL standings after matchday 18\n- SuperSport HNL standings after matchday 26.\n- HNL standings after match day 20\n- HNL standings after match day 26\n- SuperSport HNL standings heading into the winter break\n- MLS SuperDraft Results\n- SuperSport HNL standings after Matchday 4\n- HNL standings after match day 33\n- Supersport 1. HNLŽ standings after the end of the regular season\n- SuperSport HNL standings after match day 5 / A lot of postponed games due to European football\n- SuperSport HNL standings after Matchday 12\n- SuperSport HNL standings after matchday 13\n- HNL standings heading into winter break\n- HNL after match day 22\n- Supersport HNL standings after matchday 29\n- HNL standings after match day 15\n- SuperSport HNL standings after Matchday 11\n- HNL standings after gameweek 26\n- HNL standings after matchday 9\n- HNL Standings After Match Day 31 And All Title Runners Losing Today\n- HNL after match day 24\n- 1. HNL standings after matchday 15\n- SuperSport HNL standings after Matchday 10\n- HNL standings after match day 6\n- HNL standings after match day 1\n- Supersport HNL after the 19th round - The last round before the winter break.\n- Supersport HNL standings after matchday 13\n- SuperSport HNL standings after Matchday 11\n- SuperSport HNL table after 3rd matchday\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"HNL Standings\", \"purpose\": \"Tracking and updating football league standings\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to HNL standings, matchdays, gameweeks, and seasonal updates\", \"inclusion_cues\": [\"HNL standings after matchday\", \"HNL standings after gameweek\", \"HNL standings heading into winter break\", \"SuperSport HNL standings after matchday\", \"HNL standings after match day\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "HNL Standings",
+      "purpose": "Tracking and updating football league standings",
+      "emotion_tone": "informative",
+      "description": "Posts related to HNL standings, matchdays, gameweeks, and seasonal updates",
+      "inclusion_cues": [
+       "HNL standings after matchday",
+       "HNL standings after gameweek",
+       "HNL standings heading into winter break",
+       "SuperSport HNL standings after matchday",
+       "HNL standings after match day"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 114,
+   "seed": 3380834126,
+   "seconds": 0.78
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: hnl standings, standings matchday, lig standings, standings match, standings gameweek, standings, standings heading, standings end, matchday supersport, results hnl, season supersport, matchday hnl, mls superdraft, gameweek 26, european football\nPosts (one per line, title first):\n- Supersport HNL standings after matchday 7\n- Supersport HNL standings after matchday 5\n- Supersport HNL standings after matchday 2\n- SuperSport HNL standings after Matchday 8\n- Supersport HNL standings after matchday 3\n- SuperSport HNL standings after Matchday 35\n- HNL standings after match day 17\n- HNL standings after matchday 14\n- HNL Standings After Matchday 21\n- HNL standings after Matchday 14.\n- SuperSport HNL standings after Matchday 4\n- SuperSport HNL standings after matchday 18\n- SuperSport HNL standings after matchday 26.\n- HNL standings after match day 20\n- HNL standings after match day 26\n- SuperSport HNL standings heading into the winter break\n- MLS SuperDraft Results\n- SuperSport HNL standings after Matchday 4\n- HNL standings after match day 33\n- Supersport 1. HNLŽ standings after the end of the regular season\n- SuperSport HNL standings after match day 5 / A lot of postponed games due to European football\n- SuperSport HNL standings after Matchday 12\n- SuperSport HNL standings after matchday 13\n- HNL standings heading into winter break\n- HNL after match day 22\n- Supersport HNL standings after matchday 29\n- HNL standings after match day 15\n- SuperSport HNL standings after Matchday 11\n- HNL standings after gameweek 26\n- HNL standings after matchday 9\n- HNL Standings After Match Day 31 And All Title Runners Losing Today\n- HNL after match day 24\n- 1. HNL standings after matchday 15\n- SuperSport HNL standings after Matchday 10\n- HNL standings after match day 6\n- HNL standings after match day 1\n- Supersport HNL after the 19th round - The last round before the winter break.\n- Supersport HNL standings after matchday 13\n- SuperSport HNL standings after Matchday 11\n- SuperSport HNL table after 3rd matchday\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"HNL Standings\", \"purpose\": \"Tracking HNL league standings\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to HNL league standings, including matchday, gameweek, and season updates\", \"inclusion_cues\": [\"HNL standings after matchday\", \"HNL standings after gameweek\", \"HNL standings after matchday 26\", \"HNL standings heading into winter break\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"HNL Standings\", \"purpose\": \"Tracking and updating football league standings\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to HNL standings, matchdays, gameweeks, and seasonal updates\", \"inclusion_cues\": [\"HNL standings after matchday\", \"HNL standings after gameweek\", \"HNL standings heading into winter break\", \"SuperSport HNL standings after matchday\", \"HNL standings after match day\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"HNL Standings\", \"purpose\": \"Tracking and updating football league standings\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to HNL standings, matchdays, gameweeks, and seasonal updates\", \"inclusion_cues\": [\"HNL standings after matchday\", \"HNL standings after gameweek\", \"HNL standings heading into winter break\", \"SuperSport HNL standings after matchday\", \"HNL standings after match day\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 113,
+   "seed": 3518016285,
+   "seconds": 0.77
+  }
+ ]
+}

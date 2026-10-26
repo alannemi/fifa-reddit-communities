@@ -1,0 +1,176 @@
+{
+ "period_bin": 2,
+ "topic_id": 788,
+ "keywords": "transfer rumour, contract nani, football rumour, utd rumor, rumour manchester, rumor psg, rumor manchester, juventus linked, leaving utd, monaco interested, transfer united, united winger, replacement bale, galatasaray chairman, demands manchester",
+ "n_sample_posts": 29,
+ "sample_ids": [
+  "1dodcd",
+  "zgjw3",
+  "1j2ew5",
+  "ynxf7",
+  "12gs2y",
+  "1jkmgy",
+  "1d85mc",
+  "1fpucq",
+  "190g8i",
+  "1fxbti",
+  "yq1p0",
+  "g4nei",
+  "yh3ah",
+  "zgou4",
+  "1wgzpy",
+  "uhc8x",
+  "1g6tk8",
+  "1wgy4j",
+  "zfirw",
+  "1j1hmy",
+  "g42e4",
+  "1v9idx",
+  "1j68ow",
+  "w0tfo",
+  "1l9vim",
+  "15o501",
+  "ziwbt",
+  "1ls8ia",
+  "1v8emt"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Transfer Rumor",
+  "purpose": "Report on ongoing or speculative transfers in football",
+  "emotion_tone": "Inquisitive",
+  "description": "Posts discussing rumors about transfers, contract negotiations, and potential moves involving players like Nani, Bale, and others.",
+  "inclusion_cues": [
+   "Manchester United Transfer News",
+   "Zenit general director confirms...",
+   "PSG in advanced Negotiations for Nani",
+   "Nani could be a replacement for Bale if he ends up moving to RM"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Transfer Rumor",
+    "purpose": "Report on potential player transfers",
+    "emotion_tone": "Curious",
+    "description": "Posts discussing potential transfers, rumors, and speculation about player movements in football",
+    "inclusion_cues": [
+     "Manchester United Transfer News",
+     "Zenit general director confirms...",
+     "PSG in advanced Negotiations for Nani"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Transfer Rumor",
+    "purpose": "Report on ongoing or speculative transfers in football",
+    "emotion_tone": "Inquisitive",
+    "description": "Posts discussing rumors about transfers, contract negotiations, and potential moves involving players like Nani, Bale, and others.",
+    "inclusion_cues": [
+     "Manchester United Transfer News",
+     "Zenit general director confirms...",
+     "PSG in advanced Negotiations for Nani",
+     "Nani could be a replacement for Bale if he ends up moving to RM"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: transfer rumour, contract nani, football rumour, utd rumor, rumour manchester, rumor psg, rumor manchester, juventus linked, leaving utd, monaco interested, transfer united, united winger, replacement bale, galatasaray chairman, demands manchester\nPosts (one per line, title first):\n- Manchester United Transfer News: Ferguson Reveals Nani’s Future - International Business Times UK\n- Zenit general director confirms they are negotiating a bid for Nani (rumored £25m) and Moutinho (Russian transfer window closes toda)\n- [RUMOR] PSG in advanced Negotiations for Nani. €10 million to €20 million. 1 yr left on Contract.\n- [RUMOUR] No new contract for Nani, possibly leaving UTD\n- News on Nani? / I have recently heard rumors that Sir Alex is done with Nani. I understand where he may be coming from, but I still believe he is a high caliber world player. Does anyone have news about all of this?\n- [RUMOUR] Nani could be a replacement for Bale if he ends up moving to RM\n- Juventus eye to bid 20 million for Nani\n- United agree £12m fee with Galatasary for Nani.\n- Manchester United keen to keep Nani, reveals Ferguson\n- Sky Sports: Nani set to make decision on Man Utd future\n- Nani drops wage demands at Manchester Unied | The Sun |Sport|Football\n- Nani denies that he is considering leaving the club\n- [Rumor] Zenit bid for Nani\n- Zenit in talks on Nani transfer from United\n- Inter to try to sign Nani in coming days.\n- Nani may quit united\n- Manchester United willing to sell Nani for €10million according to the Galatasaray chairman.\n- Inter in Nani negotiations\n- [Rumor] Zenit put in a £25m bid for Nani before transfer window closes\n- (Rumor)Manchester United's Nani to sit down for talks with Monaco over summer move\n- Nani contemplates move to Serie A\n- Fulham preparing to make a move for Luis Nani\n- Monaco not interested in Nani; PSG favorites to bag the Manchester United winger\n- Unclear contract, Nani MU will not join the Tour\n- Juventus linked with Manchester United's Nani\n- Nani will not be leaving Premier League leaders Manchester United in January\n- Report: Nani priced himself out of move to Zenit\n- Nani signs new five year contract with Man United\n- [Transfer Rumour] Manchester United to unload Nani to Fulham\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Transfer Rumor\", \"purpose\": \"Report on potential player transfers\", \"emotion_tone\": \"Curious\", \"description\": \"Posts discussing potential transfers, rumors, and speculation about player movements in football\", \"inclusion_cues\": [\"Manchester United Transfer News\", \"Zenit general director confirms...\", \"PSG in advanced Negotiations for Nani\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Transfer Rumor",
+      "purpose": "Report on potential player transfers",
+      "emotion_tone": "Curious",
+      "description": "Posts discussing potential transfers, rumors, and speculation about player movements in football",
+      "inclusion_cues": [
+       "Manchester United Transfer News",
+       "Zenit general director confirms...",
+       "PSG in advanced Negotiations for Nani"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 89,
+   "seed": 1376053398,
+   "seconds": 0.88
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: transfer rumour, contract nani, football rumour, utd rumor, rumour manchester, rumor psg, rumor manchester, juventus linked, leaving utd, monaco interested, transfer united, united winger, replacement bale, galatasaray chairman, demands manchester\nPosts (one per line, title first):\n- Manchester United Transfer News: Ferguson Reveals Nani’s Future - International Business Times UK\n- Zenit general director confirms they are negotiating a bid for Nani (rumored £25m) and Moutinho (Russian transfer window closes toda)\n- [RUMOR] PSG in advanced Negotiations for Nani. €10 million to €20 million. 1 yr left on Contract.\n- [RUMOUR] No new contract for Nani, possibly leaving UTD\n- News on Nani? / I have recently heard rumors that Sir Alex is done with Nani. I understand where he may be coming from, but I still believe he is a high caliber world player. Does anyone have news about all of this?\n- [RUMOUR] Nani could be a replacement for Bale if he ends up moving to RM\n- Juventus eye to bid 20 million for Nani\n- United agree £12m fee with Galatasary for Nani.\n- Manchester United keen to keep Nani, reveals Ferguson\n- Sky Sports: Nani set to make decision on Man Utd future\n- Nani drops wage demands at Manchester Unied | The Sun |Sport|Football\n- Nani denies that he is considering leaving the club\n- [Rumor] Zenit bid for Nani\n- Zenit in talks on Nani transfer from United\n- Inter to try to sign Nani in coming days.\n- Nani may quit united\n- Manchester United willing to sell Nani for €10million according to the Galatasaray chairman.\n- Inter in Nani negotiations\n- [Rumor] Zenit put in a £25m bid for Nani before transfer window closes\n- (Rumor)Manchester United's Nani to sit down for talks with Monaco over summer move\n- Nani contemplates move to Serie A\n- Fulham preparing to make a move for Luis Nani\n- Monaco not interested in Nani; PSG favorites to bag the Manchester United winger\n- Unclear contract, Nani MU will not join the Tour\n- Juventus linked with Manchester United's Nani\n- Nani will not be leaving Premier League leaders Manchester United in January\n- Report: Nani priced himself out of move to Zenit\n- Nani signs new five year contract with Man United\n- [Transfer Rumour] Manchester United to unload Nani to Fulham\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Transfer Rumor\", \"purpose\": \"Report on ongoing or speculative transfers in football\", \"emotion_tone\": \"Inquisitive\", \"description\": \"Posts discussing rumors about transfers, contract negotiations, and potential moves involving players like Nani, Bale, and others.\", \"inclusion_cues\": [\"Manchester United Transfer News\", \"Zenit general director confirms...\", \"PSG in advanced Negotiations for Nani\", \"Nani could be a replacement for Bale if he ends up moving to RM\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Transfer Rumor",
+      "purpose": "Report on ongoing or speculative transfers in football",
+      "emotion_tone": "Inquisitive",
+      "description": "Posts discussing rumors about transfers, contract negotiations, and potential moves involving players like Nani, Bale, and others.",
+      "inclusion_cues": [
+       "Manchester United Transfer News",
+       "Zenit general director confirms...",
+       "PSG in advanced Negotiations for Nani",
+       "Nani could be a replacement for Bale if he ends up moving to RM"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 118,
+   "seed": 2925240502,
+   "seconds": 0.5
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: transfer rumour, contract nani, football rumour, utd rumor, rumour manchester, rumor psg, rumor manchester, juventus linked, leaving utd, monaco interested, transfer united, united winger, replacement bale, galatasaray chairman, demands manchester\nPosts (one per line, title first):\n- Manchester United Transfer News: Ferguson Reveals Nani’s Future - International Business Times UK\n- Zenit general director confirms they are negotiating a bid for Nani (rumored £25m) and Moutinho (Russian transfer window closes toda)\n- [RUMOR] PSG in advanced Negotiations for Nani. €10 million to €20 million. 1 yr left on Contract.\n- [RUMOUR] No new contract for Nani, possibly leaving UTD\n- News on Nani? / I have recently heard rumors that Sir Alex is done with Nani. I understand where he may be coming from, but I still believe he is a high caliber world player. Does anyone have news about all of this?\n- [RUMOUR] Nani could be a replacement for Bale if he ends up moving to RM\n- Juventus eye to bid 20 million for Nani\n- United agree £12m fee with Galatasary for Nani.\n- Manchester United keen to keep Nani, reveals Ferguson\n- Sky Sports: Nani set to make decision on Man Utd future\n- Nani drops wage demands at Manchester Unied | The Sun |Sport|Football\n- Nani denies that he is considering leaving the club\n- [Rumor] Zenit bid for Nani\n- Zenit in talks on Nani transfer from United\n- Inter to try to sign Nani in coming days.\n- Nani may quit united\n- Manchester United willing to sell Nani for €10million according to the Galatasaray chairman.\n- Inter in Nani negotiations\n- [Rumor] Zenit put in a £25m bid for Nani before transfer window closes\n- (Rumor)Manchester United's Nani to sit down for talks with Monaco over summer move\n- Nani contemplates move to Serie A\n- Fulham preparing to make a move for Luis Nani\n- Monaco not interested in Nani; PSG favorites to bag the Manchester United winger\n- Unclear contract, Nani MU will not join the Tour\n- Juventus linked with Manchester United's Nani\n- Nani will not be leaving Premier League leaders Manchester United in January\n- Report: Nani priced himself out of move to Zenit\n- Nani signs new five year contract with Man United\n- [Transfer Rumour] Manchester United to unload Nani to Fulham\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Transfer Rumor\", \"purpose\": \"Report on potential player transfers\", \"emotion_tone\": \"Curious\", \"description\": \"Posts discussing potential transfers, rumors, and speculation about player movements in football\", \"inclusion_cues\": [\"Manchester United Transfer News\", \"Zenit general director confirms...\", \"PSG in advanced Negotiations for Nani\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Transfer Rumor\", \"purpose\": \"Report on ongoing or speculative transfers in football\", \"emotion_tone\": \"Inquisitive\", \"description\": \"Posts discussing rumors about transfers, contract negotiations, and potential moves involving players like Nani, Bale, and others.\", \"inclusion_cues\": [\"Manchester United Transfer News\", \"Zenit general director confirms...\", \"PSG in advanced Negotiations for Nani\", \"Nani could be a replacement for Bale if he ends up moving to RM\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Transfer Rumor\", \"purpose\": \"Report on ongoing or speculative transfers in football\", \"emotion_tone\": \"Inquisitive\", \"description\": \"Posts discussing rumors about transfers, contract negotiations, and potential moves involving players like Nani, Bale, and others.\", \"inclusion_cues\": [\"Manchester United Transfer News\", \"Zenit general director confirms...\", \"PSG in advanced Negotiations for Nani\", \"Nani could be a replacement for Bale if he ends up moving to RM\"]]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 513)",
+   "n_tokens": 117,
+   "seed": 2388121307,
+   "seconds": 0.99
+  }
+ ]
+}

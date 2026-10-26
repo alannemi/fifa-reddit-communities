@@ -1,0 +1,183 @@
+{
+ "period_bin": 2,
+ "topic_id": 781,
+ "keywords": "bad luck, brian, luck ireland, luck torres, munich bad, ireland bad, barca bad, mancini bad, torres bad, team bad, alex bad, robben, ferdinand, gooners, mancini",
+ "n_sample_posts": 30,
+ "sample_ids": [
+  "tlklm",
+  "xwzwc",
+  "tv7ee",
+  "1sa91h",
+  "1sa91h",
+  "1k2c3z",
+  "1sa09v",
+  "srqg2",
+  "s4mlg",
+  "1ecdjf",
+  "101x4z",
+  "zrft1",
+  "13k5a9",
+  "ycm8b",
+  "1c5kxy",
+  "tzlbq",
+  "1voq2v",
+  "uq6jo",
+  "ufe6q",
+  "112d6j",
+  "1qupkg",
+  "v8pgt",
+  "15cbjs",
+  "1t10ox",
+  "1j89k0",
+  "h53ht",
+  "18vmhq",
+  "1a57ny",
+  "yjkoq",
+  "sroe0"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Bad Luck Brian",
+  "purpose": "Express frustration or disappointment about Brian's performance or role in football",
+  "emotion_tone": "negative",
+  "description": "Posts discussing Brian's bad luck in football, including his performance, team dynamics, and personal issues",
+  "inclusion_cues": [
+   "Bad Luck Brian plays soccer",
+   "Bad Luck Brian on His Favourite Team",
+   "Bad Luck Brian in the ACC Championship Soccer game",
+   "Bad Luck Brian plays the beautiful game"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Bad Luck Brian",
+    "purpose": "Critique of Brian's performance or fate in football",
+    "emotion_tone": "Negative",
+    "description": "Posts discussing Brian's poor performance or misfortune in football, often linked to team or club issues",
+    "inclusion_cues": [
+     "Bad Luck Brian",
+     "Bad Luck Brian plays soccer",
+     "Bad Luck Brian on His Favourite Team",
+     "Bad Luck Brian in the ACC Championship Soccer game",
+     "Bad Luck Brian Kidd...",
+     "Bad Luck Brian plays the beautiful game"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Bad Luck Brian",
+    "purpose": "Express frustration or disappointment about Brian's performance or role in football",
+    "emotion_tone": "negative",
+    "description": "Posts discussing Brian's bad luck in football, including his performance, team dynamics, and personal issues",
+    "inclusion_cues": [
+     "Bad Luck Brian plays soccer",
+     "Bad Luck Brian on His Favourite Team",
+     "Bad Luck Brian in the ACC Championship Soccer game",
+     "Bad Luck Brian plays the beautiful game"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: bad luck, brian, luck ireland, luck torres, munich bad, ireland bad, barca bad, mancini bad, torres bad, team bad, alex bad, robben, ferdinand, gooners, mancini\nPosts (one per line, title first):\n- Bad Luck Hibbo...\n- Bad Luck Brian plays soccer.\n- \"Bad Luck Brian\" Munich\n- Bad Luck Brian\n- Bad Luck Brian\n- Bad Luck Rio Ferdinand\n- Bad Luck Team USA\n- The ultimate Bad Luck Brian\n- Bad Luck Mancini\n- Poor Brian Kidd...\n- Bad Luck Brian on His Favourite Team\n- Bad Luck Peru\n- Bad Luck Bob\n- Bad Luck Gooner\n- Bad Luck Torres\n- Bad Luck Robben\n- Bad Luck david luiz\n- Bad Luck Preciado\n- Bad Luck Brian (x-post from r/AdviceAnimals)\n- Bad Luck Brian plays the beautiful game\n- Found Bad Luck Brian in the ACC Championship Soccer game\n- Bad Luck Ireland\n- Bad Luck Torres\n- Bad Luck Arsene\n- Bad Luck Götze\n- Brian Phillips is here to save your life (he's not kidding)\n- Bad Luck Gooners\n- Bad Luck Brian\n- Bad Luck Alex\n- Bad Luck Barca\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bad Luck Brian\", \"purpose\": \"Critique of Brian's performance or fate in football\", \"emotion_tone\": \"Negative\", \"description\": \"Posts discussing Brian's poor performance or misfortune in football, often linked to team or club issues\", \"inclusion_cues\": [\"Bad Luck Brian\", \"Bad Luck Brian plays soccer\", \"Bad Luck Brian on His Favourite Team\", \"Bad Luck Brian in the ACC Championship Soccer game\", \"Bad Luck Brian Kidd...\", \"Bad Luck Brian plays the beautiful game\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Bad Luck Brian",
+      "purpose": "Critique of Brian's performance or fate in football",
+      "emotion_tone": "Negative",
+      "description": "Posts discussing Brian's poor performance or misfortune in football, often linked to team or club issues",
+      "inclusion_cues": [
+       "Bad Luck Brian",
+       "Bad Luck Brian plays soccer",
+       "Bad Luck Brian on His Favourite Team",
+       "Bad Luck Brian in the ACC Championship Soccer game",
+       "Bad Luck Brian Kidd...",
+       "Bad Luck Brian plays the beautiful game"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 122,
+   "seed": 4249117559,
+   "seconds": 1.17
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: bad luck, brian, luck ireland, luck torres, munich bad, ireland bad, barca bad, mancini bad, torres bad, team bad, alex bad, robben, ferdinand, gooners, mancini\nPosts (one per line, title first):\n- Bad Luck Hibbo...\n- Bad Luck Brian plays soccer.\n- \"Bad Luck Brian\" Munich\n- Bad Luck Brian\n- Bad Luck Brian\n- Bad Luck Rio Ferdinand\n- Bad Luck Team USA\n- The ultimate Bad Luck Brian\n- Bad Luck Mancini\n- Poor Brian Kidd...\n- Bad Luck Brian on His Favourite Team\n- Bad Luck Peru\n- Bad Luck Bob\n- Bad Luck Gooner\n- Bad Luck Torres\n- Bad Luck Robben\n- Bad Luck david luiz\n- Bad Luck Preciado\n- Bad Luck Brian (x-post from r/AdviceAnimals)\n- Bad Luck Brian plays the beautiful game\n- Found Bad Luck Brian in the ACC Championship Soccer game\n- Bad Luck Ireland\n- Bad Luck Torres\n- Bad Luck Arsene\n- Bad Luck Götze\n- Brian Phillips is here to save your life (he's not kidding)\n- Bad Luck Gooners\n- Bad Luck Brian\n- Bad Luck Alex\n- Bad Luck Barca\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bad Luck Brian\", \"purpose\": \"Express frustration or disappointment about Brian's performance or role in football\", \"emotion_tone\": \"negative\", \"description\": \"Posts discussing Brian's bad luck in football, including his performance, team dynamics, and personal issues\", \"inclusion_cues\": [\"Bad Luck Brian plays soccer\", \"Bad Luck Brian on His Favourite Team\", \"Bad Luck Brian in the ACC Championship Soccer game\", \"Bad Luck Brian plays the beautiful game\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Bad Luck Brian",
+      "purpose": "Express frustration or disappointment about Brian's performance or role in football",
+      "emotion_tone": "negative",
+      "description": "Posts discussing Brian's bad luck in football, including his performance, team dynamics, and personal issues",
+      "inclusion_cues": [
+       "Bad Luck Brian plays soccer",
+       "Bad Luck Brian on His Favourite Team",
+       "Bad Luck Brian in the ACC Championship Soccer game",
+       "Bad Luck Brian plays the beautiful game"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 113,
+   "seed": 2451288079,
+   "seconds": 1.3
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: bad luck, brian, luck ireland, luck torres, munich bad, ireland bad, barca bad, mancini bad, torres bad, team bad, alex bad, robben, ferdinand, gooners, mancini\nPosts (one per line, title first):\n- Bad Luck Hibbo...\n- Bad Luck Brian plays soccer.\n- \"Bad Luck Brian\" Munich\n- Bad Luck Brian\n- Bad Luck Brian\n- Bad Luck Rio Ferdinand\n- Bad Luck Team USA\n- The ultimate Bad Luck Brian\n- Bad Luck Mancini\n- Poor Brian Kidd...\n- Bad Luck Brian on His Favourite Team\n- Bad Luck Peru\n- Bad Luck Bob\n- Bad Luck Gooner\n- Bad Luck Torres\n- Bad Luck Robben\n- Bad Luck david luiz\n- Bad Luck Preciado\n- Bad Luck Brian (x-post from r/AdviceAnimals)\n- Bad Luck Brian plays the beautiful game\n- Found Bad Luck Brian in the ACC Championship Soccer game\n- Bad Luck Ireland\n- Bad Luck Torres\n- Bad Luck Arsene\n- Bad Luck Götze\n- Brian Phillips is here to save your life (he's not kidding)\n- Bad Luck Gooners\n- Bad Luck Brian\n- Bad Luck Alex\n- Bad Luck Barca\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bad Luck Brian\", \"purpose\": \"Critique of Brian's performance or fate in football\", \"emotion_tone\": \"Negative\", \"description\": \"Posts discussing Brian's poor performance or misfortune in football, often linked to team or club issues\", \"inclusion_cues\": [\"Bad Luck Brian\", \"Bad Luck Brian plays soccer\", \"Bad Luck Brian on His Favourite Team\", \"Bad Luck Brian in the ACC Championship Soccer game\", \"Bad Luck Brian Kidd...\", \"Bad Luck Brian plays the beautiful game\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bad Luck Brian\", \"purpose\": \"Express frustration or disappointment about Brian's performance or role in football\", \"emotion_tone\": \"negative\", \"description\": \"Posts discussing Brian's bad luck in football, including his performance, team dynamics, and personal issues\", \"inclusion_cues\": [\"Bad Luck Brian plays soccer\", \"Bad Luck Brian on His Favourite Team\", \"Bad Luck Brian in the ACC Championship Soccer game\", \"Bad Luck Brian plays the beautiful game\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Bad Luck Brian\", \"purpose\": \"Critique of Brian's performance or fate in football\", \"emotion_tone\": \"Negative\", \"description\": \"Posts discussing Brian's poor performance or misfortune in football, often linked to team or club issues\", \"inclusion_cues\": [\"Bad Luck Brian\", \"Bad Luck Brian plays soccer\", \"Bad Luck Brian on His Favourite Team\", \"Bad Luck Brian in the ACC Championship Soccer game\", \"Bad Luck Brian Kidd...\", \"Bad Luck Brian plays the beautiful game\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 121,
+   "seed": 3401674887,
+   "seconds": 0.99
+  }
+ ]
+}

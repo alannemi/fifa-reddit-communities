@@ -1,0 +1,175 @@
+{
+ "period_bin": 2,
+ "topic_id": 874,
+ "keywords": "football rangers, scottish football, rangers supporters, fife fc, boycott rangers, scotland rangers, football scottish, glasgow rangers, scottish division, record rangers, rangers east, rangers really, celtic won, partick thistle, spl champions",
+ "n_sample_posts": 26,
+ "sample_ids": [
+  "nspi9",
+  "17p2w7",
+  "wi4bb",
+  "1crjn3",
+  "yees0",
+  "fvk55",
+  "yunhr",
+  "fvk8g",
+  "170bzu",
+  "1ic8ux",
+  "y5mgt",
+  "15l548",
+  "19ytok",
+  "s0x4d",
+  "uxqvf",
+  "td1s3",
+  "1w2qc1",
+  "h43r0",
+  "1jjzyn",
+  "vh9xu",
+  "1wncq4",
+  "1jew8b",
+  "y53dm",
+  "it2h2",
+  "ygefc",
+  "1jhmg4"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Rangers Supporters",
+  "purpose": "Highlight fan activity and sentiment towards Glasgow Rangers",
+  "emotion_tone": "enthusiastic",
+  "description": "Posts about Rangers fans' actions, attendance, and support, including boycotts and record-breaking events",
+  "inclusion_cues": [
+   "Rangers supporters boycott",
+   "record attendance",
+   "fan sentiment",
+   "Rangers FC"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Rangers Supporters",
+    "purpose": "Rangers fan activism and community engagement",
+    "emotion_tone": "activist",
+    "description": "Posts about fan boycotts, attendance records, and fan culture in Scottish football",
+    "inclusion_cues": [
+     "boycott rangers",
+     "rangers east",
+     "rangers really",
+     "rangers shatters crowd world record"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Rangers Supporters",
+    "purpose": "Highlight fan activity and sentiment towards Glasgow Rangers",
+    "emotion_tone": "enthusiastic",
+    "description": "Posts about Rangers fans' actions, attendance, and support, including boycotts and record-breaking events",
+    "inclusion_cues": [
+     "Rangers supporters boycott",
+     "record attendance",
+     "fan sentiment",
+     "Rangers FC"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: football rangers, scottish football, rangers supporters, fife fc, boycott rangers, scotland rangers, football scottish, glasgow rangers, scottish division, record rangers, rangers east, rangers really, celtic won, partick thistle, spl champions\nPosts (one per line, title first):\n- TIL that in the 113 years that a Scottish Premier League Title has been awarded, Rangers or Celtic have won all but 19 times\n- Dundee United have now sold over 9,500 tickets for tomorrow's game, despite a boycott from the Rangers fans. This is already more than the number who turned up the last time the sides met at Tannadice.\n- I'm looking forward to seeing 10,000 Rangers supporters descend on this stadium for the away game v East Fife FC next season\n- Ultimate Scottish Football Issue Two: An in-depth look at the Scottish Football League / Hi guys. We just released our second issue right here I'd really appreciate if you could give it a read. There's some excellent articles here about Dunfermline's problems as well as Queen of the South, Hamilton,\n- Rangers set to break Scottish Third Division attendance record on Saturday / With the opening home match of the season mere hours away for the Gers it looks like it'll be a sell out. Over 50,000 fans are expected to turn up when Rangers take on East Stirlingshire. The last time Rangers played at Ibr\n- The Glasgow Rangers, but who are they really?\n- The best thing about watching Third Division Scottish Football...\n- The Glasgow Rangers, but who are they really?\n- For anyone that says there is no skill in Scottish Football.....\n- Scottish football: Europa League qualification needs to become the start, not the end, of the journey\n- What has Scottish football ever done for us?\n- Dodgy defending, goal line clearances and some great goals as 1st play 2nd in the scottish first division. Proper football\n- Scottish football's basement clash won't stop the world\n- Scottish football - Past, present and Future\n- Glasgow Rangers Football Club. 1874-2012. RIP.\n- Great listen, discussing the future of Scottish Football\n- Partick Thistle Youths nearly break world record\n- Rangers FC - SPL Champions!!!\n- The new Scottish Premiership season - the fans' view\n- An accurate summary of Scottish football.\n- Partick Thistle take Prince Buaben on loan until end of the season\n- Partick Thistle set to announce capture of Isaac Osbourne and former Barcelona midfielder Simon Colina\n- Predictions for the Scottish League\n- Ask The Ref - Your Questions Answered - SFA ref answers questions on the sport in Scotland\n- Rangers shatters crowd world record\n- Scottish football may be on the road to hell, but why not enjoy the journey\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Rangers Supporters\", \"purpose\": \"Rangers fan activism and community engagement\", \"emotion_tone\": \"activist\", \"description\": \"Posts about fan boycotts, attendance records, and fan culture in Scottish football\", \"inclusion_cues\": [\"boycott rangers\", \"rangers east\", \"rangers really\", \"rangers shatters crowd world record\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Rangers Supporters",
+      "purpose": "Rangers fan activism and community engagement",
+      "emotion_tone": "activist",
+      "description": "Posts about fan boycotts, attendance records, and fan culture in Scottish football",
+      "inclusion_cues": [
+       "boycott rangers",
+       "rangers east",
+       "rangers really",
+       "rangers shatters crowd world record"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 94,
+   "seed": 757238195,
+   "seconds": 0.57
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: football rangers, scottish football, rangers supporters, fife fc, boycott rangers, scotland rangers, football scottish, glasgow rangers, scottish division, record rangers, rangers east, rangers really, celtic won, partick thistle, spl champions\nPosts (one per line, title first):\n- TIL that in the 113 years that a Scottish Premier League Title has been awarded, Rangers or Celtic have won all but 19 times\n- Dundee United have now sold over 9,500 tickets for tomorrow's game, despite a boycott from the Rangers fans. This is already more than the number who turned up the last time the sides met at Tannadice.\n- I'm looking forward to seeing 10,000 Rangers supporters descend on this stadium for the away game v East Fife FC next season\n- Ultimate Scottish Football Issue Two: An in-depth look at the Scottish Football League / Hi guys. We just released our second issue right here I'd really appreciate if you could give it a read. There's some excellent articles here about Dunfermline's problems as well as Queen of the South, Hamilton,\n- Rangers set to break Scottish Third Division attendance record on Saturday / With the opening home match of the season mere hours away for the Gers it looks like it'll be a sell out. Over 50,000 fans are expected to turn up when Rangers take on East Stirlingshire. The last time Rangers played at Ibr\n- The Glasgow Rangers, but who are they really?\n- The best thing about watching Third Division Scottish Football...\n- The Glasgow Rangers, but who are they really?\n- For anyone that says there is no skill in Scottish Football.....\n- Scottish football: Europa League qualification needs to become the start, not the end, of the journey\n- What has Scottish football ever done for us?\n- Dodgy defending, goal line clearances and some great goals as 1st play 2nd in the scottish first division. Proper football\n- Scottish football's basement clash won't stop the world\n- Scottish football - Past, present and Future\n- Glasgow Rangers Football Club. 1874-2012. RIP.\n- Great listen, discussing the future of Scottish Football\n- Partick Thistle Youths nearly break world record\n- Rangers FC - SPL Champions!!!\n- The new Scottish Premiership season - the fans' view\n- An accurate summary of Scottish football.\n- Partick Thistle take Prince Buaben on loan until end of the season\n- Partick Thistle set to announce capture of Isaac Osbourne and former Barcelona midfielder Simon Colina\n- Predictions for the Scottish League\n- Ask The Ref - Your Questions Answered - SFA ref answers questions on the sport in Scotland\n- Rangers shatters crowd world record\n- Scottish football may be on the road to hell, but why not enjoy the journey\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Rangers Supporters\", \"purpose\": \"Highlight fan activity and sentiment towards Glasgow Rangers\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts about Rangers fans' actions, attendance, and support, including boycotts and record-breaking events\", \"inclusion_cues\": [\"Rangers supporters boycott\", \"record attendance\", \"fan sentiment\", \"Rangers FC\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Rangers Supporters",
+      "purpose": "Highlight fan activity and sentiment towards Glasgow Rangers",
+      "emotion_tone": "enthusiastic",
+      "description": "Posts about Rangers fans' actions, attendance, and support, including boycotts and record-breaking events",
+      "inclusion_cues": [
+       "Rangers supporters boycott",
+       "record attendance",
+       "fan sentiment",
+       "Rangers FC"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 94,
+   "seed": 3441266875,
+   "seconds": 0.87
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: football rangers, scottish football, rangers supporters, fife fc, boycott rangers, scotland rangers, football scottish, glasgow rangers, scottish division, record rangers, rangers east, rangers really, celtic won, partick thistle, spl champions\nPosts (one per line, title first):\n- TIL that in the 113 years that a Scottish Premier League Title has been awarded, Rangers or Celtic have won all but 19 times\n- Dundee United have now sold over 9,500 tickets for tomorrow's game, despite a boycott from the Rangers fans. This is already more than the number who turned up the last time the sides met at Tannadice.\n- I'm looking forward to seeing 10,000 Rangers supporters descend on this stadium for the away game v East Fife FC next season\n- Ultimate Scottish Football Issue Two: An in-depth look at the Scottish Football League / Hi guys. We just released our second issue right here I'd really appreciate if you could give it a read. There's some excellent articles here about Dunfermline's problems as well as Queen of the South, Hamilton,\n- Rangers set to break Scottish Third Division attendance record on Saturday / With the opening home match of the season mere hours away for the Gers it looks like it'll be a sell out. Over 50,000 fans are expected to turn up when Rangers take on East Stirlingshire. The last time Rangers played at Ibr\n- The Glasgow Rangers, but who are they really?\n- The best thing about watching Third Division Scottish Football...\n- The Glasgow Rangers, but who are they really?\n- For anyone that says there is no skill in Scottish Football.....\n- Scottish football: Europa League qualification needs to become the start, not the end, of the journey\n- What has Scottish football ever done for us?\n- Dodgy defending, goal line clearances and some great goals as 1st play 2nd in the scottish first division. Proper football\n- Scottish football's basement clash won't stop the world\n- Scottish football - Past, present and Future\n- Glasgow Rangers Football Club. 1874-2012. RIP.\n- Great listen, discussing the future of Scottish Football\n- Partick Thistle Youths nearly break world record\n- Rangers FC - SPL Champions!!!\n- The new Scottish Premiership season - the fans' view\n- An accurate summary of Scottish football.\n- Partick Thistle take Prince Buaben on loan until end of the season\n- Partick Thistle set to announce capture of Isaac Osbourne and former Barcelona midfielder Simon Colina\n- Predictions for the Scottish League\n- Ask The Ref - Your Questions Answered - SFA ref answers questions on the sport in Scotland\n- Rangers shatters crowd world record\n- Scottish football may be on the road to hell, but why not enjoy the journey\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Rangers Supporters\", \"purpose\": \"Rangers fan activism and community engagement\", \"emotion_tone\": \"activist\", \"description\": \"Posts about fan boycotts, attendance records, and fan culture in Scottish football\", \"inclusion_cues\": [\"boycott rangers\", \"rangers east\", \"rangers really\", \"rangers shatters crowd world record\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Rangers Supporters\", \"purpose\": \"Highlight fan activity and sentiment towards Glasgow Rangers\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts about Rangers fans' actions, attendance, and support, including boycotts and record-breaking events\", \"inclusion_cues\": [\"Rangers supporters boycott\", \"record attendance\", \"fan sentiment\", \"Rangers FC\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Rangers Supporters\", \"purpose\": \"Fan activism and community engagement in Scottish football\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts about fan boycotts, attendance records, and fan culture in Scottish football\", \"inclusion_cues\": [\"boycott rangers\", \"rangers east\", \"rangers really\", \"rangers shatters crowd world record\"]]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 385)",
+   "n_tokens": 96,
+   "seed": 1147063306,
+   "seconds": 0.57
+  }
+ ]
+}

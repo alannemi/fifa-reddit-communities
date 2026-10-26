@@ -1,0 +1,194 @@
+{
+ "period_bin": 2,
+ "topic_id": 504,
+ "keywords": "greatest fans, love fans, british fans, fans fans, fans say, fans supporter, fans true, true fans, fan players, fans good, fan boys, sport fans, wish fans, say fan, fandom",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "l5oj5",
+  "16be4e",
+  "krs8b",
+  "krro4",
+  "r7xyq",
+  "vz7jy",
+  "1fffre",
+  "10cpp3",
+  "iqrou",
+  "1863nv",
+  "1fffsx",
+  "f3hmr",
+  "g12j0",
+  "1iw9sf",
+  "fzl1j",
+  "ql32x",
+  "j4qfu",
+  "18kn1q",
+  "v7th9",
+  "zuemf",
+  "q70s0",
+  "gqv5e",
+  "1d5mh4",
+  "lg3c0",
+  "1s7d6i",
+  "ozs8k",
+  "1q9660",
+  "11vkvw",
+  "dwmcj",
+  "1b2mrq",
+  "w5qbf",
+  "el1xi",
+  "t1oc7",
+  "h98m1",
+  "rt4uf",
+  "ux6b3",
+  "xonl7",
+  "14573x",
+  "i0w8w",
+  "1kce23"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "true fans",
+  "purpose": "identify and celebrate dedicated football supporters",
+  "emotion_tone": "positive",
+  "description": "Posts discussing genuine fan loyalty, commitment, and the importance of authentic fandom in football",
+  "inclusion_cues": [
+   "true football fans",
+   "being a fan doesn't know any border",
+   "A true soccer fan",
+   "Proud to be a true fan",
+   "For the true fans"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "true fans",
+    "purpose": "identify and celebrate dedicated football supporters",
+    "emotion_tone": "positive, passionate",
+    "description": "Posts expressing admiration for committed fans, emphasizing their loyalty and passion for the sport",
+    "inclusion_cues": [
+     "true football fans",
+     "proud to be a true fan",
+     "definition of a fanboy",
+     "true soccer fan",
+     "supporter is not a customer"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "true fans",
+    "purpose": "identify and celebrate dedicated football supporters",
+    "emotion_tone": "positive",
+    "description": "Posts discussing genuine fan loyalty, commitment, and the importance of authentic fandom in football",
+    "inclusion_cues": [
+     "true football fans",
+     "being a fan doesn't know any border",
+     "A true soccer fan",
+     "Proud to be a true fan",
+     "For the true fans"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: greatest fans, love fans, british fans, fans fans, fans say, fans supporter, fans true, true fans, fan players, fans good, fan boys, sport fans, wish fans, say fan, fandom\nPosts (one per line, title first):\n- As a fan, I'm tired of seeing this. (quick and dirty)\n- Can’t We All Just Get Along? - Why aren't British fans very good at raising their voice for change?\n- I've always believed that we've had some of the greatest fans!\n- \"Like father, like son: Thoughts on being a fan\" - A remarkable article by Jonathan Wilson\n- An interesting philosophical question spawned from the whole Tevez return. Interested in r/Soccer's response. / What does it mean to be a fan? When faced with the ultimatum, like with Tevez, does a fan (in the truest sense) outcast the good player for his disloyalty, or do they disregard this fact i\n- Good to know the true fans are still out there\n- Some fans are unbelievable.. Found on another forum\n- Just a 'few' fans you say?\n- The fans just make the sport, sometimes.\n- what a nice fan...oh\n- Some fans are unbelievable..\n- Not your average fan.\n- First Law of Persecuted Fandom\n- For the true fans\n- The definition of a fanboy.\n- Some fans can't handle suspense...\n- If you do this, and still call yourself a \"fan\", I HATE you\n- Full Kit Wankers: A Guide to UK football-fan shamin\n- True football fans\n- being a fan doesn't know any border\n- A day after we get the true meaning of humanity from fans we get this...\n- This is what I call a dedicated supporter.\n- Proud to be a true fan\n- No Longer Merely a Fair-Weather Fan\n- Gotta love the fans\n- Until death do us part and the unhealthy fan/club relationship\n- A true soccer fan\n- This is just pathetic that fans would go to such extremes...\n- What players really think about the fans\n- A note on fans....\n- My brother is a confused fan...\n- Fan Owenership, good or bad ??\n- From the players? Yes, they're professionals. But from the fans? Earn it.\n- I don't think he was a \"fan,\" actually...\n- Fans Know Genius When They See It\n- you thought YOU were a fan?\n- A True Fan (When You See It)\n- A Supporter Is Not A Customer\n- How do fans feel about this kinda thing?\n- Why 'For The Fans' Is Utterly Meaningless\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"true fans\", \"purpose\": \"identify and celebrate dedicated football supporters\", \"emotion_tone\": \"positive, passionate\", \"description\": \"Posts expressing admiration for committed fans, emphasizing their loyalty and passion for the sport\", \"inclusion_cues\": [\"true football fans\", \"proud to be a true fan\", \"definition of a fanboy\", \"true soccer fan\", \"supporter is not a customer\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "true fans",
+      "purpose": "identify and celebrate dedicated football supporters",
+      "emotion_tone": "positive, passionate",
+      "description": "Posts expressing admiration for committed fans, emphasizing their loyalty and passion for the sport",
+      "inclusion_cues": [
+       "true football fans",
+       "proud to be a true fan",
+       "definition of a fanboy",
+       "true soccer fan",
+       "supporter is not a customer"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 101,
+   "seed": 3047574302,
+   "seconds": 0.98
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: greatest fans, love fans, british fans, fans fans, fans say, fans supporter, fans true, true fans, fan players, fans good, fan boys, sport fans, wish fans, say fan, fandom\nPosts (one per line, title first):\n- As a fan, I'm tired of seeing this. (quick and dirty)\n- Can’t We All Just Get Along? - Why aren't British fans very good at raising their voice for change?\n- I've always believed that we've had some of the greatest fans!\n- \"Like father, like son: Thoughts on being a fan\" - A remarkable article by Jonathan Wilson\n- An interesting philosophical question spawned from the whole Tevez return. Interested in r/Soccer's response. / What does it mean to be a fan? When faced with the ultimatum, like with Tevez, does a fan (in the truest sense) outcast the good player for his disloyalty, or do they disregard this fact i\n- Good to know the true fans are still out there\n- Some fans are unbelievable.. Found on another forum\n- Just a 'few' fans you say?\n- The fans just make the sport, sometimes.\n- what a nice fan...oh\n- Some fans are unbelievable..\n- Not your average fan.\n- First Law of Persecuted Fandom\n- For the true fans\n- The definition of a fanboy.\n- Some fans can't handle suspense...\n- If you do this, and still call yourself a \"fan\", I HATE you\n- Full Kit Wankers: A Guide to UK football-fan shamin\n- True football fans\n- being a fan doesn't know any border\n- A day after we get the true meaning of humanity from fans we get this...\n- This is what I call a dedicated supporter.\n- Proud to be a true fan\n- No Longer Merely a Fair-Weather Fan\n- Gotta love the fans\n- Until death do us part and the unhealthy fan/club relationship\n- A true soccer fan\n- This is just pathetic that fans would go to such extremes...\n- What players really think about the fans\n- A note on fans....\n- My brother is a confused fan...\n- Fan Owenership, good or bad ??\n- From the players? Yes, they're professionals. But from the fans? Earn it.\n- I don't think he was a \"fan,\" actually...\n- Fans Know Genius When They See It\n- you thought YOU were a fan?\n- A True Fan (When You See It)\n- A Supporter Is Not A Customer\n- How do fans feel about this kinda thing?\n- Why 'For The Fans' Is Utterly Meaningless\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"true fans\", \"purpose\": \"identify and celebrate dedicated football supporters\", \"emotion_tone\": \"positive\", \"description\": \"Posts discussing genuine fan loyalty, commitment, and the importance of authentic fandom in football\", \"inclusion_cues\": [\"true football fans\", \"being a fan doesn't know any border\", \"A true soccer fan\", \"Proud to be a true fan\", \"For the true fans\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "true fans",
+      "purpose": "identify and celebrate dedicated football supporters",
+      "emotion_tone": "positive",
+      "description": "Posts discussing genuine fan loyalty, commitment, and the importance of authentic fandom in football",
+      "inclusion_cues": [
+       "true football fans",
+       "being a fan doesn't know any border",
+       "A true soccer fan",
+       "Proud to be a true fan",
+       "For the true fans"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 102,
+   "seed": 131494221,
+   "seconds": 0.53
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: greatest fans, love fans, british fans, fans fans, fans say, fans supporter, fans true, true fans, fan players, fans good, fan boys, sport fans, wish fans, say fan, fandom\nPosts (one per line, title first):\n- As a fan, I'm tired of seeing this. (quick and dirty)\n- Can’t We All Just Get Along? - Why aren't British fans very good at raising their voice for change?\n- I've always believed that we've had some of the greatest fans!\n- \"Like father, like son: Thoughts on being a fan\" - A remarkable article by Jonathan Wilson\n- An interesting philosophical question spawned from the whole Tevez return. Interested in r/Soccer's response. / What does it mean to be a fan? When faced with the ultimatum, like with Tevez, does a fan (in the truest sense) outcast the good player for his disloyalty, or do they disregard this fact i\n- Good to know the true fans are still out there\n- Some fans are unbelievable.. Found on another forum\n- Just a 'few' fans you say?\n- The fans just make the sport, sometimes.\n- what a nice fan...oh\n- Some fans are unbelievable..\n- Not your average fan.\n- First Law of Persecuted Fandom\n- For the true fans\n- The definition of a fanboy.\n- Some fans can't handle suspense...\n- If you do this, and still call yourself a \"fan\", I HATE you\n- Full Kit Wankers: A Guide to UK football-fan shamin\n- True football fans\n- being a fan doesn't know any border\n- A day after we get the true meaning of humanity from fans we get this...\n- This is what I call a dedicated supporter.\n- Proud to be a true fan\n- No Longer Merely a Fair-Weather Fan\n- Gotta love the fans\n- Until death do us part and the unhealthy fan/club relationship\n- A true soccer fan\n- This is just pathetic that fans would go to such extremes...\n- What players really think about the fans\n- A note on fans....\n- My brother is a confused fan...\n- Fan Owenership, good or bad ??\n- From the players? Yes, they're professionals. But from the fans? Earn it.\n- I don't think he was a \"fan,\" actually...\n- Fans Know Genius When They See It\n- you thought YOU were a fan?\n- A True Fan (When You See It)\n- A Supporter Is Not A Customer\n- How do fans feel about this kinda thing?\n- Why 'For The Fans' Is Utterly Meaningless\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"true fans\", \"purpose\": \"identify and celebrate dedicated football supporters\", \"emotion_tone\": \"positive, passionate\", \"description\": \"Posts expressing admiration for committed fans, emphasizing their loyalty and passion for the sport\", \"inclusion_cues\": [\"true football fans\", \"proud to be a true fan\", \"definition of a fanboy\", \"true soccer fan\", \"supporter is not a customer\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"true fans\", \"purpose\": \"identify and celebrate dedicated football supporters\", \"emotion_tone\": \"positive\", \"description\": \"Posts discussing genuine fan loyalty, commitment, and the importance of authentic fandom in football\", \"inclusion_cues\": [\"true football fans\", \"being a fan doesn't know any border\", \"A true soccer fan\", \"Proud to be a true fan\", \"For the true fans\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"true fans\", \"purpose\": \"identify and celebrate dedicated football supporters\", \"emotion_tone\": \"positive, passionate\", \"description\": \"Posts expressing admiration for committed fans, emphasizing their loyalty and passion for the sport\", \"inclusion_cues\": [\"true football fans\", \"proud to be a true fan\", \"being a fan doesn't know any border\", \"A true soccer fan\", \"For the true fans\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 102,
+   "seed": 1682919621,
+   "seconds": 0.6
+  }
+ ]
+}

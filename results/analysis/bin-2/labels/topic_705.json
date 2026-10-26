@@ -1,0 +1,186 @@
+{
+ "period_bin": 2,
+ "topic_id": 705,
+ "keywords": "lazio supporters, attacked fans, lazio fans, roma fans, fans stabbed, juventus fans, fans roma, inter fans, italian fans, fans napoli, attack roma, attacked inter, attack juventus, match lazio, lazio ultras",
+ "n_sample_posts": 34,
+ "sample_ids": [
+  "13qare",
+  "dun5d",
+  "13o5xj",
+  "13o5xj",
+  "13nwhf",
+  "1pggwt",
+  "lg62h",
+  "13oxat",
+  "1egn8u",
+  "13m3j8",
+  "13m4ko",
+  "1e93dt",
+  "1snhhd",
+  "1u93rp",
+  "13mn2j",
+  "18y4ad",
+  "1rkf41",
+  "19hl75",
+  "1pj6xd",
+  "1f4izu",
+  "1njeso",
+  "13mtmo",
+  "lgimo",
+  "1snhlp",
+  "1njfhq",
+  "lg6ws",
+  "109c50",
+  "gs2bm",
+  "153spm",
+  "zc4w7",
+  "13n1x6",
+  "1mhcka",
+  "13ndpt",
+  "13n8ky"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Lazio Ultras Attack",
+  "purpose": "Reporting on fan violence and attacks by Lazio supporters",
+  "emotion_tone": "angry",
+  "description": "Posts about attacks by Lazio fans on other teams, including Tottenham, Roma, and others, with emphasis on fan violence and hostility.",
+  "inclusion_cues": [
+   "Lazio fans attacking others",
+   "Roma fans attacked",
+   "Tottenham fans injured",
+   "Lazio Ultras giving Nazi salute",
+   "Arrests in Spurs attack"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Lazio Ultras Attack",
+    "purpose": "Reporting on fan violence and attacks by Lazio supporters",
+    "emotion_tone": "angry, frustrated",
+    "description": "Posts about attacks by Lazio fans on other teams, including Tottenham, Roma, and others, with emphasis on fan violence and its impact.",
+    "inclusion_cues": [
+     "Lazio fans attacking others",
+     "Roma fans involved",
+     "Tottenham fans injured",
+     "Fan violence in Italy"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Lazio Ultras Attack",
+    "purpose": "Reporting on fan violence and attacks by Lazio supporters",
+    "emotion_tone": "angry",
+    "description": "Posts about attacks by Lazio fans on other teams, including Tottenham, Roma, and others, with emphasis on fan violence and hostility.",
+    "inclusion_cues": [
+     "Lazio fans attacking others",
+     "Roma fans attacked",
+     "Tottenham fans injured",
+     "Lazio Ultras giving Nazi salute",
+     "Arrests in Spurs attack"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: lazio supporters, attacked fans, lazio fans, roma fans, fans stabbed, juventus fans, fans roma, inter fans, italian fans, fans napoli, attack roma, attacked inter, attack juventus, match lazio, lazio ultras\nPosts (one per line, title first):\n- Turns out it was Roma fans who attacked Spurs fans before the Lazio game.\n- Liverpool fans attacked and stabbed in Naples\n- Spurs fans attacked by Lazio Ultras\n- Spurs fans attacked by Lazio Ultras\n- Two Italians thought to be fans of the AS Roma football team have been charged with attempted murder after a group of Tottenham fans was attacked in Rome.\n- Thugs jailed for brutal assault on Tottenham Hotspur fans before match against Lazio\n- Why does this always happen in Italy? Two Bayern Munich fans stabbed in Naples\n- Two Roma fans arrested for attack on Tottenham fans.\n- Spurs players involved in a night club altercation\n- Tottenham fans hospitalized code red after being stabbed in a night assault to a Rome pub from hundred Lazio hooligans.10 wounded\n- Tottenham fans injured in clashes in Rome\n- Roma blasts 'unacceptable' fans\n- Two Ajax-fans were stabbed in Milan today, one is severely injured [Italian]\n- Hull fans bus attacked by Liverpool fans\n- Lazio: 'Fans not behind Spurs attack'\n- Spurs fans attacked in Lyon bar.\n- 4 FC Copenhagen fans wearing club shirts have been attacked with knives at a café in Turin - Danish Article.\n- Napoli Fans Attack Juventus Bus\n- Jail for AS Roma fans who launched \"commando\" knife attack on 13 Tottenham Hotspur fans\n- PSY gets boo at Coppa Italia Roma vs Lazio\n- Italian Fans In 'Arsenal Restaurant' Attack\n- Two arrested for the stabbing of Tottenham fans\n- Bayern fans stabbed in Naples\n- Reportedly, two Ajax fans have been stabbed in Milan prior to tonight's match\n- Piebury Corner restaurant near Arsenal's ground attacked by Napoli hooligans\n- Two Bayern fans stabbed in Naples\n- Lazio Ultras give Nazi salute in London.\n- Sampdoria team bus attacked by own fans after AC Milan loss\n- The Italian fans' ID card system is still not working - Violence remains and supporters alienated\n- Four Arsenal Fans Arrested At Anfield For Murder.\n- Arrests in Spurs attack are Roma ultras\n- Juventus fans get attacked by Inter fans after Vidal's goal.\n- Tottenham fans injured in anti-Semitic attack from Lazio supporters before Europa League match\n- Spurs fans attacked by Lazio Ultras\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Lazio Ultras Attack\", \"purpose\": \"Reporting on fan violence and attacks by Lazio supporters\", \"emotion_tone\": \"angry, frustrated\", \"description\": \"Posts about attacks by Lazio fans on other teams, including Tottenham, Roma, and others, with emphasis on fan violence and its impact.\", \"inclusion_cues\": [\"Lazio fans attacking others\", \"Roma fans involved\", \"Tottenham fans injured\", \"Fan violence in Italy\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Lazio Ultras Attack",
+      "purpose": "Reporting on fan violence and attacks by Lazio supporters",
+      "emotion_tone": "angry, frustrated",
+      "description": "Posts about attacks by Lazio fans on other teams, including Tottenham, Roma, and others, with emphasis on fan violence and its impact.",
+      "inclusion_cues": [
+       "Lazio fans attacking others",
+       "Roma fans involved",
+       "Tottenham fans injured",
+       "Fan violence in Italy"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 112,
+   "seed": 335636801,
+   "seconds": 0.74
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: lazio supporters, attacked fans, lazio fans, roma fans, fans stabbed, juventus fans, fans roma, inter fans, italian fans, fans napoli, attack roma, attacked inter, attack juventus, match lazio, lazio ultras\nPosts (one per line, title first):\n- Turns out it was Roma fans who attacked Spurs fans before the Lazio game.\n- Liverpool fans attacked and stabbed in Naples\n- Spurs fans attacked by Lazio Ultras\n- Spurs fans attacked by Lazio Ultras\n- Two Italians thought to be fans of the AS Roma football team have been charged with attempted murder after a group of Tottenham fans was attacked in Rome.\n- Thugs jailed for brutal assault on Tottenham Hotspur fans before match against Lazio\n- Why does this always happen in Italy? Two Bayern Munich fans stabbed in Naples\n- Two Roma fans arrested for attack on Tottenham fans.\n- Spurs players involved in a night club altercation\n- Tottenham fans hospitalized code red after being stabbed in a night assault to a Rome pub from hundred Lazio hooligans.10 wounded\n- Tottenham fans injured in clashes in Rome\n- Roma blasts 'unacceptable' fans\n- Two Ajax-fans were stabbed in Milan today, one is severely injured [Italian]\n- Hull fans bus attacked by Liverpool fans\n- Lazio: 'Fans not behind Spurs attack'\n- Spurs fans attacked in Lyon bar.\n- 4 FC Copenhagen fans wearing club shirts have been attacked with knives at a café in Turin - Danish Article.\n- Napoli Fans Attack Juventus Bus\n- Jail for AS Roma fans who launched \"commando\" knife attack on 13 Tottenham Hotspur fans\n- PSY gets boo at Coppa Italia Roma vs Lazio\n- Italian Fans In 'Arsenal Restaurant' Attack\n- Two arrested for the stabbing of Tottenham fans\n- Bayern fans stabbed in Naples\n- Reportedly, two Ajax fans have been stabbed in Milan prior to tonight's match\n- Piebury Corner restaurant near Arsenal's ground attacked by Napoli hooligans\n- Two Bayern fans stabbed in Naples\n- Lazio Ultras give Nazi salute in London.\n- Sampdoria team bus attacked by own fans after AC Milan loss\n- The Italian fans' ID card system is still not working - Violence remains and supporters alienated\n- Four Arsenal Fans Arrested At Anfield For Murder.\n- Arrests in Spurs attack are Roma ultras\n- Juventus fans get attacked by Inter fans after Vidal's goal.\n- Tottenham fans injured in anti-Semitic attack from Lazio supporters before Europa League match\n- Spurs fans attacked by Lazio Ultras\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Lazio Ultras Attack\", \"purpose\": \"Reporting on fan violence and attacks by Lazio supporters\", \"emotion_tone\": \"angry\", \"description\": \"Posts about attacks by Lazio fans on other teams, including Tottenham, Roma, and others, with emphasis on fan violence and hostility.\", \"inclusion_cues\": [\"Lazio fans attacking others\", \"Roma fans attacked\", \"Tottenham fans injured\", \"Lazio Ultras giving Nazi salute\", \"Arrests in Spurs attack\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Lazio Ultras Attack",
+      "purpose": "Reporting on fan violence and attacks by Lazio supporters",
+      "emotion_tone": "angry",
+      "description": "Posts about attacks by Lazio fans on other teams, including Tottenham, Roma, and others, with emphasis on fan violence and hostility.",
+      "inclusion_cues": [
+       "Lazio fans attacking others",
+       "Roma fans attacked",
+       "Tottenham fans injured",
+       "Lazio Ultras giving Nazi salute",
+       "Arrests in Spurs attack"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 120,
+   "seed": 697759266,
+   "seconds": 0.71
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: lazio supporters, attacked fans, lazio fans, roma fans, fans stabbed, juventus fans, fans roma, inter fans, italian fans, fans napoli, attack roma, attacked inter, attack juventus, match lazio, lazio ultras\nPosts (one per line, title first):\n- Turns out it was Roma fans who attacked Spurs fans before the Lazio game.\n- Liverpool fans attacked and stabbed in Naples\n- Spurs fans attacked by Lazio Ultras\n- Spurs fans attacked by Lazio Ultras\n- Two Italians thought to be fans of the AS Roma football team have been charged with attempted murder after a group of Tottenham fans was attacked in Rome.\n- Thugs jailed for brutal assault on Tottenham Hotspur fans before match against Lazio\n- Why does this always happen in Italy? Two Bayern Munich fans stabbed in Naples\n- Two Roma fans arrested for attack on Tottenham fans.\n- Spurs players involved in a night club altercation\n- Tottenham fans hospitalized code red after being stabbed in a night assault to a Rome pub from hundred Lazio hooligans.10 wounded\n- Tottenham fans injured in clashes in Rome\n- Roma blasts 'unacceptable' fans\n- Two Ajax-fans were stabbed in Milan today, one is severely injured [Italian]\n- Hull fans bus attacked by Liverpool fans\n- Lazio: 'Fans not behind Spurs attack'\n- Spurs fans attacked in Lyon bar.\n- 4 FC Copenhagen fans wearing club shirts have been attacked with knives at a café in Turin - Danish Article.\n- Napoli Fans Attack Juventus Bus\n- Jail for AS Roma fans who launched \"commando\" knife attack on 13 Tottenham Hotspur fans\n- PSY gets boo at Coppa Italia Roma vs Lazio\n- Italian Fans In 'Arsenal Restaurant' Attack\n- Two arrested for the stabbing of Tottenham fans\n- Bayern fans stabbed in Naples\n- Reportedly, two Ajax fans have been stabbed in Milan prior to tonight's match\n- Piebury Corner restaurant near Arsenal's ground attacked by Napoli hooligans\n- Two Bayern fans stabbed in Naples\n- Lazio Ultras give Nazi salute in London.\n- Sampdoria team bus attacked by own fans after AC Milan loss\n- The Italian fans' ID card system is still not working - Violence remains and supporters alienated\n- Four Arsenal Fans Arrested At Anfield For Murder.\n- Arrests in Spurs attack are Roma ultras\n- Juventus fans get attacked by Inter fans after Vidal's goal.\n- Tottenham fans injured in anti-Semitic attack from Lazio supporters before Europa League match\n- Spurs fans attacked by Lazio Ultras\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Lazio Ultras Attack\", \"purpose\": \"Reporting on fan violence and attacks by Lazio supporters\", \"emotion_tone\": \"angry, frustrated\", \"description\": \"Posts about attacks by Lazio fans on other teams, including Tottenham, Roma, and others, with emphasis on fan violence and its impact.\", \"inclusion_cues\": [\"Lazio fans attacking others\", \"Roma fans involved\", \"Tottenham fans injured\", \"Fan violence in Italy\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Lazio Ultras Attack\", \"purpose\": \"Reporting on fan violence and attacks by Lazio supporters\", \"emotion_tone\": \"angry\", \"description\": \"Posts about attacks by Lazio fans on other teams, including Tottenham, Roma, and others, with emphasis on fan violence and hostility.\", \"inclusion_cues\": [\"Lazio fans attacking others\", \"Roma fans attacked\", \"Tottenham fans injured\", \"Lazio Ultras giving Nazi salute\", \"Arrests in Spurs attack\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Lazio Ultras Attack\", \"purpose\": \"Reporting on fan violence and attacks by Lazio supporters\", \"emotion_tone\": \"angry\", \"description\": \"Posts about attacks by Lazio fans on other teams, including Tottenham, Roma, and others, with emphasis on fan violence and hostility.\", \"inclusion_cues\": [\"Lazio fans attacking others\", \"Roma fans attacked\", \"Tottenham fans injured\", \"Lazio Ultras giving Nazi salute\", \"Arrests in Spurs attack\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 119,
+   "seed": 2842248203,
+   "seconds": 1.04
+  }
+ ]
+}

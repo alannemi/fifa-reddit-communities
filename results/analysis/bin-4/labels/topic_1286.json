@@ -1,0 +1,185 @@
+{
+ "period_bin": 4,
+ "topic_id": 1286,
+ "keywords": "football mascots, club mascot, fc mascot, mascots, eagle mascot, scariest mascot, kid mascot, united weird, reus liverpool, lazio eagle, limerick fc, help liverpool, watford leicester, hornets, stadium home",
+ "n_sample_posts": 32,
+ "sample_ids": [
+  "3bedlc",
+  "4dvoix",
+  "345cye",
+  "7uc5n2",
+  "7uc5ai",
+  "2iuc5f",
+  "34993t",
+  "2mritm",
+  "3ijic1",
+  "61fmim",
+  "2iolzl",
+  "4dmjvu",
+  "5po3r4",
+  "2sl0nj",
+  "5kjlf2",
+  "3avuei",
+  "4uq30t",
+  "6c4nca",
+  "3fwpdy",
+  "7mu0up",
+  "3413j8",
+  "54f45p",
+  "3bym2y",
+  "3ncd47",
+  "2yfq2t",
+  "5f1e1n",
+  "34xgh1",
+  "5gm83l",
+  "6nkf28",
+  "35q7i1",
+  "3hk19c",
+  "3bauzi"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Football Mascot",
+  "purpose": "Examine and discuss football mascots and their cultural impact",
+  "emotion_tone": "Curious and humorous",
+  "description": "Posts about football mascots, including their design, symbolism, and cultural significance, with a focus on both humorous and eerie elements.",
+  "inclusion_cues": [
+   "Football mascots",
+   "Eerie or terrifying mascots",
+   "Cultural significance of mascots",
+   "Humorous or funny mascots"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Scariest Football Mascots",
+    "purpose": "Identify and categorize the most terrifying football mascots",
+    "emotion_tone": "Fearful and curious",
+    "description": "Posts discussing the scariest football mascots, including the eagle mascot, the kid mascot, and the most notorious mascot, such as Hennes the Eighth and Kingsley.",
+    "inclusion_cues": [
+     "scariest mascot",
+     "eagle mascot",
+     "kid mascot",
+     "notorious mascot",
+     "hennes the eighth",
+     "kingsley"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Football Mascot",
+    "purpose": "Examine and discuss football mascots and their cultural impact",
+    "emotion_tone": "Curious and humorous",
+    "description": "Posts about football mascots, including their design, symbolism, and cultural significance, with a focus on both humorous and eerie elements.",
+    "inclusion_cues": [
+     "Football mascots",
+     "Eerie or terrifying mascots",
+     "Cultural significance of mascots",
+     "Humorous or funny mascots"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: football mascots, club mascot, fc mascot, mascots, eagle mascot, scariest mascot, kid mascot, united weird, reus liverpool, lazio eagle, limerick fc, help liverpool, watford leicester, hornets, stadium home\nPosts (one per line, title first):\n- The strange and sometimes terrifying world of football mascots – in pictures\n- TIL: Kevin Großkreutz and Marco Reus were the Liverpool mascots for the 2001 UEFA Cup Final vs. Alavés\n- Photo gallery: 20 Utterly Craptacular Football Mascots\n- Crystal Palace has an American bald eagle called Kayla as its club mascot. The bird flies from one end of the stadium to the other at every home game\n- TIL that Crystal Palace has an American bald eagle called Kayla as its club mascot. The bird flies from one end of the stadium to the other at every home game\n- Arsenal mascot out for 8 months with broken tail!\n- Please help out one of Liverpool's junior mascots\n- The world of Football is riddled with horrible mascots - who's the worst?\n- IS this the scariest sports mascot of all time? If you know a scarier one I'd like to see it!\n- How Cyril the Swan became the UK’s most notorious mascot.\n- Timber Joey: America's Best Mascot?\n- Throwback to when a kid mascot threw up illuminati signs\n- Cheeky young mascots meet the players and engage in hilarious banter before a game\n- Thierry Henry not amused by basketball mascot\n- Hornets mascot out of order.\n- The top 10 most terrifying mascots in Football\n- Gunnersaurus: Arsenal's mascot, from a kid's drawing to international fame\n- Weird World: I’m Hennes The Eighth, I Am — The Legend Of Soccer’s Horniest Mascot\n- Limerick FC mascot is definitely happy to see Limerick win their first game of the season\n- Heurelho Gomes with a mascot before Watford vs. Leicester\n- Lazio’s eagle mascot attacked by a crow before kick-off[image]\n- you should not joke with mascot\n- Best/funniest mascots from around the world? Ours was a troublemaker; receiving fines and starting fights until settling down with his wife.\n- Bournemouth Child Mascot Wearing Go Pro\n- Mascot-Eye View (AVFC v West Brom)\n- Throwback to the greatest mascot fight of all-time.\n- Everyone loves a drunk mascot!\n- Football's Scariest Mascot | Meeting Kingsley\n- Mascot trolling Man United\n- Cologne mascot Hennes projected onto Hoover Dam\n- Kingsley the mascot: under the foam head of football’s most unlikely hero\n- An interesting look at professional football mascots\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Scariest Football Mascots\", \"purpose\": \"Identify and categorize the most terrifying football mascots\", \"emotion_tone\": \"Fearful and curious\", \"description\": \"Posts discussing the scariest football mascots, including the eagle mascot, the kid mascot, and the most notorious mascot, such as Hennes the Eighth and Kingsley.\", \"inclusion_cues\": [\"scariest mascot\", \"eagle mascot\", \"kid mascot\", \"notorious mascot\", \"hennes the eighth\", \"kingsley\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Scariest Football Mascots",
+      "purpose": "Identify and categorize the most terrifying football mascots",
+      "emotion_tone": "Fearful and curious",
+      "description": "Posts discussing the scariest football mascots, including the eagle mascot, the kid mascot, and the most notorious mascot, such as Hennes the Eighth and Kingsley.",
+      "inclusion_cues": [
+       "scariest mascot",
+       "eagle mascot",
+       "kid mascot",
+       "notorious mascot",
+       "hennes the eighth",
+       "kingsley"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 127,
+   "seed": 207410618,
+   "seconds": 0.69
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: football mascots, club mascot, fc mascot, mascots, eagle mascot, scariest mascot, kid mascot, united weird, reus liverpool, lazio eagle, limerick fc, help liverpool, watford leicester, hornets, stadium home\nPosts (one per line, title first):\n- The strange and sometimes terrifying world of football mascots – in pictures\n- TIL: Kevin Großkreutz and Marco Reus were the Liverpool mascots for the 2001 UEFA Cup Final vs. Alavés\n- Photo gallery: 20 Utterly Craptacular Football Mascots\n- Crystal Palace has an American bald eagle called Kayla as its club mascot. The bird flies from one end of the stadium to the other at every home game\n- TIL that Crystal Palace has an American bald eagle called Kayla as its club mascot. The bird flies from one end of the stadium to the other at every home game\n- Arsenal mascot out for 8 months with broken tail!\n- Please help out one of Liverpool's junior mascots\n- The world of Football is riddled with horrible mascots - who's the worst?\n- IS this the scariest sports mascot of all time? If you know a scarier one I'd like to see it!\n- How Cyril the Swan became the UK’s most notorious mascot.\n- Timber Joey: America's Best Mascot?\n- Throwback to when a kid mascot threw up illuminati signs\n- Cheeky young mascots meet the players and engage in hilarious banter before a game\n- Thierry Henry not amused by basketball mascot\n- Hornets mascot out of order.\n- The top 10 most terrifying mascots in Football\n- Gunnersaurus: Arsenal's mascot, from a kid's drawing to international fame\n- Weird World: I’m Hennes The Eighth, I Am — The Legend Of Soccer’s Horniest Mascot\n- Limerick FC mascot is definitely happy to see Limerick win their first game of the season\n- Heurelho Gomes with a mascot before Watford vs. Leicester\n- Lazio’s eagle mascot attacked by a crow before kick-off[image]\n- you should not joke with mascot\n- Best/funniest mascots from around the world? Ours was a troublemaker; receiving fines and starting fights until settling down with his wife.\n- Bournemouth Child Mascot Wearing Go Pro\n- Mascot-Eye View (AVFC v West Brom)\n- Throwback to the greatest mascot fight of all-time.\n- Everyone loves a drunk mascot!\n- Football's Scariest Mascot | Meeting Kingsley\n- Mascot trolling Man United\n- Cologne mascot Hennes projected onto Hoover Dam\n- Kingsley the mascot: under the foam head of football’s most unlikely hero\n- An interesting look at professional football mascots\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Football Mascot\", \"purpose\": \"Examine and discuss football mascots and their cultural impact\", \"emotion_tone\": \"Curious and humorous\", \"description\": \"Posts about football mascots, including their design, symbolism, and cultural significance, with a focus on both humorous and eerie elements.\", \"inclusion_cues\": [\"Football mascots\", \"Eerie or terrifying mascots\", \"Cultural significance of mascots\", \"Humorous or funny mascots\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Football Mascot",
+      "purpose": "Examine and discuss football mascots and their cultural impact",
+      "emotion_tone": "Curious and humorous",
+      "description": "Posts about football mascots, including their design, symbolism, and cultural significance, with a focus on both humorous and eerie elements.",
+      "inclusion_cues": [
+       "Football mascots",
+       "Eerie or terrifying mascots",
+       "Cultural significance of mascots",
+       "Humorous or funny mascots"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 113,
+   "seed": 772374338,
+   "seconds": 0.69
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: football mascots, club mascot, fc mascot, mascots, eagle mascot, scariest mascot, kid mascot, united weird, reus liverpool, lazio eagle, limerick fc, help liverpool, watford leicester, hornets, stadium home\nPosts (one per line, title first):\n- The strange and sometimes terrifying world of football mascots – in pictures\n- TIL: Kevin Großkreutz and Marco Reus were the Liverpool mascots for the 2001 UEFA Cup Final vs. Alavés\n- Photo gallery: 20 Utterly Craptacular Football Mascots\n- Crystal Palace has an American bald eagle called Kayla as its club mascot. The bird flies from one end of the stadium to the other at every home game\n- TIL that Crystal Palace has an American bald eagle called Kayla as its club mascot. The bird flies from one end of the stadium to the other at every home game\n- Arsenal mascot out for 8 months with broken tail!\n- Please help out one of Liverpool's junior mascots\n- The world of Football is riddled with horrible mascots - who's the worst?\n- IS this the scariest sports mascot of all time? If you know a scarier one I'd like to see it!\n- How Cyril the Swan became the UK’s most notorious mascot.\n- Timber Joey: America's Best Mascot?\n- Throwback to when a kid mascot threw up illuminati signs\n- Cheeky young mascots meet the players and engage in hilarious banter before a game\n- Thierry Henry not amused by basketball mascot\n- Hornets mascot out of order.\n- The top 10 most terrifying mascots in Football\n- Gunnersaurus: Arsenal's mascot, from a kid's drawing to international fame\n- Weird World: I’m Hennes The Eighth, I Am — The Legend Of Soccer’s Horniest Mascot\n- Limerick FC mascot is definitely happy to see Limerick win their first game of the season\n- Heurelho Gomes with a mascot before Watford vs. Leicester\n- Lazio’s eagle mascot attacked by a crow before kick-off[image]\n- you should not joke with mascot\n- Best/funniest mascots from around the world? Ours was a troublemaker; receiving fines and starting fights until settling down with his wife.\n- Bournemouth Child Mascot Wearing Go Pro\n- Mascot-Eye View (AVFC v West Brom)\n- Throwback to the greatest mascot fight of all-time.\n- Everyone loves a drunk mascot!\n- Football's Scariest Mascot | Meeting Kingsley\n- Mascot trolling Man United\n- Cologne mascot Hennes projected onto Hoover Dam\n- Kingsley the mascot: under the foam head of football’s most unlikely hero\n- An interesting look at professional football mascots\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Scariest Football Mascots\", \"purpose\": \"Identify and categorize the most terrifying football mascots\", \"emotion_tone\": \"Fearful and curious\", \"description\": \"Posts discussing the scariest football mascots, including the eagle mascot, the kid mascot, and the most notorious mascot, such as Hennes the Eighth and Kingsley.\", \"inclusion_cues\": [\"scariest mascot\", \"eagle mascot\", \"kid mascot\", \"notorious mascot\", \"hennes the eighth\", \"kingsley\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Football Mascot\", \"purpose\": \"Examine and discuss football mascots and their cultural impact\", \"emotion_tone\": \"Curious and humorous\", \"description\": \"Posts about football mascots, including their design, symbolism, and cultural significance, with a focus on both humorous and eerie elements.\", \"inclusion_cues\": [\"Football mascots\", \"Eerie or terrifying mascots\", \"Cultural significance of mascots\", \"Humorous or funny mascots\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Scariest Football Mascots\", \"purpose\": \"Identify and categorize the most terrifying football mascots\", \"emotion_tone\": \"Fearful and curious\", \"description\": \"Posts discussing the scariest football mascots, including the eagle mascot, the kid mascot, and the most notorious mascot, such as Hennes the Eighth and Kingsley.\", \"inclusion_cues\": [\"scariest mascot\", \"eagle mascot\", \"kid mascot\", \"notorious mascot\", \"hennes the eighth\", \"kingsley\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 126,
+   "seed": 1037199706,
+   "seconds": 0.6
+  }
+ ]
+}

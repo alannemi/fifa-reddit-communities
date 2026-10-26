@@ -1,0 +1,186 @@
+{
+ "period_bin": 4,
+ "topic_id": 1277,
+ "keywords": "whoscored bundesliga, week bundesliga, team bundesliga, bundesliga xi, official bundesliga, season bundesliga, bundesliga bundesliga, kicker bundesliga, vote bundesliga, days bundesliga, opta bundesliga, transfermarkt bundesliga, dortmund players, aubameyang bayern, post bundesliga",
+ "n_sample_posts": 32,
+ "sample_ids": [
+  "5jrxvs",
+  "50ana0",
+  "53zvsq",
+  "76plga",
+  "5gmjz4",
+  "60gdkj",
+  "3xp1v0",
+  "5z4x1q",
+  "7na7d3",
+  "2i4mc0",
+  "6379ir",
+  "4jl95q",
+  "5wp11f",
+  "6eta9n",
+  "4jwal0",
+  "5xveo3",
+  "4keyif",
+  "4jx6ic",
+  "67hou7",
+  "7mi4xw",
+  "3a28hw",
+  "6wjlgu",
+  "3m6jt7",
+  "6v52wa",
+  "68mpiy",
+  "612su2",
+  "5hwy9w",
+  "41ca3t",
+  "5wgrky",
+  "5rozgw",
+  "69m9f0",
+  "3692l6"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Bundesliga Team of the Week",
+  "purpose": "Highlighting the best player or team in the Bundesliga",
+  "emotion_tone": "positive",
+  "description": "Posts discussing the Bundesliga team of the week, often with references to WhoScored, Opta, or other sources, focusing on player performance and team rankings.",
+  "inclusion_cues": [
+   "Bundesliga team of the week",
+   "WhoScored Bundesliga team of the week",
+   "Opta Bundesliga team of the year 2017",
+   "Vote for Bundesliga Team of the Season",
+   "Bundesliga release it's Team of the Half-Season"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Bundesliga Team of the Week",
+    "purpose": "Highlighting the best player or team in the Bundesliga",
+    "emotion_tone": "Excitement",
+    "description": "Posts discussing the Bundesliga team of the week, often with references to WhoScored, Opta, or other sources, emphasizing player performance and fan engagement.",
+    "inclusion_cues": [
+     "Bundesliga team of the week",
+     "WhoScored Bundesliga team of the week",
+     "Opta Bundesliga team of the year 2017",
+     "Vote for Bundesliga Team of the Season",
+     "Bundesliga team of the week [WhoScored]"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Bundesliga Team of the Week",
+    "purpose": "Highlighting the best player or team in the Bundesliga",
+    "emotion_tone": "positive",
+    "description": "Posts discussing the Bundesliga team of the week, often with references to WhoScored, Opta, or other sources, focusing on player performance and team rankings.",
+    "inclusion_cues": [
+     "Bundesliga team of the week",
+     "WhoScored Bundesliga team of the week",
+     "Opta Bundesliga team of the year 2017",
+     "Vote for Bundesliga Team of the Season",
+     "Bundesliga release it's Team of the Half-Season"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: whoscored bundesliga, week bundesliga, team bundesliga, bundesliga xi, official bundesliga, season bundesliga, bundesliga bundesliga, kicker bundesliga, vote bundesliga, days bundesliga, opta bundesliga, transfermarkt bundesliga, dortmund players, aubameyang bayern, post bundesliga\nPosts (one per line, title first):\n- Bundesliga team of the week [WhoScored]\n- [WhoScored] Bundesliga team of the week\n- Whoscored Bundesliga team of the week\n- (WhoScored) Bundesliga team of the week\n- WhoScored Bundesliga team of the week\n- Bundesliga team of the week [WhoScored]\n- Bundesliga - Squad of the first half [German]\n- Bundesliga team of the week [WhoScored]\n- Opta - Bundesliga team of the year 2017\n- What would be your Bundesliga team?\n- Bundesliga team of the week [WhoScored]\n- Bundesliga XI of the season, according to Sportschau\n- Official Bundesliga team of the week\n- [Bundesliga] Best of 2016/17 - Aubameyang, Bayern München & much more action and emotions\n- Bundesliga Team Of The Season\n- Bundesliga team of the week [WhoScored]\n- Bundesliga Team of the Year\n- Kicker's Bundesliga team of the season (x-post /r/Bundesliga)\n- Bundesliga Team of the week : Matchday 30\n- WhoScored Bundesliga Team of the Season so far\n- Leroy Sane is the Bundesliga newcomer of the season / Voted by the players with 17,1%. Next contestants: Juan Bernat : 11,1% Karim Bellarabi : 8,1% Source in german:\n- Bundesliga team of the week (WhoScored)\n- Bundesliga team of the week\n- Bundesliga Team of the Week 1\n- Bundesliga team of the week [transfermarkt]\n- Bundesliga team of the week [bundesliga.de]\n- Bundesliga team of the week [WhoScored]\n- Bundesliga release it's Team of the Half-Season, featuring 5 Dortmund players and 4 Bayern.\n- Bundesliga team of the week [WhoScored]\n- Bundesliga team of the week\n- Vote for Bundesliga Team of the Season! (Voting Ends in 15 Days!)\n- 2014/15 Bundesliga.com Team of the season, as voted by users\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bundesliga Team of the Week\", \"purpose\": \"Highlighting the best player or team in the Bundesliga\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts discussing the Bundesliga team of the week, often with references to WhoScored, Opta, or other sources, emphasizing player performance and fan engagement.\", \"inclusion_cues\": [\"Bundesliga team of the week\", \"WhoScored Bundesliga team of the week\", \"Opta Bundesliga team of the year 2017\", \"Vote for Bundesliga Team of the Season\", \"Bundesliga team of the week [WhoScored]\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Bundesliga Team of the Week",
+      "purpose": "Highlighting the best player or team in the Bundesliga",
+      "emotion_tone": "Excitement",
+      "description": "Posts discussing the Bundesliga team of the week, often with references to WhoScored, Opta, or other sources, emphasizing player performance and fan engagement.",
+      "inclusion_cues": [
+       "Bundesliga team of the week",
+       "WhoScored Bundesliga team of the week",
+       "Opta Bundesliga team of the year 2017",
+       "Vote for Bundesliga Team of the Season",
+       "Bundesliga team of the week [WhoScored]"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 150,
+   "seed": 2763643286,
+   "seconds": 0.83
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: whoscored bundesliga, week bundesliga, team bundesliga, bundesliga xi, official bundesliga, season bundesliga, bundesliga bundesliga, kicker bundesliga, vote bundesliga, days bundesliga, opta bundesliga, transfermarkt bundesliga, dortmund players, aubameyang bayern, post bundesliga\nPosts (one per line, title first):\n- Bundesliga team of the week [WhoScored]\n- [WhoScored] Bundesliga team of the week\n- Whoscored Bundesliga team of the week\n- (WhoScored) Bundesliga team of the week\n- WhoScored Bundesliga team of the week\n- Bundesliga team of the week [WhoScored]\n- Bundesliga - Squad of the first half [German]\n- Bundesliga team of the week [WhoScored]\n- Opta - Bundesliga team of the year 2017\n- What would be your Bundesliga team?\n- Bundesliga team of the week [WhoScored]\n- Bundesliga XI of the season, according to Sportschau\n- Official Bundesliga team of the week\n- [Bundesliga] Best of 2016/17 - Aubameyang, Bayern München & much more action and emotions\n- Bundesliga Team Of The Season\n- Bundesliga team of the week [WhoScored]\n- Bundesliga Team of the Year\n- Kicker's Bundesliga team of the season (x-post /r/Bundesliga)\n- Bundesliga Team of the week : Matchday 30\n- WhoScored Bundesliga Team of the Season so far\n- Leroy Sane is the Bundesliga newcomer of the season / Voted by the players with 17,1%. Next contestants: Juan Bernat : 11,1% Karim Bellarabi : 8,1% Source in german:\n- Bundesliga team of the week (WhoScored)\n- Bundesliga team of the week\n- Bundesliga Team of the Week 1\n- Bundesliga team of the week [transfermarkt]\n- Bundesliga team of the week [bundesliga.de]\n- Bundesliga team of the week [WhoScored]\n- Bundesliga release it's Team of the Half-Season, featuring 5 Dortmund players and 4 Bayern.\n- Bundesliga team of the week [WhoScored]\n- Bundesliga team of the week\n- Vote for Bundesliga Team of the Season! (Voting Ends in 15 Days!)\n- 2014/15 Bundesliga.com Team of the season, as voted by users\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bundesliga Team of the Week\", \"purpose\": \"Highlighting the best player or team in the Bundesliga\", \"emotion_tone\": \"positive\", \"description\": \"Posts discussing the Bundesliga team of the week, often with references to WhoScored, Opta, or other sources, focusing on player performance and team rankings.\", \"inclusion_cues\": [\"Bundesliga team of the week\", \"WhoScored Bundesliga team of the week\", \"Opta Bundesliga team of the year 2017\", \"Vote for Bundesliga Team of the Season\", \"Bundesliga release it's Team of the Half-Season\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Bundesliga Team of the Week",
+      "purpose": "Highlighting the best player or team in the Bundesliga",
+      "emotion_tone": "positive",
+      "description": "Posts discussing the Bundesliga team of the week, often with references to WhoScored, Opta, or other sources, focusing on player performance and team rankings.",
+      "inclusion_cues": [
+       "Bundesliga team of the week",
+       "WhoScored Bundesliga team of the week",
+       "Opta Bundesliga team of the year 2017",
+       "Vote for Bundesliga Team of the Season",
+       "Bundesliga release it's Team of the Half-Season"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 149,
+   "seed": 1606329803,
+   "seconds": 1.11
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: whoscored bundesliga, week bundesliga, team bundesliga, bundesliga xi, official bundesliga, season bundesliga, bundesliga bundesliga, kicker bundesliga, vote bundesliga, days bundesliga, opta bundesliga, transfermarkt bundesliga, dortmund players, aubameyang bayern, post bundesliga\nPosts (one per line, title first):\n- Bundesliga team of the week [WhoScored]\n- [WhoScored] Bundesliga team of the week\n- Whoscored Bundesliga team of the week\n- (WhoScored) Bundesliga team of the week\n- WhoScored Bundesliga team of the week\n- Bundesliga team of the week [WhoScored]\n- Bundesliga - Squad of the first half [German]\n- Bundesliga team of the week [WhoScored]\n- Opta - Bundesliga team of the year 2017\n- What would be your Bundesliga team?\n- Bundesliga team of the week [WhoScored]\n- Bundesliga XI of the season, according to Sportschau\n- Official Bundesliga team of the week\n- [Bundesliga] Best of 2016/17 - Aubameyang, Bayern München & much more action and emotions\n- Bundesliga Team Of The Season\n- Bundesliga team of the week [WhoScored]\n- Bundesliga Team of the Year\n- Kicker's Bundesliga team of the season (x-post /r/Bundesliga)\n- Bundesliga Team of the week : Matchday 30\n- WhoScored Bundesliga Team of the Season so far\n- Leroy Sane is the Bundesliga newcomer of the season / Voted by the players with 17,1%. Next contestants: Juan Bernat : 11,1% Karim Bellarabi : 8,1% Source in german:\n- Bundesliga team of the week (WhoScored)\n- Bundesliga team of the week\n- Bundesliga Team of the Week 1\n- Bundesliga team of the week [transfermarkt]\n- Bundesliga team of the week [bundesliga.de]\n- Bundesliga team of the week [WhoScored]\n- Bundesliga release it's Team of the Half-Season, featuring 5 Dortmund players and 4 Bayern.\n- Bundesliga team of the week [WhoScored]\n- Bundesliga team of the week\n- Vote for Bundesliga Team of the Season! (Voting Ends in 15 Days!)\n- 2014/15 Bundesliga.com Team of the season, as voted by users\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bundesliga Team of the Week\", \"purpose\": \"Highlighting the best player or team in the Bundesliga\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts discussing the Bundesliga team of the week, often with references to WhoScored, Opta, or other sources, emphasizing player performance and fan engagement.\", \"inclusion_cues\": [\"Bundesliga team of the week\", \"WhoScored Bundesliga team of the week\", \"Opta Bundesliga team of the year 2017\", \"Vote for Bundesliga Team of the Season\", \"Bundesliga team of the week [WhoScored]\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bundesliga Team of the Week\", \"purpose\": \"Highlighting the best player or team in the Bundesliga\", \"emotion_tone\": \"positive\", \"description\": \"Posts discussing the Bundesliga team of the week, often with references to WhoScored, Opta, or other sources, focusing on player performance and team rankings.\", \"inclusion_cues\": [\"Bundesliga team of the week\", \"WhoScored Bundesliga team of the week\", \"Opta Bundesliga team of the year 2017\", \"Vote for Bundesliga Team of the Season\", \"Bundesliga release it's Team of the Half-Season\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Bundesliga Team of the Week\", \"purpose\": \"Highlighting the best player or team in the Bundesliga\", \"emotion_tone\": \"positive\", \"description\": \"Posts discussing the Bundesliga team of the week, often with references to WhoScored, Opta, or other sources, focusing on player performance and team rankings.\", \"inclusion_cues\": [\"Bundesliga team of the week\", \"WhoScored Bundesliga team of the week\", \"Opta Bundesliga team of the year 2017\", \"Vote for Bundesliga Team of the Season\", \"Bundesliga release it's Team of the Half-Season\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 148,
+   "seed": 2372377637,
+   "seconds": 0.6
+  }
+ ]
+}

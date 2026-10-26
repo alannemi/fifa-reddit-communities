@@ -1,0 +1,207 @@
+{
+ "period_bin": 2,
+ "topic_id": 448,
+ "keywords": "secret santa, birthday present, gift christmas, gifts, gift year, santa got, got christmas, gift real, christmas, christmas nice, christmas best, valentines, secret, cousin birthday, best birthday",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "nqavz",
+  "ooz5b",
+  "eihml",
+  "nuy16",
+  "e2lrd",
+  "wq1ks",
+  "1gds7b",
+  "18o0ll",
+  "ervtx",
+  "h5ewf",
+  "ztjy7",
+  "106bss",
+  "1tnvg4",
+  "pd0n2",
+  "15jpiz",
+  "pprrx",
+  "108rl4",
+  "13h7eb",
+  "gmfdv",
+  "z2kn7",
+  "102vbk",
+  "108psh",
+  "193i9r",
+  "pss1v",
+  "15f76e",
+  "lxuec",
+  "1tmg33",
+  "108mqd",
+  "uilob",
+  "15kll0",
+  "108qnk",
+  "u4me8",
+  "evsb3",
+  "fgpe2",
+  "nqrmf",
+  "108v4w",
+  "nfu5n",
+  "zwrlt",
+  "1to69j",
+  "sx6pt"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Football Gift Exchange",
+  "purpose": "Discussion of football-related gifts and presents received or given during Christmas or birthdays",
+  "emotion_tone": "positive",
+  "description": "Posts discussing football-related gifts, including Secret Santa exchanges, birthday presents, and Christmas gifts, with a focus on the emotional aspect of receiving or giving gifts related to football.",
+  "inclusion_cues": [
+   "Secret Santa gift",
+   "birthday present",
+   "Christmas gift",
+   "football-related gift",
+   "gift exchange",
+   "football phone"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Football Gift Exchange",
+    "purpose": "Sharing football-related gifts received during holidays",
+    "emotion_tone": "positive",
+    "description": "Posts discussing football gifts, Santa exchanges, and holiday presents related to soccer.",
+    "inclusion_cues": [
+     "Secret Santa",
+     "gift",
+     "Christmas",
+     "Valentines",
+     "birthday present",
+     "Cousin birthday",
+     "best gift",
+     "iPhone 5",
+     "Real Madrid",
+     "football phone"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Football Gift Exchange",
+    "purpose": "Discussion of football-related gifts and presents received or given during Christmas or birthdays",
+    "emotion_tone": "positive",
+    "description": "Posts discussing football-related gifts, including Secret Santa exchanges, birthday presents, and Christmas gifts, with a focus on the emotional aspect of receiving or giving gifts related to football.",
+    "inclusion_cues": [
+     "Secret Santa gift",
+     "birthday present",
+     "Christmas gift",
+     "football-related gift",
+     "gift exchange",
+     "football phone"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: secret santa, birthday present, gift christmas, gifts, gift year, santa got, got christmas, gift real, christmas, christmas nice, christmas best, valentines, secret, cousin birthday, best birthday\nPosts (one per line, title first):\n- Wanted to share what my Secret Santa got me.\n- My Secret Santa gift this year is awesome, check it out!\n- Look what my Reddit Secret Santa got me! I thought you guys might enjoy it!\n- My 21st birthday present from last year\n- fifa11 ultimate team question / i got a gold player whos has black on the card. its not shiny like a rare player but it looks different. what does this mean? pic incoming\n- Look What My Reddit Secret Santa Got Me!!!!\n- Luis Suarez's phone\n- What my GF got me for Valentine's Day, best Valentine gift ever.\n- My wife got me this for Christmas. She's awesome.\n- Give me the Card... Just Put the Rest Away!\n- gift from a friend!\n- Why Real Madrid Fans Should Buy The iPhone 5 [x-post r/barca]\n- Nice Christmas present Dennis!\n- Lest we forget. (Wonderful gift my ex made me)\n- Best Christmas present from my girlfriend\n- My first love gave me the best Valentines present imaginable.\n- iPhone 5 sales up in Liverpool!\n- It's the perfect gift!\n- The newest invention: Tackle Phone\n- Arsene Wenger's iPhone\n- iPhone for Real Madrid fans (found this on facebook)\n- Benefit of the new iPhone\n- Still my favourite football phone in gaff\n- Great Valentine gift from the wife this year.\n- I got the coolest Christmas present this year.\n- By far the coolest lighter I've ever owned...\n- Check out what my wife painted me for Xmas! (yes i know it's a day early)\n- The BEST new feature of the iPhone5..\n- Samsung Galaxy Note - Beckham.\n- The Unwrapped Present\n- Ipswich fans benefit from iPhone 5\n- Just one postcard but so much love\n- My birthday present from my gf XD\n- What I got my baby cousin for her birthday\n- Best presents by far this Christmas\n- Why Real Madrid fans should buy an Iphone 5.\n- Hey, check out what I made for my dad for x-mas.\n- buy a Pandora's jewelry to girlfriend\n- What I actually just got for Christmas\n- My buddy sent this golden nugget to me.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Football Gift Exchange\", \"purpose\": \"Sharing football-related gifts received during holidays\", \"emotion_tone\": \"positive\", \"description\": \"Posts discussing football gifts, Santa exchanges, and holiday presents related to soccer.\", \"inclusion_cues\": [\"Secret Santa\", \"gift\", \"Christmas\", \"Valentines\", \"birthday present\", \"Cousin birthday\", \"best gift\", \"iPhone 5\", \"Real Madrid\", \"football phone\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Football Gift Exchange",
+      "purpose": "Sharing football-related gifts received during holidays",
+      "emotion_tone": "positive",
+      "description": "Posts discussing football gifts, Santa exchanges, and holiday presents related to soccer.",
+      "inclusion_cues": [
+       "Secret Santa",
+       "gift",
+       "Christmas",
+       "Valentines",
+       "birthday present",
+       "Cousin birthday",
+       "best gift",
+       "iPhone 5",
+       "Real Madrid",
+       "football phone"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 108,
+   "seed": 2051546820,
+   "seconds": 0.92
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: secret santa, birthday present, gift christmas, gifts, gift year, santa got, got christmas, gift real, christmas, christmas nice, christmas best, valentines, secret, cousin birthday, best birthday\nPosts (one per line, title first):\n- Wanted to share what my Secret Santa got me.\n- My Secret Santa gift this year is awesome, check it out!\n- Look what my Reddit Secret Santa got me! I thought you guys might enjoy it!\n- My 21st birthday present from last year\n- fifa11 ultimate team question / i got a gold player whos has black on the card. its not shiny like a rare player but it looks different. what does this mean? pic incoming\n- Look What My Reddit Secret Santa Got Me!!!!\n- Luis Suarez's phone\n- What my GF got me for Valentine's Day, best Valentine gift ever.\n- My wife got me this for Christmas. She's awesome.\n- Give me the Card... Just Put the Rest Away!\n- gift from a friend!\n- Why Real Madrid Fans Should Buy The iPhone 5 [x-post r/barca]\n- Nice Christmas present Dennis!\n- Lest we forget. (Wonderful gift my ex made me)\n- Best Christmas present from my girlfriend\n- My first love gave me the best Valentines present imaginable.\n- iPhone 5 sales up in Liverpool!\n- It's the perfect gift!\n- The newest invention: Tackle Phone\n- Arsene Wenger's iPhone\n- iPhone for Real Madrid fans (found this on facebook)\n- Benefit of the new iPhone\n- Still my favourite football phone in gaff\n- Great Valentine gift from the wife this year.\n- I got the coolest Christmas present this year.\n- By far the coolest lighter I've ever owned...\n- Check out what my wife painted me for Xmas! (yes i know it's a day early)\n- The BEST new feature of the iPhone5..\n- Samsung Galaxy Note - Beckham.\n- The Unwrapped Present\n- Ipswich fans benefit from iPhone 5\n- Just one postcard but so much love\n- My birthday present from my gf XD\n- What I got my baby cousin for her birthday\n- Best presents by far this Christmas\n- Why Real Madrid fans should buy an Iphone 5.\n- Hey, check out what I made for my dad for x-mas.\n- buy a Pandora's jewelry to girlfriend\n- What I actually just got for Christmas\n- My buddy sent this golden nugget to me.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Football Gift Exchange\", \"purpose\": \"Discussion of football-related gifts and presents received or given during Christmas or birthdays\", \"emotion_tone\": \"positive\", \"description\": \"Posts discussing football-related gifts, including Secret Santa exchanges, birthday presents, and Christmas gifts, with a focus on the emotional aspect of receiving or giving gifts related to football.\", \"inclusion_cues\": [\"Secret Santa gift\", \"birthday present\", \"Christmas gift\", \"football-related gift\", \"gift exchange\", \"football phone\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Football Gift Exchange",
+      "purpose": "Discussion of football-related gifts and presents received or given during Christmas or birthdays",
+      "emotion_tone": "positive",
+      "description": "Posts discussing football-related gifts, including Secret Santa exchanges, birthday presents, and Christmas gifts, with a focus on the emotional aspect of receiving or giving gifts related to football.",
+      "inclusion_cues": [
+       "Secret Santa gift",
+       "birthday present",
+       "Christmas gift",
+       "football-related gift",
+       "gift exchange",
+       "football phone"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 118,
+   "seed": 1482677597,
+   "seconds": 0.67
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: secret santa, birthday present, gift christmas, gifts, gift year, santa got, got christmas, gift real, christmas, christmas nice, christmas best, valentines, secret, cousin birthday, best birthday\nPosts (one per line, title first):\n- Wanted to share what my Secret Santa got me.\n- My Secret Santa gift this year is awesome, check it out!\n- Look what my Reddit Secret Santa got me! I thought you guys might enjoy it!\n- My 21st birthday present from last year\n- fifa11 ultimate team question / i got a gold player whos has black on the card. its not shiny like a rare player but it looks different. what does this mean? pic incoming\n- Look What My Reddit Secret Santa Got Me!!!!\n- Luis Suarez's phone\n- What my GF got me for Valentine's Day, best Valentine gift ever.\n- My wife got me this for Christmas. She's awesome.\n- Give me the Card... Just Put the Rest Away!\n- gift from a friend!\n- Why Real Madrid Fans Should Buy The iPhone 5 [x-post r/barca]\n- Nice Christmas present Dennis!\n- Lest we forget. (Wonderful gift my ex made me)\n- Best Christmas present from my girlfriend\n- My first love gave me the best Valentines present imaginable.\n- iPhone 5 sales up in Liverpool!\n- It's the perfect gift!\n- The newest invention: Tackle Phone\n- Arsene Wenger's iPhone\n- iPhone for Real Madrid fans (found this on facebook)\n- Benefit of the new iPhone\n- Still my favourite football phone in gaff\n- Great Valentine gift from the wife this year.\n- I got the coolest Christmas present this year.\n- By far the coolest lighter I've ever owned...\n- Check out what my wife painted me for Xmas! (yes i know it's a day early)\n- The BEST new feature of the iPhone5..\n- Samsung Galaxy Note - Beckham.\n- The Unwrapped Present\n- Ipswich fans benefit from iPhone 5\n- Just one postcard but so much love\n- My birthday present from my gf XD\n- What I got my baby cousin for her birthday\n- Best presents by far this Christmas\n- Why Real Madrid fans should buy an Iphone 5.\n- Hey, check out what I made for my dad for x-mas.\n- buy a Pandora's jewelry to girlfriend\n- What I actually just got for Christmas\n- My buddy sent this golden nugget to me.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Football Gift Exchange\", \"purpose\": \"Sharing football-related gifts received during holidays\", \"emotion_tone\": \"positive\", \"description\": \"Posts discussing football gifts, Santa exchanges, and holiday presents related to soccer.\", \"inclusion_cues\": [\"Secret Santa\", \"gift\", \"Christmas\", \"Valentines\", \"birthday present\", \"Cousin birthday\", \"best gift\", \"iPhone 5\", \"Real Madrid\", \"football phone\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Football Gift Exchange\", \"purpose\": \"Discussion of football-related gifts and presents received or given during Christmas or birthdays\", \"emotion_tone\": \"positive\", \"description\": \"Posts discussing football-related gifts, including Secret Santa exchanges, birthday presents, and Christmas gifts, with a focus on the emotional aspect of receiving or giving gifts related to football.\", \"inclusion_cues\": [\"Secret Santa gift\", \"birthday present\", \"Christmas gift\", \"football-related gift\", \"gift exchange\", \"football phone\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Football Gift Exchange\", \"purpose\": \"Discussion of football-related gifts and presents received or given during Christmas or birthdays\", \"emotion_tone\": \"positive\", \"description\": \"Posts discussing football-related gifts, including Secret Santa exchanges, birthday presents, and Christmas gifts, with a focus on the emotional aspect of receiving or giving gifts related to football.\", \"inclusion_cues\": [\"Secret Santa gift\", \"birthday present\", \"Christmas gift\", \"football-related gift\", \"gift exchange\", \"football phone\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 117,
+   "seed": 3319784211,
+   "seconds": 1.01
+  }
+ ]
+}

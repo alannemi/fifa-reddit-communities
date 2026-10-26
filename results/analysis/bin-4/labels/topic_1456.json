@@ -1,0 +1,213 @@
+{
+ "period_bin": 4,
+ "topic_id": 1456,
+ "keywords": "live scores, scores live, live football, live score, score live, football highlights, football scores, scores fixtures, score feed, updates football, live epl, news scores, fixtures results, scores today, scores england",
+ "n_sample_posts": 29,
+ "sample_ids": [
+  "45vlpn",
+  "46crqt",
+  "46crqt",
+  "46kj87",
+  "3vz0os",
+  "2pzy3m",
+  "6walft",
+  "75vgsn",
+  "79ana9",
+  "53xsyl",
+  "6w0s3l",
+  "55joix",
+  "6eqcix",
+  "3h9brn",
+  "7jepu2",
+  "5wttuq",
+  "2x81xy",
+  "3k8wgr",
+  "2ni8dx",
+  "5iggod",
+  "2lcf34",
+  "4uxf21",
+  "3gy0dr",
+  "7azccx",
+  "2jm57v",
+  "6xqkms",
+  "3s99sv",
+  "4nnc12",
+  "45uj2s"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Live Scores",
+  "purpose": "Provide real-time football scores, fixtures, and results",
+  "emotion_tone": "informative",
+  "description": "Posts related to live football scores, updates, and results from various sources.",
+  "inclusion_cues": [
+   "livescore",
+   "scores live",
+   "live football",
+   "score live",
+   "football highlights",
+   "football scores",
+   "scores fixtures",
+   "score feed",
+   "updates football",
+   "live epl"
+  ],
+  "n_cues_given": 14
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Live Scores",
+    "purpose": "Provide real-time football scores, fixtures, and results",
+    "emotion_tone": "informative",
+    "description": "Posts related to live football scores, fixtures, and results from various sources",
+    "inclusion_cues": [
+     "livescore",
+     "scores live",
+     "live football",
+     "score live",
+     "football highlights",
+     "football scores",
+     "scores fixtures",
+     "score feed",
+     "updates football",
+     "live epl"
+    ],
+    "n_cues_given": 14
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Live Scores",
+    "purpose": "Provide real-time football scores, fixtures, and results",
+    "emotion_tone": "informative",
+    "description": "Posts related to live football scores, updates, and results from various sources.",
+    "inclusion_cues": [
+     "livescore",
+     "scores live",
+     "live football",
+     "score live",
+     "football highlights",
+     "football scores",
+     "scores fixtures",
+     "score feed",
+     "updates football",
+     "live epl"
+    ],
+    "n_cues_given": 14
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: live scores, scores live, live football, live score, score live, football highlights, football scores, scores fixtures, score feed, updates football, live epl, news scores, fixtures results, scores today, scores england\nPosts (one per line, title first):\n- Livescore football - Latest soccer scores, fixtures and accurate football results from 1000+ soccer leagues season . Lineups and match details.\n- Livescore - Live football scores - Latest soccer scores today's\n- Livescore - Live football scores - Latest soccer scores today's\n- livescore-cli - enjoy football scores live right from the linux terminal.\n- SoccergoalsTV - This Livescore App is a must have for all soccer fans! / This is a Livescore App with fast Goal Videos after each goal for the most important matches of a week and with all Goals for the Champions League! *(Videos are from: reddit.com/r/soccer. Thanks to all users who upload the goal\n- Love everything about this sub, except when I'm recording games I can't watch live only to have them spoiled on Reddit whenever something awesome happens.\n- Soccer Scores - Livescores Football Scores Update\n- Latest Scores Updates in The Football News\n- LiveScore Soccer - Premier League Live Soccer Scores, England\n- Get Live Score for Every Match\n- Soccerstand.com - Football Livescores Other Sport Scores\n- Soccer Live Score\n- Live football scores, results, fixtures & tables\n- Question: Is there anywhere to get a live score feed to Google Spreadsheet or RSS?\n- Premier League Livescore - 13/12/17\n- Ole365 | LiveScore Live Soccer EPL Results La Liga Results\n- LIVE football news\n- Watch Latest Football / Soccer Highlights & Goals\n- we should have a live-score info in this page\n- Sports Update, interesting news, predictions and football community\n- Best site to watch football highlights.\n- On Footballia you can watch nearly 3000 games from the past - they don't display the score\n- Who does the best soccer coverage on the web? Looking to follow the EPL this year\n- Latest Scores Updates in The Football News\n- Is Livescore high?\n- Latest Scores Updates in The Football News\n- Live Football Scores, Fixtures and Results 24/7\n- Just came across this scoreline on livescore.com\n- Livescore - Live football scores - Latest soccer scores today's\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Live Scores\", \"purpose\": \"Provide real-time football scores, fixtures, and results\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to live football scores, fixtures, and results from various sources\", \"inclusion_cues\": [\"livescore\", \"scores live\", \"live football\", \"score live\", \"football highlights\", \"football scores\", \"scores fixtures\", \"score feed\", \"updates football\", \"live epl\", \"news scores\", \"fixtures results\", \"scores today\", \"scores england\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Live Scores",
+      "purpose": "Provide real-time football scores, fixtures, and results",
+      "emotion_tone": "informative",
+      "description": "Posts related to live football scores, fixtures, and results from various sources",
+      "inclusion_cues": [
+       "livescore",
+       "scores live",
+       "live football",
+       "score live",
+       "football highlights",
+       "football scores",
+       "scores fixtures",
+       "score feed",
+       "updates football",
+       "live epl"
+      ],
+      "n_cues_given": 14
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 128,
+   "seed": 2360664594,
+   "seconds": 1.12
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: live scores, scores live, live football, live score, score live, football highlights, football scores, scores fixtures, score feed, updates football, live epl, news scores, fixtures results, scores today, scores england\nPosts (one per line, title first):\n- Livescore football - Latest soccer scores, fixtures and accurate football results from 1000+ soccer leagues season . Lineups and match details.\n- Livescore - Live football scores - Latest soccer scores today's\n- Livescore - Live football scores - Latest soccer scores today's\n- livescore-cli - enjoy football scores live right from the linux terminal.\n- SoccergoalsTV - This Livescore App is a must have for all soccer fans! / This is a Livescore App with fast Goal Videos after each goal for the most important matches of a week and with all Goals for the Champions League! *(Videos are from: reddit.com/r/soccer. Thanks to all users who upload the goal\n- Love everything about this sub, except when I'm recording games I can't watch live only to have them spoiled on Reddit whenever something awesome happens.\n- Soccer Scores - Livescores Football Scores Update\n- Latest Scores Updates in The Football News\n- LiveScore Soccer - Premier League Live Soccer Scores, England\n- Get Live Score for Every Match\n- Soccerstand.com - Football Livescores Other Sport Scores\n- Soccer Live Score\n- Live football scores, results, fixtures & tables\n- Question: Is there anywhere to get a live score feed to Google Spreadsheet or RSS?\n- Premier League Livescore - 13/12/17\n- Ole365 | LiveScore Live Soccer EPL Results La Liga Results\n- LIVE football news\n- Watch Latest Football / Soccer Highlights & Goals\n- we should have a live-score info in this page\n- Sports Update, interesting news, predictions and football community\n- Best site to watch football highlights.\n- On Footballia you can watch nearly 3000 games from the past - they don't display the score\n- Who does the best soccer coverage on the web? Looking to follow the EPL this year\n- Latest Scores Updates in The Football News\n- Is Livescore high?\n- Latest Scores Updates in The Football News\n- Live Football Scores, Fixtures and Results 24/7\n- Just came across this scoreline on livescore.com\n- Livescore - Live football scores - Latest soccer scores today's\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Live Scores\", \"purpose\": \"Provide real-time football scores, fixtures, and results\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to live football scores, updates, and results from various sources.\", \"inclusion_cues\": [\"livescore\", \"scores live\", \"live football\", \"score live\", \"football highlights\", \"football scores\", \"scores fixtures\", \"score feed\", \"updates football\", \"live epl\", \"news scores\", \"fixtures results\", \"scores today\", \"scores england\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Live Scores",
+      "purpose": "Provide real-time football scores, fixtures, and results",
+      "emotion_tone": "informative",
+      "description": "Posts related to live football scores, updates, and results from various sources.",
+      "inclusion_cues": [
+       "livescore",
+       "scores live",
+       "live football",
+       "score live",
+       "football highlights",
+       "football scores",
+       "scores fixtures",
+       "score feed",
+       "updates football",
+       "live epl"
+      ],
+      "n_cues_given": 14
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 128,
+   "seed": 2721132576,
+   "seconds": 1.27
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: live scores, scores live, live football, live score, score live, football highlights, football scores, scores fixtures, score feed, updates football, live epl, news scores, fixtures results, scores today, scores england\nPosts (one per line, title first):\n- Livescore football - Latest soccer scores, fixtures and accurate football results from 1000+ soccer leagues season . Lineups and match details.\n- Livescore - Live football scores - Latest soccer scores today's\n- Livescore - Live football scores - Latest soccer scores today's\n- livescore-cli - enjoy football scores live right from the linux terminal.\n- SoccergoalsTV - This Livescore App is a must have for all soccer fans! / This is a Livescore App with fast Goal Videos after each goal for the most important matches of a week and with all Goals for the Champions League! *(Videos are from: reddit.com/r/soccer. Thanks to all users who upload the goal\n- Love everything about this sub, except when I'm recording games I can't watch live only to have them spoiled on Reddit whenever something awesome happens.\n- Soccer Scores - Livescores Football Scores Update\n- Latest Scores Updates in The Football News\n- LiveScore Soccer - Premier League Live Soccer Scores, England\n- Get Live Score for Every Match\n- Soccerstand.com - Football Livescores Other Sport Scores\n- Soccer Live Score\n- Live football scores, results, fixtures & tables\n- Question: Is there anywhere to get a live score feed to Google Spreadsheet or RSS?\n- Premier League Livescore - 13/12/17\n- Ole365 | LiveScore Live Soccer EPL Results La Liga Results\n- LIVE football news\n- Watch Latest Football / Soccer Highlights & Goals\n- we should have a live-score info in this page\n- Sports Update, interesting news, predictions and football community\n- Best site to watch football highlights.\n- On Footballia you can watch nearly 3000 games from the past - they don't display the score\n- Who does the best soccer coverage on the web? Looking to follow the EPL this year\n- Latest Scores Updates in The Football News\n- Is Livescore high?\n- Latest Scores Updates in The Football News\n- Live Football Scores, Fixtures and Results 24/7\n- Just came across this scoreline on livescore.com\n- Livescore - Live football scores - Latest soccer scores today's\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Live Scores\", \"purpose\": \"Provide real-time football scores, fixtures, and results\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to live football scores, fixtures, and results from various sources\", \"inclusion_cues\": [\"livescore\", \"scores live\", \"live football\", \"score live\", \"football highlights\", \"football scores\", \"scores fixtures\", \"score feed\", \"updates football\", \"live epl\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Live Scores\", \"purpose\": \"Provide real-time football scores, fixtures, and results\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to live football scores, updates, and results from various sources.\", \"inclusion_cues\": [\"livescore\", \"scores live\", \"live football\", \"score live\", \"football highlights\", \"football scores\", \"scores fixtures\", \"score feed\", \"updates football\", \"live epl\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Live Scores\", \"purpose\": \"Provide real-time football scores, fixtures, and results\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to live football scores, updates, and results from various sources.\", \"inclusion_cues\": [\"livescore\", \"scores live\", \"live football\", \"score live\", \"football highlights\", \"football scores\", \"scores fixtures\", \"score feed\", \"updates football\", \"live epl\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 110,
+   "seed": 2302692874,
+   "seconds": 0.99
+  }
+ ]
+}

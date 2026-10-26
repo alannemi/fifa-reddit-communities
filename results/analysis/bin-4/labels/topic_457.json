@@ -1,0 +1,192 @@
+{
+ "period_bin": 4,
+ "topic_id": 457,
+ "keywords": "football journalism, newspaper headlines, headlines, sun headline, daily mail, journalism finest, newspapers, articles daily, journalism, newcastle chronicle, indian newspaper, article metro, column today, sports page, paste article",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "2wi7y9",
+  "6yeftw",
+  "7ltn1l",
+  "4303rw",
+  "2tybkk",
+  "5kx6y8",
+  "6fa9rg",
+  "6ad0xp",
+  "3rug27",
+  "393ufy",
+  "4xwc19",
+  "3p068r",
+  "2jflym",
+  "38jiby",
+  "3dyicd",
+  "2rfjxw",
+  "4gl6c2",
+  "3dika6",
+  "3co689",
+  "4qohup",
+  "4hlq1m",
+  "37l2k8",
+  "4j24ej",
+  "2lkmmk",
+  "7ntyea",
+  "3ehgoe",
+  "2zsm3j",
+  "5d2bj8",
+  "6cfnpm",
+  "3nxxu0",
+  "52equ9",
+  "3gozvk",
+  "3cdibt",
+  "3562l1",
+  "4557rk",
+  "2yh0c6",
+  "2lkes6",
+  "5vdv2y",
+  "6slr7w",
+  "37j9ll"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Football Journalism Critique",
+  "purpose": "Critique of football journalism quality and ethics",
+  "emotion_tone": "Critical",
+  "description": "Posts discussing poor football journalism, clickbait, and journalistic ethics",
+  "inclusion_cues": [
+   "Football journalism quality",
+   "Clickbait titles",
+   "Journalistic ethics",
+   "Critique of news outlets",
+   "Journalistic flaws"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "clickbait_headlines",
+    "purpose": "classify posts about sensational or misleading football news headlines",
+    "emotion_tone": "critical",
+    "description": "Posts discussing sensational or misleading football news headlines, including examples of clickbait titles and their impact on journalism.",
+    "inclusion_cues": [
+     "clickbait title",
+     "sensational headline",
+     "misleading news",
+     "journalism criticism"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Football Journalism Critique",
+    "purpose": "Critique of football journalism quality and ethics",
+    "emotion_tone": "Critical",
+    "description": "Posts discussing poor football journalism, clickbait, and journalistic ethics",
+    "inclusion_cues": [
+     "Football journalism quality",
+     "Clickbait titles",
+     "Journalistic ethics",
+     "Critique of news outlets",
+     "Journalistic flaws"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: football journalism, newspaper headlines, headlines, sun headline, daily mail, journalism finest, newspapers, articles daily, journalism, newcastle chronicle, indian newspaper, article metro, column today, sports page, paste article\nPosts (one per line, title first):\n- What would be the most shocking headline in Sunday mornings paper? / For Example: Iryna's reason: \"[Cristiano] has a weird Osman sibling relationship with his sister\"\n- British government mouthpiece the Telegraph chief sports writer conspiracy theory about yesterday's Syria - Iran WCQ\n- I think this Sport Bible article on Messi's free kick that happened to strike Ronaldo in the face might be the worst piece football journalism I've read\n- The only sensible article I've found on the threatened Chelsea transfer ban. (tldr; smells like bullshit) Is it just me or is football journalism getting worse?\n- How the guardian opened their rumout mill column today / So then, here we are. This is the situation we’ve found ourselves in. All of us are gathered in this place, and we’ve got ourselves in the situation where we’re all talking about the movement of labour for cash, the trading of humans as if the\n- Yesterday's Daily Mirror Backpage Cover...\n- The Sun newspaper continues to cross lines.\n- This is an insult to journalism.\n- Bullshit Clickbait Title is bullshit.\n- Some shocking revelations in the press today\n- Daily Mail Making Sh*t Up Again...\n- Disgusting clickbait by the BBC. Is no news outlet free from it anymore?\n- A newspaper write-in on football commentators.\n- Just the tip of the iceberg\n- Love this headline\n- Someone dodged a bullet (from metro.co.uk 2013)\n- Disgraceful journalism from the S*n on their Wednesday paper\n- Top notch journalism from the Daily Star, an incite into how tabloids work during the transfer window.\n- Can people use any other sites or articles other than Daily Mail?\n- [Sun]-tomorrow's back page cover- \"Jur In\"\n- The Guardian front page today\n- This BBC Newsbeat picture caption surprised me a bit\n- The front page of the Newcastle Chronicle tomorrow.\n- Indian Newspaper's big Raul gaffe......\n- Sky announcing some BREAKING NEWS\n- So, yeah...Newspapers are weird\n- Cutting edge journalism from the sun\n- Quality journalism here\n- My local news paper today morning\n- [Fluff] I normally hate the 'Bild Zeitung' (German Tabloid), but they do get creative sometimes with their headlines.\n- I'l love to take a minute, and praise the genius who did this article. Laughed my ass off because of that pun.\n- Once Upon a time in Daily Mail\n- I've yet to see a more bullshit article.\n- Ireland's version of The Onion comes out with a beauty of an article.\n- A new level of clickbait\n- The headline writer really enjoyed himself with this one.\n- Welcome to Indian Newspapers\n- Brutal reporting from The Guardian there.\n- The Guardian winning it's own caption contest. What trolls...\n- The Telegraph's back page tomorrow\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"clickbait_headlines\", \"purpose\": \"classify posts about sensational or misleading football news headlines\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing sensational or misleading football news headlines, including examples of clickbait titles and their impact on journalism.\", \"inclusion_cues\": [\"clickbait title\", \"sensational headline\", \"misleading news\", \"journalism criticism\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "clickbait_headlines",
+      "purpose": "classify posts about sensational or misleading football news headlines",
+      "emotion_tone": "critical",
+      "description": "Posts discussing sensational or misleading football news headlines, including examples of clickbait titles and their impact on journalism.",
+      "inclusion_cues": [
+       "clickbait title",
+       "sensational headline",
+       "misleading news",
+       "journalism criticism"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 99,
+   "seed": 4276913706,
+   "seconds": 4.78
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: football journalism, newspaper headlines, headlines, sun headline, daily mail, journalism finest, newspapers, articles daily, journalism, newcastle chronicle, indian newspaper, article metro, column today, sports page, paste article\nPosts (one per line, title first):\n- What would be the most shocking headline in Sunday mornings paper? / For Example: Iryna's reason: \"[Cristiano] has a weird Osman sibling relationship with his sister\"\n- British government mouthpiece the Telegraph chief sports writer conspiracy theory about yesterday's Syria - Iran WCQ\n- I think this Sport Bible article on Messi's free kick that happened to strike Ronaldo in the face might be the worst piece football journalism I've read\n- The only sensible article I've found on the threatened Chelsea transfer ban. (tldr; smells like bullshit) Is it just me or is football journalism getting worse?\n- How the guardian opened their rumout mill column today / So then, here we are. This is the situation we’ve found ourselves in. All of us are gathered in this place, and we’ve got ourselves in the situation where we’re all talking about the movement of labour for cash, the trading of humans as if the\n- Yesterday's Daily Mirror Backpage Cover...\n- The Sun newspaper continues to cross lines.\n- This is an insult to journalism.\n- Bullshit Clickbait Title is bullshit.\n- Some shocking revelations in the press today\n- Daily Mail Making Sh*t Up Again...\n- Disgusting clickbait by the BBC. Is no news outlet free from it anymore?\n- A newspaper write-in on football commentators.\n- Just the tip of the iceberg\n- Love this headline\n- Someone dodged a bullet (from metro.co.uk 2013)\n- Disgraceful journalism from the S*n on their Wednesday paper\n- Top notch journalism from the Daily Star, an incite into how tabloids work during the transfer window.\n- Can people use any other sites or articles other than Daily Mail?\n- [Sun]-tomorrow's back page cover- \"Jur In\"\n- The Guardian front page today\n- This BBC Newsbeat picture caption surprised me a bit\n- The front page of the Newcastle Chronicle tomorrow.\n- Indian Newspaper's big Raul gaffe......\n- Sky announcing some BREAKING NEWS\n- So, yeah...Newspapers are weird\n- Cutting edge journalism from the sun\n- Quality journalism here\n- My local news paper today morning\n- [Fluff] I normally hate the 'Bild Zeitung' (German Tabloid), but they do get creative sometimes with their headlines.\n- I'l love to take a minute, and praise the genius who did this article. Laughed my ass off because of that pun.\n- Once Upon a time in Daily Mail\n- I've yet to see a more bullshit article.\n- Ireland's version of The Onion comes out with a beauty of an article.\n- A new level of clickbait\n- The headline writer really enjoyed himself with this one.\n- Welcome to Indian Newspapers\n- Brutal reporting from The Guardian there.\n- The Guardian winning it's own caption contest. What trolls...\n- The Telegraph's back page tomorrow\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Football Journalism Critique\", \"purpose\": \"Critique of football journalism quality and ethics\", \"emotion_tone\": \"Critical\", \"description\": \"Posts discussing poor football journalism, clickbait, and journalistic ethics\", \"inclusion_cues\": [\"Football journalism quality\", \"Clickbait titles\", \"Journalistic ethics\", \"Critique of news outlets\", \"Journalistic flaws\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Football Journalism Critique",
+      "purpose": "Critique of football journalism quality and ethics",
+      "emotion_tone": "Critical",
+      "description": "Posts discussing poor football journalism, clickbait, and journalistic ethics",
+      "inclusion_cues": [
+       "Football journalism quality",
+       "Clickbait titles",
+       "Journalistic ethics",
+       "Critique of news outlets",
+       "Journalistic flaws"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 95,
+   "seed": 59792286,
+   "seconds": 3.52
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: football journalism, newspaper headlines, headlines, sun headline, daily mail, journalism finest, newspapers, articles daily, journalism, newcastle chronicle, indian newspaper, article metro, column today, sports page, paste article\nPosts (one per line, title first):\n- What would be the most shocking headline in Sunday mornings paper? / For Example: Iryna's reason: \"[Cristiano] has a weird Osman sibling relationship with his sister\"\n- British government mouthpiece the Telegraph chief sports writer conspiracy theory about yesterday's Syria - Iran WCQ\n- I think this Sport Bible article on Messi's free kick that happened to strike Ronaldo in the face might be the worst piece football journalism I've read\n- The only sensible article I've found on the threatened Chelsea transfer ban. (tldr; smells like bullshit) Is it just me or is football journalism getting worse?\n- How the guardian opened their rumout mill column today / So then, here we are. This is the situation we’ve found ourselves in. All of us are gathered in this place, and we’ve got ourselves in the situation where we’re all talking about the movement of labour for cash, the trading of humans as if the\n- Yesterday's Daily Mirror Backpage Cover...\n- The Sun newspaper continues to cross lines.\n- This is an insult to journalism.\n- Bullshit Clickbait Title is bullshit.\n- Some shocking revelations in the press today\n- Daily Mail Making Sh*t Up Again...\n- Disgusting clickbait by the BBC. Is no news outlet free from it anymore?\n- A newspaper write-in on football commentators.\n- Just the tip of the iceberg\n- Love this headline\n- Someone dodged a bullet (from metro.co.uk 2013)\n- Disgraceful journalism from the S*n on their Wednesday paper\n- Top notch journalism from the Daily Star, an incite into how tabloids work during the transfer window.\n- Can people use any other sites or articles other than Daily Mail?\n- [Sun]-tomorrow's back page cover- \"Jur In\"\n- The Guardian front page today\n- This BBC Newsbeat picture caption surprised me a bit\n- The front page of the Newcastle Chronicle tomorrow.\n- Indian Newspaper's big Raul gaffe......\n- Sky announcing some BREAKING NEWS\n- So, yeah...Newspapers are weird\n- Cutting edge journalism from the sun\n- Quality journalism here\n- My local news paper today morning\n- [Fluff] I normally hate the 'Bild Zeitung' (German Tabloid), but they do get creative sometimes with their headlines.\n- I'l love to take a minute, and praise the genius who did this article. Laughed my ass off because of that pun.\n- Once Upon a time in Daily Mail\n- I've yet to see a more bullshit article.\n- Ireland's version of The Onion comes out with a beauty of an article.\n- A new level of clickbait\n- The headline writer really enjoyed himself with this one.\n- Welcome to Indian Newspapers\n- Brutal reporting from The Guardian there.\n- The Guardian winning it's own caption contest. What trolls...\n- The Telegraph's back page tomorrow\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"clickbait_headlines\", \"purpose\": \"classify posts about sensational or misleading football news headlines\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing sensational or misleading football news headlines, including examples of clickbait titles and their impact on journalism.\", \"inclusion_cues\": [\"clickbait title\", \"sensational headline\", \"misleading news\", \"journalism criticism\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Football Journalism Critique\", \"purpose\": \"Critique of football journalism quality and ethics\", \"emotion_tone\": \"Critical\", \"description\": \"Posts discussing poor football journalism, clickbait, and journalistic ethics\", \"inclusion_cues\": [\"Football journalism quality\", \"Clickbait titles\", \"Journalistic ethics\", \"Critique of news outlets\", \"Journalistic flaws\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Football Journalism Critique\", \"purpose\": \"Critique of football journalism quality and ethics\", \"emotion_tone\": \"Critical\", \"description\": \"Posts discussing poor football journalism, clickbait, and journalistic ethics\", \"inclusion_cues\": [\"Football journalism quality\", \"Clickbait titles\", \"Journalistic ethics\", \"Critique of news outlets\", \"Journalistic flaws\"]]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 410)",
+   "n_tokens": 94,
+   "seed": 636711983,
+   "seconds": 0.78
+  }
+ ]
+}

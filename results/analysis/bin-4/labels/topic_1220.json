@@ -1,0 +1,193 @@
+{
+ "period_bin": 4,
+ "topic_id": 1220,
+ "keywords": "plzen fcsb, budescu fcsb, bakos plzen, scores fcsb, sheva lugano, scores penalty, scores krasnodar, krmencik plzen, viktoria plzeň, tzedek, denis alibec, constantin budescu, marek bakos, kolar, milan petrzela",
+ "n_sample_posts": 34,
+ "sample_ids": [
+  "70532s",
+  "704qhy",
+  "704ldh",
+  "70517n",
+  "70513j",
+  "77gg9e",
+  "7320wx",
+  "7i99tx",
+  "77gd79",
+  "6rzxub",
+  "7i9fwh",
+  "704g1q",
+  "73210r",
+  "6uc7og",
+  "7i9sxc",
+  "731mtp",
+  "7f1tt0",
+  "7aehq9",
+  "77gguf",
+  "7aeade",
+  "6r6s2x",
+  "6r6u4u",
+  "731ztc",
+  "6ubygt",
+  "6u4htm",
+  "7ae822",
+  "7aeomc",
+  "77gg65",
+  "7aeb05",
+  "6uckh0",
+  "6r6t9y",
+  "6ucoj3",
+  "6uc7kg",
+  "6uclfi"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "FCSB vs Plzen",
+  "purpose": "Football match scores and player performances",
+  "emotion_tone": "Competitive",
+  "description": "Posts discussing FCSB vs Plzen matches, including scores, penalties, and player performances",
+  "inclusion_cues": [
+   "FCSB [3]- 0 Plzen - Denis Alibec",
+   "FCSB [2]-0 Plzen - Constantin Budescu",
+   "FCSB 0-1 Lugano - Balint Vecsei",
+   "Lugano 2-0 Plzen - Carlinhos",
+   "Plzen 1-0 FCSB - Milan Petrzela",
+   "Plzen [3]-1 Lugano - Tomas Horava",
+   "Lugano 2-[1] Plzen - Michael Krmencik",
+   "Lugano 1-[1] FCSB / Budescu 58'"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "FCSB vs Plzen",
+    "purpose": "Football match scores and player performances",
+    "emotion_tone": "Excitement and rivalry",
+    "description": "Posts discussing FCSB vs Plzen matches, including scores, penalties, and player performances",
+    "inclusion_cues": [
+     "FCSB [3]- 0 Plzen",
+     "Denis Alibec scores from penalty spot",
+     "Lugano 2-[1] Plzen"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "FCSB vs Plzen",
+    "purpose": "Football match scores and player performances",
+    "emotion_tone": "Competitive",
+    "description": "Posts discussing FCSB vs Plzen matches, including scores, penalties, and player performances",
+    "inclusion_cues": [
+     "FCSB [3]- 0 Plzen - Denis Alibec",
+     "FCSB [2]-0 Plzen - Constantin Budescu",
+     "FCSB 0-1 Lugano - Balint Vecsei",
+     "Lugano 2-0 Plzen - Carlinhos",
+     "Plzen 1-0 FCSB - Milan Petrzela",
+     "Plzen [3]-1 Lugano - Tomas Horava",
+     "Lugano 2-[1] Plzen - Michael Krmencik",
+     "Lugano 1-[1] FCSB / Budescu 58'"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: plzen fcsb, budescu fcsb, bakos plzen, scores fcsb, sheva lugano, scores penalty, scores krasnodar, krmencik plzen, viktoria plzeň, tzedek, denis alibec, constantin budescu, marek bakos, kolar, milan petrzela\nPosts (one per line, title first):\n- FCSB [3]- 0 Plzen - Denis Alibec\n- FCSB [2]-0 Plzen - Constantin Budescu\n- FCSB [1]-0 Plzen - Constantin Budescu penalty\n- Beer Sheva 2-[1] Lugano - Shir Tzedek OG\n- Beer Sheva [2]-0 Lugano - Shir Tzedek penalty\n- Lugano 2-0 Plzen - Carlinhos\n- Lugano 1:[2] FCSB / Junior Morais, 64'\n- FCSB 0-1 Lugano - Fabio Daprela\n- Lugano 1-0 Plzen - Mattia Bottani\n- Varazdat Haroyan scores vs. Krasnodar (Krasnodar - Ural Yekaterinburg 0-1)\n- FCSB 0-2 Lugano - Balint Vecsei\n- Beer Sheva [1]-0 Lugano - Dan Einbinder\n- Lugano 1-[2] FCSB - Junior Maranhao\n- Plzen [2]-1 AEK Lanarca - Daniel Kolar\n- FCSB [1]-2 Lugano - Harlem-Eddy Gnohere\n- Lugano [1]-0 FCSB - Mattia Bottani\n- Plzen 1-0 FCSB - Milan Petrzela\n- Plzen [3]-1 Lugano - Tomas Horava\n- Lugano 2-[1] Plzen - Michael Krmencik\n- Plzen 1-[1] Lugano - Davide Mariani\n- Teixeira scores and FCSB leads 2-1 vs. Plzen (Romanians have 4-3 on agg.)\n- Denis Alibec scores from penalty spot, Plzen 1-4 FCSB (3-6 on agg.)\n- Lugano 1:[1] FCSB / Budescu 58'\n- Plzen 0-[1] AEK Lanarca - Acoran Barrera Reyes\n- Beer Sheva [2]-1 Maribor - Shir Tzedek penalty\n- Plzen 1-0 Lugano - Krmencik\n- Plzen [4]-1 Lugano - Ales Cermak\n- Lugano - Viktoria Plzeň 2:0 Carlos Alberto de Souza Júnio\n- Plzen [2]-1 Lugano - Michael Krmencik\n- Plzen [3]-1 AEK Lanarca - Marek Bakos penalty\n- F. Tanase makes 3-1 for FCSB vs. Plzen\n- Ludogorets [2]-0 Suduva - Vura\n- Plzen [1]-1 AEK Lanarca - Marek Bakos\n- Ludogorets [1]-0 Suduva - Cosmin Moti\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"FCSB vs Plzen\", \"purpose\": \"Football match scores and player performances\", \"emotion_tone\": \"Excitement and rivalry\", \"description\": \"Posts discussing FCSB vs Plzen matches, including scores, penalties, and player performances\", \"inclusion_cues\": [\"FCSB [3]- 0 Plzen\", \"Denis Alibec scores from penalty spot\", \"Lugano 2-[1] Plzen\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "FCSB vs Plzen",
+      "purpose": "Football match scores and player performances",
+      "emotion_tone": "Excitement and rivalry",
+      "description": "Posts discussing FCSB vs Plzen matches, including scores, penalties, and player performances",
+      "inclusion_cues": [
+       "FCSB [3]- 0 Plzen",
+       "Denis Alibec scores from penalty spot",
+       "Lugano 2-[1] Plzen"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 111,
+   "seed": 3196408888,
+   "seconds": 0.92
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: plzen fcsb, budescu fcsb, bakos plzen, scores fcsb, sheva lugano, scores penalty, scores krasnodar, krmencik plzen, viktoria plzeň, tzedek, denis alibec, constantin budescu, marek bakos, kolar, milan petrzela\nPosts (one per line, title first):\n- FCSB [3]- 0 Plzen - Denis Alibec\n- FCSB [2]-0 Plzen - Constantin Budescu\n- FCSB [1]-0 Plzen - Constantin Budescu penalty\n- Beer Sheva 2-[1] Lugano - Shir Tzedek OG\n- Beer Sheva [2]-0 Lugano - Shir Tzedek penalty\n- Lugano 2-0 Plzen - Carlinhos\n- Lugano 1:[2] FCSB / Junior Morais, 64'\n- FCSB 0-1 Lugano - Fabio Daprela\n- Lugano 1-0 Plzen - Mattia Bottani\n- Varazdat Haroyan scores vs. Krasnodar (Krasnodar - Ural Yekaterinburg 0-1)\n- FCSB 0-2 Lugano - Balint Vecsei\n- Beer Sheva [1]-0 Lugano - Dan Einbinder\n- Lugano 1-[2] FCSB - Junior Maranhao\n- Plzen [2]-1 AEK Lanarca - Daniel Kolar\n- FCSB [1]-2 Lugano - Harlem-Eddy Gnohere\n- Lugano [1]-0 FCSB - Mattia Bottani\n- Plzen 1-0 FCSB - Milan Petrzela\n- Plzen [3]-1 Lugano - Tomas Horava\n- Lugano 2-[1] Plzen - Michael Krmencik\n- Plzen 1-[1] Lugano - Davide Mariani\n- Teixeira scores and FCSB leads 2-1 vs. Plzen (Romanians have 4-3 on agg.)\n- Denis Alibec scores from penalty spot, Plzen 1-4 FCSB (3-6 on agg.)\n- Lugano 1:[1] FCSB / Budescu 58'\n- Plzen 0-[1] AEK Lanarca - Acoran Barrera Reyes\n- Beer Sheva [2]-1 Maribor - Shir Tzedek penalty\n- Plzen 1-0 Lugano - Krmencik\n- Plzen [4]-1 Lugano - Ales Cermak\n- Lugano - Viktoria Plzeň 2:0 Carlos Alberto de Souza Júnio\n- Plzen [2]-1 Lugano - Michael Krmencik\n- Plzen [3]-1 AEK Lanarca - Marek Bakos penalty\n- F. Tanase makes 3-1 for FCSB vs. Plzen\n- Ludogorets [2]-0 Suduva - Vura\n- Plzen [1]-1 AEK Lanarca - Marek Bakos\n- Ludogorets [1]-0 Suduva - Cosmin Moti\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"FCSB vs Plzen\", \"purpose\": \"Football match scores and player performances\", \"emotion_tone\": \"Competitive\", \"description\": \"Posts discussing FCSB vs Plzen matches, including scores, penalties, and player performances\", \"inclusion_cues\": [\"FCSB [3]- 0 Plzen - Denis Alibec\", \"FCSB [2]-0 Plzen - Constantin Budescu\", \"FCSB 0-1 Lugano - Balint Vecsei\", \"Lugano 2-0 Plzen - Carlinhos\", \"Plzen 1-0 FCSB - Milan Petrzela\", \"Plzen [3]-1 Lugano - Tomas Horava\", \"Lugano 2-[1] Plzen - Michael Krmencik\", \"Lugano 1-[1] FCSB / Budescu 58'\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "FCSB vs Plzen",
+      "purpose": "Football match scores and player performances",
+      "emotion_tone": "Competitive",
+      "description": "Posts discussing FCSB vs Plzen matches, including scores, penalties, and player performances",
+      "inclusion_cues": [
+       "FCSB [3]- 0 Plzen - Denis Alibec",
+       "FCSB [2]-0 Plzen - Constantin Budescu",
+       "FCSB 0-1 Lugano - Balint Vecsei",
+       "Lugano 2-0 Plzen - Carlinhos",
+       "Plzen 1-0 FCSB - Milan Petrzela",
+       "Plzen [3]-1 Lugano - Tomas Horava",
+       "Lugano 2-[1] Plzen - Michael Krmencik",
+       "Lugano 1-[1] FCSB / Budescu 58'"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 206,
+   "seed": 269937001,
+   "seconds": 1.28
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: plzen fcsb, budescu fcsb, bakos plzen, scores fcsb, sheva lugano, scores penalty, scores krasnodar, krmencik plzen, viktoria plzeň, tzedek, denis alibec, constantin budescu, marek bakos, kolar, milan petrzela\nPosts (one per line, title first):\n- FCSB [3]- 0 Plzen - Denis Alibec\n- FCSB [2]-0 Plzen - Constantin Budescu\n- FCSB [1]-0 Plzen - Constantin Budescu penalty\n- Beer Sheva 2-[1] Lugano - Shir Tzedek OG\n- Beer Sheva [2]-0 Lugano - Shir Tzedek penalty\n- Lugano 2-0 Plzen - Carlinhos\n- Lugano 1:[2] FCSB / Junior Morais, 64'\n- FCSB 0-1 Lugano - Fabio Daprela\n- Lugano 1-0 Plzen - Mattia Bottani\n- Varazdat Haroyan scores vs. Krasnodar (Krasnodar - Ural Yekaterinburg 0-1)\n- FCSB 0-2 Lugano - Balint Vecsei\n- Beer Sheva [1]-0 Lugano - Dan Einbinder\n- Lugano 1-[2] FCSB - Junior Maranhao\n- Plzen [2]-1 AEK Lanarca - Daniel Kolar\n- FCSB [1]-2 Lugano - Harlem-Eddy Gnohere\n- Lugano [1]-0 FCSB - Mattia Bottani\n- Plzen 1-0 FCSB - Milan Petrzela\n- Plzen [3]-1 Lugano - Tomas Horava\n- Lugano 2-[1] Plzen - Michael Krmencik\n- Plzen 1-[1] Lugano - Davide Mariani\n- Teixeira scores and FCSB leads 2-1 vs. Plzen (Romanians have 4-3 on agg.)\n- Denis Alibec scores from penalty spot, Plzen 1-4 FCSB (3-6 on agg.)\n- Lugano 1:[1] FCSB / Budescu 58'\n- Plzen 0-[1] AEK Lanarca - Acoran Barrera Reyes\n- Beer Sheva [2]-1 Maribor - Shir Tzedek penalty\n- Plzen 1-0 Lugano - Krmencik\n- Plzen [4]-1 Lugano - Ales Cermak\n- Lugano - Viktoria Plzeň 2:0 Carlos Alberto de Souza Júnio\n- Plzen [2]-1 Lugano - Michael Krmencik\n- Plzen [3]-1 AEK Lanarca - Marek Bakos penalty\n- F. Tanase makes 3-1 for FCSB vs. Plzen\n- Ludogorets [2]-0 Suduva - Vura\n- Plzen [1]-1 AEK Lanarca - Marek Bakos\n- Ludogorets [1]-0 Suduva - Cosmin Moti\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"FCSB vs Plzen\", \"purpose\": \"Football match scores and player performances\", \"emotion_tone\": \"Excitement and rivalry\", \"description\": \"Posts discussing FCSB vs Plzen matches, including scores, penalties, and player performances\", \"inclusion_cues\": [\"FCSB [3]- 0 Plzen\", \"Denis Alibec scores from penalty spot\", \"Lugano 2-[1] Plzen\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"FCSB vs Plzen\", \"purpose\": \"Football match scores and player performances\", \"emotion_tone\": \"Competitive\", \"description\": \"Posts discussing FCSB vs Plzen matches, including scores, penalties, and player performances\", \"inclusion_cues\": [\"FCSB [3]- 0 Plzen - Denis Alibec\", \"FCSB [2]-0 Plzen - Constantin Budescu\", \"FCSB 0-1 Lugano - Balint Vecsei\", \"Lugano 2-0 Plzen - Carlinhos\", \"Plzen 1-0 FCSB - Milan Petrzela\", \"Plzen [3]-1 Lugano - Tomas Horava\", \"Lugano 2-[1] Plzen - Michael Krmencik\", \"Lugano 1-[1] FCSB / Budescu 58'\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"FCSB vs Plzen\", \"purpose\": \"Football match scores and player performances\", \"emotion_tone\": \"Competitive\", \"description\": \"Posts discussing FCSB vs Plzen matches, including scores, penalties, and player performances\", \"inclusion_cues\": [\"FCSB [3]- 0 Plzen - Denis Alibec\", \"FCSB [2]-0 Plzen - Constantin Budescu\", \"FCSB 0-1 Lugano - Balint Vecsei\", \"Lugano 2-0 Plzen - Carlinhos\", \"Plzen 1-0 FCSB - Milan Petrzela\", \"Plzen [3]-1 Lugano - Tomas Horava\", \"Lugano 2-[1] Plzen - Michael Krmencik\", \"Lugano 1-[1] FCSB / Budescu 58'\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 205,
+   "seed": 39096340,
+   "seconds": 0.66
+  }
+ ]
+}

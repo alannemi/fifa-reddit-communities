@@ -1,0 +1,197 @@
+{
+ "period_bin": 4,
+ "topic_id": 1433,
+ "keywords": "handsome players, footballer sexiest, looking footballers, hottest player, looking players, looking player, best looking, footballer best, graziano pelle, handsome, think attractive, player pictures, man hot, sexiest, gourcuff",
+ "n_sample_posts": 28,
+ "sample_ids": [
+  "2pedph",
+  "2za45n",
+  "37yl8s",
+  "359ziy",
+  "6q321x",
+  "3btlfr",
+  "3eh8k1",
+  "2oycae",
+  "7ghou7",
+  "3ccsi9",
+  "3g4xpy",
+  "3ebc7a",
+  "3gvhlt",
+  "2i818a",
+  "2wfbn7",
+  "2v8itz",
+  "2uw95b",
+  "3b49ld",
+  "2ph0ah",
+  "3f5xh7",
+  "3f2ucf",
+  "31nk4u",
+  "2ji5qu",
+  "3i2uqp",
+  "2txogj",
+  "3p0rak",
+  "3lbwwc",
+  "2qas17"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Handsome Footballers",
+  "purpose": "Identify and discuss the most handsome players in football",
+  "emotion_tone": "admiring and enthusiastic",
+  "description": "Posts discussing the attractiveness of footballers, focusing on their physical appearance and appeal",
+  "inclusion_cues": [
+   "Handsome players",
+   "Most handsome footballers",
+   "Good looking players",
+   "Sexiest footballer",
+   "Best looking player",
+   "Most attractive footballer"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Best Looking Footballers",
+    "purpose": "Identify the most attractive football players",
+    "emotion_tone": "curious and admiring",
+    "description": "Posts discussing the attractiveness of footballers, including comparisons, personal preferences, and discussions about looks in the context of soccer",
+    "inclusion_cues": [
+     "handsome players",
+     "sexiest player",
+     "best looking",
+     "most handsome",
+     "most attractive",
+     "good looking",
+     "footballer best",
+     "gourcuff",
+     "pelle",
+     "man hot"
+    ],
+    "n_cues_given": 19
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Handsome Footballers",
+    "purpose": "Identify and discuss the most handsome players in football",
+    "emotion_tone": "admiring and enthusiastic",
+    "description": "Posts discussing the attractiveness of footballers, focusing on their physical appearance and appeal",
+    "inclusion_cues": [
+     "Handsome players",
+     "Most handsome footballers",
+     "Good looking players",
+     "Sexiest footballer",
+     "Best looking player",
+     "Most attractive footballer"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: handsome players, footballer sexiest, looking footballers, hottest player, looking players, looking player, best looking, footballer best, graziano pelle, handsome, think attractive, player pictures, man hot, sexiest, gourcuff\nPosts (one per line, title first):\n- Make a starting lineup of the most handsome players currently playing in top leagues.\n- Who are the most handsome looking players? / My personal pick is Gourcuff or Pelle.\n- Bit off-topic but who do you think is the most good-looking football player, male or female, past or present? What about bad-looking?\n- Straight males of /r/soccer, who is the best looking player alive? / So in light of the thread on /r/askreddit i didn't find too many responses that were players. So let's get this ball rolling. Personally I've always had a slight mancrush on Gourcuff.\n- Who is the most handsome player? / For me it is verrati. Nothing compares like the green-gold of his eyes. My body is filled with him for days and days. He is the mirror of the night. The violent flash of lightning. The dampness of the earth. The hollow of his armpits is my shelter. All my joy is to\n- Who was the most attractive player in this year's WWC?\n- Who do you think are the most good-looking players?\n- who is your team's most handsome player.\n- Is Man hot or not? with Welbeck and Big Shaq\n- Most handsome/hottest player? Pictures exemplifying would be greatly encouraged.\n- Most Handsome PL Team?\n- Who do you think is the most attractive footballer?\n- Which player with the most fantastic WAG is undderrated by the fans?\n- Is it just a coincidence that some of the world's most elite soccer players are insanely good looking?\n- Who is the best looking football player?\n- Who is the sexiest player alive?\n- Who do you think is the best looking footballer?\n- Who is the most handsome player? / Who do you think is the bestlooking football player?\n- Who is that you think the most handsome soccer players?\n- Which footballer has the sexiest pair of shoes?\n- Which footballers have the worse looking partners?\n- Who has the best looking feet?\n- Graziano Pelle is incredibly good looking... / If he wasn't a football player he'd be a model no doubt\n- Who do you think are the most Handsome Footballers?\n- Who are some of the best looking footballers?\n- Handsome Football Players\n- 5 most handsome footballers in the World, women can't get enough of.\n- Off Topic: who in your opinion is the best looking football player?\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Best Looking Footballers\", \"purpose\": \"Identify the most attractive football players\", \"emotion_tone\": \"curious and admiring\", \"description\": \"Posts discussing the attractiveness of footballers, including comparisons, personal preferences, and discussions about looks in the context of soccer\", \"inclusion_cues\": [\"handsome players\", \"sexiest player\", \"best looking\", \"most handsome\", \"most attractive\", \"good looking\", \"footballer best\", \"gourcuff\", \"pelle\", \"man hot\", \"hottest player\", \"player pictures\", \"footballer sexiest\", \"looking players\", \"looking player\", \"looking footballers\", \"best looking footballer\", \"sexiest footballer\", \"most handsome footballer\"]}]}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Best Looking Footballers",
+      "purpose": "Identify the most attractive football players",
+      "emotion_tone": "curious and admiring",
+      "description": "Posts discussing the attractiveness of footballers, including comparisons, personal preferences, and discussions about looks in the context of soccer",
+      "inclusion_cues": [
+       "handsome players",
+       "sexiest player",
+       "best looking",
+       "most handsome",
+       "most attractive",
+       "good looking",
+       "footballer best",
+       "gourcuff",
+       "pelle",
+       "man hot"
+      ],
+      "n_cues_given": 19
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 172,
+   "seed": 3043676335,
+   "seconds": 0.82
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: handsome players, footballer sexiest, looking footballers, hottest player, looking players, looking player, best looking, footballer best, graziano pelle, handsome, think attractive, player pictures, man hot, sexiest, gourcuff\nPosts (one per line, title first):\n- Make a starting lineup of the most handsome players currently playing in top leagues.\n- Who are the most handsome looking players? / My personal pick is Gourcuff or Pelle.\n- Bit off-topic but who do you think is the most good-looking football player, male or female, past or present? What about bad-looking?\n- Straight males of /r/soccer, who is the best looking player alive? / So in light of the thread on /r/askreddit i didn't find too many responses that were players. So let's get this ball rolling. Personally I've always had a slight mancrush on Gourcuff.\n- Who is the most handsome player? / For me it is verrati. Nothing compares like the green-gold of his eyes. My body is filled with him for days and days. He is the mirror of the night. The violent flash of lightning. The dampness of the earth. The hollow of his armpits is my shelter. All my joy is to\n- Who was the most attractive player in this year's WWC?\n- Who do you think are the most good-looking players?\n- who is your team's most handsome player.\n- Is Man hot or not? with Welbeck and Big Shaq\n- Most handsome/hottest player? Pictures exemplifying would be greatly encouraged.\n- Most Handsome PL Team?\n- Who do you think is the most attractive footballer?\n- Which player with the most fantastic WAG is undderrated by the fans?\n- Is it just a coincidence that some of the world's most elite soccer players are insanely good looking?\n- Who is the best looking football player?\n- Who is the sexiest player alive?\n- Who do you think is the best looking footballer?\n- Who is the most handsome player? / Who do you think is the bestlooking football player?\n- Who is that you think the most handsome soccer players?\n- Which footballer has the sexiest pair of shoes?\n- Which footballers have the worse looking partners?\n- Who has the best looking feet?\n- Graziano Pelle is incredibly good looking... / If he wasn't a football player he'd be a model no doubt\n- Who do you think are the most Handsome Footballers?\n- Who are some of the best looking footballers?\n- Handsome Football Players\n- 5 most handsome footballers in the World, women can't get enough of.\n- Off Topic: who in your opinion is the best looking football player?\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Handsome Footballers\", \"purpose\": \"Identify and discuss the most handsome players in football\", \"emotion_tone\": \"admiring and enthusiastic\", \"description\": \"Posts discussing the attractiveness of footballers, focusing on their physical appearance and appeal\", \"inclusion_cues\": [\"Handsome players\", \"Most handsome footballers\", \"Good looking players\", \"Sexiest footballer\", \"Best looking player\", \"Most attractive footballer\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Handsome Footballers",
+      "purpose": "Identify and discuss the most handsome players in football",
+      "emotion_tone": "admiring and enthusiastic",
+      "description": "Posts discussing the attractiveness of footballers, focusing on their physical appearance and appeal",
+      "inclusion_cues": [
+       "Handsome players",
+       "Most handsome footballers",
+       "Good looking players",
+       "Sexiest footballer",
+       "Best looking player",
+       "Most attractive footballer"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 107,
+   "seed": 2630431672,
+   "seconds": 0.7
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: handsome players, footballer sexiest, looking footballers, hottest player, looking players, looking player, best looking, footballer best, graziano pelle, handsome, think attractive, player pictures, man hot, sexiest, gourcuff\nPosts (one per line, title first):\n- Make a starting lineup of the most handsome players currently playing in top leagues.\n- Who are the most handsome looking players? / My personal pick is Gourcuff or Pelle.\n- Bit off-topic but who do you think is the most good-looking football player, male or female, past or present? What about bad-looking?\n- Straight males of /r/soccer, who is the best looking player alive? / So in light of the thread on /r/askreddit i didn't find too many responses that were players. So let's get this ball rolling. Personally I've always had a slight mancrush on Gourcuff.\n- Who is the most handsome player? / For me it is verrati. Nothing compares like the green-gold of his eyes. My body is filled with him for days and days. He is the mirror of the night. The violent flash of lightning. The dampness of the earth. The hollow of his armpits is my shelter. All my joy is to\n- Who was the most attractive player in this year's WWC?\n- Who do you think are the most good-looking players?\n- who is your team's most handsome player.\n- Is Man hot or not? with Welbeck and Big Shaq\n- Most handsome/hottest player? Pictures exemplifying would be greatly encouraged.\n- Most Handsome PL Team?\n- Who do you think is the most attractive footballer?\n- Which player with the most fantastic WAG is undderrated by the fans?\n- Is it just a coincidence that some of the world's most elite soccer players are insanely good looking?\n- Who is the best looking football player?\n- Who is the sexiest player alive?\n- Who do you think is the best looking footballer?\n- Who is the most handsome player? / Who do you think is the bestlooking football player?\n- Who is that you think the most handsome soccer players?\n- Which footballer has the sexiest pair of shoes?\n- Which footballers have the worse looking partners?\n- Who has the best looking feet?\n- Graziano Pelle is incredibly good looking... / If he wasn't a football player he'd be a model no doubt\n- Who do you think are the most Handsome Footballers?\n- Who are some of the best looking footballers?\n- Handsome Football Players\n- 5 most handsome footballers in the World, women can't get enough of.\n- Off Topic: who in your opinion is the best looking football player?\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Best Looking Footballers\", \"purpose\": \"Identify the most attractive football players\", \"emotion_tone\": \"curious and admiring\", \"description\": \"Posts discussing the attractiveness of footballers, including comparisons, personal preferences, and discussions about looks in the context of soccer\", \"inclusion_cues\": [\"handsome players\", \"sexiest player\", \"best looking\", \"most handsome\", \"most attractive\", \"good looking\", \"footballer best\", \"gourcuff\", \"pelle\", \"man hot\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Handsome Footballers\", \"purpose\": \"Identify and discuss the most handsome players in football\", \"emotion_tone\": \"admiring and enthusiastic\", \"description\": \"Posts discussing the attractiveness of footballers, focusing on their physical appearance and appeal\", \"inclusion_cues\": [\"Handsome players\", \"Most handsome footballers\", \"Good looking players\", \"Sexiest footballer\", \"Best looking player\", \"Most attractive footballer\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Best Looking Footballers\", \"purpose\": \"Identify and discuss the most attractive football players\", \"emotion_tone\": \"curious and admiring\", \"description\": \"Posts discussing the attractiveness of footballers, including comparisons, personal preferences, and discussions about looks in the context of soccer\", \"inclusion_cues\": [\"handsome players\", \"sexiest player\", \"best looking\", \"most handsome\", \"most attractive\", \"good looking\", \"footballer best\", \"gourcuff\", \"pelle\", \"man hot\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 125,
+   "seed": 3440378584,
+   "seconds": 0.53
+  }
+ ]
+}

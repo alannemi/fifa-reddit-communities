@@ -1,0 +1,191 @@
+{
+ "period_bin": 8,
+ "topic_id": 942,
+ "keywords": "promoted league, league poland, malta qualified, qualified relegation, relegation promotion, uefa women, serbia qualified, league uefa, play slovenia, survived relegation, league concacaf, relegated nations, serbian club, games moldova, latvian football",
+ "n_sample_posts": 25,
+ "sample_ids": [
+  "188hf7p",
+  "188k1f1",
+  "18bl8nt",
+  "18bglnn",
+  "188jshi",
+  "1gugf8e",
+  "1grg084",
+  "1guh1zu",
+  "1gvl2jb",
+  "17z3zio",
+  "1grfukm",
+  "1bog5eq",
+  "1gsu67g",
+  "1gtnqnp",
+  "1gughq6",
+  "17kv8hy",
+  "1gsu4js",
+  "18bgr61",
+  "1gugoe7",
+  "1d59u1k",
+  "1grg59a",
+  "1gsy6et",
+  "1gth6t5",
+  "12592tt",
+  "1gugljp"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "UEFA Women's Nations League",
+  "purpose": "Promotion and relegation in women's national teams",
+  "emotion_tone": "Positive",
+  "description": "Posts about promotions, relegations, and qualification in the UEFA Women's Nations League, including specific matches and outcomes.",
+  "inclusion_cues": [
+   "promotion to League B",
+   "relegation to Nations League B",
+   "qualification for play-offs",
+   "UEFA Women's Nations League",
+   "relegation/promotion play-offs"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "UEFA Women's Nations League",
+    "purpose": "Promotion and relegation in women's national team competitions",
+    "emotion_tone": "Positive",
+    "description": "Posts about promotions, relegations, and qualification in the UEFA Women's Nations League, including specific teams and outcomes.",
+    "inclusion_cues": [
+     "promoted league",
+     "qualified relegation",
+     "relegation promotion",
+     "uefa women",
+     "serbia qualified",
+     "malta qualified",
+     "league uefa",
+     "play slovenia",
+     "survived relegation",
+     "league concacaf"
+    ],
+    "n_cues_given": 14
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "UEFA Women's Nations League",
+    "purpose": "Promotion and relegation in women's national teams",
+    "emotion_tone": "Positive",
+    "description": "Posts about promotions, relegations, and qualification in the UEFA Women's Nations League, including specific matches and outcomes.",
+    "inclusion_cues": [
+     "promotion to League B",
+     "relegation to Nations League B",
+     "qualification for play-offs",
+     "UEFA Women's Nations League",
+     "relegation/promotion play-offs"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: promoted league, league poland, malta qualified, qualified relegation, relegation promotion, uefa women, serbia qualified, league uefa, play slovenia, survived relegation, league concacaf, relegated nations, serbian club, games moldova, latvian football\nPosts (one per line, title first):\n- [FFK] Kosovo have secured promotion to League B of the UEFA Women's Nations League after a 5-1 win over Bulgaria\n- [Azerbaijan] have secured promotion to League B of the UEFA Women's Nations League after a 0-1 win over Cyprus\n- [@narodak] Czechia have secured promotion to League A of the UEFA Women's Nations League after a 4-0 win over Slovenia\n- [@mfa1900] Malta have secured promotion to League B of the UEFA Women's Nations League after a 2-1 win against Latvia, conceding only one goal across all six games in their group\n- [Łączy nas piłka kobieca] Poland have secured promotion to League A of the UEFA Women's Nations League after a 1-0 win over Ukraine\n- Poland has been relegated to Nations League B, after conceding a last minute goal at their home\n- North Macedonia have promoted to Nations League B, with 4 wins and just a single draw\n- Latvia has qualified for the relegation play off. Azerbaijan will have to win in Sweden to not relegate.\n- [ceskarepre_cz] Czechia tops Nations League group B1 and won promotion to League A\n- Unqiue situation in Latvian football - second team is gonna play their first team in relegation/promotion play offs for a spot in the top league.\n- [Football meets data]: Kazakhstan have been relegated to Nations League C, after losing all games, with 10 goals conceded and no goal scored\n- Lithuania have survived the relegation and will remain in the Nations League C,where it will play Romania,Kosovo and Cyprus\n- Montenegro have relegated to Nations League C after losing all their games\n- Austria has qualified for the promotion play off and Slovenia for the relegation play off\n- Serbia has qualified for the relegation play off and Denmark for the quarter finals of the Nations League\n- [@WEURO] Türkiye have clinched promotion to League B of the UEFA Women's Nations League\n- Moldova have promoted to Nations League C and Malta have qualified for the promotion play off. Andorra will stay in Nations League D,after losing all their games.\n- [IsraelFootballAssociation] Israel have secured promotion to League B of the UEFA Women's Nations League following a 4-1 win over Estonia, finishing their group undefeated with a +19 goal difference\n- Bulgaria has qualified for the promotion play off\n- What each Serbian club is qualifying for (and what they need to qualify)\n- [Football meets data]: Kazakhstan have been relegated to Nations League C, after getting a single point, conceding 10 goals and not scoring a single one\n- Sweden have been promoted to Nations League B\n- Armenia has qualified for the promotion play off\n- [Concacaf Nations League] Sint Maarten gets promoted to League B in the Concacaf Nations League\n- Lithuania have relegated to Nations League D after losing all their games\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"UEFA Women's Nations League\", \"purpose\": \"Promotion and relegation in women's national team competitions\", \"emotion_tone\": \"Positive\", \"description\": \"Posts about promotions, relegations, and qualification in the UEFA Women's Nations League, including specific teams and outcomes.\", \"inclusion_cues\": [\"promoted league\", \"qualified relegation\", \"relegation promotion\", \"uefa women\", \"serbia qualified\", \"malta qualified\", \"league uefa\", \"play slovenia\", \"survived relegation\", \"league concacaf\", \"relegated nations\", \"serbian club\", \"games moldova\", \"latvian football\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "UEFA Women's Nations League",
+      "purpose": "Promotion and relegation in women's national team competitions",
+      "emotion_tone": "Positive",
+      "description": "Posts about promotions, relegations, and qualification in the UEFA Women's Nations League, including specific teams and outcomes.",
+      "inclusion_cues": [
+       "promoted league",
+       "qualified relegation",
+       "relegation promotion",
+       "uefa women",
+       "serbia qualified",
+       "malta qualified",
+       "league uefa",
+       "play slovenia",
+       "survived relegation",
+       "league concacaf"
+      ],
+      "n_cues_given": 14
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 157,
+   "seed": 1202729582,
+   "seconds": 0.53
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: promoted league, league poland, malta qualified, qualified relegation, relegation promotion, uefa women, serbia qualified, league uefa, play slovenia, survived relegation, league concacaf, relegated nations, serbian club, games moldova, latvian football\nPosts (one per line, title first):\n- [FFK] Kosovo have secured promotion to League B of the UEFA Women's Nations League after a 5-1 win over Bulgaria\n- [Azerbaijan] have secured promotion to League B of the UEFA Women's Nations League after a 0-1 win over Cyprus\n- [@narodak] Czechia have secured promotion to League A of the UEFA Women's Nations League after a 4-0 win over Slovenia\n- [@mfa1900] Malta have secured promotion to League B of the UEFA Women's Nations League after a 2-1 win against Latvia, conceding only one goal across all six games in their group\n- [Łączy nas piłka kobieca] Poland have secured promotion to League A of the UEFA Women's Nations League after a 1-0 win over Ukraine\n- Poland has been relegated to Nations League B, after conceding a last minute goal at their home\n- North Macedonia have promoted to Nations League B, with 4 wins and just a single draw\n- Latvia has qualified for the relegation play off. Azerbaijan will have to win in Sweden to not relegate.\n- [ceskarepre_cz] Czechia tops Nations League group B1 and won promotion to League A\n- Unqiue situation in Latvian football - second team is gonna play their first team in relegation/promotion play offs for a spot in the top league.\n- [Football meets data]: Kazakhstan have been relegated to Nations League C, after losing all games, with 10 goals conceded and no goal scored\n- Lithuania have survived the relegation and will remain in the Nations League C,where it will play Romania,Kosovo and Cyprus\n- Montenegro have relegated to Nations League C after losing all their games\n- Austria has qualified for the promotion play off and Slovenia for the relegation play off\n- Serbia has qualified for the relegation play off and Denmark for the quarter finals of the Nations League\n- [@WEURO] Türkiye have clinched promotion to League B of the UEFA Women's Nations League\n- Moldova have promoted to Nations League C and Malta have qualified for the promotion play off. Andorra will stay in Nations League D,after losing all their games.\n- [IsraelFootballAssociation] Israel have secured promotion to League B of the UEFA Women's Nations League following a 4-1 win over Estonia, finishing their group undefeated with a +19 goal difference\n- Bulgaria has qualified for the promotion play off\n- What each Serbian club is qualifying for (and what they need to qualify)\n- [Football meets data]: Kazakhstan have been relegated to Nations League C, after getting a single point, conceding 10 goals and not scoring a single one\n- Sweden have been promoted to Nations League B\n- Armenia has qualified for the promotion play off\n- [Concacaf Nations League] Sint Maarten gets promoted to League B in the Concacaf Nations League\n- Lithuania have relegated to Nations League D after losing all their games\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"UEFA Women's Nations League\", \"purpose\": \"Promotion and relegation in women's national teams\", \"emotion_tone\": \"Positive\", \"description\": \"Posts about promotions, relegations, and qualification in the UEFA Women's Nations League, including specific matches and outcomes.\", \"inclusion_cues\": [\"promotion to League B\", \"relegation to Nations League B\", \"qualification for play-offs\", \"UEFA Women's Nations League\", \"relegation/promotion play-offs\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "UEFA Women's Nations League",
+      "purpose": "Promotion and relegation in women's national teams",
+      "emotion_tone": "Positive",
+      "description": "Posts about promotions, relegations, and qualification in the UEFA Women's Nations League, including specific matches and outcomes.",
+      "inclusion_cues": [
+       "promotion to League B",
+       "relegation to Nations League B",
+       "qualification for play-offs",
+       "UEFA Women's Nations League",
+       "relegation/promotion play-offs"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 116,
+   "seed": 4175248783,
+   "seconds": 1.82
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: promoted league, league poland, malta qualified, qualified relegation, relegation promotion, uefa women, serbia qualified, league uefa, play slovenia, survived relegation, league concacaf, relegated nations, serbian club, games moldova, latvian football\nPosts (one per line, title first):\n- [FFK] Kosovo have secured promotion to League B of the UEFA Women's Nations League after a 5-1 win over Bulgaria\n- [Azerbaijan] have secured promotion to League B of the UEFA Women's Nations League after a 0-1 win over Cyprus\n- [@narodak] Czechia have secured promotion to League A of the UEFA Women's Nations League after a 4-0 win over Slovenia\n- [@mfa1900] Malta have secured promotion to League B of the UEFA Women's Nations League after a 2-1 win against Latvia, conceding only one goal across all six games in their group\n- [Łączy nas piłka kobieca] Poland have secured promotion to League A of the UEFA Women's Nations League after a 1-0 win over Ukraine\n- Poland has been relegated to Nations League B, after conceding a last minute goal at their home\n- North Macedonia have promoted to Nations League B, with 4 wins and just a single draw\n- Latvia has qualified for the relegation play off. Azerbaijan will have to win in Sweden to not relegate.\n- [ceskarepre_cz] Czechia tops Nations League group B1 and won promotion to League A\n- Unqiue situation in Latvian football - second team is gonna play their first team in relegation/promotion play offs for a spot in the top league.\n- [Football meets data]: Kazakhstan have been relegated to Nations League C, after losing all games, with 10 goals conceded and no goal scored\n- Lithuania have survived the relegation and will remain in the Nations League C,where it will play Romania,Kosovo and Cyprus\n- Montenegro have relegated to Nations League C after losing all their games\n- Austria has qualified for the promotion play off and Slovenia for the relegation play off\n- Serbia has qualified for the relegation play off and Denmark for the quarter finals of the Nations League\n- [@WEURO] Türkiye have clinched promotion to League B of the UEFA Women's Nations League\n- Moldova have promoted to Nations League C and Malta have qualified for the promotion play off. Andorra will stay in Nations League D,after losing all their games.\n- [IsraelFootballAssociation] Israel have secured promotion to League B of the UEFA Women's Nations League following a 4-1 win over Estonia, finishing their group undefeated with a +19 goal difference\n- Bulgaria has qualified for the promotion play off\n- What each Serbian club is qualifying for (and what they need to qualify)\n- [Football meets data]: Kazakhstan have been relegated to Nations League C, after getting a single point, conceding 10 goals and not scoring a single one\n- Sweden have been promoted to Nations League B\n- Armenia has qualified for the promotion play off\n- [Concacaf Nations League] Sint Maarten gets promoted to League B in the Concacaf Nations League\n- Lithuania have relegated to Nations League D after losing all their games\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"UEFA Women's Nations League\", \"purpose\": \"Promotion and relegation in women's national team competitions\", \"emotion_tone\": \"Positive\", \"description\": \"Posts about promotions, relegations, and qualification in the UEFA Women's Nations League, including specific teams and outcomes.\", \"inclusion_cues\": [\"promoted league\", \"qualified relegation\", \"relegation promotion\", \"uefa women\", \"serbia qualified\", \"malta qualified\", \"league uefa\", \"play slovenia\", \"survived relegation\", \"league concacaf\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"UEFA Women's Nations League\", \"purpose\": \"Promotion and relegation in women's national teams\", \"emotion_tone\": \"Positive\", \"description\": \"Posts about promotions, relegations, and qualification in the UEFA Women's Nations League, including specific matches and outcomes.\", \"inclusion_cues\": [\"promotion to League B\", \"relegation to Nations League B\", \"qualification for play-offs\", \"UEFA Women's Nations League\", \"relegation/promotion play-offs\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"UEFA Women's Nations League\", \"purpose\": \"Promotion and relegation in women's national team competitions\", \"emotion_tone\": \"Positive\", \"description\": \"Posts about promotions, relegations, and qualification in the UEFA Women's Nations League, including specific teams and outcomes.\", \"inclusion_cues\": [\"promotion to League B\", \"relegation to Nations League B\", \"qualification for play-offs\", \"UEFA Women's Nations League\", \"relegation/promotion play-offs\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 116,
+   "seed": 780351093,
+   "seconds": 0.51
+  }
+ ]
+}

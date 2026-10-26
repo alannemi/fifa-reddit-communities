@@ -1,0 +1,183 @@
+{
+ "period_bin": 4,
+ "topic_id": 1542,
+ "keywords": "pele hospital, great pele, pelé, pele doing, legend pelé, legend pele, pele brazil, breaking pele, pele says, pele won, hospital brazil, brazil legend, brazil football, condition worsening, leaves hospital",
+ "n_sample_posts": 26,
+ "sample_ids": [
+  "7rio49",
+  "2nle05",
+  "7ri2il",
+  "2nl4wd",
+  "2nl4zn",
+  "2nl60b",
+  "4wcqwh",
+  "2m4e23",
+  "7rle69",
+  "2os0i1",
+  "2nld0z",
+  "35jlpi",
+  "2nm9hp",
+  "358rld",
+  "3dr4rs",
+  "2oif9s",
+  "3driep",
+  "2nn3ct",
+  "2ourgb",
+  "35bsuo",
+  "2nmqf7",
+  "4wbz9d",
+  "357wvz",
+  "2nremd",
+  "2o23fd",
+  "7ri0s2"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Pele Hospitalization",
+  "purpose": "Report on Pele's health and hospitalization status",
+  "emotion_tone": "Concerned",
+  "description": "Posts discussing Pele's hospitalization, including his condition, treatment, and recovery status, with a focus on his status as a Brazil legend.",
+  "inclusion_cues": [
+   "Pele in hospital",
+   "condition worsening",
+   "intensive care",
+   "health scare",
+   "recovery status",
+   "Brazil legend"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Pele Hospitalization",
+    "purpose": "Report on Pelé's health status and hospitalization",
+    "emotion_tone": "Concerned",
+    "description": "Posts related to Pelé's hospitalization, including his condition, treatment, and public statements about his health",
+    "inclusion_cues": [
+     "Pele in hospital",
+     "condition worsening",
+     "hospital reports",
+     "Pelé's health status",
+     "medical treatment"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Pele Hospitalization",
+    "purpose": "Report on Pele's health and hospitalization status",
+    "emotion_tone": "Concerned",
+    "description": "Posts discussing Pele's hospitalization, including his condition, treatment, and recovery status, with a focus on his status as a Brazil legend.",
+    "inclusion_cues": [
+     "Pele in hospital",
+     "condition worsening",
+     "intensive care",
+     "health scare",
+     "recovery status",
+     "Brazil legend"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: pele hospital, great pele, pelé, pele doing, legend pelé, legend pele, pele brazil, breaking pele, pele says, pele won, hospital brazil, brazil legend, brazil football, condition worsening, leaves hospital\nPosts (one per line, title first):\n- Pele in hospital: Brazil legend 'collapsed with exhaustion'\n- Brazil legend Pele in hospital\n- Brazil legend Pele in hospital after collapsing with 'severe exhaustion'\n- Brazil legend Pele in intensive care as condition worsens\n- Sky News: AFP: hospital says Brazil football legend Pelé is in intensive care with condition worsening\n- [Breaking] Pele In Intensive Care\n- Pelé has written to #Rio2016 organising committee saying he cannot light the Olympic flame at the opening ceremony due to physical frailty\n- Pele rushed to hospital with stomach problems\n- Pele resting at home as hospital reports are denied by spokesperson\n- Pele released from the hospital\n- Pele doing 'fine' after medical scare\n- Pele leaves hospital after successful surgery\n- Pele denies rumours he was put into intensive care today\n- Brazil legend Pelé in stable condition after undergoing prostate surgery\n- Pele admitted to hospital in Sao Paolo\n- Pelé out of ICU, recovering nicely\n- Pele: Brazil legend back in hospital two months after surgery\n- Pele says 'nothing serious' with him after health scare\n- Pele leaves hospital healthy\n- Pelé expected to leave hospital Saturday\n- Pele 'Doing Fine' After Hospital Move\n- Pele won't attend Olympic opening ceremonies due to ill health\n- Pele is in the hospital for the 2nd time 6 months\n- Soccer great Pele in intensive care, condition improving\n- Pele: Brazil legend continues to improve in hospital.\n- Get well soon Pele ❤\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Pele Hospitalization\", \"purpose\": \"Report on Pelé's health status and hospitalization\", \"emotion_tone\": \"Concerned\", \"description\": \"Posts related to Pelé's hospitalization, including his condition, treatment, and public statements about his health\", \"inclusion_cues\": [\"Pele in hospital\", \"condition worsening\", \"hospital reports\", \"Pelé's health status\", \"medical treatment\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Pele Hospitalization",
+      "purpose": "Report on Pelé's health status and hospitalization",
+      "emotion_tone": "Concerned",
+      "description": "Posts related to Pelé's hospitalization, including his condition, treatment, and public statements about his health",
+      "inclusion_cues": [
+       "Pele in hospital",
+       "condition worsening",
+       "hospital reports",
+       "Pelé's health status",
+       "medical treatment"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 103,
+   "seed": 1930068651,
+   "seconds": 1.68
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: pele hospital, great pele, pelé, pele doing, legend pelé, legend pele, pele brazil, breaking pele, pele says, pele won, hospital brazil, brazil legend, brazil football, condition worsening, leaves hospital\nPosts (one per line, title first):\n- Pele in hospital: Brazil legend 'collapsed with exhaustion'\n- Brazil legend Pele in hospital\n- Brazil legend Pele in hospital after collapsing with 'severe exhaustion'\n- Brazil legend Pele in intensive care as condition worsens\n- Sky News: AFP: hospital says Brazil football legend Pelé is in intensive care with condition worsening\n- [Breaking] Pele In Intensive Care\n- Pelé has written to #Rio2016 organising committee saying he cannot light the Olympic flame at the opening ceremony due to physical frailty\n- Pele rushed to hospital with stomach problems\n- Pele resting at home as hospital reports are denied by spokesperson\n- Pele released from the hospital\n- Pele doing 'fine' after medical scare\n- Pele leaves hospital after successful surgery\n- Pele denies rumours he was put into intensive care today\n- Brazil legend Pelé in stable condition after undergoing prostate surgery\n- Pele admitted to hospital in Sao Paolo\n- Pelé out of ICU, recovering nicely\n- Pele: Brazil legend back in hospital two months after surgery\n- Pele says 'nothing serious' with him after health scare\n- Pele leaves hospital healthy\n- Pelé expected to leave hospital Saturday\n- Pele 'Doing Fine' After Hospital Move\n- Pele won't attend Olympic opening ceremonies due to ill health\n- Pele is in the hospital for the 2nd time 6 months\n- Soccer great Pele in intensive care, condition improving\n- Pele: Brazil legend continues to improve in hospital.\n- Get well soon Pele ❤\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Pele Hospitalization\", \"purpose\": \"Report on Pele's health and hospitalization status\", \"emotion_tone\": \"Concerned\", \"description\": \"Posts discussing Pele's hospitalization, including his condition, treatment, and recovery status, with a focus on his status as a Brazil legend.\", \"inclusion_cues\": [\"Pele in hospital\", \"condition worsening\", \"intensive care\", \"health scare\", \"recovery status\", \"Brazil legend\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Pele Hospitalization",
+      "purpose": "Report on Pele's health and hospitalization status",
+      "emotion_tone": "Concerned",
+      "description": "Posts discussing Pele's hospitalization, including his condition, treatment, and recovery status, with a focus on his status as a Brazil legend.",
+      "inclusion_cues": [
+       "Pele in hospital",
+       "condition worsening",
+       "intensive care",
+       "health scare",
+       "recovery status",
+       "Brazil legend"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 113,
+   "seed": 1063215399,
+   "seconds": 0.95
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: pele hospital, great pele, pelé, pele doing, legend pelé, legend pele, pele brazil, breaking pele, pele says, pele won, hospital brazil, brazil legend, brazil football, condition worsening, leaves hospital\nPosts (one per line, title first):\n- Pele in hospital: Brazil legend 'collapsed with exhaustion'\n- Brazil legend Pele in hospital\n- Brazil legend Pele in hospital after collapsing with 'severe exhaustion'\n- Brazil legend Pele in intensive care as condition worsens\n- Sky News: AFP: hospital says Brazil football legend Pelé is in intensive care with condition worsening\n- [Breaking] Pele In Intensive Care\n- Pelé has written to #Rio2016 organising committee saying he cannot light the Olympic flame at the opening ceremony due to physical frailty\n- Pele rushed to hospital with stomach problems\n- Pele resting at home as hospital reports are denied by spokesperson\n- Pele released from the hospital\n- Pele doing 'fine' after medical scare\n- Pele leaves hospital after successful surgery\n- Pele denies rumours he was put into intensive care today\n- Brazil legend Pelé in stable condition after undergoing prostate surgery\n- Pele admitted to hospital in Sao Paolo\n- Pelé out of ICU, recovering nicely\n- Pele: Brazil legend back in hospital two months after surgery\n- Pele says 'nothing serious' with him after health scare\n- Pele leaves hospital healthy\n- Pelé expected to leave hospital Saturday\n- Pele 'Doing Fine' After Hospital Move\n- Pele won't attend Olympic opening ceremonies due to ill health\n- Pele is in the hospital for the 2nd time 6 months\n- Soccer great Pele in intensive care, condition improving\n- Pele: Brazil legend continues to improve in hospital.\n- Get well soon Pele ❤\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Pele Hospitalization\", \"purpose\": \"Report on Pelé's health status and hospitalization\", \"emotion_tone\": \"Concerned\", \"description\": \"Posts related to Pelé's hospitalization, including his condition, treatment, and public statements about his health\", \"inclusion_cues\": [\"Pele in hospital\", \"condition worsening\", \"hospital reports\", \"Pelé's health status\", \"medical treatment\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Pele Hospitalization\", \"purpose\": \"Report on Pele's health and hospitalization status\", \"emotion_tone\": \"Concerned\", \"description\": \"Posts discussing Pele's hospitalization, including his condition, treatment, and recovery status, with a focus on his status as a Brazil legend.\", \"inclusion_cues\": [\"Pele in hospital\", \"condition worsening\", \"intensive care\", \"health scare\", \"recovery status\", \"Brazil legend\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Pele Hospitalization\", \"purpose\": \"Report on Pelé's health and hospitalization status\", \"emotion_tone\": \"Concerned\", \"description\": \"Posts discussing Pelé's hospitalization, including his condition, treatment, and recovery status, with a focus on his status as a Brazil legend.\", \"inclusion_cues\": [\"Pele in hospital\", \"condition worsening\", \"intensive care\", \"health scare\", \"recovery status\", \"Brazil legend\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 112,
+   "seed": 507621302,
+   "seconds": 0.85
+  }
+ ]
+}

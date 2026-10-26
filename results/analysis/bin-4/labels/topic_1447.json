@@ -1,0 +1,197 @@
+{
+ "period_bin": 4,
+ "topic_id": 1447,
+ "keywords": "dresses, pakistani girls, fashion, outfits, wardrobe, pakistani, indian pakistani, collection 2017, punjabi, bangladesh, indian, online india, ahmed, wedding, india canada",
+ "n_sample_posts": 28,
+ "sample_ids": [
+  "7ohyff",
+  "7nv92d",
+  "7lnjwi",
+  "7nfjw1",
+  "7muvq9",
+  "4luzrn",
+  "74onob",
+  "7g4tpp",
+  "7r1hca",
+  "7mfmdz",
+  "7rp4i9",
+  "5wl6mg",
+  "7m8bel",
+  "6v51g9",
+  "7klw6p",
+  "7l21a0",
+  "5wh47f",
+  "7nn2nd",
+  "7li5az",
+  "2xd3rl",
+  "7sf0if",
+  "7s6exb",
+  "7gtjg0",
+  "7n0grg",
+  "7ktzs2",
+  "7oyrwp",
+  "71i7ui",
+  "7raf1n"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Pakistani Fashion Trends",
+  "purpose": "Promote and discuss Pakistani fashion collections and trends",
+  "emotion_tone": "Curious and enthusiastic",
+  "description": "Posts related to Pakistani fashion collections, outfits, and trends, including bridal, party, and winter wear, with a focus on 2017-2018 collections.",
+  "inclusion_cues": [
+   "Pakistani dresses",
+   "2017-2018 collections",
+   "wedding and party dresses",
+   "winter fashion trends",
+   "online shopping",
+   "designer collections"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Pakistani Fashion Trends",
+    "purpose": "Promote and discuss Pakistani fashion collections and trends",
+    "emotion_tone": "Curious and enthusiastic",
+    "description": "Posts related to Pakistani fashion collections, outfits, and trends, including bridal, party, and winter wear.",
+    "inclusion_cues": [
+     "dresses",
+     "pakistani girls",
+     "fashion",
+     "outfits",
+     "wardrobe",
+     "pakistani",
+     "indian pakistani",
+     "collection 2017",
+     "punjabi",
+     "bangladesh"
+    ],
+    "n_cues_given": 15
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Pakistani Fashion Trends",
+    "purpose": "Promote and discuss Pakistani fashion collections and trends",
+    "emotion_tone": "Curious and enthusiastic",
+    "description": "Posts related to Pakistani fashion collections, outfits, and trends, including bridal, party, and winter wear, with a focus on 2017-2018 collections.",
+    "inclusion_cues": [
+     "Pakistani dresses",
+     "2017-2018 collections",
+     "wedding and party dresses",
+     "winter fashion trends",
+     "online shopping",
+     "designer collections"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: dresses, pakistani girls, fashion, outfits, wardrobe, pakistani, indian pakistani, collection 2017, punjabi, bangladesh, indian, online india, ahmed, wedding, india canada\nPosts (one per line, title first):\n- Indian and Pakistani Sherwani Suits Collection 2018\n- Hottest Pakistani Bridal Dresses Collection 2018 at 786shop\n- New Indian and Pakistani Bridal suits Collection 2017-18\n- PAKISTANI PARTY DRESSES COLLECTION 2018 AT 786SHOP\n- Pakistani Designer Chiffon Dresses Collection 2017-18\n- How to Mix Starch for Dress for office dress\n- Shalwar Kameez Fall Winter Fashion Trend 2017\n- New Arrival of Winter Collection 2017 now available at 786shop\n- Latest Winter Shawl Dresses Collection 2018\n- Let’s talk about Pakistani Winter Dresses Trend 2017-18\n- New Collection of Pakistani Khussa Shoes 2018\n- Sherwani for men in Bangalore upto 20% off - Bridal sherwani, buy online, wedding sherwani dhoti, Silk sherwani suit, Traditional sherwani for men, Mumba\n- Best Pakistani Wedding Dresses Online Shop\n- Sherwani For Men Canada - Buy Sherwani Online India Canada - Sudarshansilk.com\n- Al Karam and Gul Ahmed’s Winter Collection available at 786shop\n- Eden robe and Sapphire Winter Collection 2017\n- stitched salwar kameez online india - readymade salwar suit: Clothing & Accessories\n- Gulmohar Pakistani Dresses Collection at 786shop\n- BAREEZE AND KHAADI’S WINTER COLLECTION 2017-18\n- Yaya about dress color\n- Check out Pakistani Wedding and Party Dresses Online\n- Stylish Winter Outfits 2018 for Pakistani Girls\n- acevog woman wardrobe\n- How to Select Pakistani Wedding Dresses Online\n- Bridal Indian Sharara and Gharara suits online at 786shop\n- Pakistani Wedding Dresses Online\n- Punjabi Suits Bangladesh.France - Designer Salwar Kameez Bangladesh.France - Sudarshansilk.com\n- Ladies Party Dresses Collection for All Ages\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Pakistani Fashion Trends\", \"purpose\": \"Promote and discuss Pakistani fashion collections and trends\", \"emotion_tone\": \"Curious and enthusiastic\", \"description\": \"Posts related to Pakistani fashion collections, outfits, and trends, including bridal, party, and winter wear.\", \"inclusion_cues\": [\"dresses\", \"pakistani girls\", \"fashion\", \"outfits\", \"wardrobe\", \"pakistani\", \"indian pakistani\", \"collection 2017\", \"punjabi\", \"bangladesh\", \"indian\", \"online india\", \"ahmed\", \"wedding\", \"india canada\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Pakistani Fashion Trends",
+      "purpose": "Promote and discuss Pakistani fashion collections and trends",
+      "emotion_tone": "Curious and enthusiastic",
+      "description": "Posts related to Pakistani fashion collections, outfits, and trends, including bridal, party, and winter wear.",
+      "inclusion_cues": [
+       "dresses",
+       "pakistani girls",
+       "fashion",
+       "outfits",
+       "wardrobe",
+       "pakistani",
+       "indian pakistani",
+       "collection 2017",
+       "punjabi",
+       "bangladesh"
+      ],
+      "n_cues_given": 15
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 147,
+   "seed": 1282396770,
+   "seconds": 2.26
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: dresses, pakistani girls, fashion, outfits, wardrobe, pakistani, indian pakistani, collection 2017, punjabi, bangladesh, indian, online india, ahmed, wedding, india canada\nPosts (one per line, title first):\n- Indian and Pakistani Sherwani Suits Collection 2018\n- Hottest Pakistani Bridal Dresses Collection 2018 at 786shop\n- New Indian and Pakistani Bridal suits Collection 2017-18\n- PAKISTANI PARTY DRESSES COLLECTION 2018 AT 786SHOP\n- Pakistani Designer Chiffon Dresses Collection 2017-18\n- How to Mix Starch for Dress for office dress\n- Shalwar Kameez Fall Winter Fashion Trend 2017\n- New Arrival of Winter Collection 2017 now available at 786shop\n- Latest Winter Shawl Dresses Collection 2018\n- Let’s talk about Pakistani Winter Dresses Trend 2017-18\n- New Collection of Pakistani Khussa Shoes 2018\n- Sherwani for men in Bangalore upto 20% off - Bridal sherwani, buy online, wedding sherwani dhoti, Silk sherwani suit, Traditional sherwani for men, Mumba\n- Best Pakistani Wedding Dresses Online Shop\n- Sherwani For Men Canada - Buy Sherwani Online India Canada - Sudarshansilk.com\n- Al Karam and Gul Ahmed’s Winter Collection available at 786shop\n- Eden robe and Sapphire Winter Collection 2017\n- stitched salwar kameez online india - readymade salwar suit: Clothing & Accessories\n- Gulmohar Pakistani Dresses Collection at 786shop\n- BAREEZE AND KHAADI’S WINTER COLLECTION 2017-18\n- Yaya about dress color\n- Check out Pakistani Wedding and Party Dresses Online\n- Stylish Winter Outfits 2018 for Pakistani Girls\n- acevog woman wardrobe\n- How to Select Pakistani Wedding Dresses Online\n- Bridal Indian Sharara and Gharara suits online at 786shop\n- Pakistani Wedding Dresses Online\n- Punjabi Suits Bangladesh.France - Designer Salwar Kameez Bangladesh.France - Sudarshansilk.com\n- Ladies Party Dresses Collection for All Ages\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Pakistani Fashion Trends\", \"purpose\": \"Promote and discuss Pakistani fashion collections and trends\", \"emotion_tone\": \"Curious and enthusiastic\", \"description\": \"Posts related to Pakistani fashion collections, outfits, and trends, including bridal, party, and winter wear, with a focus on 2017-2018 collections.\", \"inclusion_cues\": [\"Pakistani dresses\", \"2017-2018 collections\", \"wedding and party dresses\", \"winter fashion trends\", \"online shopping\", \"designer collections\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Pakistani Fashion Trends",
+      "purpose": "Promote and discuss Pakistani fashion collections and trends",
+      "emotion_tone": "Curious and enthusiastic",
+      "description": "Posts related to Pakistani fashion collections, outfits, and trends, including bridal, party, and winter wear, with a focus on 2017-2018 collections.",
+      "inclusion_cues": [
+       "Pakistani dresses",
+       "2017-2018 collections",
+       "wedding and party dresses",
+       "winter fashion trends",
+       "online shopping",
+       "designer collections"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 134,
+   "seed": 429508741,
+   "seconds": 0.71
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: dresses, pakistani girls, fashion, outfits, wardrobe, pakistani, indian pakistani, collection 2017, punjabi, bangladesh, indian, online india, ahmed, wedding, india canada\nPosts (one per line, title first):\n- Indian and Pakistani Sherwani Suits Collection 2018\n- Hottest Pakistani Bridal Dresses Collection 2018 at 786shop\n- New Indian and Pakistani Bridal suits Collection 2017-18\n- PAKISTANI PARTY DRESSES COLLECTION 2018 AT 786SHOP\n- Pakistani Designer Chiffon Dresses Collection 2017-18\n- How to Mix Starch for Dress for office dress\n- Shalwar Kameez Fall Winter Fashion Trend 2017\n- New Arrival of Winter Collection 2017 now available at 786shop\n- Latest Winter Shawl Dresses Collection 2018\n- Let’s talk about Pakistani Winter Dresses Trend 2017-18\n- New Collection of Pakistani Khussa Shoes 2018\n- Sherwani for men in Bangalore upto 20% off - Bridal sherwani, buy online, wedding sherwani dhoti, Silk sherwani suit, Traditional sherwani for men, Mumba\n- Best Pakistani Wedding Dresses Online Shop\n- Sherwani For Men Canada - Buy Sherwani Online India Canada - Sudarshansilk.com\n- Al Karam and Gul Ahmed’s Winter Collection available at 786shop\n- Eden robe and Sapphire Winter Collection 2017\n- stitched salwar kameez online india - readymade salwar suit: Clothing & Accessories\n- Gulmohar Pakistani Dresses Collection at 786shop\n- BAREEZE AND KHAADI’S WINTER COLLECTION 2017-18\n- Yaya about dress color\n- Check out Pakistani Wedding and Party Dresses Online\n- Stylish Winter Outfits 2018 for Pakistani Girls\n- acevog woman wardrobe\n- How to Select Pakistani Wedding Dresses Online\n- Bridal Indian Sharara and Gharara suits online at 786shop\n- Pakistani Wedding Dresses Online\n- Punjabi Suits Bangladesh.France - Designer Salwar Kameez Bangladesh.France - Sudarshansilk.com\n- Ladies Party Dresses Collection for All Ages\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Pakistani Fashion Trends\", \"purpose\": \"Promote and discuss Pakistani fashion collections and trends\", \"emotion_tone\": \"Curious and enthusiastic\", \"description\": \"Posts related to Pakistani fashion collections, outfits, and trends, including bridal, party, and winter wear.\", \"inclusion_cues\": [\"dresses\", \"pakistani girls\", \"fashion\", \"outfits\", \"wardrobe\", \"pakistani\", \"indian pakistani\", \"collection 2017\", \"punjabi\", \"bangladesh\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Pakistani Fashion Trends\", \"purpose\": \"Promote and discuss Pakistani fashion collections and trends\", \"emotion_tone\": \"Curious and enthusiastic\", \"description\": \"Posts related to Pakistani fashion collections, outfits, and trends, including bridal, party, and winter wear, with a focus on 2017-2018 collections.\", \"inclusion_cues\": [\"Pakistani dresses\", \"2017-2018 collections\", \"wedding and party dresses\", \"winter fashion trends\", \"online shopping\", \"designer collections\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Pakistani Fashion Trends\", \"purpose\": \"Promote and discuss Pakistani fashion collections and trends\", \"emotion_tone\": \"Curious and enthusiastic\", \"description\": \"Posts related to Pakistani fashion collections, outfits, and trends, including bridal, party, and winter wear, with a focus on 2017-2018 collections.\", \"inclusion_cues\": [\"Pakistani dresses\", \"2017-2018 collections\", \"wedding and party dresses\", \"winter fashion trends\", \"online shopping\", \"designer collections\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 133,
+   "seed": 3800377829,
+   "seconds": 0.61
+  }
+ ]
+}

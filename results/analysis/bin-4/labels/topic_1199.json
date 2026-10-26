@@ -1,0 +1,180 @@
+{
+ "period_bin": 4,
+ "topic_id": 1199,
+ "keywords": "scotland manager, scotland gordon, strachan scotland, strachan, scotland boss, scotland fail, sacked scotland, future scotland, scotland job, scotland national, decision scotland, scotland fans, scottish fa, players scotland, mark mcghee",
+ "n_sample_posts": 36,
+ "sample_ids": [
+  "579gvn",
+  "757rtu",
+  "757rtu",
+  "3ovukt",
+  "758qaz",
+  "759sg6",
+  "3p0g9p",
+  "75x040",
+  "75yxx0",
+  "75x3ly",
+  "7l3lfz",
+  "74f1yv",
+  "4oea5y",
+  "754ejm",
+  "3p0fsc",
+  "75x0ly",
+  "3jin68",
+  "5mznms",
+  "754zxs",
+  "6gwusx",
+  "75k84a",
+  "3keoru",
+  "757kx0",
+  "51c3u8",
+  "75i7iq",
+  "2sl446",
+  "4mh8u2",
+  "51cl5k",
+  "75y8jk",
+  "755ao2",
+  "5dgwzi",
+  "755r7x",
+  "5bt701",
+  "3myskk",
+  "75736z",
+  "5dih2v"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "scotland manager",
+  "purpose": "discussion of Scotland's manager and his future",
+  "emotion_tone": "critical",
+  "description": "Posts discussing Gordon Strachan's potential departure, his role as Scotland manager, and the implications of his decisions.",
+  "inclusion_cues": [
+   "Gordon Strachan expected to continue as Scotland manager",
+   "Gordon Strachan has been sacked as Scotland Manager",
+   "Gordon Strachan's future as Scotland coach will be discussed at a Scottish FA board meeting on Thursday"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "scotland manager",
+    "purpose": "discussion of Scotland's manager and his future",
+    "emotion_tone": "critical",
+    "description": "Posts discussing Gordon Strachan's potential departure, his role as Scotland manager, and related topics like genetics and fan reactions.",
+    "inclusion_cues": [
+     "Gordon Strachan expected to continue as Scotland manager",
+     "Gordon Strachan has been sacked as Scotland Manager",
+     "Gordon Strachan's future as Scotland coach will be discussed at a Scottish FA board meeting on Thursday"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "scotland manager",
+    "purpose": "discussion of Scotland's manager and his future",
+    "emotion_tone": "critical",
+    "description": "Posts discussing Gordon Strachan's potential departure, his role as Scotland manager, and the implications of his decisions.",
+    "inclusion_cues": [
+     "Gordon Strachan expected to continue as Scotland manager",
+     "Gordon Strachan has been sacked as Scotland Manager",
+     "Gordon Strachan's future as Scotland coach will be discussed at a Scottish FA board meeting on Thursday"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: scotland manager, scotland gordon, strachan scotland, strachan, scotland boss, scotland fail, sacked scotland, future scotland, scotland job, scotland national, decision scotland, scotland fans, scottish fa, players scotland, mark mcghee\nPosts (one per line, title first):\n- Will Gordon Strachan leave Scotland soon?\n- Gordon Strachan: 'Scotland have a problem - genetically, we are behind'\n- Gordon Strachan: 'Scotland have a problem - genetically, we are behind'\n- Gordon Strachan expected to continue as Scotland manager\n- Should Gordon Strachan remain as Scotland manager?\n- Gordon Strachan with a call for genetically-modified footballers\n- Scotland manager Gordon Strachan signs two year contract extension to manage team in World Cup Qualifying campaign\n- BREAKING: Gordon Strachan has agreed to leave his role as Scotland manager. His assistant Mark McGhee will also leave. #SSN\n- Gordon Strachan's departure from Scotland job was the right decision\n- Gordon Strachan has been sacked as Scotland Manager.\n- Strachan regrets genetics comment\n- Scotland vs Slovakia: Can Strachan End 19 Years of Hurt?\n- Simply Gordon Strachan\n- Gordon Strachan: 'Scotland have a problem - genetically, we are behind'\n- Gordon Strachan has signed a two-year extension as Scotland manager\n- Gordon Strachan and Mark McGhee to leave Scotland National Team\n- Gordon Strachan on the big differences since Scotland played Georgia in 2007.\n- Gordon Strachan understands Scotland fans’ frustrations\n- Scotland at genetic disadvantage in World Cup qualifying - Strachan\n- Scotland should stick with Gordon Strachan for World Cup qualifiers, says Pat Nevin\n- Strachan no longer wants Scotland job\n- Has Strachan's perseverance with Fletcher cost Scotland?\n- Gordon Strachan blames genetics after Scotland fail to make World Cup\n- Gordon Strachan Storms Out Of Interview\n- Gordon Strachan's future as Scotland coach will be discussed at a Scottish FA board meeting on Thursday.\n- Gordon Strachan's funniest moments\n- Scotland manager Gordon Strachan: We've produced a nation of scared footballers\n- Gordon Strachan loses his patience on Maltese TV.\n- Scotland: Gordon Strachan leaves his position as national manager\n- Gordon Strachan reveals why Scotland failed to reach the World Cup... genetics\n- Gordon Strachan will stay on as Scotland boss following an SFA board meeting today. Unanimous decision.\n- Gordon Strachan:\"Genetically we [Scotland] are behind... maybe we get big women and men together and see what we can do.\"\n- Charlie Adam says Gordon Strachan 'not picking best players' for Scotland\n- Gordon Strachan: Scotland can handle Robert Lewandowski\n- Strachan blames genetics for defeat\n- Scotland: Gordon Strachan to remain national head coach\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"scotland manager\", \"purpose\": \"discussion of Scotland's manager and his future\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing Gordon Strachan's potential departure, his role as Scotland manager, and related topics like genetics and fan reactions.\", \"inclusion_cues\": [\"Gordon Strachan expected to continue as Scotland manager\", \"Gordon Strachan has been sacked as Scotland Manager\", \"Gordon Strachan's future as Scotland coach will be discussed at a Scottish FA board meeting on Thursday\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "scotland manager",
+      "purpose": "discussion of Scotland's manager and his future",
+      "emotion_tone": "critical",
+      "description": "Posts discussing Gordon Strachan's potential departure, his role as Scotland manager, and related topics like genetics and fan reactions.",
+      "inclusion_cues": [
+       "Gordon Strachan expected to continue as Scotland manager",
+       "Gordon Strachan has been sacked as Scotland Manager",
+       "Gordon Strachan's future as Scotland coach will be discussed at a Scottish FA board meeting on Thursday"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 126,
+   "seed": 3291945425,
+   "seconds": 1.68
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: scotland manager, scotland gordon, strachan scotland, strachan, scotland boss, scotland fail, sacked scotland, future scotland, scotland job, scotland national, decision scotland, scotland fans, scottish fa, players scotland, mark mcghee\nPosts (one per line, title first):\n- Will Gordon Strachan leave Scotland soon?\n- Gordon Strachan: 'Scotland have a problem - genetically, we are behind'\n- Gordon Strachan: 'Scotland have a problem - genetically, we are behind'\n- Gordon Strachan expected to continue as Scotland manager\n- Should Gordon Strachan remain as Scotland manager?\n- Gordon Strachan with a call for genetically-modified footballers\n- Scotland manager Gordon Strachan signs two year contract extension to manage team in World Cup Qualifying campaign\n- BREAKING: Gordon Strachan has agreed to leave his role as Scotland manager. His assistant Mark McGhee will also leave. #SSN\n- Gordon Strachan's departure from Scotland job was the right decision\n- Gordon Strachan has been sacked as Scotland Manager.\n- Strachan regrets genetics comment\n- Scotland vs Slovakia: Can Strachan End 19 Years of Hurt?\n- Simply Gordon Strachan\n- Gordon Strachan: 'Scotland have a problem - genetically, we are behind'\n- Gordon Strachan has signed a two-year extension as Scotland manager\n- Gordon Strachan and Mark McGhee to leave Scotland National Team\n- Gordon Strachan on the big differences since Scotland played Georgia in 2007.\n- Gordon Strachan understands Scotland fans’ frustrations\n- Scotland at genetic disadvantage in World Cup qualifying - Strachan\n- Scotland should stick with Gordon Strachan for World Cup qualifiers, says Pat Nevin\n- Strachan no longer wants Scotland job\n- Has Strachan's perseverance with Fletcher cost Scotland?\n- Gordon Strachan blames genetics after Scotland fail to make World Cup\n- Gordon Strachan Storms Out Of Interview\n- Gordon Strachan's future as Scotland coach will be discussed at a Scottish FA board meeting on Thursday.\n- Gordon Strachan's funniest moments\n- Scotland manager Gordon Strachan: We've produced a nation of scared footballers\n- Gordon Strachan loses his patience on Maltese TV.\n- Scotland: Gordon Strachan leaves his position as national manager\n- Gordon Strachan reveals why Scotland failed to reach the World Cup... genetics\n- Gordon Strachan will stay on as Scotland boss following an SFA board meeting today. Unanimous decision.\n- Gordon Strachan:\"Genetically we [Scotland] are behind... maybe we get big women and men together and see what we can do.\"\n- Charlie Adam says Gordon Strachan 'not picking best players' for Scotland\n- Gordon Strachan: Scotland can handle Robert Lewandowski\n- Strachan blames genetics for defeat\n- Scotland: Gordon Strachan to remain national head coach\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"scotland manager\", \"purpose\": \"discussion of Scotland's manager and his future\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing Gordon Strachan's potential departure, his role as Scotland manager, and the implications of his decisions.\", \"inclusion_cues\": [\"Gordon Strachan expected to continue as Scotland manager\", \"Gordon Strachan has been sacked as Scotland Manager\", \"Gordon Strachan's future as Scotland coach will be discussed at a Scottish FA board meeting on Thursday\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "scotland manager",
+      "purpose": "discussion of Scotland's manager and his future",
+      "emotion_tone": "critical",
+      "description": "Posts discussing Gordon Strachan's potential departure, his role as Scotland manager, and the implications of his decisions.",
+      "inclusion_cues": [
+       "Gordon Strachan expected to continue as Scotland manager",
+       "Gordon Strachan has been sacked as Scotland Manager",
+       "Gordon Strachan's future as Scotland coach will be discussed at a Scottish FA board meeting on Thursday"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 124,
+   "seed": 2123509179,
+   "seconds": 0.92
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: scotland manager, scotland gordon, strachan scotland, strachan, scotland boss, scotland fail, sacked scotland, future scotland, scotland job, scotland national, decision scotland, scotland fans, scottish fa, players scotland, mark mcghee\nPosts (one per line, title first):\n- Will Gordon Strachan leave Scotland soon?\n- Gordon Strachan: 'Scotland have a problem - genetically, we are behind'\n- Gordon Strachan: 'Scotland have a problem - genetically, we are behind'\n- Gordon Strachan expected to continue as Scotland manager\n- Should Gordon Strachan remain as Scotland manager?\n- Gordon Strachan with a call for genetically-modified footballers\n- Scotland manager Gordon Strachan signs two year contract extension to manage team in World Cup Qualifying campaign\n- BREAKING: Gordon Strachan has agreed to leave his role as Scotland manager. His assistant Mark McGhee will also leave. #SSN\n- Gordon Strachan's departure from Scotland job was the right decision\n- Gordon Strachan has been sacked as Scotland Manager.\n- Strachan regrets genetics comment\n- Scotland vs Slovakia: Can Strachan End 19 Years of Hurt?\n- Simply Gordon Strachan\n- Gordon Strachan: 'Scotland have a problem - genetically, we are behind'\n- Gordon Strachan has signed a two-year extension as Scotland manager\n- Gordon Strachan and Mark McGhee to leave Scotland National Team\n- Gordon Strachan on the big differences since Scotland played Georgia in 2007.\n- Gordon Strachan understands Scotland fans’ frustrations\n- Scotland at genetic disadvantage in World Cup qualifying - Strachan\n- Scotland should stick with Gordon Strachan for World Cup qualifiers, says Pat Nevin\n- Strachan no longer wants Scotland job\n- Has Strachan's perseverance with Fletcher cost Scotland?\n- Gordon Strachan blames genetics after Scotland fail to make World Cup\n- Gordon Strachan Storms Out Of Interview\n- Gordon Strachan's future as Scotland coach will be discussed at a Scottish FA board meeting on Thursday.\n- Gordon Strachan's funniest moments\n- Scotland manager Gordon Strachan: We've produced a nation of scared footballers\n- Gordon Strachan loses his patience on Maltese TV.\n- Scotland: Gordon Strachan leaves his position as national manager\n- Gordon Strachan reveals why Scotland failed to reach the World Cup... genetics\n- Gordon Strachan will stay on as Scotland boss following an SFA board meeting today. Unanimous decision.\n- Gordon Strachan:\"Genetically we [Scotland] are behind... maybe we get big women and men together and see what we can do.\"\n- Charlie Adam says Gordon Strachan 'not picking best players' for Scotland\n- Gordon Strachan: Scotland can handle Robert Lewandowski\n- Strachan blames genetics for defeat\n- Scotland: Gordon Strachan to remain national head coach\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"scotland manager\", \"purpose\": \"discussion of Scotland's manager and his future\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing Gordon Strachan's potential departure, his role as Scotland manager, and related topics like genetics and fan reactions.\", \"inclusion_cues\": [\"Gordon Strachan expected to continue as Scotland manager\", \"Gordon Strachan has been sacked as Scotland Manager\", \"Gordon Strachan's future as Scotland coach will be discussed at a Scottish FA board meeting on Thursday\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"scotland manager\", \"purpose\": \"discussion of Scotland's manager and his future\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing Gordon Strachan's potential departure, his role as Scotland manager, and the implications of his decisions.\", \"inclusion_cues\": [\"Gordon Strachan expected to continue as Scotland manager\", \"Gordon Strachan has been sacked as Scotland Manager\", \"Gordon Strachan's future as Scotland coach will be discussed at a Scottish FA board meeting on Thursday\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"scotland manager\", \"purpose\": \"discussion of Scotland's manager and his future\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing Gordon Strachan's potential departure, his role as Scotland manager, and the implications of his decisions.\", \"inclusion_cues\": [\"Gordon Strachan expected to continue as Scotland manager\", \"Gordon Strachan has been sacked as Scotland Manager\", \"Gordon Strachan's future as Scotland coach will be discussed at a Scottish FA board meeting on Thursday\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 123,
+   "seed": 276211627,
+   "seconds": 0.74
+  }
+ ]
+}

@@ -1,0 +1,193 @@
+{
+ "period_bin": 4,
+ "topic_id": 1369,
+ "keywords": "stadium barcelona, palmas match, barcelona las, article barca, spain friendly, uefa considering, spain football, fans barca, maracaná, football friendly, stadium evacuation, flamengo fans, matches belgium, arrived stadium, fans violent",
+ "n_sample_posts": 30,
+ "sample_ids": [
+  "73ln0d",
+  "73lq6t",
+  "73o70h",
+  "73lq57",
+  "7sq90g",
+  "3swid0",
+  "3t6ttv",
+  "3t3lrm",
+  "3t6tp2",
+  "4bm1rq",
+  "4bkc0y",
+  "3t34ke",
+  "3toqtx",
+  "3t2vvf",
+  "4bjhr4",
+  "75q5v8",
+  "3t6rks",
+  "73ll6m",
+  "3sqmy8",
+  "3t6rj4",
+  "4blnqt",
+  "3t7o76",
+  "73lmph",
+  "7u1qyf",
+  "311lyv",
+  "2i7u4y",
+  "4lebuh",
+  "3t4qmg",
+  "4bgorq",
+  "3t32ez"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "stadium closure",
+  "purpose": "stadium closure due to security or fan restrictions",
+  "emotion_tone": "concern",
+  "description": "Posts related to football matches being played behind closed doors due to security concerns, fan restrictions, or other reasons",
+  "inclusion_cues": [
+   "Barcelona vs Las Palmas behind closed doors",
+   "UEFA considering EURO 2016 behind closed doors",
+   "Barca fan in tears after finding out game was behind closed doors",
+   "Belgium vs Spain friendly canceled due to terror threat"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "closed doors matches",
+    "purpose": "football matches postponed or canceled due to security concerns",
+    "emotion_tone": "anxious",
+    "description": "Posts about football matches being played behind closed doors due to security, safety, or political reasons",
+    "inclusion_cues": [
+     "barcelona las",
+     "stadium evacuation",
+     "stadium barcelona",
+     "uefa considering",
+     "football friendly",
+     "stadium evacuation",
+     "barca fan in tears",
+     "barca board member",
+     "barca vs las palmas",
+     "belgium spain"
+    ],
+    "n_cues_given": 12
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "stadium closure",
+    "purpose": "stadium closure due to security or fan restrictions",
+    "emotion_tone": "concern",
+    "description": "Posts related to football matches being played behind closed doors due to security concerns, fan restrictions, or other reasons",
+    "inclusion_cues": [
+     "Barcelona vs Las Palmas behind closed doors",
+     "UEFA considering EURO 2016 behind closed doors",
+     "Barca fan in tears after finding out game was behind closed doors",
+     "Belgium vs Spain friendly canceled due to terror threat"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: stadium barcelona, palmas match, barcelona las, article barca, spain friendly, uefa considering, spain football, fans barca, maracaná, football friendly, stadium evacuation, flamengo fans, matches belgium, arrived stadium, fans violent\nPosts (one per line, title first):\n- Barcelona vs Las Palmas will be played behind closed doors. Teams have arrived at the stadium.\n- OFFICIAL: FC Barcelona vs Las Palmas to be played behind closed doors\n- Barca fan in tears after finding out that the Las Palmas game was going to be played behind closed doors\n- Official: Barcelona vs. Las Palmas game will be played behind closed doors\n- The Copa Libertadores match between River-Flamengo will be played behind closed doors in the Maracaná because of Flamengo fans’ violent actions in the Copa Sudamericana Final vs Independiente\n- Germany vs Netherlands \"to go ahead as planned\"\n- Germany vs The Netherlands canceled due to bomb threat (dutch article)\n- Belgium-Spain Football Friendly Cancelled Over Security Fears\n- BBC Sport - Germany v Netherlands friendly called off after stadium evacuation\n- Belgium friendly against Portugal has been cancelled.\n- Euro 2016 games behind closed doors are possible, says Uefa executive committee vice-president\n- OFFICIAL: Belgium - Spain has been postponed due to terrorist threats\n- Lokeren v Anderlecht called off as Brussels terror alert raised.\n- Belgium - Spain Cancelled becauses of possible terrorist polt (Dutch )\n- Uefa's executive committee vice-president Giancarlo Abete states that the Euro 2016 could be behind closed doors.\n- Because of Annexation of Crimea: Holland is boycotting World Cup (German Article)\n- Germany - Netherlands cancelled\n- Barca board [unnamed] member told @beINSPORTSes that if game goes ahead it would be behind closed doors / fans not allowed in.\n- England's friendly with France set to be cancelled after horrifying events in Paris\n- Police have confirmed the international friendly between Germany v Holland has been cancelled\n- UEFA considering playing EURO 2016 behind closed doors\n- Germany/Holland cancelled due to truck-bomb disguised as an ambulance.\n- Barcelona v Las Palmas match is going to be played but without fans\n- England's Nations League match in Croatia will be behind closed doors\n- Scotland's Euro 2016 qualifier away in Georgia could be played behind closed doors.\n- MCFC confirm that the CSKA match is to be played behind closed doors\n- Chile and Croatia to play under closed doors for their next respective World Cup Qualification matches\n- Belgium v Spain friendly called off because of terror threat\n- Sky Sports News: BREAKING: Belgium national team cancel training after this morning's bombings in Brussels.\n- Belgium vs. Spain friendly match (17/11) canceled due to terrorist threat (dutch article)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"closed doors matches\", \"purpose\": \"football matches postponed or canceled due to security concerns\", \"emotion_tone\": \"anxious\", \"description\": \"Posts about football matches being played behind closed doors due to security, safety, or political reasons\", \"inclusion_cues\": [\"barcelona las\", \"stadium evacuation\", \"stadium barcelona\", \"uefa considering\", \"football friendly\", \"stadium evacuation\", \"barca fan in tears\", \"barca board member\", \"barca vs las palmas\", \"belgium spain\", \"dutch article\", \"terrorist threat\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "closed doors matches",
+      "purpose": "football matches postponed or canceled due to security concerns",
+      "emotion_tone": "anxious",
+      "description": "Posts about football matches being played behind closed doors due to security, safety, or political reasons",
+      "inclusion_cues": [
+       "barcelona las",
+       "stadium evacuation",
+       "stadium barcelona",
+       "uefa considering",
+       "football friendly",
+       "stadium evacuation",
+       "barca fan in tears",
+       "barca board member",
+       "barca vs las palmas",
+       "belgium spain"
+      ],
+      "n_cues_given": 12
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 139,
+   "seed": 4098949208,
+   "seconds": 1.2
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: stadium barcelona, palmas match, barcelona las, article barca, spain friendly, uefa considering, spain football, fans barca, maracaná, football friendly, stadium evacuation, flamengo fans, matches belgium, arrived stadium, fans violent\nPosts (one per line, title first):\n- Barcelona vs Las Palmas will be played behind closed doors. Teams have arrived at the stadium.\n- OFFICIAL: FC Barcelona vs Las Palmas to be played behind closed doors\n- Barca fan in tears after finding out that the Las Palmas game was going to be played behind closed doors\n- Official: Barcelona vs. Las Palmas game will be played behind closed doors\n- The Copa Libertadores match between River-Flamengo will be played behind closed doors in the Maracaná because of Flamengo fans’ violent actions in the Copa Sudamericana Final vs Independiente\n- Germany vs Netherlands \"to go ahead as planned\"\n- Germany vs The Netherlands canceled due to bomb threat (dutch article)\n- Belgium-Spain Football Friendly Cancelled Over Security Fears\n- BBC Sport - Germany v Netherlands friendly called off after stadium evacuation\n- Belgium friendly against Portugal has been cancelled.\n- Euro 2016 games behind closed doors are possible, says Uefa executive committee vice-president\n- OFFICIAL: Belgium - Spain has been postponed due to terrorist threats\n- Lokeren v Anderlecht called off as Brussels terror alert raised.\n- Belgium - Spain Cancelled becauses of possible terrorist polt (Dutch )\n- Uefa's executive committee vice-president Giancarlo Abete states that the Euro 2016 could be behind closed doors.\n- Because of Annexation of Crimea: Holland is boycotting World Cup (German Article)\n- Germany - Netherlands cancelled\n- Barca board [unnamed] member told @beINSPORTSes that if game goes ahead it would be behind closed doors / fans not allowed in.\n- England's friendly with France set to be cancelled after horrifying events in Paris\n- Police have confirmed the international friendly between Germany v Holland has been cancelled\n- UEFA considering playing EURO 2016 behind closed doors\n- Germany/Holland cancelled due to truck-bomb disguised as an ambulance.\n- Barcelona v Las Palmas match is going to be played but without fans\n- England's Nations League match in Croatia will be behind closed doors\n- Scotland's Euro 2016 qualifier away in Georgia could be played behind closed doors.\n- MCFC confirm that the CSKA match is to be played behind closed doors\n- Chile and Croatia to play under closed doors for their next respective World Cup Qualification matches\n- Belgium v Spain friendly called off because of terror threat\n- Sky Sports News: BREAKING: Belgium national team cancel training after this morning's bombings in Brussels.\n- Belgium vs. Spain friendly match (17/11) canceled due to terrorist threat (dutch article)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"stadium closure\", \"purpose\": \"stadium closure due to security or fan restrictions\", \"emotion_tone\": \"concern\", \"description\": \"Posts related to football matches being played behind closed doors due to security concerns, fan restrictions, or other reasons\", \"inclusion_cues\": [\"Barcelona vs Las Palmas behind closed doors\", \"UEFA considering EURO 2016 behind closed doors\", \"Barca fan in tears after finding out game was behind closed doors\", \"Belgium vs Spain friendly canceled due to terror threat\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "stadium closure",
+      "purpose": "stadium closure due to security or fan restrictions",
+      "emotion_tone": "concern",
+      "description": "Posts related to football matches being played behind closed doors due to security concerns, fan restrictions, or other reasons",
+      "inclusion_cues": [
+       "Barcelona vs Las Palmas behind closed doors",
+       "UEFA considering EURO 2016 behind closed doors",
+       "Barca fan in tears after finding out game was behind closed doors",
+       "Belgium vs Spain friendly canceled due to terror threat"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 128,
+   "seed": 6941507,
+   "seconds": 0.93
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: stadium barcelona, palmas match, barcelona las, article barca, spain friendly, uefa considering, spain football, fans barca, maracaná, football friendly, stadium evacuation, flamengo fans, matches belgium, arrived stadium, fans violent\nPosts (one per line, title first):\n- Barcelona vs Las Palmas will be played behind closed doors. Teams have arrived at the stadium.\n- OFFICIAL: FC Barcelona vs Las Palmas to be played behind closed doors\n- Barca fan in tears after finding out that the Las Palmas game was going to be played behind closed doors\n- Official: Barcelona vs. Las Palmas game will be played behind closed doors\n- The Copa Libertadores match between River-Flamengo will be played behind closed doors in the Maracaná because of Flamengo fans’ violent actions in the Copa Sudamericana Final vs Independiente\n- Germany vs Netherlands \"to go ahead as planned\"\n- Germany vs The Netherlands canceled due to bomb threat (dutch article)\n- Belgium-Spain Football Friendly Cancelled Over Security Fears\n- BBC Sport - Germany v Netherlands friendly called off after stadium evacuation\n- Belgium friendly against Portugal has been cancelled.\n- Euro 2016 games behind closed doors are possible, says Uefa executive committee vice-president\n- OFFICIAL: Belgium - Spain has been postponed due to terrorist threats\n- Lokeren v Anderlecht called off as Brussels terror alert raised.\n- Belgium - Spain Cancelled becauses of possible terrorist polt (Dutch )\n- Uefa's executive committee vice-president Giancarlo Abete states that the Euro 2016 could be behind closed doors.\n- Because of Annexation of Crimea: Holland is boycotting World Cup (German Article)\n- Germany - Netherlands cancelled\n- Barca board [unnamed] member told @beINSPORTSes that if game goes ahead it would be behind closed doors / fans not allowed in.\n- England's friendly with France set to be cancelled after horrifying events in Paris\n- Police have confirmed the international friendly between Germany v Holland has been cancelled\n- UEFA considering playing EURO 2016 behind closed doors\n- Germany/Holland cancelled due to truck-bomb disguised as an ambulance.\n- Barcelona v Las Palmas match is going to be played but without fans\n- England's Nations League match in Croatia will be behind closed doors\n- Scotland's Euro 2016 qualifier away in Georgia could be played behind closed doors.\n- MCFC confirm that the CSKA match is to be played behind closed doors\n- Chile and Croatia to play under closed doors for their next respective World Cup Qualification matches\n- Belgium v Spain friendly called off because of terror threat\n- Sky Sports News: BREAKING: Belgium national team cancel training after this morning's bombings in Brussels.\n- Belgium vs. Spain friendly match (17/11) canceled due to terrorist threat (dutch article)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"closed doors matches\", \"purpose\": \"football matches postponed or canceled due to security concerns\", \"emotion_tone\": \"anxious\", \"description\": \"Posts about football matches being played behind closed doors due to security, safety, or political reasons\", \"inclusion_cues\": [\"barcelona las\", \"stadium evacuation\", \"stadium barcelona\", \"uefa considering\", \"football friendly\", \"stadium evacuation\", \"barca fan in tears\", \"barca board member\", \"barca vs las palmas\", \"belgium spain\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"stadium closure\", \"purpose\": \"stadium closure due to security or fan restrictions\", \"emotion_tone\": \"concern\", \"description\": \"Posts related to football matches being played behind closed doors due to security concerns, fan restrictions, or other reasons\", \"inclusion_cues\": [\"Barcelona vs Las Palmas behind closed doors\", \"UEFA considering EURO 2016 behind closed doors\", \"Barca fan in tears after finding out game was behind closed doors\", \"Belgium vs Spain friendly canceled due to terror threat\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"closed doors matches\", \"purpose\": \"football matches postponed or canceled due to security concerns\", \"emotion_tone\": \"anxious\", \"description\": \"Posts about football matches being played behind closed doors due to security, safety, or political reasons\", \"inclusion_cues\": [\"barcelona las\", \"stadium evacuation\", \"stadium barcelona\", \"uefa considering\", \"football friendly\", \"stadium evacuation\", \"barca fan in tears\", \"barca board member\", \"barca vs las palmas\", \"belgium spain\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 128,
+   "seed": 466070877,
+   "seconds": 0.6
+  }
+ ]
+}

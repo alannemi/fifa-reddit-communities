@@ -1,0 +1,187 @@
+{
+ "period_bin": 8,
+ "topic_id": 847,
+ "keywords": "martinez tackle, saliba tackle, saving tackle, gabriel goal, araújo tackle, guerreiro great, inigo martinez, guerreiro, belgium penalty, goal saving, kean juventus, penalty box, cunha, tackle gabriel, 91st minute",
+ "n_sample_posts": 28,
+ "sample_ids": [
+  "1bs5470",
+  "16cyr1z",
+  "1j1aeuo",
+  "1jxr95t",
+  "1itie1g",
+  "1oavlsx",
+  "12hd5aq",
+  "1jxr6zv",
+  "1kax1cm",
+  "1g4e942",
+  "1jxr55i",
+  "18kef7e",
+  "1i4wtfr",
+  "12vjboq",
+  "16zzeu8",
+  "1leqb7y",
+  "16k8u3b",
+  "1bm3cwz",
+  "1kay4cm",
+  "1cwg72x",
+  "1ajqz2c",
+  "1iyyjkv",
+  "1c0vtgu",
+  "1i2nu8z",
+  "17rcobp",
+  "1n50azd",
+  "1g1mkp9",
+  "1jamnmi"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Tackle Reactions",
+  "purpose": "Documenting last-ditch tackles and goal-saving actions in football",
+  "emotion_tone": "Excitement and admiration",
+  "description": "Posts about players' last-minute tackles, goal-saving efforts, and their impact on the game",
+  "inclusion_cues": [
+   "last-ditch tackle",
+   "goal-saving tackle",
+   "tackle on opponent",
+   "penalty box action",
+   "goal line clearance",
+   "intercepting pass"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Tackle Reactions",
+    "purpose": "Analyzing player reactions and tackles in match events",
+    "emotion_tone": "positive",
+    "description": "Posts discussing tackles, goal saves, and player reactions in football matches",
+    "inclusion_cues": [
+     "tackle",
+     "goal saving",
+     "last ditch tackle",
+     "intercept",
+     "goal line clearance",
+     "freekick reaction"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Tackle Reactions",
+    "purpose": "Documenting last-ditch tackles and goal-saving actions in football",
+    "emotion_tone": "Excitement and admiration",
+    "description": "Posts about players' last-minute tackles, goal-saving efforts, and their impact on the game",
+    "inclusion_cues": [
+     "last-ditch tackle",
+     "goal-saving tackle",
+     "tackle on opponent",
+     "penalty box action",
+     "goal line clearance",
+     "intercepting pass"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: martinez tackle, saliba tackle, saving tackle, gabriel goal, araújo tackle, guerreiro great, inigo martinez, guerreiro, belgium penalty, goal saving, kean juventus, penalty box, cunha, tackle gabriel, 91st minute\nPosts (one per line, title first):\n- Great tackle by Lazio's Mario Gila against Moise Kean (Juventus) 60'\n- Cristian Romero inch perfect tackle vs Enner Valencia (Ecuador)\n- Ewerton (Juventude) great tackle on Cristian Pavón (Grêmio)\n- Inigo Martinez last ditch tackle on Munir 90+2\n- Raúl Asencio's last-ditch tackle on Omar Marmoush inside the penalty box\n- Szoboszlai grabs the ball off Cunha after Cunha tries to take the ball to waste time since Curtis Jones is down\n- Raphaël Guerreiro great tackle (Dortmund vs Union Berlin)\n- Iñigo Martinez’s crucial tackle in the 91st minute vs Leganés.\n- João Neves' tackle to prevent a clear goal opportunity 37'\n- Saliba's tackle on Openda vs Belgium\n- Inigo Martinez tackle on Munir 90+2'\n- Saliba’s last man tackle and Gabriel’s goal line clearance\n- [Great Tackle] James Abankwah 28 seconds into his Watford debut\n- Camavinga's tackle to avoid Iago Aspas' one-on-one\n- Koundé last-ditch tackle vs. Porto\n- Al Hilal chance, Tchouaméni’s tackle\n- Lemina foul on Szoboszlai\n- Toni Kroos tackle against Aurélien Tchouaméni (60' France vs Germany)\n- Saliba's goal saving tackle 60'\n- This season’s cleanest tackle inside the box\n- Leandro Paredes tackle on Yerry Mina [Great ball movement]\n- James Maddison (Tottenham Hotspur) tackle on Savinho (Man City) 57'\n- [PSG-BARCA] Araujo with a huge tackle on Barcola\n- Ronald Araújo's Tackle vs Real Betis\n- Saliba intercepting Adrià Pedrosa outside the box\n- Raya's reaction to Szoboszlai's freekick 83'\n- Bastoni (Italy) tackle on Openda (Belgium) in the penalty box 63’\n- Balogun hurdles over En-Nesyri's back to get to the ball\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Tackle Reactions\", \"purpose\": \"Analyzing player reactions and tackles in match events\", \"emotion_tone\": \"positive\", \"description\": \"Posts discussing tackles, goal saves, and player reactions in football matches\", \"inclusion_cues\": [\"tackle\", \"goal saving\", \"last ditch tackle\", \"intercept\", \"goal line clearance\", \"freekick reaction\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Tackle Reactions",
+      "purpose": "Analyzing player reactions and tackles in match events",
+      "emotion_tone": "positive",
+      "description": "Posts discussing tackles, goal saves, and player reactions in football matches",
+      "inclusion_cues": [
+       "tackle",
+       "goal saving",
+       "last ditch tackle",
+       "intercept",
+       "goal line clearance",
+       "freekick reaction"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 95,
+   "seed": 941020041,
+   "seconds": 0.75
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: martinez tackle, saliba tackle, saving tackle, gabriel goal, araújo tackle, guerreiro great, inigo martinez, guerreiro, belgium penalty, goal saving, kean juventus, penalty box, cunha, tackle gabriel, 91st minute\nPosts (one per line, title first):\n- Great tackle by Lazio's Mario Gila against Moise Kean (Juventus) 60'\n- Cristian Romero inch perfect tackle vs Enner Valencia (Ecuador)\n- Ewerton (Juventude) great tackle on Cristian Pavón (Grêmio)\n- Inigo Martinez last ditch tackle on Munir 90+2\n- Raúl Asencio's last-ditch tackle on Omar Marmoush inside the penalty box\n- Szoboszlai grabs the ball off Cunha after Cunha tries to take the ball to waste time since Curtis Jones is down\n- Raphaël Guerreiro great tackle (Dortmund vs Union Berlin)\n- Iñigo Martinez’s crucial tackle in the 91st minute vs Leganés.\n- João Neves' tackle to prevent a clear goal opportunity 37'\n- Saliba's tackle on Openda vs Belgium\n- Inigo Martinez tackle on Munir 90+2'\n- Saliba’s last man tackle and Gabriel’s goal line clearance\n- [Great Tackle] James Abankwah 28 seconds into his Watford debut\n- Camavinga's tackle to avoid Iago Aspas' one-on-one\n- Koundé last-ditch tackle vs. Porto\n- Al Hilal chance, Tchouaméni’s tackle\n- Lemina foul on Szoboszlai\n- Toni Kroos tackle against Aurélien Tchouaméni (60' France vs Germany)\n- Saliba's goal saving tackle 60'\n- This season’s cleanest tackle inside the box\n- Leandro Paredes tackle on Yerry Mina [Great ball movement]\n- James Maddison (Tottenham Hotspur) tackle on Savinho (Man City) 57'\n- [PSG-BARCA] Araujo with a huge tackle on Barcola\n- Ronald Araújo's Tackle vs Real Betis\n- Saliba intercepting Adrià Pedrosa outside the box\n- Raya's reaction to Szoboszlai's freekick 83'\n- Bastoni (Italy) tackle on Openda (Belgium) in the penalty box 63’\n- Balogun hurdles over En-Nesyri's back to get to the ball\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Tackle Reactions\", \"purpose\": \"Documenting last-ditch tackles and goal-saving actions in football\", \"emotion_tone\": \"Excitement and admiration\", \"description\": \"Posts about players' last-minute tackles, goal-saving efforts, and their impact on the game\", \"inclusion_cues\": [\"last-ditch tackle\", \"goal-saving tackle\", \"tackle on opponent\", \"penalty box action\", \"goal line clearance\", \"intercepting pass\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Tackle Reactions",
+      "purpose": "Documenting last-ditch tackles and goal-saving actions in football",
+      "emotion_tone": "Excitement and admiration",
+      "description": "Posts about players' last-minute tackles, goal-saving efforts, and their impact on the game",
+      "inclusion_cues": [
+       "last-ditch tackle",
+       "goal-saving tackle",
+       "tackle on opponent",
+       "penalty box action",
+       "goal line clearance",
+       "intercepting pass"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 114,
+   "seed": 509428848,
+   "seconds": 0.73
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: martinez tackle, saliba tackle, saving tackle, gabriel goal, araújo tackle, guerreiro great, inigo martinez, guerreiro, belgium penalty, goal saving, kean juventus, penalty box, cunha, tackle gabriel, 91st minute\nPosts (one per line, title first):\n- Great tackle by Lazio's Mario Gila against Moise Kean (Juventus) 60'\n- Cristian Romero inch perfect tackle vs Enner Valencia (Ecuador)\n- Ewerton (Juventude) great tackle on Cristian Pavón (Grêmio)\n- Inigo Martinez last ditch tackle on Munir 90+2\n- Raúl Asencio's last-ditch tackle on Omar Marmoush inside the penalty box\n- Szoboszlai grabs the ball off Cunha after Cunha tries to take the ball to waste time since Curtis Jones is down\n- Raphaël Guerreiro great tackle (Dortmund vs Union Berlin)\n- Iñigo Martinez’s crucial tackle in the 91st minute vs Leganés.\n- João Neves' tackle to prevent a clear goal opportunity 37'\n- Saliba's tackle on Openda vs Belgium\n- Inigo Martinez tackle on Munir 90+2'\n- Saliba’s last man tackle and Gabriel’s goal line clearance\n- [Great Tackle] James Abankwah 28 seconds into his Watford debut\n- Camavinga's tackle to avoid Iago Aspas' one-on-one\n- Koundé last-ditch tackle vs. Porto\n- Al Hilal chance, Tchouaméni’s tackle\n- Lemina foul on Szoboszlai\n- Toni Kroos tackle against Aurélien Tchouaméni (60' France vs Germany)\n- Saliba's goal saving tackle 60'\n- This season’s cleanest tackle inside the box\n- Leandro Paredes tackle on Yerry Mina [Great ball movement]\n- James Maddison (Tottenham Hotspur) tackle on Savinho (Man City) 57'\n- [PSG-BARCA] Araujo with a huge tackle on Barcola\n- Ronald Araújo's Tackle vs Real Betis\n- Saliba intercepting Adrià Pedrosa outside the box\n- Raya's reaction to Szoboszlai's freekick 83'\n- Bastoni (Italy) tackle on Openda (Belgium) in the penalty box 63’\n- Balogun hurdles over En-Nesyri's back to get to the ball\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Tackle Reactions\", \"purpose\": \"Analyzing player reactions and tackles in match events\", \"emotion_tone\": \"positive\", \"description\": \"Posts discussing tackles, goal saves, and player reactions in football matches\", \"inclusion_cues\": [\"tackle\", \"goal saving\", \"last ditch tackle\", \"intercept\", \"goal line clearance\", \"freekick reaction\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Tackle Reactions\", \"purpose\": \"Documenting last-ditch tackles and goal-saving actions in football\", \"emotion_tone\": \"Excitement and admiration\", \"description\": \"Posts about players' last-minute tackles, goal-saving efforts, and their impact on the game\", \"inclusion_cues\": [\"last-ditch tackle\", \"goal-saving tackle\", \"tackle on opponent\", \"penalty box action\", \"goal line clearance\", \"intercepting pass\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Tackle Reactions\", \"purpose\": \"Documenting last-ditch tackles and goal-saving actions in football\", \"emotion_tone\": \"Excitement and admiration\", \"description\": \"Posts about players' last-minute tackles, goal-saving efforts, and their impact on the game\", \"inclusion_cues\": [\"last-ditch tackle\", \"goal-saving tackle\", \"tackle on opponent\", \"penalty box action\", \"goal line clearance\", \"intercepting pass\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 113,
+   "seed": 3928051833,
+   "seconds": 0.68
+  }
+ ]
+}

@@ -1,0 +1,190 @@
+{
+ "period_bin": 6,
+ "topic_id": 221,
+ "keywords": "madrid tackle, incredible tackle, davies tackle, rugby tackle, saving tackle, tackle sterling, tackle koulibaly, gvardiol tackle, arsenal dive, dive everton, tackle mane, dive chelsea, tackle stop, defender zouma, ronaldo dive",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "d7iv81",
+  "de5me0",
+  "n7v099",
+  "csficm",
+  "suvjkb",
+  "cfrbnd",
+  "o14x6h",
+  "krxkzx",
+  "n3bjlz",
+  "9kry4m",
+  "d1tfn2",
+  "dwfd0p",
+  "dnh9uq",
+  "oid1jl",
+  "a9dkfy",
+  "kef0f4",
+  "sac99m",
+  "9ohkbe",
+  "bjqyv1",
+  "lqpnh6",
+  "bmpdkr",
+  "tdcphz",
+  "q0qkxl",
+  "tndeot",
+  "cycw80",
+  "myuysl",
+  "9t5g2c",
+  "e8u2gs",
+  "oqvw5l",
+  "caftwd",
+  "pzv0vl",
+  "fkz9z4",
+  "dbtm17",
+  "odax5f",
+  "9meue7",
+  "kumv9x",
+  "jqbx70",
+  "aanemj",
+  "pn85ah",
+  "9us8z3"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Last Ditch Tackle",
+  "purpose": "Defensive action to prevent goal or secure victory",
+  "emotion_tone": "determined",
+  "description": "Posts involving a player's last-minute, high-impact tackle to stop an opponent or save a goal",
+  "inclusion_cues": [
+   "tackle on opponent",
+   "last ditch effort",
+   "goal-saving action",
+   "defensive action",
+   "high-impact tackle"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Last Ditch Tackle",
+    "purpose": "Defensive action to prevent goal",
+    "emotion_tone": "determined",
+    "description": "A player's last-minute, high-impact tackle to save a goal or prevent an opponent from scoring",
+    "inclusion_cues": [
+     "tackle on opponent",
+     "last ditch effort",
+     "goal-saving action"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Last Ditch Tackle",
+    "purpose": "Defensive action to prevent goal or secure victory",
+    "emotion_tone": "determined",
+    "description": "Posts involving a player's last-minute, high-impact tackle to stop an opponent or save a goal",
+    "inclusion_cues": [
+     "tackle on opponent",
+     "last ditch effort",
+     "goal-saving action",
+     "defensive action",
+     "high-impact tackle"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: madrid tackle, incredible tackle, davies tackle, rugby tackle, saving tackle, tackle sterling, tackle koulibaly, gvardiol tackle, arsenal dive, dive everton, tackle mane, dive chelsea, tackle stop, defender zouma, ronaldo dive\nPosts (one per line, title first):\n- Jonny Evans great tackle on Harry Kane (Leicester City v Tottenham)\n- Maguire's last ditch tackle against Newcastle\n- Zouma great tackle on Sterling 82’\n- Christian Fuchs great last ditch tackle to deny Kante (Chelsea vs Leicester City)\n- Barcelona - Napoli: Great tackle by Kalidou Koulibaly against Adama Traore on the counter (later called offside)\n- Skriniar frustation tackle on Chong\n- Griezmann great defensive tackle vs Germany 84'\n- Anthony Martial dive vs Man City.\n- Ronaldo dive vs Udinese\n- Nainggolan Trademark Tackle vs. Cagliari\n- Aubameyang dive vs Spurs\n- Innovative Tackle by Malaysian defender\n- Incredible Last Ditch Tackle from Fikayo Tomori\n- Chiellini tackle vs Sterling 111’\n- Sturridge dive vs Burnley\n- Ceballos dive vs Southampton\n- [Premier Sports] Mouhamed Niang tackle on Yosuke Ideguchi - Alloa Athletic vs Celtic\n- Ceballos dive vs. England\n- Mane dive vs. Barcelona\n- Oriol Romeu (Southampton) last man tackle against Leeds 39'\n- David Luiz isn’t even in the photo and he managed to teleport to clear this off the line\n- Ben White Challenge on Daka\n- Fikayo Tomori tackle on Pessina .\n- Alexis Vega dive vs USA\n- Harry Kane dive vs Arsenal (93)\n- Ruben Dias tackle vs Harry Kane (30')\n- Juan Foyth's Excellent Tackle on Arnautovic\n- 36 y/old Jérémy Mathieu's great tackle vs Moreirense\n- Álex Collado (Barça) great tackle + dribble vs Girona 90+1'\n- Bastian Schweinsteiger's dive/flop at last night's SKC vs Chicago Fire game\n- [Pogba] tackle against Everton!\n- Daniel Maldini great tackle on Clarence Seedorf\n- Luis Gustavo's Smooth Tackle against Lemina\n- Ecuador sandwich-tackle vs. Lo Celso 30'\n- Lovren's massive must-win tackle on Gabriel Jesus\n- Dybala’s dive against Sassuolo\n- Dybala dive vs Lazio\n- Dive from Kane in the Spurs vs Wolves game today\n- Pascal Struijk (Leeds) goal-saving tackle on Mohamed Salah (Liverpool)\n- Kalidou Koulibaly's tackle on Kylian Mbappé\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Last Ditch Tackle\", \"purpose\": \"Defensive action to prevent goal\", \"emotion_tone\": \"determined\", \"description\": \"A player's last-minute, high-impact tackle to save a goal or prevent an opponent from scoring\", \"inclusion_cues\": [\"tackle on opponent\", \"last ditch effort\", \"goal-saving action\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Last Ditch Tackle",
+      "purpose": "Defensive action to prevent goal",
+      "emotion_tone": "determined",
+      "description": "A player's last-minute, high-impact tackle to save a goal or prevent an opponent from scoring",
+      "inclusion_cues": [
+       "tackle on opponent",
+       "last ditch effort",
+       "goal-saving action"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 90,
+   "seed": 2141411369,
+   "seconds": 0.85
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: madrid tackle, incredible tackle, davies tackle, rugby tackle, saving tackle, tackle sterling, tackle koulibaly, gvardiol tackle, arsenal dive, dive everton, tackle mane, dive chelsea, tackle stop, defender zouma, ronaldo dive\nPosts (one per line, title first):\n- Jonny Evans great tackle on Harry Kane (Leicester City v Tottenham)\n- Maguire's last ditch tackle against Newcastle\n- Zouma great tackle on Sterling 82’\n- Christian Fuchs great last ditch tackle to deny Kante (Chelsea vs Leicester City)\n- Barcelona - Napoli: Great tackle by Kalidou Koulibaly against Adama Traore on the counter (later called offside)\n- Skriniar frustation tackle on Chong\n- Griezmann great defensive tackle vs Germany 84'\n- Anthony Martial dive vs Man City.\n- Ronaldo dive vs Udinese\n- Nainggolan Trademark Tackle vs. Cagliari\n- Aubameyang dive vs Spurs\n- Innovative Tackle by Malaysian defender\n- Incredible Last Ditch Tackle from Fikayo Tomori\n- Chiellini tackle vs Sterling 111’\n- Sturridge dive vs Burnley\n- Ceballos dive vs Southampton\n- [Premier Sports] Mouhamed Niang tackle on Yosuke Ideguchi - Alloa Athletic vs Celtic\n- Ceballos dive vs. England\n- Mane dive vs. Barcelona\n- Oriol Romeu (Southampton) last man tackle against Leeds 39'\n- David Luiz isn’t even in the photo and he managed to teleport to clear this off the line\n- Ben White Challenge on Daka\n- Fikayo Tomori tackle on Pessina .\n- Alexis Vega dive vs USA\n- Harry Kane dive vs Arsenal (93)\n- Ruben Dias tackle vs Harry Kane (30')\n- Juan Foyth's Excellent Tackle on Arnautovic\n- 36 y/old Jérémy Mathieu's great tackle vs Moreirense\n- Álex Collado (Barça) great tackle + dribble vs Girona 90+1'\n- Bastian Schweinsteiger's dive/flop at last night's SKC vs Chicago Fire game\n- [Pogba] tackle against Everton!\n- Daniel Maldini great tackle on Clarence Seedorf\n- Luis Gustavo's Smooth Tackle against Lemina\n- Ecuador sandwich-tackle vs. Lo Celso 30'\n- Lovren's massive must-win tackle on Gabriel Jesus\n- Dybala’s dive against Sassuolo\n- Dybala dive vs Lazio\n- Dive from Kane in the Spurs vs Wolves game today\n- Pascal Struijk (Leeds) goal-saving tackle on Mohamed Salah (Liverpool)\n- Kalidou Koulibaly's tackle on Kylian Mbappé\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Last Ditch Tackle\", \"purpose\": \"Defensive action to prevent goal or secure victory\", \"emotion_tone\": \"determined\", \"description\": \"Posts involving a player's last-minute, high-impact tackle to stop an opponent or save a goal\", \"inclusion_cues\": [\"tackle on opponent\", \"last ditch effort\", \"goal-saving action\", \"defensive action\", \"high-impact tackle\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Last Ditch Tackle",
+      "purpose": "Defensive action to prevent goal or secure victory",
+      "emotion_tone": "determined",
+      "description": "Posts involving a player's last-minute, high-impact tackle to stop an opponent or save a goal",
+      "inclusion_cues": [
+       "tackle on opponent",
+       "last ditch effort",
+       "goal-saving action",
+       "defensive action",
+       "high-impact tackle"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 104,
+   "seed": 2797721408,
+   "seconds": 0.76
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: madrid tackle, incredible tackle, davies tackle, rugby tackle, saving tackle, tackle sterling, tackle koulibaly, gvardiol tackle, arsenal dive, dive everton, tackle mane, dive chelsea, tackle stop, defender zouma, ronaldo dive\nPosts (one per line, title first):\n- Jonny Evans great tackle on Harry Kane (Leicester City v Tottenham)\n- Maguire's last ditch tackle against Newcastle\n- Zouma great tackle on Sterling 82’\n- Christian Fuchs great last ditch tackle to deny Kante (Chelsea vs Leicester City)\n- Barcelona - Napoli: Great tackle by Kalidou Koulibaly against Adama Traore on the counter (later called offside)\n- Skriniar frustation tackle on Chong\n- Griezmann great defensive tackle vs Germany 84'\n- Anthony Martial dive vs Man City.\n- Ronaldo dive vs Udinese\n- Nainggolan Trademark Tackle vs. Cagliari\n- Aubameyang dive vs Spurs\n- Innovative Tackle by Malaysian defender\n- Incredible Last Ditch Tackle from Fikayo Tomori\n- Chiellini tackle vs Sterling 111’\n- Sturridge dive vs Burnley\n- Ceballos dive vs Southampton\n- [Premier Sports] Mouhamed Niang tackle on Yosuke Ideguchi - Alloa Athletic vs Celtic\n- Ceballos dive vs. England\n- Mane dive vs. Barcelona\n- Oriol Romeu (Southampton) last man tackle against Leeds 39'\n- David Luiz isn’t even in the photo and he managed to teleport to clear this off the line\n- Ben White Challenge on Daka\n- Fikayo Tomori tackle on Pessina .\n- Alexis Vega dive vs USA\n- Harry Kane dive vs Arsenal (93)\n- Ruben Dias tackle vs Harry Kane (30')\n- Juan Foyth's Excellent Tackle on Arnautovic\n- 36 y/old Jérémy Mathieu's great tackle vs Moreirense\n- Álex Collado (Barça) great tackle + dribble vs Girona 90+1'\n- Bastian Schweinsteiger's dive/flop at last night's SKC vs Chicago Fire game\n- [Pogba] tackle against Everton!\n- Daniel Maldini great tackle on Clarence Seedorf\n- Luis Gustavo's Smooth Tackle against Lemina\n- Ecuador sandwich-tackle vs. Lo Celso 30'\n- Lovren's massive must-win tackle on Gabriel Jesus\n- Dybala’s dive against Sassuolo\n- Dybala dive vs Lazio\n- Dive from Kane in the Spurs vs Wolves game today\n- Pascal Struijk (Leeds) goal-saving tackle on Mohamed Salah (Liverpool)\n- Kalidou Koulibaly's tackle on Kylian Mbappé\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Last Ditch Tackle\", \"purpose\": \"Defensive action to prevent goal\", \"emotion_tone\": \"determined\", \"description\": \"A player's last-minute, high-impact tackle to save a goal or prevent an opponent from scoring\", \"inclusion_cues\": [\"tackle on opponent\", \"last ditch effort\", \"goal-saving action\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Last Ditch Tackle\", \"purpose\": \"Defensive action to prevent goal or secure victory\", \"emotion_tone\": \"determined\", \"description\": \"Posts involving a player's last-minute, high-impact tackle to stop an opponent or save a goal\", \"inclusion_cues\": [\"tackle on opponent\", \"last ditch effort\", \"goal-saving action\", \"defensive action\", \"high-impact tackle\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Last Ditch Tackle\", \"purpose\": \"Defensive action to prevent goal or secure victory\", \"emotion_tone\": \"determined\", \"description\": \"Posts involving a player's last-minute, high-impact tackle to stop an opponent or save a goal\", \"inclusion_cues\": [\"tackle on opponent\", \"last ditch effort\", \"goal-saving action\", \"defensive action\", \"high-impact tackle\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 103,
+   "seed": 1281846411,
+   "seconds": 0.63
+  }
+ ]
+}

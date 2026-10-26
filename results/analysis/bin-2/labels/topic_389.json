@@ -1,0 +1,209 @@
+{
+ "period_bin": 2,
+ "topic_id": 389,
+ "keywords": "california knows, california, living california, fellow americans, states american, america shit, usa just, america today, america american, countries american, american know, like america, moving west, america say, america understand",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "16f6mq",
+  "1kuo4h",
+  "sjr58",
+  "ha046",
+  "sjrjp",
+  "im0z6",
+  "v01n8",
+  "1ckoik",
+  "utmkp",
+  "tn6hi",
+  "p9j00",
+  "h8l0f",
+  "gdg6i",
+  "ipbud",
+  "s2k74",
+  "1kkmdq",
+  "1qwocj",
+  "13ms55",
+  "is9nl",
+  "1e0dpb",
+  "1s9gli",
+  "is9on",
+  "1qmrfa",
+  "1k253e",
+  "1s9kpj",
+  "i9hcx",
+  "u60de",
+  "qwjqe",
+  "tluo8",
+  "kuk78",
+  "1fev1g",
+  "h3h91",
+  "dno7z",
+  "e1s0u",
+  "hfgso",
+  "s2fr7",
+  "wlx39",
+  "sqja2",
+  "1h73ew",
+  "17v49r"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "california knows",
+  "purpose": "critique of American culture",
+  "emotion_tone": "frustration, resentment",
+  "description": "Posts expressing frustration with American culture, particularly in relation to California's influence and the perception of American values",
+  "inclusion_cues": [
+   "california knows",
+   "america shit",
+   "america today",
+   "america american",
+   "america say",
+   "america understand"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "california knows",
+    "purpose": "critique of American culture",
+    "emotion_tone": "disapproval, frustration",
+    "description": "Posts expressing disdain for American culture and its perceived lack of passion, with a focus on California's role in this critique.",
+    "inclusion_cues": [
+     "california knows",
+     "living california",
+     "america shit",
+     "usa just",
+     "america today",
+     "america american",
+     "countries american",
+     "american know",
+     "like america",
+     "moving west"
+    ],
+    "n_cues_given": 12
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "california knows",
+    "purpose": "critique of American culture",
+    "emotion_tone": "frustration, resentment",
+    "description": "Posts expressing frustration with American culture, particularly in relation to California's influence and the perception of American values",
+    "inclusion_cues": [
+     "california knows",
+     "america shit",
+     "america today",
+     "america american",
+     "america say",
+     "america understand"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: california knows, california, living california, fellow americans, states american, america shit, usa just, america today, america american, countries american, american know, like america, moving west, america say, america understand\nPosts (one per line, title first):\n- My friend just got his new license plate / Everyone from California is jealous\n- Yank here ... This video sends chills up my spine. There is no passion in the states to match this.\n- Northern California knows what's up.\n- It's shit like this, America. (Today's NY Post)\n- Northern California knows whats up\n- Maybe some other countries should give this a try...\n- As a Canadian, this hurts.\n- As a Canadian, this happens to me all the time\n- I thought this stuff only happened in America\n- I'm from America and all I have to say is...Seriously? Fuck you America\n- See this a lot since moving to the West Coast\n- Why can't we do this in the U.S.? It's absolutely amazing.\n- Just found this subreddit and I thought all of you would appreciate this. (All you Yanks anyways :)\n- Only in America. Massachusetts channel 5 news fail LOL\n- Worst article I have read in a while(I promise that all Americans do not think like this)\n- Americans, please read\n- I feel like this is an accurate depiction of most Americans\n- As an American on Thanksgiving afternoon...\n- It's shit like this America...\n- Help an American noob out please!\n- As an American (x-post from /r/funny)\n- Its shit like this America...\n- As an American, it's hard to not be resentful when I read this... Sigh.\n- As an American this kills me\n- To my fellow Americans on this sub...\n- Hey USA, just a video showing you how it's done.\n- Does this sort of thing happen in other countries?\n- Not in my house!\n- Every American I know has to go through the pain of watching this\n- This has got to stop. I am ashamed that this happened in my country.\n- Where does an American start?\n- For all those non-yanks, do we agree?\n- Get out Yanks! ......Save us Yanks?\n- Just got this in my email... I really wish it was a bigger deal over here in the US.\n- Sadly, as an American, I can't relate to this at all\n- Seems like Americans are fairing pretty well broad.\n- Do they do that in your countries too?\n- I agree with u Americans\n- An american quandry..\n- For all you yanks out there; I give you a real \"Stramash\"\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"california knows\", \"purpose\": \"critique of American culture\", \"emotion_tone\": \"disapproval, frustration\", \"description\": \"Posts expressing disdain for American culture and its perceived lack of passion, with a focus on California's role in this critique.\", \"inclusion_cues\": [\"california knows\", \"living california\", \"america shit\", \"usa just\", \"america today\", \"america american\", \"countries american\", \"american know\", \"like america\", \"moving west\", \"america say\", \"america understand\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "california knows",
+      "purpose": "critique of American culture",
+      "emotion_tone": "disapproval, frustration",
+      "description": "Posts expressing disdain for American culture and its perceived lack of passion, with a focus on California's role in this critique.",
+      "inclusion_cues": [
+       "california knows",
+       "living california",
+       "america shit",
+       "usa just",
+       "america today",
+       "america american",
+       "countries american",
+       "american know",
+       "like america",
+       "moving west"
+      ],
+      "n_cues_given": 12
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 130,
+   "seed": 3111594348,
+   "seconds": 0.73
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: california knows, california, living california, fellow americans, states american, america shit, usa just, america today, america american, countries american, american know, like america, moving west, america say, america understand\nPosts (one per line, title first):\n- My friend just got his new license plate / Everyone from California is jealous\n- Yank here ... This video sends chills up my spine. There is no passion in the states to match this.\n- Northern California knows what's up.\n- It's shit like this, America. (Today's NY Post)\n- Northern California knows whats up\n- Maybe some other countries should give this a try...\n- As a Canadian, this hurts.\n- As a Canadian, this happens to me all the time\n- I thought this stuff only happened in America\n- I'm from America and all I have to say is...Seriously? Fuck you America\n- See this a lot since moving to the West Coast\n- Why can't we do this in the U.S.? It's absolutely amazing.\n- Just found this subreddit and I thought all of you would appreciate this. (All you Yanks anyways :)\n- Only in America. Massachusetts channel 5 news fail LOL\n- Worst article I have read in a while(I promise that all Americans do not think like this)\n- Americans, please read\n- I feel like this is an accurate depiction of most Americans\n- As an American on Thanksgiving afternoon...\n- It's shit like this America...\n- Help an American noob out please!\n- As an American (x-post from /r/funny)\n- Its shit like this America...\n- As an American, it's hard to not be resentful when I read this... Sigh.\n- As an American this kills me\n- To my fellow Americans on this sub...\n- Hey USA, just a video showing you how it's done.\n- Does this sort of thing happen in other countries?\n- Not in my house!\n- Every American I know has to go through the pain of watching this\n- This has got to stop. I am ashamed that this happened in my country.\n- Where does an American start?\n- For all those non-yanks, do we agree?\n- Get out Yanks! ......Save us Yanks?\n- Just got this in my email... I really wish it was a bigger deal over here in the US.\n- Sadly, as an American, I can't relate to this at all\n- Seems like Americans are fairing pretty well broad.\n- Do they do that in your countries too?\n- I agree with u Americans\n- An american quandry..\n- For all you yanks out there; I give you a real \"Stramash\"\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"california knows\", \"purpose\": \"critique of American culture\", \"emotion_tone\": \"frustration, resentment\", \"description\": \"Posts expressing frustration with American culture, particularly in relation to California's influence and the perception of American values\", \"inclusion_cues\": [\"california knows\", \"america shit\", \"america today\", \"america american\", \"america say\", \"america understand\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "california knows",
+      "purpose": "critique of American culture",
+      "emotion_tone": "frustration, resentment",
+      "description": "Posts expressing frustration with American culture, particularly in relation to California's influence and the perception of American values",
+      "inclusion_cues": [
+       "california knows",
+       "america shit",
+       "america today",
+       "america american",
+       "america say",
+       "america understand"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 104,
+   "seed": 1205770031,
+   "seconds": 0.9
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: california knows, california, living california, fellow americans, states american, america shit, usa just, america today, america american, countries american, american know, like america, moving west, america say, america understand\nPosts (one per line, title first):\n- My friend just got his new license plate / Everyone from California is jealous\n- Yank here ... This video sends chills up my spine. There is no passion in the states to match this.\n- Northern California knows what's up.\n- It's shit like this, America. (Today's NY Post)\n- Northern California knows whats up\n- Maybe some other countries should give this a try...\n- As a Canadian, this hurts.\n- As a Canadian, this happens to me all the time\n- I thought this stuff only happened in America\n- I'm from America and all I have to say is...Seriously? Fuck you America\n- See this a lot since moving to the West Coast\n- Why can't we do this in the U.S.? It's absolutely amazing.\n- Just found this subreddit and I thought all of you would appreciate this. (All you Yanks anyways :)\n- Only in America. Massachusetts channel 5 news fail LOL\n- Worst article I have read in a while(I promise that all Americans do not think like this)\n- Americans, please read\n- I feel like this is an accurate depiction of most Americans\n- As an American on Thanksgiving afternoon...\n- It's shit like this America...\n- Help an American noob out please!\n- As an American (x-post from /r/funny)\n- Its shit like this America...\n- As an American, it's hard to not be resentful when I read this... Sigh.\n- As an American this kills me\n- To my fellow Americans on this sub...\n- Hey USA, just a video showing you how it's done.\n- Does this sort of thing happen in other countries?\n- Not in my house!\n- Every American I know has to go through the pain of watching this\n- This has got to stop. I am ashamed that this happened in my country.\n- Where does an American start?\n- For all those non-yanks, do we agree?\n- Get out Yanks! ......Save us Yanks?\n- Just got this in my email... I really wish it was a bigger deal over here in the US.\n- Sadly, as an American, I can't relate to this at all\n- Seems like Americans are fairing pretty well broad.\n- Do they do that in your countries too?\n- I agree with u Americans\n- An american quandry..\n- For all you yanks out there; I give you a real \"Stramash\"\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"california knows\", \"purpose\": \"critique of American culture\", \"emotion_tone\": \"disapproval, frustration\", \"description\": \"Posts expressing disdain for American culture and its perceived lack of passion, with a focus on California's role in this critique.\", \"inclusion_cues\": [\"california knows\", \"living california\", \"america shit\", \"usa just\", \"america today\", \"america american\", \"countries american\", \"american know\", \"like america\", \"moving west\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"california knows\", \"purpose\": \"critique of American culture\", \"emotion_tone\": \"frustration, resentment\", \"description\": \"Posts expressing frustration with American culture, particularly in relation to California's influence and the perception of American values\", \"inclusion_cues\": [\"california knows\", \"america shit\", \"america today\", \"america american\", \"america say\", \"america understand\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"california knows\", \"purpose\": \"critique of American culture\", \"emotion_tone\": \"frustration, resentment\", \"description\": \"Posts expressing frustration with American culture, particularly in relation to California's influence and the perception of American values\", \"inclusion_cues\": [\"california knows\", \"america shit\", \"america today\", \"america american\", \"america say\", \"america understand\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 103,
+   "seed": 1325118788,
+   "seconds": 0.53
+  }
+ ]
+}

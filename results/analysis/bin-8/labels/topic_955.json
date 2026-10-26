@@ -1,0 +1,196 @@
+{
+ "period_bin": 8,
+ "topic_id": 955,
+ "keywords": "portugal 23, portugal liga, portugal 20, 24 liga, liga portugal, portuguese cup, 23 liga, 26 liga, goalscorers 2023, league 2024, liga 14, liga rounds, 26 uefa, portugal 11, primeira liga",
+ "n_sample_posts": 26,
+ "sample_ids": [
+  "17k5d7i",
+  "1btg7wp",
+  "1bhat9g",
+  "197m49c",
+  "197m49c",
+  "185f3zd",
+  "1age4x7",
+  "18g75ez",
+  "197lumy",
+  "169ade9",
+  "16m7iqe",
+  "1kjkz4j",
+  "1cgas0y",
+  "1bz9p0u",
+  "129zwwg",
+  "1ih2lhr",
+  "18n6gmz",
+  "16m7d4o",
+  "1ixf4u7",
+  "1343t71",
+  "1dmxhc9",
+  "1notw7f",
+  "1hzro21",
+  "11qnwy1",
+  "1976p33",
+  "17tvvfk"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Liga Portugal Seasons",
+  "purpose": "Tracking progress and top goalscorers in Liga Portugal",
+  "emotion_tone": "informative",
+  "description": "Posts about the progression of Liga Portugal seasons, including round numbers, top goalscorers, and league standings.",
+  "inclusion_cues": [
+   "Liga Portugal after 9 rounds",
+   "top goalscorers",
+   "Liga Portugal after 26 rounds",
+   "Liga Portugal after 17 rounds",
+   "Liga Portugal after 13 rounds",
+   "Liga Portugal after 31 rounds",
+   "Liga Portugal after 20 rounds",
+   "Liga Portugal after 17 rounds (1st half)",
+   "Liga Portugal after 4 rounds",
+   "Liga Portugal after 5 rounds"
+  ],
+  "n_cues_given": 12
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Liga Portugal Seasons",
+    "purpose": "Tracking progress and top goalscorers in Liga Portugal",
+    "emotion_tone": "informative",
+    "description": "Posts about the progression of Liga Portugal seasons, including rounds, top goalscorers, and league standings",
+    "inclusion_cues": [
+     "Liga Portugal after X rounds",
+     "top goalscorers",
+     "season 2023/24",
+     "2024/25 Liga Portugal"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Liga Portugal Seasons",
+    "purpose": "Tracking progress and top goalscorers in Liga Portugal",
+    "emotion_tone": "informative",
+    "description": "Posts about the progression of Liga Portugal seasons, including round numbers, top goalscorers, and league standings.",
+    "inclusion_cues": [
+     "Liga Portugal after 9 rounds",
+     "top goalscorers",
+     "Liga Portugal after 26 rounds",
+     "Liga Portugal after 17 rounds",
+     "Liga Portugal after 13 rounds",
+     "Liga Portugal after 31 rounds",
+     "Liga Portugal after 20 rounds",
+     "Liga Portugal after 17 rounds (1st half)",
+     "Liga Portugal after 4 rounds",
+     "Liga Portugal after 5 rounds"
+    ],
+    "n_cues_given": 12
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: portugal 23, portugal liga, portugal 20, 24 liga, liga portugal, portuguese cup, 23 liga, 26 liga, goalscorers 2023, league 2024, liga 14, liga rounds, 26 uefa, portugal 11, primeira liga\nPosts (one per line, title first):\n- 2023/24 Liga Portugal after 9 rounds\n- 2023/24 Liga Portugal after 27 rounds + top goalscorers\n- 2023/24 Liga Portugal after 26 rounds + top goalscorers\n- 2023/24 Liga Portugal after 17 rounds (half the season) + top goalscorers\n- 2023/24 Liga Portugal after 17 rounds (half the season) + top goalscorers\n- 2023/24 La Liga after 14 rounds\n- 2023/24 Liga Portugal after Matchweek 19\n- 2023/24 Liga Portugal after 13 rounds + top goalscorers\n- 2023/24 Liga Portugal after 17 rounds (half the season) + top goalscorers\n- 2023/24 Liga Portugal after 4 rounds\n- 2023/24 Primeira Liga after 5 rounds\n- 2024/25 Ligue 1 after match day 33. Marseille and Monaco have also qualified for the 2025/26 UEFA Champions League.\n- 2023/24 Liga Portugal after 31 rounds\n- 2023/24 Ligue 2 after 31 rounds\n- 2022/23 Ligue 1 after 29 rounds\n- 2024/25 Liga Portugal after 20 rounds\n- 2023/24 Ligue 1 after 17 rounds (half the season)\n- 2023/24 La Liga after 5 rounds\n- 2024/25 Liga Portugal after 23 rounds\n- 2022/23 Liga Portugal after 30 rounds (4 remaining)\n- Map for the 2024/25 Segunda División\n- 2025/26 Liga Portugal after 6 rounds\n- 2024/25 Liga Portugal after 17 rounds (1st half)\n- 2022/23 Liga Portugal and Liga Portugal 2 after 24 rounds\n- Portuguese Cup 2024 - Quarter-Finals\n- 2023/24 Liga Portugal after 11 rounds + top goalscorers\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Liga Portugal Seasons\", \"purpose\": \"Tracking progress and top goalscorers in Liga Portugal\", \"emotion_tone\": \"informative\", \"description\": \"Posts about the progression of Liga Portugal seasons, including rounds, top goalscorers, and league standings\", \"inclusion_cues\": [\"Liga Portugal after X rounds\", \"top goalscorers\", \"season 2023/24\", \"2024/25 Liga Portugal\"]}]}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Liga Portugal Seasons",
+      "purpose": "Tracking progress and top goalscorers in Liga Portugal",
+      "emotion_tone": "informative",
+      "description": "Posts about the progression of Liga Portugal seasons, including rounds, top goalscorers, and league standings",
+      "inclusion_cues": [
+       "Liga Portugal after X rounds",
+       "top goalscorers",
+       "season 2023/24",
+       "2024/25 Liga Portugal"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 112,
+   "seed": 3727357787,
+   "seconds": 0.5
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: portugal 23, portugal liga, portugal 20, 24 liga, liga portugal, portuguese cup, 23 liga, 26 liga, goalscorers 2023, league 2024, liga 14, liga rounds, 26 uefa, portugal 11, primeira liga\nPosts (one per line, title first):\n- 2023/24 Liga Portugal after 9 rounds\n- 2023/24 Liga Portugal after 27 rounds + top goalscorers\n- 2023/24 Liga Portugal after 26 rounds + top goalscorers\n- 2023/24 Liga Portugal after 17 rounds (half the season) + top goalscorers\n- 2023/24 Liga Portugal after 17 rounds (half the season) + top goalscorers\n- 2023/24 La Liga after 14 rounds\n- 2023/24 Liga Portugal after Matchweek 19\n- 2023/24 Liga Portugal after 13 rounds + top goalscorers\n- 2023/24 Liga Portugal after 17 rounds (half the season) + top goalscorers\n- 2023/24 Liga Portugal after 4 rounds\n- 2023/24 Primeira Liga after 5 rounds\n- 2024/25 Ligue 1 after match day 33. Marseille and Monaco have also qualified for the 2025/26 UEFA Champions League.\n- 2023/24 Liga Portugal after 31 rounds\n- 2023/24 Ligue 2 after 31 rounds\n- 2022/23 Ligue 1 after 29 rounds\n- 2024/25 Liga Portugal after 20 rounds\n- 2023/24 Ligue 1 after 17 rounds (half the season)\n- 2023/24 La Liga after 5 rounds\n- 2024/25 Liga Portugal after 23 rounds\n- 2022/23 Liga Portugal after 30 rounds (4 remaining)\n- Map for the 2024/25 Segunda División\n- 2025/26 Liga Portugal after 6 rounds\n- 2024/25 Liga Portugal after 17 rounds (1st half)\n- 2022/23 Liga Portugal and Liga Portugal 2 after 24 rounds\n- Portuguese Cup 2024 - Quarter-Finals\n- 2023/24 Liga Portugal after 11 rounds + top goalscorers\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Liga Portugal Seasons\", \"purpose\": \"Tracking progress and top goalscorers in Liga Portugal\", \"emotion_tone\": \"informative\", \"description\": \"Posts about the progression of Liga Portugal seasons, including round numbers, top goalscorers, and league standings.\", \"inclusion_cues\": [\"Liga Portugal after 9 rounds\", \"top goalscorers\", \"Liga Portugal after 26 rounds\", \"Liga Portugal after 17 rounds\", \"Liga Portugal after 13 rounds\", \"Liga Portugal after 31 rounds\", \"Liga Portugal after 20 rounds\", \"Liga Portugal after 17 rounds (1st half)\", \"Liga Portugal after 4 rounds\", \"Liga Portugal after 5 rounds\", \"Liga Portugal after 23 rounds\", \"Liga Portugal after 11 rounds\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Liga Portugal Seasons",
+      "purpose": "Tracking progress and top goalscorers in Liga Portugal",
+      "emotion_tone": "informative",
+      "description": "Posts about the progression of Liga Portugal seasons, including round numbers, top goalscorers, and league standings.",
+      "inclusion_cues": [
+       "Liga Portugal after 9 rounds",
+       "top goalscorers",
+       "Liga Portugal after 26 rounds",
+       "Liga Portugal after 17 rounds",
+       "Liga Portugal after 13 rounds",
+       "Liga Portugal after 31 rounds",
+       "Liga Portugal after 20 rounds",
+       "Liga Portugal after 17 rounds (1st half)",
+       "Liga Portugal after 4 rounds",
+       "Liga Portugal after 5 rounds"
+      ],
+      "n_cues_given": 12
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 195,
+   "seed": 1011938050,
+   "seconds": 0.64
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: portugal 23, portugal liga, portugal 20, 24 liga, liga portugal, portuguese cup, 23 liga, 26 liga, goalscorers 2023, league 2024, liga 14, liga rounds, 26 uefa, portugal 11, primeira liga\nPosts (one per line, title first):\n- 2023/24 Liga Portugal after 9 rounds\n- 2023/24 Liga Portugal after 27 rounds + top goalscorers\n- 2023/24 Liga Portugal after 26 rounds + top goalscorers\n- 2023/24 Liga Portugal after 17 rounds (half the season) + top goalscorers\n- 2023/24 Liga Portugal after 17 rounds (half the season) + top goalscorers\n- 2023/24 La Liga after 14 rounds\n- 2023/24 Liga Portugal after Matchweek 19\n- 2023/24 Liga Portugal after 13 rounds + top goalscorers\n- 2023/24 Liga Portugal after 17 rounds (half the season) + top goalscorers\n- 2023/24 Liga Portugal after 4 rounds\n- 2023/24 Primeira Liga after 5 rounds\n- 2024/25 Ligue 1 after match day 33. Marseille and Monaco have also qualified for the 2025/26 UEFA Champions League.\n- 2023/24 Liga Portugal after 31 rounds\n- 2023/24 Ligue 2 after 31 rounds\n- 2022/23 Ligue 1 after 29 rounds\n- 2024/25 Liga Portugal after 20 rounds\n- 2023/24 Ligue 1 after 17 rounds (half the season)\n- 2023/24 La Liga after 5 rounds\n- 2024/25 Liga Portugal after 23 rounds\n- 2022/23 Liga Portugal after 30 rounds (4 remaining)\n- Map for the 2024/25 Segunda División\n- 2025/26 Liga Portugal after 6 rounds\n- 2024/25 Liga Portugal after 17 rounds (1st half)\n- 2022/23 Liga Portugal and Liga Portugal 2 after 24 rounds\n- Portuguese Cup 2024 - Quarter-Finals\n- 2023/24 Liga Portugal after 11 rounds + top goalscorers\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Liga Portugal Seasons\", \"purpose\": \"Tracking progress and top goalscorers in Liga Portugal\", \"emotion_tone\": \"informative\", \"description\": \"Posts about the progression of Liga Portugal seasons, including rounds, top goalscorers, and league standings\", \"inclusion_cues\": [\"Liga Portugal after X rounds\", \"top goalscorers\", \"season 2023/24\", \"2024/25 Liga Portugal\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Liga Portugal Seasons\", \"purpose\": \"Tracking progress and top goalscorers in Liga Portugal\", \"emotion_tone\": \"informative\", \"description\": \"Posts about the progression of Liga Portugal seasons, including round numbers, top goalscorers, and league standings.\", \"inclusion_cues\": [\"Liga Portugal after 9 rounds\", \"top goalscorers\", \"Liga Portugal after 26 rounds\", \"Liga Portugal after 17 rounds\", \"Liga Portugal after 13 rounds\", \"Liga Portugal after 31 rounds\", \"Liga Portugal after 20 rounds\", \"Liga Portugal after 17 rounds (1st half)\", \"Liga Portugal after 4 rounds\", \"Liga Portugal after 5 rounds\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Liga Portugal Seasons\", \"purpose\": \"Tracking progress and top goalscorers in Liga Portugal\", \"emotion_tone\": \"informative\", \"description\": \"Posts about the progression of Liga Portugal seasons, including round numbers, top goalscorers, and league standings.\", \"inclusion_cues\": [\"Liga Portugal after 9 rounds\", \"top goalscorers\", \"Liga Portugal after 26 rounds\", \"Liga Portugal after 17 rounds\", \"Liga Portugal after 13 rounds\", \"Liga Portugal after 31 rounds\", \"Liga Portugal after 20 rounds\", \"Liga Portugal after 17 rounds (1st half)\", \"Liga Portugal after 4 rounds\", \"Liga Portugal after 5 rounds\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 174,
+   "seed": 1425340914,
+   "seconds": 0.58
+  }
+ ]
+}

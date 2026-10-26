@@ -1,0 +1,191 @@
+{
+ "period_bin": 2,
+ "topic_id": 633,
+ "keywords": "reus lewandowski, marco reus, reus trick, robert lewandowski, opinion lewandowski, lewandowski, reus bundesliga, dortmund lewandowski, bundesliga fanatic, comedy football, talk bundesliga, bundesliga article, technique marco, amazing player, fifa ve",
+ "n_sample_posts": 37,
+ "sample_ids": [
+  "yxbac",
+  "z0u9k",
+  "1hpnok",
+  "1dm1h4",
+  "1qk6z0",
+  "dru5y",
+  "1okvrq",
+  "1d18zf",
+  "1dtxjz",
+  "1ir3ly",
+  "1toe56",
+  "lv7or",
+  "19cusb",
+  "1op3b5",
+  "1d19cp",
+  "nb0bw",
+  "1p0epi",
+  "1eey1b",
+  "1p9i82",
+  "1dn4s5",
+  "1uvf17",
+  "12yq0w",
+  "1dgecd",
+  "urllk",
+  "1r5pjq",
+  "mp4qp",
+  "1gpvhb",
+  "1nbcbo",
+  "m9rhz",
+  "10vt2o",
+  "1isuge",
+  "1c0n64",
+  "1akybw",
+  "12qpsd",
+  "yy3jv",
+  "1crcib",
+  "1op560"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Bundesliga Fanatic",
+  "purpose": "Promote Bundesliga football culture and fan engagement",
+  "emotion_tone": "enthusiastic",
+  "description": "Posts discussing Bundesliga football, fan culture, and opinions on players like Marco Reus and Robert Lewandowski",
+  "inclusion_cues": [
+   "Bundesliga fanatic",
+   "talk bundesliga",
+   "Bundesliga article",
+   "comedy football",
+   "opinion lewandowski"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Bundesliga Fanatic",
+    "purpose": "Promote Bundesliga football culture and fan engagement",
+    "emotion_tone": "enthusiastic",
+    "description": "Posts discussing Bundesliga football, fan culture, and opinions on players like Marco Reus and Robert Lewandowski",
+    "inclusion_cues": [
+     "Bundesliga article",
+     "Bundesliga fanatic",
+     "talk bundesliga",
+     "comedy football",
+     "fifa ve"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Bundesliga Fanatic",
+    "purpose": "Promote Bundesliga football culture and fan engagement",
+    "emotion_tone": "enthusiastic",
+    "description": "Posts discussing Bundesliga football, fan culture, and opinions on players like Marco Reus and Robert Lewandowski",
+    "inclusion_cues": [
+     "Bundesliga fanatic",
+     "talk bundesliga",
+     "Bundesliga article",
+     "comedy football",
+     "opinion lewandowski"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: reus lewandowski, marco reus, reus trick, robert lewandowski, opinion lewandowski, lewandowski, reus bundesliga, dortmund lewandowski, bundesliga fanatic, comedy football, talk bundesliga, bundesliga article, technique marco, amazing player, fifa ve\nPosts (one per line, title first):\n- Robert Lewandowski pranked Marco Reus - YouTube\n- Robert Lewandowski trips Marco Reus in training [0:13]\n- Robert Lewandowski joking with Marco Reus\n- Robert Lewandowski Trolls Marco Reus\n- Opinions on Marco Reus / I use twitter a lot and follow some of the 'comedy football' accounts (football funnies and so on) and they see Marco Reus as some sort of god, although i'm sure its partly because he's good on FIFA. I've never actually seen him play so i'm wondering what the general opinion\n- Well played, Lewy (pic)\n- Marco Reus trick\n- Lewandowski had a busy night.\n- Chelsea handed the edge in Lewandowski race\n- Marco Reus goes for the tackle.\n- All hail King Lewandowski\n- 'Rolls Reus' is the latest star off Germany's production line | Raphael Honigstein's weekly Bundesliga article\n- Marco Reus Amazing Player!\n- \"Robert Lewandowski\" Picking Up Girls\n- Lewandowski destroys Real!\n- Here's Why Marco Reus is the Talk of the Bundesliga.\n- Lewandowski ruins Wenger birthday celebrations\n- This video of Marco Reus in a Sky Taxi could really use an English translation\n- Lewandowski picking up girls\n- Lewandowski is a little prankster\n- Robert Lewandowski picking up girls\n- Marco Reus is turning into the German Cristiano Ronaldo\n- Lewandowski comforts Di Maria [Recorded by a Potato]\n- Someone is trolling the Lewandowski article on Wikipedia\n- Really cool video of Marco Reus in slow motion.\n- The Indomitable Rise of Marco Reus | Bundesliga Fanatic\n- The Scout Report | Robert Lewandowski\n- Robert Lewandowski's touch, awareness and technique\n- For those who want to see Marco Reus in action, here he is vs. Hannover.\n- Man City v Borussia Dortmund: Why Lewandowski is key\n- Marco Reus happy about hit the bar!\n- Either Lewandowski is shopped into this pic, or he spends lost of time working out his left arm. If you know what I mean.\n- What does r/soccer think of this?:Why Marco Reus Will Shine Brighter Than Messi at World Cup 2014.\n- Rookies: Marco Reus\n- Marco Reus - Your New Favorite Player\n- Lewandowski vs. Mandzukic - who is better?\n- \"Robert Lewandowski\" Picking Up Girls, scores\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bundesliga Fanatic\", \"purpose\": \"Promote Bundesliga football culture and fan engagement\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts discussing Bundesliga football, fan culture, and opinions on players like Marco Reus and Robert Lewandowski\", \"inclusion_cues\": [\"Bundesliga article\", \"Bundesliga fanatic\", \"talk bundesliga\", \"comedy football\", \"fifa ve\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Bundesliga Fanatic",
+      "purpose": "Promote Bundesliga football culture and fan engagement",
+      "emotion_tone": "enthusiastic",
+      "description": "Posts discussing Bundesliga football, fan culture, and opinions on players like Marco Reus and Robert Lewandowski",
+      "inclusion_cues": [
+       "Bundesliga article",
+       "Bundesliga fanatic",
+       "talk bundesliga",
+       "comedy football",
+       "fifa ve"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 110,
+   "seed": 2893623455,
+   "seconds": 2.74
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: reus lewandowski, marco reus, reus trick, robert lewandowski, opinion lewandowski, lewandowski, reus bundesliga, dortmund lewandowski, bundesliga fanatic, comedy football, talk bundesliga, bundesliga article, technique marco, amazing player, fifa ve\nPosts (one per line, title first):\n- Robert Lewandowski pranked Marco Reus - YouTube\n- Robert Lewandowski trips Marco Reus in training [0:13]\n- Robert Lewandowski joking with Marco Reus\n- Robert Lewandowski Trolls Marco Reus\n- Opinions on Marco Reus / I use twitter a lot and follow some of the 'comedy football' accounts (football funnies and so on) and they see Marco Reus as some sort of god, although i'm sure its partly because he's good on FIFA. I've never actually seen him play so i'm wondering what the general opinion\n- Well played, Lewy (pic)\n- Marco Reus trick\n- Lewandowski had a busy night.\n- Chelsea handed the edge in Lewandowski race\n- Marco Reus goes for the tackle.\n- All hail King Lewandowski\n- 'Rolls Reus' is the latest star off Germany's production line | Raphael Honigstein's weekly Bundesliga article\n- Marco Reus Amazing Player!\n- \"Robert Lewandowski\" Picking Up Girls\n- Lewandowski destroys Real!\n- Here's Why Marco Reus is the Talk of the Bundesliga.\n- Lewandowski ruins Wenger birthday celebrations\n- This video of Marco Reus in a Sky Taxi could really use an English translation\n- Lewandowski picking up girls\n- Lewandowski is a little prankster\n- Robert Lewandowski picking up girls\n- Marco Reus is turning into the German Cristiano Ronaldo\n- Lewandowski comforts Di Maria [Recorded by a Potato]\n- Someone is trolling the Lewandowski article on Wikipedia\n- Really cool video of Marco Reus in slow motion.\n- The Indomitable Rise of Marco Reus | Bundesliga Fanatic\n- The Scout Report | Robert Lewandowski\n- Robert Lewandowski's touch, awareness and technique\n- For those who want to see Marco Reus in action, here he is vs. Hannover.\n- Man City v Borussia Dortmund: Why Lewandowski is key\n- Marco Reus happy about hit the bar!\n- Either Lewandowski is shopped into this pic, or he spends lost of time working out his left arm. If you know what I mean.\n- What does r/soccer think of this?:Why Marco Reus Will Shine Brighter Than Messi at World Cup 2014.\n- Rookies: Marco Reus\n- Marco Reus - Your New Favorite Player\n- Lewandowski vs. Mandzukic - who is better?\n- \"Robert Lewandowski\" Picking Up Girls, scores\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bundesliga Fanatic\", \"purpose\": \"Promote Bundesliga football culture and fan engagement\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts discussing Bundesliga football, fan culture, and opinions on players like Marco Reus and Robert Lewandowski\", \"inclusion_cues\": [\"Bundesliga fanatic\", \"talk bundesliga\", \"Bundesliga article\", \"comedy football\", \"opinion lewandowski\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Bundesliga Fanatic",
+      "purpose": "Promote Bundesliga football culture and fan engagement",
+      "emotion_tone": "enthusiastic",
+      "description": "Posts discussing Bundesliga football, fan culture, and opinions on players like Marco Reus and Robert Lewandowski",
+      "inclusion_cues": [
+       "Bundesliga fanatic",
+       "talk bundesliga",
+       "Bundesliga article",
+       "comedy football",
+       "opinion lewandowski"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 112,
+   "seed": 370200145,
+   "seconds": 0.62
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: reus lewandowski, marco reus, reus trick, robert lewandowski, opinion lewandowski, lewandowski, reus bundesliga, dortmund lewandowski, bundesliga fanatic, comedy football, talk bundesliga, bundesliga article, technique marco, amazing player, fifa ve\nPosts (one per line, title first):\n- Robert Lewandowski pranked Marco Reus - YouTube\n- Robert Lewandowski trips Marco Reus in training [0:13]\n- Robert Lewandowski joking with Marco Reus\n- Robert Lewandowski Trolls Marco Reus\n- Opinions on Marco Reus / I use twitter a lot and follow some of the 'comedy football' accounts (football funnies and so on) and they see Marco Reus as some sort of god, although i'm sure its partly because he's good on FIFA. I've never actually seen him play so i'm wondering what the general opinion\n- Well played, Lewy (pic)\n- Marco Reus trick\n- Lewandowski had a busy night.\n- Chelsea handed the edge in Lewandowski race\n- Marco Reus goes for the tackle.\n- All hail King Lewandowski\n- 'Rolls Reus' is the latest star off Germany's production line | Raphael Honigstein's weekly Bundesliga article\n- Marco Reus Amazing Player!\n- \"Robert Lewandowski\" Picking Up Girls\n- Lewandowski destroys Real!\n- Here's Why Marco Reus is the Talk of the Bundesliga.\n- Lewandowski ruins Wenger birthday celebrations\n- This video of Marco Reus in a Sky Taxi could really use an English translation\n- Lewandowski picking up girls\n- Lewandowski is a little prankster\n- Robert Lewandowski picking up girls\n- Marco Reus is turning into the German Cristiano Ronaldo\n- Lewandowski comforts Di Maria [Recorded by a Potato]\n- Someone is trolling the Lewandowski article on Wikipedia\n- Really cool video of Marco Reus in slow motion.\n- The Indomitable Rise of Marco Reus | Bundesliga Fanatic\n- The Scout Report | Robert Lewandowski\n- Robert Lewandowski's touch, awareness and technique\n- For those who want to see Marco Reus in action, here he is vs. Hannover.\n- Man City v Borussia Dortmund: Why Lewandowski is key\n- Marco Reus happy about hit the bar!\n- Either Lewandowski is shopped into this pic, or he spends lost of time working out his left arm. If you know what I mean.\n- What does r/soccer think of this?:Why Marco Reus Will Shine Brighter Than Messi at World Cup 2014.\n- Rookies: Marco Reus\n- Marco Reus - Your New Favorite Player\n- Lewandowski vs. Mandzukic - who is better?\n- \"Robert Lewandowski\" Picking Up Girls, scores\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bundesliga Fanatic\", \"purpose\": \"Promote Bundesliga football culture and fan engagement\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts discussing Bundesliga football, fan culture, and opinions on players like Marco Reus and Robert Lewandowski\", \"inclusion_cues\": [\"Bundesliga article\", \"Bundesliga fanatic\", \"talk bundesliga\", \"comedy football\", \"fifa ve\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bundesliga Fanatic\", \"purpose\": \"Promote Bundesliga football culture and fan engagement\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts discussing Bundesliga football, fan culture, and opinions on players like Marco Reus and Robert Lewandowski\", \"inclusion_cues\": [\"Bundesliga fanatic\", \"talk bundesliga\", \"Bundesliga article\", \"comedy football\", \"opinion lewandowski\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Bundesliga Fanatic\", \"purpose\": \"Promote Bundesliga football culture and fan engagement\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts discussing Bundesliga football, fan culture, and opinions on players like Marco Reus and Robert Lewandowski\", \"inclusion_cues\": [\"Bundesliga fanatic\", \"talk bundesliga\", \"Bundesliga article\", \"comedy football\", \"opinion lewandowski\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 111,
+   "seed": 1132500566,
+   "seconds": 0.69
+  }
+ ]
+}

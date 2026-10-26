@@ -1,0 +1,179 @@
+{
+ "period_bin": 2,
+ "topic_id": 787,
+ "keywords": "english football, football origins, football decades, leauge football, football english, football leauge, premiership survival, problems football, football nowadays, football talk, football identity, football home, football came, football unlike, football longer",
+ "n_sample_posts": 29,
+ "sample_ids": [
+  "tc42q",
+  "18pjgg",
+  "1owuvh",
+  "1iy8ru",
+  "o6pyy",
+  "e0a8o",
+  "p7n1b",
+  "sl5rg",
+  "13vf3c",
+  "1o8jcp",
+  "u64kf",
+  "1ocn4s",
+  "1cbzhz",
+  "h615b",
+  "k3n6p",
+  "13muhb",
+  "1op8sl",
+  "tneno",
+  "eoafb",
+  "mscxc",
+  "uy58i",
+  "1l57p8",
+  "19clmn",
+  "vqj3x",
+  "fzudo",
+  "fk7jx",
+  "1m2tok",
+  "f5x60",
+  "199apt"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "football origins",
+  "purpose": "examine the historical roots of football in England",
+  "emotion_tone": "reflective",
+  "description": "Posts discussing the historical origins of football, its evolution, and its roots in England, including Shrovetide football and the Football League.",
+  "inclusion_cues": [
+   "Football's origins, alive and well in Ashbourne, England",
+   "Football's origins, alive and well in Ashbourne, England",
+   "From the 'good old days of football', what bad aspects have we forgotten",
+   "Letter That Started It All - 150th Anniversary of The Football League",
+   "The birth of the English Football Leauge"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "football origins",
+    "purpose": "examine historical roots of English football",
+    "emotion_tone": "reflective",
+    "description": "Posts discussing the historical origins of football in England, including its early forms and the Football League's role.",
+    "inclusion_cues": [
+     "Football's origins, alive and well in Ashbourne, England",
+     "From the 'good old days of football', what bad aspects have we forgotten",
+     "Letter That Started It All - 150th Anniversary of The Football League"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "football origins",
+    "purpose": "examine the historical roots of football in England",
+    "emotion_tone": "reflective",
+    "description": "Posts discussing the historical origins of football, its evolution, and its roots in England, including Shrovetide football and the Football League.",
+    "inclusion_cues": [
+     "Football's origins, alive and well in Ashbourne, England",
+     "Football's origins, alive and well in Ashbourne, England",
+     "From the 'good old days of football', what bad aspects have we forgotten",
+     "Letter That Started It All - 150th Anniversary of The Football League",
+     "The birth of the English Football Leauge"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: english football, football origins, football decades, leauge football, football english, football leauge, premiership survival, problems football, football nowadays, football talk, football identity, football home, football came, football unlike, football longer\nPosts (one per line, title first):\n- Soccer and religion meet on the pitch, where the English Premier League considers a change\n- Football's origins, alive and well in Ashbourne, England - large album of the annual Shrovetide football match (first recorded in the 12th Century)\n- Big problems with Football in the 60s 70s and 80s? / A big problem with football nowadays is that everything is so commercialised, players cost alot and get extreme wages. But what were the things that people complained about in the 60s, 70s and 80s? you usually only hear good stuff about those time\n- From the 'good old days of football', what bad aspects have we forgotten / Many an older fan will bang on about how much better football was in the good old days. Obviously depending on where you're from but 'The Busby Babes' era is often thrown about. These were the days when footballers were genui\n- Talk on 20 years of the premier league in London, chaired by Clive Tyldesley, with guest panel, at Coventry Uni London Campus. / Anyone whose interested- Coventry universities London Campus is holding a special talk this month - open to public. Speaker include: Chair- Clive Tyldesley, Commentator, I\n- Signs of the Coming Football Apocalypse\n- The Death of English Football\n- Soccer Darwinism: The English Premiership’s Survival Clashes\n- Peter Winkelman: 'I'm not proud of how football came to Milton Keynes'\n- Why English soccer is \"dead\"\n- The posh-ing of English football\n- Through Thick And Thin - Football's Less Decorated Sole Club Stalwarts\n- Back to the 70's & 80's for English Football.\n- English football: Directed by The Thick.\n- Net Losses - Search for the Soul of British Football\n- Football is no longer the “working class” game it used to be\n- Through Thick And Thin – Football’s Less Decorated Sole Club Stalwarts\n- English football Twenty years on\n- The increasing professionalisation of soccer at all levels in the UK has led to the death of the park and street versions of the sport\n- Scientific evidence! English football is unlike any other football\n- From Cubs to Lions: The next generation of English Football\n- Why are the Majority of big games now in England ending up dull and boring encounters? Play-style?\n- Letter That Started It All - 150th Anniversary of The Football League\n- English Football's Identity Crisis\n- The Slow Death of English Football.\n- The Football Association Centenary 1863-1963 - Part 1\n- At this point in time when do you think football will go home to England?\n- The McDonaldization of English Football\n- An article about the birth of the English Football Leauge\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"football origins\", \"purpose\": \"examine historical roots of English football\", \"emotion_tone\": \"reflective\", \"description\": \"Posts discussing the historical origins of football in England, including its early forms and the Football League's role.\", \"inclusion_cues\": [\"Football's origins, alive and well in Ashbourne, England\", \"From the 'good old days of football', what bad aspects have we forgotten\", \"Letter That Started It All - 150th Anniversary of The Football League\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "football origins",
+      "purpose": "examine historical roots of English football",
+      "emotion_tone": "reflective",
+      "description": "Posts discussing the historical origins of football in England, including its early forms and the Football League's role.",
+      "inclusion_cues": [
+       "Football's origins, alive and well in Ashbourne, England",
+       "From the 'good old days of football', what bad aspects have we forgotten",
+       "Letter That Started It All - 150th Anniversary of The Football League"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 121,
+   "seed": 950460625,
+   "seconds": 0.88
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: english football, football origins, football decades, leauge football, football english, football leauge, premiership survival, problems football, football nowadays, football talk, football identity, football home, football came, football unlike, football longer\nPosts (one per line, title first):\n- Soccer and religion meet on the pitch, where the English Premier League considers a change\n- Football's origins, alive and well in Ashbourne, England - large album of the annual Shrovetide football match (first recorded in the 12th Century)\n- Big problems with Football in the 60s 70s and 80s? / A big problem with football nowadays is that everything is so commercialised, players cost alot and get extreme wages. But what were the things that people complained about in the 60s, 70s and 80s? you usually only hear good stuff about those time\n- From the 'good old days of football', what bad aspects have we forgotten / Many an older fan will bang on about how much better football was in the good old days. Obviously depending on where you're from but 'The Busby Babes' era is often thrown about. These were the days when footballers were genui\n- Talk on 20 years of the premier league in London, chaired by Clive Tyldesley, with guest panel, at Coventry Uni London Campus. / Anyone whose interested- Coventry universities London Campus is holding a special talk this month - open to public. Speaker include: Chair- Clive Tyldesley, Commentator, I\n- Signs of the Coming Football Apocalypse\n- The Death of English Football\n- Soccer Darwinism: The English Premiership’s Survival Clashes\n- Peter Winkelman: 'I'm not proud of how football came to Milton Keynes'\n- Why English soccer is \"dead\"\n- The posh-ing of English football\n- Through Thick And Thin - Football's Less Decorated Sole Club Stalwarts\n- Back to the 70's & 80's for English Football.\n- English football: Directed by The Thick.\n- Net Losses - Search for the Soul of British Football\n- Football is no longer the “working class” game it used to be\n- Through Thick And Thin – Football’s Less Decorated Sole Club Stalwarts\n- English football Twenty years on\n- The increasing professionalisation of soccer at all levels in the UK has led to the death of the park and street versions of the sport\n- Scientific evidence! English football is unlike any other football\n- From Cubs to Lions: The next generation of English Football\n- Why are the Majority of big games now in England ending up dull and boring encounters? Play-style?\n- Letter That Started It All - 150th Anniversary of The Football League\n- English Football's Identity Crisis\n- The Slow Death of English Football.\n- The Football Association Centenary 1863-1963 - Part 1\n- At this point in time when do you think football will go home to England?\n- The McDonaldization of English Football\n- An article about the birth of the English Football Leauge\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"football origins\", \"purpose\": \"examine the historical roots of football in England\", \"emotion_tone\": \"reflective\", \"description\": \"Posts discussing the historical origins of football, its evolution, and its roots in England, including Shrovetide football and the Football League.\", \"inclusion_cues\": [\"Football's origins, alive and well in Ashbourne, England\", \"Football's origins, alive and well in Ashbourne, England\", \"From the 'good old days of football', what bad aspects have we forgotten\", \"Letter That Started It All - 150th Anniversary of The Football League\", \"The birth of the English Football Leauge\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "football origins",
+      "purpose": "examine the historical roots of football in England",
+      "emotion_tone": "reflective",
+      "description": "Posts discussing the historical origins of football, its evolution, and its roots in England, including Shrovetide football and the Football League.",
+      "inclusion_cues": [
+       "Football's origins, alive and well in Ashbourne, England",
+       "Football's origins, alive and well in Ashbourne, England",
+       "From the 'good old days of football', what bad aspects have we forgotten",
+       "Letter That Started It All - 150th Anniversary of The Football League",
+       "The birth of the English Football Leauge"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 154,
+   "seed": 3471016694,
+   "seconds": 0.5
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: english football, football origins, football decades, leauge football, football english, football leauge, premiership survival, problems football, football nowadays, football talk, football identity, football home, football came, football unlike, football longer\nPosts (one per line, title first):\n- Soccer and religion meet on the pitch, where the English Premier League considers a change\n- Football's origins, alive and well in Ashbourne, England - large album of the annual Shrovetide football match (first recorded in the 12th Century)\n- Big problems with Football in the 60s 70s and 80s? / A big problem with football nowadays is that everything is so commercialised, players cost alot and get extreme wages. But what were the things that people complained about in the 60s, 70s and 80s? you usually only hear good stuff about those time\n- From the 'good old days of football', what bad aspects have we forgotten / Many an older fan will bang on about how much better football was in the good old days. Obviously depending on where you're from but 'The Busby Babes' era is often thrown about. These were the days when footballers were genui\n- Talk on 20 years of the premier league in London, chaired by Clive Tyldesley, with guest panel, at Coventry Uni London Campus. / Anyone whose interested- Coventry universities London Campus is holding a special talk this month - open to public. Speaker include: Chair- Clive Tyldesley, Commentator, I\n- Signs of the Coming Football Apocalypse\n- The Death of English Football\n- Soccer Darwinism: The English Premiership’s Survival Clashes\n- Peter Winkelman: 'I'm not proud of how football came to Milton Keynes'\n- Why English soccer is \"dead\"\n- The posh-ing of English football\n- Through Thick And Thin - Football's Less Decorated Sole Club Stalwarts\n- Back to the 70's & 80's for English Football.\n- English football: Directed by The Thick.\n- Net Losses - Search for the Soul of British Football\n- Football is no longer the “working class” game it used to be\n- Through Thick And Thin – Football’s Less Decorated Sole Club Stalwarts\n- English football Twenty years on\n- The increasing professionalisation of soccer at all levels in the UK has led to the death of the park and street versions of the sport\n- Scientific evidence! English football is unlike any other football\n- From Cubs to Lions: The next generation of English Football\n- Why are the Majority of big games now in England ending up dull and boring encounters? Play-style?\n- Letter That Started It All - 150th Anniversary of The Football League\n- English Football's Identity Crisis\n- The Slow Death of English Football.\n- The Football Association Centenary 1863-1963 - Part 1\n- At this point in time when do you think football will go home to England?\n- The McDonaldization of English Football\n- An article about the birth of the English Football Leauge\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"football origins\", \"purpose\": \"examine historical roots of English football\", \"emotion_tone\": \"reflective\", \"description\": \"Posts discussing the historical origins of football in England, including its early forms and the Football League's role.\", \"inclusion_cues\": [\"Football's origins, alive and well in Ashbourne, England\", \"From the 'good old days of football', what bad aspects have we forgotten\", \"Letter That Started It All - 150th Anniversary of The Football League\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"football origins\", \"purpose\": \"examine the historical roots of football in England\", \"emotion_tone\": \"reflective\", \"description\": \"Posts discussing the historical origins of football, its evolution, and its roots in England, including Shrovetide football and the Football League.\", \"inclusion_cues\": [\"Football's origins, alive and well in Ashbourne, England\", \"Football's origins, alive and well in Ashbourne, England\", \"From the 'good old days of football', what bad aspects have we forgotten\", \"Letter That Started It All - 150th Anniversary of The Football League\", \"The birth of the English Football Leauge\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"football origins\", \"purpose\": \"examine the historical roots of football in England\", \"emotion_tone\": \"reflective\", \"description\": \"Posts discussing the historical origins of football, its evolution, and its roots in England, including Shrovetide football and the Football League.\", \"inclusion_cues\": [\"Football's origins, alive and well in Ashbourne, England\", \"From the 'good old days of football', what bad aspects have we forgotten\", \"Letter That Started It All - 150th Anniversary of The Football League\", \"The birth of the English Football Leauge\", \"Football's origins, alive and well in Ashbourne, England\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 153,
+   "seed": 3971619593,
+   "seconds": 0.99
+  }
+ ]
+}

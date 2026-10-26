@@ -1,0 +1,196 @@
+{
+ "period_bin": 8,
+ "topic_id": 436,
+ "keywords": "liga standings, ligue standings, liga rankings, points liga, liga table, madrid tied, ligue table, cl qualifying, liga la, spanish liga, la liga, following barcelona, liga 2025, relegated spanish, 33 barcelona",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "1kkvzh0",
+  "1fq6we0",
+  "1739xre",
+  "1fnvi7b",
+  "16txh0k",
+  "12wpwjd",
+  "1cvvmz8",
+  "1j7fn16",
+  "18yqb7y",
+  "1j8auvp",
+  "1qb8jph",
+  "12axydm",
+  "18pdm8b",
+  "1hfiaqj",
+  "1nn3eyh",
+  "1jcx4f1",
+  "1kes2yy",
+  "1j9v24q",
+  "1jodyjt",
+  "1jlf3d6",
+  "1k4oe6m",
+  "1muuw3w",
+  "1nyzojl",
+  "1cgaqjb",
+  "1qffv8p",
+  "1hfldrd",
+  "1ogxeg9",
+  "1btguph",
+  "1qhi2w1",
+  "19d7zod",
+  "1j2uwa2",
+  "1ih1obk",
+  "13p0912",
+  "1jmxhiw",
+  "1d1b9ef",
+  "1qnucm5",
+  "1h5733q",
+  "1ixebqz",
+  "1jtwyas",
+  "12hxsla"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "La Liga Standings",
+  "purpose": "Tracking current La Liga table and rankings",
+  "emotion_tone": "informative",
+  "description": "Posts about La Liga standings, rankings, and matchday updates, including Barcelona's qualification for Champions League and relegations.",
+  "inclusion_cues": [
+   "La Liga standings after matchday 7",
+   "La Liga standings after matchday 30",
+   "La Liga standings following Barcelona vs Osasuna's postponed match",
+   "La Liga 2025/26 standings - MD1",
+   "La Liga table following match week 33"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "La Liga Standings",
+    "purpose": "Tracking current La Liga standings and rankings",
+    "emotion_tone": "informative",
+    "description": "Posts about La Liga standings, rankings, and matchday updates",
+    "inclusion_cues": [
+     "La Liga standings",
+     "matchday updates",
+     "relegated teams",
+     "tied teams",
+     "qualifying rounds",
+     "season progress"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "La Liga Standings",
+    "purpose": "Tracking current La Liga table and rankings",
+    "emotion_tone": "informative",
+    "description": "Posts about La Liga standings, rankings, and matchday updates, including Barcelona's qualification for Champions League and relegations.",
+    "inclusion_cues": [
+     "La Liga standings after matchday 7",
+     "La Liga standings after matchday 30",
+     "La Liga standings following Barcelona vs Osasuna's postponed match",
+     "La Liga 2025/26 standings - MD1",
+     "La Liga table following match week 33"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: liga standings, ligue standings, liga rankings, points liga, liga table, madrid tied, ligue table, cl qualifying, liga la, spanish liga, la liga, following barcelona, liga 2025, relegated spanish, 33 barcelona\nPosts (one per line, title first):\n- Spanish Liga F standings with one match day remaining amd everything decided, Barça is the champion, Real Madrid and Atlético will play the Women's CL Qualifying Round, and Betis and Valencia are relegated.\n- La Liga standings after match day 7\n- La Liga standings after matchday 9\n- [La Liga] Standings after Matchday 6\n- La Liga standings after matchday 7\n- La Liga standings after matchday 30\n- La Liga standings after Matchday 37\n- Spanish Women's Liga F standings after Match Day 21\n- La Liga standings after matchday 19\n- La Liga standings after matchday 27\n- La Liga rankings halfway through the season (after matchday 19)\n- La Liga standings after matchday 27\n- La Liga standings after Match day 18\n- La Liga standings after matchday 17\n- La Liga standings - MD5\n- La Liga standings after MD 29 / Barcelona, Osasuna, Espanyol, and Villarreal all have a game in hand.\n- Spanish Liga F standings with 2 match days remaining\n- 3. Liga standings after matchday 28\n- La Liga standings after Match day 29\n- La Liga standings following Barcelona vs Osasuna's postponed match\n- La Liga standings - MD32\n- La Liga 2025/26 standings - MD1\n- Ligue 1 standings after MD7\n- La Liga table following match week 33. Barcelona mathematically qualify for next season's UEFA Champions League\n- La Liga standings as things stand at the moment.\n- The standings from the last 5 matches in La Liga.\n- Serie A table after MD8\n- [La Liga] Standings after MD30\n- La Liga standings after matchday 20 / Also Levante-Villarreal will be played on the 18th of February\n- [La Liga] Standings after MD21\n- La Liga standings after matchday 26\n- La Liga standings after matchday 22\n- 3. Liga standings after matchday 37\n- La liga standings. Barcelona and Real Madrid tied\n- Final La Liga standings\n- La Liga standings after matchday 21\n- La Liga standings after matchday 15\n- La Liga standings after match day 25\n- La Liga standings - Match day 30\n- La Liga standings after matchday 28\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"La Liga Standings\", \"purpose\": \"Tracking current La Liga standings and rankings\", \"emotion_tone\": \"informative\", \"description\": \"Posts about La Liga standings, rankings, and matchday updates\", \"inclusion_cues\": [\"La Liga standings\", \"matchday updates\", \"relegated teams\", \"tied teams\", \"qualifying rounds\", \"season progress\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "La Liga Standings",
+      "purpose": "Tracking current La Liga standings and rankings",
+      "emotion_tone": "informative",
+      "description": "Posts about La Liga standings, rankings, and matchday updates",
+      "inclusion_cues": [
+       "La Liga standings",
+       "matchday updates",
+       "relegated teams",
+       "tied teams",
+       "qualifying rounds",
+       "season progress"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 96,
+   "seed": 171013407,
+   "seconds": 0.8
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: liga standings, ligue standings, liga rankings, points liga, liga table, madrid tied, ligue table, cl qualifying, liga la, spanish liga, la liga, following barcelona, liga 2025, relegated spanish, 33 barcelona\nPosts (one per line, title first):\n- Spanish Liga F standings with one match day remaining amd everything decided, Barça is the champion, Real Madrid and Atlético will play the Women's CL Qualifying Round, and Betis and Valencia are relegated.\n- La Liga standings after match day 7\n- La Liga standings after matchday 9\n- [La Liga] Standings after Matchday 6\n- La Liga standings after matchday 7\n- La Liga standings after matchday 30\n- La Liga standings after Matchday 37\n- Spanish Women's Liga F standings after Match Day 21\n- La Liga standings after matchday 19\n- La Liga standings after matchday 27\n- La Liga rankings halfway through the season (after matchday 19)\n- La Liga standings after matchday 27\n- La Liga standings after Match day 18\n- La Liga standings after matchday 17\n- La Liga standings - MD5\n- La Liga standings after MD 29 / Barcelona, Osasuna, Espanyol, and Villarreal all have a game in hand.\n- Spanish Liga F standings with 2 match days remaining\n- 3. Liga standings after matchday 28\n- La Liga standings after Match day 29\n- La Liga standings following Barcelona vs Osasuna's postponed match\n- La Liga standings - MD32\n- La Liga 2025/26 standings - MD1\n- Ligue 1 standings after MD7\n- La Liga table following match week 33. Barcelona mathematically qualify for next season's UEFA Champions League\n- La Liga standings as things stand at the moment.\n- The standings from the last 5 matches in La Liga.\n- Serie A table after MD8\n- [La Liga] Standings after MD30\n- La Liga standings after matchday 20 / Also Levante-Villarreal will be played on the 18th of February\n- [La Liga] Standings after MD21\n- La Liga standings after matchday 26\n- La Liga standings after matchday 22\n- 3. Liga standings after matchday 37\n- La liga standings. Barcelona and Real Madrid tied\n- Final La Liga standings\n- La Liga standings after matchday 21\n- La Liga standings after matchday 15\n- La Liga standings after match day 25\n- La Liga standings - Match day 30\n- La Liga standings after matchday 28\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"La Liga Standings\", \"purpose\": \"Tracking current La Liga table and rankings\", \"emotion_tone\": \"informative\", \"description\": \"Posts about La Liga standings, rankings, and matchday updates, including Barcelona's qualification for Champions League and relegations.\", \"inclusion_cues\": [\"La Liga standings after matchday 7\", \"La Liga standings after matchday 30\", \"La Liga standings following Barcelona vs Osasuna's postponed match\", \"La Liga 2025/26 standings - MD1\", \"La Liga table following match week 33\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "La Liga Standings",
+      "purpose": "Tracking current La Liga table and rankings",
+      "emotion_tone": "informative",
+      "description": "Posts about La Liga standings, rankings, and matchday updates, including Barcelona's qualification for Champions League and relegations.",
+      "inclusion_cues": [
+       "La Liga standings after matchday 7",
+       "La Liga standings after matchday 30",
+       "La Liga standings following Barcelona vs Osasuna's postponed match",
+       "La Liga 2025/26 standings - MD1",
+       "La Liga table following match week 33"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 139,
+   "seed": 1097847145,
+   "seconds": 0.86
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: liga standings, ligue standings, liga rankings, points liga, liga table, madrid tied, ligue table, cl qualifying, liga la, spanish liga, la liga, following barcelona, liga 2025, relegated spanish, 33 barcelona\nPosts (one per line, title first):\n- Spanish Liga F standings with one match day remaining amd everything decided, Barça is the champion, Real Madrid and Atlético will play the Women's CL Qualifying Round, and Betis and Valencia are relegated.\n- La Liga standings after match day 7\n- La Liga standings after matchday 9\n- [La Liga] Standings after Matchday 6\n- La Liga standings after matchday 7\n- La Liga standings after matchday 30\n- La Liga standings after Matchday 37\n- Spanish Women's Liga F standings after Match Day 21\n- La Liga standings after matchday 19\n- La Liga standings after matchday 27\n- La Liga rankings halfway through the season (after matchday 19)\n- La Liga standings after matchday 27\n- La Liga standings after Match day 18\n- La Liga standings after matchday 17\n- La Liga standings - MD5\n- La Liga standings after MD 29 / Barcelona, Osasuna, Espanyol, and Villarreal all have a game in hand.\n- Spanish Liga F standings with 2 match days remaining\n- 3. Liga standings after matchday 28\n- La Liga standings after Match day 29\n- La Liga standings following Barcelona vs Osasuna's postponed match\n- La Liga standings - MD32\n- La Liga 2025/26 standings - MD1\n- Ligue 1 standings after MD7\n- La Liga table following match week 33. Barcelona mathematically qualify for next season's UEFA Champions League\n- La Liga standings as things stand at the moment.\n- The standings from the last 5 matches in La Liga.\n- Serie A table after MD8\n- [La Liga] Standings after MD30\n- La Liga standings after matchday 20 / Also Levante-Villarreal will be played on the 18th of February\n- [La Liga] Standings after MD21\n- La Liga standings after matchday 26\n- La Liga standings after matchday 22\n- 3. Liga standings after matchday 37\n- La liga standings. Barcelona and Real Madrid tied\n- Final La Liga standings\n- La Liga standings after matchday 21\n- La Liga standings after matchday 15\n- La Liga standings after match day 25\n- La Liga standings - Match day 30\n- La Liga standings after matchday 28\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"La Liga Standings\", \"purpose\": \"Tracking current La Liga standings and rankings\", \"emotion_tone\": \"informative\", \"description\": \"Posts about La Liga standings, rankings, and matchday updates\", \"inclusion_cues\": [\"La Liga standings\", \"matchday updates\", \"relegated teams\", \"tied teams\", \"qualifying rounds\", \"season progress\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"La Liga Standings\", \"purpose\": \"Tracking current La Liga table and rankings\", \"emotion_tone\": \"informative\", \"description\": \"Posts about La Liga standings, rankings, and matchday updates, including Barcelona's qualification for Champions League and relegations.\", \"inclusion_cues\": [\"La Liga standings after matchday 7\", \"La Liga standings after matchday 30\", \"La Liga standings following Barcelona vs Osasuna's postponed match\", \"La Liga 2025/26 standings - MD1\", \"La Liga table following match week 33\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"La Liga Standings\", \"purpose\": \"Tracking current La Liga table and rankings\", \"emotion_tone\": \"informative\", \"description\": \"Posts about La Liga standings, rankings, and matchday updates, including Barcelona's qualification for Champions League and relegations.\", \"inclusion_cues\": [\"La Liga standings after matchday 7\", \"La Liga standings after matchday 30\", \"La Liga standings following Barcelona vs Osasuna's postponed match\", \"La Liga 2025/26 standings - MD1\", \"La Liga table following match week 33\"]]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 553)",
+   "n_tokens": 138,
+   "seed": 2114998534,
+   "seconds": 1.01
+  }
+ ]
+}

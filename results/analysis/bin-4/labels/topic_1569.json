@@ -1,0 +1,171 @@
+{
+ "period_bin": 4,
+ "topic_id": 1569,
+ "keywords": "chinese team, league china, u20 team, playing regionalliga, u20 german, match chinese, play germany, team germany, division chinese, german football, germany fourth, regionalliga südwest, teams left, german fa, fourth division",
+ "n_sample_posts": 25,
+ "sample_ids": [
+  "7e1dzl",
+  "7dt0fu",
+  "6iqccj",
+  "6iq45d",
+  "7du3p2",
+  "6is929",
+  "6itfse",
+  "6j0p8m",
+  "6ip2ig",
+  "6u0kh2",
+  "7m03jx",
+  "7fubgi",
+  "7fopal",
+  "6ise4h",
+  "7euutd",
+  "6mnmx8",
+  "6irzng",
+  "7liiin",
+  "7f6soy",
+  "6itja9",
+  "7dtozj",
+  "6itrqa",
+  "6iuf2q",
+  "7emg1k",
+  "7e3cv1"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Chinese U20 in German 4th Division",
+  "purpose": "Reporting on Chinese U20 team's participation in German 4th Division",
+  "emotion_tone": "Critical",
+  "description": "Posts discussing Chinese U20 team's participation in German 4th Division, including suspensions, protests, and implications for the German football system.",
+  "inclusion_cues": [
+   "China's U20 team will be playing in the Regionalliga Südwest next season (fourth division)",
+   "Tibet flag display causes China U20 side to walk out of first match in Germany's 4th league",
+   "DFB suspends China U-20 games with 4th division teams until winter break after Tibetian flag was shown"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Tibet Protests in German Football",
+    "purpose": "Report on protests affecting Chinese U20 matches in Germany",
+    "emotion_tone": "Critical",
+    "description": "Posts discussing suspension of Chinese U20 matches due to Tibet protests, exclusion of Chinese teams from German fourth division, and backlash from German clubs",
+    "inclusion_cues": [
+     "Tibet flag display causes Chinese U20 to walk out of match",
+     "DFB suspends games with 4th division teams",
+     "Chinese U20 left pitch after protests",
+     "German clubs exclude Chinese teams from fourth division"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Chinese U20 in German 4th Division",
+    "purpose": "Reporting on Chinese U20 team's participation in German 4th Division",
+    "emotion_tone": "Critical",
+    "description": "Posts discussing Chinese U20 team's participation in German 4th Division, including suspensions, protests, and implications for the German football system.",
+    "inclusion_cues": [
+     "China's U20 team will be playing in the Regionalliga Südwest next season (fourth division)",
+     "Tibet flag display causes China U20 side to walk out of first match in Germany's 4th league",
+     "DFB suspends China U-20 games with 4th division teams until winter break after Tibetian flag was shown"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: chinese team, league china, u20 team, playing regionalliga, u20 german, match chinese, play germany, team germany, division chinese, german football, germany fourth, regionalliga südwest, teams left, german fa, fourth division\nPosts (one per line, title first):\n- The first test match of Chinese U20 against a German fourth division team was suspended for 30' after tibetian flags were flown by spectators\n- The Chinese U20 team, who play test matches against German 4th League teams, have left the pitch after spectators raised Tibet flags\n- Breaking: China's U20 team will be playing in the Regionalliga Südwest next season (fourth division)\n- Breaking | China's U20 team will be playing in the Regionalliga Südwest next season (fourth division), per Kicker.\n- China U20 played first of 16 matches against German Regionalliga (4th tier) clubs. Match got suspended for 30 minutes after Schott Mainz fans displayed Tibet flags and Chinese refused to play for as long they were out.\n- Chinese olympia team for 2020 will play in German Regionalliga Südwest (4th division) (german article)\n- The Chinese U20 team are set to become the last side in the fourth tier of the German football league system\n- German fourth-tier clubs blast DFB plan to include China U20 team.\n- Chinese team to play in Germany's fourth division\n- China Under-20s to take part in German fourth tier\n- Halt of China U20 tour over Tibet flags costly for German clubs\n- \"China project\" between Chinese and southwest German FA's to be discontinued\n- China under-20 football tour suspended after pro-Tibet protests\n- Chinese Olympic U20 selection will start in Germany's 4th league to prepare for the Olympic games in Tokyo 2020 (German article)\n- FSV Frankfurt refuse to ban protests ahead of China U20 match\n- Done: Chinese U20 will play in Germany's 4th division next season, with some exceptions [German]\n- Chinese U-20 NT will play in German 4th Division next year (Article in German)\n- German FA cancels all remaining friendly matches with the Chinese U-20 team in the Regionalliga\n- DFB suspends China U-20 games with 4th division teams until winter break after Tibetian flag was shown and the Chinese team walked off the pitch. [German]\n- Chinese team invited to play in Germany's fourth division\n- Tibet flag display causes Chinas u-20 side to walk out of first match in Germany's 4th league.\n- China's U20 to compete in German fourth division next season. [German source]\n- Germany mulls letting China under-20s play league soccer\n- Chinese U20 football team stormed out of football match in Germany after Tibet protest\n- China U20 starts its German football adventure with defeat and embarrassment\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Tibet Protests in German Football\", \"purpose\": \"Report on protests affecting Chinese U20 matches in Germany\", \"emotion_tone\": \"Critical\", \"description\": \"Posts discussing suspension of Chinese U20 matches due to Tibet protests, exclusion of Chinese teams from German fourth division, and backlash from German clubs\", \"inclusion_cues\": [\"Tibet flag display causes Chinese U20 to walk out of match\", \"DFB suspends games with 4th division teams\", \"Chinese U20 left pitch after protests\", \"German clubs exclude Chinese teams from fourth division\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Tibet Protests in German Football",
+      "purpose": "Report on protests affecting Chinese U20 matches in Germany",
+      "emotion_tone": "Critical",
+      "description": "Posts discussing suspension of Chinese U20 matches due to Tibet protests, exclusion of Chinese teams from German fourth division, and backlash from German clubs",
+      "inclusion_cues": [
+       "Tibet flag display causes Chinese U20 to walk out of match",
+       "DFB suspends games with 4th division teams",
+       "Chinese U20 left pitch after protests",
+       "German clubs exclude Chinese teams from fourth division"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 139,
+   "seed": 3699160621,
+   "seconds": 1.24
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: chinese team, league china, u20 team, playing regionalliga, u20 german, match chinese, play germany, team germany, division chinese, german football, germany fourth, regionalliga südwest, teams left, german fa, fourth division\nPosts (one per line, title first):\n- The first test match of Chinese U20 against a German fourth division team was suspended for 30' after tibetian flags were flown by spectators\n- The Chinese U20 team, who play test matches against German 4th League teams, have left the pitch after spectators raised Tibet flags\n- Breaking: China's U20 team will be playing in the Regionalliga Südwest next season (fourth division)\n- Breaking | China's U20 team will be playing in the Regionalliga Südwest next season (fourth division), per Kicker.\n- China U20 played first of 16 matches against German Regionalliga (4th tier) clubs. Match got suspended for 30 minutes after Schott Mainz fans displayed Tibet flags and Chinese refused to play for as long they were out.\n- Chinese olympia team for 2020 will play in German Regionalliga Südwest (4th division) (german article)\n- The Chinese U20 team are set to become the last side in the fourth tier of the German football league system\n- German fourth-tier clubs blast DFB plan to include China U20 team.\n- Chinese team to play in Germany's fourth division\n- China Under-20s to take part in German fourth tier\n- Halt of China U20 tour over Tibet flags costly for German clubs\n- \"China project\" between Chinese and southwest German FA's to be discontinued\n- China under-20 football tour suspended after pro-Tibet protests\n- Chinese Olympic U20 selection will start in Germany's 4th league to prepare for the Olympic games in Tokyo 2020 (German article)\n- FSV Frankfurt refuse to ban protests ahead of China U20 match\n- Done: Chinese U20 will play in Germany's 4th division next season, with some exceptions [German]\n- Chinese U-20 NT will play in German 4th Division next year (Article in German)\n- German FA cancels all remaining friendly matches with the Chinese U-20 team in the Regionalliga\n- DFB suspends China U-20 games with 4th division teams until winter break after Tibetian flag was shown and the Chinese team walked off the pitch. [German]\n- Chinese team invited to play in Germany's fourth division\n- Tibet flag display causes Chinas u-20 side to walk out of first match in Germany's 4th league.\n- China's U20 to compete in German fourth division next season. [German source]\n- Germany mulls letting China under-20s play league soccer\n- Chinese U20 football team stormed out of football match in Germany after Tibet protest\n- China U20 starts its German football adventure with defeat and embarrassment\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Chinese U20 in German 4th Division\", \"purpose\": \"Reporting on Chinese U20 team's participation in German 4th Division\", \"emotion_tone\": \"Critical\", \"description\": \"Posts discussing Chinese U20 team's participation in German 4th Division, including suspensions, protests, and implications for the German football system.\", \"inclusion_cues\": [\"China's U20 team will be playing in the Regionalliga Südwest next season (fourth division)\", \"Tibet flag display causes China U20 side to walk out of first match in Germany's 4th league\", \"DFB suspends China U-20 games with 4th division teams until winter break after Tibetian flag was shown\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Chinese U20 in German 4th Division",
+      "purpose": "Reporting on Chinese U20 team's participation in German 4th Division",
+      "emotion_tone": "Critical",
+      "description": "Posts discussing Chinese U20 team's participation in German 4th Division, including suspensions, protests, and implications for the German football system.",
+      "inclusion_cues": [
+       "China's U20 team will be playing in the Regionalliga Südwest next season (fourth division)",
+       "Tibet flag display causes China U20 side to walk out of first match in Germany's 4th league",
+       "DFB suspends China U-20 games with 4th division teams until winter break after Tibetian flag was shown"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 173,
+   "seed": 2834729529,
+   "seconds": 2.01
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: chinese team, league china, u20 team, playing regionalliga, u20 german, match chinese, play germany, team germany, division chinese, german football, germany fourth, regionalliga südwest, teams left, german fa, fourth division\nPosts (one per line, title first):\n- The first test match of Chinese U20 against a German fourth division team was suspended for 30' after tibetian flags were flown by spectators\n- The Chinese U20 team, who play test matches against German 4th League teams, have left the pitch after spectators raised Tibet flags\n- Breaking: China's U20 team will be playing in the Regionalliga Südwest next season (fourth division)\n- Breaking | China's U20 team will be playing in the Regionalliga Südwest next season (fourth division), per Kicker.\n- China U20 played first of 16 matches against German Regionalliga (4th tier) clubs. Match got suspended for 30 minutes after Schott Mainz fans displayed Tibet flags and Chinese refused to play for as long they were out.\n- Chinese olympia team for 2020 will play in German Regionalliga Südwest (4th division) (german article)\n- The Chinese U20 team are set to become the last side in the fourth tier of the German football league system\n- German fourth-tier clubs blast DFB plan to include China U20 team.\n- Chinese team to play in Germany's fourth division\n- China Under-20s to take part in German fourth tier\n- Halt of China U20 tour over Tibet flags costly for German clubs\n- \"China project\" between Chinese and southwest German FA's to be discontinued\n- China under-20 football tour suspended after pro-Tibet protests\n- Chinese Olympic U20 selection will start in Germany's 4th league to prepare for the Olympic games in Tokyo 2020 (German article)\n- FSV Frankfurt refuse to ban protests ahead of China U20 match\n- Done: Chinese U20 will play in Germany's 4th division next season, with some exceptions [German]\n- Chinese U-20 NT will play in German 4th Division next year (Article in German)\n- German FA cancels all remaining friendly matches with the Chinese U-20 team in the Regionalliga\n- DFB suspends China U-20 games with 4th division teams until winter break after Tibetian flag was shown and the Chinese team walked off the pitch. [German]\n- Chinese team invited to play in Germany's fourth division\n- Tibet flag display causes Chinas u-20 side to walk out of first match in Germany's 4th league.\n- China's U20 to compete in German fourth division next season. [German source]\n- Germany mulls letting China under-20s play league soccer\n- Chinese U20 football team stormed out of football match in Germany after Tibet protest\n- China U20 starts its German football adventure with defeat and embarrassment\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Tibet Protests in German Football\", \"purpose\": \"Report on protests affecting Chinese U20 matches in Germany\", \"emotion_tone\": \"Critical\", \"description\": \"Posts discussing suspension of Chinese U20 matches due to Tibet protests, exclusion of Chinese teams from German fourth division, and backlash from German clubs\", \"inclusion_cues\": [\"Tibet flag display causes Chinese U20 to walk out of match\", \"DFB suspends games with 4th division teams\", \"Chinese U20 left pitch after protests\", \"German clubs exclude Chinese teams from fourth division\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Chinese U20 in German 4th Division\", \"purpose\": \"Reporting on Chinese U20 team's participation in German 4th Division\", \"emotion_tone\": \"Critical\", \"description\": \"Posts discussing Chinese U20 team's participation in German 4th Division, including suspensions, protests, and implications for the German football system.\", \"inclusion_cues\": [\"China's U20 team will be playing in the Regionalliga Südwest next season (fourth division)\", \"Tibet flag display causes China U20 side to walk out of first match in Germany's 4th league\", \"DFB suspends China U-20 games with 4th division teams until winter break after Tibetian flag was shown\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Tibet Protests in German Football\", \"purpose\": \"Report on protests affecting Chinese U20 matches in Germany\", \"emotion_tone\": \"Critical\", \"description\": \"Posts discussing suspension of Chinese U20 matches due to Tibet protests, exclusion of Chinese teams from German fourth division, and backlash from German clubs\", \"inclusion_cues\": [\"Tibet flag display causes Chinese U20 to walk out of match\", \"DFB suspends games with 4th division teams\", \"Chinese U20 left pitch after protests\", \"German clubs exclude Chinese teams from fourth division\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 138,
+   "seed": 3948647205,
+   "seconds": 0.64
+  }
+ ]
+}

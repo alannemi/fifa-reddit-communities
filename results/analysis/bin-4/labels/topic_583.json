@@ -1,0 +1,197 @@
+{
+ "period_bin": 4,
+ "topic_id": 583,
+ "keywords": "wikipedia changed, edited wikipedia, wikipedia updated, page edited, wikipedia fake, fan edits, wikipedia entry, page wikipedia, page hacked, wikipedia doesn, goal middlesborough, wiki, wikipedia got, vandalized, wikipedia pages",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "4a97yh",
+  "3c8r2x",
+  "3iscw8",
+  "5gfxw8",
+  "7kxjec",
+  "3c8rmu",
+  "3b13bx",
+  "6x3778",
+  "3hqfxp",
+  "377j0x",
+  "665udu",
+  "4tl34l",
+  "356l2x",
+  "4bexwt",
+  "4wvnc9",
+  "5nqfba",
+  "3ndm2r",
+  "4nmebq",
+  "53m7ml",
+  "5lamv9",
+  "377s6p",
+  "4nme60",
+  "52cioo",
+  "4aezkf",
+  "31fzz8",
+  "4qz8xf",
+  "4pvogi",
+  "4f3ql9",
+  "5238a0",
+  "4a96g3",
+  "5lfast",
+  "6hi303",
+  "420ats",
+  "35sj2b",
+  "4q9qzp",
+  "7dgwr5",
+  "2sm5pb",
+  "5sxh2b",
+  "3umawy",
+  "2lgdru"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Wikipedia edits",
+  "purpose": "Tracking and analyzing edits to Wikipedia pages related to football",
+  "emotion_tone": "critical",
+  "description": "Posts discussing edits to Wikipedia pages, including fan edits, vandalism, and updates to player and team entries",
+  "inclusion_cues": [
+   "Wikipedia entry edited",
+   "Fan edits",
+   "Vandalized pages",
+   "Wiki page updates",
+   "Wikipedia page hacked",
+   "Player wiki edits"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Wikipedia edits",
+    "purpose": "Tracking and analyzing edits to Wikipedia pages related to football",
+    "emotion_tone": "critical",
+    "description": "Posts discussing edits to Wikipedia pages, including fan edits, vandalism, and updates to player and team entries",
+    "inclusion_cues": [
+     "Wikipedia entry edited",
+     "Fan edits",
+     "Vandalized pages",
+     "Wiki page updates",
+     "Wikipedia edits"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Wikipedia edits",
+    "purpose": "Tracking and analyzing edits to Wikipedia pages related to football",
+    "emotion_tone": "critical",
+    "description": "Posts discussing edits to Wikipedia pages, including fan edits, vandalism, and updates to player and team entries",
+    "inclusion_cues": [
+     "Wikipedia entry edited",
+     "Fan edits",
+     "Vandalized pages",
+     "Wiki page updates",
+     "Wikipedia page hacked",
+     "Player wiki edits"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: wikipedia changed, edited wikipedia, wikipedia updated, page edited, wikipedia fake, fan edits, wikipedia entry, page wikipedia, page hacked, wikipedia doesn, goal middlesborough, wiki, wikipedia got, vandalized, wikipedia pages\nPosts (one per line, title first):\n- Right, which one of you pranksters has updated the FA Cup Wiki page already?\n- Someone edited Wikipedia entry of Carli Lloyd\n- Which one of you Barca fanboys, edited Iniesta's Wiki page?\n- Someone edited the Wikipedia entry for Liverpool keeper Loris Karius.\n- Referee Bobby Madley's Wikipedia Page has been edited after Man City's second draw to Everton of the season\n- Someone has already updated the WWC Wiki\n- This is how Jara's wiki page looks like at the moment\n- Wikipedia is fake news\n- Rolando's wiki page has been comedic to read\n- Cameron Jerome's wikis page has been changed after his goal Vs Middlesborough\n- You know you screwed up when people are vandalizing your Wikipedia page realtime\n- Alright, which one of you did this to Steve Bruce's Wikipedia page?\n- @FootbalIStuff: Someone's updated Jerome Boateng's Wikipedia page.\n- Someone has messed up Mitrovic's Wiki page.\n- Very funny, wiki users.\n- Oumar Niasse's wikipedia page modified\n- This edit to Ronald Koeman's Wikipedia page today is top level banter\n- Robson-Kanu's wikipedia has already been updated after his goal for Wales\n- Was on Wikipedia when I noticed this...\n- Lee Mason's Wikipedia Page Vandalized after shocking calls\n- Cameron Jerome's wiki page has been updated since scoring against Boro\n- Someone just edited hid Wikipedia page - And rightly so!!\n- Alright lads, fess up. Who edited this Wikipedia article?\n- Okazaki's Wikipedia at the moment...\n- Something is up with Real Betis' Wikipedia page\n- Someone has already edited Simone Zaza's Wikipedia page\n- U.S. Soccer fan edits Bobby Wood's wiki page\n- Tom Ince's cousin, Rohan, wiki page has been hilariously modified\n- Wikipedia doesn't lie...\n- Right, which one of you pranksters has updated the FA Cup Wiki page already?\n- Safe to say referee Lee Mason's Wikipedia page has taken quite a few punches in the last 24 hours.\n- Someone hilariously edited Donnarumma's Wikipedia page\n- Mascherano's wikipedia updated, pretty hilarious\n- Finally Wikipedia got something right!\n- Someone destroyed Moussa Dembele's (younger one) Wiki page\n- When wikipedia doesn't get updated\n- What happened to Chris Herd's wiki page? / His wiki picture has been replaced by a 2008 pic of him without a reason?\n- Wikipedia will no longer accept the Daily Mail as a reliable source (x-post r/wikipedia)\n- Anyone see what the editor did to the KingPower Stadium Wiki Page?\n- Noticed this little gem while checking out Kolo's wiki page.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Wikipedia edits\", \"purpose\": \"Tracking and analyzing edits to Wikipedia pages related to football\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing edits to Wikipedia pages, including fan edits, vandalism, and updates to player and team entries\", \"inclusion_cues\": [\"Wikipedia entry edited\", \"Fan edits\", \"Vandalized pages\", \"Wiki page updates\", \"Wikipedia edits\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Wikipedia edits",
+      "purpose": "Tracking and analyzing edits to Wikipedia pages related to football",
+      "emotion_tone": "critical",
+      "description": "Posts discussing edits to Wikipedia pages, including fan edits, vandalism, and updates to player and team entries",
+      "inclusion_cues": [
+       "Wikipedia entry edited",
+       "Fan edits",
+       "Vandalized pages",
+       "Wiki page updates",
+       "Wikipedia edits"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 101,
+   "seed": 3894296024,
+   "seconds": 0.98
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: wikipedia changed, edited wikipedia, wikipedia updated, page edited, wikipedia fake, fan edits, wikipedia entry, page wikipedia, page hacked, wikipedia doesn, goal middlesborough, wiki, wikipedia got, vandalized, wikipedia pages\nPosts (one per line, title first):\n- Right, which one of you pranksters has updated the FA Cup Wiki page already?\n- Someone edited Wikipedia entry of Carli Lloyd\n- Which one of you Barca fanboys, edited Iniesta's Wiki page?\n- Someone edited the Wikipedia entry for Liverpool keeper Loris Karius.\n- Referee Bobby Madley's Wikipedia Page has been edited after Man City's second draw to Everton of the season\n- Someone has already updated the WWC Wiki\n- This is how Jara's wiki page looks like at the moment\n- Wikipedia is fake news\n- Rolando's wiki page has been comedic to read\n- Cameron Jerome's wikis page has been changed after his goal Vs Middlesborough\n- You know you screwed up when people are vandalizing your Wikipedia page realtime\n- Alright, which one of you did this to Steve Bruce's Wikipedia page?\n- @FootbalIStuff: Someone's updated Jerome Boateng's Wikipedia page.\n- Someone has messed up Mitrovic's Wiki page.\n- Very funny, wiki users.\n- Oumar Niasse's wikipedia page modified\n- This edit to Ronald Koeman's Wikipedia page today is top level banter\n- Robson-Kanu's wikipedia has already been updated after his goal for Wales\n- Was on Wikipedia when I noticed this...\n- Lee Mason's Wikipedia Page Vandalized after shocking calls\n- Cameron Jerome's wiki page has been updated since scoring against Boro\n- Someone just edited hid Wikipedia page - And rightly so!!\n- Alright lads, fess up. Who edited this Wikipedia article?\n- Okazaki's Wikipedia at the moment...\n- Something is up with Real Betis' Wikipedia page\n- Someone has already edited Simone Zaza's Wikipedia page\n- U.S. Soccer fan edits Bobby Wood's wiki page\n- Tom Ince's cousin, Rohan, wiki page has been hilariously modified\n- Wikipedia doesn't lie...\n- Right, which one of you pranksters has updated the FA Cup Wiki page already?\n- Safe to say referee Lee Mason's Wikipedia page has taken quite a few punches in the last 24 hours.\n- Someone hilariously edited Donnarumma's Wikipedia page\n- Mascherano's wikipedia updated, pretty hilarious\n- Finally Wikipedia got something right!\n- Someone destroyed Moussa Dembele's (younger one) Wiki page\n- When wikipedia doesn't get updated\n- What happened to Chris Herd's wiki page? / His wiki picture has been replaced by a 2008 pic of him without a reason?\n- Wikipedia will no longer accept the Daily Mail as a reliable source (x-post r/wikipedia)\n- Anyone see what the editor did to the KingPower Stadium Wiki Page?\n- Noticed this little gem while checking out Kolo's wiki page.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Wikipedia edits\", \"purpose\": \"Tracking and analyzing edits to Wikipedia pages related to football\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing edits to Wikipedia pages, including fan edits, vandalism, and updates to player and team entries\", \"inclusion_cues\": [\"Wikipedia entry edited\", \"Fan edits\", \"Vandalized pages\", \"Wiki page updates\", \"Wikipedia page hacked\", \"Player wiki edits\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Wikipedia edits",
+      "purpose": "Tracking and analyzing edits to Wikipedia pages related to football",
+      "emotion_tone": "critical",
+      "description": "Posts discussing edits to Wikipedia pages, including fan edits, vandalism, and updates to player and team entries",
+      "inclusion_cues": [
+       "Wikipedia entry edited",
+       "Fan edits",
+       "Vandalized pages",
+       "Wiki page updates",
+       "Wikipedia page hacked",
+       "Player wiki edits"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 107,
+   "seed": 651362483,
+   "seconds": 0.98
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: wikipedia changed, edited wikipedia, wikipedia updated, page edited, wikipedia fake, fan edits, wikipedia entry, page wikipedia, page hacked, wikipedia doesn, goal middlesborough, wiki, wikipedia got, vandalized, wikipedia pages\nPosts (one per line, title first):\n- Right, which one of you pranksters has updated the FA Cup Wiki page already?\n- Someone edited Wikipedia entry of Carli Lloyd\n- Which one of you Barca fanboys, edited Iniesta's Wiki page?\n- Someone edited the Wikipedia entry for Liverpool keeper Loris Karius.\n- Referee Bobby Madley's Wikipedia Page has been edited after Man City's second draw to Everton of the season\n- Someone has already updated the WWC Wiki\n- This is how Jara's wiki page looks like at the moment\n- Wikipedia is fake news\n- Rolando's wiki page has been comedic to read\n- Cameron Jerome's wikis page has been changed after his goal Vs Middlesborough\n- You know you screwed up when people are vandalizing your Wikipedia page realtime\n- Alright, which one of you did this to Steve Bruce's Wikipedia page?\n- @FootbalIStuff: Someone's updated Jerome Boateng's Wikipedia page.\n- Someone has messed up Mitrovic's Wiki page.\n- Very funny, wiki users.\n- Oumar Niasse's wikipedia page modified\n- This edit to Ronald Koeman's Wikipedia page today is top level banter\n- Robson-Kanu's wikipedia has already been updated after his goal for Wales\n- Was on Wikipedia when I noticed this...\n- Lee Mason's Wikipedia Page Vandalized after shocking calls\n- Cameron Jerome's wiki page has been updated since scoring against Boro\n- Someone just edited hid Wikipedia page - And rightly so!!\n- Alright lads, fess up. Who edited this Wikipedia article?\n- Okazaki's Wikipedia at the moment...\n- Something is up with Real Betis' Wikipedia page\n- Someone has already edited Simone Zaza's Wikipedia page\n- U.S. Soccer fan edits Bobby Wood's wiki page\n- Tom Ince's cousin, Rohan, wiki page has been hilariously modified\n- Wikipedia doesn't lie...\n- Right, which one of you pranksters has updated the FA Cup Wiki page already?\n- Safe to say referee Lee Mason's Wikipedia page has taken quite a few punches in the last 24 hours.\n- Someone hilariously edited Donnarumma's Wikipedia page\n- Mascherano's wikipedia updated, pretty hilarious\n- Finally Wikipedia got something right!\n- Someone destroyed Moussa Dembele's (younger one) Wiki page\n- When wikipedia doesn't get updated\n- What happened to Chris Herd's wiki page? / His wiki picture has been replaced by a 2008 pic of him without a reason?\n- Wikipedia will no longer accept the Daily Mail as a reliable source (x-post r/wikipedia)\n- Anyone see what the editor did to the KingPower Stadium Wiki Page?\n- Noticed this little gem while checking out Kolo's wiki page.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Wikipedia edits\", \"purpose\": \"Tracking and analyzing edits to Wikipedia pages related to football\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing edits to Wikipedia pages, including fan edits, vandalism, and updates to player and team entries\", \"inclusion_cues\": [\"Wikipedia entry edited\", \"Fan edits\", \"Vandalized pages\", \"Wiki page updates\", \"Wikipedia edits\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Wikipedia edits\", \"purpose\": \"Tracking and analyzing edits to Wikipedia pages related to football\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing edits to Wikipedia pages, including fan edits, vandalism, and updates to player and team entries\", \"inclusion_cues\": [\"Wikipedia entry edited\", \"Fan edits\", \"Vandalized pages\", \"Wiki page updates\", \"Wikipedia page hacked\", \"Player wiki edits\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Wikipedia edits\", \"purpose\": \"Tracking and analyzing edits to Wikipedia pages related to football\", \"emotion_tone\": \"critical\", \"description\": \"Posts discussing edits to Wikipedia pages, including fan edits, vandalism, and updates to player and team entries\", \"inclusion_cues\": [\"Wikipedia entry edited\", \"Fan edits\", \"Vandalized pages\", \"Wiki page updates\", \"Wikipedia page hacked\", \"Player wiki edits\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 106,
+   "seed": 2746847514,
+   "seconds": 0.57
+  }
+ ]
+}

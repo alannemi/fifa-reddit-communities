@@ -1,0 +1,209 @@
+{
+ "period_bin": 4,
+ "topic_id": 1589,
+ "keywords": "attending game, attending chelsea, football pubs, stadium fc, attended match, going chelsea, foreign fans, fans cheer, away section, trafford fan, games london, club home, football friendly, london live, watching international",
+ "n_sample_posts": 25,
+ "sample_ids": [
+  "3ej3jk",
+  "6mnim5",
+  "3j8a3v",
+  "4exin0",
+  "3gummz",
+  "2kn75m",
+  "3hn444",
+  "2py6tf",
+  "3fjdbz",
+  "6j31g9",
+  "3s4n5c",
+  "2lat6b",
+  "3cmesn",
+  "2x3wc5",
+  "2icnmw",
+  "3bjvfg",
+  "2ldoso",
+  "5w4az1",
+  "2ks2jh",
+  "3b4yfh",
+  "3guky5",
+  "5qoqjc",
+  "2hzoqv",
+  "2p9agj",
+  "30evfs"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Football Travel",
+  "purpose": "Recommendations for attending football games in London and abroad",
+  "emotion_tone": "Inquisitive",
+  "description": "Posts about attending football games, traveling to matches, and experiences in London and abroad.",
+  "inclusion_cues": [
+   "attending game",
+   "attending chelsea",
+   "football pubs",
+   "stadium fc",
+   "attended match",
+   "going chelsea",
+   "foreign fans",
+   "fans cheer",
+   "away section",
+   "trafford fan"
+  ],
+  "n_cues_given": 15
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Football Travel",
+    "purpose": "Guiding fans on attending matches and related activities",
+    "emotion_tone": "Inquisitive",
+    "description": "Posts about attending matches, traveling to football games, and related experiences",
+    "inclusion_cues": [
+     "attending game",
+     "attending chelsea",
+     "football pubs",
+     "stadium fc",
+     "attended match",
+     "going chelsea",
+     "foreign fans",
+     "fans cheer",
+     "away section",
+     "trafford fan"
+    ],
+    "n_cues_given": 15
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Football Travel",
+    "purpose": "Recommendations for attending football games in London and abroad",
+    "emotion_tone": "Inquisitive",
+    "description": "Posts about attending football games, traveling to matches, and experiences in London and abroad.",
+    "inclusion_cues": [
+     "attending game",
+     "attending chelsea",
+     "football pubs",
+     "stadium fc",
+     "attended match",
+     "going chelsea",
+     "foreign fans",
+     "fans cheer",
+     "away section",
+     "trafford fan"
+    ],
+    "n_cues_given": 15
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: attending game, attending chelsea, football pubs, stadium fc, attended match, going chelsea, foreign fans, fans cheer, away section, trafford fan, games london, club home, football friendly, london live, watching international\nPosts (one per line, title first):\n- Going to the Chelsea v PSG game in Charlotte tomorrow, any tips for having a good time while I'm there?\n- Premier League pre-season tours: a feast for fans in far-flung destinations\n- How many people here have been to watch their club at Home, or own a Season Ticket? / I was just wondering how many people have been to watch their club, as there's so many people who support a club in a foreign country.\n- Non-Brits: What do football fans think going to a match in England would be like? / Sorry for frivolous question but it's Friday after all. Was just thinking considering some of the tourists I see in London who come here for the Queen and Harry Potter - but what do foreign fans think going to a BPL \n- Can I cheer for the home team in the away section? / Hey guys, I'll go see FC Bayern vs Hamburger SV tomorrow with my girlfriend and we never attended a match before. We are seated in the away team section because that was the only way for us to get tickets. Now I kinda want to cheer for FB Bayern b\n- Would you consider it weird to go to a game alone\n- In case you plan to go to York City away, hold it in.\n- In London for a day, Tuesday the 23rd, want to so something soccer related\n- Quick question on going to football games\n- R/soccer putting in an appearance at Glastonbury\n- Want to attend a football game ?\n- Going to a game with a total stranger to football\n- Attending a soccer game in England\n- To you all that have attended a Premier League match: Do you have any suggestions or advice for those who are planning to?\n- Meanwhile from North London\n- Question about attending Chelsea vs. Arsenal this season\n- Going to a game with a total stranger to football\n- 10 tips for your visit to Old Trafford\n- Friendly football games all around London!\n- I will be watching the International Champions Cup in the FedexField Stadium (FC Barcelona vs Chelsea). Any tips?\n- Can I cheer for the home team in the away section?\n- Soccer Fan Mutinies, All Over England\n- Live in London? Fancy a football game?\n- Football Pubs in West London\n- Question about catching a game in London\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Football Travel\", \"purpose\": \"Guiding fans on attending matches and related activities\", \"emotion_tone\": \"Inquisitive\", \"description\": \"Posts about attending matches, traveling to football games, and related experiences\", \"inclusion_cues\": [\"attending game\", \"attending chelsea\", \"football pubs\", \"stadium fc\", \"attended match\", \"going chelsea\", \"foreign fans\", \"fans cheer\", \"away section\", \"trafford fan\", \"games london\", \"club home\", \"football friendly\", \"london live\", \"watching international\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Football Travel",
+      "purpose": "Guiding fans on attending matches and related activities",
+      "emotion_tone": "Inquisitive",
+      "description": "Posts about attending matches, traveling to football games, and related experiences",
+      "inclusion_cues": [
+       "attending game",
+       "attending chelsea",
+       "football pubs",
+       "stadium fc",
+       "attended match",
+       "going chelsea",
+       "foreign fans",
+       "fans cheer",
+       "away section",
+       "trafford fan"
+      ],
+      "n_cues_given": 15
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 137,
+   "seed": 1909574240,
+   "seconds": 0.73
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: attending game, attending chelsea, football pubs, stadium fc, attended match, going chelsea, foreign fans, fans cheer, away section, trafford fan, games london, club home, football friendly, london live, watching international\nPosts (one per line, title first):\n- Going to the Chelsea v PSG game in Charlotte tomorrow, any tips for having a good time while I'm there?\n- Premier League pre-season tours: a feast for fans in far-flung destinations\n- How many people here have been to watch their club at Home, or own a Season Ticket? / I was just wondering how many people have been to watch their club, as there's so many people who support a club in a foreign country.\n- Non-Brits: What do football fans think going to a match in England would be like? / Sorry for frivolous question but it's Friday after all. Was just thinking considering some of the tourists I see in London who come here for the Queen and Harry Potter - but what do foreign fans think going to a BPL \n- Can I cheer for the home team in the away section? / Hey guys, I'll go see FC Bayern vs Hamburger SV tomorrow with my girlfriend and we never attended a match before. We are seated in the away team section because that was the only way for us to get tickets. Now I kinda want to cheer for FB Bayern b\n- Would you consider it weird to go to a game alone\n- In case you plan to go to York City away, hold it in.\n- In London for a day, Tuesday the 23rd, want to so something soccer related\n- Quick question on going to football games\n- R/soccer putting in an appearance at Glastonbury\n- Want to attend a football game ?\n- Going to a game with a total stranger to football\n- Attending a soccer game in England\n- To you all that have attended a Premier League match: Do you have any suggestions or advice for those who are planning to?\n- Meanwhile from North London\n- Question about attending Chelsea vs. Arsenal this season\n- Going to a game with a total stranger to football\n- 10 tips for your visit to Old Trafford\n- Friendly football games all around London!\n- I will be watching the International Champions Cup in the FedexField Stadium (FC Barcelona vs Chelsea). Any tips?\n- Can I cheer for the home team in the away section?\n- Soccer Fan Mutinies, All Over England\n- Live in London? Fancy a football game?\n- Football Pubs in West London\n- Question about catching a game in London\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Football Travel\", \"purpose\": \"Recommendations for attending football games in London and abroad\", \"emotion_tone\": \"Inquisitive\", \"description\": \"Posts about attending football games, traveling to matches, and experiences in London and abroad.\", \"inclusion_cues\": [\"attending game\", \"attending chelsea\", \"football pubs\", \"stadium fc\", \"attended match\", \"going chelsea\", \"foreign fans\", \"fans cheer\", \"away section\", \"trafford fan\", \"games london\", \"club home\", \"football friendly\", \"london live\", \"watching international\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Football Travel",
+      "purpose": "Recommendations for attending football games in London and abroad",
+      "emotion_tone": "Inquisitive",
+      "description": "Posts about attending football games, traveling to matches, and experiences in London and abroad.",
+      "inclusion_cues": [
+       "attending game",
+       "attending chelsea",
+       "football pubs",
+       "stadium fc",
+       "attended match",
+       "going chelsea",
+       "foreign fans",
+       "fans cheer",
+       "away section",
+       "trafford fan"
+      ],
+      "n_cues_given": 15
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 141,
+   "seed": 3895103480,
+   "seconds": 0.75
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: attending game, attending chelsea, football pubs, stadium fc, attended match, going chelsea, foreign fans, fans cheer, away section, trafford fan, games london, club home, football friendly, london live, watching international\nPosts (one per line, title first):\n- Going to the Chelsea v PSG game in Charlotte tomorrow, any tips for having a good time while I'm there?\n- Premier League pre-season tours: a feast for fans in far-flung destinations\n- How many people here have been to watch their club at Home, or own a Season Ticket? / I was just wondering how many people have been to watch their club, as there's so many people who support a club in a foreign country.\n- Non-Brits: What do football fans think going to a match in England would be like? / Sorry for frivolous question but it's Friday after all. Was just thinking considering some of the tourists I see in London who come here for the Queen and Harry Potter - but what do foreign fans think going to a BPL \n- Can I cheer for the home team in the away section? / Hey guys, I'll go see FC Bayern vs Hamburger SV tomorrow with my girlfriend and we never attended a match before. We are seated in the away team section because that was the only way for us to get tickets. Now I kinda want to cheer for FB Bayern b\n- Would you consider it weird to go to a game alone\n- In case you plan to go to York City away, hold it in.\n- In London for a day, Tuesday the 23rd, want to so something soccer related\n- Quick question on going to football games\n- R/soccer putting in an appearance at Glastonbury\n- Want to attend a football game ?\n- Going to a game with a total stranger to football\n- Attending a soccer game in England\n- To you all that have attended a Premier League match: Do you have any suggestions or advice for those who are planning to?\n- Meanwhile from North London\n- Question about attending Chelsea vs. Arsenal this season\n- Going to a game with a total stranger to football\n- 10 tips for your visit to Old Trafford\n- Friendly football games all around London!\n- I will be watching the International Champions Cup in the FedexField Stadium (FC Barcelona vs Chelsea). Any tips?\n- Can I cheer for the home team in the away section?\n- Soccer Fan Mutinies, All Over England\n- Live in London? Fancy a football game?\n- Football Pubs in West London\n- Question about catching a game in London\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Football Travel\", \"purpose\": \"Guiding fans on attending matches and related activities\", \"emotion_tone\": \"Inquisitive\", \"description\": \"Posts about attending matches, traveling to football games, and related experiences\", \"inclusion_cues\": [\"attending game\", \"attending chelsea\", \"football pubs\", \"stadium fc\", \"attended match\", \"going chelsea\", \"foreign fans\", \"fans cheer\", \"away section\", \"trafford fan\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Football Travel\", \"purpose\": \"Recommendations for attending football games in London and abroad\", \"emotion_tone\": \"Inquisitive\", \"description\": \"Posts about attending football games, traveling to matches, and experiences in London and abroad.\", \"inclusion_cues\": [\"attending game\", \"attending chelsea\", \"football pubs\", \"stadium fc\", \"attended match\", \"going chelsea\", \"foreign fans\", \"fans cheer\", \"away section\", \"trafford fan\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Football Travel\", \"purpose\": \"Guiding fans on attending matches and related activities\", \"emotion_tone\": \"Inquisitive\", \"description\": \"Posts about attending football games, traveling to matches, and experiences in London and abroad.\", \"inclusion_cues\": [\"attending game\", \"attending chelsea\", \"football pubs\", \"stadium fc\", \"attended match\", \"going chelsea\", \"foreign fans\", \"fans cheer\", \"away section\", \"trafford fan\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 117,
+   "seed": 2158237318,
+   "seconds": 0.81
+  }
+ ]
+}

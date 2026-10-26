@@ -1,0 +1,204 @@
+{
+ "period_bin": 4,
+ "topic_id": 1343,
+ "keywords": "goal guangzhou, goal henan, goal tianjin, goal changchun, goal shanghai, cffc goal, scores shanghai, incredible header, hebei cffc, guangzhou evergrande, henan jianye, tianjin teda, oscar shanghai, mingjian, volley shanghai",
+ "n_sample_posts": 30,
+ "sample_ids": [
+  "6u2lag",
+  "76admx",
+  "70nwuv",
+  "71s0fn",
+  "79g8hw",
+  "6rsqw5",
+  "5xj5xm",
+  "6w5wss",
+  "65jj0m",
+  "79g45w",
+  "6up6wu",
+  "2mbme4",
+  "70cfmf",
+  "4g3x8t",
+  "631qs6",
+  "3ibp6v",
+  "65klpc",
+  "72eb82",
+  "3gund5",
+  "6tfw4y",
+  "48hc8a",
+  "6uot23",
+  "5yu9mu",
+  "6tfkih",
+  "6ur0mb",
+  "41ltkk",
+  "2mbgi9",
+  "5xa6u6",
+  "6uqw0k",
+  "3l1it8"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Goal Scoring",
+  "purpose": "Highlighting goal-scoring moments in football matches",
+  "emotion_tone": "excitement",
+  "description": "Posts related to goal goals, headers, and scoring moments in various football matches",
+  "inclusion_cues": [
+   "goal guangzhou",
+   "goal henan",
+   "goal tianjin",
+   "goal changchun",
+   "goal shanghai",
+   "cffc goal",
+   "scores shanghai",
+   "incredible header",
+   "hebei cffc",
+   "guangzhou evergrande"
+  ],
+  "n_cues_given": 15
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Goal Scoring",
+    "purpose": "Reporting of goals in football matches",
+    "emotion_tone": "Excitement",
+    "description": "Posts containing goal-related content, including headers, free-kicks, and other scoring events",
+    "inclusion_cues": [
+     "goal",
+     "header",
+     "free-kick",
+     "scorer",
+     "match",
+     "score"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Goal Scoring",
+    "purpose": "Highlighting goal-scoring moments in football matches",
+    "emotion_tone": "excitement",
+    "description": "Posts related to goal goals, headers, and scoring moments in various football matches",
+    "inclusion_cues": [
+     "goal guangzhou",
+     "goal henan",
+     "goal tianjin",
+     "goal changchun",
+     "goal shanghai",
+     "cffc goal",
+     "scores shanghai",
+     "incredible header",
+     "hebei cffc",
+     "guangzhou evergrande"
+    ],
+    "n_cues_given": 15
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: goal guangzhou, goal henan, goal tianjin, goal changchun, goal shanghai, cffc goal, scores shanghai, incredible header, hebei cffc, guangzhou evergrande, henan jianye, tianjin teda, oscar shanghai, mingjian, volley shanghai\nPosts (one per line, title first):\n- He Guan diving header goal vs Guangzhou Evergrande\n- Steve (Yanbian) 3rd goal vs Guangzhou Evergrande (90th Minute Equalizer)\n- Yang Boyu header goal vs Guangzhou Evergrande\n- Jung Woo-Young free-kick goal vs Guangzhou Evergrande\n- Ezequiel Lavezzi (Hebei CFFC) goal vs Guangzhou Evergrande\n- Zhang Wenzhao nice goal vs Tianjin [3-0].\n- Fan Xiaodong amazing volley Vs Shanghai SIPG\n- Wang Wanpeng header goal vs Shenzhen\n- Fredy Guarin goal vs Changchun Yatai [1-0]\n- Oscar (Shanghai SIPG) goal vs Henan Jianye\n- Wang Fan goal vs Shanghai SIPG\n- Zheng Zhi monster goal vs New Zealand\n- Li Yuanyi backheel chip goal vs Changchun Yatai\n- Cui Ren scores a screamer against Yanbian in the Chinese Super League\n- Burak Yilmaz goal vs Shanghai Shenhua [1-0]\n- Paulihno 44 yard free kick for Guangzhou\n- Ramires goal vs Henan Jianye [1-1] - Streamable\n- Li Yuanyi (Tianjin Teda) super strike goal\n- Asamoah Gyan scores Shanghai stunner\n- Steve header goal vs Changchun\n- Zhao Mingjian scores outside-of-the-boot beauty in the Asian CL vs Buriram United\n- Chen Fangzhou goal from distance against Dalian Chaoyue\n- Alan goal vs Hebei China Fortune.\n- Bořek Dočkal free kick goal vs Guangzhou Evergrande\n- Jaime Ayoví hat-trick vs Zhejiang Yiteng\n- Torabi's free kick screamer vs China\n- Amazing Goal by Zheng Zhi for China vs New Zealand\n- Chang-Min Lee with an open goal screamer - look at that path though.\n- Wang Gang incredible header goal vs Zhejiang Yiteng\n- Huang Bowen (Guangzhou Evergrande) goal vs. Kashiwa Reysol\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Goal Scoring\", \"purpose\": \"Reporting of goals in football matches\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts containing goal-related content, including headers, free-kicks, and other scoring events\", \"inclusion_cues\": [\"goal\", \"header\", \"free-kick\", \"scorer\", \"match\", \"score\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Goal Scoring",
+      "purpose": "Reporting of goals in football matches",
+      "emotion_tone": "Excitement",
+      "description": "Posts containing goal-related content, including headers, free-kicks, and other scoring events",
+      "inclusion_cues": [
+       "goal",
+       "header",
+       "free-kick",
+       "scorer",
+       "match",
+       "score"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 91,
+   "seed": 1695880623,
+   "seconds": 0.69
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: goal guangzhou, goal henan, goal tianjin, goal changchun, goal shanghai, cffc goal, scores shanghai, incredible header, hebei cffc, guangzhou evergrande, henan jianye, tianjin teda, oscar shanghai, mingjian, volley shanghai\nPosts (one per line, title first):\n- He Guan diving header goal vs Guangzhou Evergrande\n- Steve (Yanbian) 3rd goal vs Guangzhou Evergrande (90th Minute Equalizer)\n- Yang Boyu header goal vs Guangzhou Evergrande\n- Jung Woo-Young free-kick goal vs Guangzhou Evergrande\n- Ezequiel Lavezzi (Hebei CFFC) goal vs Guangzhou Evergrande\n- Zhang Wenzhao nice goal vs Tianjin [3-0].\n- Fan Xiaodong amazing volley Vs Shanghai SIPG\n- Wang Wanpeng header goal vs Shenzhen\n- Fredy Guarin goal vs Changchun Yatai [1-0]\n- Oscar (Shanghai SIPG) goal vs Henan Jianye\n- Wang Fan goal vs Shanghai SIPG\n- Zheng Zhi monster goal vs New Zealand\n- Li Yuanyi backheel chip goal vs Changchun Yatai\n- Cui Ren scores a screamer against Yanbian in the Chinese Super League\n- Burak Yilmaz goal vs Shanghai Shenhua [1-0]\n- Paulihno 44 yard free kick for Guangzhou\n- Ramires goal vs Henan Jianye [1-1] - Streamable\n- Li Yuanyi (Tianjin Teda) super strike goal\n- Asamoah Gyan scores Shanghai stunner\n- Steve header goal vs Changchun\n- Zhao Mingjian scores outside-of-the-boot beauty in the Asian CL vs Buriram United\n- Chen Fangzhou goal from distance against Dalian Chaoyue\n- Alan goal vs Hebei China Fortune.\n- Bořek Dočkal free kick goal vs Guangzhou Evergrande\n- Jaime Ayoví hat-trick vs Zhejiang Yiteng\n- Torabi's free kick screamer vs China\n- Amazing Goal by Zheng Zhi for China vs New Zealand\n- Chang-Min Lee with an open goal screamer - look at that path though.\n- Wang Gang incredible header goal vs Zhejiang Yiteng\n- Huang Bowen (Guangzhou Evergrande) goal vs. Kashiwa Reysol\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Goal Scoring\", \"purpose\": \"Highlighting goal-scoring moments in football matches\", \"emotion_tone\": \"excitement\", \"description\": \"Posts related to goal goals, headers, and scoring moments in various football matches\", \"inclusion_cues\": [\"goal guangzhou\", \"goal henan\", \"goal tianjin\", \"goal changchun\", \"goal shanghai\", \"cffc goal\", \"scores shanghai\", \"incredible header\", \"hebei cffc\", \"guangzhou evergrande\", \"henan jianye\", \"tianjin teda\", \"oscar shanghai\", \"mingjian\", \"volley shanghai\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Goal Scoring",
+      "purpose": "Highlighting goal-scoring moments in football matches",
+      "emotion_tone": "excitement",
+      "description": "Posts related to goal goals, headers, and scoring moments in various football matches",
+      "inclusion_cues": [
+       "goal guangzhou",
+       "goal henan",
+       "goal tianjin",
+       "goal changchun",
+       "goal shanghai",
+       "cffc goal",
+       "scores shanghai",
+       "incredible header",
+       "hebei cffc",
+       "guangzhou evergrande"
+      ],
+      "n_cues_given": 15
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 158,
+   "seed": 2410690725,
+   "seconds": 0.71
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: goal guangzhou, goal henan, goal tianjin, goal changchun, goal shanghai, cffc goal, scores shanghai, incredible header, hebei cffc, guangzhou evergrande, henan jianye, tianjin teda, oscar shanghai, mingjian, volley shanghai\nPosts (one per line, title first):\n- He Guan diving header goal vs Guangzhou Evergrande\n- Steve (Yanbian) 3rd goal vs Guangzhou Evergrande (90th Minute Equalizer)\n- Yang Boyu header goal vs Guangzhou Evergrande\n- Jung Woo-Young free-kick goal vs Guangzhou Evergrande\n- Ezequiel Lavezzi (Hebei CFFC) goal vs Guangzhou Evergrande\n- Zhang Wenzhao nice goal vs Tianjin [3-0].\n- Fan Xiaodong amazing volley Vs Shanghai SIPG\n- Wang Wanpeng header goal vs Shenzhen\n- Fredy Guarin goal vs Changchun Yatai [1-0]\n- Oscar (Shanghai SIPG) goal vs Henan Jianye\n- Wang Fan goal vs Shanghai SIPG\n- Zheng Zhi monster goal vs New Zealand\n- Li Yuanyi backheel chip goal vs Changchun Yatai\n- Cui Ren scores a screamer against Yanbian in the Chinese Super League\n- Burak Yilmaz goal vs Shanghai Shenhua [1-0]\n- Paulihno 44 yard free kick for Guangzhou\n- Ramires goal vs Henan Jianye [1-1] - Streamable\n- Li Yuanyi (Tianjin Teda) super strike goal\n- Asamoah Gyan scores Shanghai stunner\n- Steve header goal vs Changchun\n- Zhao Mingjian scores outside-of-the-boot beauty in the Asian CL vs Buriram United\n- Chen Fangzhou goal from distance against Dalian Chaoyue\n- Alan goal vs Hebei China Fortune.\n- Bořek Dočkal free kick goal vs Guangzhou Evergrande\n- Jaime Ayoví hat-trick vs Zhejiang Yiteng\n- Torabi's free kick screamer vs China\n- Amazing Goal by Zheng Zhi for China vs New Zealand\n- Chang-Min Lee with an open goal screamer - look at that path though.\n- Wang Gang incredible header goal vs Zhejiang Yiteng\n- Huang Bowen (Guangzhou Evergrande) goal vs. Kashiwa Reysol\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Goal Scoring\", \"purpose\": \"Reporting of goals in football matches\", \"emotion_tone\": \"Excitement\", \"description\": \"Posts containing goal-related content, including headers, free-kicks, and other scoring events\", \"inclusion_cues\": [\"goal\", \"header\", \"free-kick\", \"scorer\", \"match\", \"score\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Goal Scoring\", \"purpose\": \"Highlighting goal-scoring moments in football matches\", \"emotion_tone\": \"excitement\", \"description\": \"Posts related to goal goals, headers, and scoring moments in various football matches\", \"inclusion_cues\": [\"goal guangzhou\", \"goal henan\", \"goal tianjin\", \"goal changchun\", \"goal shanghai\", \"cffc goal\", \"scores shanghai\", \"incredible header\", \"hebei cffc\", \"guangzhou evergrande\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Goal Scoring\", \"purpose\": \"Highlighting goal-scoring moments in football matches\", \"emotion_tone\": \"excitement\", \"description\": \"Posts related to goal goals, headers, and scoring moments in various football matches\", \"inclusion_cues\": [\"goal guangzhou\", \"goal henan\", \"goal tianjin\", \"goal changchun\", \"goal shanghai\", \"cffc goal\", \"scores shanghai\", \"incredible header\", \"hebei cffc\", \"guangzhou evergrande\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 127,
+   "seed": 721259771,
+   "seconds": 0.71
+  }
+ ]
+}

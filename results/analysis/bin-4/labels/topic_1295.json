@@ -1,0 +1,176 @@
+{
+ "period_bin": 4,
+ "topic_id": 1295,
+ "keywords": "wilshere injured, wilshere, jack wilshere, hairline fracture, wilshere getting, wilshere miss, wilshere season, wilshere months, wilshere arsenal, season injury, injury jack, injured broken, injury blow, new injury, ankle ligament",
+ "n_sample_posts": 32,
+ "sample_ids": [
+  "66b7w3",
+  "3fzgt0",
+  "3l1bt1",
+  "66ae3k",
+  "3fy4c3",
+  "3l2e2r",
+  "7pmvrd",
+  "2nkgbl",
+  "6689nc",
+  "66ajox",
+  "665ygz",
+  "3fxm2r",
+  "7pissc",
+  "3fzu01",
+  "2ni25g",
+  "3fzvpo",
+  "2naxyu",
+  "3l1mf5",
+  "666jgu",
+  "48jafu",
+  "3fjm43",
+  "3l1pkm",
+  "666fhp",
+  "3fzhud",
+  "4fduit",
+  "3l197d",
+  "3fzla5",
+  "3fxjxs",
+  "7hpunj",
+  "74uk4v",
+  "6666nu",
+  "2nkubx"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Jack Wilshere Injury",
+  "purpose": "Report on Jack Wilshere's injuries and absence from football",
+  "emotion_tone": "Concern",
+  "description": "Posts discussing Jack Wilshere's injuries, including hairline fractures, ankle sprains, and surgeries, and his absence from the team or season.",
+  "inclusion_cues": [
+   "Jack Wilshere out for remainder of season after suffering hairline fracture of leg",
+   "BBC Sport - Jack Wilshere: Arsenal midfielder suffers hairline fracture",
+   "Jack Wilshere out for 3 months"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Jack Wilshere Injury",
+    "purpose": "Report and discuss Jack Wilshere's injuries and recovery",
+    "emotion_tone": "Concern and concern",
+    "description": "Posts related to Jack Wilshere's injuries, recovery, and impact on his career",
+    "inclusion_cues": [
+     "Jack Wilshere out for remainder of season after suffering hairline fracture of leg",
+     "BBC Sport - Jack Wilshere: Arsenal midfielder suffers hairline fracture",
+     "Wilshere suffers an ankle sprain - probably out for Bournemouth"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Jack Wilshere Injury",
+    "purpose": "Report on Jack Wilshere's injuries and absence from football",
+    "emotion_tone": "Concern",
+    "description": "Posts discussing Jack Wilshere's injuries, including hairline fractures, ankle sprains, and surgeries, and his absence from the team or season.",
+    "inclusion_cues": [
+     "Jack Wilshere out for remainder of season after suffering hairline fracture of leg",
+     "BBC Sport - Jack Wilshere: Arsenal midfielder suffers hairline fracture",
+     "Jack Wilshere out for 3 months"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: wilshere injured, wilshere, jack wilshere, hairline fracture, wilshere getting, wilshere miss, wilshere season, wilshere months, wilshere arsenal, season injury, injury jack, injured broken, injury blow, new injury, ankle ligament\nPosts (one per line, title first):\n- Jack Wilshere out for remainder of season after suffering hairline fracture of leg\n- BBC Sport - Jack Wilshere: Arsenal midfielder suffers hairline fracture\n- BREAKING: Arsenal midfielder Jack Wilshere requires surgery on hairline fracture in left leg #SSNHQ\n- AFC Bournemouth can confirm that midfielder Jack Wilshere has suffered a hairline fracture of his left fibula\n- Jack Wilshere injured again with suspected hairline fracture of his left fibula. Will be sidelined for 6 to 8 weeks.\n- Jack Wilshere out for 3 months\n- Wilshere suffers an ankle sprain - probably out for Bournemouth\n- Jack Wilshere's injury chart\n- Wilshere out of PL season with injury\n- Jack Wilshere out for season\n- Jack Wilshere has suffered yet another devastating injury blow as scan reveals broken leg - John Cross\n- Wilshere out for 6-8 weeks. So what now for him?\n- Jack Wilshere comes off injured\n- Jack Wilshire's hairline fracture is his 21st injury in six years\n- Wilshere out for 3 - 4 months\n- Wenger confirms that Wilsher has a hairline fracture.\n- Wilshere out for \"8-10 weeks\" with ankle ligament damage...\n- Jack Wilshere to undergo surgery\n- Jack Wilshere injured - broken leg\n- Jack Wilshere has been ruled out from a first team return until at least April\n- Ornstein: Jack Wilshere to miss more than 2-5 days with ankle injury\n- Jack Wilshere 'out until Christmas'\n- Jack Wilshere has been ruled out for the rest of the season with a broken leg\n- Wilshere suffers fracture, will miss upto 8 weeks\n- Jack Wilshere body is actually broken\n- Jack Wilshere could have metal plate inserted in leg after new injury blow\n- Wilshere suffers hairline ankle fracture - out for 6-8 weeks.\n- Jack Wilshere scan indicates hairline ankle fracture. Time-frame uncertain but 6-8 weeks likely and almost cert out of September Eng games\n- Wilshere not getting injured today\n- A complete breakdown of Jack Wilshere’s past injuries:\n- Jack Wilshere to miss the rest of the season with a broken leg\n- Official: Jack Wilshere out for 3 months after having ankle surgery.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Jack Wilshere Injury\", \"purpose\": \"Report and discuss Jack Wilshere's injuries and recovery\", \"emotion_tone\": \"Concern and concern\", \"description\": \"Posts related to Jack Wilshere's injuries, recovery, and impact on his career\", \"inclusion_cues\": [\"Jack Wilshere out for remainder of season after suffering hairline fracture of leg\", \"BBC Sport - Jack Wilshere: Arsenal midfielder suffers hairline fracture\", \"Wilshere suffers an ankle sprain - probably out for Bournemouth\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Jack Wilshere Injury",
+      "purpose": "Report and discuss Jack Wilshere's injuries and recovery",
+      "emotion_tone": "Concern and concern",
+      "description": "Posts related to Jack Wilshere's injuries, recovery, and impact on his career",
+      "inclusion_cues": [
+       "Jack Wilshere out for remainder of season after suffering hairline fracture of leg",
+       "BBC Sport - Jack Wilshere: Arsenal midfielder suffers hairline fracture",
+       "Wilshere suffers an ankle sprain - probably out for Bournemouth"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 127,
+   "seed": 3829009187,
+   "seconds": 0.69
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: wilshere injured, wilshere, jack wilshere, hairline fracture, wilshere getting, wilshere miss, wilshere season, wilshere months, wilshere arsenal, season injury, injury jack, injured broken, injury blow, new injury, ankle ligament\nPosts (one per line, title first):\n- Jack Wilshere out for remainder of season after suffering hairline fracture of leg\n- BBC Sport - Jack Wilshere: Arsenal midfielder suffers hairline fracture\n- BREAKING: Arsenal midfielder Jack Wilshere requires surgery on hairline fracture in left leg #SSNHQ\n- AFC Bournemouth can confirm that midfielder Jack Wilshere has suffered a hairline fracture of his left fibula\n- Jack Wilshere injured again with suspected hairline fracture of his left fibula. Will be sidelined for 6 to 8 weeks.\n- Jack Wilshere out for 3 months\n- Wilshere suffers an ankle sprain - probably out for Bournemouth\n- Jack Wilshere's injury chart\n- Wilshere out of PL season with injury\n- Jack Wilshere out for season\n- Jack Wilshere has suffered yet another devastating injury blow as scan reveals broken leg - John Cross\n- Wilshere out for 6-8 weeks. So what now for him?\n- Jack Wilshere comes off injured\n- Jack Wilshire's hairline fracture is his 21st injury in six years\n- Wilshere out for 3 - 4 months\n- Wenger confirms that Wilsher has a hairline fracture.\n- Wilshere out for \"8-10 weeks\" with ankle ligament damage...\n- Jack Wilshere to undergo surgery\n- Jack Wilshere injured - broken leg\n- Jack Wilshere has been ruled out from a first team return until at least April\n- Ornstein: Jack Wilshere to miss more than 2-5 days with ankle injury\n- Jack Wilshere 'out until Christmas'\n- Jack Wilshere has been ruled out for the rest of the season with a broken leg\n- Wilshere suffers fracture, will miss upto 8 weeks\n- Jack Wilshere body is actually broken\n- Jack Wilshere could have metal plate inserted in leg after new injury blow\n- Wilshere suffers hairline ankle fracture - out for 6-8 weeks.\n- Jack Wilshere scan indicates hairline ankle fracture. Time-frame uncertain but 6-8 weeks likely and almost cert out of September Eng games\n- Wilshere not getting injured today\n- A complete breakdown of Jack Wilshere’s past injuries:\n- Jack Wilshere to miss the rest of the season with a broken leg\n- Official: Jack Wilshere out for 3 months after having ankle surgery.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Jack Wilshere Injury\", \"purpose\": \"Report on Jack Wilshere's injuries and absence from football\", \"emotion_tone\": \"Concern\", \"description\": \"Posts discussing Jack Wilshere's injuries, including hairline fractures, ankle sprains, and surgeries, and his absence from the team or season.\", \"inclusion_cues\": [\"Jack Wilshere out for remainder of season after suffering hairline fracture of leg\", \"BBC Sport - Jack Wilshere: Arsenal midfielder suffers hairline fracture\", \"Jack Wilshere out for 3 months\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Jack Wilshere Injury",
+      "purpose": "Report on Jack Wilshere's injuries and absence from football",
+      "emotion_tone": "Concern",
+      "description": "Posts discussing Jack Wilshere's injuries, including hairline fractures, ankle sprains, and surgeries, and his absence from the team or season.",
+      "inclusion_cues": [
+       "Jack Wilshere out for remainder of season after suffering hairline fracture of leg",
+       "BBC Sport - Jack Wilshere: Arsenal midfielder suffers hairline fracture",
+       "Jack Wilshere out for 3 months"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 133,
+   "seed": 3349591232,
+   "seconds": 0.69
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: wilshere injured, wilshere, jack wilshere, hairline fracture, wilshere getting, wilshere miss, wilshere season, wilshere months, wilshere arsenal, season injury, injury jack, injured broken, injury blow, new injury, ankle ligament\nPosts (one per line, title first):\n- Jack Wilshere out for remainder of season after suffering hairline fracture of leg\n- BBC Sport - Jack Wilshere: Arsenal midfielder suffers hairline fracture\n- BREAKING: Arsenal midfielder Jack Wilshere requires surgery on hairline fracture in left leg #SSNHQ\n- AFC Bournemouth can confirm that midfielder Jack Wilshere has suffered a hairline fracture of his left fibula\n- Jack Wilshere injured again with suspected hairline fracture of his left fibula. Will be sidelined for 6 to 8 weeks.\n- Jack Wilshere out for 3 months\n- Wilshere suffers an ankle sprain - probably out for Bournemouth\n- Jack Wilshere's injury chart\n- Wilshere out of PL season with injury\n- Jack Wilshere out for season\n- Jack Wilshere has suffered yet another devastating injury blow as scan reveals broken leg - John Cross\n- Wilshere out for 6-8 weeks. So what now for him?\n- Jack Wilshere comes off injured\n- Jack Wilshire's hairline fracture is his 21st injury in six years\n- Wilshere out for 3 - 4 months\n- Wenger confirms that Wilsher has a hairline fracture.\n- Wilshere out for \"8-10 weeks\" with ankle ligament damage...\n- Jack Wilshere to undergo surgery\n- Jack Wilshere injured - broken leg\n- Jack Wilshere has been ruled out from a first team return until at least April\n- Ornstein: Jack Wilshere to miss more than 2-5 days with ankle injury\n- Jack Wilshere 'out until Christmas'\n- Jack Wilshere has been ruled out for the rest of the season with a broken leg\n- Wilshere suffers fracture, will miss upto 8 weeks\n- Jack Wilshere body is actually broken\n- Jack Wilshere could have metal plate inserted in leg after new injury blow\n- Wilshere suffers hairline ankle fracture - out for 6-8 weeks.\n- Jack Wilshere scan indicates hairline ankle fracture. Time-frame uncertain but 6-8 weeks likely and almost cert out of September Eng games\n- Wilshere not getting injured today\n- A complete breakdown of Jack Wilshere’s past injuries:\n- Jack Wilshere to miss the rest of the season with a broken leg\n- Official: Jack Wilshere out for 3 months after having ankle surgery.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Jack Wilshere Injury\", \"purpose\": \"Report and discuss Jack Wilshere's injuries and recovery\", \"emotion_tone\": \"Concern and concern\", \"description\": \"Posts related to Jack Wilshere's injuries, recovery, and impact on his career\", \"inclusion_cues\": [\"Jack Wilshere out for remainder of season after suffering hairline fracture of leg\", \"BBC Sport - Jack Wilshere: Arsenal midfielder suffers hairline fracture\", \"Wilshere suffers an ankle sprain - probably out for Bournemouth\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Jack Wilshere Injury\", \"purpose\": \"Report on Jack Wilshere's injuries and absence from football\", \"emotion_tone\": \"Concern\", \"description\": \"Posts discussing Jack Wilshere's injuries, including hairline fractures, ankle sprains, and surgeries, and his absence from the team or season.\", \"inclusion_cues\": [\"Jack Wilshere out for remainder of season after suffering hairline fracture of leg\", \"BBC Sport - Jack Wilshere: Arsenal midfielder suffers hairline fracture\", \"Jack Wilshere out for 3 months\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Jack Wilshere Injury\", \"purpose\": \"Report on Jack Wilshere's injuries and absence from football\", \"emotion_tone\": \"Concern\", \"description\": \"Posts discussing Jack Wilshere's injuries, including hairline fractures, ankle sprains, and surgeries, and his absence from the team or season.\", \"inclusion_cues\": [\"Jack Wilshere out for remainder of season after suffering hairline fracture of leg\", \"BBC Sport - Jack Wilshere: Arsenal midfielder suffers hairline fracture\", \"Jack Wilshere out for 3 months\"]]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 548)",
+   "n_tokens": 132,
+   "seed": 123094215,
+   "seconds": 0.77
+  }
+ ]
+}

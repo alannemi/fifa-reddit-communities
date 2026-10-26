@@ -1,0 +1,205 @@
+{
+ "period_bin": 2,
+ "topic_id": 821,
+ "keywords": "facebook newsfeed, facebook feed, newsfeed, popped newsfeed, news feed, facebook, facebook post, facebook right, facebook status, saw fb, section facebook, fb, facebook banter, gem fb, comment section",
+ "n_sample_posts": 30,
+ "sample_ids": [
+  "10g86j",
+  "sqrq6",
+  "sqrq6",
+  "sqlxm",
+  "sqlxm",
+  "1uil7b",
+  "s9sf9",
+  "naygf",
+  "vw9lq",
+  "sstt9",
+  "vw0ds",
+  "14m124",
+  "jhmr1",
+  "rw9gm",
+  "15ohj4",
+  "sh2u0",
+  "sqrhu",
+  "xh09x",
+  "11jfpz",
+  "rwapj",
+  "v73gz",
+  "1vy7uc",
+  "si5bx",
+  "ik6m0",
+  "vuvvo",
+  "sqlt9",
+  "1hfaca",
+  "sqlml",
+  "16ej6a",
+  "vv22h"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Facebook Newsfeed Engagement",
+  "purpose": "Tracking and analyzing football-related content on Facebook newsfeed",
+  "emotion_tone": "positive, enthusiastic, humorous",
+  "description": "Posts related to football, including newsfeed updates, status updates, and comment sections, focusing on engagement and humor.",
+  "inclusion_cues": [
+   "Facebook newsfeed",
+   "Facebook status",
+   "comment section",
+   "popped newsfeed",
+   "saw fb",
+   "facebook banter",
+   "gem fb",
+   "facebook right"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Facebook Newsfeed Engagement",
+    "purpose": "Tracking and analyzing football-related content on Facebook",
+    "emotion_tone": "enthusiastic, amused, intrigued",
+    "description": "Posts about football, Facebook newsfeed interactions, and related banter",
+    "inclusion_cues": [
+     "Facebook newsfeed",
+     "facebook feed",
+     "newsfeed",
+     "popped newsfeed",
+     "news feed",
+     "facebook",
+     "facebook post",
+     "facebook right",
+     "facebook status",
+     "saw fb"
+    ],
+    "n_cues_given": 15
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Facebook Newsfeed Engagement",
+    "purpose": "Tracking and analyzing football-related content on Facebook newsfeed",
+    "emotion_tone": "positive, enthusiastic, humorous",
+    "description": "Posts related to football, including newsfeed updates, status updates, and comment sections, focusing on engagement and humor.",
+    "inclusion_cues": [
+     "Facebook newsfeed",
+     "Facebook status",
+     "comment section",
+     "popped newsfeed",
+     "saw fb",
+     "facebook banter",
+     "gem fb",
+     "facebook right"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: facebook newsfeed, facebook feed, newsfeed, popped newsfeed, news feed, facebook, facebook post, facebook right, facebook status, saw fb, section facebook, fb, facebook banter, gem fb, comment section\nPosts (one per line, title first):\n- Finally found something that I can agree with today on my newsfeed [FB]\n- My Facebook newsfeed tonight...\n- My Facebook newsfeed tonight...\n- On my Facebook newsfeed right now...\n- On my Facebook newsfeed right now...\n- John Digweed posted this gem on fb\n- Never before has a facebook post prompted so much ignorance in the comment section\n- It's a trap! (From my facebook)\n- The only thing to have ever come up on my facebook feed that's worth submitting\n- Found this gold on Facebook...\n- Came across this pic on my newsfeed....\n- some lucky guys on my facebookwall\n- My Facebook status regarding today\n- Every once in a while Facebook banter page turns up some gold. [FB]\n- Found this gem on Facebook.\n- Not cool, Facebook...\n- My Facebook newsfeed tonight...\n- This was in my news feed today.\n- Came up on my newsfeed, thought I'd share\n- Every once in a while a facebook banter page will turn up some gold.\n- So this just popped up in my newsfeed...\n- Just spotted this on Facebook.\n- Somebody just posted this on facebook....\n- First time I've laughed at a facebook status in a while\n- Thank the lord for observant Facebookers, I was almost fooled!...\n- On my Facebook newsfeed right now...\n- Saw this on my FB feed.... lmao.\n- On my Facebook right now...\n- Saw this picture in my newsfeed. Interesting point of view.\n- Found this on my newsfeed.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Facebook Newsfeed Engagement\", \"purpose\": \"Tracking and analyzing football-related content on Facebook\", \"emotion_tone\": \"enthusiastic, amused, intrigued\", \"description\": \"Posts about football, Facebook newsfeed interactions, and related banter\", \"inclusion_cues\": [\"Facebook newsfeed\", \"facebook feed\", \"newsfeed\", \"popped newsfeed\", \"news feed\", \"facebook\", \"facebook post\", \"facebook right\", \"facebook status\", \"saw fb\", \"section facebook\", \"fb\", \"facebook banter\", \"gem fb\", \"comment section\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Facebook Newsfeed Engagement",
+      "purpose": "Tracking and analyzing football-related content on Facebook",
+      "emotion_tone": "enthusiastic, amused, intrigued",
+      "description": "Posts about football, Facebook newsfeed interactions, and related banter",
+      "inclusion_cues": [
+       "Facebook newsfeed",
+       "facebook feed",
+       "newsfeed",
+       "popped newsfeed",
+       "news feed",
+       "facebook",
+       "facebook post",
+       "facebook right",
+       "facebook status",
+       "saw fb"
+      ],
+      "n_cues_given": 15
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 137,
+   "seed": 1809745765,
+   "seconds": 0.49
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: facebook newsfeed, facebook feed, newsfeed, popped newsfeed, news feed, facebook, facebook post, facebook right, facebook status, saw fb, section facebook, fb, facebook banter, gem fb, comment section\nPosts (one per line, title first):\n- Finally found something that I can agree with today on my newsfeed [FB]\n- My Facebook newsfeed tonight...\n- My Facebook newsfeed tonight...\n- On my Facebook newsfeed right now...\n- On my Facebook newsfeed right now...\n- John Digweed posted this gem on fb\n- Never before has a facebook post prompted so much ignorance in the comment section\n- It's a trap! (From my facebook)\n- The only thing to have ever come up on my facebook feed that's worth submitting\n- Found this gold on Facebook...\n- Came across this pic on my newsfeed....\n- some lucky guys on my facebookwall\n- My Facebook status regarding today\n- Every once in a while Facebook banter page turns up some gold. [FB]\n- Found this gem on Facebook.\n- Not cool, Facebook...\n- My Facebook newsfeed tonight...\n- This was in my news feed today.\n- Came up on my newsfeed, thought I'd share\n- Every once in a while a facebook banter page will turn up some gold.\n- So this just popped up in my newsfeed...\n- Just spotted this on Facebook.\n- Somebody just posted this on facebook....\n- First time I've laughed at a facebook status in a while\n- Thank the lord for observant Facebookers, I was almost fooled!...\n- On my Facebook newsfeed right now...\n- Saw this on my FB feed.... lmao.\n- On my Facebook right now...\n- Saw this picture in my newsfeed. Interesting point of view.\n- Found this on my newsfeed.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Facebook Newsfeed Engagement\", \"purpose\": \"Tracking and analyzing football-related content on Facebook newsfeed\", \"emotion_tone\": \"positive, enthusiastic, humorous\", \"description\": \"Posts related to football, including newsfeed updates, status updates, and comment sections, focusing on engagement and humor.\", \"inclusion_cues\": [\"Facebook newsfeed\", \"Facebook status\", \"comment section\", \"popped newsfeed\", \"saw fb\", \"facebook banter\", \"gem fb\", \"facebook right\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Facebook Newsfeed Engagement",
+      "purpose": "Tracking and analyzing football-related content on Facebook newsfeed",
+      "emotion_tone": "positive, enthusiastic, humorous",
+      "description": "Posts related to football, including newsfeed updates, status updates, and comment sections, focusing on engagement and humor.",
+      "inclusion_cues": [
+       "Facebook newsfeed",
+       "Facebook status",
+       "comment section",
+       "popped newsfeed",
+       "saw fb",
+       "facebook banter",
+       "gem fb",
+       "facebook right"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 119,
+   "seed": 2370299591,
+   "seconds": 0.62
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: facebook newsfeed, facebook feed, newsfeed, popped newsfeed, news feed, facebook, facebook post, facebook right, facebook status, saw fb, section facebook, fb, facebook banter, gem fb, comment section\nPosts (one per line, title first):\n- Finally found something that I can agree with today on my newsfeed [FB]\n- My Facebook newsfeed tonight...\n- My Facebook newsfeed tonight...\n- On my Facebook newsfeed right now...\n- On my Facebook newsfeed right now...\n- John Digweed posted this gem on fb\n- Never before has a facebook post prompted so much ignorance in the comment section\n- It's a trap! (From my facebook)\n- The only thing to have ever come up on my facebook feed that's worth submitting\n- Found this gold on Facebook...\n- Came across this pic on my newsfeed....\n- some lucky guys on my facebookwall\n- My Facebook status regarding today\n- Every once in a while Facebook banter page turns up some gold. [FB]\n- Found this gem on Facebook.\n- Not cool, Facebook...\n- My Facebook newsfeed tonight...\n- This was in my news feed today.\n- Came up on my newsfeed, thought I'd share\n- Every once in a while a facebook banter page will turn up some gold.\n- So this just popped up in my newsfeed...\n- Just spotted this on Facebook.\n- Somebody just posted this on facebook....\n- First time I've laughed at a facebook status in a while\n- Thank the lord for observant Facebookers, I was almost fooled!...\n- On my Facebook newsfeed right now...\n- Saw this on my FB feed.... lmao.\n- On my Facebook right now...\n- Saw this picture in my newsfeed. Interesting point of view.\n- Found this on my newsfeed.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Facebook Newsfeed Engagement\", \"purpose\": \"Tracking and analyzing football-related content on Facebook\", \"emotion_tone\": \"enthusiastic, amused, intrigued\", \"description\": \"Posts about football, Facebook newsfeed interactions, and related banter\", \"inclusion_cues\": [\"Facebook newsfeed\", \"facebook feed\", \"newsfeed\", \"popped newsfeed\", \"news feed\", \"facebook\", \"facebook post\", \"facebook right\", \"facebook status\", \"saw fb\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Facebook Newsfeed Engagement\", \"purpose\": \"Tracking and analyzing football-related content on Facebook newsfeed\", \"emotion_tone\": \"positive, enthusiastic, humorous\", \"description\": \"Posts related to football, including newsfeed updates, status updates, and comment sections, focusing on engagement and humor.\", \"inclusion_cues\": [\"Facebook newsfeed\", \"Facebook status\", \"comment section\", \"popped newsfeed\", \"saw fb\", \"facebook banter\", \"gem fb\", \"facebook right\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Facebook Newsfeed Engagement\", \"purpose\": \"Tracking and analyzing football-related content on Facebook newsfeed\", \"emotion_tone\": \"positive, enthusiastic, humorous\", \"description\": \"Posts related to football, including newsfeed updates, status updates, and comment sections, focusing on engagement and humor.\", \"inclusion_cues\": [\"Facebook newsfeed\", \"Facebook status\", \"comment section\", \"popped newsfeed\", \"saw fb\", \"facebook banter\", \"gem fb\", \"facebook right\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 118,
+   "seed": 619648351,
+   "seconds": 0.58
+  }
+ ]
+}

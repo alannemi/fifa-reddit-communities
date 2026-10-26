@@ -1,0 +1,181 @@
+{
+ "period_bin": 2,
+ "topic_id": 898,
+ "keywords": "oviedo real, real oviedo, madrid buy, oviedo, buy real, club purchase, club real, spanish club, club financial, club bankruptcy, cazorla mata, shareholder, club ve, carlos slim, cazorla juan",
+ "n_sample_posts": 25,
+ "sample_ids": [
+  "13d17v",
+  "12w7lk",
+  "13f9xm",
+  "12w7th",
+  "132rru",
+  "12z57o",
+  "13075n",
+  "177ixc",
+  "1eh9tn",
+  "12it6n",
+  "141m2e",
+  "12us79",
+  "13crhk",
+  "12t1a0",
+  "12uqjf",
+  "170i8e",
+  "12yk9o",
+  "12linf",
+  "12wa5r",
+  "12oqq3",
+  "12oqxg",
+  "12p3mv",
+  "16xb8q",
+  "12khap",
+  "1g5jxr"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Real Oviedo Shareholder Campaign",
+  "purpose": "Promote shareholder participation in saving the club",
+  "emotion_tone": "Urgent/Supportive",
+  "description": "Posts about buying shares in Real Oviedo to support the club, including financial details, shareholder inquiries, and community efforts to save the club.",
+  "inclusion_cues": [
+   "Buying shares in Real Oviedo",
+   "Shareholder inquiries",
+   "Community efforts to save the club",
+   "Financial details about shares",
+   "Support for the club"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Shareholder Campaign",
+    "purpose": "Promote shareholder involvement in saving Real Oviedo",
+    "emotion_tone": "Urgent/Supportive",
+    "description": "Posts about buying shares to support Real Oviedo, including financial details, shareholder inquiries, and community efforts to save the club.",
+    "inclusion_cues": [
+     "Real Oviedo share purchase",
+     "Shareholder inquiries",
+     "Community support for club survival",
+     "Financial details about shares",
+     "Request for share certificates",
+     "Campaign to save the club"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Real Oviedo Shareholder Campaign",
+    "purpose": "Promote shareholder participation in saving the club",
+    "emotion_tone": "Urgent/Supportive",
+    "description": "Posts about buying shares in Real Oviedo to support the club, including financial details, shareholder inquiries, and community efforts to save the club.",
+    "inclusion_cues": [
+     "Buying shares in Real Oviedo",
+     "Shareholder inquiries",
+     "Community efforts to save the club",
+     "Financial details about shares",
+     "Support for the club"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: oviedo real, real oviedo, madrid buy, oviedo, buy real, club purchase, club real, spanish club, club financial, club bankruptcy, cazorla mata, shareholder, club ve, carlos slim, cazorla juan\nPosts (one per line, title first):\n- REAL OVIEDO ALERT! TODAY IS THE LAST DAY YOU CAN BUY SHARES OF REAL OVIEDO! PLEASE SUPPORT THIS AMAZING CLUB AND PURCHASE AT LEAST ONE SHARE!\n- Michu, Mata and Cazorla all buy shares in bid to save Real Oviedo\n- Can we as a community buy some shares of Real Oviedo?\n- Michu, Mata and Cazorla all buy shares in bid to save their former club, Real Oviedo\n- Hey r/soccer, I'm thinking of purchasing some shares in Real Oviedo. Does anyone have any information/advice on what this would entitle me to as a shareholder?! / After reading about the campaign currently running to help save the club I've been thinking of buying some shares (1-5). Will I have a vo\n- Real Madrid buy 100,000 euros in shares in Real Oviedo\n- With Real Oviedo threatened by extinction, an incredible fans campaign to rescue them is gaining international backing from ordinary supporters. Sid Lowe tells us all about the SOS Oviedo movement.\n- Did any one receive their shares?\n- The Real Oviedo Story\n- You can become a shareholder of Real Oviedo for €10.75 and help save the club from bankruptcy\n- Real Oviedo ? the remarkable story of a club the world united to save.\n- Real Oviedo --> Get Your Shares Before the Hedge Fund Crowd Butts In\n- Carlos Slim, the richest person in the world, has bought 2m euros worth of shares in Real Oviedo.\n- Cazorla, Mata & Michu bought shares in Real Oviedo\n- SOS Real Oviedo\n- Anyone who bought shares in Real Oviedo, have you received your shares in the mail yet? / Cause I bought shares and have not got anything yet\n- Did you buy your Real Oviedo shares? Help save a historic club with spare change!\n- Buy Shares in Struggling Spanish Club Real Oviedo\n- Santi Cazorla, Juan Mata and Michu have purchased shares in an effort to save their former club from financial crisis. [Real Oviedo]\n- Real Oviedo: The club that brought you Mata, Michu and Santi Cazorla\n- Real Oviedo announce that all foreign shareholders will have free tickets to attend Real Oviedo games whenever they visit\n- Real Oviedo needs our help!\n- Hey r/soccer, did anyone invest in Real Oviedo? If so, did you get your share certificates in the mail yet? / Just curious, I know they mentioned they would send them out in December (still haven't received mine).\n- Could this work in the US? Link in text... / Real Oviedo is auctioning off shares of the club. With the Crew up for sale, its fairly relevant... I'm wondering if you all think it could work here!\n- The Real Oviedo Story\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Shareholder Campaign\", \"purpose\": \"Promote shareholder involvement in saving Real Oviedo\", \"emotion_tone\": \"Urgent/Supportive\", \"description\": \"Posts about buying shares to support Real Oviedo, including financial details, shareholder inquiries, and community efforts to save the club.\", \"inclusion_cues\": [\"Real Oviedo share purchase\", \"Shareholder inquiries\", \"Community support for club survival\", \"Financial details about shares\", \"Request for share certificates\", \"Campaign to save the club\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Shareholder Campaign",
+      "purpose": "Promote shareholder involvement in saving Real Oviedo",
+      "emotion_tone": "Urgent/Supportive",
+      "description": "Posts about buying shares to support Real Oviedo, including financial details, shareholder inquiries, and community efforts to save the club.",
+      "inclusion_cues": [
+       "Real Oviedo share purchase",
+       "Shareholder inquiries",
+       "Community support for club survival",
+       "Financial details about shares",
+       "Request for share certificates",
+       "Campaign to save the club"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 124,
+   "seed": 3101865152,
+   "seconds": 0.66
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: oviedo real, real oviedo, madrid buy, oviedo, buy real, club purchase, club real, spanish club, club financial, club bankruptcy, cazorla mata, shareholder, club ve, carlos slim, cazorla juan\nPosts (one per line, title first):\n- REAL OVIEDO ALERT! TODAY IS THE LAST DAY YOU CAN BUY SHARES OF REAL OVIEDO! PLEASE SUPPORT THIS AMAZING CLUB AND PURCHASE AT LEAST ONE SHARE!\n- Michu, Mata and Cazorla all buy shares in bid to save Real Oviedo\n- Can we as a community buy some shares of Real Oviedo?\n- Michu, Mata and Cazorla all buy shares in bid to save their former club, Real Oviedo\n- Hey r/soccer, I'm thinking of purchasing some shares in Real Oviedo. Does anyone have any information/advice on what this would entitle me to as a shareholder?! / After reading about the campaign currently running to help save the club I've been thinking of buying some shares (1-5). Will I have a vo\n- Real Madrid buy 100,000 euros in shares in Real Oviedo\n- With Real Oviedo threatened by extinction, an incredible fans campaign to rescue them is gaining international backing from ordinary supporters. Sid Lowe tells us all about the SOS Oviedo movement.\n- Did any one receive their shares?\n- The Real Oviedo Story\n- You can become a shareholder of Real Oviedo for €10.75 and help save the club from bankruptcy\n- Real Oviedo ? the remarkable story of a club the world united to save.\n- Real Oviedo --> Get Your Shares Before the Hedge Fund Crowd Butts In\n- Carlos Slim, the richest person in the world, has bought 2m euros worth of shares in Real Oviedo.\n- Cazorla, Mata & Michu bought shares in Real Oviedo\n- SOS Real Oviedo\n- Anyone who bought shares in Real Oviedo, have you received your shares in the mail yet? / Cause I bought shares and have not got anything yet\n- Did you buy your Real Oviedo shares? Help save a historic club with spare change!\n- Buy Shares in Struggling Spanish Club Real Oviedo\n- Santi Cazorla, Juan Mata and Michu have purchased shares in an effort to save their former club from financial crisis. [Real Oviedo]\n- Real Oviedo: The club that brought you Mata, Michu and Santi Cazorla\n- Real Oviedo announce that all foreign shareholders will have free tickets to attend Real Oviedo games whenever they visit\n- Real Oviedo needs our help!\n- Hey r/soccer, did anyone invest in Real Oviedo? If so, did you get your share certificates in the mail yet? / Just curious, I know they mentioned they would send them out in December (still haven't received mine).\n- Could this work in the US? Link in text... / Real Oviedo is auctioning off shares of the club. With the Crew up for sale, its fairly relevant... I'm wondering if you all think it could work here!\n- The Real Oviedo Story\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Real Oviedo Shareholder Campaign\", \"purpose\": \"Promote shareholder participation in saving the club\", \"emotion_tone\": \"Urgent/Supportive\", \"description\": \"Posts about buying shares in Real Oviedo to support the club, including financial details, shareholder inquiries, and community efforts to save the club.\", \"inclusion_cues\": [\"Buying shares in Real Oviedo\", \"Shareholder inquiries\", \"Community efforts to save the club\", \"Financial details about shares\", \"Support for the club\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Real Oviedo Shareholder Campaign",
+      "purpose": "Promote shareholder participation in saving the club",
+      "emotion_tone": "Urgent/Supportive",
+      "description": "Posts about buying shares in Real Oviedo to support the club, including financial details, shareholder inquiries, and community efforts to save the club.",
+      "inclusion_cues": [
+       "Buying shares in Real Oviedo",
+       "Shareholder inquiries",
+       "Community efforts to save the club",
+       "Financial details about shares",
+       "Support for the club"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 124,
+   "seed": 2663108628,
+   "seconds": 0.5
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: oviedo real, real oviedo, madrid buy, oviedo, buy real, club purchase, club real, spanish club, club financial, club bankruptcy, cazorla mata, shareholder, club ve, carlos slim, cazorla juan\nPosts (one per line, title first):\n- REAL OVIEDO ALERT! TODAY IS THE LAST DAY YOU CAN BUY SHARES OF REAL OVIEDO! PLEASE SUPPORT THIS AMAZING CLUB AND PURCHASE AT LEAST ONE SHARE!\n- Michu, Mata and Cazorla all buy shares in bid to save Real Oviedo\n- Can we as a community buy some shares of Real Oviedo?\n- Michu, Mata and Cazorla all buy shares in bid to save their former club, Real Oviedo\n- Hey r/soccer, I'm thinking of purchasing some shares in Real Oviedo. Does anyone have any information/advice on what this would entitle me to as a shareholder?! / After reading about the campaign currently running to help save the club I've been thinking of buying some shares (1-5). Will I have a vo\n- Real Madrid buy 100,000 euros in shares in Real Oviedo\n- With Real Oviedo threatened by extinction, an incredible fans campaign to rescue them is gaining international backing from ordinary supporters. Sid Lowe tells us all about the SOS Oviedo movement.\n- Did any one receive their shares?\n- The Real Oviedo Story\n- You can become a shareholder of Real Oviedo for €10.75 and help save the club from bankruptcy\n- Real Oviedo ? the remarkable story of a club the world united to save.\n- Real Oviedo --> Get Your Shares Before the Hedge Fund Crowd Butts In\n- Carlos Slim, the richest person in the world, has bought 2m euros worth of shares in Real Oviedo.\n- Cazorla, Mata & Michu bought shares in Real Oviedo\n- SOS Real Oviedo\n- Anyone who bought shares in Real Oviedo, have you received your shares in the mail yet? / Cause I bought shares and have not got anything yet\n- Did you buy your Real Oviedo shares? Help save a historic club with spare change!\n- Buy Shares in Struggling Spanish Club Real Oviedo\n- Santi Cazorla, Juan Mata and Michu have purchased shares in an effort to save their former club from financial crisis. [Real Oviedo]\n- Real Oviedo: The club that brought you Mata, Michu and Santi Cazorla\n- Real Oviedo announce that all foreign shareholders will have free tickets to attend Real Oviedo games whenever they visit\n- Real Oviedo needs our help!\n- Hey r/soccer, did anyone invest in Real Oviedo? If so, did you get your share certificates in the mail yet? / Just curious, I know they mentioned they would send them out in December (still haven't received mine).\n- Could this work in the US? Link in text... / Real Oviedo is auctioning off shares of the club. With the Crew up for sale, its fairly relevant... I'm wondering if you all think it could work here!\n- The Real Oviedo Story\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Shareholder Campaign\", \"purpose\": \"Promote shareholder involvement in saving Real Oviedo\", \"emotion_tone\": \"Urgent/Supportive\", \"description\": \"Posts about buying shares to support Real Oviedo, including financial details, shareholder inquiries, and community efforts to save the club.\", \"inclusion_cues\": [\"Real Oviedo share purchase\", \"Shareholder inquiries\", \"Community support for club survival\", \"Financial details about shares\", \"Request for share certificates\", \"Campaign to save the club\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Real Oviedo Shareholder Campaign\", \"purpose\": \"Promote shareholder participation in saving the club\", \"emotion_tone\": \"Urgent/Supportive\", \"description\": \"Posts about buying shares in Real Oviedo to support the club, including financial details, shareholder inquiries, and community efforts to save the club.\", \"inclusion_cues\": [\"Buying shares in Real Oviedo\", \"Shareholder inquiries\", \"Community efforts to save the club\", \"Financial details about shares\", \"Support for the club\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Real Oviedo Shareholder Campaign\", \"purpose\": \"Promote shareholder participation in saving the club\", \"emotion_tone\": \"Urgent/Supportive\", \"description\": \"Posts about buying shares in Real Oviedo to support the club, including financial details, shareholder inquiries, and community efforts to save the club.\", \"inclusion_cues\": [\"Buying shares in Real Oviedo\", \"Shareholder inquiries\", \"Community efforts to save the club\", \"Financial details about shares\", \"Support for the club\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 123,
+   "seed": 73023285,
+   "seconds": 0.63
+  }
+ ]
+}

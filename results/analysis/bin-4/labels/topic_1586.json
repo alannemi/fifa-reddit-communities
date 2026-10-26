@@ -1,0 +1,188 @@
+{
+ "period_bin": 4,
+ "topic_id": 1586,
+ "keywords": "footballers paid, wages players, club wage, players earn, league earns, players paid, amateur players, football footballers, players british, players donate, paid bbc, paid weekly, women earn, donate wages, england matches",
+ "n_sample_posts": 25,
+ "sample_ids": [
+  "6oanyw",
+  "2yxf0p",
+  "2m1kn0",
+  "30rwky",
+  "3avek5",
+  "3ixhgw",
+  "3959za",
+  "2unipm",
+  "39fqw3",
+  "5xv7yg",
+  "3diqhm",
+  "3bhca9",
+  "2s4ush",
+  "2tfogz",
+  "4ecgct",
+  "3ch5s7",
+  "6o7k0u",
+  "3dtmib",
+  "3xqgrb",
+  "2l1hjz",
+  "4p0b42",
+  "3rw952",
+  "3ir2g6",
+  "300iki",
+  "6o8oky"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Wage Inquiry",
+  "purpose": "Explore earnings of football players across different tiers and leagues",
+  "emotion_tone": "curious",
+  "description": "Posts ask about salaries, wages, and payment structures for players in various football leagues, including amateur and professional tiers, and inquire about how much players earn in different divisions and contexts.",
+  "inclusion_cues": [
+   "How much do lower tier players make?",
+   "Do clubs pay players in lower tiers?",
+   "How much do players earn in the Championship?",
+   "What is the average wage of a Football League Two player?"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Wage Inquiry",
+    "purpose": "Explore player earnings in football",
+    "emotion_tone": "curious",
+    "description": "Posts about player salaries, wages, and earnings in football, including comparisons between tiers and international matches.",
+    "inclusion_cues": [
+     "players earn",
+     "club wage",
+     "wages players",
+     "footballers paid",
+     "players paid",
+     "amateur players",
+     "paid bbc",
+     "paid weekly",
+     "women earn",
+     "donate wages"
+    ],
+    "n_cues_given": 11
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Wage Inquiry",
+    "purpose": "Explore earnings of football players across different tiers and leagues",
+    "emotion_tone": "curious",
+    "description": "Posts ask about salaries, wages, and payment structures for players in various football leagues, including amateur and professional tiers, and inquire about how much players earn in different divisions and contexts.",
+    "inclusion_cues": [
+     "How much do lower tier players make?",
+     "Do clubs pay players in lower tiers?",
+     "How much do players earn in the Championship?",
+     "What is the average wage of a Football League Two player?"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: footballers paid, wages players, club wage, players earn, league earns, players paid, amateur players, football footballers, players british, players donate, paid bbc, paid weekly, women earn, donate wages, england matches\nPosts (one per line, title first):\n- Gary Linekar and Alan Shearer come 2nd (1.75-1.8m GBP per year) and 9th (400-450k per year) respectively in the BBC top earners list.\n- How much do lower tier players make? / As the title suggests I want to know approximately how much players in lower tier leagues make. Specifically players in the British third and fourth divisions.\n- Do Team's in the 5th division and below pay their players ? / After reading about the 8th division squad that won their FA cup match against a league 2 team I began to wonder about how much if anything these players get paid ? What does one playing for Ossett Albion A.F.C get paid ?\n- At what point in the league pyramid do clubs stop paying their players? / I was wondering how much a player playing in a league under League Two in England would make. And then I wondered at what point that low in the league pyramid do clubs stop paying their players?\n- How much do players get paid for international matches? / Obviously I wouldn't expect every country to pay the same amount, but I heard a few years ago that England's players donate their 'wages' for international duty to the Bobby Moore Foundation, but there was never any clue given on how much thi\n- Do footballers get paid weekly, monthly or yearly?\n- Do footballers get paid £ per week or per game?\n- How much do referees in the premier league make per game?\n- How much do women earn in football?\n- Playing Soccer With Billionaires Isn't Cheap\n- Does anyone know how much a NPSL player gets paid? If anything\n- What is the average wage of a Football League Two player?\n- How much do football players get paid for playing for their home countries?\n- How much do players in the Championship earn? What about League one and League 2? / Are there players making millions in Championship like there are in the Premier League?\n- ELI5 why weekly salary is referenced so much in the football world, rather than per season?\n- What happens to players wages when they are out injured? / I would assume they get paid less weekly, a percentage of their normal salary? They obviously miss out on match bonuses etc.\n- BBC pays Gary Lineker £1.75 million a year, Alan Shearer £400,000.\n- Do players get paid their full salary during the preseason?\n- BBC Sport - Torquay United players earn less than minimum wage\n- What are the wages of players in The Football League? / What do players in the Championship down to League Two make? Is there an up to date website?\n- How much do Premier League Managers Get Paid?\n- How much referee in Premier League earns? / i was always wondering how much $$$ per game referee recieves for one game from FA? edit: obviously i mean POUNDS not $$$\n- How well do the referees in the top leagues get paid?\n- Torquay United's players 'earn £375 a week' on average\n- Garry Lineker : Second Best paid BBC star with with £1.7 million per year\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Wage Inquiry\", \"purpose\": \"Explore player earnings in football\", \"emotion_tone\": \"curious\", \"description\": \"Posts about player salaries, wages, and earnings in football, including comparisons between tiers and international matches.\", \"inclusion_cues\": [\"players earn\", \"club wage\", \"wages players\", \"footballers paid\", \"players paid\", \"amateur players\", \"paid bbc\", \"paid weekly\", \"women earn\", \"donate wages\", \"england matches\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Wage Inquiry",
+      "purpose": "Explore player earnings in football",
+      "emotion_tone": "curious",
+      "description": "Posts about player salaries, wages, and earnings in football, including comparisons between tiers and international matches.",
+      "inclusion_cues": [
+       "players earn",
+       "club wage",
+       "wages players",
+       "footballers paid",
+       "players paid",
+       "amateur players",
+       "paid bbc",
+       "paid weekly",
+       "women earn",
+       "donate wages"
+      ],
+      "n_cues_given": 11
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 119,
+   "seed": 1429792048,
+   "seconds": 0.73
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: footballers paid, wages players, club wage, players earn, league earns, players paid, amateur players, football footballers, players british, players donate, paid bbc, paid weekly, women earn, donate wages, england matches\nPosts (one per line, title first):\n- Gary Linekar and Alan Shearer come 2nd (1.75-1.8m GBP per year) and 9th (400-450k per year) respectively in the BBC top earners list.\n- How much do lower tier players make? / As the title suggests I want to know approximately how much players in lower tier leagues make. Specifically players in the British third and fourth divisions.\n- Do Team's in the 5th division and below pay their players ? / After reading about the 8th division squad that won their FA cup match against a league 2 team I began to wonder about how much if anything these players get paid ? What does one playing for Ossett Albion A.F.C get paid ?\n- At what point in the league pyramid do clubs stop paying their players? / I was wondering how much a player playing in a league under League Two in England would make. And then I wondered at what point that low in the league pyramid do clubs stop paying their players?\n- How much do players get paid for international matches? / Obviously I wouldn't expect every country to pay the same amount, but I heard a few years ago that England's players donate their 'wages' for international duty to the Bobby Moore Foundation, but there was never any clue given on how much thi\n- Do footballers get paid weekly, monthly or yearly?\n- Do footballers get paid £ per week or per game?\n- How much do referees in the premier league make per game?\n- How much do women earn in football?\n- Playing Soccer With Billionaires Isn't Cheap\n- Does anyone know how much a NPSL player gets paid? If anything\n- What is the average wage of a Football League Two player?\n- How much do football players get paid for playing for their home countries?\n- How much do players in the Championship earn? What about League one and League 2? / Are there players making millions in Championship like there are in the Premier League?\n- ELI5 why weekly salary is referenced so much in the football world, rather than per season?\n- What happens to players wages when they are out injured? / I would assume they get paid less weekly, a percentage of their normal salary? They obviously miss out on match bonuses etc.\n- BBC pays Gary Lineker £1.75 million a year, Alan Shearer £400,000.\n- Do players get paid their full salary during the preseason?\n- BBC Sport - Torquay United players earn less than minimum wage\n- What are the wages of players in The Football League? / What do players in the Championship down to League Two make? Is there an up to date website?\n- How much do Premier League Managers Get Paid?\n- How much referee in Premier League earns? / i was always wondering how much $$$ per game referee recieves for one game from FA? edit: obviously i mean POUNDS not $$$\n- How well do the referees in the top leagues get paid?\n- Torquay United's players 'earn £375 a week' on average\n- Garry Lineker : Second Best paid BBC star with with £1.7 million per year\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Wage Inquiry\", \"purpose\": \"Explore earnings of football players across different tiers and leagues\", \"emotion_tone\": \"curious\", \"description\": \"Posts ask about salaries, wages, and payment structures for players in various football leagues, including amateur and professional tiers, and inquire about how much players earn in different divisions and contexts.\", \"inclusion_cues\": [\"How much do lower tier players make?\", \"Do clubs pay players in lower tiers?\", \"How much do players earn in the Championship?\", \"What is the average wage of a Football League Two player?\"]}]}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Wage Inquiry",
+      "purpose": "Explore earnings of football players across different tiers and leagues",
+      "emotion_tone": "curious",
+      "description": "Posts ask about salaries, wages, and payment structures for players in various football leagues, including amateur and professional tiers, and inquire about how much players earn in different divisions and contexts.",
+      "inclusion_cues": [
+       "How much do lower tier players make?",
+       "Do clubs pay players in lower tiers?",
+       "How much do players earn in the Championship?",
+       "What is the average wage of a Football League Two player?"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 132,
+   "seed": 3181388996,
+   "seconds": 0.75
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: footballers paid, wages players, club wage, players earn, league earns, players paid, amateur players, football footballers, players british, players donate, paid bbc, paid weekly, women earn, donate wages, england matches\nPosts (one per line, title first):\n- Gary Linekar and Alan Shearer come 2nd (1.75-1.8m GBP per year) and 9th (400-450k per year) respectively in the BBC top earners list.\n- How much do lower tier players make? / As the title suggests I want to know approximately how much players in lower tier leagues make. Specifically players in the British third and fourth divisions.\n- Do Team's in the 5th division and below pay their players ? / After reading about the 8th division squad that won their FA cup match against a league 2 team I began to wonder about how much if anything these players get paid ? What does one playing for Ossett Albion A.F.C get paid ?\n- At what point in the league pyramid do clubs stop paying their players? / I was wondering how much a player playing in a league under League Two in England would make. And then I wondered at what point that low in the league pyramid do clubs stop paying their players?\n- How much do players get paid for international matches? / Obviously I wouldn't expect every country to pay the same amount, but I heard a few years ago that England's players donate their 'wages' for international duty to the Bobby Moore Foundation, but there was never any clue given on how much thi\n- Do footballers get paid weekly, monthly or yearly?\n- Do footballers get paid £ per week or per game?\n- How much do referees in the premier league make per game?\n- How much do women earn in football?\n- Playing Soccer With Billionaires Isn't Cheap\n- Does anyone know how much a NPSL player gets paid? If anything\n- What is the average wage of a Football League Two player?\n- How much do football players get paid for playing for their home countries?\n- How much do players in the Championship earn? What about League one and League 2? / Are there players making millions in Championship like there are in the Premier League?\n- ELI5 why weekly salary is referenced so much in the football world, rather than per season?\n- What happens to players wages when they are out injured? / I would assume they get paid less weekly, a percentage of their normal salary? They obviously miss out on match bonuses etc.\n- BBC pays Gary Lineker £1.75 million a year, Alan Shearer £400,000.\n- Do players get paid their full salary during the preseason?\n- BBC Sport - Torquay United players earn less than minimum wage\n- What are the wages of players in The Football League? / What do players in the Championship down to League Two make? Is there an up to date website?\n- How much do Premier League Managers Get Paid?\n- How much referee in Premier League earns? / i was always wondering how much $$$ per game referee recieves for one game from FA? edit: obviously i mean POUNDS not $$$\n- How well do the referees in the top leagues get paid?\n- Torquay United's players 'earn £375 a week' on average\n- Garry Lineker : Second Best paid BBC star with with £1.7 million per year\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Wage Inquiry\", \"purpose\": \"Explore player earnings in football\", \"emotion_tone\": \"curious\", \"description\": \"Posts about player salaries, wages, and earnings in football, including comparisons between tiers and international matches.\", \"inclusion_cues\": [\"players earn\", \"club wage\", \"wages players\", \"footballers paid\", \"players paid\", \"amateur players\", \"paid bbc\", \"paid weekly\", \"women earn\", \"donate wages\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Wage Inquiry\", \"purpose\": \"Explore earnings of football players across different tiers and leagues\", \"emotion_tone\": \"curious\", \"description\": \"Posts ask about salaries, wages, and payment structures for players in various football leagues, including amateur and professional tiers, and inquire about how much players earn in different divisions and contexts.\", \"inclusion_cues\": [\"How much do lower tier players make?\", \"Do clubs pay players in lower tiers?\", \"How much do players earn in the Championship?\", \"What is the average wage of a Football League Two player?\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Wage Inquiry\", \"purpose\": \"Explore earnings of football players across different tiers and leagues\", \"emotion_tone\": \"curious\", \"description\": \"Posts ask about salaries, wages, and payment structures for players in various football leagues, including amateur and professional tiers, and inquire about how much players earn in different divisions and contexts.\", \"inclusion_cues\": [\"How much do lower tier players make?\", \"Do clubs pay players in lower tiers?\", \"How much do players earn in the Championship?\", \"What is the average wage of a Football League Two player?\"]]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 618)",
+   "n_tokens": 132,
+   "seed": 1933259833,
+   "seconds": 0.96
+  }
+ ]
+}

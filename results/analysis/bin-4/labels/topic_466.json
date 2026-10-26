@@ -1,0 +1,194 @@
+{
+ "period_bin": 4,
+ "topic_id": 466,
+ "keywords": "bayern training, training bayern, barcelona training, training barca, football media, class bayern, barca team, madrid box, napoli players, live barca, bayern munichs, cologne bayern, break bayern, stadium psg, rafinha fc",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "669fnn",
+  "2m0ut7",
+  "3b30y9",
+  "2im36e",
+  "4bh544",
+  "7s38xe",
+  "4e6blx",
+  "2u36v3",
+  "4eqh5j",
+  "49tlfi",
+  "6577wy",
+  "6zvtpg",
+  "6xt30i",
+  "49usiz",
+  "3dmfff",
+  "361rhj",
+  "3mzmp1",
+  "3rc4mr",
+  "3om8n9",
+  "6usry7",
+  "4v9zdf",
+  "7t77ax",
+  "2ysbef",
+  "60i2ac",
+  "3txl5h",
+  "2u38g0",
+  "2wg1yl",
+  "3okogx",
+  "68n6fe",
+  "5yw1hj",
+  "4758yx",
+  "325aiy",
+  "3d9jwp",
+  "4tjda4",
+  "30v8if",
+  "2sp755",
+  "4suo90",
+  "7qfe0s",
+  "33ci3o",
+  "3bqg72"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Bayern Training",
+  "purpose": "Highlighting Bayern's training activities and media coverage",
+  "emotion_tone": "enthusiastic",
+  "description": "Posts about Bayern's training sessions, media coverage, and related topics",
+  "inclusion_cues": [
+   "Bayern training sessions",
+   "media coverage",
+   "training drills",
+   "live training streams",
+   "Bayern players"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Bayern Training",
+    "purpose": "Highlighting Bayern's training activities and media coverage",
+    "emotion_tone": "Positive, enthusiastic",
+    "description": "Posts about Bayern's training sessions, media coverage, and fan reactions, including live streams and comparisons to other clubs.",
+    "inclusion_cues": [
+     "Bayern training",
+     "training bayern",
+     "bayern munichs",
+     "bayern keep ball",
+     "bayern streaming live training session"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Bayern Training",
+    "purpose": "Highlighting Bayern's training activities and media coverage",
+    "emotion_tone": "enthusiastic",
+    "description": "Posts about Bayern's training sessions, media coverage, and related topics",
+    "inclusion_cues": [
+     "Bayern training sessions",
+     "media coverage",
+     "training drills",
+     "live training streams",
+     "Bayern players"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: bayern training, training bayern, barcelona training, training barca, football media, class bayern, barca team, madrid box, napoli players, live barca, bayern munichs, cologne bayern, break bayern, stadium psg, rafinha fc\nPosts (one per line, title first):\n- French media before Barca/PSG compared to Italian media before tonight's Barca/Juve game\n- Just another day in Guardiolaland. Bayern players training hard with a keep-up ring-around-the-rosey bucket-ball race.\n- FC Bayern just released a video with old footage of training sessions with Franz Beckenbauer, Sepp Maier & Co\n- 'FCB Classic' Training Session featuring a young Schweinsteiger, Long haired Demichelis and the likes of Ballack, Kahn , Makaay and Toni!\n- Benitez once said he was asked more tactical questions in his first interview in Italy than his whole career in England. What's the Italian football media like compared to the English ones? / Benitez might be a bit hyperbolic but that gets me into wondering how the football media in Italy works. I h\n- FC Bayern Training (??? TOUCHES IN 18 sec) ft.Robert Lewandowski, Arturo...\n- KELECHI IHEANACHO TRAINING GROUND WONDERGOAL!\n- Revealed:Real Madrid training ground secrets\n- Borussia Dortmund are preparing for tonight's game against Liverpool by training at non-league Marine FC in Crosby.\n- Bayern training drill\n- New training grounds for PSG, expected for 2019\n- Borussia Dortmund Training Session at Wembley Ahead of Tottenham Clash\n- Real Madrid - Training highlights\n- Napoli players having fun on the training.\n- Just a regular training at Ajax AFC\n- Diego Costa & Atletico Madrid players having fun during training.\n- Atletico Madrid box training ahead of CL game against Benfica\n- Barcelona training session is being streamed live right now\n- AWESOME: Metz U15's training drill.\n- Just a casual training drill\n- Barcelona having a fun session while playing bubble soccer in the training\n- SECRET INSIDE BARCELONA TRAINING GROUND REVEALED●2018\n- French media on Chelsea getting knocked out the CL\n- Real Madrid fans\n- Fickle Madrid fans.\n- Revealed: Real Madrid training ground secrets\n- Class is permanent. Wesley Sneijder during today's indoor training.\n- FC Metz U15 training\n- Atlético Madrid Live Training Session\n- Real Madrid stars relax in training ahead of Betis clash\n- Barcelona Training In Arsenals Stadium\n- Bayern keep ball in training. Very impressive\n- Bayern streaming live training session atm\n- Real Madrid training in Montreal\n- Spain XI Del Bosque trained with at Amsterdam Arena. All different players from Ukraine match.\n- While visiting Munich I attended a Bayern training - here is the album\n- Typical BVB football training\n- Madrid fans be like...\n- Funny Real Madrid Training Before Champions league Match vs Atletico Mad...\n- For those interested, here's a livestream of Bayern's first training session this season\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bayern Training\", \"purpose\": \"Highlighting Bayern's training activities and media coverage\", \"emotion_tone\": \"Positive, enthusiastic\", \"description\": \"Posts about Bayern's training sessions, media coverage, and fan reactions, including live streams and comparisons to other clubs.\", \"inclusion_cues\": [\"Bayern training\", \"training bayern\", \"bayern munichs\", \"bayern keep ball\", \"bayern streaming live training session\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Bayern Training",
+      "purpose": "Highlighting Bayern's training activities and media coverage",
+      "emotion_tone": "Positive, enthusiastic",
+      "description": "Posts about Bayern's training sessions, media coverage, and fan reactions, including live streams and comparisons to other clubs.",
+      "inclusion_cues": [
+       "Bayern training",
+       "training bayern",
+       "bayern munichs",
+       "bayern keep ball",
+       "bayern streaming live training session"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 109,
+   "seed": 2483369035,
+   "seconds": 1.97
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: bayern training, training bayern, barcelona training, training barca, football media, class bayern, barca team, madrid box, napoli players, live barca, bayern munichs, cologne bayern, break bayern, stadium psg, rafinha fc\nPosts (one per line, title first):\n- French media before Barca/PSG compared to Italian media before tonight's Barca/Juve game\n- Just another day in Guardiolaland. Bayern players training hard with a keep-up ring-around-the-rosey bucket-ball race.\n- FC Bayern just released a video with old footage of training sessions with Franz Beckenbauer, Sepp Maier & Co\n- 'FCB Classic' Training Session featuring a young Schweinsteiger, Long haired Demichelis and the likes of Ballack, Kahn , Makaay and Toni!\n- Benitez once said he was asked more tactical questions in his first interview in Italy than his whole career in England. What's the Italian football media like compared to the English ones? / Benitez might be a bit hyperbolic but that gets me into wondering how the football media in Italy works. I h\n- FC Bayern Training (??? TOUCHES IN 18 sec) ft.Robert Lewandowski, Arturo...\n- KELECHI IHEANACHO TRAINING GROUND WONDERGOAL!\n- Revealed:Real Madrid training ground secrets\n- Borussia Dortmund are preparing for tonight's game against Liverpool by training at non-league Marine FC in Crosby.\n- Bayern training drill\n- New training grounds for PSG, expected for 2019\n- Borussia Dortmund Training Session at Wembley Ahead of Tottenham Clash\n- Real Madrid - Training highlights\n- Napoli players having fun on the training.\n- Just a regular training at Ajax AFC\n- Diego Costa & Atletico Madrid players having fun during training.\n- Atletico Madrid box training ahead of CL game against Benfica\n- Barcelona training session is being streamed live right now\n- AWESOME: Metz U15's training drill.\n- Just a casual training drill\n- Barcelona having a fun session while playing bubble soccer in the training\n- SECRET INSIDE BARCELONA TRAINING GROUND REVEALED●2018\n- French media on Chelsea getting knocked out the CL\n- Real Madrid fans\n- Fickle Madrid fans.\n- Revealed: Real Madrid training ground secrets\n- Class is permanent. Wesley Sneijder during today's indoor training.\n- FC Metz U15 training\n- Atlético Madrid Live Training Session\n- Real Madrid stars relax in training ahead of Betis clash\n- Barcelona Training In Arsenals Stadium\n- Bayern keep ball in training. Very impressive\n- Bayern streaming live training session atm\n- Real Madrid training in Montreal\n- Spain XI Del Bosque trained with at Amsterdam Arena. All different players from Ukraine match.\n- While visiting Munich I attended a Bayern training - here is the album\n- Typical BVB football training\n- Madrid fans be like...\n- Funny Real Madrid Training Before Champions league Match vs Atletico Mad...\n- For those interested, here's a livestream of Bayern's first training session this season\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bayern Training\", \"purpose\": \"Highlighting Bayern's training activities and media coverage\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts about Bayern's training sessions, media coverage, and related topics\", \"inclusion_cues\": [\"Bayern training sessions\", \"media coverage\", \"training drills\", \"live training streams\", \"Bayern players\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Bayern Training",
+      "purpose": "Highlighting Bayern's training activities and media coverage",
+      "emotion_tone": "enthusiastic",
+      "description": "Posts about Bayern's training sessions, media coverage, and related topics",
+      "inclusion_cues": [
+       "Bayern training sessions",
+       "media coverage",
+       "training drills",
+       "live training streams",
+       "Bayern players"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 94,
+   "seed": 1231800221,
+   "seconds": 1.61
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: bayern training, training bayern, barcelona training, training barca, football media, class bayern, barca team, madrid box, napoli players, live barca, bayern munichs, cologne bayern, break bayern, stadium psg, rafinha fc\nPosts (one per line, title first):\n- French media before Barca/PSG compared to Italian media before tonight's Barca/Juve game\n- Just another day in Guardiolaland. Bayern players training hard with a keep-up ring-around-the-rosey bucket-ball race.\n- FC Bayern just released a video with old footage of training sessions with Franz Beckenbauer, Sepp Maier & Co\n- 'FCB Classic' Training Session featuring a young Schweinsteiger, Long haired Demichelis and the likes of Ballack, Kahn , Makaay and Toni!\n- Benitez once said he was asked more tactical questions in his first interview in Italy than his whole career in England. What's the Italian football media like compared to the English ones? / Benitez might be a bit hyperbolic but that gets me into wondering how the football media in Italy works. I h\n- FC Bayern Training (??? TOUCHES IN 18 sec) ft.Robert Lewandowski, Arturo...\n- KELECHI IHEANACHO TRAINING GROUND WONDERGOAL!\n- Revealed:Real Madrid training ground secrets\n- Borussia Dortmund are preparing for tonight's game against Liverpool by training at non-league Marine FC in Crosby.\n- Bayern training drill\n- New training grounds for PSG, expected for 2019\n- Borussia Dortmund Training Session at Wembley Ahead of Tottenham Clash\n- Real Madrid - Training highlights\n- Napoli players having fun on the training.\n- Just a regular training at Ajax AFC\n- Diego Costa & Atletico Madrid players having fun during training.\n- Atletico Madrid box training ahead of CL game against Benfica\n- Barcelona training session is being streamed live right now\n- AWESOME: Metz U15's training drill.\n- Just a casual training drill\n- Barcelona having a fun session while playing bubble soccer in the training\n- SECRET INSIDE BARCELONA TRAINING GROUND REVEALED●2018\n- French media on Chelsea getting knocked out the CL\n- Real Madrid fans\n- Fickle Madrid fans.\n- Revealed: Real Madrid training ground secrets\n- Class is permanent. Wesley Sneijder during today's indoor training.\n- FC Metz U15 training\n- Atlético Madrid Live Training Session\n- Real Madrid stars relax in training ahead of Betis clash\n- Barcelona Training In Arsenals Stadium\n- Bayern keep ball in training. Very impressive\n- Bayern streaming live training session atm\n- Real Madrid training in Montreal\n- Spain XI Del Bosque trained with at Amsterdam Arena. All different players from Ukraine match.\n- While visiting Munich I attended a Bayern training - here is the album\n- Typical BVB football training\n- Madrid fans be like...\n- Funny Real Madrid Training Before Champions league Match vs Atletico Mad...\n- For those interested, here's a livestream of Bayern's first training session this season\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bayern Training\", \"purpose\": \"Highlighting Bayern's training activities and media coverage\", \"emotion_tone\": \"Positive, enthusiastic\", \"description\": \"Posts about Bayern's training sessions, media coverage, and fan reactions, including live streams and comparisons to other clubs.\", \"inclusion_cues\": [\"Bayern training\", \"training bayern\", \"bayern munichs\", \"bayern keep ball\", \"bayern streaming live training session\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bayern Training\", \"purpose\": \"Highlighting Bayern's training activities and media coverage\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts about Bayern's training sessions, media coverage, and related topics\", \"inclusion_cues\": [\"Bayern training sessions\", \"media coverage\", \"training drills\", \"live training streams\", \"Bayern players\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Bayern Training\", \"purpose\": \"Highlighting Bayern's training activities and media coverage\", \"emotion_tone\": \"Enthusiastic\", \"description\": \"Posts about Bayern's training sessions, media coverage, and related topics\", \"inclusion_cues\": [\"Bayern training sessions\", \"media coverage\", \"training drills\", \"live training streams\", \"Bayern players\"]]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 392)",
+   "n_tokens": 93,
+   "seed": 599958483,
+   "seconds": 0.78
+  }
+ ]
+}

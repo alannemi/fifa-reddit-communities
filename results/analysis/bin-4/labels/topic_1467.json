@@ -1,0 +1,182 @@
+{
+ "period_bin": 4,
+ "topic_id": 1467,
+ "keywords": "penalty foul, clear penalty, wasn penalty, deliberate penalty, foul goal, goal foul, definitely penalty, goal referee, penalty looks, referee right, deserved penalty, offside goals, referee called, incorrectly ruled, goals fair",
+ "n_sample_posts": 27,
+ "sample_ids": [
+  "3dwpim",
+  "37v0fu",
+  "3dwrvd",
+  "2nktsb",
+  "5wczyq",
+  "503xpo",
+  "3ut7a6",
+  "6tmqf1",
+  "5fc27c",
+  "2lrprp",
+  "3gmepw",
+  "5ybeyn",
+  "3d2vzg",
+  "2wstbn",
+  "4bx2bz",
+  "45y7v9",
+  "7h30fd",
+  "2rzlvh",
+  "2oygk7",
+  "77ymsi",
+  "2z618r",
+  "3dwoqr",
+  "5qf7z0",
+  "30a1bf",
+  "3zpnm6",
+  "3ea2m4",
+  "2jmkg9"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "penalty controversy",
+  "purpose": "analyze disputes over penalties in football",
+  "emotion_tone": "confused",
+  "description": "Posts discussing whether a penalty was correctly called, disputed, or misjudged, often with emotional reactions to the decision.",
+  "inclusion_cues": [
+   "penalty called",
+   "dispute over penalty",
+   "emotional reaction to penalty decision",
+   "discussion of foul or goal"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "penalty_decisions",
+    "purpose": "analyze referee rulings on penalties",
+    "emotion_tone": "confused",
+    "description": "Posts discussing whether an incident was a penalty, with questions about the decision's basis and legitimacy.",
+    "inclusion_cues": [
+     "penalty",
+     "referee",
+     "decision",
+     "goal",
+     "foul",
+     "offside",
+     "fair"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "penalty controversy",
+    "purpose": "analyze disputes over penalties in football",
+    "emotion_tone": "confused",
+    "description": "Posts discussing whether a penalty was correctly called, disputed, or misjudged, often with emotional reactions to the decision.",
+    "inclusion_cues": [
+     "penalty called",
+     "dispute over penalty",
+     "emotional reaction to penalty decision",
+     "discussion of foul or goal"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: penalty foul, clear penalty, wasn penalty, deliberate penalty, foul goal, goal foul, definitely penalty, goal referee, penalty looks, referee right, deserved penalty, offside goals, referee called, incorrectly ruled, goals fair\nPosts (one per line, title first):\n- It was definitely a penalty, and the better team won\n- Could someone please explain to me the basis of this penalty? What kind of justification could one give for this decision? Neill tackles, Grosso runs into him ON PURPOSE to get contact. Where's the penalty?\n- Looks like a clear penalty, and the better team won\n- Malmö FF vs Juventus, Second goal. How is that tackle not a freekick? Referee is right behind them aswell.\n- So far this season, Manchester United have scored 8 offside goals, and had 9 fair goals against them incorrectly ruled out.\n- Should this have been a foul or a goal ?\n- how is this not a clear penalty?\n- The BIGGEST Mistake of the Season So Far... or Was it the Ref's Fault?\n- So this happened in the Honduran league... is it a penalty?\n- No penalty was given. (shitty source)\n- Penalty or not?\n- Was it a penalty?\n- Should This be a Penalty Kick? (Canada vs Brazil)\n- Besides not seeing the incident, is there any legitimate reason for this not being a penalty?\n- I wonder if it was a goal\n- The referee called this a penalty\n- Is this a penalty guys?\n- Penalty challenge on Ledley\n- Funny statistic: Ajax has not been offside in the whole group stage of this years Champions League\n- This angle clearly shows that the ball didn't go out of play. Fair goal!!\n- So is this a goal or a foul on GK?\n- So was it or wasn't it a penalty?\n- How was this a penalty?\n- Is this a valid penalty goal ?\n- Poll: Was Allen's assist last night deliberate or not?\n- Am I the only one who thought it was a deserved penalty?\n- Probably should have been a penalty (Bradford v Sheff Utd)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"penalty_decisions\", \"purpose\": \"analyze referee rulings on penalties\", \"emotion_tone\": \"confused\", \"description\": \"Posts discussing whether an incident was a penalty, with questions about the decision's basis and legitimacy.\", \"inclusion_cues\": [\"penalty\", \"referee\", \"decision\", \"goal\", \"foul\", \"offside\", \"fair\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "penalty_decisions",
+      "purpose": "analyze referee rulings on penalties",
+      "emotion_tone": "confused",
+      "description": "Posts discussing whether an incident was a penalty, with questions about the decision's basis and legitimacy.",
+      "inclusion_cues": [
+       "penalty",
+       "referee",
+       "decision",
+       "goal",
+       "foul",
+       "offside",
+       "fair"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 95,
+   "seed": 335072027,
+   "seconds": 1.12
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: penalty foul, clear penalty, wasn penalty, deliberate penalty, foul goal, goal foul, definitely penalty, goal referee, penalty looks, referee right, deserved penalty, offside goals, referee called, incorrectly ruled, goals fair\nPosts (one per line, title first):\n- It was definitely a penalty, and the better team won\n- Could someone please explain to me the basis of this penalty? What kind of justification could one give for this decision? Neill tackles, Grosso runs into him ON PURPOSE to get contact. Where's the penalty?\n- Looks like a clear penalty, and the better team won\n- Malmö FF vs Juventus, Second goal. How is that tackle not a freekick? Referee is right behind them aswell.\n- So far this season, Manchester United have scored 8 offside goals, and had 9 fair goals against them incorrectly ruled out.\n- Should this have been a foul or a goal ?\n- how is this not a clear penalty?\n- The BIGGEST Mistake of the Season So Far... or Was it the Ref's Fault?\n- So this happened in the Honduran league... is it a penalty?\n- No penalty was given. (shitty source)\n- Penalty or not?\n- Was it a penalty?\n- Should This be a Penalty Kick? (Canada vs Brazil)\n- Besides not seeing the incident, is there any legitimate reason for this not being a penalty?\n- I wonder if it was a goal\n- The referee called this a penalty\n- Is this a penalty guys?\n- Penalty challenge on Ledley\n- Funny statistic: Ajax has not been offside in the whole group stage of this years Champions League\n- This angle clearly shows that the ball didn't go out of play. Fair goal!!\n- So is this a goal or a foul on GK?\n- So was it or wasn't it a penalty?\n- How was this a penalty?\n- Is this a valid penalty goal ?\n- Poll: Was Allen's assist last night deliberate or not?\n- Am I the only one who thought it was a deserved penalty?\n- Probably should have been a penalty (Bradford v Sheff Utd)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"penalty controversy\", \"purpose\": \"analyze disputes over penalties in football\", \"emotion_tone\": \"confused\", \"description\": \"Posts discussing whether a penalty was correctly called, disputed, or misjudged, often with emotional reactions to the decision.\", \"inclusion_cues\": [\"penalty called\", \"dispute over penalty\", \"emotional reaction to penalty decision\", \"discussion of foul or goal\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "penalty controversy",
+      "purpose": "analyze disputes over penalties in football",
+      "emotion_tone": "confused",
+      "description": "Posts discussing whether a penalty was correctly called, disputed, or misjudged, often with emotional reactions to the decision.",
+      "inclusion_cues": [
+       "penalty called",
+       "dispute over penalty",
+       "emotional reaction to penalty decision",
+       "discussion of foul or goal"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 101,
+   "seed": 833833108,
+   "seconds": 1.27
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: penalty foul, clear penalty, wasn penalty, deliberate penalty, foul goal, goal foul, definitely penalty, goal referee, penalty looks, referee right, deserved penalty, offside goals, referee called, incorrectly ruled, goals fair\nPosts (one per line, title first):\n- It was definitely a penalty, and the better team won\n- Could someone please explain to me the basis of this penalty? What kind of justification could one give for this decision? Neill tackles, Grosso runs into him ON PURPOSE to get contact. Where's the penalty?\n- Looks like a clear penalty, and the better team won\n- Malmö FF vs Juventus, Second goal. How is that tackle not a freekick? Referee is right behind them aswell.\n- So far this season, Manchester United have scored 8 offside goals, and had 9 fair goals against them incorrectly ruled out.\n- Should this have been a foul or a goal ?\n- how is this not a clear penalty?\n- The BIGGEST Mistake of the Season So Far... or Was it the Ref's Fault?\n- So this happened in the Honduran league... is it a penalty?\n- No penalty was given. (shitty source)\n- Penalty or not?\n- Was it a penalty?\n- Should This be a Penalty Kick? (Canada vs Brazil)\n- Besides not seeing the incident, is there any legitimate reason for this not being a penalty?\n- I wonder if it was a goal\n- The referee called this a penalty\n- Is this a penalty guys?\n- Penalty challenge on Ledley\n- Funny statistic: Ajax has not been offside in the whole group stage of this years Champions League\n- This angle clearly shows that the ball didn't go out of play. Fair goal!!\n- So is this a goal or a foul on GK?\n- So was it or wasn't it a penalty?\n- How was this a penalty?\n- Is this a valid penalty goal ?\n- Poll: Was Allen's assist last night deliberate or not?\n- Am I the only one who thought it was a deserved penalty?\n- Probably should have been a penalty (Bradford v Sheff Utd)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"penalty_decisions\", \"purpose\": \"analyze referee rulings on penalties\", \"emotion_tone\": \"confused\", \"description\": \"Posts discussing whether an incident was a penalty, with questions about the decision's basis and legitimacy.\", \"inclusion_cues\": [\"penalty\", \"referee\", \"decision\", \"goal\", \"foul\", \"offside\", \"fair\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"penalty controversy\", \"purpose\": \"analyze disputes over penalties in football\", \"emotion_tone\": \"confused\", \"description\": \"Posts discussing whether a penalty was correctly called, disputed, or misjudged, often with emotional reactions to the decision.\", \"inclusion_cues\": [\"penalty called\", \"dispute over penalty\", \"emotional reaction to penalty decision\", \"discussion of foul or goal\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"penalty_decisions\", \"purpose\": \"analyze referee rulings on penalties\", \"emotion_tone\": \"confused\", \"description\": \"Posts discussing whether an incident was a penalty, with questions about the decision's basis and legitimacy.\", \"inclusion_cues\": [\"penalty\", \"referee\", \"decision\", \"goal\", \"foul\", \"offside\", \"fair\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 94,
+   "seed": 2745451722,
+   "seconds": 0.99
+  }
+ ]
+}

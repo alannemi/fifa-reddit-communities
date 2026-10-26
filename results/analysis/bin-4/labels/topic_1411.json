@@ -1,0 +1,190 @@
+{
+ "period_bin": 4,
+ "topic_id": 1411,
+ "keywords": "stream celtic, scottish championship, falkirk stadium, falkirk livingston, scottish premiership, scottish league, league live, berwick rangers, live celtic, rangers kilmarnock, celtic dundee, celtic, aberdeen fk, motherwell fc, premiership motherwell",
+ "n_sample_posts": 29,
+ "sample_ids": [
+  "3ynfbe",
+  "3yncce",
+  "3yn2e4",
+  "3ynf71",
+  "3ynbj7",
+  "3cpi9x",
+  "3ynbra",
+  "7c75h5",
+  "3yngt9",
+  "3ynbyd",
+  "37yihd",
+  "3ynixx",
+  "2zhcgp",
+  "3yn44d",
+  "3ynb4k",
+  "3cwl8g",
+  "6bh7x8",
+  "3yn4a0",
+  "3yncm0",
+  "6bh9ni",
+  "3yn4mk",
+  "3yn2m5",
+  "3yn2dv",
+  "3ymobp",
+  "76c0d9",
+  "3yn8td",
+  "3ymnj9",
+  "3yn0v9",
+  "3yn4gj"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Live Streaming Football Matches",
+  "purpose": "Provide live streaming of football matches",
+  "emotion_tone": "enthusiastic",
+  "description": "Posts related to live streaming of football matches, including Scottish Championship, Scottish League, and Scottish Premiership matches, with focus on Falkirk, Rangers, Celtic, and other teams.",
+  "inclusion_cues": [
+   "Live Stream Scottish Championship Falkirk vs Livingston",
+   "Live HD Falkirk vs Livingston at Falkirk Stadium",
+   "Live Stream Falkirk vs Livingston at Falkirk Stadium",
+   "Live Stream Scottish League One Cowdenbeath v Ayr",
+   "Live Stream Ross County vs Kilmarnock at Victoria Park Dingwall",
+   "Live Stream Scottish Premiership Ross County vs Kilmarnock"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Live Streaming Football Matches",
+    "purpose": "Provide live streaming of football matches",
+    "emotion_tone": "enthusiastic",
+    "description": "Posts related to live streaming of football matches, including Scottish Championship, Scottish League, and Scottish Premiership matches, with focus on Falkirk, Rangers, Celtic, and other teams.",
+    "inclusion_cues": [
+     "Live Stream",
+     "Watch",
+     "Live HD",
+     "Live Stream Falkirk vs Livingston",
+     "Scottish Championship",
+     "Scottish League",
+     "Scottish Premiership"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Live Streaming Football Matches",
+    "purpose": "Provide live streaming of football matches",
+    "emotion_tone": "enthusiastic",
+    "description": "Posts related to live streaming of football matches, including Scottish Championship, Scottish League, and Scottish Premiership matches, with focus on Falkirk, Rangers, Celtic, and other teams.",
+    "inclusion_cues": [
+     "Live Stream Scottish Championship Falkirk vs Livingston",
+     "Live HD Falkirk vs Livingston at Falkirk Stadium",
+     "Live Stream Falkirk vs Livingston at Falkirk Stadium",
+     "Live Stream Scottish League One Cowdenbeath v Ayr",
+     "Live Stream Ross County vs Kilmarnock at Victoria Park Dingwall",
+     "Live Stream Scottish Premiership Ross County vs Kilmarnock"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: stream celtic, scottish championship, falkirk stadium, falkirk livingston, scottish premiership, scottish league, league live, berwick rangers, live celtic, rangers kilmarnock, celtic dundee, celtic, aberdeen fk, motherwell fc, premiership motherwell\nPosts (one per line, title first):\n- Live Stream Scottish Championship Falkirk vs Livingston\n- Live HD Scottish Championship Falkirk vs Livingston\n- Watch Falkirk vs Livingston Scottish Championship\n- Live Stream Falkirk vs Livingston Scottish Championship\n- Live HD Falkirk vs Livingston Scottish Championship\n- Request a stream to the game FC Aberdeen vs FK Shkendija.\n- Watch Scottish League One Cowdenbeath v Ayr\n- Dundee United vs Crusaders LIVE\n- Live HD Falkirk vs Livingston at Falkirk Stadium\n- Watch Cowdenbeath v Ayr Scottish League One\n- Motherwell FC vs Rangers FC SPFL Play-off Final Live Stream\n- Live Stream Falkirk vs Livingston at Falkirk Stadium\n- Celtic vs dundee united online live streaming\n- Live Stream Scottish League One Airdrieonians vs Stenhousemuir\n- Watch Scottish League One Airdrieonians vs Stenhousemuir\n- {{{Berwick Rangers vs Kilmarnock}}} Live Stream NOW>>>> Watch\n- Motherwell vs Kilmarnock Soccer Live Stream - Scottish Premiership\n- Live Stream Airdrieonians vs Stenhousemuir at Excelsior Stadium\n- Live HD Falkirk vs Livingston at Falkirk Stadium\n- Ross County vs Hamilton Soccer Live Stream - Scottish Premiership\n- Live Stream Cowdenbeath v Ayr Scottish League One\n- Watch Scottish Championship Falkirk vs Livingston\n- Live Stream Ross County vs Kilmarnock at Victoria Park Dingwall\n- Watch Falkirk vs Livingston Soccer Live Stream\n- Celtic vs Dundee Live\n- Watch Ross County vs Kilmarnock at Victoria Park Dingwall\n- Watch Falkirk v Livingston Live Stream Football\n- Live Stream Scottish Premiership Ross County vs Kilmarnock\n- Live Stream Scottish League One Cowdenbeath v Ayr\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Live Streaming Football Matches\", \"purpose\": \"Provide live streaming of football matches\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts related to live streaming of football matches, including Scottish Championship, Scottish League, and Scottish Premiership matches, with focus on Falkirk, Rangers, Celtic, and other teams.\", \"inclusion_cues\": [\"Live Stream\", \"Watch\", \"Live HD\", \"Live Stream Falkirk vs Livingston\", \"Scottish Championship\", \"Scottish League\", \"Scottish Premiership\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Live Streaming Football Matches",
+      "purpose": "Provide live streaming of football matches",
+      "emotion_tone": "enthusiastic",
+      "description": "Posts related to live streaming of football matches, including Scottish Championship, Scottish League, and Scottish Premiership matches, with focus on Falkirk, Rangers, Celtic, and other teams.",
+      "inclusion_cues": [
+       "Live Stream",
+       "Watch",
+       "Live HD",
+       "Live Stream Falkirk vs Livingston",
+       "Scottish Championship",
+       "Scottish League",
+       "Scottish Premiership"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 123,
+   "seed": 2925309645,
+   "seconds": 0.94
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: stream celtic, scottish championship, falkirk stadium, falkirk livingston, scottish premiership, scottish league, league live, berwick rangers, live celtic, rangers kilmarnock, celtic dundee, celtic, aberdeen fk, motherwell fc, premiership motherwell\nPosts (one per line, title first):\n- Live Stream Scottish Championship Falkirk vs Livingston\n- Live HD Scottish Championship Falkirk vs Livingston\n- Watch Falkirk vs Livingston Scottish Championship\n- Live Stream Falkirk vs Livingston Scottish Championship\n- Live HD Falkirk vs Livingston Scottish Championship\n- Request a stream to the game FC Aberdeen vs FK Shkendija.\n- Watch Scottish League One Cowdenbeath v Ayr\n- Dundee United vs Crusaders LIVE\n- Live HD Falkirk vs Livingston at Falkirk Stadium\n- Watch Cowdenbeath v Ayr Scottish League One\n- Motherwell FC vs Rangers FC SPFL Play-off Final Live Stream\n- Live Stream Falkirk vs Livingston at Falkirk Stadium\n- Celtic vs dundee united online live streaming\n- Live Stream Scottish League One Airdrieonians vs Stenhousemuir\n- Watch Scottish League One Airdrieonians vs Stenhousemuir\n- {{{Berwick Rangers vs Kilmarnock}}} Live Stream NOW>>>> Watch\n- Motherwell vs Kilmarnock Soccer Live Stream - Scottish Premiership\n- Live Stream Airdrieonians vs Stenhousemuir at Excelsior Stadium\n- Live HD Falkirk vs Livingston at Falkirk Stadium\n- Ross County vs Hamilton Soccer Live Stream - Scottish Premiership\n- Live Stream Cowdenbeath v Ayr Scottish League One\n- Watch Scottish Championship Falkirk vs Livingston\n- Live Stream Ross County vs Kilmarnock at Victoria Park Dingwall\n- Watch Falkirk vs Livingston Soccer Live Stream\n- Celtic vs Dundee Live\n- Watch Ross County vs Kilmarnock at Victoria Park Dingwall\n- Watch Falkirk v Livingston Live Stream Football\n- Live Stream Scottish Premiership Ross County vs Kilmarnock\n- Live Stream Scottish League One Cowdenbeath v Ayr\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Live Streaming Football Matches\", \"purpose\": \"Provide live streaming of football matches\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts related to live streaming of football matches, including Scottish Championship, Scottish League, and Scottish Premiership matches, with focus on Falkirk, Rangers, Celtic, and other teams.\", \"inclusion_cues\": [\"Live Stream Scottish Championship Falkirk vs Livingston\", \"Live HD Falkirk vs Livingston at Falkirk Stadium\", \"Live Stream Falkirk vs Livingston at Falkirk Stadium\", \"Live Stream Scottish League One Cowdenbeath v Ayr\", \"Live Stream Ross County vs Kilmarnock at Victoria Park Dingwall\", \"Live Stream Scottish Premiership Ross County vs Kilmarnock\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Live Streaming Football Matches",
+      "purpose": "Provide live streaming of football matches",
+      "emotion_tone": "enthusiastic",
+      "description": "Posts related to live streaming of football matches, including Scottish Championship, Scottish League, and Scottish Premiership matches, with focus on Falkirk, Rangers, Celtic, and other teams.",
+      "inclusion_cues": [
+       "Live Stream Scottish Championship Falkirk vs Livingston",
+       "Live HD Falkirk vs Livingston at Falkirk Stadium",
+       "Live Stream Falkirk vs Livingston at Falkirk Stadium",
+       "Live Stream Scottish League One Cowdenbeath v Ayr",
+       "Live Stream Ross County vs Kilmarnock at Victoria Park Dingwall",
+       "Live Stream Scottish Premiership Ross County vs Kilmarnock"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 166,
+   "seed": 3605742039,
+   "seconds": 0.84
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: stream celtic, scottish championship, falkirk stadium, falkirk livingston, scottish premiership, scottish league, league live, berwick rangers, live celtic, rangers kilmarnock, celtic dundee, celtic, aberdeen fk, motherwell fc, premiership motherwell\nPosts (one per line, title first):\n- Live Stream Scottish Championship Falkirk vs Livingston\n- Live HD Scottish Championship Falkirk vs Livingston\n- Watch Falkirk vs Livingston Scottish Championship\n- Live Stream Falkirk vs Livingston Scottish Championship\n- Live HD Falkirk vs Livingston Scottish Championship\n- Request a stream to the game FC Aberdeen vs FK Shkendija.\n- Watch Scottish League One Cowdenbeath v Ayr\n- Dundee United vs Crusaders LIVE\n- Live HD Falkirk vs Livingston at Falkirk Stadium\n- Watch Cowdenbeath v Ayr Scottish League One\n- Motherwell FC vs Rangers FC SPFL Play-off Final Live Stream\n- Live Stream Falkirk vs Livingston at Falkirk Stadium\n- Celtic vs dundee united online live streaming\n- Live Stream Scottish League One Airdrieonians vs Stenhousemuir\n- Watch Scottish League One Airdrieonians vs Stenhousemuir\n- {{{Berwick Rangers vs Kilmarnock}}} Live Stream NOW>>>> Watch\n- Motherwell vs Kilmarnock Soccer Live Stream - Scottish Premiership\n- Live Stream Airdrieonians vs Stenhousemuir at Excelsior Stadium\n- Live HD Falkirk vs Livingston at Falkirk Stadium\n- Ross County vs Hamilton Soccer Live Stream - Scottish Premiership\n- Live Stream Cowdenbeath v Ayr Scottish League One\n- Watch Scottish Championship Falkirk vs Livingston\n- Live Stream Ross County vs Kilmarnock at Victoria Park Dingwall\n- Watch Falkirk vs Livingston Soccer Live Stream\n- Celtic vs Dundee Live\n- Watch Ross County vs Kilmarnock at Victoria Park Dingwall\n- Watch Falkirk v Livingston Live Stream Football\n- Live Stream Scottish Premiership Ross County vs Kilmarnock\n- Live Stream Scottish League One Cowdenbeath v Ayr\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Live Streaming Football Matches\", \"purpose\": \"Provide live streaming of football matches\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts related to live streaming of football matches, including Scottish Championship, Scottish League, and Scottish Premiership matches, with focus on Falkirk, Rangers, Celtic, and other teams.\", \"inclusion_cues\": [\"Live Stream\", \"Watch\", \"Live HD\", \"Live Stream Falkirk vs Livingston\", \"Scottish Championship\", \"Scottish League\", \"Scottish Premiership\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Live Streaming Football Matches\", \"purpose\": \"Provide live streaming of football matches\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts related to live streaming of football matches, including Scottish Championship, Scottish League, and Scottish Premiership matches, with focus on Falkirk, Rangers, Celtic, and other teams.\", \"inclusion_cues\": [\"Live Stream Scottish Championship Falkirk vs Livingston\", \"Live HD Falkirk vs Livingston at Falkirk Stadium\", \"Live Stream Falkirk vs Livingston at Falkirk Stadium\", \"Live Stream Scottish League One Cowdenbeath v Ayr\", \"Live Stream Ross County vs Kilmarnock at Victoria Park Dingwall\", \"Live Stream Scottish Premiership Ross County vs Kilmarnock\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Live Streaming Football Matches\", \"purpose\": \"Provide live streaming of football matches\", \"emotion_tone\": \"enthusiastic\", \"description\": \"Posts related to live streaming of football matches, including Scottish Championship, Scottish League, and Scottish Premiership matches, with focus on Falkirk, Rangers, Celtic, and other teams.\", \"inclusion_cues\": [\"Live Stream Scottish Championship Falkirk vs Livingston\", \"Live HD Falkirk vs Livingston at Falkirk Stadium\", \"Live Stream Falkirk vs Livingston at Falkirk Stadium\", \"Live Stream Scottish League One Cowdenbeath v Ayr\", \"Live Stream Ross County vs Kilmarnock at Victoria Park Dingwall\", \"Live Stream Scottish Premiership Ross County vs Kilmarnock\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 165,
+   "seed": 2576852325,
+   "seconds": 0.71
+  }
+ ]
+}

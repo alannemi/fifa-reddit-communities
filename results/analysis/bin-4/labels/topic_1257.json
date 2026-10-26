@@ -1,0 +1,182 @@
+{
+ "period_bin": 4,
+ "topic_id": 1257,
+ "keywords": "fans celtic, pitch celtic, games celtic, fans vandalise, derby celtic, glasgow derby, section celtic, celtic park, millwall supporters, barnsley fans, trafford toilets, hillsborough slurs, barnsley fan, game barnsley, barnsley play",
+ "n_sample_posts": 33,
+ "sample_ids": [
+  "5lex53",
+  "523olp",
+  "52habj",
+  "3iu16e",
+  "3iupe0",
+  "5239fc",
+  "523jtp",
+  "78hxke",
+  "3iv0he",
+  "3s12ar",
+  "52g3ki",
+  "2ix9vn",
+  "5eeyq5",
+  "2t5uos",
+  "4lm4oy",
+  "3l63uc",
+  "2y9q0m",
+  "4xh69s",
+  "4lkyvy",
+  "5eagf6",
+  "52405w",
+  "3iuyje",
+  "59knki",
+  "59n4ej",
+  "3s1858",
+  "5e9mdf",
+  "4wmdfe",
+  "3q2czn",
+  "525bb4",
+  "3iu7z1",
+  "4b7vxy",
+  "4cunef",
+  "3qb9yw"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Celtic Toilet Vandalism",
+  "purpose": "Report on vandalism of Celtic Park toilets",
+  "emotion_tone": "Angry",
+  "description": "Posts about Celtic Park toilets being damaged by fans, including Rangers, Fenerbache, and others, with responses from Celtic fans.",
+  "inclusion_cues": [
+   "Celtic fans retaliate to Rangers fans smashing their toilets back in September.",
+   "Rangers fans vandalized Celtic Park's toilets today.",
+   "Celtic fans respond to Fenerbahçe threats with #ThatsNotAKnife campaign.",
+   "Toilets in the Emirates Stadium after halftime today."
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Celtic Toilet Vandalism",
+    "purpose": "Document and report on incidents of toilet destruction by Celtic fans",
+    "emotion_tone": "Angry, frustrated, and outraged",
+    "description": "Posts about Celtic fans vandalizing toilets, including responses to threats and actions taken by fans to address the issue",
+    "inclusion_cues": [
+     "Celtic fans retaliate to Rangers fans smashing their toilets back in September.",
+     "Rangers fans vandalized Celtic Park's toilets today",
+     "Celtic fans respond to Fenerbahçe threats with #ThatsNotAKnife campaign.",
+     "Toilets in the Emirates Stadium after halftime today."
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Celtic Toilet Vandalism",
+    "purpose": "Report on vandalism of Celtic Park toilets",
+    "emotion_tone": "Angry",
+    "description": "Posts about Celtic Park toilets being damaged by fans, including Rangers, Fenerbache, and others, with responses from Celtic fans.",
+    "inclusion_cues": [
+     "Celtic fans retaliate to Rangers fans smashing their toilets back in September.",
+     "Rangers fans vandalized Celtic Park's toilets today.",
+     "Celtic fans respond to Fenerbahçe threats with #ThatsNotAKnife campaign.",
+     "Toilets in the Emirates Stadium after halftime today."
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: fans celtic, pitch celtic, games celtic, fans vandalise, derby celtic, glasgow derby, section celtic, celtic park, millwall supporters, barnsley fans, trafford toilets, hillsborough slurs, barnsley fan, game barnsley, barnsley play\nPosts (one per line, title first):\n- Celtic fans retaliate to Rangers fans smashing their toilets back in September.\n- Rangers fans vandalized Celtic Park's toilets today\n- Shocking footage shows The Rangers yobs destroy Celtic Park toilets after Glasgow Derby\n- Fenerbache fans send a message to their Europa League opponents. Celtic fans respond in kind.\n- Fenerbache fans send a welcome message to their Europa League opponents... Celtic fans respond... #thatsnotaknife\n- Rangers fans have trashed the restrooms of the away section of Celtic Park\n- This is the away fans toilets at Celtic Park after the Old Firm game today.\n- Manchester City's ground staff trying to remove a squirrel from the pitch\n- Celtic Fans On Twitter Offer Brilliant Response To Stupid Threats From Turkish Fans\n- Spurs fans vandalising and destroying toilets at the Emirates before today's game\n- Celtic fans blast fellow supporters who hanged sex dolls wearing Rangers scarves on Suicide Prevention Day.\n- Thousands of Standard Liege fans all throw toilet rolls onto the pitch at once\n- Manchester United fans hid in Old Trafford toilet overnight\n- Manchester United suffering a mouse infestation at Old Trafford\n- Barnsley play-off final win overshadowed by violent scenes as Millwall supporters breach police barrier at Wembley\n- Celtic write to fans reminding them to wash after complaints about smelly supporters ruining games\n- Regarding the Aston Villa hooligans who invaded the pitch.\n- Man Utd-supporting construction workers graffiti Anfield toilets with Hillsborough slurs\n- Millwall fans charge over barricade and at Barnsley fans inside Wembley\n- Manchester United fans spend night in toilet before Aresenal game\n- Toilets at Celtic Park damaged after Old Firm clash - BBC News\n- Celtic fans respond to threat of knife violence from Fenerbahche fans\n- City fans vandalise Old Trafford toilets after defeat\n- How the Manchester City fans left the Old Trafford toilets last night\n- Toilets in the Emirates Stadium after halftime today.\n- Two Manchester United fans slept inside Old Trafford before Arsenal game; got caught before the game.\n- Tottenham Hotspur blasted after mouse droppings and insects found in club kitchen\n- Utterly disgraceful scenes as MK Dons fans fight each other in the stands. Football back to the dark days.\n- Celtic toilets after Celtic v Rangers.\n- Celtic fans respond to Fenerbahçe threats with #ThatsNotAKnife campaign.\n- So.... This is what Derby County's toilets look like after a bunch of Forest fans decided to destroy them\n- Water buffalo encouraged to poo on Plymouth Argyle FC pitch\n- Barnsley fan asleep in toilet gets stuck inside Oakwell for seven hours\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Celtic Toilet Vandalism\", \"purpose\": \"Document and report on incidents of toilet destruction by Celtic fans\", \"emotion_tone\": \"Angry, frustrated, and outraged\", \"description\": \"Posts about Celtic fans vandalizing toilets, including responses to threats and actions taken by fans to address the issue\", \"inclusion_cues\": [\"Celtic fans retaliate to Rangers fans smashing their toilets back in September.\", \"Rangers fans vandalized Celtic Park's toilets today\", \"Celtic fans respond to Fenerbahçe threats with #ThatsNotAKnife campaign.\", \"Toilets in the Emirates Stadium after halftime today.\"]}]}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Celtic Toilet Vandalism",
+      "purpose": "Document and report on incidents of toilet destruction by Celtic fans",
+      "emotion_tone": "Angry, frustrated, and outraged",
+      "description": "Posts about Celtic fans vandalizing toilets, including responses to threats and actions taken by fans to address the issue",
+      "inclusion_cues": [
+       "Celtic fans retaliate to Rangers fans smashing their toilets back in September.",
+       "Rangers fans vandalized Celtic Park's toilets today",
+       "Celtic fans respond to Fenerbahçe threats with #ThatsNotAKnife campaign.",
+       "Toilets in the Emirates Stadium after halftime today."
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 150,
+   "seed": 2926816000,
+   "seconds": 0.67
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: fans celtic, pitch celtic, games celtic, fans vandalise, derby celtic, glasgow derby, section celtic, celtic park, millwall supporters, barnsley fans, trafford toilets, hillsborough slurs, barnsley fan, game barnsley, barnsley play\nPosts (one per line, title first):\n- Celtic fans retaliate to Rangers fans smashing their toilets back in September.\n- Rangers fans vandalized Celtic Park's toilets today\n- Shocking footage shows The Rangers yobs destroy Celtic Park toilets after Glasgow Derby\n- Fenerbache fans send a message to their Europa League opponents. Celtic fans respond in kind.\n- Fenerbache fans send a welcome message to their Europa League opponents... Celtic fans respond... #thatsnotaknife\n- Rangers fans have trashed the restrooms of the away section of Celtic Park\n- This is the away fans toilets at Celtic Park after the Old Firm game today.\n- Manchester City's ground staff trying to remove a squirrel from the pitch\n- Celtic Fans On Twitter Offer Brilliant Response To Stupid Threats From Turkish Fans\n- Spurs fans vandalising and destroying toilets at the Emirates before today's game\n- Celtic fans blast fellow supporters who hanged sex dolls wearing Rangers scarves on Suicide Prevention Day.\n- Thousands of Standard Liege fans all throw toilet rolls onto the pitch at once\n- Manchester United fans hid in Old Trafford toilet overnight\n- Manchester United suffering a mouse infestation at Old Trafford\n- Barnsley play-off final win overshadowed by violent scenes as Millwall supporters breach police barrier at Wembley\n- Celtic write to fans reminding them to wash after complaints about smelly supporters ruining games\n- Regarding the Aston Villa hooligans who invaded the pitch.\n- Man Utd-supporting construction workers graffiti Anfield toilets with Hillsborough slurs\n- Millwall fans charge over barricade and at Barnsley fans inside Wembley\n- Manchester United fans spend night in toilet before Aresenal game\n- Toilets at Celtic Park damaged after Old Firm clash - BBC News\n- Celtic fans respond to threat of knife violence from Fenerbahche fans\n- City fans vandalise Old Trafford toilets after defeat\n- How the Manchester City fans left the Old Trafford toilets last night\n- Toilets in the Emirates Stadium after halftime today.\n- Two Manchester United fans slept inside Old Trafford before Arsenal game; got caught before the game.\n- Tottenham Hotspur blasted after mouse droppings and insects found in club kitchen\n- Utterly disgraceful scenes as MK Dons fans fight each other in the stands. Football back to the dark days.\n- Celtic toilets after Celtic v Rangers.\n- Celtic fans respond to Fenerbahçe threats with #ThatsNotAKnife campaign.\n- So.... This is what Derby County's toilets look like after a bunch of Forest fans decided to destroy them\n- Water buffalo encouraged to poo on Plymouth Argyle FC pitch\n- Barnsley fan asleep in toilet gets stuck inside Oakwell for seven hours\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Celtic Toilet Vandalism\", \"purpose\": \"Report on vandalism of Celtic Park toilets\", \"emotion_tone\": \"Angry\", \"description\": \"Posts about Celtic Park toilets being damaged by fans, including Rangers, Fenerbache, and others, with responses from Celtic fans.\", \"inclusion_cues\": [\"Celtic fans retaliate to Rangers fans smashing their toilets back in September.\", \"Rangers fans vandalized Celtic Park's toilets today.\", \"Celtic fans respond to Fenerbahçe threats with #ThatsNotAKnife campaign.\", \"Toilets in the Emirates Stadium after halftime today.\"]}]}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Celtic Toilet Vandalism",
+      "purpose": "Report on vandalism of Celtic Park toilets",
+      "emotion_tone": "Angry",
+      "description": "Posts about Celtic Park toilets being damaged by fans, including Rangers, Fenerbache, and others, with responses from Celtic fans.",
+      "inclusion_cues": [
+       "Celtic fans retaliate to Rangers fans smashing their toilets back in September.",
+       "Rangers fans vandalized Celtic Park's toilets today.",
+       "Celtic fans respond to Fenerbahçe threats with #ThatsNotAKnife campaign.",
+       "Toilets in the Emirates Stadium after halftime today."
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 146,
+   "seed": 271668553,
+   "seconds": 0.74
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: fans celtic, pitch celtic, games celtic, fans vandalise, derby celtic, glasgow derby, section celtic, celtic park, millwall supporters, barnsley fans, trafford toilets, hillsborough slurs, barnsley fan, game barnsley, barnsley play\nPosts (one per line, title first):\n- Celtic fans retaliate to Rangers fans smashing their toilets back in September.\n- Rangers fans vandalized Celtic Park's toilets today\n- Shocking footage shows The Rangers yobs destroy Celtic Park toilets after Glasgow Derby\n- Fenerbache fans send a message to their Europa League opponents. Celtic fans respond in kind.\n- Fenerbache fans send a welcome message to their Europa League opponents... Celtic fans respond... #thatsnotaknife\n- Rangers fans have trashed the restrooms of the away section of Celtic Park\n- This is the away fans toilets at Celtic Park after the Old Firm game today.\n- Manchester City's ground staff trying to remove a squirrel from the pitch\n- Celtic Fans On Twitter Offer Brilliant Response To Stupid Threats From Turkish Fans\n- Spurs fans vandalising and destroying toilets at the Emirates before today's game\n- Celtic fans blast fellow supporters who hanged sex dolls wearing Rangers scarves on Suicide Prevention Day.\n- Thousands of Standard Liege fans all throw toilet rolls onto the pitch at once\n- Manchester United fans hid in Old Trafford toilet overnight\n- Manchester United suffering a mouse infestation at Old Trafford\n- Barnsley play-off final win overshadowed by violent scenes as Millwall supporters breach police barrier at Wembley\n- Celtic write to fans reminding them to wash after complaints about smelly supporters ruining games\n- Regarding the Aston Villa hooligans who invaded the pitch.\n- Man Utd-supporting construction workers graffiti Anfield toilets with Hillsborough slurs\n- Millwall fans charge over barricade and at Barnsley fans inside Wembley\n- Manchester United fans spend night in toilet before Aresenal game\n- Toilets at Celtic Park damaged after Old Firm clash - BBC News\n- Celtic fans respond to threat of knife violence from Fenerbahche fans\n- City fans vandalise Old Trafford toilets after defeat\n- How the Manchester City fans left the Old Trafford toilets last night\n- Toilets in the Emirates Stadium after halftime today.\n- Two Manchester United fans slept inside Old Trafford before Arsenal game; got caught before the game.\n- Tottenham Hotspur blasted after mouse droppings and insects found in club kitchen\n- Utterly disgraceful scenes as MK Dons fans fight each other in the stands. Football back to the dark days.\n- Celtic toilets after Celtic v Rangers.\n- Celtic fans respond to Fenerbahçe threats with #ThatsNotAKnife campaign.\n- So.... This is what Derby County's toilets look like after a bunch of Forest fans decided to destroy them\n- Water buffalo encouraged to poo on Plymouth Argyle FC pitch\n- Barnsley fan asleep in toilet gets stuck inside Oakwell for seven hours\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Celtic Toilet Vandalism\", \"purpose\": \"Document and report on incidents of toilet destruction by Celtic fans\", \"emotion_tone\": \"Angry, frustrated, and outraged\", \"description\": \"Posts about Celtic fans vandalizing toilets, including responses to threats and actions taken by fans to address the issue\", \"inclusion_cues\": [\"Celtic fans retaliate to Rangers fans smashing their toilets back in September.\", \"Rangers fans vandalized Celtic Park's toilets today\", \"Celtic fans respond to Fenerbahçe threats with #ThatsNotAKnife campaign.\", \"Toilets in the Emirates Stadium after halftime today.\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Celtic Toilet Vandalism\", \"purpose\": \"Report on vandalism of Celtic Park toilets\", \"emotion_tone\": \"Angry\", \"description\": \"Posts about Celtic Park toilets being damaged by fans, including Rangers, Fenerbache, and others, with responses from Celtic fans.\", \"inclusion_cues\": [\"Celtic fans retaliate to Rangers fans smashing their toilets back in September.\", \"Rangers fans vandalized Celtic Park's toilets today.\", \"Celtic fans respond to Fenerbahçe threats with #ThatsNotAKnife campaign.\", \"Toilets in the Emirates Stadium after halftime today.\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Celtic Toilet Vandalism\", \"purpose\": \"Report on vandalism of Celtic Park toilets\", \"emotion_tone\": \"Angry\", \"description\": \"Posts about Celtic Park toilets being damaged by fans, including Rangers, Fenerbache, and others, with responses from Celtic fans.\", \"inclusion_cues\": [\"Celtic fans retaliate to Rangers fans smashing their toilets back in September.\", \"Rangers fans vandalized Celtic Park's toilets today.\", \"Celtic fans respond to Fenerbahçe threats with #ThatsNotAKnife campaign.\", \"Toilets in the Emirates Stadium after halftime today.\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 145,
+   "seed": 331004467,
+   "seconds": 0.6
+  }
+ ]
+}

@@ -1,0 +1,198 @@
+{
+ "period_bin": 4,
+ "topic_id": 1383,
+ "keywords": "insurance, dortmund, league borussia, league revenue, sensible, defend, german dortmund, plan, borussia dortmund, league 2012, champions league, manage, team, borussia, budesliga",
+ "n_sample_posts": 29,
+ "sample_ids": [
+  "2vuhei",
+  "2tdve7",
+  "3djlwl",
+  "2vqlpq",
+  "3f4s4r",
+  "5pb6vq",
+  "3dleg6",
+  "3x1p54",
+  "3k1yvj",
+  "2vird3",
+  "2u7q1x",
+  "33kztj",
+  "2w5vu0",
+  "3f4ve8",
+  "2vy3jt",
+  "34fqz8",
+  "3dt20s",
+  "3dt0rt",
+  "39vmz1",
+  "3d7y1c",
+  "3djk9i",
+  "33miaw",
+  "3a6jvv",
+  "2vmed3",
+  "2txzc8",
+  "3f96r0",
+  "2wegvm",
+  "3d7xa8",
+  "2w1pkx"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Soccer Insurance",
+  "purpose": "Promote soccer insurance for teams and leagues",
+  "emotion_tone": "positive",
+  "description": "Posts advocating for soccer insurance, emphasizing its role in protecting teams from financial losses, especially in high-stakes scenarios like the Champions League. Includes references to Dortmund, Borussia Dortmund, and league revenue.",
+  "inclusion_cues": [
+   "Soccer Insurance is usually a wise strategy.",
+   "Dortmund is insured against not making the Champions League",
+   "Soccer Insurance will likely guard one.",
+   "Soccer Insurance should protect an individual.",
+   "Soccer Insurance packages",
+   "Soccer Insurance should guard an individual."
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Soccer Insurance",
+    "purpose": "Promote soccer insurance for teams and leagues",
+    "emotion_tone": "positive",
+    "description": "Posts advocating for soccer insurance, emphasizing protection, strategy, and financial security for football teams and leagues.",
+    "inclusion_cues": [
+     "Soccer Insurance is usually a wise strategy.",
+     "You need to have soccer insurance if you ever have a soccer league.",
+     "Dortmund is insured against not making the Champions League",
+     "Soccer Insurance will likely guard one.",
+     "Soccer Insurance can shield an individual.",
+     "Soccer Insurance should protect an individual.",
+     "Soccer Insurance should guard an individual.",
+     "Soccer Insurance will likely shield a person.",
+     "Soccer Insurance protection",
+     "Soccer Insurance packages"
+    ],
+    "n_cues_given": 17
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Soccer Insurance",
+    "purpose": "Promote soccer insurance for teams and leagues",
+    "emotion_tone": "positive",
+    "description": "Posts advocating for soccer insurance, emphasizing its role in protecting teams from financial losses, especially in high-stakes scenarios like the Champions League. Includes references to Dortmund, Borussia Dortmund, and league revenue.",
+    "inclusion_cues": [
+     "Soccer Insurance is usually a wise strategy.",
+     "Dortmund is insured against not making the Champions League",
+     "Soccer Insurance will likely guard one.",
+     "Soccer Insurance should protect an individual.",
+     "Soccer Insurance packages",
+     "Soccer Insurance should guard an individual."
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: insurance, dortmund, league borussia, league revenue, sensible, defend, german dortmund, plan, borussia dortmund, league 2012, champions league, manage, team, borussia, budesliga\nPosts (one per line, title first):\n- Soccer Insurance is usually a wise strategy.\n- Soccer Insurance is really a wise plan.\n- When you manage a soccer group you ought to have soccer insurance.\n- It's a wise plan to get Soccer Insurance.\n- You need to have soccer insurance if you ever have a soccer league.\n- The Budesliga returns this weekend, and this gives us more acca insurance offers.\n- It is a intelligent strategy to obtain Soccer Insurance.\n- It can be a great notion to get Soccer Insurance.\n- You are guarded by Soccer Insurance.\n- Insurance coverage for the purpose of Soccer\n- You ought to have soccer insurance if you happen to run a soccer program.\n- Dortmund Insured for Champions League Revenue Losses\n- It is just a sensible final choice to get soccer insurance.\n- You ought to have soccer insurance for those who operate a soccer team.\n- Soccer Insurance will likely guard one.\n- Dortmund is insured against not making the Champions League\n- Soccer Insurance can shield an individual.\n- Insurance cover designed for Soccer\n- This can be a bright strategy to obtain Soccer Insurance.\n- Soccer Insurance packages\n- You can be defended as a result of Soccer Insurance.\n- Borussia Dortmund is allegedly insured against missing the Champions League since 2012 (Link in German)\n- Soccer Insurance will likely defend you.\n- Soccer Insurance protection\n- Soccer Insurance should guard an individual.\n- Soccer Insurance will likely shield a person.\n- Soccer Insurance should protect an individual.\n- It can be a bright notion to have Soccer Insurance.\n- You can be defended as a result of Soccer Insurance.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Soccer Insurance\", \"purpose\": \"Promote soccer insurance for teams and leagues\", \"emotion_tone\": \"positive\", \"description\": \"Posts advocating for soccer insurance, emphasizing protection, strategy, and financial security for football teams and leagues.\", \"inclusion_cues\": [\"Soccer Insurance is usually a wise strategy.\", \"You need to have soccer insurance if you ever have a soccer league.\", \"Dortmund is insured against not making the Champions League\", \"Soccer Insurance will likely guard one.\", \"Soccer Insurance can shield an individual.\", \"Soccer Insurance should protect an individual.\", \"Soccer Insurance should guard an individual.\", \"Soccer Insurance will likely shield a person.\", \"Soccer Insurance protection\", \"Soccer Insurance packages\", \"Soccer Insurance is a intelligent strategy\", \"Soccer Insurance is really a wise plan\", \"Soccer Insurance is a bright strategy\", \"Soccer Insurance is a bright notion\", \"Soccer Insurance will likely defend you\", \"You can be defended as a result of Soccer Insurance\", \"You can be defended as a result of Soccer Insurance\"]}]}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Soccer Insurance",
+      "purpose": "Promote soccer insurance for teams and leagues",
+      "emotion_tone": "positive",
+      "description": "Posts advocating for soccer insurance, emphasizing protection, strategy, and financial security for football teams and leagues.",
+      "inclusion_cues": [
+       "Soccer Insurance is usually a wise strategy.",
+       "You need to have soccer insurance if you ever have a soccer league.",
+       "Dortmund is insured against not making the Champions League",
+       "Soccer Insurance will likely guard one.",
+       "Soccer Insurance can shield an individual.",
+       "Soccer Insurance should protect an individual.",
+       "Soccer Insurance should guard an individual.",
+       "Soccer Insurance will likely shield a person.",
+       "Soccer Insurance protection",
+       "Soccer Insurance packages"
+      ],
+      "n_cues_given": 17
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 238,
+   "seed": 2287740704,
+   "seconds": 1.1
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: insurance, dortmund, league borussia, league revenue, sensible, defend, german dortmund, plan, borussia dortmund, league 2012, champions league, manage, team, borussia, budesliga\nPosts (one per line, title first):\n- Soccer Insurance is usually a wise strategy.\n- Soccer Insurance is really a wise plan.\n- When you manage a soccer group you ought to have soccer insurance.\n- It's a wise plan to get Soccer Insurance.\n- You need to have soccer insurance if you ever have a soccer league.\n- The Budesliga returns this weekend, and this gives us more acca insurance offers.\n- It is a intelligent strategy to obtain Soccer Insurance.\n- It can be a great notion to get Soccer Insurance.\n- You are guarded by Soccer Insurance.\n- Insurance coverage for the purpose of Soccer\n- You ought to have soccer insurance if you happen to run a soccer program.\n- Dortmund Insured for Champions League Revenue Losses\n- It is just a sensible final choice to get soccer insurance.\n- You ought to have soccer insurance for those who operate a soccer team.\n- Soccer Insurance will likely guard one.\n- Dortmund is insured against not making the Champions League\n- Soccer Insurance can shield an individual.\n- Insurance cover designed for Soccer\n- This can be a bright strategy to obtain Soccer Insurance.\n- Soccer Insurance packages\n- You can be defended as a result of Soccer Insurance.\n- Borussia Dortmund is allegedly insured against missing the Champions League since 2012 (Link in German)\n- Soccer Insurance will likely defend you.\n- Soccer Insurance protection\n- Soccer Insurance should guard an individual.\n- Soccer Insurance will likely shield a person.\n- Soccer Insurance should protect an individual.\n- It can be a bright notion to have Soccer Insurance.\n- You can be defended as a result of Soccer Insurance.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Soccer Insurance\", \"purpose\": \"Promote soccer insurance for teams and leagues\", \"emotion_tone\": \"positive\", \"description\": \"Posts advocating for soccer insurance, emphasizing its role in protecting teams from financial losses, especially in high-stakes scenarios like the Champions League. Includes references to Dortmund, Borussia Dortmund, and league revenue.\", \"inclusion_cues\": [\"Soccer Insurance is usually a wise strategy.\", \"Dortmund is insured against not making the Champions League\", \"Soccer Insurance will likely guard one.\", \"Soccer Insurance should protect an individual.\", \"Soccer Insurance packages\", \"Soccer Insurance should guard an individual.\"]}]}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Soccer Insurance",
+      "purpose": "Promote soccer insurance for teams and leagues",
+      "emotion_tone": "positive",
+      "description": "Posts advocating for soccer insurance, emphasizing its role in protecting teams from financial losses, especially in high-stakes scenarios like the Champions League. Includes references to Dortmund, Borussia Dortmund, and league revenue.",
+      "inclusion_cues": [
+       "Soccer Insurance is usually a wise strategy.",
+       "Dortmund is insured against not making the Champions League",
+       "Soccer Insurance will likely guard one.",
+       "Soccer Insurance should protect an individual.",
+       "Soccer Insurance packages",
+       "Soccer Insurance should guard an individual."
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 148,
+   "seed": 3490869381,
+   "seconds": 0.74
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: insurance, dortmund, league borussia, league revenue, sensible, defend, german dortmund, plan, borussia dortmund, league 2012, champions league, manage, team, borussia, budesliga\nPosts (one per line, title first):\n- Soccer Insurance is usually a wise strategy.\n- Soccer Insurance is really a wise plan.\n- When you manage a soccer group you ought to have soccer insurance.\n- It's a wise plan to get Soccer Insurance.\n- You need to have soccer insurance if you ever have a soccer league.\n- The Budesliga returns this weekend, and this gives us more acca insurance offers.\n- It is a intelligent strategy to obtain Soccer Insurance.\n- It can be a great notion to get Soccer Insurance.\n- You are guarded by Soccer Insurance.\n- Insurance coverage for the purpose of Soccer\n- You ought to have soccer insurance if you happen to run a soccer program.\n- Dortmund Insured for Champions League Revenue Losses\n- It is just a sensible final choice to get soccer insurance.\n- You ought to have soccer insurance for those who operate a soccer team.\n- Soccer Insurance will likely guard one.\n- Dortmund is insured against not making the Champions League\n- Soccer Insurance can shield an individual.\n- Insurance cover designed for Soccer\n- This can be a bright strategy to obtain Soccer Insurance.\n- Soccer Insurance packages\n- You can be defended as a result of Soccer Insurance.\n- Borussia Dortmund is allegedly insured against missing the Champions League since 2012 (Link in German)\n- Soccer Insurance will likely defend you.\n- Soccer Insurance protection\n- Soccer Insurance should guard an individual.\n- Soccer Insurance will likely shield a person.\n- Soccer Insurance should protect an individual.\n- It can be a bright notion to have Soccer Insurance.\n- You can be defended as a result of Soccer Insurance.\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Soccer Insurance\", \"purpose\": \"Promote soccer insurance for teams and leagues\", \"emotion_tone\": \"positive\", \"description\": \"Posts advocating for soccer insurance, emphasizing protection, strategy, and financial security for football teams and leagues.\", \"inclusion_cues\": [\"Soccer Insurance is usually a wise strategy.\", \"You need to have soccer insurance if you ever have a soccer league.\", \"Dortmund is insured against not making the Champions League\", \"Soccer Insurance will likely guard one.\", \"Soccer Insurance can shield an individual.\", \"Soccer Insurance should protect an individual.\", \"Soccer Insurance should guard an individual.\", \"Soccer Insurance will likely shield a person.\", \"Soccer Insurance protection\", \"Soccer Insurance packages\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Soccer Insurance\", \"purpose\": \"Promote soccer insurance for teams and leagues\", \"emotion_tone\": \"positive\", \"description\": \"Posts advocating for soccer insurance, emphasizing its role in protecting teams from financial losses, especially in high-stakes scenarios like the Champions League. Includes references to Dortmund, Borussia Dortmund, and league revenue.\", \"inclusion_cues\": [\"Soccer Insurance is usually a wise strategy.\", \"Dortmund is insured against not making the Champions League\", \"Soccer Insurance will likely guard one.\", \"Soccer Insurance should protect an individual.\", \"Soccer Insurance packages\", \"Soccer Insurance should guard an individual.\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Soccer Insurance\", \"purpose\": \"Promote soccer insurance for teams and leagues\", \"emotion_tone\": \"positive\", \"description\": \"Posts advocating for soccer insurance, emphasizing its role in protecting teams from financial losses, especially in high-stakes scenarios like the Champions League. Includes references to Dortmund, Borussia Dortmund, and league revenue.\", \"inclusion_cues\": [\"Soccer Insurance is usually a wise strategy.\", \"Dortmund is insured against not making the Champions League\", \"Soccer Insurance will likely guard one.\", \"Soccer Insurance should protect an individual.\", \"Soccer Insurance packages\", \"Soccer Insurance should guard an individual.\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 147,
+   "seed": 1535353311,
+   "seconds": 0.6
+  }
+ ]
+}

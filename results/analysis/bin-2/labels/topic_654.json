@@ -1,0 +1,191 @@
+{
+ "period_bin": 2,
+ "topic_id": 654,
+ "keywords": "owen signs, owen stoke, owen manchester, owen offered, owen bolton, considering owen, sign stoke, stoke michael, contract bolton, bolton stoke, stoke stoke, loan brighton, hammers loan, everton bolton, united deal",
+ "n_sample_posts": 36,
+ "sample_ids": [
+  "hozf0",
+  "zcdif",
+  "zcfr9",
+  "zcf7k",
+  "t45a7",
+  "w4qmq",
+  "trf6h",
+  "x12bg",
+  "hp4pu",
+  "we05u",
+  "yrrlz",
+  "vmvme",
+  "hoyjh",
+  "z396c",
+  "w6t30",
+  "z4s10",
+  "zcjei",
+  "zbo2r",
+  "trp7z",
+  "z7szd",
+  "w4qax",
+  "f12rt",
+  "zcdkf",
+  "15zmat",
+  "t44n8",
+  "yik57",
+  "ou91w",
+  "12vzpi",
+  "t518e",
+  "t4b29",
+  "zbw98",
+  "tqvtd",
+  "w4tc4",
+  "zcda4",
+  "twewh",
+  "zbx81"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Owen Transfer Rumors",
+  "purpose": "Discuss potential transfers involving Michael Owen",
+  "emotion_tone": "Excited/Speculative",
+  "description": "Posts discussing Owen's potential transfer to various clubs, including Stoke, Bolton, Brighton, and others, with speculative or hypothetical scenarios.",
+  "inclusion_cues": [
+   "Michael Owen signs for Stoke",
+   "Owen to Bolton",
+   "Owen transfer rumors",
+   "Owen linked with loan move to Brighton",
+   "Owen to Stoke City",
+   "Owen not offered new Manchester United contract"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Owen Transfer Rumors",
+    "purpose": "Tracking potential transfers involving Michael Owen",
+    "emotion_tone": "curious",
+    "description": "Posts discussing Owen's potential moves to clubs like Stoke, Bolton, Brighton, and others, with speculative or hypothetical scenarios.",
+    "inclusion_cues": [
+     "Owen signs for Stoke",
+     "Owen in talks with Bolton",
+     "Owen linked with loan move to Brighton",
+     "Owen transfer rumors"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Owen Transfer Rumors",
+    "purpose": "Discuss potential transfers involving Michael Owen",
+    "emotion_tone": "Excited/Speculative",
+    "description": "Posts discussing Owen's potential transfer to various clubs, including Stoke, Bolton, Brighton, and others, with speculative or hypothetical scenarios.",
+    "inclusion_cues": [
+     "Michael Owen signs for Stoke",
+     "Owen to Bolton",
+     "Owen transfer rumors",
+     "Owen linked with loan move to Brighton",
+     "Owen to Stoke City",
+     "Owen not offered new Manchester United contract"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: owen signs, owen stoke, owen manchester, owen offered, owen bolton, considering owen, sign stoke, stoke michael, contract bolton, bolton stoke, stoke stoke, loan brighton, hammers loan, everton bolton, united deal\nPosts (one per line, title first):\n- Michael Owen signs new United deal......to sit on the bench again next season\n- [OFFICIAL] Michael Owen signs for Stoke\n- Michael Owen signs for Stoke.\n- Michael Owen Signs for Stoke City\n- I know we are creating a transfer rumour here, but what if Owen really does go to Bolton? / Hypothetically, what if Owen hears of this, or perhaps Bolton, and it sparks talks about a summer transfer? What then? Maybe they have already been in talks? Who knows. I'm just saying, if this hoax gets some\n- Wayne Bridge joins Brighton and Hove Albion on a season-long loan.\n- Michael Owen not offered new Manchester United contract. So he's off to Bolton, right?\n- OwentoBolton - Michael Vaughan tweets \"Roger tells me @themichaelowen has been seen in talks with Mr Gartside??\"\n- Michael Owen Extends Old Trafford Stay - Signs 1 Year Contract\n- Stoke City favourites to sign Michael Owen\n- Michael Owen should go to Brighton. It makes sense.\n- Michael owen has not yet commented anything on a potential move to Bolton\n- Michael Owen Signs One Year Deal At United\n- /r/Soccer, we've sent Owen to Bolton, So now lets send Heskey to Oxford United.\n- Wayne Bridge makes Brighton loan switch\n- No bids yet for Owen...\n- Owen to Stoke\n- Stoke looking to sign Michael Owen on a 'pay-as-you-play' deal.\n- #OwentoBolton they have taken notice\n- Owen to West Ham? They need a jockey for Carroll\n- Wayne Bridge, Who was considered England's Number two (lol) at leftback a few yeats ago, is off to Brighton\n- ESPNsoccernet: Bridge completes Hammers loan - Glad he will get some playing time\n- Michael Owen to sign with Stoke City\n- Perth Glory interested in bringing Michael Owen to Australia.\n- Michael Owen confirmed for Bolton\n- [Rumour] Owen in talks with Everton (not Bolton I'm afraid). Deal could go through today.\n- Michael Owen linked with loan move to Brighton.\n- Former Everton striker jailed\n- Owen transfer rumors?\n- Michael Owen transfer\n- Michael Owen future to be revealed on Wednesday after Liverpool snub - WARNING - 'ARTICLE' WRITTEN BY THE S*N\n- Downing on the plane, but no place for David Bentley? Or Kieron Dyer?!\n- Wayne Bridge joins Brighton on loan\n- Stoke Signed Michael Owen\n- Stoke considering move for Owen. Bolton not mentioned :(\n- Former Manchester United striker Michael Owen is set to join Stoke City on a one-year deal - ESPN\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Owen Transfer Rumors\", \"purpose\": \"Tracking potential transfers involving Michael Owen\", \"emotion_tone\": \"curious\", \"description\": \"Posts discussing Owen's potential moves to clubs like Stoke, Bolton, Brighton, and others, with speculative or hypothetical scenarios.\", \"inclusion_cues\": [\"Owen signs for Stoke\", \"Owen in talks with Bolton\", \"Owen linked with loan move to Brighton\", \"Owen transfer rumors\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Owen Transfer Rumors",
+      "purpose": "Tracking potential transfers involving Michael Owen",
+      "emotion_tone": "curious",
+      "description": "Posts discussing Owen's potential moves to clubs like Stoke, Bolton, Brighton, and others, with speculative or hypothetical scenarios.",
+      "inclusion_cues": [
+       "Owen signs for Stoke",
+       "Owen in talks with Bolton",
+       "Owen linked with loan move to Brighton",
+       "Owen transfer rumors"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 108,
+   "seed": 3377026601,
+   "seconds": 4.98
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: owen signs, owen stoke, owen manchester, owen offered, owen bolton, considering owen, sign stoke, stoke michael, contract bolton, bolton stoke, stoke stoke, loan brighton, hammers loan, everton bolton, united deal\nPosts (one per line, title first):\n- Michael Owen signs new United deal......to sit on the bench again next season\n- [OFFICIAL] Michael Owen signs for Stoke\n- Michael Owen signs for Stoke.\n- Michael Owen Signs for Stoke City\n- I know we are creating a transfer rumour here, but what if Owen really does go to Bolton? / Hypothetically, what if Owen hears of this, or perhaps Bolton, and it sparks talks about a summer transfer? What then? Maybe they have already been in talks? Who knows. I'm just saying, if this hoax gets some\n- Wayne Bridge joins Brighton and Hove Albion on a season-long loan.\n- Michael Owen not offered new Manchester United contract. So he's off to Bolton, right?\n- OwentoBolton - Michael Vaughan tweets \"Roger tells me @themichaelowen has been seen in talks with Mr Gartside??\"\n- Michael Owen Extends Old Trafford Stay - Signs 1 Year Contract\n- Stoke City favourites to sign Michael Owen\n- Michael Owen should go to Brighton. It makes sense.\n- Michael owen has not yet commented anything on a potential move to Bolton\n- Michael Owen Signs One Year Deal At United\n- /r/Soccer, we've sent Owen to Bolton, So now lets send Heskey to Oxford United.\n- Wayne Bridge makes Brighton loan switch\n- No bids yet for Owen...\n- Owen to Stoke\n- Stoke looking to sign Michael Owen on a 'pay-as-you-play' deal.\n- #OwentoBolton they have taken notice\n- Owen to West Ham? They need a jockey for Carroll\n- Wayne Bridge, Who was considered England's Number two (lol) at leftback a few yeats ago, is off to Brighton\n- ESPNsoccernet: Bridge completes Hammers loan - Glad he will get some playing time\n- Michael Owen to sign with Stoke City\n- Perth Glory interested in bringing Michael Owen to Australia.\n- Michael Owen confirmed for Bolton\n- [Rumour] Owen in talks with Everton (not Bolton I'm afraid). Deal could go through today.\n- Michael Owen linked with loan move to Brighton.\n- Former Everton striker jailed\n- Owen transfer rumors?\n- Michael Owen transfer\n- Michael Owen future to be revealed on Wednesday after Liverpool snub - WARNING - 'ARTICLE' WRITTEN BY THE S*N\n- Downing on the plane, but no place for David Bentley? Or Kieron Dyer?!\n- Wayne Bridge joins Brighton on loan\n- Stoke Signed Michael Owen\n- Stoke considering move for Owen. Bolton not mentioned :(\n- Former Manchester United striker Michael Owen is set to join Stoke City on a one-year deal - ESPN\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Owen Transfer Rumors\", \"purpose\": \"Discuss potential transfers involving Michael Owen\", \"emotion_tone\": \"Excited/Speculative\", \"description\": \"Posts discussing Owen's potential transfer to various clubs, including Stoke, Bolton, Brighton, and others, with speculative or hypothetical scenarios.\", \"inclusion_cues\": [\"Michael Owen signs for Stoke\", \"Owen to Bolton\", \"Owen transfer rumors\", \"Owen linked with loan move to Brighton\", \"Owen to Stoke City\", \"Owen not offered new Manchester United contract\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Owen Transfer Rumors",
+      "purpose": "Discuss potential transfers involving Michael Owen",
+      "emotion_tone": "Excited/Speculative",
+      "description": "Posts discussing Owen's potential transfer to various clubs, including Stoke, Bolton, Brighton, and others, with speculative or hypothetical scenarios.",
+      "inclusion_cues": [
+       "Michael Owen signs for Stoke",
+       "Owen to Bolton",
+       "Owen transfer rumors",
+       "Owen linked with loan move to Brighton",
+       "Owen to Stoke City",
+       "Owen not offered new Manchester United contract"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 128,
+   "seed": 4118795656,
+   "seconds": 2.52
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: owen signs, owen stoke, owen manchester, owen offered, owen bolton, considering owen, sign stoke, stoke michael, contract bolton, bolton stoke, stoke stoke, loan brighton, hammers loan, everton bolton, united deal\nPosts (one per line, title first):\n- Michael Owen signs new United deal......to sit on the bench again next season\n- [OFFICIAL] Michael Owen signs for Stoke\n- Michael Owen signs for Stoke.\n- Michael Owen Signs for Stoke City\n- I know we are creating a transfer rumour here, but what if Owen really does go to Bolton? / Hypothetically, what if Owen hears of this, or perhaps Bolton, and it sparks talks about a summer transfer? What then? Maybe they have already been in talks? Who knows. I'm just saying, if this hoax gets some\n- Wayne Bridge joins Brighton and Hove Albion on a season-long loan.\n- Michael Owen not offered new Manchester United contract. So he's off to Bolton, right?\n- OwentoBolton - Michael Vaughan tweets \"Roger tells me @themichaelowen has been seen in talks with Mr Gartside??\"\n- Michael Owen Extends Old Trafford Stay - Signs 1 Year Contract\n- Stoke City favourites to sign Michael Owen\n- Michael Owen should go to Brighton. It makes sense.\n- Michael owen has not yet commented anything on a potential move to Bolton\n- Michael Owen Signs One Year Deal At United\n- /r/Soccer, we've sent Owen to Bolton, So now lets send Heskey to Oxford United.\n- Wayne Bridge makes Brighton loan switch\n- No bids yet for Owen...\n- Owen to Stoke\n- Stoke looking to sign Michael Owen on a 'pay-as-you-play' deal.\n- #OwentoBolton they have taken notice\n- Owen to West Ham? They need a jockey for Carroll\n- Wayne Bridge, Who was considered England's Number two (lol) at leftback a few yeats ago, is off to Brighton\n- ESPNsoccernet: Bridge completes Hammers loan - Glad he will get some playing time\n- Michael Owen to sign with Stoke City\n- Perth Glory interested in bringing Michael Owen to Australia.\n- Michael Owen confirmed for Bolton\n- [Rumour] Owen in talks with Everton (not Bolton I'm afraid). Deal could go through today.\n- Michael Owen linked with loan move to Brighton.\n- Former Everton striker jailed\n- Owen transfer rumors?\n- Michael Owen transfer\n- Michael Owen future to be revealed on Wednesday after Liverpool snub - WARNING - 'ARTICLE' WRITTEN BY THE S*N\n- Downing on the plane, but no place for David Bentley? Or Kieron Dyer?!\n- Wayne Bridge joins Brighton on loan\n- Stoke Signed Michael Owen\n- Stoke considering move for Owen. Bolton not mentioned :(\n- Former Manchester United striker Michael Owen is set to join Stoke City on a one-year deal - ESPN\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Owen Transfer Rumors\", \"purpose\": \"Tracking potential transfers involving Michael Owen\", \"emotion_tone\": \"curious\", \"description\": \"Posts discussing Owen's potential moves to clubs like Stoke, Bolton, Brighton, and others, with speculative or hypothetical scenarios.\", \"inclusion_cues\": [\"Owen signs for Stoke\", \"Owen in talks with Bolton\", \"Owen linked with loan move to Brighton\", \"Owen transfer rumors\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Owen Transfer Rumors\", \"purpose\": \"Discuss potential transfers involving Michael Owen\", \"emotion_tone\": \"Excited/Speculative\", \"description\": \"Posts discussing Owen's potential transfer to various clubs, including Stoke, Bolton, Brighton, and others, with speculative or hypothetical scenarios.\", \"inclusion_cues\": [\"Michael Owen signs for Stoke\", \"Owen to Bolton\", \"Owen transfer rumors\", \"Owen linked with loan move to Brighton\", \"Owen to Stoke City\", \"Owen not offered new Manchester United contract\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Owen Transfer Rumors\", \"purpose\": \"Tracking potential transfers involving Michael Owen\", \"emotion_tone\": \"Excited/Speculative\", \"description\": \"Posts discussing Owen's potential transfer to various clubs, including Stoke, Bolton, Brighton, and others, with speculative or hypothetical scenarios.\", \"inclusion_cues\": [\"Michael Owen signs for Stoke\", \"Owen to Bolton\", \"Owen transfer rumors\", \"Owen linked with loan move to Brighton\", \"Owen to Stoke City\", \"Owen not offered new Manchester United contract\"]]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 553)",
+   "n_tokens": 127,
+   "seed": 3761255872,
+   "seconds": 0.91
+  }
+ ]
+}

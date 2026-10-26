@@ -1,0 +1,182 @@
+{
+ "period_bin": 4,
+ "topic_id": 1331,
+ "keywords": "goal benfica, dost goal, goal arouca, goal wolfsburg, hatrick goal, goal estoril, goal leverkusen, goal nacional, hattrick goal, goal penalty, goal legia, psv bas, sporting goal, goal fc, sporting arouca",
+ "n_sample_posts": 31,
+ "sample_ids": [
+  "3pocxq",
+  "547bio",
+  "547d3x",
+  "5bi9ne",
+  "5bhu22",
+  "2u8h3q",
+  "5yv8ut",
+  "6cih8d",
+  "2u8f16",
+  "2vvjvc",
+  "5yv86e",
+  "605lkq",
+  "53e4dl",
+  "4f2yht",
+  "3irbee",
+  "5f0v07",
+  "3mgvse",
+  "2wgkzq",
+  "37vhry",
+  "5yv2aq",
+  "54sb14",
+  "5bhuia",
+  "4d518r",
+  "2u89ok",
+  "3p431p",
+  "2vvsg9",
+  "5hrv6k",
+  "6cj1al",
+  "51hhk1",
+  "5yv5om",
+  "6cirue"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Wolfsburg Goals",
+  "purpose": "Highlighting goals scored by Bas Dost in matches against Wolfsburg",
+  "emotion_tone": "positive",
+  "description": "Posts about Bas Dost's goals in matches against Wolfsburg, including hattricks and penalties",
+  "inclusion_cues": [
+   "Bas Dost goal vs Wolfsburg",
+   "Wolfsburg vs. PSV",
+   "Bas Dost hattrick vs Tondela",
+   "Bas Dost penalty goal vs Chaves"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Wolfsburg Goals",
+    "purpose": "Highlighting goals scored by Bas Dost in matches against Wolfsburg",
+    "emotion_tone": "positive",
+    "description": "Posts about Bas Dost's goals in matches against Wolfsburg, including assists and hattricks",
+    "inclusion_cues": [
+     "Bas Dost goal vs Wolfsburg",
+     "Wolfsburg vs. PSV",
+     "Hattrick goal vs Tondela",
+     "Goal penalty vs Chaves",
+     "Goal against Wolfsburg"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Wolfsburg Goals",
+    "purpose": "Highlighting goals scored by Bas Dost in matches against Wolfsburg",
+    "emotion_tone": "positive",
+    "description": "Posts about Bas Dost's goals in matches against Wolfsburg, including hattricks and penalties",
+    "inclusion_cues": [
+     "Bas Dost goal vs Wolfsburg",
+     "Wolfsburg vs. PSV",
+     "Bas Dost hattrick vs Tondela",
+     "Bas Dost penalty goal vs Chaves"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: goal benfica, dost goal, goal arouca, goal wolfsburg, hatrick goal, goal estoril, goal leverkusen, goal nacional, hattrick goal, goal penalty, goal legia, psv bas, sporting goal, goal fc, sporting arouca\nPosts (one per line, title first):\n- Bas Dost goal for Wolfsburg vs. PSV (1-0)\n- Bas Dost goal against Estoril (1-0)\n- Bas Dost goal against Estoril (3-0)\n- Bas Dost goal vs Arouca (3-0)\n- Bas Dost goal vs Arouca (1-0)\n- Bas Dost Goal vs Bayern Munchen\n- Bas Dost forth goal vs Tondela (1-[4])\n- Dost (Sporting) penalty goal vs. Chaves (1-0)\n- Dost and his amazing second goal against Bayern (45th Minute)\n- Bas Dost's 2nd goal against Leverkusen\n- Bas Dost hatrick goal(penalty) vs Tondela [1-(3)]\n- Bas Dost goal vs Nacional (1-0). 23rd in 23 league games. Now tied with Messi and Aubameyang for the Golden Boot.\n- Bas Dost goal vs Rio Ave(3-1)\n- Bas Dost goal for VfL Wolfsburg vs. Werder Bremen (3-2) - assisted by Ricardo Rodríguez\n- Dost goal v FC Schalke 04\n- Bas Dost goal vs Boavista [0-1]\n- Bas Dost goal for Wolfsburg vs. Hannover (1-0)\n- Dost strikes again! 1st goal for Wolfsburg vs Sporting\n- Bas Dost scores with a header (3-1)\n- Bas Dost (Sporting CP) goal against Tondela\n- Bas Dost goal vs Legia (2-0)\n- Bas Dost Goal HD Sporting 1 - 0 Arouca\n- Basanta Scores Late winner vs León\n- 1:0 Dost against Bayern in the 4th Minute\n- Bas Dost goal for Wolfsburg vs. Hoffenheim (2-0)\n- Dost scores a late minute goal for Wolfsburg and completes his super-hattrick (5-4) - Credits to /u/cppn02\n- Bas Dost (Sporting) goal vs Benfica (2-1)\n- Bas Dost (Sporting) hattrick goal vs Chaves (4-1)\n- Bas Dost disallowed goal vs Sweden [World cup Qualifiers]\n- Bas Dost second goal vs Tondela [1-(2)]\n- Bas Dost (Sporting) goal vs Chaves (2-0)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Wolfsburg Goals\", \"purpose\": \"Highlighting goals scored by Bas Dost in matches against Wolfsburg\", \"emotion_tone\": \"positive\", \"description\": \"Posts about Bas Dost's goals in matches against Wolfsburg, including assists and hattricks\", \"inclusion_cues\": [\"Bas Dost goal vs Wolfsburg\", \"Wolfsburg vs. PSV\", \"Hattrick goal vs Tondela\", \"Goal penalty vs Chaves\", \"Goal against Wolfsburg\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Wolfsburg Goals",
+      "purpose": "Highlighting goals scored by Bas Dost in matches against Wolfsburg",
+      "emotion_tone": "positive",
+      "description": "Posts about Bas Dost's goals in matches against Wolfsburg, including assists and hattricks",
+      "inclusion_cues": [
+       "Bas Dost goal vs Wolfsburg",
+       "Wolfsburg vs. PSV",
+       "Hattrick goal vs Tondela",
+       "Goal penalty vs Chaves",
+       "Goal against Wolfsburg"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 125,
+   "seed": 2680838269,
+   "seconds": 0.69
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: goal benfica, dost goal, goal arouca, goal wolfsburg, hatrick goal, goal estoril, goal leverkusen, goal nacional, hattrick goal, goal penalty, goal legia, psv bas, sporting goal, goal fc, sporting arouca\nPosts (one per line, title first):\n- Bas Dost goal for Wolfsburg vs. PSV (1-0)\n- Bas Dost goal against Estoril (1-0)\n- Bas Dost goal against Estoril (3-0)\n- Bas Dost goal vs Arouca (3-0)\n- Bas Dost goal vs Arouca (1-0)\n- Bas Dost Goal vs Bayern Munchen\n- Bas Dost forth goal vs Tondela (1-[4])\n- Dost (Sporting) penalty goal vs. Chaves (1-0)\n- Dost and his amazing second goal against Bayern (45th Minute)\n- Bas Dost's 2nd goal against Leverkusen\n- Bas Dost hatrick goal(penalty) vs Tondela [1-(3)]\n- Bas Dost goal vs Nacional (1-0). 23rd in 23 league games. Now tied with Messi and Aubameyang for the Golden Boot.\n- Bas Dost goal vs Rio Ave(3-1)\n- Bas Dost goal for VfL Wolfsburg vs. Werder Bremen (3-2) - assisted by Ricardo Rodríguez\n- Dost goal v FC Schalke 04\n- Bas Dost goal vs Boavista [0-1]\n- Bas Dost goal for Wolfsburg vs. Hannover (1-0)\n- Dost strikes again! 1st goal for Wolfsburg vs Sporting\n- Bas Dost scores with a header (3-1)\n- Bas Dost (Sporting CP) goal against Tondela\n- Bas Dost goal vs Legia (2-0)\n- Bas Dost Goal HD Sporting 1 - 0 Arouca\n- Basanta Scores Late winner vs León\n- 1:0 Dost against Bayern in the 4th Minute\n- Bas Dost goal for Wolfsburg vs. Hoffenheim (2-0)\n- Dost scores a late minute goal for Wolfsburg and completes his super-hattrick (5-4) - Credits to /u/cppn02\n- Bas Dost (Sporting) goal vs Benfica (2-1)\n- Bas Dost (Sporting) hattrick goal vs Chaves (4-1)\n- Bas Dost disallowed goal vs Sweden [World cup Qualifiers]\n- Bas Dost second goal vs Tondela [1-(2)]\n- Bas Dost (Sporting) goal vs Chaves (2-0)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Wolfsburg Goals\", \"purpose\": \"Highlighting goals scored by Bas Dost in matches against Wolfsburg\", \"emotion_tone\": \"positive\", \"description\": \"Posts about Bas Dost's goals in matches against Wolfsburg, including hattricks and penalties\", \"inclusion_cues\": [\"Bas Dost goal vs Wolfsburg\", \"Wolfsburg vs. PSV\", \"Bas Dost hattrick vs Tondela\", \"Bas Dost penalty goal vs Chaves\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Wolfsburg Goals",
+      "purpose": "Highlighting goals scored by Bas Dost in matches against Wolfsburg",
+      "emotion_tone": "positive",
+      "description": "Posts about Bas Dost's goals in matches against Wolfsburg, including hattricks and penalties",
+      "inclusion_cues": [
+       "Bas Dost goal vs Wolfsburg",
+       "Wolfsburg vs. PSV",
+       "Bas Dost hattrick vs Tondela",
+       "Bas Dost penalty goal vs Chaves"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 123,
+   "seed": 1354900285,
+   "seconds": 0.71
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: goal benfica, dost goal, goal arouca, goal wolfsburg, hatrick goal, goal estoril, goal leverkusen, goal nacional, hattrick goal, goal penalty, goal legia, psv bas, sporting goal, goal fc, sporting arouca\nPosts (one per line, title first):\n- Bas Dost goal for Wolfsburg vs. PSV (1-0)\n- Bas Dost goal against Estoril (1-0)\n- Bas Dost goal against Estoril (3-0)\n- Bas Dost goal vs Arouca (3-0)\n- Bas Dost goal vs Arouca (1-0)\n- Bas Dost Goal vs Bayern Munchen\n- Bas Dost forth goal vs Tondela (1-[4])\n- Dost (Sporting) penalty goal vs. Chaves (1-0)\n- Dost and his amazing second goal against Bayern (45th Minute)\n- Bas Dost's 2nd goal against Leverkusen\n- Bas Dost hatrick goal(penalty) vs Tondela [1-(3)]\n- Bas Dost goal vs Nacional (1-0). 23rd in 23 league games. Now tied with Messi and Aubameyang for the Golden Boot.\n- Bas Dost goal vs Rio Ave(3-1)\n- Bas Dost goal for VfL Wolfsburg vs. Werder Bremen (3-2) - assisted by Ricardo Rodríguez\n- Dost goal v FC Schalke 04\n- Bas Dost goal vs Boavista [0-1]\n- Bas Dost goal for Wolfsburg vs. Hannover (1-0)\n- Dost strikes again! 1st goal for Wolfsburg vs Sporting\n- Bas Dost scores with a header (3-1)\n- Bas Dost (Sporting CP) goal against Tondela\n- Bas Dost goal vs Legia (2-0)\n- Bas Dost Goal HD Sporting 1 - 0 Arouca\n- Basanta Scores Late winner vs León\n- 1:0 Dost against Bayern in the 4th Minute\n- Bas Dost goal for Wolfsburg vs. Hoffenheim (2-0)\n- Dost scores a late minute goal for Wolfsburg and completes his super-hattrick (5-4) - Credits to /u/cppn02\n- Bas Dost (Sporting) goal vs Benfica (2-1)\n- Bas Dost (Sporting) hattrick goal vs Chaves (4-1)\n- Bas Dost disallowed goal vs Sweden [World cup Qualifiers]\n- Bas Dost second goal vs Tondela [1-(2)]\n- Bas Dost (Sporting) goal vs Chaves (2-0)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Wolfsburg Goals\", \"purpose\": \"Highlighting goals scored by Bas Dost in matches against Wolfsburg\", \"emotion_tone\": \"positive\", \"description\": \"Posts about Bas Dost's goals in matches against Wolfsburg, including assists and hattricks\", \"inclusion_cues\": [\"Bas Dost goal vs Wolfsburg\", \"Wolfsburg vs. PSV\", \"Hattrick goal vs Tondela\", \"Goal penalty vs Chaves\", \"Goal against Wolfsburg\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Wolfsburg Goals\", \"purpose\": \"Highlighting goals scored by Bas Dost in matches against Wolfsburg\", \"emotion_tone\": \"positive\", \"description\": \"Posts about Bas Dost's goals in matches against Wolfsburg, including hattricks and penalties\", \"inclusion_cues\": [\"Bas Dost goal vs Wolfsburg\", \"Wolfsburg vs. PSV\", \"Bas Dost hattrick vs Tondela\", \"Bas Dost penalty goal vs Chaves\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Wolfsburg Goals\", \"purpose\": \"Highlighting goals scored by Bas Dost in matches against Wolfsburg\", \"emotion_tone\": \"positive\", \"description\": \"Posts about Bas Dost's goals in matches against Wolfsburg, including hattricks, penalties, and assists\", \"inclusion_cues\": [\"Bas Dost goal vs Wolfsburg\", \"Wolfsburg vs. PSV\", \"Bas Dost hattrick vs Tondela\", \"Bas Dost penalty goal vs Chaves\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 125,
+   "seed": 1337792500,
+   "seconds": 0.76
+  }
+ ]
+}

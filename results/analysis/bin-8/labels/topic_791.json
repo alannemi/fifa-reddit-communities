@@ -1,0 +1,175 @@
+{
+ "period_bin": 8,
+ "topic_id": 791,
+ "keywords": "sociedad sevilla, real sociedad, sociedad inter, sociedad alaves, sociedad celta, 90 barcelona, sociedad villarreal, sociedad espanyol, sociedad athletic, barcelona guayaquil, sociedad almeria, delfín barcelona, valladolid barcelona, sociedad valladolid, granada barcelona",
+ "n_sample_posts": 31,
+ "sample_ids": [
+  "1ilk6wu",
+  "140j1gx",
+  "1mz4cyx",
+  "1ilmjjz",
+  "1qmsv1g",
+  "1j7hois",
+  "1idxkzc",
+  "15vlekm",
+  "1kluu88",
+  "1olvkio",
+  "1qmsaym",
+  "1aohf2y",
+  "16ntkx1",
+  "1c41ymx",
+  "1of7b2t",
+  "1ilk65l",
+  "1jmmav4",
+  "15pl23z",
+  "1mz27u5",
+  "1cjzk7g",
+  "1f3jtly",
+  "1ke26z7",
+  "19e0bj1",
+  "1h7l7mn",
+  "1hjcrdm",
+  "19dyfln",
+  "1qmrj0f",
+  "184dh9w",
+  "1ayd1j8",
+  "17383ft",
+  "1idx02p"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Real Sociedad Matches",
+  "purpose": "Reporting results and player actions in matches involving Real Sociedad",
+  "emotion_tone": "Competitive",
+  "description": "Posts about matches involving Real Sociedad, including goals, assists, and player performances, often with commentary or analysis.",
+  "inclusion_cues": [
+   "Real Sociedad [1] - 0 Espanyol",
+   "Real Sociedad [2]-1 Celta Vigo",
+   "Real Sociedad 1-0 Alaves"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Real Sociedad vs. Espanyol",
+    "purpose": "Football match results",
+    "emotion_tone": "Competitive",
+    "description": "Matches between Real Sociedad and Espanyol, highlighting goals and key players",
+    "inclusion_cues": [
+     "Real Sociedad [1]-0 Espanyol",
+     "Real Sociedad [1]-0 Valladolid",
+     "Real Sociedad 0-1 Espanyol"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Real Sociedad Matches",
+    "purpose": "Reporting results and player actions in matches involving Real Sociedad",
+    "emotion_tone": "Competitive",
+    "description": "Posts about matches involving Real Sociedad, including goals, assists, and player performances, often with commentary or analysis.",
+    "inclusion_cues": [
+     "Real Sociedad [1] - 0 Espanyol",
+     "Real Sociedad [2]-1 Celta Vigo",
+     "Real Sociedad 1-0 Alaves"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: sociedad sevilla, real sociedad, sociedad inter, sociedad alaves, sociedad celta, 90 barcelona, sociedad villarreal, sociedad espanyol, sociedad athletic, barcelona guayaquil, sociedad almeria, delfín barcelona, valladolid barcelona, sociedad valladolid, granada barcelona\nPosts (one per line, title first):\n- Real Sociedad [1] - 0 Espanyol - Sheraldo Becker 1'\n- Real Sociedad [1]-0 Sevilla - Brais Mendez 28'\n- Real Sociedad [2]-2 Espanyol - Orri Oskarsson 69'\n- Real Sociedad [2]-1 Espanyol - Brais Mendez 84'\n- Real Sociedad [3]-1 Celta Vigo - Brais Mendez penalty 90'+6'\n- Real Sociedad 0-1 Sevilla - Chidera Ejuke 47'\n- Real Sociedad 2-0 PAOK - Orri Oskarsson 48'\n- Real Sociedad 1-[1] Celta Vigo - Oscar Mingueza 90'+4'\n- Real Sociedad 0 - [1] Celta de Vigo - Alfon González 44'\n- Real Sociedad [2]-1 Athletic Club - Goncalo Guedes 47'\n- Real Sociedad [2]-1 Celta Vigo - Mikel Oyarzaba 75'\n- Barcelona [1] - 0 Granada - Lamine Yamal 15'\n- Real Sociedad 1-0 Inter - Brais Mendez 4'\n- Real Sociedad [1]-1 Almeria - Sheraldo Becker 32'\n- Real Sociedad [2] - 1 Sevilla - Mikel Oyarzabal 36'\n- Real Sociedad [1] - 0 Espanyol - S. Becker / Assist: L. Sučić\n- Real Sociedad [1] - 0 Valladolid - M. Oyarzabal\n- Delfín [1] - 0 Barcelona de Guayaquil | 42' N. Goitea - ARG\n- Real Sociedad 0-1 Espanyol - Pere Milla 10'\n- Real Sociedad [2] - 0 Las Palmas - Sheraldo Becker 45+2'\n- Real Sociedad 1-0 Alaves - Brais Mendez 32'\n- Real Valladolid 1 - [2] Barcelona - Fermin Lopez 60'\n- Celta Vigo 0-2 Real Sociedad - Sheraldo Becker 66'\n- Conquense 0-1 Real Sociedad - Brais Mendez 92'\n- Celta [1] - 0 Real Sociedad P. Durán / Assist: J. Rodríguez\n- Celta Vigo 0-1 Real Sociedad - Mikel Oyarzabal 2'\n- Real Sociedad 1-0 Celta Vigo - Mikel Oyarzabal 17'\n- Real Sociedad [2] - Sevilla 0 - Umar Sadiq Golazo 22'\n- Real Sociedad 1-[3] Villarreal - Alexander Sorloth 90'+5'\n- Granada 2 - [1] Barcelona - Lamine Yamal 45‎+‎1‎'‎\n- Real Sociedad 1-0 PAOK - Orri Oskarsson 43'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Real Sociedad vs. Espanyol\", \"purpose\": \"Football match results\", \"emotion_tone\": \"Competitive\", \"description\": \"Matches between Real Sociedad and Espanyol, highlighting goals and key players\", \"inclusion_cues\": [\"Real Sociedad [1]-0 Espanyol\", \"Real Sociedad [1]-0 Valladolid\", \"Real Sociedad 0-1 Espanyol\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Real Sociedad vs. Espanyol",
+      "purpose": "Football match results",
+      "emotion_tone": "Competitive",
+      "description": "Matches between Real Sociedad and Espanyol, highlighting goals and key players",
+      "inclusion_cues": [
+       "Real Sociedad [1]-0 Espanyol",
+       "Real Sociedad [1]-0 Valladolid",
+       "Real Sociedad 0-1 Espanyol"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 109,
+   "seed": 862007995,
+   "seconds": 0.64
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: sociedad sevilla, real sociedad, sociedad inter, sociedad alaves, sociedad celta, 90 barcelona, sociedad villarreal, sociedad espanyol, sociedad athletic, barcelona guayaquil, sociedad almeria, delfín barcelona, valladolid barcelona, sociedad valladolid, granada barcelona\nPosts (one per line, title first):\n- Real Sociedad [1] - 0 Espanyol - Sheraldo Becker 1'\n- Real Sociedad [1]-0 Sevilla - Brais Mendez 28'\n- Real Sociedad [2]-2 Espanyol - Orri Oskarsson 69'\n- Real Sociedad [2]-1 Espanyol - Brais Mendez 84'\n- Real Sociedad [3]-1 Celta Vigo - Brais Mendez penalty 90'+6'\n- Real Sociedad 0-1 Sevilla - Chidera Ejuke 47'\n- Real Sociedad 2-0 PAOK - Orri Oskarsson 48'\n- Real Sociedad 1-[1] Celta Vigo - Oscar Mingueza 90'+4'\n- Real Sociedad 0 - [1] Celta de Vigo - Alfon González 44'\n- Real Sociedad [2]-1 Athletic Club - Goncalo Guedes 47'\n- Real Sociedad [2]-1 Celta Vigo - Mikel Oyarzaba 75'\n- Barcelona [1] - 0 Granada - Lamine Yamal 15'\n- Real Sociedad 1-0 Inter - Brais Mendez 4'\n- Real Sociedad [1]-1 Almeria - Sheraldo Becker 32'\n- Real Sociedad [2] - 1 Sevilla - Mikel Oyarzabal 36'\n- Real Sociedad [1] - 0 Espanyol - S. Becker / Assist: L. Sučić\n- Real Sociedad [1] - 0 Valladolid - M. Oyarzabal\n- Delfín [1] - 0 Barcelona de Guayaquil | 42' N. Goitea - ARG\n- Real Sociedad 0-1 Espanyol - Pere Milla 10'\n- Real Sociedad [2] - 0 Las Palmas - Sheraldo Becker 45+2'\n- Real Sociedad 1-0 Alaves - Brais Mendez 32'\n- Real Valladolid 1 - [2] Barcelona - Fermin Lopez 60'\n- Celta Vigo 0-2 Real Sociedad - Sheraldo Becker 66'\n- Conquense 0-1 Real Sociedad - Brais Mendez 92'\n- Celta [1] - 0 Real Sociedad P. Durán / Assist: J. Rodríguez\n- Celta Vigo 0-1 Real Sociedad - Mikel Oyarzabal 2'\n- Real Sociedad 1-0 Celta Vigo - Mikel Oyarzabal 17'\n- Real Sociedad [2] - Sevilla 0 - Umar Sadiq Golazo 22'\n- Real Sociedad 1-[3] Villarreal - Alexander Sorloth 90'+5'\n- Granada 2 - [1] Barcelona - Lamine Yamal 45‎+‎1‎'‎\n- Real Sociedad 1-0 PAOK - Orri Oskarsson 43'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Real Sociedad Matches\", \"purpose\": \"Reporting results and player actions in matches involving Real Sociedad\", \"emotion_tone\": \"Competitive\", \"description\": \"Posts about matches involving Real Sociedad, including goals, assists, and player performances, often with commentary or analysis.\", \"inclusion_cues\": [\"Real Sociedad [1] - 0 Espanyol\", \"Real Sociedad [2]-1 Celta Vigo\", \"Real Sociedad 1-0 Alaves\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Real Sociedad Matches",
+      "purpose": "Reporting results and player actions in matches involving Real Sociedad",
+      "emotion_tone": "Competitive",
+      "description": "Posts about matches involving Real Sociedad, including goals, assists, and player performances, often with commentary or analysis.",
+      "inclusion_cues": [
+       "Real Sociedad [1] - 0 Espanyol",
+       "Real Sociedad [2]-1 Celta Vigo",
+       "Real Sociedad 1-0 Alaves"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 119,
+   "seed": 1420722624,
+   "seconds": 0.65
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: sociedad sevilla, real sociedad, sociedad inter, sociedad alaves, sociedad celta, 90 barcelona, sociedad villarreal, sociedad espanyol, sociedad athletic, barcelona guayaquil, sociedad almeria, delfín barcelona, valladolid barcelona, sociedad valladolid, granada barcelona\nPosts (one per line, title first):\n- Real Sociedad [1] - 0 Espanyol - Sheraldo Becker 1'\n- Real Sociedad [1]-0 Sevilla - Brais Mendez 28'\n- Real Sociedad [2]-2 Espanyol - Orri Oskarsson 69'\n- Real Sociedad [2]-1 Espanyol - Brais Mendez 84'\n- Real Sociedad [3]-1 Celta Vigo - Brais Mendez penalty 90'+6'\n- Real Sociedad 0-1 Sevilla - Chidera Ejuke 47'\n- Real Sociedad 2-0 PAOK - Orri Oskarsson 48'\n- Real Sociedad 1-[1] Celta Vigo - Oscar Mingueza 90'+4'\n- Real Sociedad 0 - [1] Celta de Vigo - Alfon González 44'\n- Real Sociedad [2]-1 Athletic Club - Goncalo Guedes 47'\n- Real Sociedad [2]-1 Celta Vigo - Mikel Oyarzaba 75'\n- Barcelona [1] - 0 Granada - Lamine Yamal 15'\n- Real Sociedad 1-0 Inter - Brais Mendez 4'\n- Real Sociedad [1]-1 Almeria - Sheraldo Becker 32'\n- Real Sociedad [2] - 1 Sevilla - Mikel Oyarzabal 36'\n- Real Sociedad [1] - 0 Espanyol - S. Becker / Assist: L. Sučić\n- Real Sociedad [1] - 0 Valladolid - M. Oyarzabal\n- Delfín [1] - 0 Barcelona de Guayaquil | 42' N. Goitea - ARG\n- Real Sociedad 0-1 Espanyol - Pere Milla 10'\n- Real Sociedad [2] - 0 Las Palmas - Sheraldo Becker 45+2'\n- Real Sociedad 1-0 Alaves - Brais Mendez 32'\n- Real Valladolid 1 - [2] Barcelona - Fermin Lopez 60'\n- Celta Vigo 0-2 Real Sociedad - Sheraldo Becker 66'\n- Conquense 0-1 Real Sociedad - Brais Mendez 92'\n- Celta [1] - 0 Real Sociedad P. Durán / Assist: J. Rodríguez\n- Celta Vigo 0-1 Real Sociedad - Mikel Oyarzabal 2'\n- Real Sociedad 1-0 Celta Vigo - Mikel Oyarzabal 17'\n- Real Sociedad [2] - Sevilla 0 - Umar Sadiq Golazo 22'\n- Real Sociedad 1-[3] Villarreal - Alexander Sorloth 90'+5'\n- Granada 2 - [1] Barcelona - Lamine Yamal 45‎+‎1‎'‎\n- Real Sociedad 1-0 PAOK - Orri Oskarsson 43'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Real Sociedad vs. Espanyol\", \"purpose\": \"Football match results\", \"emotion_tone\": \"Competitive\", \"description\": \"Matches between Real Sociedad and Espanyol, highlighting goals and key players\", \"inclusion_cues\": [\"Real Sociedad [1]-0 Espanyol\", \"Real Sociedad [1]-0 Valladolid\", \"Real Sociedad 0-1 Espanyol\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Real Sociedad Matches\", \"purpose\": \"Reporting results and player actions in matches involving Real Sociedad\", \"emotion_tone\": \"Competitive\", \"description\": \"Posts about matches involving Real Sociedad, including goals, assists, and player performances, often with commentary or analysis.\", \"inclusion_cues\": [\"Real Sociedad [1] - 0 Espanyol\", \"Real Sociedad [2]-1 Celta Vigo\", \"Real Sociedad 1-0 Alaves\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Real Sociedad Matches\", \"purpose\": \"Reporting results and player actions in matches involving Real Sociedad\", \"emotion_tone\": \"Competitive\", \"description\": \"Posts about matches involving Real Sociedad, including goals, assists, and player performances, often with commentary or analysis.\", \"inclusion_cues\": [\"Real Sociedad [1] - 0 Espanyol\", \"Real Sociedad [2]-1 Celta Vigo\", \"Real Sociedad 1-0 Alaves\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 118,
+   "seed": 727684937,
+   "seconds": 0.63
+  }
+ ]
+}

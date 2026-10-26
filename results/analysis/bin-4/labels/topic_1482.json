@@ -1,0 +1,184 @@
+{
+ "period_bin": 4,
+ "topic_id": 1482,
+ "keywords": "shirts manchester, league shirts, clubs shirt, club jerseys, shirts ronaldo, mls jersey, chelsea adidas, clubs highest, shirts sold, chelsea sold, 16 chelsea, club kits, selling football, united barcelona, considering chelsea",
+ "n_sample_posts": 27,
+ "sample_ids": [
+  "318b36",
+  "3psxu3",
+  "57jyaq",
+  "57qojd",
+  "4j3gad",
+  "30ub55",
+  "3ptlcg",
+  "4233t6",
+  "6ymh1x",
+  "3otqgh",
+  "2x006r",
+  "3ognki",
+  "3gq94b",
+  "4j5zr9",
+  "4l1cys",
+  "5taes1",
+  "4wqyzs",
+  "3m1zy3",
+  "2i9jfr",
+  "4m8cqp",
+  "57xebg",
+  "4uuh97",
+  "6m8m4d",
+  "4260o7",
+  "5bw4bt",
+  "41vwkf",
+  "59388z"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Shirt Sales",
+  "purpose": "Analyzing the popularity and sales of football jerseys and shirts",
+  "emotion_tone": "Informative and competitive",
+  "description": "Posts discussing the top-selling football jerseys, club kits, and player shirts, including sales figures, comparisons, and sponsorship deals.",
+  "inclusion_cues": [
+   "Top 10 best selling Premier League Shirts",
+   "Chelsea sold more shirts than Manchester United & Real Madrid",
+   "Top 10 clubs with highest jersey sales in 2015-2016",
+   "Highest Selling Football Club Kits 2016 - 2017"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Shirt Sales",
+    "purpose": "Analyzing football shirt sales data and trends",
+    "emotion_tone": "Informed",
+    "description": "Posts discussing shirt sales, club jerseys, player shirts, and related market trends",
+    "inclusion_cues": [
+     "shirts sold",
+     "club jerseys",
+     "player shirts",
+     "shirts ronaldo",
+     "chelsea sold",
+     "manchester united",
+     "real madrid",
+     "barcelona"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Shirt Sales",
+    "purpose": "Analyzing the popularity and sales of football jerseys and shirts",
+    "emotion_tone": "Informative and competitive",
+    "description": "Posts discussing the top-selling football jerseys, club kits, and player shirts, including sales figures, comparisons, and sponsorship deals.",
+    "inclusion_cues": [
+     "Top 10 best selling Premier League Shirts",
+     "Chelsea sold more shirts than Manchester United & Real Madrid",
+     "Top 10 clubs with highest jersey sales in 2015-2016",
+     "Highest Selling Football Club Kits 2016 - 2017"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: shirts manchester, league shirts, clubs shirt, club jerseys, shirts ronaldo, mls jersey, chelsea adidas, clubs highest, shirts sold, chelsea sold, 16 chelsea, club kits, selling football, united barcelona, considering chelsea\nPosts (one per line, title first):\n- Top 10 best selling Premier League Shirts. / 5 Manchester United players on here. De Gea pretty surprising\n- Clint Dempsey tops MLS jersey sales, four NYCFC players in top 10\n- Top Ten Best-Selling Player Shirts 2016\n- Man Utd pip Real Madrid and Barca in global shirt sales league (average of shirts per year in the five-season period from 2011-12 to 2015-16) | List of top 20 in Europe included\n- Chelsea sold more shirts than Manchester United & Real Madrid in 2015/16 / The numbers are interesting considering Chelsea and Adidas terminated a £30 Million per year deal(£300M for 10 yrs) yesterday, while Adidas has a £75million-per-year deal with United and a ten year deal with Real believed to \n- Manchester United's Angel Di Maria sells more shirts than Alexis Sanchez, Diego Costa and every other player in the Premier League\n- Dempsey, Gerrard, and Kaka lead MLS jersey sales\n- Top Selling Shirts by Club & Player According to World Soccer Shop Sales\n- Since May 1st, Matt Ritchie has sold more replica shirts in the UK than Rooney, Morata, Neymar or Ronaldo.\n- The #1 top-selling US Soccer wall decal on the most popular decal website is Alex Morgan; the #1 MLS decal is Mike Magee; and #1 International (\"European\") decal is Lionel Messi (Scroll down and see)\n- Europe's Elite Soccer Jerseys Are Now Worth $778 Million\n- Top Selling Player Shirts 2014/15\n- Shaqiri's 22 shirt is the fastest selling shirt in Stoke's history\n- Top 10 clubs : shirt sales for 2015-16. Chelsea overtakes Manchester United, barcelona still top.\n- Finance expert: Ibrahimovic will sell more Man Utd shirts than Ronaldo and Messi\n- Top 10 Most Global Shirt Sales in 2016\n- The Best Selling Football Shirts of 2016\n- Highest Selling Club Soccer Jerseys\n- Top 5 shirtsponsor deals\n- Atlético's Juanfran jersey sales have multiplied 8-fold this week\n- Real Madrid, Barcelona, Man Utd, Liverpool: Top 20 most European shirts sold\n- Top 10 Clubs with highest jersey sales in 2015-2016 [Sky Sports]\n- Top 10 Highest Selling Club Soccer Jerseys\n- TOP 10 Most Sold Football Jersey\n- Highest Selling Football Club Kits 2016 - 2017\n- Messi edges Ronaldo for best selling soccer jersey; Barca tops kit sales\n- Top 10 Best Selling Soccer Jersey in the World\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Shirt Sales\", \"purpose\": \"Analyzing football shirt sales data and trends\", \"emotion_tone\": \"Informed\", \"description\": \"Posts discussing shirt sales, club jerseys, player shirts, and related market trends\", \"inclusion_cues\": [\"shirts sold\", \"club jerseys\", \"player shirts\", \"shirts ronaldo\", \"chelsea sold\", \"manchester united\", \"real madrid\", \"barcelona\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Shirt Sales",
+      "purpose": "Analyzing football shirt sales data and trends",
+      "emotion_tone": "Informed",
+      "description": "Posts discussing shirt sales, club jerseys, player shirts, and related market trends",
+      "inclusion_cues": [
+       "shirts sold",
+       "club jerseys",
+       "player shirts",
+       "shirts ronaldo",
+       "chelsea sold",
+       "manchester united",
+       "real madrid",
+       "barcelona"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 107,
+   "seed": 3665244086,
+   "seconds": 1.05
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: shirts manchester, league shirts, clubs shirt, club jerseys, shirts ronaldo, mls jersey, chelsea adidas, clubs highest, shirts sold, chelsea sold, 16 chelsea, club kits, selling football, united barcelona, considering chelsea\nPosts (one per line, title first):\n- Top 10 best selling Premier League Shirts. / 5 Manchester United players on here. De Gea pretty surprising\n- Clint Dempsey tops MLS jersey sales, four NYCFC players in top 10\n- Top Ten Best-Selling Player Shirts 2016\n- Man Utd pip Real Madrid and Barca in global shirt sales league (average of shirts per year in the five-season period from 2011-12 to 2015-16) | List of top 20 in Europe included\n- Chelsea sold more shirts than Manchester United & Real Madrid in 2015/16 / The numbers are interesting considering Chelsea and Adidas terminated a £30 Million per year deal(£300M for 10 yrs) yesterday, while Adidas has a £75million-per-year deal with United and a ten year deal with Real believed to \n- Manchester United's Angel Di Maria sells more shirts than Alexis Sanchez, Diego Costa and every other player in the Premier League\n- Dempsey, Gerrard, and Kaka lead MLS jersey sales\n- Top Selling Shirts by Club & Player According to World Soccer Shop Sales\n- Since May 1st, Matt Ritchie has sold more replica shirts in the UK than Rooney, Morata, Neymar or Ronaldo.\n- The #1 top-selling US Soccer wall decal on the most popular decal website is Alex Morgan; the #1 MLS decal is Mike Magee; and #1 International (\"European\") decal is Lionel Messi (Scroll down and see)\n- Europe's Elite Soccer Jerseys Are Now Worth $778 Million\n- Top Selling Player Shirts 2014/15\n- Shaqiri's 22 shirt is the fastest selling shirt in Stoke's history\n- Top 10 clubs : shirt sales for 2015-16. Chelsea overtakes Manchester United, barcelona still top.\n- Finance expert: Ibrahimovic will sell more Man Utd shirts than Ronaldo and Messi\n- Top 10 Most Global Shirt Sales in 2016\n- The Best Selling Football Shirts of 2016\n- Highest Selling Club Soccer Jerseys\n- Top 5 shirtsponsor deals\n- Atlético's Juanfran jersey sales have multiplied 8-fold this week\n- Real Madrid, Barcelona, Man Utd, Liverpool: Top 20 most European shirts sold\n- Top 10 Clubs with highest jersey sales in 2015-2016 [Sky Sports]\n- Top 10 Highest Selling Club Soccer Jerseys\n- TOP 10 Most Sold Football Jersey\n- Highest Selling Football Club Kits 2016 - 2017\n- Messi edges Ronaldo for best selling soccer jersey; Barca tops kit sales\n- Top 10 Best Selling Soccer Jersey in the World\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Shirt Sales\", \"purpose\": \"Analyzing the popularity and sales of football jerseys and shirts\", \"emotion_tone\": \"Informative and competitive\", \"description\": \"Posts discussing the top-selling football jerseys, club kits, and player shirts, including sales figures, comparisons, and sponsorship deals.\", \"inclusion_cues\": [\"Top 10 best selling Premier League Shirts\", \"Chelsea sold more shirts than Manchester United & Real Madrid\", \"Top 10 clubs with highest jersey sales in 2015-2016\", \"Highest Selling Football Club Kits 2016 - 2017\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Shirt Sales",
+      "purpose": "Analyzing the popularity and sales of football jerseys and shirts",
+      "emotion_tone": "Informative and competitive",
+      "description": "Posts discussing the top-selling football jerseys, club kits, and player shirts, including sales figures, comparisons, and sponsorship deals.",
+      "inclusion_cues": [
+       "Top 10 best selling Premier League Shirts",
+       "Chelsea sold more shirts than Manchester United & Real Madrid",
+       "Top 10 clubs with highest jersey sales in 2015-2016",
+       "Highest Selling Football Club Kits 2016 - 2017"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 147,
+   "seed": 3716642837,
+   "seconds": 1.2
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: shirts manchester, league shirts, clubs shirt, club jerseys, shirts ronaldo, mls jersey, chelsea adidas, clubs highest, shirts sold, chelsea sold, 16 chelsea, club kits, selling football, united barcelona, considering chelsea\nPosts (one per line, title first):\n- Top 10 best selling Premier League Shirts. / 5 Manchester United players on here. De Gea pretty surprising\n- Clint Dempsey tops MLS jersey sales, four NYCFC players in top 10\n- Top Ten Best-Selling Player Shirts 2016\n- Man Utd pip Real Madrid and Barca in global shirt sales league (average of shirts per year in the five-season period from 2011-12 to 2015-16) | List of top 20 in Europe included\n- Chelsea sold more shirts than Manchester United & Real Madrid in 2015/16 / The numbers are interesting considering Chelsea and Adidas terminated a £30 Million per year deal(£300M for 10 yrs) yesterday, while Adidas has a £75million-per-year deal with United and a ten year deal with Real believed to \n- Manchester United's Angel Di Maria sells more shirts than Alexis Sanchez, Diego Costa and every other player in the Premier League\n- Dempsey, Gerrard, and Kaka lead MLS jersey sales\n- Top Selling Shirts by Club & Player According to World Soccer Shop Sales\n- Since May 1st, Matt Ritchie has sold more replica shirts in the UK than Rooney, Morata, Neymar or Ronaldo.\n- The #1 top-selling US Soccer wall decal on the most popular decal website is Alex Morgan; the #1 MLS decal is Mike Magee; and #1 International (\"European\") decal is Lionel Messi (Scroll down and see)\n- Europe's Elite Soccer Jerseys Are Now Worth $778 Million\n- Top Selling Player Shirts 2014/15\n- Shaqiri's 22 shirt is the fastest selling shirt in Stoke's history\n- Top 10 clubs : shirt sales for 2015-16. Chelsea overtakes Manchester United, barcelona still top.\n- Finance expert: Ibrahimovic will sell more Man Utd shirts than Ronaldo and Messi\n- Top 10 Most Global Shirt Sales in 2016\n- The Best Selling Football Shirts of 2016\n- Highest Selling Club Soccer Jerseys\n- Top 5 shirtsponsor deals\n- Atlético's Juanfran jersey sales have multiplied 8-fold this week\n- Real Madrid, Barcelona, Man Utd, Liverpool: Top 20 most European shirts sold\n- Top 10 Clubs with highest jersey sales in 2015-2016 [Sky Sports]\n- Top 10 Highest Selling Club Soccer Jerseys\n- TOP 10 Most Sold Football Jersey\n- Highest Selling Football Club Kits 2016 - 2017\n- Messi edges Ronaldo for best selling soccer jersey; Barca tops kit sales\n- Top 10 Best Selling Soccer Jersey in the World\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Shirt Sales\", \"purpose\": \"Analyzing football shirt sales data and trends\", \"emotion_tone\": \"Informed\", \"description\": \"Posts discussing shirt sales, club jerseys, player shirts, and related market trends\", \"inclusion_cues\": [\"shirts sold\", \"club jerseys\", \"player shirts\", \"shirts ronaldo\", \"chelsea sold\", \"manchester united\", \"real madrid\", \"barcelona\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Shirt Sales\", \"purpose\": \"Analyzing the popularity and sales of football jerseys and shirts\", \"emotion_tone\": \"Informative and competitive\", \"description\": \"Posts discussing the top-selling football jerseys, club kits, and player shirts, including sales figures, comparisons, and sponsorship deals.\", \"inclusion_cues\": [\"Top 10 best selling Premier League Shirts\", \"Chelsea sold more shirts than Manchester United & Real Madrid\", \"Top 10 clubs with highest jersey sales in 2015-2016\", \"Highest Selling Football Club Kits 2016 - 2017\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Shirt Sales\", \"purpose\": \"Analyzing football shirt sales data and trends\", \"emotion_tone\": \"Informative and competitive\", \"description\": \"Posts discussing the top-selling football jerseys, club kits, and player shirts, including sales figures, comparisons, and sponsorship deals.\", \"inclusion_cues\": [\"Top 10 best selling Premier League Shirts\", \"Chelsea sold more shirts than Manchester United & Real Madrid\", \"Top 10 clubs with highest jersey sales in 2015-2016\", \"Highest Selling Football Club Kits 2016 - 2017\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 143,
+   "seed": 1920825935,
+   "seconds": 0.82
+  }
+ ]
+}

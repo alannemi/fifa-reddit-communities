@@ -1,0 +1,177 @@
+{
+ "period_bin": 6,
+ "topic_id": 1332,
+ "keywords": "goal charity, juan mata, pledges donate, zidane team, idea psg, psg squad, future psg, leipzig dani, madrid guardian, members football, football racism, madrid psg, organisations, psg website, news psg",
+ "n_sample_posts": 26,
+ "sample_ids": [
+  "ivpyem",
+  "9v39r7",
+  "clzz7k",
+  "ls5r1u",
+  "i7pgun",
+  "p2bb9n",
+  "ic6ckc",
+  "d6rfd7",
+  "d6s25o",
+  "ayckkt",
+  "ifnyxa",
+  "ay9rjk",
+  "d8cxj7",
+  "h7uxy0",
+  "tdy7zj",
+  "d6xftd",
+  "avrnj4",
+  "ifkw5b",
+  "tb7rnh",
+  "bluc9a",
+  "a9be3b",
+  "aybwvz",
+  "b3s3zb",
+  "cyr05j",
+  "ayp102",
+  "axd3nu"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Common Goal",
+  "purpose": "Charity and social impact",
+  "emotion_tone": "Hopeful and urgent",
+  "description": "A charity initiative led by Juan Mata, promoting social transformation through football, focusing on donations and community engagement.",
+  "inclusion_cues": [
+   "Common Goal charity initiative",
+   "Juan Mata's charitable movement",
+   "Players and managers donating 1% of salary",
+   "Social transformation through football"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Common Goal",
+    "purpose": "Charity and social impact",
+    "emotion_tone": "Hopeful and urgent",
+    "description": "Posts about Common Goal, a charity initiated by Juan Mata, focusing on player donations and social transformation.",
+    "inclusion_cues": [
+     "Common Goal charity",
+     "player donations",
+     "social transformation",
+     "football charity",
+     "charity movement"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Common Goal",
+    "purpose": "Charity and social impact",
+    "emotion_tone": "Hopeful and urgent",
+    "description": "A charity initiative led by Juan Mata, promoting social transformation through football, focusing on donations and community engagement.",
+    "inclusion_cues": [
+     "Common Goal charity initiative",
+     "Juan Mata's charitable movement",
+     "Players and managers donating 1% of salary",
+     "Social transformation through football"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: goal charity, juan mata, pledges donate, zidane team, idea psg, psg squad, future psg, leipzig dani, madrid guardian, members football, football racism, madrid psg, organisations, psg website, news psg\nPosts (one per line, title first):\n- Timo Werner joins Common Goal, pledges to donate 1% of his salary for social issues\n- Common Goal (The Juan Mata charity organization) announces his first member playing in Latin America: The venezuelan Luis Manuel Seijas of Santa Fe (Colombia)\n- Juan Mata helped launch Common Goal on 4 August 2017. He pledged 1% of his earnings to global charities. Since then, 107 players and managers have joined the movement 👏\n- Manchester City goalkeeper Zack Steffen teams up with Juan Mata's Common Goal charity to combat football's racism problem and provide education training for thousands of fans, coaches and youngsters.\n- Leipzig's Dani Olmo joins the Common Goal, a movement that allows footballers and other members of the football industry to donate a minimum of 1% of their salaries to initiatives and organisations that use football as a tool for social transformation.\n- The day Amara Diané changed the future of PSG\n- PSG washed away 25 years of sadness in one night - Julien Laurens | ESPN FC\n- PSG exposed all the problems of Real Madrid in the first major duel of the season. Not even in his fetish competition does the Zinedine Zidane team show signs of improvement.\n- WTF HAS HAPPENED TO REAL MADRID?! PSG 3-0 REACTION\n- PSG demise a lesson in the corrupting effect of money and arrogance | Jonathan Wilson | Influence of money is very high these days. No one was ready to United a chance, completely ignoring the role of belief and confidence in a team's performance.\n- For PSG this final defeat signals a dream not ended but deferred | Jonathan Wilson\n- Dear PSG fans, welcome to the club\n- What is Common Goal? Juan Mata's charitable initiative explained\n- Izzy Christiansen joins Common Goal\n- Players staring into space for an hour, Mauricio Pochettino on the verge of tears and the worst ever atmosphere at the training ground. Here's how PSG's squad is starting to fracture after the Champions League defeat to Real Madrid.\n- WTF has happened to Real Madrid?! PSG 3-0 REACTION\n- PSG’s Quest for Global Domination is a War on Two Fronts\n- PSG, the Champions League and the failure of an idea\n- [The Guardian] PSG feel the full force of history in dispiriting loss to Real Madrid | Sid Lowe\n- PSG have a attitude problem and until it's fixed, they'll be kings of France but a laughing stock in Europe\n- Don't let this post distract you from the fact PSG blew a 4-0 lead\n- PSG demise a lesson in the corrupting effect of money and arrogance - The Guardian's Jonathan Wilson\n- The new PSG strategy to blow Barça\n- Keylor Navas' arrival & Alphonse Areola's departure have crashed the PSG website.\n- PSG again show they’re Europe’s biggest losers and have only themselves to blame\n- Not good news for PSG\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Common Goal\", \"purpose\": \"Charity and social impact\", \"emotion_tone\": \"Hopeful and urgent\", \"description\": \"Posts about Common Goal, a charity initiated by Juan Mata, focusing on player donations and social transformation.\", \"inclusion_cues\": [\"Common Goal charity\", \"player donations\", \"social transformation\", \"football charity\", \"charity movement\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Common Goal",
+      "purpose": "Charity and social impact",
+      "emotion_tone": "Hopeful and urgent",
+      "description": "Posts about Common Goal, a charity initiated by Juan Mata, focusing on player donations and social transformation.",
+      "inclusion_cues": [
+       "Common Goal charity",
+       "player donations",
+       "social transformation",
+       "football charity",
+       "charity movement"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 93,
+   "seed": 2739019722,
+   "seconds": 0.63
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: goal charity, juan mata, pledges donate, zidane team, idea psg, psg squad, future psg, leipzig dani, madrid guardian, members football, football racism, madrid psg, organisations, psg website, news psg\nPosts (one per line, title first):\n- Timo Werner joins Common Goal, pledges to donate 1% of his salary for social issues\n- Common Goal (The Juan Mata charity organization) announces his first member playing in Latin America: The venezuelan Luis Manuel Seijas of Santa Fe (Colombia)\n- Juan Mata helped launch Common Goal on 4 August 2017. He pledged 1% of his earnings to global charities. Since then, 107 players and managers have joined the movement 👏\n- Manchester City goalkeeper Zack Steffen teams up with Juan Mata's Common Goal charity to combat football's racism problem and provide education training for thousands of fans, coaches and youngsters.\n- Leipzig's Dani Olmo joins the Common Goal, a movement that allows footballers and other members of the football industry to donate a minimum of 1% of their salaries to initiatives and organisations that use football as a tool for social transformation.\n- The day Amara Diané changed the future of PSG\n- PSG washed away 25 years of sadness in one night - Julien Laurens | ESPN FC\n- PSG exposed all the problems of Real Madrid in the first major duel of the season. Not even in his fetish competition does the Zinedine Zidane team show signs of improvement.\n- WTF HAS HAPPENED TO REAL MADRID?! PSG 3-0 REACTION\n- PSG demise a lesson in the corrupting effect of money and arrogance | Jonathan Wilson | Influence of money is very high these days. No one was ready to United a chance, completely ignoring the role of belief and confidence in a team's performance.\n- For PSG this final defeat signals a dream not ended but deferred | Jonathan Wilson\n- Dear PSG fans, welcome to the club\n- What is Common Goal? Juan Mata's charitable initiative explained\n- Izzy Christiansen joins Common Goal\n- Players staring into space for an hour, Mauricio Pochettino on the verge of tears and the worst ever atmosphere at the training ground. Here's how PSG's squad is starting to fracture after the Champions League defeat to Real Madrid.\n- WTF has happened to Real Madrid?! PSG 3-0 REACTION\n- PSG’s Quest for Global Domination is a War on Two Fronts\n- PSG, the Champions League and the failure of an idea\n- [The Guardian] PSG feel the full force of history in dispiriting loss to Real Madrid | Sid Lowe\n- PSG have a attitude problem and until it's fixed, they'll be kings of France but a laughing stock in Europe\n- Don't let this post distract you from the fact PSG blew a 4-0 lead\n- PSG demise a lesson in the corrupting effect of money and arrogance - The Guardian's Jonathan Wilson\n- The new PSG strategy to blow Barça\n- Keylor Navas' arrival & Alphonse Areola's departure have crashed the PSG website.\n- PSG again show they’re Europe’s biggest losers and have only themselves to blame\n- Not good news for PSG\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Common Goal\", \"purpose\": \"Charity and social impact\", \"emotion_tone\": \"Hopeful and urgent\", \"description\": \"A charity initiative led by Juan Mata, promoting social transformation through football, focusing on donations and community engagement.\", \"inclusion_cues\": [\"Common Goal charity initiative\", \"Juan Mata's charitable movement\", \"Players and managers donating 1% of salary\", \"Social transformation through football\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Common Goal",
+      "purpose": "Charity and social impact",
+      "emotion_tone": "Hopeful and urgent",
+      "description": "A charity initiative led by Juan Mata, promoting social transformation through football, focusing on donations and community engagement.",
+      "inclusion_cues": [
+       "Common Goal charity initiative",
+       "Juan Mata's charitable movement",
+       "Players and managers donating 1% of salary",
+       "Social transformation through football"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 102,
+   "seed": 2893292990,
+   "seconds": 0.64
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: goal charity, juan mata, pledges donate, zidane team, idea psg, psg squad, future psg, leipzig dani, madrid guardian, members football, football racism, madrid psg, organisations, psg website, news psg\nPosts (one per line, title first):\n- Timo Werner joins Common Goal, pledges to donate 1% of his salary for social issues\n- Common Goal (The Juan Mata charity organization) announces his first member playing in Latin America: The venezuelan Luis Manuel Seijas of Santa Fe (Colombia)\n- Juan Mata helped launch Common Goal on 4 August 2017. He pledged 1% of his earnings to global charities. Since then, 107 players and managers have joined the movement 👏\n- Manchester City goalkeeper Zack Steffen teams up with Juan Mata's Common Goal charity to combat football's racism problem and provide education training for thousands of fans, coaches and youngsters.\n- Leipzig's Dani Olmo joins the Common Goal, a movement that allows footballers and other members of the football industry to donate a minimum of 1% of their salaries to initiatives and organisations that use football as a tool for social transformation.\n- The day Amara Diané changed the future of PSG\n- PSG washed away 25 years of sadness in one night - Julien Laurens | ESPN FC\n- PSG exposed all the problems of Real Madrid in the first major duel of the season. Not even in his fetish competition does the Zinedine Zidane team show signs of improvement.\n- WTF HAS HAPPENED TO REAL MADRID?! PSG 3-0 REACTION\n- PSG demise a lesson in the corrupting effect of money and arrogance | Jonathan Wilson | Influence of money is very high these days. No one was ready to United a chance, completely ignoring the role of belief and confidence in a team's performance.\n- For PSG this final defeat signals a dream not ended but deferred | Jonathan Wilson\n- Dear PSG fans, welcome to the club\n- What is Common Goal? Juan Mata's charitable initiative explained\n- Izzy Christiansen joins Common Goal\n- Players staring into space for an hour, Mauricio Pochettino on the verge of tears and the worst ever atmosphere at the training ground. Here's how PSG's squad is starting to fracture after the Champions League defeat to Real Madrid.\n- WTF has happened to Real Madrid?! PSG 3-0 REACTION\n- PSG’s Quest for Global Domination is a War on Two Fronts\n- PSG, the Champions League and the failure of an idea\n- [The Guardian] PSG feel the full force of history in dispiriting loss to Real Madrid | Sid Lowe\n- PSG have a attitude problem and until it's fixed, they'll be kings of France but a laughing stock in Europe\n- Don't let this post distract you from the fact PSG blew a 4-0 lead\n- PSG demise a lesson in the corrupting effect of money and arrogance - The Guardian's Jonathan Wilson\n- The new PSG strategy to blow Barça\n- Keylor Navas' arrival & Alphonse Areola's departure have crashed the PSG website.\n- PSG again show they’re Europe’s biggest losers and have only themselves to blame\n- Not good news for PSG\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Common Goal\", \"purpose\": \"Charity and social impact\", \"emotion_tone\": \"Hopeful and urgent\", \"description\": \"Posts about Common Goal, a charity initiated by Juan Mata, focusing on player donations and social transformation.\", \"inclusion_cues\": [\"Common Goal charity\", \"player donations\", \"social transformation\", \"football charity\", \"charity movement\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Common Goal\", \"purpose\": \"Charity and social impact\", \"emotion_tone\": \"Hopeful and urgent\", \"description\": \"A charity initiative led by Juan Mata, promoting social transformation through football, focusing on donations and community engagement.\", \"inclusion_cues\": [\"Common Goal charity initiative\", \"Juan Mata's charitable movement\", \"Players and managers donating 1% of salary\", \"Social transformation through football\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Common Goal\", \"purpose\": \"Charity and social impact\", \"emotion_tone\": \"Hopeful and urgent\", \"description\": \"A charity initiative led by Juan Mata, promoting social transformation through football, focusing on donations and community engagement.\", \"inclusion_cues\": [\"Common Goal charity initiative\", \"Juan Mata's charitable movement\", \"Players and managers donating 1% of salary\", \"Social transformation through football\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 101,
+   "seed": 3333758950,
+   "seconds": 0.66
+  }
+ ]
+}

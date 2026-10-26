@@ -1,0 +1,233 @@
+{
+ "period_bin": 2,
+ "topic_id": 624,
+ "keywords": "troll football, troll anybody, troll year, trollface, lampard moment, david gea, fun arsenal, brighton player, ultimate footballing, fantastic atmosphere, cech_mate, goal today, manchester manchester, player happy, bit fun",
+ "n_sample_posts": 37,
+ "sample_ids": [
+  "r1ade",
+  "1mzpqh",
+  "os91q",
+  "1khgk0",
+  "1gnr8n",
+  "qxzvo",
+  "h5oh0",
+  "1tod2c",
+  "gvt46",
+  "tlxam",
+  "ff6m5",
+  "1tnicq",
+  "i4fs8",
+  "f44n8",
+  "1u53bt",
+  "h256e",
+  "glsz2",
+  "dvekp",
+  "jb2sq",
+  "rfceu",
+  "tvavp",
+  "rwmy4",
+  "10bk0k",
+  "1sxhqw",
+  "kqezs",
+  "15qgjj",
+  "1mo2o3",
+  "1551zs",
+  "fmrmh",
+  "1vwhtx",
+  "jxepy",
+  "11b42p",
+  "15khur",
+  "1kflvv",
+  "hobxo",
+  "q6qa1",
+  "onhmv"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Troll Football",
+  "purpose": "To mock or mock up football-related content",
+  "emotion_tone": "mocking, humorous",
+  "description": "Posts that use trollface, troll level, or troll football to mock or mock up football-related content, often with a humorous or mocking tone.",
+  "inclusion_cues": [
+   "trollface",
+   "troll level",
+   "troll football",
+   "troll",
+   "trollface",
+   "troll level",
+   "troll football",
+   "troll",
+   "trollface",
+   "troll level"
+  ],
+  "n_cues_given": 11
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Troll Football",
+    "purpose": "Encouraging humor and mockery in football discussions",
+    "emotion_tone": "Playful, sarcastic",
+    "description": "Posts that use troll football terminology, humor, and mockery to engage in football-related joking",
+    "inclusion_cues": [
+     "troll football",
+     "troll anybody",
+     "troll year",
+     "trollface",
+     "cech_mate",
+     "goal today",
+     "manchester manchester",
+     "player happy",
+     "bit fun"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Troll Football",
+    "purpose": "To mock or mock up football-related content",
+    "emotion_tone": "mocking, humorous",
+    "description": "Posts that use trollface, troll level, or troll football to mock or mock up football-related content, often with a humorous or mocking tone.",
+    "inclusion_cues": [
+     "trollface",
+     "troll level",
+     "troll football",
+     "troll",
+     "trollface",
+     "troll level",
+     "troll football",
+     "troll",
+     "trollface",
+     "troll level"
+    ],
+    "n_cues_given": 11
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: troll football, troll anybody, troll year, trollface, lampard moment, david gea, fun arsenal, brighton player, ultimate footballing, fantastic atmosphere, cech_mate, goal today, manchester manchester, player happy, bit fun\nPosts (one per line, title first):\n- The greatest troll anybody has ever seen\n- I'm still totally STOKED about the fantastic atmosphere. Troll level: Mesut OZIL\n- The Best Troll: Luke Rogers, having a bit of fun at Arsenal.\n- Midget french player against Vince \"The Prince\" and Big Fella --> troll\n- Somebody (I presume David De Gea) wrote \"Nos vemos en Manchester\" (\"see you in Manchester\") on Thiago Alcântara's match ball after the U21 Finals!\n- A man wins an auction to train with Didier Drogba. What happens next is the funniest thing I've ever read.\n- Great troll or greatest troll?\n- Might as well start posting Troll Football material...\n- Trollface spotted after West Brom's tying goal today\n- Most relieved man in all of Manchester\n- Someone looks happy...\n- Troll Football #cech_mate\n- /r/soccer's Biggest Troll.\n- Anybody else seen this? Troll? It has a lot to do with soccer, but strays off topic. Thoughts?\n- Greatest trollface ever.\n- Spot the troll\n- Great interview with Salomon Kalou - \"It's hard playing and not thinking about people dying\"\n- Rene Higuita, greatest trollkeeper ever\n- Biggest Soccer Troll.\n- Troll Level: Massimo Moratti\n- The Most Relieved Man in the World\n- Troll much OnSports?\n- One happy niga\n- Perfect soccer trolling\n- The Ultimate Footballing Troll?\n- And troll of the year goes to... Septic Bladder.\n- Hes a happy man....\n- This Brighton player is happy (pic)\n- After such a magnificent win, it's troll time!\n- The saddest man in sport.\n- He cuts a forlorn figure\n- Frank Lampard’s moment with Kate Middleton\n- PSG-Wenger Troll - Imgur\n- Aguero and De Gea left this on our iPad at work after they come in.\n- Best Troll evar\n- The happiest man alive\n- Trolling, Abidal and Alves style...\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Troll Football\", \"purpose\": \"To mock or mock up football-related content\", \"emotion_tone\": \"humorous, sarcastic\", \"description\": \"Posts that use troll football terminology, trollface, or troll-related humor to mock or mock up football content\", \"inclusion_cues\": [\"troll football\", \"trollface\", \"troll year\", \"troll anybody\", \"troll level\", \"troll manchester\", \"troll football material\", \"troll face\", \"troll football #cech_mate\", \"troll football #brighton_player\", \"troll football #manchester_manchester\", \"troll football #player_happy\", \"troll football #goal_today\", \"troll football #ultimate_footballing\", \"troll football #fantastic_atmosphere\", \"troll football #fun_assembly\", \"troll football #trollface\", \"troll football #troll_level\", \"troll football #troll_year\", \"troll football #trollface\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"troll football #troll_face\", \"t",
+   "parsed": null,
+   "error": "the answer was cut off at 600 tokens (invalid JSON (Unterminated string starting at at character 2078)); answer more concisely",
+   "truncated": true,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 600,
+   "seed": 590912289,
+   "seconds": 2.74
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": true,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: troll football, troll anybody, troll year, trollface, lampard moment, david gea, fun arsenal, brighton player, ultimate footballing, fantastic atmosphere, cech_mate, goal today, manchester manchester, player happy, bit fun\nPosts (one per line, title first):\n- The greatest troll anybody has ever seen\n- I'm still totally STOKED about the fantastic atmosphere. Troll level: Mesut OZIL\n- The Best Troll: Luke Rogers, having a bit of fun at Arsenal.\n- Midget french player against Vince \"The Prince\" and Big Fella --> troll\n- Somebody (I presume David De Gea) wrote \"Nos vemos en Manchester\" (\"see you in Manchester\") on Thiago Alcântara's match ball after the U21 Finals!\n- A man wins an auction to train with Didier Drogba. What happens next is the funniest thing I've ever read.\n- Great troll or greatest troll?\n- Might as well start posting Troll Football material...\n- Trollface spotted after West Brom's tying goal today\n- Most relieved man in all of Manchester\n- Someone looks happy...\n- Troll Football #cech_mate\n- /r/soccer's Biggest Troll.\n- Anybody else seen this? Troll? It has a lot to do with soccer, but strays off topic. Thoughts?\n- Greatest trollface ever.\n- Spot the troll\n- Great interview with Salomon Kalou - \"It's hard playing and not thinking about people dying\"\n- Rene Higuita, greatest trollkeeper ever\n- Biggest Soccer Troll.\n- Troll Level: Massimo Moratti\n- The Most Relieved Man in the World\n- Troll much OnSports?\n- One happy niga\n- Perfect soccer trolling\n- The Ultimate Footballing Troll?\n- And troll of the year goes to... Septic Bladder.\n- Hes a happy man....\n- This Brighton player is happy (pic)\n- After such a magnificent win, it's troll time!\n- The saddest man in sport.\n- He cuts a forlorn figure\n- Frank Lampard’s moment with Kate Middleton\n- PSG-Wenger Troll - Imgur\n- Aguero and De Gea left this on our iPad at work after they come in.\n- Best Troll evar\n- The happiest man alive\n- Trolling, Abidal and Alves style...\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer could not be used: the answer was cut off at 600 tokens (invalid JSON (Unterminated string starting at at character 2078)); answer more concisely\nReturn the corrected answer with the same schema. JSON only; no prose or markdown.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Troll Football\", \"purpose\": \"Encouraging humor and mockery in football discussions\", \"emotion_tone\": \"Playful, sarcastic\", \"description\": \"Posts that use troll football terminology, humor, and mockery to engage in football-related joking\", \"inclusion_cues\": [\"troll football\", \"troll anybody\", \"troll year\", \"trollface\", \"cech_mate\", \"goal today\", \"manchester manchester\", \"player happy\", \"bit fun\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Troll Football",
+      "purpose": "Encouraging humor and mockery in football discussions",
+      "emotion_tone": "Playful, sarcastic",
+      "description": "Posts that use troll football terminology, humor, and mockery to engage in football-related joking",
+      "inclusion_cues": [
+       "troll football",
+       "troll anybody",
+       "troll year",
+       "trollface",
+       "cech_mate",
+       "goal today",
+       "manchester manchester",
+       "player happy",
+       "bit fun"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 119,
+   "seed": 2793749083,
+   "seconds": 1.06
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: troll football, troll anybody, troll year, trollface, lampard moment, david gea, fun arsenal, brighton player, ultimate footballing, fantastic atmosphere, cech_mate, goal today, manchester manchester, player happy, bit fun\nPosts (one per line, title first):\n- The greatest troll anybody has ever seen\n- I'm still totally STOKED about the fantastic atmosphere. Troll level: Mesut OZIL\n- The Best Troll: Luke Rogers, having a bit of fun at Arsenal.\n- Midget french player against Vince \"The Prince\" and Big Fella --> troll\n- Somebody (I presume David De Gea) wrote \"Nos vemos en Manchester\" (\"see you in Manchester\") on Thiago Alcântara's match ball after the U21 Finals!\n- A man wins an auction to train with Didier Drogba. What happens next is the funniest thing I've ever read.\n- Great troll or greatest troll?\n- Might as well start posting Troll Football material...\n- Trollface spotted after West Brom's tying goal today\n- Most relieved man in all of Manchester\n- Someone looks happy...\n- Troll Football #cech_mate\n- /r/soccer's Biggest Troll.\n- Anybody else seen this? Troll? It has a lot to do with soccer, but strays off topic. Thoughts?\n- Greatest trollface ever.\n- Spot the troll\n- Great interview with Salomon Kalou - \"It's hard playing and not thinking about people dying\"\n- Rene Higuita, greatest trollkeeper ever\n- Biggest Soccer Troll.\n- Troll Level: Massimo Moratti\n- The Most Relieved Man in the World\n- Troll much OnSports?\n- One happy niga\n- Perfect soccer trolling\n- The Ultimate Footballing Troll?\n- And troll of the year goes to... Septic Bladder.\n- Hes a happy man....\n- This Brighton player is happy (pic)\n- After such a magnificent win, it's troll time!\n- The saddest man in sport.\n- He cuts a forlorn figure\n- Frank Lampard’s moment with Kate Middleton\n- PSG-Wenger Troll - Imgur\n- Aguero and De Gea left this on our iPad at work after they come in.\n- Best Troll evar\n- The happiest man alive\n- Trolling, Abidal and Alves style...\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Troll Football\", \"purpose\": \"To mock or mock up football-related content\", \"emotion_tone\": \"mocking, humorous\", \"description\": \"Posts that use trollface, troll level, or troll football to mock or mock up football-related content, often with a humorous or mocking tone.\", \"inclusion_cues\": [\"trollface\", \"troll level\", \"troll football\", \"troll\", \"trollface\", \"troll level\", \"troll football\", \"troll\", \"trollface\", \"troll level\", \"troll football\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Troll Football",
+      "purpose": "To mock or mock up football-related content",
+      "emotion_tone": "mocking, humorous",
+      "description": "Posts that use trollface, troll level, or troll football to mock or mock up football-related content, often with a humorous or mocking tone.",
+      "inclusion_cues": [
+       "trollface",
+       "troll level",
+       "troll football",
+       "troll",
+       "trollface",
+       "troll level",
+       "troll football",
+       "troll",
+       "trollface",
+       "troll level"
+      ],
+      "n_cues_given": 11
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 137,
+   "seed": 3669759114,
+   "seconds": 0.62
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: troll football, troll anybody, troll year, trollface, lampard moment, david gea, fun arsenal, brighton player, ultimate footballing, fantastic atmosphere, cech_mate, goal today, manchester manchester, player happy, bit fun\nPosts (one per line, title first):\n- The greatest troll anybody has ever seen\n- I'm still totally STOKED about the fantastic atmosphere. Troll level: Mesut OZIL\n- The Best Troll: Luke Rogers, having a bit of fun at Arsenal.\n- Midget french player against Vince \"The Prince\" and Big Fella --> troll\n- Somebody (I presume David De Gea) wrote \"Nos vemos en Manchester\" (\"see you in Manchester\") on Thiago Alcântara's match ball after the U21 Finals!\n- A man wins an auction to train with Didier Drogba. What happens next is the funniest thing I've ever read.\n- Great troll or greatest troll?\n- Might as well start posting Troll Football material...\n- Trollface spotted after West Brom's tying goal today\n- Most relieved man in all of Manchester\n- Someone looks happy...\n- Troll Football #cech_mate\n- /r/soccer's Biggest Troll.\n- Anybody else seen this? Troll? It has a lot to do with soccer, but strays off topic. Thoughts?\n- Greatest trollface ever.\n- Spot the troll\n- Great interview with Salomon Kalou - \"It's hard playing and not thinking about people dying\"\n- Rene Higuita, greatest trollkeeper ever\n- Biggest Soccer Troll.\n- Troll Level: Massimo Moratti\n- The Most Relieved Man in the World\n- Troll much OnSports?\n- One happy niga\n- Perfect soccer trolling\n- The Ultimate Footballing Troll?\n- And troll of the year goes to... Septic Bladder.\n- Hes a happy man....\n- This Brighton player is happy (pic)\n- After such a magnificent win, it's troll time!\n- The saddest man in sport.\n- He cuts a forlorn figure\n- Frank Lampard’s moment with Kate Middleton\n- PSG-Wenger Troll - Imgur\n- Aguero and De Gea left this on our iPad at work after they come in.\n- Best Troll evar\n- The happiest man alive\n- Trolling, Abidal and Alves style...\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Troll Football\", \"purpose\": \"Encouraging humor and mockery in football discussions\", \"emotion_tone\": \"Playful, sarcastic\", \"description\": \"Posts that use troll football terminology, humor, and mockery to engage in football-related joking\", \"inclusion_cues\": [\"troll football\", \"troll anybody\", \"troll year\", \"trollface\", \"cech_mate\", \"goal today\", \"manchester manchester\", \"player happy\", \"bit fun\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Troll Football\", \"purpose\": \"To mock or mock up football-related content\", \"emotion_tone\": \"mocking, humorous\", \"description\": \"Posts that use trollface, troll level, or troll football to mock or mock up football-related content, often with a humorous or mocking tone.\", \"inclusion_cues\": [\"trollface\", \"troll level\", \"troll football\", \"troll\", \"trollface\", \"troll level\", \"troll football\", \"troll\", \"trollface\", \"troll level\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Troll Football\", \"purpose\": \"To mock or mock up football-related content\", \"emotion_tone\": \"mocking, humorous\", \"description\": \"Posts that use trollface, troll level, or troll football to mock or mock up football-related content, often with a humorous or mocking tone.\", \"inclusion_cues\": [\"trollface\", \"troll level\", \"troll football\", \"troll\", \"trollface\", \"troll level\", \"troll football\", \"troll\", \"trollface\", \"troll level\"]]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 475)",
+   "n_tokens": 131,
+   "seed": 3033752120,
+   "seconds": 0.69
+  }
+ ]
+}

@@ -1,0 +1,203 @@
+{
+ "period_bin": 8,
+ "topic_id": 146,
+ "keywords": "wirtz instagram, florian wirtz, szczęsny instagram, instagram fabrizio, neymar instagram, cantona instagram, mourinho instagram, instagram mourinho, klopp instagram, mbappe instagram, robertson instagram, romano instagram, hotspur instagram, maguire instagram, salah instagram",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "1l2jyc9",
+  "1l5ncm4",
+  "1l2l8ox",
+  "1kn87ks",
+  "1l2loqd",
+  "1l2kp5e",
+  "173qxp5",
+  "1lrgez1",
+  "1d1ex9w",
+  "1lrq73a",
+  "1anhn8u",
+  "1cp2a80",
+  "1ccsa9n",
+  "1hezybj",
+  "1ctycvk",
+  "16r7vxg",
+  "1nm6kfp",
+  "1k909kf",
+  "1n53cpu",
+  "1pi7c16",
+  "1dfy65y",
+  "1huzp4k",
+  "1ihdjf9",
+  "1nkbae1",
+  "1l9sspu",
+  "17af4rd",
+  "1hno1ch",
+  "1ge35nw",
+  "1jxhwwi",
+  "1osqqlv",
+  "1l2jspt",
+  "1eds9e2",
+  "1qh6p5d",
+  "1l3yrio",
+  "1h9pymx",
+  "1hf05l5",
+  "1e5ge6l",
+  "1gee4cf",
+  "180zmaa",
+  "18mt98w"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Football Instagram Posts",
+  "purpose": "Promotion and engagement with football influencers and players",
+  "emotion_tone": "Positive and enthusiastic",
+  "description": "Posts featuring football players, influencers, and coaches sharing content on Instagram, often with commentary or fan interaction.",
+  "inclusion_cues": [
+   "Instagram posts by football players",
+   "Influencers sharing content",
+   "Coaches or analysts on Instagram",
+   "Fan interaction or commentary"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Instagram Football Stars",
+    "purpose": "Promotion and engagement with football influencers and players",
+    "emotion_tone": "Positive and celebratory",
+    "description": "Posts featuring football players and influencers sharing content on Instagram, often with fan interaction or highlights",
+    "inclusion_cues": [
+     "florian wirtz",
+     "mo salah",
+     "fabrizio romano",
+     "carlo ancelotti",
+     "thibaut courtois",
+     "moore",
+     "salah",
+     "mourinho",
+     "klopp",
+     "mbappe"
+    ],
+    "n_cues_given": 28
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Football Instagram Posts",
+    "purpose": "Promotion and engagement with football influencers and players",
+    "emotion_tone": "Positive and enthusiastic",
+    "description": "Posts featuring football players, influencers, and coaches sharing content on Instagram, often with commentary or fan interaction.",
+    "inclusion_cues": [
+     "Instagram posts by football players",
+     "Influencers sharing content",
+     "Coaches or analysts on Instagram",
+     "Fan interaction or commentary"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: wirtz instagram, florian wirtz, szczęsny instagram, instagram fabrizio, neymar instagram, cantona instagram, mourinho instagram, instagram mourinho, klopp instagram, mbappe instagram, robertson instagram, romano instagram, hotspur instagram, maguire instagram, salah instagram\nPosts (one per line, title first):\n- Florian Wirtz on IG.\n- Franck Ribery Instagram story\n- Florian Wirtz via instagram story\n- Marcus Thuram’s Instagram story\n- Wirtz on IG story / wirtz instagram story\n- Wirtz IG post\n- Thibaut Courtois on Instagram\n- Mo Salah on Instagram.\n- Via PL instagram\n- Dani Olmo, via his Instagram story\n- Mourinho on instagram\n- Marcus Thuram gave Tajon Buchanan a post game interview after Frosinone-Inter\n- Carlo Ancelotti via @elevensportsbe on instagram\n- Hojlund Instagram post\n- [CBS Sports Golazo] Marcus Thuram joined @IFTVMarco and talked about how his 'Best Uncle' Thierry Henry helps him on-and-off the pitch.\n- Salah via Instagram\n- Robert Sanchaz on Instagram:\n- Tchouameni on ig\n- Nicolas Jackson’s agent Diomansy Kamara on Instagram\n- Salah recent post on Instagram\n- [Klopp] on Instagram.\n- [Mo Salah on Twitter] / i\n- Recent Instagram post from Mauro Icardi\n- Ben Jacobs (@bendavidjacobs) on Threads\n- Gyokeres on Instagram\n- Manor Solomon (Tottenham Hotspur) on Instagram\n- Boniface on Twitter\n- Fabrizio Romano on Instagram\n- Matheus Cunha’s Instagram story, which was then quickly deleted.\n- Florian Wirtz / The reincarnation of the great Donny\n- Florian Wirtz on IG.\n- Trevoh Chalobah on Instagram\n- Brahim Diaz on Instagram\n- Aleks Pavlović on IG\n- Romeo Lavia on Instagram\n- Hojlund on instagram\n- Nico Jackson posted this photo on his instagram story\n- Lunin on Instagram\n- Leo di Janeiro\n- [@mmudryk10] on instagram story\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Instagram Football Stars\", \"purpose\": \"Promotion and engagement with football influencers and players\", \"emotion_tone\": \"Positive and celebratory\", \"description\": \"Posts featuring football players and influencers sharing content on Instagram, often with fan interaction or highlights\", \"inclusion_cues\": [\"florian wirtz\", \"mo salah\", \"fabrizio romano\", \"carlo ancelotti\", \"thibaut courtois\", \"moore\", \"salah\", \"mourinho\", \"klopp\", \"mbappe\", \"neymar\", \"romano\", \"hotspur\", \"maguire\", \"robertson\", \"salah\", \"tchouameni\", \"gylkeres\", \"manor solomon\", \"trevoh chalobah\", \"brahim diaz\", \"aleks pavlović\", \"romeo lavia\", \"hojlund\", \"nico jackson\", \"lunin\", \"leo di jainero\", \"mmudryk10\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Instagram Football Stars",
+      "purpose": "Promotion and engagement with football influencers and players",
+      "emotion_tone": "Positive and celebratory",
+      "description": "Posts featuring football players and influencers sharing content on Instagram, often with fan interaction or highlights",
+      "inclusion_cues": [
+       "florian wirtz",
+       "mo salah",
+       "fabrizio romano",
+       "carlo ancelotti",
+       "thibaut courtois",
+       "moore",
+       "salah",
+       "mourinho",
+       "klopp",
+       "mbappe"
+      ],
+      "n_cues_given": 28
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 235,
+   "seed": 3543745043,
+   "seconds": 1.07
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: wirtz instagram, florian wirtz, szczęsny instagram, instagram fabrizio, neymar instagram, cantona instagram, mourinho instagram, instagram mourinho, klopp instagram, mbappe instagram, robertson instagram, romano instagram, hotspur instagram, maguire instagram, salah instagram\nPosts (one per line, title first):\n- Florian Wirtz on IG.\n- Franck Ribery Instagram story\n- Florian Wirtz via instagram story\n- Marcus Thuram’s Instagram story\n- Wirtz on IG story / wirtz instagram story\n- Wirtz IG post\n- Thibaut Courtois on Instagram\n- Mo Salah on Instagram.\n- Via PL instagram\n- Dani Olmo, via his Instagram story\n- Mourinho on instagram\n- Marcus Thuram gave Tajon Buchanan a post game interview after Frosinone-Inter\n- Carlo Ancelotti via @elevensportsbe on instagram\n- Hojlund Instagram post\n- [CBS Sports Golazo] Marcus Thuram joined @IFTVMarco and talked about how his 'Best Uncle' Thierry Henry helps him on-and-off the pitch.\n- Salah via Instagram\n- Robert Sanchaz on Instagram:\n- Tchouameni on ig\n- Nicolas Jackson’s agent Diomansy Kamara on Instagram\n- Salah recent post on Instagram\n- [Klopp] on Instagram.\n- [Mo Salah on Twitter] / i\n- Recent Instagram post from Mauro Icardi\n- Ben Jacobs (@bendavidjacobs) on Threads\n- Gyokeres on Instagram\n- Manor Solomon (Tottenham Hotspur) on Instagram\n- Boniface on Twitter\n- Fabrizio Romano on Instagram\n- Matheus Cunha’s Instagram story, which was then quickly deleted.\n- Florian Wirtz / The reincarnation of the great Donny\n- Florian Wirtz on IG.\n- Trevoh Chalobah on Instagram\n- Brahim Diaz on Instagram\n- Aleks Pavlović on IG\n- Romeo Lavia on Instagram\n- Hojlund on instagram\n- Nico Jackson posted this photo on his instagram story\n- Lunin on Instagram\n- Leo di Janeiro\n- [@mmudryk10] on instagram story\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Football Instagram Posts\", \"purpose\": \"Promotion and engagement with football influencers and players\", \"emotion_tone\": \"Positive and enthusiastic\", \"description\": \"Posts featuring football players, influencers, and coaches sharing content on Instagram, often with commentary or fan interaction.\", \"inclusion_cues\": [\"Instagram posts by football players\", \"Influencers sharing content\", \"Coaches or analysts on Instagram\", \"Fan interaction or commentary\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Football Instagram Posts",
+      "purpose": "Promotion and engagement with football influencers and players",
+      "emotion_tone": "Positive and enthusiastic",
+      "description": "Posts featuring football players, influencers, and coaches sharing content on Instagram, often with commentary or fan interaction.",
+      "inclusion_cues": [
+       "Instagram posts by football players",
+       "Influencers sharing content",
+       "Coaches or analysts on Instagram",
+       "Fan interaction or commentary"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 104,
+   "seed": 952934025,
+   "seconds": 0.75
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: wirtz instagram, florian wirtz, szczęsny instagram, instagram fabrizio, neymar instagram, cantona instagram, mourinho instagram, instagram mourinho, klopp instagram, mbappe instagram, robertson instagram, romano instagram, hotspur instagram, maguire instagram, salah instagram\nPosts (one per line, title first):\n- Florian Wirtz on IG.\n- Franck Ribery Instagram story\n- Florian Wirtz via instagram story\n- Marcus Thuram’s Instagram story\n- Wirtz on IG story / wirtz instagram story\n- Wirtz IG post\n- Thibaut Courtois on Instagram\n- Mo Salah on Instagram.\n- Via PL instagram\n- Dani Olmo, via his Instagram story\n- Mourinho on instagram\n- Marcus Thuram gave Tajon Buchanan a post game interview after Frosinone-Inter\n- Carlo Ancelotti via @elevensportsbe on instagram\n- Hojlund Instagram post\n- [CBS Sports Golazo] Marcus Thuram joined @IFTVMarco and talked about how his 'Best Uncle' Thierry Henry helps him on-and-off the pitch.\n- Salah via Instagram\n- Robert Sanchaz on Instagram:\n- Tchouameni on ig\n- Nicolas Jackson’s agent Diomansy Kamara on Instagram\n- Salah recent post on Instagram\n- [Klopp] on Instagram.\n- [Mo Salah on Twitter] / i\n- Recent Instagram post from Mauro Icardi\n- Ben Jacobs (@bendavidjacobs) on Threads\n- Gyokeres on Instagram\n- Manor Solomon (Tottenham Hotspur) on Instagram\n- Boniface on Twitter\n- Fabrizio Romano on Instagram\n- Matheus Cunha’s Instagram story, which was then quickly deleted.\n- Florian Wirtz / The reincarnation of the great Donny\n- Florian Wirtz on IG.\n- Trevoh Chalobah on Instagram\n- Brahim Diaz on Instagram\n- Aleks Pavlović on IG\n- Romeo Lavia on Instagram\n- Hojlund on instagram\n- Nico Jackson posted this photo on his instagram story\n- Lunin on Instagram\n- Leo di Janeiro\n- [@mmudryk10] on instagram story\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Instagram Football Stars\", \"purpose\": \"Promotion and engagement with football influencers and players\", \"emotion_tone\": \"Positive and celebratory\", \"description\": \"Posts featuring football players and influencers sharing content on Instagram, often with fan interaction or highlights\", \"inclusion_cues\": [\"florian wirtz\", \"mo salah\", \"fabrizio romano\", \"carlo ancelotti\", \"thibaut courtois\", \"moore\", \"salah\", \"mourinho\", \"klopp\", \"mbappe\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Football Instagram Posts\", \"purpose\": \"Promotion and engagement with football influencers and players\", \"emotion_tone\": \"Positive and enthusiastic\", \"description\": \"Posts featuring football players, influencers, and coaches sharing content on Instagram, often with commentary or fan interaction.\", \"inclusion_cues\": [\"Instagram posts by football players\", \"Influencers sharing content\", \"Coaches or analysts on Instagram\", \"Fan interaction or commentary\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Instagram Football Influencers\", \"purpose\": \"Promotion and engagement with football influencers and players\", \"emotion_tone\": \"Positive and enthusiastic\", \"description\": \"Posts featuring football players, influencers, and coaches sharing content on Instagram, often with commentary, fan interaction, or highlights.\", \"inclusion_cues\": [\"florian wirtz\", \"mo salah\", \"fabrizio romano\", \"carlo ancelotti\", \"thibaut courtois\", \"mourinho\", \"klopp\", \"mbappe\", \"tchouameni\", \"gyokeres\", \"manor solomon\", \"nico jackson\", \"lunin\", \"bendavidjacobs\", \"diomansy kamara\", \"trevoh chalobah\", \"brahim diaz\", \"aleks pavlović\", \"romeo lavia\", \"hojlund\", \"nico jackson\", \"manor solomon\"]]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 717)",
+   "n_tokens": 214,
+   "seed": 3301919096,
+   "seconds": 0.96
+  }
+ ]
+}

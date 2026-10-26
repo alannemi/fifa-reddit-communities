@@ -1,0 +1,205 @@
+{
+ "period_bin": 4,
+ "topic_id": 1479,
+ "keywords": "piqué goal, goal pique, goal sevilla, goal spain, goal barcelona, piqué header, barcelona piqué, pique, madrid pique, pique gerard, cup pique, scored hattrick, goal celta, game barcelona, barcelona gerard",
+ "n_sample_posts": 27,
+ "sample_ids": [
+  "6qewcn",
+  "4nvxi0",
+  "2tj17h",
+  "4d2zk3",
+  "4nvyyh",
+  "2vknc7",
+  "4d3022",
+  "2tj18b",
+  "6qes43",
+  "485ddw",
+  "6tht3m",
+  "34mno5",
+  "3u4laz",
+  "2pw8fx",
+  "3zrp0g",
+  "485d1q",
+  "4f8jy4",
+  "421oxc",
+  "42zzto",
+  "2kqn8p",
+  "2ok8jm",
+  "54ydx0",
+  "2y4vs7",
+  "2tj1hs",
+  "2ybxcb",
+  "34mo16",
+  "55jzm0"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Pique Goals",
+  "purpose": "Highlighting goals scored by Gerard Pique in matches",
+  "emotion_tone": "positive",
+  "description": "Posts related to Gerard Pique's goals in various matches, including international and domestic competitions",
+  "inclusion_cues": [
+   "Gerard Pique Goal Real Madrid vs Barcelona 2-3 International Champions Cup",
+   "Piqué Header vs Villarreal (3-1)",
+   "GOAL! Barcelona 1-0 Real Madrid (Pique)",
+   "Pique Goal vs Elche (1-0)",
+   "Pique Goal vs Sevilla (2-1)",
+   "Piqué huge miss vs Valencia in the last minutes of the match (1-2)",
+   "Gerard Piqué Goal vs Roma (4-0)",
+   "Pique Goal vs Espanyol (3-1)",
+   "Gerard Piqué Goal vs Celta Vigo (3-1)"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Pique Goals",
+    "purpose": "Highlighting goals scored by Gerard Pique in matches",
+    "emotion_tone": "positive",
+    "description": "Posts related to Gerard Pique's goals in various matches, including international and domestic competitions",
+    "inclusion_cues": [
+     "Gerard Pique goal",
+     "goal pique",
+     "pique goal",
+     "barcelona piqué",
+     "pique header",
+     "goal sevilla",
+     "goal spain",
+     "goal barcelona",
+     "pique",
+     "madrid pique"
+    ],
+    "n_cues_given": 11
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Pique Goals",
+    "purpose": "Highlighting goals scored by Gerard Pique in matches",
+    "emotion_tone": "positive",
+    "description": "Posts related to Gerard Pique's goals in various matches, including international and domestic competitions",
+    "inclusion_cues": [
+     "Gerard Pique Goal Real Madrid vs Barcelona 2-3 International Champions Cup",
+     "Piqué Header vs Villarreal (3-1)",
+     "GOAL! Barcelona 1-0 Real Madrid (Pique)",
+     "Pique Goal vs Elche (1-0)",
+     "Pique Goal vs Sevilla (2-1)",
+     "Piqué huge miss vs Valencia in the last minutes of the match (1-2)",
+     "Gerard Piqué Goal vs Roma (4-0)",
+     "Pique Goal vs Espanyol (3-1)",
+     "Gerard Piqué Goal vs Celta Vigo (3-1)"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: piqué goal, goal pique, goal sevilla, goal spain, goal barcelona, piqué header, barcelona piqué, pique, madrid pique, pique gerard, cup pique, scored hattrick, goal celta, game barcelona, barcelona gerard\nPosts (one per line, title first):\n- Gerard Pique Goal Real Madrid vs Barcelona 2-3 International Champions Cup\n- Gerard Pique goal vs Czech Republic (1-0)\n- Pique goal vs Elche\n- Gerard Pique goal vs Real Madrid (1-0)\n- Gerard Pique Goal Spain 1-0 Czech Republic Euro 13-06-2016\n- Piqué Header vs Villarreal (3-1)\n- GOAL! Barcelona 1-0 Real Madrid (Pique)\n- Piqué Goal vs Elche (1-0)\n- Pique goal vs Real Madrid\n- Pique Goal vs Sevilla (2-1)\n- Pique own goal vs Real Madrid!\n- Piqué Header vs Córdoba (5-0)\n- Gerard Piqué Goal vs Roma (4-0)\n- Pique goal vs Cordoba\n- Gerard Piqué Goal vs Espanyol (3-1)\n- Gerard Piqué Goal vs Sevilla (2-1)\n- Piqué huge miss vs Valencia in the last minutes of the match (1-2)\n- Romario scored this hattrick against Real Sociedad in his first game for Barcelona.\n- Gerard Piqué Goal vs Athletic Bilbao (Agg 4-2)\n- Goal by Piqué to make it 1-0 in the Catalan Super Cup\n- Pique goal vs Espanyol to make it 3-1 to Barcelona\n- Piqué scores against Borussia M'gladbach (1-2)\n- Pirloesque finish by me in Amateur game.\n- Piqué Goal vs Elche (1-0)\n- Piqué Goal vs Rayo Vallecano (2-0)\n- GOAL PIQUE! Cordoba 0-5 Barcelona\n- Gerard Pique goal against Celta Vigo (3-1)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Pique Goals\", \"purpose\": \"Highlighting goals scored by Gerard Pique in matches\", \"emotion_tone\": \"positive\", \"description\": \"Posts related to Gerard Pique's goals in various matches, including international and domestic competitions\", \"inclusion_cues\": [\"Gerard Pique goal\", \"goal pique\", \"pique goal\", \"barcelona piqué\", \"pique header\", \"goal sevilla\", \"goal spain\", \"goal barcelona\", \"pique\", \"madrid pique\", \"pique gerard\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Pique Goals",
+      "purpose": "Highlighting goals scored by Gerard Pique in matches",
+      "emotion_tone": "positive",
+      "description": "Posts related to Gerard Pique's goals in various matches, including international and domestic competitions",
+      "inclusion_cues": [
+       "Gerard Pique goal",
+       "goal pique",
+       "pique goal",
+       "barcelona piqué",
+       "pique header",
+       "goal sevilla",
+       "goal spain",
+       "goal barcelona",
+       "pique",
+       "madrid pique"
+      ],
+      "n_cues_given": 11
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 130,
+   "seed": 3149504314,
+   "seconds": 1.05
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: piqué goal, goal pique, goal sevilla, goal spain, goal barcelona, piqué header, barcelona piqué, pique, madrid pique, pique gerard, cup pique, scored hattrick, goal celta, game barcelona, barcelona gerard\nPosts (one per line, title first):\n- Gerard Pique Goal Real Madrid vs Barcelona 2-3 International Champions Cup\n- Gerard Pique goal vs Czech Republic (1-0)\n- Pique goal vs Elche\n- Gerard Pique goal vs Real Madrid (1-0)\n- Gerard Pique Goal Spain 1-0 Czech Republic Euro 13-06-2016\n- Piqué Header vs Villarreal (3-1)\n- GOAL! Barcelona 1-0 Real Madrid (Pique)\n- Piqué Goal vs Elche (1-0)\n- Pique goal vs Real Madrid\n- Pique Goal vs Sevilla (2-1)\n- Pique own goal vs Real Madrid!\n- Piqué Header vs Córdoba (5-0)\n- Gerard Piqué Goal vs Roma (4-0)\n- Pique goal vs Cordoba\n- Gerard Piqué Goal vs Espanyol (3-1)\n- Gerard Piqué Goal vs Sevilla (2-1)\n- Piqué huge miss vs Valencia in the last minutes of the match (1-2)\n- Romario scored this hattrick against Real Sociedad in his first game for Barcelona.\n- Gerard Piqué Goal vs Athletic Bilbao (Agg 4-2)\n- Goal by Piqué to make it 1-0 in the Catalan Super Cup\n- Pique goal vs Espanyol to make it 3-1 to Barcelona\n- Piqué scores against Borussia M'gladbach (1-2)\n- Pirloesque finish by me in Amateur game.\n- Piqué Goal vs Elche (1-0)\n- Piqué Goal vs Rayo Vallecano (2-0)\n- GOAL PIQUE! Cordoba 0-5 Barcelona\n- Gerard Pique goal against Celta Vigo (3-1)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Pique Goals\", \"purpose\": \"Highlighting goals scored by Gerard Pique in matches\", \"emotion_tone\": \"positive\", \"description\": \"Posts related to Gerard Pique's goals in various matches, including international and domestic competitions\", \"inclusion_cues\": [\"Gerard Pique Goal Real Madrid vs Barcelona 2-3 International Champions Cup\", \"Piqué Header vs Villarreal (3-1)\", \"GOAL! Barcelona 1-0 Real Madrid (Pique)\", \"Pique Goal vs Elche (1-0)\", \"Pique Goal vs Sevilla (2-1)\", \"Piqué huge miss vs Valencia in the last minutes of the match (1-2)\", \"Gerard Piqué Goal vs Roma (4-0)\", \"Pique Goal vs Espanyol (3-1)\", \"Gerard Piqué Goal vs Celta Vigo (3-1)\"]}]}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Pique Goals",
+      "purpose": "Highlighting goals scored by Gerard Pique in matches",
+      "emotion_tone": "positive",
+      "description": "Posts related to Gerard Pique's goals in various matches, including international and domestic competitions",
+      "inclusion_cues": [
+       "Gerard Pique Goal Real Madrid vs Barcelona 2-3 International Champions Cup",
+       "Piqué Header vs Villarreal (3-1)",
+       "GOAL! Barcelona 1-0 Real Madrid (Pique)",
+       "Pique Goal vs Elche (1-0)",
+       "Pique Goal vs Sevilla (2-1)",
+       "Piqué huge miss vs Valencia in the last minutes of the match (1-2)",
+       "Gerard Piqué Goal vs Roma (4-0)",
+       "Pique Goal vs Espanyol (3-1)",
+       "Gerard Piqué Goal vs Celta Vigo (3-1)"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 204,
+   "seed": 398764162,
+   "seconds": 1.2
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: piqué goal, goal pique, goal sevilla, goal spain, goal barcelona, piqué header, barcelona piqué, pique, madrid pique, pique gerard, cup pique, scored hattrick, goal celta, game barcelona, barcelona gerard\nPosts (one per line, title first):\n- Gerard Pique Goal Real Madrid vs Barcelona 2-3 International Champions Cup\n- Gerard Pique goal vs Czech Republic (1-0)\n- Pique goal vs Elche\n- Gerard Pique goal vs Real Madrid (1-0)\n- Gerard Pique Goal Spain 1-0 Czech Republic Euro 13-06-2016\n- Piqué Header vs Villarreal (3-1)\n- GOAL! Barcelona 1-0 Real Madrid (Pique)\n- Piqué Goal vs Elche (1-0)\n- Pique goal vs Real Madrid\n- Pique Goal vs Sevilla (2-1)\n- Pique own goal vs Real Madrid!\n- Piqué Header vs Córdoba (5-0)\n- Gerard Piqué Goal vs Roma (4-0)\n- Pique goal vs Cordoba\n- Gerard Piqué Goal vs Espanyol (3-1)\n- Gerard Piqué Goal vs Sevilla (2-1)\n- Piqué huge miss vs Valencia in the last minutes of the match (1-2)\n- Romario scored this hattrick against Real Sociedad in his first game for Barcelona.\n- Gerard Piqué Goal vs Athletic Bilbao (Agg 4-2)\n- Goal by Piqué to make it 1-0 in the Catalan Super Cup\n- Pique goal vs Espanyol to make it 3-1 to Barcelona\n- Piqué scores against Borussia M'gladbach (1-2)\n- Pirloesque finish by me in Amateur game.\n- Piqué Goal vs Elche (1-0)\n- Piqué Goal vs Rayo Vallecano (2-0)\n- GOAL PIQUE! Cordoba 0-5 Barcelona\n- Gerard Pique goal against Celta Vigo (3-1)\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Pique Goals\", \"purpose\": \"Highlighting goals scored by Gerard Pique in matches\", \"emotion_tone\": \"positive\", \"description\": \"Posts related to Gerard Pique's goals in various matches, including international and domestic competitions\", \"inclusion_cues\": [\"Gerard Pique goal\", \"goal pique\", \"pique goal\", \"barcelona piqué\", \"pique header\", \"goal sevilla\", \"goal spain\", \"goal barcelona\", \"pique\", \"madrid pique\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Pique Goals\", \"purpose\": \"Highlighting goals scored by Gerard Pique in matches\", \"emotion_tone\": \"positive\", \"description\": \"Posts related to Gerard Pique's goals in various matches, including international and domestic competitions\", \"inclusion_cues\": [\"Gerard Pique Goal Real Madrid vs Barcelona 2-3 International Champions Cup\", \"Piqué Header vs Villarreal (3-1)\", \"GOAL! Barcelona 1-0 Real Madrid (Pique)\", \"Pique Goal vs Elche (1-0)\", \"Pique Goal vs Sevilla (2-1)\", \"Piqué huge miss vs Valencia in the last minutes of the match (1-2)\", \"Gerard Piqué Goal vs Roma (4-0)\", \"Pique Goal vs Espanyol (3-1)\", \"Gerard Piqué Goal vs Celta Vigo (3-1)\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Pique Goals\", \"purpose\": \"Highlighting goals scored by Gerard Pique in matches\", \"emotion_tone\": \"positive\", \"description\": \"Posts related to Gerard Pique's goals in various matches, including international and domestic competitions\", \"inclusion_cues\": [\"Gerard Pique Goal Real Madrid vs Barcelona 2-3 International Champions Cup\", \"Piqué Header vs Villarreal (3-1)\", \"GOAL! Barcelona 1-0 Real Madrid (Pique)\", \"Pique Goal vs Elche (1-0)\", \"Pique Goal vs Sevilla (2-1)\", \"Piqué huge miss vs Valencia in the last minutes of the match (1-2)\", \"Gerard Piqué Goal vs Roma (4-0)\", \"Pique Goal vs Espanyol (3-1)\", \"Gerard Piqué Goal vs Celta Vigo (3-1)\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 203,
+   "seed": 865915341,
+   "seconds": 0.82
+  }
+ ]
+}

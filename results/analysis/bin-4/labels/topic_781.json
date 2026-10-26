@@ -1,0 +1,192 @@
+{
+ "period_bin": 4,
+ "topic_id": 781,
+ "keywords": "sterlings goal, sterling goal, sterling scored, sterling scores, goals liverpool, sunderland sterling, sterling everton, bournemouth sterling, sterling great, newcastle sterling, liverpool sterling, southampton sterling, sterling, match sterling, city sterling",
+ "n_sample_posts": 40,
+ "sample_ids": [
+  "5j18q4",
+  "2t3bfm",
+  "3yaizr",
+  "4zzr0c",
+  "537keh",
+  "3gi051",
+  "3vzew1",
+  "3ert9w",
+  "3d1kqk",
+  "2wrzrc",
+  "5tvbna",
+  "30j8vi",
+  "7ei9sc",
+  "3vzel9",
+  "3p45i0",
+  "2t3bdm",
+  "32h29d",
+  "5tvbab",
+  "5chlsg",
+  "7i2f3s",
+  "54y0z1",
+  "2ogvxn",
+  "2usrgp",
+  "54y2j9",
+  "5vdvg6",
+  "3nx2oj",
+  "5007fv",
+  "32h2b5",
+  "3o55ta",
+  "3lzb55",
+  "3o94vg",
+  "3e207a",
+  "6vanz2",
+  "2t4vfz",
+  "3e20rm",
+  "5qo7ui",
+  "2qiqlh",
+  "4930l1",
+  "2plx43",
+  "3re8uy"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Sterling's Goals",
+  "purpose": "Highlighting Raheem Sterling's goals in matches",
+  "emotion_tone": "Excitement and pride",
+  "description": "Posts about Raheem Sterling's goals in various matches, including his debut, assists, and notable performances",
+  "inclusion_cues": [
+   "Raheem Sterling goal vs Arsenal",
+   "Sterling scores his second against B. Monchengladbach",
+   "Sterling's goal vs Lithuania",
+   "Sterling goal vs Everton",
+   "Sterling's goal felt like a déjà vu"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Sterling's Goals",
+    "purpose": "Highlighting Raheem Sterling's goals in matches",
+    "emotion_tone": "Excitement and pride",
+    "description": "Posts about Raheem Sterling's goals in various matches, including his debut, assists, and notable performances",
+    "inclusion_cues": [
+     "Raheem Sterling goal vs Arsenal",
+     "Sterling scores his second against B. Monchengladbach",
+     "Sterling's goal vs Lithuania",
+     "Sterling goal vs Everton"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Sterling's Goals",
+    "purpose": "Highlighting Raheem Sterling's goals in matches",
+    "emotion_tone": "Excitement and pride",
+    "description": "Posts about Raheem Sterling's goals in various matches, including his debut, assists, and notable performances",
+    "inclusion_cues": [
+     "Raheem Sterling goal vs Arsenal",
+     "Sterling scores his second against B. Monchengladbach",
+     "Sterling's goal vs Lithuania",
+     "Sterling goal vs Everton",
+     "Sterling's goal felt like a déjà vu"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: sterlings goal, sterling goal, sterling scored, sterling scores, goals liverpool, sunderland sterling, sterling everton, bournemouth sterling, sterling great, newcastle sterling, liverpool sterling, southampton sterling, sterling, match sterling, city sterling\nPosts (one per line, title first):\n- Raheem Sterling goal vs Arsenal [2-1]\n- Raheem Sterling Goal vs Chelsea\n- Raheem Sterling goal vs Sunderland (1-0)\n- Raheem Sterling goal vs West Ham (1-0)\n- Raheem Sterling goal vs Bournemouth [3-0]\n- Raheem sterling debut goal vs West Bromwich 2-0\n- Sterling scores his second against B. Monchengladbach. 3-2\n- Sterling beautiful one touch goal against Vietnam\n- BBC Sport - Raheem Sterling's best goals for Liverpool\n- Sterling goal vs Southampton (0-2)\n- Sterling goal vs Bournemouth (0-1)\n- Sterling's goal vs Lithuania\n- Sterling goal vs Dortmund [3]-1 UYL\n- Sterling scores against B. Monchengladbach. 2-2\n- Raheem Sterling 2nd Goal (3-1) vs Bournemouth\n- Sterling scores to equalise for Liverpool\n- Sterling goal vs Liverpool (1-0)\n- Sterling goal vs Bournemouth (0-1)\n- Telegraph award Sterling MOTM in England vs. Scotland match.\n- Macnhester derby in 2009, 90+6\" goal by Owen. Sterling be like: \"Challenge accepted\"\n- R. Sterling own-goal vs Celtic (2-1)\n- Raheem Sterling's great run vs. Sunderland\n- Sterling goal vs Bolton\n- R. Sterling goal vs Celtic (2-2)\n- Raheem Sterling goal against Monaco (1-0)\n- One of the great illusions in soccer history- Sterling v Italy\n- Sterling goal against West Ham 3-1\n- Sterling goal vs Newcastle (1-0)\n- Sterling scores for England to make it 2-0 vs Estonia\n- Sterling goal vs Sunderland [0-4]\n- Sterling's Goal against Estonia\n- Raheem Sterling has scored 2 minutes into his Man City debut against AS Roma\n- Sterling vs Everton right here - Check it out\n- Sterling's goal felt like a déjà vu\n- Raheem Sterling first goal after just 2 minutes against Roma\n- Sterling goal v. Crystal Palace 43' (1-0)\n- Sterling goal against Burnley (beautiful Coutinho flick-on assist) (Src Reddit)\n- Raheem Sterling goal vs Aston Villa (4-0)\n- Sterling's header vs AFC Bournemouth\n- Sterling goal vs Sevilla 0-1\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Sterling's Goals\", \"purpose\": \"Highlighting Raheem Sterling's goals in matches\", \"emotion_tone\": \"Excitement and pride\", \"description\": \"Posts about Raheem Sterling's goals in various matches, including his debut, assists, and notable performances\", \"inclusion_cues\": [\"Raheem Sterling goal vs Arsenal\", \"Sterling scores his second against B. Monchengladbach\", \"Sterling's goal vs Lithuania\", \"Sterling goal vs Everton\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Sterling's Goals",
+      "purpose": "Highlighting Raheem Sterling's goals in matches",
+      "emotion_tone": "Excitement and pride",
+      "description": "Posts about Raheem Sterling's goals in various matches, including his debut, assists, and notable performances",
+      "inclusion_cues": [
+       "Raheem Sterling goal vs Arsenal",
+       "Sterling scores his second against B. Monchengladbach",
+       "Sterling's goal vs Lithuania",
+       "Sterling goal vs Everton"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 119,
+   "seed": 2704401288,
+   "seconds": 0.91
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: sterlings goal, sterling goal, sterling scored, sterling scores, goals liverpool, sunderland sterling, sterling everton, bournemouth sterling, sterling great, newcastle sterling, liverpool sterling, southampton sterling, sterling, match sterling, city sterling\nPosts (one per line, title first):\n- Raheem Sterling goal vs Arsenal [2-1]\n- Raheem Sterling Goal vs Chelsea\n- Raheem Sterling goal vs Sunderland (1-0)\n- Raheem Sterling goal vs West Ham (1-0)\n- Raheem Sterling goal vs Bournemouth [3-0]\n- Raheem sterling debut goal vs West Bromwich 2-0\n- Sterling scores his second against B. Monchengladbach. 3-2\n- Sterling beautiful one touch goal against Vietnam\n- BBC Sport - Raheem Sterling's best goals for Liverpool\n- Sterling goal vs Southampton (0-2)\n- Sterling goal vs Bournemouth (0-1)\n- Sterling's goal vs Lithuania\n- Sterling goal vs Dortmund [3]-1 UYL\n- Sterling scores against B. Monchengladbach. 2-2\n- Raheem Sterling 2nd Goal (3-1) vs Bournemouth\n- Sterling scores to equalise for Liverpool\n- Sterling goal vs Liverpool (1-0)\n- Sterling goal vs Bournemouth (0-1)\n- Telegraph award Sterling MOTM in England vs. Scotland match.\n- Macnhester derby in 2009, 90+6\" goal by Owen. Sterling be like: \"Challenge accepted\"\n- R. Sterling own-goal vs Celtic (2-1)\n- Raheem Sterling's great run vs. Sunderland\n- Sterling goal vs Bolton\n- R. Sterling goal vs Celtic (2-2)\n- Raheem Sterling goal against Monaco (1-0)\n- One of the great illusions in soccer history- Sterling v Italy\n- Sterling goal against West Ham 3-1\n- Sterling goal vs Newcastle (1-0)\n- Sterling scores for England to make it 2-0 vs Estonia\n- Sterling goal vs Sunderland [0-4]\n- Sterling's Goal against Estonia\n- Raheem Sterling has scored 2 minutes into his Man City debut against AS Roma\n- Sterling vs Everton right here - Check it out\n- Sterling's goal felt like a déjà vu\n- Raheem Sterling first goal after just 2 minutes against Roma\n- Sterling goal v. Crystal Palace 43' (1-0)\n- Sterling goal against Burnley (beautiful Coutinho flick-on assist) (Src Reddit)\n- Raheem Sterling goal vs Aston Villa (4-0)\n- Sterling's header vs AFC Bournemouth\n- Sterling goal vs Sevilla 0-1\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Sterling's Goals\", \"purpose\": \"Highlighting Raheem Sterling's goals in matches\", \"emotion_tone\": \"Excitement and pride\", \"description\": \"Posts about Raheem Sterling's goals in various matches, including his debut, assists, and notable performances\", \"inclusion_cues\": [\"Raheem Sterling goal vs Arsenal\", \"Sterling scores his second against B. Monchengladbach\", \"Sterling's goal vs Lithuania\", \"Sterling goal vs Everton\", \"Sterling's goal felt like a déjà vu\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Sterling's Goals",
+      "purpose": "Highlighting Raheem Sterling's goals in matches",
+      "emotion_tone": "Excitement and pride",
+      "description": "Posts about Raheem Sterling's goals in various matches, including his debut, assists, and notable performances",
+      "inclusion_cues": [
+       "Raheem Sterling goal vs Arsenal",
+       "Sterling scores his second against B. Monchengladbach",
+       "Sterling's goal vs Lithuania",
+       "Sterling goal vs Everton",
+       "Sterling's goal felt like a déjà vu"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 130,
+   "seed": 1319387707,
+   "seconds": 1.38
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: sterlings goal, sterling goal, sterling scored, sterling scores, goals liverpool, sunderland sterling, sterling everton, bournemouth sterling, sterling great, newcastle sterling, liverpool sterling, southampton sterling, sterling, match sterling, city sterling\nPosts (one per line, title first):\n- Raheem Sterling goal vs Arsenal [2-1]\n- Raheem Sterling Goal vs Chelsea\n- Raheem Sterling goal vs Sunderland (1-0)\n- Raheem Sterling goal vs West Ham (1-0)\n- Raheem Sterling goal vs Bournemouth [3-0]\n- Raheem sterling debut goal vs West Bromwich 2-0\n- Sterling scores his second against B. Monchengladbach. 3-2\n- Sterling beautiful one touch goal against Vietnam\n- BBC Sport - Raheem Sterling's best goals for Liverpool\n- Sterling goal vs Southampton (0-2)\n- Sterling goal vs Bournemouth (0-1)\n- Sterling's goal vs Lithuania\n- Sterling goal vs Dortmund [3]-1 UYL\n- Sterling scores against B. Monchengladbach. 2-2\n- Raheem Sterling 2nd Goal (3-1) vs Bournemouth\n- Sterling scores to equalise for Liverpool\n- Sterling goal vs Liverpool (1-0)\n- Sterling goal vs Bournemouth (0-1)\n- Telegraph award Sterling MOTM in England vs. Scotland match.\n- Macnhester derby in 2009, 90+6\" goal by Owen. Sterling be like: \"Challenge accepted\"\n- R. Sterling own-goal vs Celtic (2-1)\n- Raheem Sterling's great run vs. Sunderland\n- Sterling goal vs Bolton\n- R. Sterling goal vs Celtic (2-2)\n- Raheem Sterling goal against Monaco (1-0)\n- One of the great illusions in soccer history- Sterling v Italy\n- Sterling goal against West Ham 3-1\n- Sterling goal vs Newcastle (1-0)\n- Sterling scores for England to make it 2-0 vs Estonia\n- Sterling goal vs Sunderland [0-4]\n- Sterling's Goal against Estonia\n- Raheem Sterling has scored 2 minutes into his Man City debut against AS Roma\n- Sterling vs Everton right here - Check it out\n- Sterling's goal felt like a déjà vu\n- Raheem Sterling first goal after just 2 minutes against Roma\n- Sterling goal v. Crystal Palace 43' (1-0)\n- Sterling goal against Burnley (beautiful Coutinho flick-on assist) (Src Reddit)\n- Raheem Sterling goal vs Aston Villa (4-0)\n- Sterling's header vs AFC Bournemouth\n- Sterling goal vs Sevilla 0-1\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Sterling's Goals\", \"purpose\": \"Highlighting Raheem Sterling's goals in matches\", \"emotion_tone\": \"Excitement and pride\", \"description\": \"Posts about Raheem Sterling's goals in various matches, including his debut, assists, and notable performances\", \"inclusion_cues\": [\"Raheem Sterling goal vs Arsenal\", \"Sterling scores his second against B. Monchengladbach\", \"Sterling's goal vs Lithuania\", \"Sterling goal vs Everton\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Sterling's Goals\", \"purpose\": \"Highlighting Raheem Sterling's goals in matches\", \"emotion_tone\": \"Excitement and pride\", \"description\": \"Posts about Raheem Sterling's goals in various matches, including his debut, assists, and notable performances\", \"inclusion_cues\": [\"Raheem Sterling goal vs Arsenal\", \"Sterling scores his second against B. Monchengladbach\", \"Sterling's goal vs Lithuania\", \"Sterling goal vs Everton\", \"Sterling's goal felt like a déjà vu\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Sterling's Goals\", \"purpose\": \"Highlighting Raheem Sterling's goals in matches\", \"emotion_tone\": \"Excitement and pride\", \"description\": \"Posts about Raheem Sterling's goals in various matches, including his debut, assists, and notable performances\", \"inclusion_cues\": [\"Raheem Sterling goal vs Arsenal\", \"Sterling scores his second against B. Monchengladbach\", \"Sterling's goal vs Lithuania\", \"Sterling goal vs Everton\", \"Sterling's goal felt like a déjà vu\"]]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 507)",
+   "n_tokens": 129,
+   "seed": 3136373293,
+   "seconds": 0.62
+  }
+ ]
+}

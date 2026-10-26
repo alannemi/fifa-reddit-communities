@@ -1,0 +1,192 @@
+{
+ "period_bin": 4,
+ "topic_id": 1478,
+ "keywords": "cup schedule, schedule fifa, cup august, cup international, cup india, match schedule, cup singapore, 2016 icc, icc 2017, india league, 2017 matches, match fixtures, america tournament, icc, 2017 international",
+ "n_sample_posts": 27,
+ "sample_ids": [
+  "345lkj",
+  "345slm",
+  "345m19",
+  "4ts3hv",
+  "32pk31",
+  "4bilmz",
+  "6mstdx",
+  "4bhih8",
+  "4bhw62",
+  "32p01h",
+  "3cvmlg",
+  "61ufd8",
+  "2qmzr7",
+  "62zlc8",
+  "4bhgq5",
+  "60rba4",
+  "4pd1hx",
+  "60qrb5",
+  "3b3bm1",
+  "2s26hy",
+  "3fvfmw",
+  "345ykb",
+  "6qj1xd",
+  "5zoxaq",
+  "60qmqz",
+  "36d0y1",
+  "345vnk"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "International Champions Cup",
+  "purpose": "Announce match schedules and participants for the International Champions Cup",
+  "emotion_tone": "informative",
+  "description": "Posts related to the International Champions Cup schedule, participants, and events in 2015 and 2016.",
+  "inclusion_cues": [
+   "2015 International Champions Cup Match Schedule",
+   "2016 ICC SCHEDULE",
+   "India to host Champions Cup's first edition at Chennai in August",
+   "2016 ICC North America Tournament Press Conference",
+   "Match Schedule - FIFA U-17 World Cup India 2017",
+   "International Champions Cup line-up",
+   "International Champions Cup Singapore 2017. Highlights and analysis of the games. Get Ready For Up-Coming Season!!!",
+   "Match Schedules for the 2017 International Champions Cup"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "International Champions Cup",
+    "purpose": "Announce match schedules and participants for the International Champions Cup",
+    "emotion_tone": "informative",
+    "description": "Posts related to the International Champions Cup schedule, participants, and events.",
+    "inclusion_cues": [
+     "2015 International Champions Cup Match Schedule",
+     "2016 ICC SCHEDULE",
+     "India to host Champions Cup's first edition at Chennai in August",
+     "Match Schedule - FIFA U-17 World Cup India 2017",
+     "International Champions Cup line-up",
+     "International Champions Cup Singapore 2017. Highlights and analysis of the games."
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "International Champions Cup",
+    "purpose": "Announce match schedules and participants for the International Champions Cup",
+    "emotion_tone": "informative",
+    "description": "Posts related to the International Champions Cup schedule, participants, and events in 2015 and 2016.",
+    "inclusion_cues": [
+     "2015 International Champions Cup Match Schedule",
+     "2016 ICC SCHEDULE",
+     "India to host Champions Cup's first edition at Chennai in August",
+     "2016 ICC North America Tournament Press Conference",
+     "Match Schedule - FIFA U-17 World Cup India 2017",
+     "International Champions Cup line-up",
+     "International Champions Cup Singapore 2017. Highlights and analysis of the games. Get Ready For Up-Coming Season!!!",
+     "Match Schedules for the 2017 International Champions Cup"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: cup schedule, schedule fifa, cup august, cup international, cup india, match schedule, cup singapore, 2016 icc, icc 2017, india league, 2017 matches, match fixtures, america tournament, icc, 2017 international\nPosts (one per line, title first):\n- Official: 2015 International Champions Cup Match Schedule\n- North America Schedule - International Champions Cup\n- Man U, Chelsea, Barca, Fiorentina, Porto, PSG, Club America, La Galaxy, NY Red Bulls, and SJ Earthquakes announced as participants in the International Champions Cup to take place in the U.S. over the summer.\n- 2016 ICC SCHEDULE (International Champions Cup)\n- ICC - International Champions Cup 2015 teams chosen / The teams chosen for the 2015 edition are as follows: * Manchester United FC * Club de Fútbol América * FC Barcelona * LA Galaxy * FC Red Bull Salzburg * FC Porto * Chelsea FC * Paris Saint-Germain FC * San José Earthquakes * ACF Fiorentina\n- ICC Summer 2016 schedule!\n- India to host Champions Cup's first edition at Chennai in August\n- 2016 International Champions Cup Schedule\n- International Champions Cup line-up\n- FC Barcelona, Manchester United, and Chelsea FC Headline 2015 International Champions Cup\n- International Champions Cup begins tomorrow (schedule)\n- Match Schedule - FIFA U-17 World Cup India 2017\n- The Federation Cup started today in India! This is the FA Cup of India with only I-League clubs in it this season.\n- All India Football Federation to launch Champions Cup in August 2017\n- 2016 ICC North America Tournament Press Conference\n- All matches and general info for International Champions Cup announced\n- 8th Finals match fixtures and schedules. USA PST time\n- ICC 2017 schedule features Man United vs. Man City, Real Madrid, Barcelona. (Full schedule inside)\n- International Champions Cup\n- 2015 International Champions Cup now expanding to Australia! US dates & teams coming soon.\n- Points table International Champions Cup 2015\n- International Champions Cup match dates and venues\n- International Champions Cup Singapore 2017. Highlights and analysis of the games. Get Ready For Up-Coming Season!!!\n- Match Schedules for the 2017 International Champions Cup\n- Schedule of the International Champions Cup to be held in the summer released\n- The participants of the 2015 Emirates Cup\n- International Champions Cup 2015: teams announced!\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"International Champions Cup\", \"purpose\": \"Announce match schedules and participants for the International Champions Cup\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to the International Champions Cup schedule, participants, and events.\", \"inclusion_cues\": [\"2015 International Champions Cup Match Schedule\", \"2016 ICC SCHEDULE\", \"India to host Champions Cup's first edition at Chennai in August\", \"Match Schedule - FIFA U-17 World Cup India 2017\", \"International Champions Cup line-up\", \"International Champions Cup Singapore 2017. Highlights and analysis of the games.\"]]}]}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "International Champions Cup",
+      "purpose": "Announce match schedules and participants for the International Champions Cup",
+      "emotion_tone": "informative",
+      "description": "Posts related to the International Champions Cup schedule, participants, and events.",
+      "inclusion_cues": [
+       "2015 International Champions Cup Match Schedule",
+       "2016 ICC SCHEDULE",
+       "India to host Champions Cup's first edition at Chennai in August",
+       "Match Schedule - FIFA U-17 World Cup India 2017",
+       "International Champions Cup line-up",
+       "International Champions Cup Singapore 2017. Highlights and analysis of the games."
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 637)",
+   "n_tokens": 148,
+   "seed": 2155941725,
+   "seconds": 1.05
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: cup schedule, schedule fifa, cup august, cup international, cup india, match schedule, cup singapore, 2016 icc, icc 2017, india league, 2017 matches, match fixtures, america tournament, icc, 2017 international\nPosts (one per line, title first):\n- Official: 2015 International Champions Cup Match Schedule\n- North America Schedule - International Champions Cup\n- Man U, Chelsea, Barca, Fiorentina, Porto, PSG, Club America, La Galaxy, NY Red Bulls, and SJ Earthquakes announced as participants in the International Champions Cup to take place in the U.S. over the summer.\n- 2016 ICC SCHEDULE (International Champions Cup)\n- ICC - International Champions Cup 2015 teams chosen / The teams chosen for the 2015 edition are as follows: * Manchester United FC * Club de Fútbol América * FC Barcelona * LA Galaxy * FC Red Bull Salzburg * FC Porto * Chelsea FC * Paris Saint-Germain FC * San José Earthquakes * ACF Fiorentina\n- ICC Summer 2016 schedule!\n- India to host Champions Cup's first edition at Chennai in August\n- 2016 International Champions Cup Schedule\n- International Champions Cup line-up\n- FC Barcelona, Manchester United, and Chelsea FC Headline 2015 International Champions Cup\n- International Champions Cup begins tomorrow (schedule)\n- Match Schedule - FIFA U-17 World Cup India 2017\n- The Federation Cup started today in India! This is the FA Cup of India with only I-League clubs in it this season.\n- All India Football Federation to launch Champions Cup in August 2017\n- 2016 ICC North America Tournament Press Conference\n- All matches and general info for International Champions Cup announced\n- 8th Finals match fixtures and schedules. USA PST time\n- ICC 2017 schedule features Man United vs. Man City, Real Madrid, Barcelona. (Full schedule inside)\n- International Champions Cup\n- 2015 International Champions Cup now expanding to Australia! US dates & teams coming soon.\n- Points table International Champions Cup 2015\n- International Champions Cup match dates and venues\n- International Champions Cup Singapore 2017. Highlights and analysis of the games. Get Ready For Up-Coming Season!!!\n- Match Schedules for the 2017 International Champions Cup\n- Schedule of the International Champions Cup to be held in the summer released\n- The participants of the 2015 Emirates Cup\n- International Champions Cup 2015: teams announced!\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"International Champions Cup\", \"purpose\": \"Announce match schedules and participants for the International Champions Cup\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to the International Champions Cup schedule, participants, and events in 2015 and 2016.\", \"inclusion_cues\": [\"2015 International Champions Cup Match Schedule\", \"2016 ICC SCHEDULE\", \"India to host Champions Cup's first edition at Chennai in August\", \"2016 ICC North America Tournament Press Conference\", \"Match Schedule - FIFA U-17 World Cup India 2017\", \"International Champions Cup line-up\", \"International Champions Cup Singapore 2017. Highlights and analysis of the games. Get Ready For Up-Coming Season!!!\", \"Match Schedules for the 2017 International Champions Cup\"]}]}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "International Champions Cup",
+      "purpose": "Announce match schedules and participants for the International Champions Cup",
+      "emotion_tone": "informative",
+      "description": "Posts related to the International Champions Cup schedule, participants, and events in 2015 and 2016.",
+      "inclusion_cues": [
+       "2015 International Champions Cup Match Schedule",
+       "2016 ICC SCHEDULE",
+       "India to host Champions Cup's first edition at Chennai in August",
+       "2016 ICC North America Tournament Press Conference",
+       "Match Schedule - FIFA U-17 World Cup India 2017",
+       "International Champions Cup line-up",
+       "International Champions Cup Singapore 2017. Highlights and analysis of the games. Get Ready For Up-Coming Season!!!",
+       "Match Schedules for the 2017 International Champions Cup"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 195,
+   "seed": 1731307967,
+   "seconds": 1.2
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: cup schedule, schedule fifa, cup august, cup international, cup india, match schedule, cup singapore, 2016 icc, icc 2017, india league, 2017 matches, match fixtures, america tournament, icc, 2017 international\nPosts (one per line, title first):\n- Official: 2015 International Champions Cup Match Schedule\n- North America Schedule - International Champions Cup\n- Man U, Chelsea, Barca, Fiorentina, Porto, PSG, Club America, La Galaxy, NY Red Bulls, and SJ Earthquakes announced as participants in the International Champions Cup to take place in the U.S. over the summer.\n- 2016 ICC SCHEDULE (International Champions Cup)\n- ICC - International Champions Cup 2015 teams chosen / The teams chosen for the 2015 edition are as follows: * Manchester United FC * Club de Fútbol América * FC Barcelona * LA Galaxy * FC Red Bull Salzburg * FC Porto * Chelsea FC * Paris Saint-Germain FC * San José Earthquakes * ACF Fiorentina\n- ICC Summer 2016 schedule!\n- India to host Champions Cup's first edition at Chennai in August\n- 2016 International Champions Cup Schedule\n- International Champions Cup line-up\n- FC Barcelona, Manchester United, and Chelsea FC Headline 2015 International Champions Cup\n- International Champions Cup begins tomorrow (schedule)\n- Match Schedule - FIFA U-17 World Cup India 2017\n- The Federation Cup started today in India! This is the FA Cup of India with only I-League clubs in it this season.\n- All India Football Federation to launch Champions Cup in August 2017\n- 2016 ICC North America Tournament Press Conference\n- All matches and general info for International Champions Cup announced\n- 8th Finals match fixtures and schedules. USA PST time\n- ICC 2017 schedule features Man United vs. Man City, Real Madrid, Barcelona. (Full schedule inside)\n- International Champions Cup\n- 2015 International Champions Cup now expanding to Australia! US dates & teams coming soon.\n- Points table International Champions Cup 2015\n- International Champions Cup match dates and venues\n- International Champions Cup Singapore 2017. Highlights and analysis of the games. Get Ready For Up-Coming Season!!!\n- Match Schedules for the 2017 International Champions Cup\n- Schedule of the International Champions Cup to be held in the summer released\n- The participants of the 2015 Emirates Cup\n- International Champions Cup 2015: teams announced!\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"International Champions Cup\", \"purpose\": \"Announce match schedules and participants for the International Champions Cup\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to the International Champions Cup schedule, participants, and events.\", \"inclusion_cues\": [\"2015 International Champions Cup Match Schedule\", \"2016 ICC SCHEDULE\", \"India to host Champions Cup's first edition at Chennai in August\", \"Match Schedule - FIFA U-17 World Cup India 2017\", \"International Champions Cup line-up\", \"International Champions Cup Singapore 2017. Highlights and analysis of the games.\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"International Champions Cup\", \"purpose\": \"Announce match schedules and participants for the International Champions Cup\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to the International Champions Cup schedule, participants, and events in 2015 and 2016.\", \"inclusion_cues\": [\"2015 International Champions Cup Match Schedule\", \"2016 ICC SCHEDULE\", \"India to host Champions Cup's first edition at Chennai in August\", \"2016 ICC North America Tournament Press Conference\", \"Match Schedule - FIFA U-17 World Cup India 2017\", \"International Champions Cup line-up\", \"International Champions Cup Singapore 2017. Highlights and analysis of the games. Get Ready For Up-Coming Season!!!\", \"Match Schedules for the 2017 International Champions Cup\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"International Champions Cup\", \"purpose\": \"Announce match schedules and participants for the International Champions Cup\", \"emotion_tone\": \"informative\", \"description\": \"Posts related to the International Champions Cup schedule, participants, and events in 2015 and 2016.\", \"inclusion_cues\": [\"2015 International Champions Cup Match Schedule\", \"2016 ICC SCHEDULE\", \"India to host Champions Cup's first edition at Chennai in August\", \"2016 ICC North America Tournament Press Conference\", \"Match Schedule - FIFA U-17 World Cup India 2017\", \"International Champions Cup line-up\", \"International Champions Cup Singapore 2017. Highlights and analysis of the games. Get Ready For Up-Coming Season!!!\", \"Match Schedules for the 2017 International Champions Cup\"]]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "salvage",
+   "salvage_reason": "invalid JSON (Expecting ',' delimiter at character 802)",
+   "n_tokens": 193,
+   "seed": 389703932,
+   "seconds": 0.82
+  }
+ ]
+}

@@ -1,0 +1,193 @@
+{
+ "period_bin": 8,
+ "topic_id": 830,
+ "keywords": "poland u17, hungary u17, u17 poland, u21 ukraine, croatia u17, u19 ukraine, italy 90, u19 italy, italy u21, 90 hungary, 52 croatia, ukraine penalty, italy ukraine, u21 oleksii, u21 lorenzo",
+ "n_sample_posts": 29,
+ "sample_ids": [
+  "13n3iqj",
+  "17sstip",
+  "1e8ukuh",
+  "13n4305",
+  "13n3tt4",
+  "1oxxujz",
+  "1ec4gxs",
+  "123xzrd",
+  "13vu5pa",
+  "1gv4wja",
+  "16h3acr",
+  "123vpvb",
+  "123xrt3",
+  "13n543m",
+  "13vu1fd",
+  "1e8u45a",
+  "16gzsbj",
+  "14owny5",
+  "16h0ktp",
+  "14oyqz9",
+  "17zzqea",
+  "1gv3d8o",
+  "1efydem",
+  "123xtpk",
+  "1e8u3pp",
+  "1n9fz4i",
+  "13vuelk",
+  "16h09tg",
+  "13vu3uy"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "U17 Youth Match",
+  "purpose": "Youth football matches between national teams",
+  "emotion_tone": "Excitement and rivalry",
+  "description": "Posts about U17 age group matches between Poland, Hungary, Ukraine, Italy, and France, focusing on goals, highlights, and match outcomes.",
+  "inclusion_cues": [
+   "U17 Poland",
+   "U17 Hungary",
+   "U17 Ukraine",
+   "U17 Italy",
+   "U17 France"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "U17 Youth Match",
+    "purpose": "Youth football matches between national teams",
+    "emotion_tone": "Excitement and rivalry",
+    "description": "Posts about U17 age group matches, including scores, player actions, and highlights",
+    "inclusion_cues": [
+     "U17 poland",
+     "u17 hungary",
+     "u17 croatia",
+     "u19 ukraine",
+     "u21 italy",
+     "u21 ukraine",
+     "u19 italy",
+     "90 hungary",
+     "52 croatia",
+     "ukraine penalty"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "U17 Youth Match",
+    "purpose": "Youth football matches between national teams",
+    "emotion_tone": "Excitement and rivalry",
+    "description": "Posts about U17 age group matches between Poland, Hungary, Ukraine, Italy, and France, focusing on goals, highlights, and match outcomes.",
+    "inclusion_cues": [
+     "U17 Poland",
+     "U17 Hungary",
+     "U17 Ukraine",
+     "U17 Italy",
+     "U17 France"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: poland u17, hungary u17, u17 poland, u21 ukraine, croatia u17, u19 ukraine, italy 90, u19 italy, italy u21, 90 hungary, 52 croatia, ukraine penalty, italy ukraine, u21 oleksii, u21 lorenzo\nPosts (one per line, title first):\n- Hungary U17 [1]-3 Poland U17 - Zeteny Varga 55'\n- Japan U17 [1] - 0 Poland U17 - Rento Takaoka 76' (Great Goal)\n- Ukraine U19 [3]-2 Italy U19 - Matvii Ponomarenko penalty 75'\n- Hungary U17 2-[4] Poland U17 - Oskar Tomczyk 76'\n- Hungary U17 [2]-3 Poland U17 - Benedek Simon 70'\n- Croatia U17 [1]-1 Uzbekistan U17 - Tino Kusanovic 80'\n- France U19 1-0 Ukraine U19 - Valentin Atangana Edoa 61'\n- Italy U21 [3]-1 Ukraine U21 - Lorenzo Colombo 82'\n- Poland U17 [3]-3 Germany U17 - Filip Wolski 68'\n- Italy U21 2-[2] Ukraine U21 - Igor Krasnopir 83'\n- Match Highlights | Italy 2-0 Ukraine | UEFA EURO Qualifiers\n- Italy U21 [1]-0 Ukraine U21 - Matteo Lovato 19'\n- Italy U21 1-[1] Ukraine U21 - Oleksii Kashchuk 66'\n- Hungary U17 [3]-5 Poland U17 - Csaba Molnar 90'+4'\n- Poland U17 1-[1] Germany U17 - Max Moerstedt 22'\n- Ukraine U19 [2]-2 Italy U19 - Danylo Krevsun 54'\n- Italy [1] - 0 Ukraine - Davide Frattesi 13'\n- France U21 [1] - 0 Ukraine U21 - Rayan Cherki 19'\n- Italy 2 - [1] Ukraine - Andriy Yarmolenko 41'\n- France U21 1 - [3] Ukraine U21 - Artem Bondarenko 86'\n- Ukraine penalty shout against Italy 90+3'\n- Italy U21 1-0 Ukraine U21 - Giovanni Fabbian 26'\n- Ukraine 0 - [2] Argentina - Claudio Echeverri 90+1'\n- Italy U21 [2]-1 Ukraine U21 - Lorenzo Colombo 71'\n- Ukraine U19 1-[2] Italy U19 - Marco Romano 52'\n- Ukraine 0 - [2] France - K. Mbappé 82'\n- Poland U17 3-[4] Germany U17 - Assan Ouedraogo 79'\n- Italy [2] - 0 Ukraine - Davide Frattesi 30'\n- Poland U17 2-[3] Germany U17 - Charles Herrmann 65'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"U17 Youth Match\", \"purpose\": \"Youth football matches between national teams\", \"emotion_tone\": \"Excitement and rivalry\", \"description\": \"Posts about U17 age group matches, including scores, player actions, and highlights\", \"inclusion_cues\": [\"U17 poland\", \"u17 hungary\", \"u17 croatia\", \"u19 ukraine\", \"u21 italy\", \"u21 ukraine\", \"u19 italy\", \"90 hungary\", \"52 croatia\", \"ukraine penalty\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "U17 Youth Match",
+      "purpose": "Youth football matches between national teams",
+      "emotion_tone": "Excitement and rivalry",
+      "description": "Posts about U17 age group matches, including scores, player actions, and highlights",
+      "inclusion_cues": [
+       "U17 poland",
+       "u17 hungary",
+       "u17 croatia",
+       "u19 ukraine",
+       "u21 italy",
+       "u21 ukraine",
+       "u19 italy",
+       "90 hungary",
+       "52 croatia",
+       "ukraine penalty"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 144,
+   "seed": 1445320422,
+   "seconds": 0.49
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: poland u17, hungary u17, u17 poland, u21 ukraine, croatia u17, u19 ukraine, italy 90, u19 italy, italy u21, 90 hungary, 52 croatia, ukraine penalty, italy ukraine, u21 oleksii, u21 lorenzo\nPosts (one per line, title first):\n- Hungary U17 [1]-3 Poland U17 - Zeteny Varga 55'\n- Japan U17 [1] - 0 Poland U17 - Rento Takaoka 76' (Great Goal)\n- Ukraine U19 [3]-2 Italy U19 - Matvii Ponomarenko penalty 75'\n- Hungary U17 2-[4] Poland U17 - Oskar Tomczyk 76'\n- Hungary U17 [2]-3 Poland U17 - Benedek Simon 70'\n- Croatia U17 [1]-1 Uzbekistan U17 - Tino Kusanovic 80'\n- France U19 1-0 Ukraine U19 - Valentin Atangana Edoa 61'\n- Italy U21 [3]-1 Ukraine U21 - Lorenzo Colombo 82'\n- Poland U17 [3]-3 Germany U17 - Filip Wolski 68'\n- Italy U21 2-[2] Ukraine U21 - Igor Krasnopir 83'\n- Match Highlights | Italy 2-0 Ukraine | UEFA EURO Qualifiers\n- Italy U21 [1]-0 Ukraine U21 - Matteo Lovato 19'\n- Italy U21 1-[1] Ukraine U21 - Oleksii Kashchuk 66'\n- Hungary U17 [3]-5 Poland U17 - Csaba Molnar 90'+4'\n- Poland U17 1-[1] Germany U17 - Max Moerstedt 22'\n- Ukraine U19 [2]-2 Italy U19 - Danylo Krevsun 54'\n- Italy [1] - 0 Ukraine - Davide Frattesi 13'\n- France U21 [1] - 0 Ukraine U21 - Rayan Cherki 19'\n- Italy 2 - [1] Ukraine - Andriy Yarmolenko 41'\n- France U21 1 - [3] Ukraine U21 - Artem Bondarenko 86'\n- Ukraine penalty shout against Italy 90+3'\n- Italy U21 1-0 Ukraine U21 - Giovanni Fabbian 26'\n- Ukraine 0 - [2] Argentina - Claudio Echeverri 90+1'\n- Italy U21 [2]-1 Ukraine U21 - Lorenzo Colombo 71'\n- Ukraine U19 1-[2] Italy U19 - Marco Romano 52'\n- Ukraine 0 - [2] France - K. Mbappé 82'\n- Poland U17 3-[4] Germany U17 - Assan Ouedraogo 79'\n- Italy [2] - 0 Ukraine - Davide Frattesi 30'\n- Poland U17 2-[3] Germany U17 - Charles Herrmann 65'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"U17 Youth Match\", \"purpose\": \"Youth football matches between national teams\", \"emotion_tone\": \"Excitement and rivalry\", \"description\": \"Posts about U17 age group matches between Poland, Hungary, Ukraine, Italy, and France, focusing on goals, highlights, and match outcomes.\", \"inclusion_cues\": [\"U17 Poland\", \"U17 Hungary\", \"U17 Ukraine\", \"U17 Italy\", \"U17 France\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "U17 Youth Match",
+      "purpose": "Youth football matches between national teams",
+      "emotion_tone": "Excitement and rivalry",
+      "description": "Posts about U17 age group matches between Poland, Hungary, Ukraine, Italy, and France, focusing on goals, highlights, and match outcomes.",
+      "inclusion_cues": [
+       "U17 Poland",
+       "U17 Hungary",
+       "U17 Ukraine",
+       "U17 Italy",
+       "U17 France"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 117,
+   "seed": 44126868,
+   "seconds": 0.74
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: poland u17, hungary u17, u17 poland, u21 ukraine, croatia u17, u19 ukraine, italy 90, u19 italy, italy u21, 90 hungary, 52 croatia, ukraine penalty, italy ukraine, u21 oleksii, u21 lorenzo\nPosts (one per line, title first):\n- Hungary U17 [1]-3 Poland U17 - Zeteny Varga 55'\n- Japan U17 [1] - 0 Poland U17 - Rento Takaoka 76' (Great Goal)\n- Ukraine U19 [3]-2 Italy U19 - Matvii Ponomarenko penalty 75'\n- Hungary U17 2-[4] Poland U17 - Oskar Tomczyk 76'\n- Hungary U17 [2]-3 Poland U17 - Benedek Simon 70'\n- Croatia U17 [1]-1 Uzbekistan U17 - Tino Kusanovic 80'\n- France U19 1-0 Ukraine U19 - Valentin Atangana Edoa 61'\n- Italy U21 [3]-1 Ukraine U21 - Lorenzo Colombo 82'\n- Poland U17 [3]-3 Germany U17 - Filip Wolski 68'\n- Italy U21 2-[2] Ukraine U21 - Igor Krasnopir 83'\n- Match Highlights | Italy 2-0 Ukraine | UEFA EURO Qualifiers\n- Italy U21 [1]-0 Ukraine U21 - Matteo Lovato 19'\n- Italy U21 1-[1] Ukraine U21 - Oleksii Kashchuk 66'\n- Hungary U17 [3]-5 Poland U17 - Csaba Molnar 90'+4'\n- Poland U17 1-[1] Germany U17 - Max Moerstedt 22'\n- Ukraine U19 [2]-2 Italy U19 - Danylo Krevsun 54'\n- Italy [1] - 0 Ukraine - Davide Frattesi 13'\n- France U21 [1] - 0 Ukraine U21 - Rayan Cherki 19'\n- Italy 2 - [1] Ukraine - Andriy Yarmolenko 41'\n- France U21 1 - [3] Ukraine U21 - Artem Bondarenko 86'\n- Ukraine penalty shout against Italy 90+3'\n- Italy U21 1-0 Ukraine U21 - Giovanni Fabbian 26'\n- Ukraine 0 - [2] Argentina - Claudio Echeverri 90+1'\n- Italy U21 [2]-1 Ukraine U21 - Lorenzo Colombo 71'\n- Ukraine U19 1-[2] Italy U19 - Marco Romano 52'\n- Ukraine 0 - [2] France - K. Mbappé 82'\n- Poland U17 3-[4] Germany U17 - Assan Ouedraogo 79'\n- Italy [2] - 0 Ukraine - Davide Frattesi 30'\n- Poland U17 2-[3] Germany U17 - Charles Herrmann 65'\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"U17 Youth Match\", \"purpose\": \"Youth football matches between national teams\", \"emotion_tone\": \"Excitement and rivalry\", \"description\": \"Posts about U17 age group matches, including scores, player actions, and highlights\", \"inclusion_cues\": [\"U17 poland\", \"u17 hungary\", \"u17 croatia\", \"u19 ukraine\", \"u21 italy\", \"u21 ukraine\", \"u19 italy\", \"90 hungary\", \"52 croatia\", \"ukraine penalty\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"U17 Youth Match\", \"purpose\": \"Youth football matches between national teams\", \"emotion_tone\": \"Excitement and rivalry\", \"description\": \"Posts about U17 age group matches between Poland, Hungary, Ukraine, Italy, and France, focusing on goals, highlights, and match outcomes.\", \"inclusion_cues\": [\"U17 Poland\", \"U17 Hungary\", \"U17 Ukraine\", \"U17 Italy\", \"U17 France\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"U17 Youth Match\", \"purpose\": \"Youth football matches between national teams\", \"emotion_tone\": \"Excitement and rivalry\", \"description\": \"Posts about U17 age group matches between Poland, Hungary, Ukraine, Italy, and France, focusing on goals, highlights, and match outcomes.\", \"inclusion_cues\": [\"U17 Poland\", \"U17 Hungary\", \"U17 Ukraine\", \"U17 Italy\", \"U17 France\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 116,
+   "seed": 2680501181,
+   "seconds": 0.66
+  }
+ ]
+}

@@ -1,0 +1,195 @@
+{
+ "period_bin": 2,
+ "topic_id": 737,
+ "keywords": "yaya banana, banana yaya, yaya known, simply yaya, wiki article, page falcao, jon walter, yaya, banana, vandalised, stoke fan, april fools, owners blackburn, post liverpoolfc, khumalo",
+ "n_sample_posts": 31,
+ "sample_ids": [
+  "17ooux",
+  "16g1o3",
+  "1fpqog",
+  "1kjtz3",
+  "v1pj4",
+  "1h9qmg",
+  "17nxdr",
+  "1e5bqt",
+  "1gkz5j",
+  "1bignw",
+  "yq2qg",
+  "1547o5",
+  "1a1b3s",
+  "16g08s",
+  "uy32f",
+  "1giqne",
+  "1g0cdn",
+  "v05ig",
+  "h0nhh",
+  "142106",
+  "158fst",
+  "1dx8ia",
+  "15h66w",
+  "1wgxys",
+  "fyfcc",
+  "1jddv0",
+  "12aq6k",
+  "teztd",
+  "fm3zw",
+  "tcuy8",
+  "1lilio"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Wiki Vandalism",
+  "purpose": "Document and analyze Wikipedia edits related to footballers",
+  "emotion_tone": "humorous, sarcastic",
+  "description": "Posts about vandalism to footballer Wikipedia pages, including edits to player profiles, positions, and personal information, often with comedic or sarcastic commentary.",
+  "inclusion_cues": [
+   "Wikipedia page vandalised",
+   "Hilarious edits to player profiles",
+   "Comedic commentary on wiki edits",
+   "Sarcastic remarks about wiki vandalism",
+   "Vandalised pages related to footballers"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Wiki Vandalism",
+    "purpose": "Document and analyze Wikipedia edits related to footballers",
+    "emotion_tone": "humorous, sarcastic",
+    "description": "Posts about Wikipedia edits to footballer pages, including jokes, vandalism, and humorous updates",
+    "inclusion_cues": [
+     "yaya banana",
+     "banana yaya",
+     "wiki article",
+     "page falcao",
+     "jon walter",
+     "stoke fan",
+     "april fools",
+     "owners blackburn",
+     "post liverpoolfc",
+     "khumalo"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Wiki Vandalism",
+    "purpose": "Document and analyze Wikipedia edits related to footballers",
+    "emotion_tone": "humorous, sarcastic",
+    "description": "Posts about vandalism to footballer Wikipedia pages, including edits to player profiles, positions, and personal information, often with comedic or sarcastic commentary.",
+    "inclusion_cues": [
+     "Wikipedia page vandalised",
+     "Hilarious edits to player profiles",
+     "Comedic commentary on wiki edits",
+     "Sarcastic remarks about wiki vandalism",
+     "Vandalised pages related to footballers"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: yaya banana, banana yaya, yaya known, simply yaya, wiki article, page falcao, jon walter, yaya, banana, vandalised, stoke fan, april fools, owners blackburn, post liverpoolfc, khumalo\nPosts (one per line, title first):\n- Someone was having fun with Peter Odemwingie's Wikipedia page last night (screenshotted before I went to sleep, it's already back to normal)\n- Didn't take long for Jon Walter's Wikipedia page to be updated..\n- Hahaha! Saw Yaya Banana in FM 2013, decided to research on him. Found out some guy (not me I assure you) had made some hilarious edits to his page!\n- Stoke fan shows frustration by editing Johnaton's Walter's wiki page (x-post /r/liverpoolfc)\n- 'Banana Yaya, known simply as Yaya Banana is a promising young professional footballer who plays central defence... ' / Perhaps one day there will be a Yaya Banana in defence and a Yaya Toure in midfield.\n- Ángel di María's wikipedia page being trolled\n- Look at what someone did to Andre Santos's wikipedia\n- Someone changed Gael Clichy's playing position on Wikipedia following todays FA Cup Final.\n- Following his goal to qualify Australia for the World Cup, someone changed Josh Kennedy's information on wikipedia....\n- Falcao's wikipedia page... April Fools?\n- Anyone take a peek at Jesus Navas' Wiki page lately?\n- Falcao's Wikipedia page, Chelsea fans are getting ahead of themselves slightly!\n- I think, Suarez has learned to edit Wikipedia\n- Walter's wikipage gets trolled.\n- Hopeful/misguided Liverpool fans editing Xabi Alonso's Wikipedia page.\n- Somebody has edited Bongani Khumalo page on Wikipedia. When you see it....\n- Does anyone have any more joke letters like these? They are very humorous.\n- Nicklas Bendtner's wikipedia page after he scored against Portugal. lol.\n- Someone was butthurt while editing Dani Alves' Wiki\n- Quotes of the week\n- It seems even Falcao (of At. Mad. glory) liked the image an Aussie redditor made about the end of the world.\n- Someone's having fun with David Moyes' Wiki page.\n- This season's EPL wiki page has been vandalised a bit...\n- Someone has ravaged Scocco's Wikipedia page\n- Quote of the day\n- Someone edited the article on Wikipedia about the owners of Blackburn Rovers. I died laughing.\n- Somebody's had some fun with Falcao's wikipedia page\n- So I was just browsing Jonjo Shelvey's wiki article.. I don't even\n- Cheers to whoever updated Joe Jordan's Wiki page\n- Steve Kean's Wikipedia page vandalized.\n- Someone's been messing about with Liverpool's Wiki page again...\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Wiki Vandalism\", \"purpose\": \"Document and analyze Wikipedia edits related to footballers\", \"emotion_tone\": \"humorous, sarcastic\", \"description\": \"Posts about Wikipedia edits to footballer pages, including jokes, vandalism, and humorous updates\", \"inclusion_cues\": [\"yaya banana\", \"banana yaya\", \"wiki article\", \"page falcao\", \"jon walter\", \"stoke fan\", \"april fools\", \"owners blackburn\", \"post liverpoolfc\", \"khumalo\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Wiki Vandalism",
+      "purpose": "Document and analyze Wikipedia edits related to footballers",
+      "emotion_tone": "humorous, sarcastic",
+      "description": "Posts about Wikipedia edits to footballer pages, including jokes, vandalism, and humorous updates",
+      "inclusion_cues": [
+       "yaya banana",
+       "banana yaya",
+       "wiki article",
+       "page falcao",
+       "jon walter",
+       "stoke fan",
+       "april fools",
+       "owners blackburn",
+       "post liverpoolfc",
+       "khumalo"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 126,
+   "seed": 2957651545,
+   "seconds": 3.1
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: yaya banana, banana yaya, yaya known, simply yaya, wiki article, page falcao, jon walter, yaya, banana, vandalised, stoke fan, april fools, owners blackburn, post liverpoolfc, khumalo\nPosts (one per line, title first):\n- Someone was having fun with Peter Odemwingie's Wikipedia page last night (screenshotted before I went to sleep, it's already back to normal)\n- Didn't take long for Jon Walter's Wikipedia page to be updated..\n- Hahaha! Saw Yaya Banana in FM 2013, decided to research on him. Found out some guy (not me I assure you) had made some hilarious edits to his page!\n- Stoke fan shows frustration by editing Johnaton's Walter's wiki page (x-post /r/liverpoolfc)\n- 'Banana Yaya, known simply as Yaya Banana is a promising young professional footballer who plays central defence... ' / Perhaps one day there will be a Yaya Banana in defence and a Yaya Toure in midfield.\n- Ángel di María's wikipedia page being trolled\n- Look at what someone did to Andre Santos's wikipedia\n- Someone changed Gael Clichy's playing position on Wikipedia following todays FA Cup Final.\n- Following his goal to qualify Australia for the World Cup, someone changed Josh Kennedy's information on wikipedia....\n- Falcao's wikipedia page... April Fools?\n- Anyone take a peek at Jesus Navas' Wiki page lately?\n- Falcao's Wikipedia page, Chelsea fans are getting ahead of themselves slightly!\n- I think, Suarez has learned to edit Wikipedia\n- Walter's wikipage gets trolled.\n- Hopeful/misguided Liverpool fans editing Xabi Alonso's Wikipedia page.\n- Somebody has edited Bongani Khumalo page on Wikipedia. When you see it....\n- Does anyone have any more joke letters like these? They are very humorous.\n- Nicklas Bendtner's wikipedia page after he scored against Portugal. lol.\n- Someone was butthurt while editing Dani Alves' Wiki\n- Quotes of the week\n- It seems even Falcao (of At. Mad. glory) liked the image an Aussie redditor made about the end of the world.\n- Someone's having fun with David Moyes' Wiki page.\n- This season's EPL wiki page has been vandalised a bit...\n- Someone has ravaged Scocco's Wikipedia page\n- Quote of the day\n- Someone edited the article on Wikipedia about the owners of Blackburn Rovers. I died laughing.\n- Somebody's had some fun with Falcao's wikipedia page\n- So I was just browsing Jonjo Shelvey's wiki article.. I don't even\n- Cheers to whoever updated Joe Jordan's Wiki page\n- Steve Kean's Wikipedia page vandalized.\n- Someone's been messing about with Liverpool's Wiki page again...\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Wiki Vandalism\", \"purpose\": \"Document and analyze Wikipedia edits related to footballers\", \"emotion_tone\": \"humorous, sarcastic\", \"description\": \"Posts about vandalism to footballer Wikipedia pages, including edits to player profiles, positions, and personal information, often with comedic or sarcastic commentary.\", \"inclusion_cues\": [\"Wikipedia page vandalised\", \"Hilarious edits to player profiles\", \"Comedic commentary on wiki edits\", \"Sarcastic remarks about wiki vandalism\", \"Vandalised pages related to footballers\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Wiki Vandalism",
+      "purpose": "Document and analyze Wikipedia edits related to footballers",
+      "emotion_tone": "humorous, sarcastic",
+      "description": "Posts about vandalism to footballer Wikipedia pages, including edits to player profiles, positions, and personal information, often with comedic or sarcastic commentary.",
+      "inclusion_cues": [
+       "Wikipedia page vandalised",
+       "Hilarious edits to player profiles",
+       "Comedic commentary on wiki edits",
+       "Sarcastic remarks about wiki vandalism",
+       "Vandalised pages related to footballers"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 131,
+   "seed": 2448854144,
+   "seconds": 0.52
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: yaya banana, banana yaya, yaya known, simply yaya, wiki article, page falcao, jon walter, yaya, banana, vandalised, stoke fan, april fools, owners blackburn, post liverpoolfc, khumalo\nPosts (one per line, title first):\n- Someone was having fun with Peter Odemwingie's Wikipedia page last night (screenshotted before I went to sleep, it's already back to normal)\n- Didn't take long for Jon Walter's Wikipedia page to be updated..\n- Hahaha! Saw Yaya Banana in FM 2013, decided to research on him. Found out some guy (not me I assure you) had made some hilarious edits to his page!\n- Stoke fan shows frustration by editing Johnaton's Walter's wiki page (x-post /r/liverpoolfc)\n- 'Banana Yaya, known simply as Yaya Banana is a promising young professional footballer who plays central defence... ' / Perhaps one day there will be a Yaya Banana in defence and a Yaya Toure in midfield.\n- Ángel di María's wikipedia page being trolled\n- Look at what someone did to Andre Santos's wikipedia\n- Someone changed Gael Clichy's playing position on Wikipedia following todays FA Cup Final.\n- Following his goal to qualify Australia for the World Cup, someone changed Josh Kennedy's information on wikipedia....\n- Falcao's wikipedia page... April Fools?\n- Anyone take a peek at Jesus Navas' Wiki page lately?\n- Falcao's Wikipedia page, Chelsea fans are getting ahead of themselves slightly!\n- I think, Suarez has learned to edit Wikipedia\n- Walter's wikipage gets trolled.\n- Hopeful/misguided Liverpool fans editing Xabi Alonso's Wikipedia page.\n- Somebody has edited Bongani Khumalo page on Wikipedia. When you see it....\n- Does anyone have any more joke letters like these? They are very humorous.\n- Nicklas Bendtner's wikipedia page after he scored against Portugal. lol.\n- Someone was butthurt while editing Dani Alves' Wiki\n- Quotes of the week\n- It seems even Falcao (of At. Mad. glory) liked the image an Aussie redditor made about the end of the world.\n- Someone's having fun with David Moyes' Wiki page.\n- This season's EPL wiki page has been vandalised a bit...\n- Someone has ravaged Scocco's Wikipedia page\n- Quote of the day\n- Someone edited the article on Wikipedia about the owners of Blackburn Rovers. I died laughing.\n- Somebody's had some fun with Falcao's wikipedia page\n- So I was just browsing Jonjo Shelvey's wiki article.. I don't even\n- Cheers to whoever updated Joe Jordan's Wiki page\n- Steve Kean's Wikipedia page vandalized.\n- Someone's been messing about with Liverpool's Wiki page again...\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Wiki Vandalism\", \"purpose\": \"Document and analyze Wikipedia edits related to footballers\", \"emotion_tone\": \"humorous, sarcastic\", \"description\": \"Posts about Wikipedia edits to footballer pages, including jokes, vandalism, and humorous updates\", \"inclusion_cues\": [\"yaya banana\", \"banana yaya\", \"wiki article\", \"page falcao\", \"jon walter\", \"stoke fan\", \"april fools\", \"owners blackburn\", \"post liverpoolfc\", \"khumalo\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Wiki Vandalism\", \"purpose\": \"Document and analyze Wikipedia edits related to footballers\", \"emotion_tone\": \"humorous, sarcastic\", \"description\": \"Posts about vandalism to footballer Wikipedia pages, including edits to player profiles, positions, and personal information, often with comedic or sarcastic commentary.\", \"inclusion_cues\": [\"Wikipedia page vandalised\", \"Hilarious edits to player profiles\", \"Comedic commentary on wiki edits\", \"Sarcastic remarks about wiki vandalism\", \"Vandalised pages related to footballers\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Wiki Vandalism\", \"purpose\": \"Document and analyze Wikipedia edits related to footballers\", \"emotion_tone\": \"humorous, sarcastic\", \"description\": \"Posts about vandalism to footballer Wikipedia pages, including edits to player profiles, positions, and personal information, often with comedic or sarcastic commentary.\", \"inclusion_cues\": [\"Wikipedia page vandalised\", \"Hilarious edits to player profiles\", \"Comedic commentary on wiki edits\", \"Sarcastic remarks about wiki vandalism\", \"Vandalised pages related to footballers\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 130,
+   "seed": 1624709935,
+   "seconds": 0.63
+  }
+ ]
+}

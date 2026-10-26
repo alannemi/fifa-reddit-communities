@@ -1,0 +1,196 @@
+{
+ "period_bin": 2,
+ "topic_id": 836,
+ "keywords": "airport today, look met, just met, city today, airport, saw today, today look, guess met, ran airport, london, dressed like, met today, flight, london tonight, saw",
+ "n_sample_posts": 29,
+ "sample_ids": [
+  "y1lcs",
+  "hzzd3",
+  "hzzd3",
+  "1gmxoc",
+  "1kzbxf",
+  "uc7ac",
+  "hkxck",
+  "1tneci",
+  "1tp3ol",
+  "1tnrw7",
+  "19ohvy",
+  "mvzzd",
+  "uaf7a",
+  "x2edh",
+  "us12p",
+  "uspn8",
+  "1v3xa3",
+  "hzzby",
+  "1tpnsr",
+  "g5nq6",
+  "153vuy",
+  "i7hfv",
+  "18a2rc",
+  "1h51h7",
+  "x89xh",
+  "1f2cz2",
+  "15vaq8",
+  "1pniwl",
+  "x89ym"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Airport Meetups",
+  "purpose": "Reporting on encounters at airports",
+  "emotion_tone": "Friendly and nostalgic",
+  "description": "Posts about meeting people at airports, including London, Brussels, and other locations, with a focus on social interactions and emotional connections.",
+  "inclusion_cues": [
+   "ran into",
+   "met today",
+   "saw today",
+   "airport",
+   "london",
+   "brussels",
+   "jersey",
+   "aruba"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Airport Meetups",
+    "purpose": "Reporting on meetups at airports",
+    "emotion_tone": "friendly and nostalgic",
+    "description": "Posts about meeting people at airports, including specific locations and events.",
+    "inclusion_cues": [
+     "ran into",
+     "met today",
+     "saw today",
+     "airport",
+     "london",
+     "brussels",
+     "jersey"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Airport Meetups",
+    "purpose": "Reporting on encounters at airports",
+    "emotion_tone": "Friendly and nostalgic",
+    "description": "Posts about meeting people at airports, including London, Brussels, and other locations, with a focus on social interactions and emotional connections.",
+    "inclusion_cues": [
+     "ran into",
+     "met today",
+     "saw today",
+     "airport",
+     "london",
+     "brussels",
+     "jersey",
+     "aruba"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: airport today, look met, just met, city today, airport, saw today, today look, guess met, ran airport, london, dressed like, met today, flight, london tonight, saw\nPosts (one per line, title first):\n- Look who I ran into last night in London\n- Look Who I Saw In New York City Today!\n- Look Who I Saw In New York City Today!\n- Look who I ran into in the Los Angeles airport...\n- Look who I ran into the airport today!\n- Look who else had their flight delayed in Brussels.\n- Look who my friend met.\n- tonight we celebrate the birth of /r/soccer's savior\n- Hello, reddit front page. Do you have a moment to talk about our Lord and Saviour?\n- Let us not forget who our true lord and savior is\n- Who i had dinner with last night...\n- Guess who did hang out in LA last summer.\n- Stuck in the airport for 14 hrs, and my buddy sends me this photo saying \"Me and my new friend feel bad for you, lol\"\n- So I ran into him today.\n- Guess who I ran into at a hotel in jersey.\n- guess who i ran into at the w hotel in jersey\n- Guess who I met playing poker this weekend?\n- Look Who I Saw In New York City Today!\n- Our subreddit might be in shambles, but at least we have our glorious savior.\n- Look who I met last week during carnival!\n- Was sat with the this guy dinner last night...\n- Look who I ran into in Aruba\n- Look who I met today...\n- Look who I went and saw today. His parents live down the street from me.\n- Ran in to an old friend of mine the other day in Boston...\n- Look who I ran into in London tonight...\n- Hey i just met you\n- A CU Boulder professor dressed like this today\n- Ran into an old friend of mine the other day in Boston...\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Airport Meetups\", \"purpose\": \"Reporting on meetups at airports\", \"emotion_tone\": \"friendly and nostalgic\", \"description\": \"Posts about meeting people at airports, including specific locations and events.\", \"inclusion_cues\": [\"ran into\", \"met today\", \"saw today\", \"airport\", \"london\", \"brussels\", \"jersey\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Airport Meetups",
+      "purpose": "Reporting on meetups at airports",
+      "emotion_tone": "friendly and nostalgic",
+      "description": "Posts about meeting people at airports, including specific locations and events.",
+      "inclusion_cues": [
+       "ran into",
+       "met today",
+       "saw today",
+       "airport",
+       "london",
+       "brussels",
+       "jersey"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 93,
+   "seed": 467156893,
+   "seconds": 1.84
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: airport today, look met, just met, city today, airport, saw today, today look, guess met, ran airport, london, dressed like, met today, flight, london tonight, saw\nPosts (one per line, title first):\n- Look who I ran into last night in London\n- Look Who I Saw In New York City Today!\n- Look Who I Saw In New York City Today!\n- Look who I ran into in the Los Angeles airport...\n- Look who I ran into the airport today!\n- Look who else had their flight delayed in Brussels.\n- Look who my friend met.\n- tonight we celebrate the birth of /r/soccer's savior\n- Hello, reddit front page. Do you have a moment to talk about our Lord and Saviour?\n- Let us not forget who our true lord and savior is\n- Who i had dinner with last night...\n- Guess who did hang out in LA last summer.\n- Stuck in the airport for 14 hrs, and my buddy sends me this photo saying \"Me and my new friend feel bad for you, lol\"\n- So I ran into him today.\n- Guess who I ran into at a hotel in jersey.\n- guess who i ran into at the w hotel in jersey\n- Guess who I met playing poker this weekend?\n- Look Who I Saw In New York City Today!\n- Our subreddit might be in shambles, but at least we have our glorious savior.\n- Look who I met last week during carnival!\n- Was sat with the this guy dinner last night...\n- Look who I ran into in Aruba\n- Look who I met today...\n- Look who I went and saw today. His parents live down the street from me.\n- Ran in to an old friend of mine the other day in Boston...\n- Look who I ran into in London tonight...\n- Hey i just met you\n- A CU Boulder professor dressed like this today\n- Ran into an old friend of mine the other day in Boston...\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Airport Meetups\", \"purpose\": \"Reporting on encounters at airports\", \"emotion_tone\": \"Friendly and nostalgic\", \"description\": \"Posts about meeting people at airports, including London, Brussels, and other locations, with a focus on social interactions and emotional connections.\", \"inclusion_cues\": [\"ran into\", \"met today\", \"saw today\", \"airport\", \"london\", \"brussels\", \"jersey\", \"aruba\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Airport Meetups",
+      "purpose": "Reporting on encounters at airports",
+      "emotion_tone": "Friendly and nostalgic",
+      "description": "Posts about meeting people at airports, including London, Brussels, and other locations, with a focus on social interactions and emotional connections.",
+      "inclusion_cues": [
+       "ran into",
+       "met today",
+       "saw today",
+       "airport",
+       "london",
+       "brussels",
+       "jersey",
+       "aruba"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 109,
+   "seed": 1379069477,
+   "seconds": 0.65
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: airport today, look met, just met, city today, airport, saw today, today look, guess met, ran airport, london, dressed like, met today, flight, london tonight, saw\nPosts (one per line, title first):\n- Look who I ran into last night in London\n- Look Who I Saw In New York City Today!\n- Look Who I Saw In New York City Today!\n- Look who I ran into in the Los Angeles airport...\n- Look who I ran into the airport today!\n- Look who else had their flight delayed in Brussels.\n- Look who my friend met.\n- tonight we celebrate the birth of /r/soccer's savior\n- Hello, reddit front page. Do you have a moment to talk about our Lord and Saviour?\n- Let us not forget who our true lord and savior is\n- Who i had dinner with last night...\n- Guess who did hang out in LA last summer.\n- Stuck in the airport for 14 hrs, and my buddy sends me this photo saying \"Me and my new friend feel bad for you, lol\"\n- So I ran into him today.\n- Guess who I ran into at a hotel in jersey.\n- guess who i ran into at the w hotel in jersey\n- Guess who I met playing poker this weekend?\n- Look Who I Saw In New York City Today!\n- Our subreddit might be in shambles, but at least we have our glorious savior.\n- Look who I met last week during carnival!\n- Was sat with the this guy dinner last night...\n- Look who I ran into in Aruba\n- Look who I met today...\n- Look who I went and saw today. His parents live down the street from me.\n- Ran in to an old friend of mine the other day in Boston...\n- Look who I ran into in London tonight...\n- Hey i just met you\n- A CU Boulder professor dressed like this today\n- Ran into an old friend of mine the other day in Boston...\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Airport Meetups\", \"purpose\": \"Reporting on meetups at airports\", \"emotion_tone\": \"friendly and nostalgic\", \"description\": \"Posts about meeting people at airports, including specific locations and events.\", \"inclusion_cues\": [\"ran into\", \"met today\", \"saw today\", \"airport\", \"london\", \"brussels\", \"jersey\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Airport Meetups\", \"purpose\": \"Reporting on encounters at airports\", \"emotion_tone\": \"Friendly and nostalgic\", \"description\": \"Posts about meeting people at airports, including London, Brussels, and other locations, with a focus on social interactions and emotional connections.\", \"inclusion_cues\": [\"ran into\", \"met today\", \"saw today\", \"airport\", \"london\", \"brussels\", \"jersey\", \"aruba\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Airport Meetups\", \"purpose\": \"Reporting on encounters at airports\", \"emotion_tone\": \"Friendly and nostalgic\", \"description\": \"Posts about meeting people at airports, including London, Brussels, and other locations, with a focus on social interactions and emotional connections.\", \"inclusion_cues\": [\"ran into\", \"met today\", \"saw today\", \"airport\", \"london\", \"brussels\", \"jersey\", \"aruba\"]}]}}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 108,
+   "seed": 2818460218,
+   "seconds": 0.55
+  }
+ ]
+}

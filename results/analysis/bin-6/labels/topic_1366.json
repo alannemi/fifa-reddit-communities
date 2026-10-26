@@ -1,0 +1,179 @@
+{
+ "period_bin": 6,
+ "topic_id": 1366,
+ "keywords": "bundesliga restart, bundesliga matchdays, bundesliga monday, bundesliga postponed, bundesliga return, bundesliga april, matches bundesliga, start bundesliga, weeks bundesliga, bundesliga plan, bundesliga bundesliga, bundesliga 9th, bundesliga set, bundesliga resume, season schedule",
+ "n_sample_posts": 25,
+ "sample_ids": [
+  "sq7tne",
+  "gf5edm",
+  "fz47ba",
+  "g4wrfy",
+  "hons4p",
+  "bhxeps",
+  "a31fhn",
+  "g6n9st",
+  "9z26tn",
+  "g9t4zd",
+  "hqdgpy",
+  "rwlcnm",
+  "gvpzoh",
+  "9z294k",
+  "fscae5",
+  "fhwxyt",
+  "gdt5sh",
+  "g9umk4",
+  "ggzhu0",
+  "g7pptc",
+  "fhf0st",
+  "fo7jwi",
+  "gepumd",
+  "9z4in0",
+  "gavr4y"
+ ],
+ "llm_model": "Qwen/Qwen3-1.7B",
+ "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+ "device": "cuda",
+ "dtype": "bfloat16",
+ "decoding": "greedy",
+ "batch_size": 16,
+ "prompt_version": "1.4",
+ "agreed": true,
+ "agreement_mode": "accepted_by_A",
+ "round_iterations": 2,
+ "needs_review": false,
+ "label": {
+  "name": "Bundesliga Restart",
+  "purpose": "Announcement and planning for Bundesliga's return",
+  "emotion_tone": "optimistic",
+  "description": "Posts discussing the Bundesliga's return plan, dates, and financial considerations, including government support and club decisions.",
+  "inclusion_cues": [
+   "Bundesliga return date",
+   "financial pressure",
+   "government support",
+   "club decisions",
+   "season schedule"
+  ]
+ },
+ "analyst_a_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Bundesliga Restart",
+    "purpose": "Announce and discuss Bundesliga return plans",
+    "emotion_tone": "urgent",
+    "description": "Posts about Bundesliga return dates, financial pressures, and government decisions related to resuming play after the pandemic.",
+    "inclusion_cues": [
+     "Bundesliga return dates",
+     "financial pressures",
+     "government decisions",
+     "resumption plans",
+     "postponement discussions"
+    ]
+   }
+  ]
+ },
+ "analyst_b_final": {
+  "decision": "revise",
+  "categories": [
+   {
+    "name": "Bundesliga Restart",
+    "purpose": "Announcement and planning for Bundesliga's return",
+    "emotion_tone": "optimistic",
+    "description": "Posts discussing the Bundesliga's return plan, dates, and financial considerations, including government support and club decisions.",
+    "inclusion_cues": [
+     "Bundesliga return date",
+     "financial pressure",
+     "government support",
+     "club decisions",
+     "season schedule"
+    ]
+   }
+  ]
+ },
+ "transcript": [
+  {
+   "round": 1,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: bundesliga restart, bundesliga matchdays, bundesliga monday, bundesliga postponed, bundesliga return, bundesliga april, matches bundesliga, start bundesliga, weeks bundesliga, bundesliga plan, bundesliga bundesliga, bundesliga 9th, bundesliga set, bundesliga resume, season schedule\nPosts (one per line, title first):\n- [3. Liga] 11 of the 20 clubs in Germany's 3rd division have voted against Monday night football games from the 23/24 season.\n- DFL officially announces Bundesliga return on May, 16. Season schedule will include 2 midweek matchdays.\n- Five weeks after the Bundesliga was postponed, German clubs are under financial pressure to start playing again. With players back in training and some politicians onside, a restart in May edges ever closer\n- German State Ministers Laschet and Söder say that resuming the Bundesliga on the 9th of May without spectators is \"very likely\". The League will have a meeting on thursday to discuss an official date. [Article in German].\n- DFL announces calendar for the 2020/21 season of German football: Starts on September 11-14 with the 1st Cup round, followed by the 1st Bundesliga matchday on September 18-21. Concludes with last matchday on May 22. | Shortened winter break from December 24 to January 1\n- \"We will always protect our weekends\": European Leagues say they will not allow weekend Uefa fixtures\n- 2. Bundesliga to also abolish Monday matches\n- Bundesliga bosses sign off on a May 9 return with 25,000 tests needed\n- Bundesliga to abolish Monday night games in 2021 [German]\n- Bundesliga's season restart is plunged into fresh doubt with the German government gearing up to TIGHTEN lockdown [MailSport]\n- The DFL gives licenses to all Bundesliga and Bundesliga 2 teams due to extraordinary circumstances caused by the COVID-19 pandemic (Article in German)\n- [The Times] Uefa will allow postponed Premier League matches to be played on Champions League nights\n- [De Telegraaf] Dutch Secretary of Health, Welfare & Sports: Eredivisie won’t return before September 1st\n- German clubs have decided to dismiss Monday matches [German]\n- DFL plans for the Bundesliga to return the first weekend of May with all game behind closed doors.\n- Bundesliga and 2. Bundesliga Matchdays to go ahead - League suspended from Tuesday onwards (Article in German)\n- Bundesliga set to return on May 15th.\n- (Bild) Germany's ministry of labour green lights Bundesliga's plan for re-start\n- Bundesliga restart on track despite Dresden setback: DFL boss\n- Bundesliga gears up to be first professional sports league to return after pandemic shutdown\n- Next week's Champions League games are in doubt. Bayern think it's quite possible that the return leg against Chelsea will be postponed\n- Further postponement of the Bundesliga and Bundesliga 2 until April 30 decided by DFL Ordinary Assembly\n- [BILD] DFL has decided Bundesliga will resume play on 15th May\n- Bundesliga back down on Monday night games due to fans complaints\n- Bundesliga's return is put back until at least May 16\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bundesliga Restart\", \"purpose\": \"Announce and discuss Bundesliga return plans\", \"emotion_tone\": \"urgent\", \"description\": \"Posts about Bundesliga return dates, financial pressures, and government decisions related to resuming play after the pandemic.\", \"inclusion_cues\": [\"Bundesliga return dates\", \"financial pressures\", \"government decisions\", \"resumption plans\", \"postponement discussions\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Bundesliga Restart",
+      "purpose": "Announce and discuss Bundesliga return plans",
+      "emotion_tone": "urgent",
+      "description": "Posts about Bundesliga return dates, financial pressures, and government decisions related to resuming play after the pandemic.",
+      "inclusion_cues": [
+       "Bundesliga return dates",
+       "financial pressures",
+       "government decisions",
+       "resumption plans",
+       "postponement discussions"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 101,
+   "seed": 3756481109,
+   "seconds": 0.54
+  },
+  {
+   "round": 1,
+   "analyst": "Analyst B",
+   "repair": false,
+   "system": "You are Analyst B, a discourse analyst studying posts from the football community r/soccer.\nStart from reading the posts, then check them against the keywords.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: bundesliga restart, bundesliga matchdays, bundesliga monday, bundesliga postponed, bundesliga return, bundesliga april, matches bundesliga, start bundesliga, weeks bundesliga, bundesliga plan, bundesliga bundesliga, bundesliga 9th, bundesliga set, bundesliga resume, season schedule\nPosts (one per line, title first):\n- [3. Liga] 11 of the 20 clubs in Germany's 3rd division have voted against Monday night football games from the 23/24 season.\n- DFL officially announces Bundesliga return on May, 16. Season schedule will include 2 midweek matchdays.\n- Five weeks after the Bundesliga was postponed, German clubs are under financial pressure to start playing again. With players back in training and some politicians onside, a restart in May edges ever closer\n- German State Ministers Laschet and Söder say that resuming the Bundesliga on the 9th of May without spectators is \"very likely\". The League will have a meeting on thursday to discuss an official date. [Article in German].\n- DFL announces calendar for the 2020/21 season of German football: Starts on September 11-14 with the 1st Cup round, followed by the 1st Bundesliga matchday on September 18-21. Concludes with last matchday on May 22. | Shortened winter break from December 24 to January 1\n- \"We will always protect our weekends\": European Leagues say they will not allow weekend Uefa fixtures\n- 2. Bundesliga to also abolish Monday matches\n- Bundesliga bosses sign off on a May 9 return with 25,000 tests needed\n- Bundesliga to abolish Monday night games in 2021 [German]\n- Bundesliga's season restart is plunged into fresh doubt with the German government gearing up to TIGHTEN lockdown [MailSport]\n- The DFL gives licenses to all Bundesliga and Bundesliga 2 teams due to extraordinary circumstances caused by the COVID-19 pandemic (Article in German)\n- [The Times] Uefa will allow postponed Premier League matches to be played on Champions League nights\n- [De Telegraaf] Dutch Secretary of Health, Welfare & Sports: Eredivisie won’t return before September 1st\n- German clubs have decided to dismiss Monday matches [German]\n- DFL plans for the Bundesliga to return the first weekend of May with all game behind closed doors.\n- Bundesliga and 2. Bundesliga Matchdays to go ahead - League suspended from Tuesday onwards (Article in German)\n- Bundesliga set to return on May 15th.\n- (Bild) Germany's ministry of labour green lights Bundesliga's plan for re-start\n- Bundesliga restart on track despite Dresden setback: DFL boss\n- Bundesliga gears up to be first professional sports league to return after pandemic shutdown\n- Next week's Champions League games are in doubt. Bayern think it's quite possible that the return leg against Chelsea will be postponed\n- Further postponement of the Bundesliga and Bundesliga 2 until April 30 decided by DFL Ordinary Assembly\n- [BILD] DFL has decided Bundesliga will resume play on 15th May\n- Bundesliga back down on Monday night games due to fans complaints\n- Bundesliga's return is put back until at least May 16\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.",
+   "answer": "{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bundesliga Restart\", \"purpose\": \"Announcement and planning for Bundesliga's return\", \"emotion_tone\": \"optimistic\", \"description\": \"Posts discussing the Bundesliga's return plan, dates, and financial considerations, including government support and club decisions.\", \"inclusion_cues\": [\"Bundesliga return date\", \"financial pressure\", \"government support\", \"club decisions\", \"season schedule\"]}]}}",
+   "parsed": {
+    "decision": "revise",
+    "categories": [
+     {
+      "name": "Bundesliga Restart",
+      "purpose": "Announcement and planning for Bundesliga's return",
+      "emotion_tone": "optimistic",
+      "description": "Posts discussing the Bundesliga's return plan, dates, and financial considerations, including government support and club decisions.",
+      "inclusion_cues": [
+       "Bundesliga return date",
+       "financial pressure",
+       "government support",
+       "club decisions",
+       "season schedule"
+      ]
+     }
+    ]
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 100,
+   "seed": 993067473,
+   "seconds": 0.59
+  },
+  {
+   "round": 2,
+   "analyst": "Analyst A",
+   "repair": false,
+   "system": "You are Analyst A, a discourse analyst studying posts from the football community r/soccer.\nStart from the distinctive keywords, then check them against the posts.\nLabel one cluster of posts as one category. Return JSON only; no prose or markdown.",
+   "user": "Keywords: bundesliga restart, bundesliga matchdays, bundesliga monday, bundesliga postponed, bundesliga return, bundesliga april, matches bundesliga, start bundesliga, weeks bundesliga, bundesliga plan, bundesliga bundesliga, bundesliga 9th, bundesliga set, bundesliga resume, season schedule\nPosts (one per line, title first):\n- [3. Liga] 11 of the 20 clubs in Germany's 3rd division have voted against Monday night football games from the 23/24 season.\n- DFL officially announces Bundesliga return on May, 16. Season schedule will include 2 midweek matchdays.\n- Five weeks after the Bundesliga was postponed, German clubs are under financial pressure to start playing again. With players back in training and some politicians onside, a restart in May edges ever closer\n- German State Ministers Laschet and Söder say that resuming the Bundesliga on the 9th of May without spectators is \"very likely\". The League will have a meeting on thursday to discuss an official date. [Article in German].\n- DFL announces calendar for the 2020/21 season of German football: Starts on September 11-14 with the 1st Cup round, followed by the 1st Bundesliga matchday on September 18-21. Concludes with last matchday on May 22. | Shortened winter break from December 24 to January 1\n- \"We will always protect our weekends\": European Leagues say they will not allow weekend Uefa fixtures\n- 2. Bundesliga to also abolish Monday matches\n- Bundesliga bosses sign off on a May 9 return with 25,000 tests needed\n- Bundesliga to abolish Monday night games in 2021 [German]\n- Bundesliga's season restart is plunged into fresh doubt with the German government gearing up to TIGHTEN lockdown [MailSport]\n- The DFL gives licenses to all Bundesliga and Bundesliga 2 teams due to extraordinary circumstances caused by the COVID-19 pandemic (Article in German)\n- [The Times] Uefa will allow postponed Premier League matches to be played on Champions League nights\n- [De Telegraaf] Dutch Secretary of Health, Welfare & Sports: Eredivisie won’t return before September 1st\n- German clubs have decided to dismiss Monday matches [German]\n- DFL plans for the Bundesliga to return the first weekend of May with all game behind closed doors.\n- Bundesliga and 2. Bundesliga Matchdays to go ahead - League suspended from Tuesday onwards (Article in German)\n- Bundesliga set to return on May 15th.\n- (Bild) Germany's ministry of labour green lights Bundesliga's plan for re-start\n- Bundesliga restart on track despite Dresden setback: DFL boss\n- Bundesliga gears up to be first professional sports league to return after pandemic shutdown\n- Next week's Champions League games are in doubt. Bayern think it's quite possible that the return leg against Chelsea will be postponed\n- Further postponement of the Bundesliga and Bundesliga 2 until April 30 decided by DFL Ordinary Assembly\n- [BILD] DFL has decided Bundesliga will resume play on 15th May\n- Bundesliga back down on Monday night games due to fans complaints\n- Bundesliga's return is put back until at least May 16\nOutput schema:\n{\"decision\": \"revise\",\n \"categories\": [\n  {\"name\": \"...\", \"purpose\": \"...\", \"emotion_tone\": \"...\", \"description\": \"...\", \"inclusion_cues\": [\"...\"]}\n ]}\nRules: exactly one category; name short (2–6 words), specific to football/r/soccer, not generic; capture both the\ncommunicative purpose and the emotional tone; 3–6 inclusion cues.\n\nYour previous answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bundesliga Restart\", \"purpose\": \"Announce and discuss Bundesliga return plans\", \"emotion_tone\": \"urgent\", \"description\": \"Posts about Bundesliga return dates, financial pressures, and government decisions related to resuming play after the pandemic.\", \"inclusion_cues\": [\"Bundesliga return dates\", \"financial pressures\", \"government decisions\", \"resumption plans\", \"postponement discussions\"]}]}\nYour peer's latest answer:\n{\"decision\": \"revise\", \"categories\": [{\"name\": \"Bundesliga Restart\", \"purpose\": \"Announcement and planning for Bundesliga's return\", \"emotion_tone\": \"optimistic\", \"description\": \"Posts discussing the Bundesliga's return plan, dates, and financial considerations, including government support and club decisions.\", \"inclusion_cues\": [\"Bundesliga return date\", \"financial pressure\", \"government support\", \"club decisions\", \"season schedule\"]}]}\nIf the peer's answer is at least as good as yours, return {\"decision\": \"accept\"} and nothing else.\nOtherwise return {\"decision\": \"revise\", \"categories\": [...]} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
+   "answer": "{\"decision\": \"accept\", \"categories\": [{\"name\": \"Bundesliga Restart\", \"purpose\": \"Announce and plan for Bundesliga's return\", \"emotion_tone\": \"optimistic\", \"description\": \"Posts discussing the Bundesliga's return plan, dates, and financial considerations, including government support and club decisions.\", \"inclusion_cues\": [\"Bundesliga return date\", \"financial pressure\", \"government support\", \"club decisions\", \"season schedule\"]}]}",
+   "parsed": {
+    "decision": "accept"
+   },
+   "error": null,
+   "truncated": false,
+   "parsed_via": "json",
+   "salvage_reason": null,
+   "n_tokens": 99,
+   "seed": 3348027481,
+   "seconds": 0.58
+  }
+ ]
+}

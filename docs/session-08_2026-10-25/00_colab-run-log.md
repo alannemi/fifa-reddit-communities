@@ -564,7 +564,12 @@ that both analysts' truncated answers contain complete `name`, `purpose` and `em
 for the author: (a) salvage the complete fields of the final truncated answers for these two topics (the analysts' own words, no new
 model run; `agreement_mode` recorded as salvaged, `needs_review` kept), then re-run the collect locally; (b) relabel the two topics on
 Colab with a larger answer budget (new labels, ≈ 2 min of GPU plus a hand-back); (c) accept the gap and let A6 tolerate an empty tone
-where no analyst label exists, with a codebook note. **Decision pending.** Until it is taken, S6 runs only as a draft into another root.
+where no analyst label exists, with a codebook note. **Decision pending.** Until it is taken, S6 runs only as a draft into another root — **done the same afternoon as a chain test**
+(`TAG_IN_ROOT=. TAG_OUT_ROOT=<scratch>`): `06-tag-corpus.R` tagged the master and the 17 yearly files in 9 min (57 columns, fingerprints
+taken); `07-validate-analysis.R` passed A0–A5 and A7–A12 (row counts, 42 + 15 columns, bins, topic ids, assignments, sentiment, the 42
+original columns byte-identical, master = join table on the 15 columns, yearly files = year subsets, collection complete) and **failed
+only A6, only on the missing tones** (257 posts; the uid format, name presence and the second-topic rules all hold). The in-place run
+waits for the tone decision.
 
 **Co-author files on GitHub the same day:** TP's `manual review/BIN3_topics_labelled_TP.csv` (474 topics of bin 3, every row tagged in a
 `QUALTAG` column with a scheme of the kind "WC; National Identity", "non-political; Club", "WC; FIFA Body") after TP/BA's bin-1 file of

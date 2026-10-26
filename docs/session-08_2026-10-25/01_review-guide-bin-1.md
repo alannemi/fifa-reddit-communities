@@ -96,9 +96,11 @@ your renames (`python code/08-review-pack.py pack --bin 1` rewrites the name col
    edit it; save as CSV, and check that the topic ids survived unchanged.
 2. From the repository root: `python code/08-review-pack.py check --bin 1` — it reports ids that do not exist and merge
    cycles, and counts the renames and merges. Fix anything marked PROBLEM.
-3. Commit the file (or send it to Alan). Alan uploads it to Drive and runs `stage('--stage collect --allow-partial')` on Colab:
-   the collect stage applies the renames and merges to every post and to the topic table, and records what it applied in
-   `data/analysis/post_variables.json`. Nothing else has to re-run.
+3. Commit the file to GitHub (or send it to Alan). Alan's notebook cell 4.0 copies every committed override file to Drive and
+   cell 4.1 re-runs the collect stage, which applies the renames and merges to every post and to the topic table and records what
+   it applied in `data/analysis/post_variables.json`; the same collect can run on Alan's computer once the sentiment table is there.
+   Nothing else has to re-run. A topic without any name (its two analysts both failed — bin 6 topic 369, bin 7 topic 67) must get a
+   `final_name` before the final collect.
 
 Time: one to two hours for the 65 topics; about an hour and a quarter for the outlier samples.
 

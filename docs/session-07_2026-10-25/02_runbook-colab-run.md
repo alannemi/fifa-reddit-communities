@@ -118,6 +118,10 @@ on the next; the outlier tiers of D9 are applied by the topics stage, or by `rea
 record; keep the review files in git with the results.
 
 ## 9. Sentiment and collect (section 4) — gate 5 (§12.5)
+Order since 2026-10-26: cell 0.2 (pull) → cell 4.0 (copies every committed `results/analysis/bin-N/topic_overrides.csv` from the clone to
+Drive and runs `08-review-pack.py check` on it; the collect stage reads the Drive copy) → cell 4.1 (below). The collect without
+`--allow-partial` also requires a name for every topic: the two topics whose analysts both failed (F45: bin 6 topic 369, bin 7 topic 67)
+need a `final_name` in their override files first.
 `--stage sentiment` (≈ 15 min, CPU) writes `fifa-communities/analysis/sentiment.csv` and `sentiment_validation_sample.csv`
 (300 posts, blank `coder_1`/`coder_2`). Two co-authors code the sample (positive / neutral / negative); report percent
 agreement and Cohen's κ with VADER and between coders in the run log (and codebook §8.2).

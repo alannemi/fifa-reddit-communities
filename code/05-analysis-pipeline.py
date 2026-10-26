@@ -396,6 +396,20 @@ def stage_label(args, paths: Paths, b: int):
     bdir = paths.bin_dir(b)
     if not (bdir / "documents.csv").exists():
         raise SystemExit(f"bin {b}: run --stage topics first")
+    if args.salvage_topics:                                   # decision (a), 2026-10-26: no model, the analysts' truncated answers on file
+        ids = [int(x) for x in str(args.salvage_topics).split(",") if x.strip()]
+        t0 = time.time()
+        labelled = G.salvage_labels(bdir, b, ids)
+        n_samp = tagging.annotate_calibration_samples(bdir)
+        log.info("label: nearest_topic_name written into %d outlier calibration sample file(s)", n_samp)
+        record = {"n_topics_labelled": int(len(labelled)), "n_needs_review": int(labelled["needs_review"].sum()) if len(labelled) else 0,
+                  "agreement_modes": labelled["agreement_mode"].value_counts().to_dict() if len(labelled) else {},
+                  "round_iterations": labelled["round_iterations"].value_counts().sort_index().to_dict() if len(labelled) else {},
+                  "run_at": dt.datetime.now().isoformat(timespec="seconds")}
+        update_config(bdir, "label", tagging.merge_label_record(read_config(bdir).get("label"), record, salvaged=ids))
+        render_report(args, paths, b)
+        tagging.write_status(bdir)
+        return
     t0 = time.time()
     docs, modelled, _ = bin_documents(args, paths, b)
     dd = pd.read_csv(bdir / "documents.csv", dtype=str, keep_default_na=False)
@@ -486,6 +500,7 @@ def main():
     p.add_argument("--max-docs", type=int, default=0, help="mechanics test on a subsample of the bin (disables the topic-count guard)")
     p.add_argument("--max-topics", type=int, default=0, help="label only the N largest topics (smoke tests)")
     p.add_argument("--redo-topics", default=None, help="label stage: comma-separated topic ids to label again (their transcripts move to labels/superseded/)")
+    p.add_argument("--salvage-topics", default=None, help="label stage: comma-separated topic ids whose label is taken from the complete fields of the analysts' truncated answers (no model call; decision (a) of 2026-10-26)")
     p.add_argument("--max-new-tokens", type=int, default=None, help="label stage: answer budget for this run (default config.LLM_MAX_NEW_TOKENS_LABEL)")
     p.add_argument("--outlier-threshold", type=float, default=None, help="fixed reassignment floor T replacing the quantile rule (tests, dry runs)")
     p.add_argument("--years", type=int, nargs="*", help="sentiment: restrict to these years")

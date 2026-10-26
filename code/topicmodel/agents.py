@@ -29,6 +29,7 @@ import json
 import logging
 import random
 import re
+import shutil
 import time
 from pathlib import Path
 
@@ -41,7 +42,8 @@ log = logging.getLogger("topicmodel")
 
 A, B = P.AGENTS
 LABEL_KEYS = ["name", "purpose", "emotion_tone", "description", "inclusion_cues"]
-AGREEMENT_MODES = ("identical", "accepted_by_A", "accepted_by_B", "stalemate", "cap", "no_answer")
+AGREEMENT_MODES = ("identical", "accepted_by_A", "accepted_by_B", "stalemate", "cap", "no_answer",
+                   "salvaged_truncated")   # 2026-10-26 (F45): label taken from the complete fields of both analysts' truncated answers
 # bookkeeping keys kept in parsed answers but never shown to the model in a revision turn
 INTERNAL_KEYS = {"n_cues_given"}
 
@@ -454,6 +456,107 @@ def read_jsonl(path: Path) -> list[dict]:
     return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
 
 
+def labelled_table(done: dict) -> pd.DataFrame:
+    """topics_labelled.csv from the per-topic records of labels.jsonl (one row per topic, in topic order)."""
+    rows = []
+    for tid in sorted(done):
+        r = done[tid]; lab = r.get("label") or {}
+        rows.append({"topic_id": tid, "keywords": r.get("keywords", ""), "name": lab.get("name", ""),
+                     "purpose": lab.get("purpose", ""), "emotion_tone": lab.get("emotion_tone", ""),
+                     "tone_category": tone_category(lab.get("emotion_tone", "")) if lab else "",
+                     "description": lab.get("description", ""), "inclusion_cues": "; ".join(lab.get("inclusion_cues", [])),
+                     "round_iterations": r["round_iterations"], "agreed": r["agreed"], "agreement_mode": r["agreement_mode"],
+                     "needs_review": r["needs_review"],
+                     "analyst_a_final": json.dumps(r["analyst_a_final"], ensure_ascii=False) if r["analyst_a_final"] else "",
+                     "analyst_b_final": json.dumps(r["analyst_b_final"], ensure_ascii=False) if r["analyst_b_final"] else "",
+                     "n_sample_posts": r.get("n_sample_posts", ""), "llm_model": r.get("llm_model", ""),
+                     "llm_revision": r.get("llm_revision", ""), "prompt_version": r.get("prompt_version", ""),
+                     "decoding": r.get("decoding", "")})
+    return pd.DataFrame(rows)
+
+
+_FIELD_RE = re.compile(r'"(name|purpose|emotion_tone|description)"\s*:\s*"((?:[^"\\]|\\.)*)"')
+_CUES_RE = re.compile(r'"inclusion_cues"\s*:\s*(\[[^\]]*\])')
+
+
+def salvage_truncated_fields(text: str) -> dict:
+    """The complete fields of an answer that was cut off at the token budget: every string field whose closing quote is
+    present (name, purpose, emotion_tone, description) and the inclusion_cues list when it is closed. A field cut in the
+    middle is left out — nothing is invented. Used for decision (a) of 2026-10-26 (F45)."""
+    out = {}
+    for key, val in _FIELD_RE.findall(text or ""):
+        if key not in out:
+            try:
+                out[key] = json.loads(f'"{val}"')
+            except json.JSONDecodeError:
+                out[key] = val
+    m = _CUES_RE.search(text or "")
+    if m:
+        try:
+            cues = json.loads(m.group(1))
+            if isinstance(cues, list) and all(isinstance(c, str) for c in cues):
+                out["inclusion_cues"] = cues
+        except json.JSONDecodeError:
+            pass
+    return out
+
+
+def salvage_no_answer(record: dict) -> dict | None:
+    """Decision (a) of 2026-10-26 (author; F45): for a topic whose debate ended `no_answer` because both analysts' answers were
+    cut off at the token budget, take the complete fields of each analyst's LAST answer (the repair turn when there was one).
+    Both must have a complete name; the label is Analyst A's salvaged fields (as after an `identical` round), `agreed` says
+    whether the two names match (case-insensitive), `agreement_mode` is `salvaged_truncated` and `needs_review` stays True (the
+    description may be missing). Returns the fields to write, or None when the answers do not allow it."""
+    A, B = P.AGENTS
+    last = {}
+    for turn in record.get("transcript") or []:
+        if turn.get("answer"):
+            last[turn.get("analyst")] = turn["answer"]
+    fa, fb = salvage_truncated_fields(last.get(A, "")), salvage_truncated_fields(last.get(B, ""))
+    if not fa.get("name") or not fb.get("name"):
+        return None
+    def cat(f):
+        return {"name": f.get("name", ""), "purpose": f.get("purpose", ""), "emotion_tone": f.get("emotion_tone", ""),
+                "description": f.get("description", ""), "inclusion_cues": f.get("inclusion_cues", [])}
+    a, b = cat(fa), cat(fb)
+    agreed = a["name"].strip().lower() == b["name"].strip().lower()
+    return {"label": a, "analyst_a_final": {"decision": "revise", "categories": [a]}, "analyst_b_final": {"decision": "revise", "categories": [b]},
+            "agreed": agreed, "agreement_mode": "salvaged_truncated", "needs_review": True,
+            "salvaged_fields": {"A": sorted(fa), "B": sorted(fb)}}
+
+
+def salvage_labels(bin_dir: Path, bin_id: int, topic_ids: list[int]) -> pd.DataFrame:
+    """Apply salvage_no_answer to the named topics of a labelled bin: the previous per-topic JSON is kept in
+    labels/superseded/, the new one carries the same transcript with the salvaged label and `salvaged_at`; labels.jsonl and
+    topics_labelled.csv are rewritten. No model call. Returns the labelled table."""
+    labels_dir = bin_dir / "labels"; jsonl = bin_dir / "labels.jsonl"
+    done = {int(r["topic_id"]): r for r in read_jsonl(jsonl)}
+    stamp = pd.Timestamp.utcnow().strftime("%Y-%m-%dT%H-%M-%S"); sup = labels_dir / "superseded"
+    for tid in [int(t) for t in topic_ids]:
+        p = labels_dir / f"topic_{tid}.json"
+        if not p.exists() or tid not in done:
+            log.warning("salvage: bin %d topic %d has no label record — skipped", bin_id, tid); continue
+        rec = json.loads(p.read_text(encoding="utf-8"))
+        if rec.get("label"):
+            log.warning("salvage: bin %d topic %d already has a label (%s) — skipped", bin_id, tid, rec["agreement_mode"]); continue
+        got = salvage_no_answer(rec)
+        if got is None:
+            log.warning("salvage: bin %d topic %d — no complete name in both analysts' answers; left as no_answer", bin_id, tid); continue
+        sup.mkdir(exist_ok=True); shutil.copy2(p, sup / f"topic_{tid}_{stamp}.json")
+        fields = {k: v for k, v in got.items() if k != "salvaged_fields"}
+        rec.update(fields); rec["salvaged_at"] = pd.Timestamp.utcnow().isoformat(timespec="seconds"); rec["salvaged_fields"] = got["salvaged_fields"]
+        p.write_text(json.dumps(rec, ensure_ascii=False, indent=1), encoding="utf-8")
+        done[tid] = {**done[tid], **fields, "salvaged_at": rec["salvaged_at"]}
+        log.info("salvage: bin %d topic %d -> %r / %r [%s, agreed %s]", bin_id, tid, got["label"]["name"], got["label"]["emotion_tone"],
+                 got["agreement_mode"], got["agreed"])
+    with open(jsonl, "w", encoding="utf-8") as f:
+        for tid in sorted(done):
+            f.write(json.dumps(done[tid], ensure_ascii=False) + "\n")
+    labelled = labelled_table(done)
+    labelled.to_csv(bin_dir / "topics_labelled.csv", index=False)
+    return labelled
+
+
 def run_labelling(bin_dir: Path, bin_id: int, docs: pd.DataFrame, topics: pd.DataFrame, llm,
                   max_topics: int | None = None, redo: list[int] | None = None, max_new_tokens: int | None = None) -> pd.DataFrame:
     """Label every topic of a bin (resumable through labels.jsonl). `docs` = modelled documents with columns
@@ -517,21 +620,7 @@ def run_labelling(bin_dir: Path, bin_id: int, docs: pd.DataFrame, topics: pd.Dat
         Debate("label", llm, lambda obj, it, acc: validate_label(obj, acc), labels_identical,
                seed_prefix=str(bin_id), on_resolved=on_resolved, max_new_tokens=budget).run(items)
 
-    rows = []
-    for tid in sorted(done):
-        r = done[tid]; lab = r.get("label") or {}
-        rows.append({"topic_id": tid, "keywords": r.get("keywords", ""), "name": lab.get("name", ""),
-                     "purpose": lab.get("purpose", ""), "emotion_tone": lab.get("emotion_tone", ""),
-                     "tone_category": tone_category(lab.get("emotion_tone", "")) if lab else "",
-                     "description": lab.get("description", ""), "inclusion_cues": "; ".join(lab.get("inclusion_cues", [])),
-                     "round_iterations": r["round_iterations"], "agreed": r["agreed"], "agreement_mode": r["agreement_mode"],
-                     "needs_review": r["needs_review"],
-                     "analyst_a_final": json.dumps(r["analyst_a_final"], ensure_ascii=False) if r["analyst_a_final"] else "",
-                     "analyst_b_final": json.dumps(r["analyst_b_final"], ensure_ascii=False) if r["analyst_b_final"] else "",
-                     "n_sample_posts": r.get("n_sample_posts", ""), "llm_model": r.get("llm_model", ""),
-                     "llm_revision": r.get("llm_revision", ""), "prompt_version": r.get("prompt_version", ""),
-                     "decoding": r.get("decoding", "")})
-    labelled = pd.DataFrame(rows)
+    labelled = labelled_table(done)
     labelled.to_csv(bin_dir / "topics_labelled.csv", index=False)
     ov = bin_dir / "topic_overrides.csv"
     if not ov.exists() and len(labelled):

@@ -144,6 +144,8 @@ def test_guard():
     assert m["relabels"] == [{"topics": [67], "max_new_tokens": 900, "llm_stats": part["llm_stats"], "elapsed_min": 0.9, "run_at": "2026-10-26T21:00:00"}]
     m2 = T.merge_label_record(m, noop)                       # a later no-op keeps the relabel entry too
     assert m2["relabels"] == m["relabels"] and m2["llm_stats"]["calls"] == 92
+    m3 = T.merge_label_record(m2, {"n_needs_review": 5, "agreement_modes": {"x": 1}, "run_at": "2026-10-26T22:00:00"}, salvaged=[369])
+    assert m3["llm_stats"]["calls"] == 92 and m3["n_needs_review"] == 5 and m3["salvages"] == [{"topics": [369], "run_at": "2026-10-26T22:00:00"}] and m3["relabels"] == m["relabels"]
     # the gate diagnostic: HDBSCAN over the grid on the cached array (stub: topics = 6000 / mcs, fewer outliers with lower min_samples)
     def stub4(X, mcs, ms, method, eps):
         k = max(1, int(6000 / mcs)); n = len(X); n_out = int(n * ms / 20)
@@ -381,6 +383,32 @@ def test_labelling_resume_and_outputs():
         rec1 = json.loads((tmp / "labels" / "topic_1.json").read_text())
         assert rec1["max_new_tokens"] == 900 and rec1["relabelled"] is True and rec1["agreement_mode"] == "identical"
         assert json.loads((tmp / "labels" / "topic_0.json").read_text())["relabelled"] is False
+        # decision (a) of 2026-10-26 (F45): a no_answer topic whose analysts were both cut off gets its label from the complete
+        # fields of their last answers — nothing invented, the cut field left out, the transcript kept, the old record superseded
+        cut_a = '{"decision": "revise", "categories": [{"name": "Rayo Vallecano vs. Clubs", "purpose": "Matches involving Rayo", "emotion_tone": "Excitement", "description": "Posts about Rayo Vallecano matc'
+        cut_b = '{"decision": "revise", "categories": [{"name": "rayo vallecano vs. clubs", "purpose": "Matches between Rayo and other clubs", "emotion_tone": "Excitement", "description": "Match threads.", "inclusion_cues": ["Rayo Vallecano", "match"], "x": "y'
+        f = salvage_truncated_fields = G.salvage_truncated_fields
+        assert f(cut_a) == {"name": "Rayo Vallecano vs. Clubs", "purpose": "Matches involving Rayo", "emotion_tone": "Excitement"}
+        assert f(cut_b)["inclusion_cues"] == ["Rayo Vallecano", "match"] and f(cut_b)["description"] == "Match threads."
+        rec2 = json.loads((tmp / "labels" / "topic_2.json").read_text())
+        rec2.update({"label": None, "analyst_a_final": None, "analyst_b_final": None, "agreed": False, "agreement_mode": "no_answer", "needs_review": True,
+                     "transcript": [{"analyst": A, "round": 1, "repair": False, "answer": cut_a, "truncated": True},
+                                    {"analyst": B, "round": 1, "repair": False, "answer": cut_b, "truncated": True}]})
+        (tmp / "labels" / "topic_2.json").write_text(json.dumps(rec2), encoding="utf-8")
+        lines = [json.loads(l) for l in (tmp / "labels.jsonl").read_text().splitlines()]
+        for l in lines:
+            if l["topic_id"] == 2: l.update({"label": None, "agreement_mode": "no_answer", "agreed": False, "needs_review": True})
+        (tmp / "labels.jsonl").write_text("".join(json.dumps(l) + "\n" for l in lines), encoding="utf-8")
+        out5 = G.salvage_labels(tmp, 1, [2, 0])                            # topic 0 has a label: skipped
+        r2 = out5[out5.topic_id == 2].iloc[0]
+        assert r2["name"] == "Rayo Vallecano vs. Clubs" and r2["emotion_tone"] == "Excitement" and r2["tone_category"] == "excited" and r2["description"] == ""
+        assert r2["agreement_mode"] == "salvaged_truncated" and bool(r2["agreed"]) is True and bool(r2["needs_review"]) is True
+        assert out5[out5.topic_id == 0].iloc[0]["name"] == "Zero" and len(list((tmp / "labels" / "superseded").glob("topic_2_*.json"))) == 1
+        rec2b = json.loads((tmp / "labels" / "topic_2.json").read_text())
+        assert rec2b["label"]["name"] == "Rayo Vallecano vs. Clubs" and len(rec2b["transcript"]) == 2 and rec2b["salvaged_fields"]["A"] == ["emotion_tone", "name", "purpose"]
+        assert json.loads(rec2b["analyst_b_final"] if isinstance(rec2b["analyst_b_final"], str) else json.dumps(rec2b["analyst_b_final"]))["categories"][0]["description"] == "Match threads."
+        assert [l["topic_id"] for l in (json.loads(x) for x in (tmp / "labels.jsonl").read_text().splitlines())] == [0, 1, 2]
+        assert G.salvage_no_answer({"transcript": [{"analyst": A, "answer": '{"decision": "revise", "categories": [{"nam'}]}) is None
         # a refit retires the previous clustering's labels, review files and calibration samples (nothing deleted), so a
         # resume cannot attach old labels to renumbered topics; labelling then starts from scratch
         (tmp / "outlier_calibration").mkdir(); (tmp / "outlier_calibration" / "sample_T0.5000.csv").write_text("id\n", encoding="utf-8")

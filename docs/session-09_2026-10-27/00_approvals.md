@@ -24,7 +24,7 @@ The pull was a fast-forward to `5cc9c8cf`. It brought four commits of co-author 
 | # | Question | Decision | Note |
 |---|---|---|---|
 | E1 | What "sentiment calibration" means | **Human validation of VADER** on the stratified 337-post sample (design §8): two coders, then percent agreement and Cohen's κ (coder vs coder, coders vs VADER), a confusion matrix, and precision and recall per class | Alternatives declined: tuning the ±0.05 cut points, a football-lexicon adjustment, and VADER vs the analysts' tone |
-| E2 | Political vs non-political engagement | **First answer:** a theme-based rule. A topic is political if its QUALTAG includes National Identity, FIFA Body, Host Country Domestic or IR, non-political if tagged `non-political` with none of these, and unclassified otherwise; scope limited to the World Cup bins. **Revised at plan review:** *engagement is plotted for the whole corpus without the political split* | The rule and the scope are kept on record for later use; nothing political is computed today |
+| E2 | Political vs non-political engagement | **Engagement is plotted for the whole corpus, without a political split** (revised at plan review). The political classification rule proposed during planning was **withdrawn by Alan Nemirovski later on 2026-10-27**: he will provide a taxonomy of TP's QUALTAG variable, which will define how the tags are processed | Nothing political is computed; no rule is in force until the taxonomy arrives |
 | E3 | Which posts the topic-based (tone) figures use | **`cluster` + `reassigned` posts** (827,744). Dual and outlier posts are left out | BA's coded samples (§3 of the session notes) found most dual-tier posts outside the given topic. This sets the figures' population only; it is **not** the outlier-tier decision, which stays open |
 | E4 | Engagement metrics | **Median `num_comments` and median `score`** per month and per bin | Crossposts, awards and subscribers exist only from 2017–2019 |
 | E5 | The crawl-regime break of July 2023 | **Plotted without annotation** | Documented in `02_session-notes.md` §4 for the chapter text |
@@ -44,7 +44,7 @@ The pull was a fast-forward to `5cc9c8cf`. It brought four commits of co-author 
 | The returned coding sheet (14:37) | **Kept as Alan saved it**, `manual review/sentiment_review_coder_A-coded-AN.csv`; the script reads it by name. The single code `neural` (post 1yx18c) **is read as `neutral`**, corrected in the file |
 | The July 2023 crawl break | **Documented as a limitation; move on** (E8) |
 | The 0.50 gate tolerance | **Confirmation pending**, together with the outlier tiers |
-| Political split (E2) | **Held** until at least TP's bin-9 file arrives |
+| Political split (E2) | **Held.** It needs Alan's QUALTAG taxonomy (the earlier rule is withdrawn) and TP's bin-9 file |
 
 ## 3. Defaults accepted with the plan
 

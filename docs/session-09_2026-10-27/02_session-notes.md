@@ -199,5 +199,5 @@ A second coder on the same files would give an agreement figure.
 2. **Sentiment coding:** done (§2b); the figures are in codebook §8.2 and limitation 10.
 2c. **VADER's weak agreement:** decided (E9). The variables are the sentimental valence of posts, reported with the validation; no further validation.
 3. **S6 in place** (`06-tag-corpus.R`, then `07-validate-analysis.R`, then `03-data-validation.R`), then codebook v3.0 final.
-4. **The political split** (E2): held until at least TP's bin-9 file arrives.
+4. **The political split** (E2): held. Alan will provide a taxonomy of TP's QUALTAG variable, which defines how the tags are processed (the planning-stage rule is withdrawn); TP's bin-9 file is also still to come.
 5. **The crawl break:** done (E8, codebook limitation 11).

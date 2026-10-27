@@ -183,7 +183,8 @@ LLM_JSON_SALVAGE = True                 # recover answers whose only defect is b
 # Controlled tone vocabulary (design §7.3): the analysts' free-text emotion_tone is mapped to one category for counting
 # ---------------------------------------------------------------------------
 TONE_SET = ["positive", "negative", "neutral", "mixed", "excited", "enthusiastic", "frustrated",
-            "angry", "anxious", "sad", "humorous", "critical", "supportive", "curious", "cautious"]
+            "angry", "anxious", "sad", "humorous", "critical", "supportive", "curious", "cautious",
+            "competitive", "informative", "analytical", "concerned"]      # the last four: decision E6, 2026-10-27
 # Word stem -> category, checked in order (first match wins), so that "frustration and anger" -> frustrated and
 # "anxious and desperate" -> anxious; a tone that matches no stem is counted as "other".
 TONE_STEMS = [("frustrat", "frustrated"), ("anger", "angry"), ("angry", "angry"), ("anxi", "anxious"),
@@ -193,7 +194,13 @@ TONE_STEMS = [("frustrat", "frustrated"), ("anger", "angry"), ("angry", "angry")
               ("humor", "humorous"), ("humour", "humorous"), ("funny", "humorous"), ("mixed", "mixed"),
               ("neutral", "neutral"), ("negativ", "negative"), ("positiv", "positive"), ("celebrat", "positive"),
               ("hopeful", "positive"), ("optimis", "positive"), ("disappoint", "negative"), ("dissatisf", "negative")]
-assert {cat for _, cat in TONE_STEMS} <= set(TONE_SET), "every tone stem must map into TONE_SET"
+# Decision E6 (author, 2026-10-27): the four largest groups of tones that fell into "other" (competitive, informative/informed,
+# analytical, concerned) become categories. Checked only when no TONE_STEMS entry matched, so no earlier category changes; among
+# these stems the one written first in the tone wins ("analytical and competitive" -> analytical, "informative and analytical"
+# -> informative).
+TONE_STEMS_ORDERED = [("competit", "competitive"), ("informat", "informative"), ("informed", "informative"),
+                      ("analyt", "analytical"), ("concern", "concerned")]
+assert {cat for _, cat in TONE_STEMS + TONE_STEMS_ORDERED} <= set(TONE_SET), "every tone stem must map into TONE_SET"
 
 # ---------------------------------------------------------------------------
 # S4 — VADER sentiment (design §8, decision F18): post_sentiment on the cleaned TITLE, post_sentiment_full on title + body

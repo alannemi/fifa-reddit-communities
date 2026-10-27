@@ -1,4 +1,4 @@
-# Analytical pipeline design — period-binned topic modelling, two-agent labelling and sentiment (v1.7)
+# Analytical pipeline design — period-binned topic modelling, two-agent labelling and sentiment (v1.8)
 
 **Session 04, 2026-10-22/23 · FIFA Communities chapter, McGill University.**
 Decisions: Alan Nemirovski. Drafting and technical design: Claude. Brief: `00_brief.md`. Template method: the
@@ -29,7 +29,7 @@ pipeline and its code; every post carries its topic's corpus-wide key, agreed la
 `topic_tone`); the topic table carries the mean VADER score of the topic's posts (`mean_vader_sentiment`); the cross-bin
 comparison is a manual crosswalk of topics (§7.7, §9, F42–F44). **D8** — no fixed topic range per bin but a density of 50–75
 raw topics per 10,000 modelled posts, the guard searching the minimum cluster size from a floor of 25 (§6.2). §7.4 and the S3b
-texts of §7.6 are kept as the record of the superseded protocol (`../session-08_2026-10-25/00_colab-run-log.md` §9). **Version 1.6 (2026-10-25, night)** records decision **D9** (§6.3): tiered outlier reassignment by each bin's similarity quantiles — nearest topic at or above the 80th percentile, nearest plus second-nearest topic (`dual`) from the 35th, outlier below —, a dual post counted once in each of its two topics, five more analysis columns (15; 57 in the data files), and the 50 % gate tolerance for converged bins proposed after bin 3 (§12.2; `../session-08_2026-10-25/00_colab-run-log.md` §13). **Version 1.7 (2026-10-25, night)** records decision D10: a bin whose floor cluster size already yields fewer topics than its density target is *floor-bound* and passes the gate (§6.2, §12.2, §14; first case bin 7, run log §14).
+texts of §7.6 are kept as the record of the superseded protocol (`../session-08_2026-10-25/00_colab-run-log.md` §9). **Version 1.6 (2026-10-25, night)** records decision **D9** (§6.3): tiered outlier reassignment by each bin's similarity quantiles — nearest topic at or above the 80th percentile, nearest plus second-nearest topic (`dual`) from the 35th, outlier below —, a dual post counted once in each of its two topics, five more analysis columns (15; 57 in the data files), and the 50 % gate tolerance for converged bins proposed after bin 3 (§12.2; `../session-08_2026-10-25/00_colab-run-log.md` §13). **Version 1.7 (2026-10-25, night)** records decision D10: a bin whose floor cluster size already yields fewer topics than its density target is *floor-bound* and passes the gate (§6.2, §12.2, §14; first case bin 7, run log §14). **Version 1.8 (2026-10-27)** records decision E6: four tone categories (`competitive`, `informative`, `analytical`, `concerned`) added to the controlled vocabulary of §7.3, re-derived for all 6,245 topics without a model run (`--stage retone`; `../session-09_2026-10-27/`).
 
 ---
 
@@ -285,8 +285,9 @@ For every topic of a bin, each analyst receives the topic's 15 keywords and up t
 each post truncated to 300 characters) and must describe the cluster as **exactly one** category (`name`, `purpose`,
 `emotion_tone`, `description`, `inclusion_cues`). The free-text tone is additionally mapped to a controlled vocabulary
 (`TONE_SET`: positive, negative, neutral, mixed, excited, enthusiastic, frustrated, angry, anxious, sad, humorous,
-critical, supportive, curious, cautious; stem-based mapper from session 02) as `tone_category`, so tones can be
-counted.
+critical, supportive, curious, cautious, and since decision E6 of 2026-10-27 competitive, informative, analytical, concerned;
+stem-based mapper from session 02, the new stems checked after the old ones with the first-written term winning) as
+`tone_category`, so tones can be counted.
 
 ### 7.4 Stage S3b — discourse taxonomy (per bin): the two-step protocol (v1.2, decision D5, 2026-10-24) — SUPERSEDED
 
@@ -704,6 +705,7 @@ the effective settings, guard trials, backend, CUDA/cuML versions, `pip freeze`,
 | **2026-10-25 D10** | Density guard at the floor (§6.2, §12.2) | **A bin whose floor `min_cluster_size` (25) already gives fewer topics than its density target is accepted as *floor-bound*: the floor wins over the density target, the clustering stands, `guard.floor_bound = true` is recorded and the gate passes (bin 7: 172 topics for a target of 207–310, 35.6 % raw outliers)** | author's decision on the assistant's recommendation: the guard did what D8 says (never below the floor); the shortfall is modest; one HDBSCAN setting for every bin is easier to report than a per-bin `min_samples`; the dual tier already carries the finer distinctions. Alternatives declined: `min_samples` 3 for bin 7 alone (223 topics) or for every tournament bin (re-cluster and relabel bins 1, 3, 5) |
 | **2026-10-26 relabel** | Topics without a label (F45) | **A topic whose two analysts were both cut off at the answer budget is labelled again with a larger budget (`--redo-topics`, 900 tokens for bin 6 topic 369 and bin 7 topic 67); the superseded transcripts stay in `labels/superseded/`, the bin's labelling record keeps the full run and lists the relabel** | author's first choice (2026-10-26); **the relabel did not yield labels, so the author chose the salvage the same day: `--salvage-topics` takes the complete fields (name, purpose, emotion_tone; description and cues only when complete) of both analysts' last truncated answers, label = Analyst A's, `agreement_mode = salvaged_truncated`, `needs_review` kept, nothing invented, no model call** |
 | 2026-10-25 gate tolerance | Large-bin gate (§12.2) | Raw outlier share ≤ 50 % for a bin whose guard converged (`OUTLIER_GATE` in the notebook; the design's 45 % stays the reference) — **proposed by the assistant after bin 3 (474 topics in target, 45.8 %), pending the author's confirmation** | under D9 the raw share only sizes the dual and outlier tiers |
+| **2026-10-27 E6** | Tone vocabulary (§7.3) | **`competitive`, `informative`, `analytical`, `concerned` added to `TONE_SET`** (stems `competit`, `informat`/`informed`, `analyt`, `concern` in `TONE_STEMS_ORDERED`, checked after `TONE_STEMS`; among them the term written first wins); `tone_category` re-derived from the stored `emotion_tone` by `--stage retone` (no model call; only `other` rows may change): 1,004 of 6,245 topics moved, posts with the tone `other` 316,401 → 102,479; labels_version `f2bc460bf46d` | author's decision after the descriptive figures showed `other` as the largest tone (24 % of posts, mostly competitive / informative / analytical / concerned); `../session-09_2026-10-27/00_approvals.md` |
 
 ## 15. Brief versus design
 

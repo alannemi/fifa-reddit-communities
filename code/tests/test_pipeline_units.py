@@ -79,6 +79,33 @@ def test_paths_and_tones():
     assert [G.tone_category(x) for x in ("Frustration and anger", "anxious and desperate", "Satirical and humorous", "meh")] == ["frustrated", "anxious", "humorous", "other"]
 
 
+def test_tone_vocabulary_e6():
+    # E6 (2026-10-27): four categories from "other"; the earlier stems keep priority, among the new ones the first written wins
+    assert {cat for _, cat in C.TONE_STEMS_ORDERED} == {"competitive", "informative", "analytical", "concerned"} <= set(C.TONE_SET)
+    cases = {"analytical and competitive": "analytical", "informative and analytical": "informative",
+             "confident and competitive": "competitive", "concern and urgency": "concerned", "Informed": "informative",
+             "Frustration and anger": "frustrated", "critical and analytical": "critical", "excited, competitive": "excited",
+             "nostalgic": "other"}
+    assert {x: G.tone_category(x) for x in cases} == cases
+    # retone_labels: rewrites only tone_category, only from "other", and refuses anything else
+    with tempfile.TemporaryDirectory() as td:
+        d = Path(td)
+        recs = [{"topic_id": i, "label": {"name": f"T{i}", "emotion_tone": tone}, "round_iterations": 1, "agreed": True,
+                 "agreement_mode": "identical", "needs_review": False, "analyst_a_final": {}, "analyst_b_final": {}}
+                for i, tone in enumerate(["excited", "competitive", "nostalgic"])]
+        (d / "labels.jsonl").write_text("".join(json.dumps(r) + "\n" for r in recs), encoding="utf-8")
+        old = G.labelled_table({r["topic_id"]: r for r in recs}); old.loc[1, "tone_category"] = "other"
+        old.to_csv(d / "topics_labelled.csv", index=False)
+        assert G.retone_labels(d, 0) == {("other", "competitive"): 1}
+        assert pd.read_csv(d / "topics_labelled.csv", keep_default_na=False)["tone_category"].tolist() == ["excited", "competitive", "other"]
+        assert G.retone_labels(d, 0) == {}                                            # idempotent
+        old.loc[1, "tone_category"] = "critical"; old.to_csv(d / "topics_labelled.csv", index=False)
+        try:
+            G.retone_labels(d, 0); raise AssertionError("a move out of an existing category must be refused")
+        except RuntimeError:
+            pass
+
+
 def test_bin_boundaries():
     s = pd.Series(["2010-01-01 00:00:00", "2010-09-30 23:59:59", "2010-10-01 00:00:00", "2014-01-31 23:59:59",
                    "2014-02-01 00:00:00", "2018-09-30 12:00:00", "2018-10-01 00:00:00", "2022-06-30 23:59:59",

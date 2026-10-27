@@ -29,6 +29,8 @@ STAGES (design §3)                                            reads -> writes  
                                                               the same tiers itself, so this stage serves bins clustered before D9 and changes
   label       S3a two-agent cluster labelling (resumable)     bin-N/ -> labels/topic_<id>.json, labels.jsonl, topics_labelled.csv,
                                                               topic_overrides.csv (template)   -> co-author review
+  retone      tone_category re-derived after a change of the  bin-N/labels.jsonl -> topics_labelled.csv (only tone_category may change,
+              tone vocabulary (E6, 2026-10-27; no model)      only from "other"); config.json -> retone; then collect
   sentiment   S4 VADER per post (title; title + body)         yearly CSVs -> <tables>/sentiment.csv (+ validation sample)
   collect     S5 post_variables.csv + aggregated tables       S0–S4 (+ topic overrides) -> <tables>/post_variables.csv (+ .json),
                                                               <results>/topic_labels_all_bins.csv (with mean_vader_sentiment),
@@ -80,7 +82,7 @@ from topicmodel import data, embed, bins as BINS, model as M, sentiment, report,
 from topicmodel import agents as G
 
 log = logging.getLogger("topicmodel")
-STAGES = ["bins", "embed", "topics", "grid", "reassign", "label", "sentiment", "collect", "report", "status"]
+STAGES = ["bins", "embed", "topics", "grid", "reassign", "label", "retone", "sentiment", "collect", "report", "status"]
 
 
 # ---------------------------------------------------------------------------
@@ -437,6 +439,20 @@ def stage_label(args, paths: Paths, b: int):
     tagging.write_status(bdir)
 
 
+def stage_retone(args, paths: Paths, b: int):
+    """Decision E6 (2026-10-27): re-derive the controlled tone of every labelled topic from the analysts' emotion_tone after
+    the vocabulary changed. The label record stays as it is; the retone gets its own section in config.json."""
+    bdir = paths.bin_dir(b)
+    if not (bdir / "labels.jsonl").exists():
+        raise SystemExit(f"bin {b}: run --stage label first")
+    moved = G.retone_labels(bdir, b)
+    if moved:
+        update_config(bdir, "retone", {"tone_set": C.TONE_SET, "tone_stems_ordered": C.TONE_STEMS_ORDERED,
+                                       "n_topics_changed": int(sum(moved.values())),
+                                       "transitions": {f"{o}->{n}": k for (o, n), k in sorted(moved.items())},
+                                       "run_at": dt.datetime.now().isoformat(timespec="seconds")})
+
+
 # ---------------------------------------------------------------------------
 # S4 / S5 / report
 # ---------------------------------------------------------------------------
@@ -511,13 +527,13 @@ def main():
     args = p.parse_args()
     os.environ.setdefault("HF_HOME", str(C.LLM_CACHE_DIR))   # every loader passes cache_dir explicitly; this keeps hub metadata there too
     paths = Paths(args.out_root)
-    per_bin = args.stage in ("embed", "topics", "grid", "reassign", "label", "report")
+    per_bin = args.stage in ("embed", "topics", "grid", "reassign", "label", "retone", "report")
     if per_bin:
         for b in parse_bins(args):
             setup_logging(paths.bin_dir(b) / "log.txt")
             log.info("=== stage %s, bin %d === args: %s | paths: %s", args.stage, b, vars(args), paths.describe())
             {"embed": stage_embed, "topics": stage_topics, "grid": stage_grid, "reassign": stage_reassign, "label": stage_label,
-             "report": render_report}[args.stage](args, paths, b)
+             "retone": stage_retone, "report": render_report}[args.stage](args, paths, b)
     elif args.stage == "status":
         print(tagging.status_table(paths.analysis).to_string(index=False))
     else:

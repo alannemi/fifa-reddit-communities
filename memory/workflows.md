@@ -139,3 +139,18 @@ join tables, the R mini-corpus copies and the caches are not — `results/README
 debate), `h7-bin1` (session 07: S1 + S2 after the harmonization, identical UMAP array and HDBSCAN labels), `d6-bin1` (the D6
 shortlist re-run of the taxonomy on the Colab outputs of bin 1). The taxonomy outputs in these folders are records of the
 superseded protocol (D7, 2026-10-25).
+
+## 8. Tone vocabulary, sentiment validation and descriptive figures (session 09, 2026-10-27)
+
+```bash
+# after any change of config.TONE_SET / TONE_STEMS / TONE_STEMS_ORDERED (no model call; only "other" rows may change)
+.venv/bin/python code/05-analysis-pipeline.py --stage retone --bins 1-9
+for b in 1 2 3 4 5 6 7 8 9; do .venv/bin/python code/08-review-pack.py pack --bin $b; done
+.venv/bin/python code/05-analysis-pipeline.py --stage collect              # new labels_version in post_variables.json
+
+Rscript code/09-sentiment-coding-pack.R      # blinded coder_A.csv / coder_B.csv in results/analysis/manual review/sentiment_coding/
+Rscript code/10-sentiment-validation.R       # after both sheets are back (+ optional adjudicated.csv): agreement, kappa, confusion
+Rscript code/11-descriptives.R               # ~1 min: figures + tables in results/descriptives/ (reads the yearly files + post_variables.csv)
+```
+`09` refuses to overwrite a sheet that already holds codes. `10` takes `SENT_CODING_DIR` / `SENT_OUT_DIR` for tests.
+`11` does not depend on S6; re-run it after any change of the join table. Decisions and readings: `docs/session-09_2026-10-27/`.

@@ -1252,7 +1252,7 @@
   "elapsed_min": 0.8,
   "run_at": "2026-10-25T20:03:41"
  },
- "updated": "2026-10-25T20:26:18",
+ "updated": "2026-10-27T13:14:08",
  "label": {
   "llm_model": "Qwen/Qwen3-1.7B",
   "llm_revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
@@ -1300,5 +1300,58 @@
    "user_revision": "Your previous answer:\n{mine}\nYour peer's latest answer:\n{peer}\nIf the peer's answer is at least as good as yours, return {{\"decision\": \"accept\"}} and nothing else.\nOtherwise return {{\"decision\": \"revise\", \"{answer_key}\": [...]}} with a revised answer that improves agreement with the\npeer while preserving quality. Same schema. JSON only.",
    "user_repair": "Your previous answer could not be used: {error}\nReturn the corrected answer with the same schema. JSON only; no prose or markdown."
   }
+ },
+ "retone": {
+  "tone_set": [
+   "positive",
+   "negative",
+   "neutral",
+   "mixed",
+   "excited",
+   "enthusiastic",
+   "frustrated",
+   "angry",
+   "anxious",
+   "sad",
+   "humorous",
+   "critical",
+   "supportive",
+   "curious",
+   "cautious",
+   "competitive",
+   "informative",
+   "analytical",
+   "concerned"
+  ],
+  "tone_stems_ordered": [
+   [
+    "competit",
+    "competitive"
+   ],
+   [
+    "informat",
+    "informative"
+   ],
+   [
+    "informed",
+    "informative"
+   ],
+   [
+    "analyt",
+    "analytical"
+   ],
+   [
+    "concern",
+    "concerned"
+   ]
+  ],
+  "n_topics_changed": 53,
+  "transitions": {
+   "other->analytical": 14,
+   "other->competitive": 9,
+   "other->concerned": 14,
+   "other->informative": 16
+  },
+  "run_at": "2026-10-27T13:14:08"
  }
 }

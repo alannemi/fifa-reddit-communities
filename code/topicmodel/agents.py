@@ -25,12 +25,14 @@ runs unbatched so that each call's SHA-256 seed is exact (refinement N4).
 """
 from __future__ import annotations
 import hashlib
+import io
 import json
 import logging
 import random
 import re
 import shutil
 import time
+from collections import Counter
 from pathlib import Path
 
 import pandas as pd
@@ -53,13 +55,14 @@ INTERNAL_KEYS = {"n_cues_given"}
 # ===========================================================================
 def tone_category(free_text: str) -> str:
     """Map a free-text emotion_tone to the controlled vocabulary config.TONE_SET by word stems (config.TONE_STEMS,
-    first match wins); "other" when no stem matches.  Used for `tone_category` in the label table and, as `topic_tone`,
-    on every post of the topic (D7)."""
+    first match wins; then config.TONE_STEMS_ORDERED, the stem written first wins — E6); "other" when no stem matches.
+    Used for `tone_category` in the label table and, as `topic_tone`, on every post of the topic (D7)."""
     t = str(free_text).lower()
     for stem, cat in C.TONE_STEMS:
         if stem in t:
             return cat
-    return "other"
+    hits = [(t.find(stem), cat) for stem, cat in C.TONE_STEMS_ORDERED if stem in t]
+    return min(hits)[1] if hits else "other"
 
 
 # ===========================================================================
@@ -555,6 +558,28 @@ def salvage_labels(bin_dir: Path, bin_id: int, topic_ids: list[int]) -> pd.DataF
     labelled = labelled_table(done)
     labelled.to_csv(bin_dir / "topics_labelled.csv", index=False)
     return labelled
+
+
+def retone_labels(bin_dir: Path, bin_id: int) -> Counter:
+    """Re-derive tone_category of a labelled bin from the stored emotion_tone after a change of the tone vocabulary (E6,
+    2026-10-27). No model call. topics_labelled.csv is rebuilt from labels.jsonl and written only if every other column is
+    unchanged and every changed row was "other" before (a vocabulary extension must not move a topic between existing
+    categories). Returns the transitions as Counter{(old, new): n_topics}."""
+    p = bin_dir / "topics_labelled.csv"
+    cur = pd.read_csv(p, dtype=str, keep_default_na=False)
+    new = labelled_table({int(r["topic_id"]): r for r in read_jsonl(bin_dir / "labels.jsonl")})
+    new_s = pd.read_csv(io.StringIO(new.to_csv(index=False)), dtype=str, keep_default_na=False)   # compare as written
+    rest = [c for c in cur.columns if c != "tone_category"]
+    if list(new_s.columns) != list(cur.columns) or not new_s[rest].equals(cur[rest]):
+        raise RuntimeError(f"retone: bin {bin_id}: the rebuilt table differs outside tone_category — not written")
+    changed = cur["tone_category"] != new_s["tone_category"]
+    moved = Counter(zip(cur.loc[changed, "tone_category"], new_s.loc[changed, "tone_category"]))
+    if any(old != "other" for old, _ in moved):
+        raise RuntimeError(f"retone: bin {bin_id}: a topic would leave an existing category {dict(moved)} — not written")
+    if changed.any():
+        new.to_csv(p, index=False)
+    log.info("retone: bin %d — %d of %d topics re-categorised %s", bin_id, int(changed.sum()), len(cur), dict(moved))
+    return moved
 
 
 def run_labelling(bin_dir: Path, bin_id: int, docs: pd.DataFrame, topics: pd.DataFrame, llm,

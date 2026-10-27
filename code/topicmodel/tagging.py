@@ -110,13 +110,15 @@ def annotate_calibration_samples(bin_dir: Path) -> int:
     """Write the nearest topic's name into every outlier_calibration/sample_T*.csv (column `nearest_topic_name`, right
     after `nearest_topic`) so the co-authors judge against a name, not only an id (author's request, 2026-10-25). Rows,
     their order and anything already filled in (`belongs`, `notes`) are kept; re-running refreshes the names (renames and
-    merges from topic_overrides.csv included). Returns the number of files written: 0 while the bin is unlabelled."""
+    merges from topic_overrides.csv included). The co-authors' returned copies (`sample_T*_coded*.csv`) are never rewritten
+    (2026-10-27: a refresh had turned BA's line endings into LF). Returns the number of files written: 0 while the bin is
+    unlabelled."""
     names = topic_names(bin_dir)
     cdir = bin_dir / "outlier_calibration"
     if not names or not cdir.is_dir():
         return 0
     n = 0
-    for p in sorted(cdir.glob("sample_T*.csv")):
+    for p in sorted(q for q in cdir.glob("sample_T*.csv") if "_coded" not in q.name):
         s = _read(p)
         if s.empty or "nearest_topic" not in s.columns:
             continue

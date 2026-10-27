@@ -151,6 +151,7 @@ for b in 1 2 3 4 5 6 7 8 9; do .venv/bin/python code/08-review-pack.py pack --bi
 Rscript code/09-sentiment-coding-pack.R      # blinded coder_A.csv / coder_B.csv in results/analysis/manual review/sentiment_coding/
 Rscript code/10-sentiment-validation.R       # after both sheets are back (+ optional adjudicated.csv): agreement, kappa, confusion
 Rscript code/11-descriptives.R               # ~1 min: figures + tables in results/descriptives/ (reads the yearly files + post_variables.csv)
+Rscript code/12-topic-network.R              # ~20 s: topic network D1/D1b/D2 + family tables (topic embeddings via the .venv Python, reticulate)
 ```
 `09` refuses to overwrite a sheet that already holds codes. `10` takes `SENT_CODING_DIR` / `SENT_OUT_DIR` for tests.
 `11` does not depend on S6; re-run it after any change of the join table. Decisions and readings: `docs/session-09_2026-10-27/`.

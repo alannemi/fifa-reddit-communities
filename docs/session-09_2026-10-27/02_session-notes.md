@@ -54,6 +54,33 @@ Posts whose first topic has the tone `other` fell from 316,401 to 102,479.
 - **Tested on simulated codes** (mixed spellings, half of the disagreements adjudicated). The κ values equal an independent Python computation (A vs B 0.8004; reference vs VADER 0.6916), and the confusion matrix totals the 315 reference posts.
 - **Waiting on:** the two coders, assigned by Alan. The guide estimates about 1.5 h per sheet.
 
+## 2b. Sentiment validation result (Alan's coding, returned 2026-10-27 14:37)
+
+**The sheet.** The coded sheet is `results/analysis/manual review/sentiment_review_coder_A-coded-AN.csv`. It was kept under Alan's file name, in the manual-review folder (his decision); `10-sentiment-validation.R` reads it by that name. The old `sentiment_coding/` folder and its blank sheet are gone (git history keeps them).
+
+**Checks.** All 337 ids match the sample; the file is UTF-8 with CRLF line endings; every row is coded; 18 posts carry notes. Two titles and eight bodies lost a leading or trailing line break in the spreadsheet. That is harmless: the script reads only `id` and `code`. One code read `neural` (post `1yx18c`, an infographic on transfer fees) and was **corrected to `neutral` with Alan's confirmation**.
+
+**Result (2026-10-27; coder: Alan Nemirovski; `results/descriptives/sentiment_validation_*.csv`).** The human coding labels 258 of the 337 titles neutral (77 %), 43 positive and 36 negative; VADER labels 159 neutral, 114 positive and 64 negative. Agreement is **56.4 %**, Cohen's **κ = 0.24** (bootstrap 95 % interval 0.17–0.31). By class (VADER against the human reference): neutral precision 0.91, recall 0.56; positive precision 0.25, recall 0.67; negative precision 0.25, recall 0.44 (macro-F1 0.46). The main error is sentiment where the reader sees none: 113 of the 258 neutral titles receive a positive (72) or negative (41) score, mostly news reported in emotive vocabulary ("unbeaten", "champions", "cheer"; "penalty", "allegations", "loser"); 13 negative titles are scored positive (for example a title about a player injured by a *celebrating* fan). Agreement varies between 47 % and 75 % across the bins (12–77 posts each) without a trend, and is the same for link and self posts (56 % and 57 %). The figures are those of the sample, whose VADER-label mix (47 / 34 / 19 % neutral / positive / negative) is close to the corpus's (50 / 34 / 16 %). VADER therefore measures the valence of a title's words rather than the stance of its author.
+
+**Alan's notes point the same way:**
+- "Neutral presentation of negative content" (11 posts);
+- "Second-hand account" (6);
+- "Neutral presentation of mixed content" (5).
+
+The coding rule (code the author's stance, not the event) separates stance from content; VADER scores content words. **Decision E9 (Alan Nemirovski, 2026-10-27):** keep the VADER variables, reframed as the *sentimental valence of posts* and not an authoritative measure of the author's sentiment, with this validation reported. The analysis relies mainly on topic-level and other aggregates, together with the topic tones. No additional validation.
+
+**Threshold sensitivity check (Alan's request, combined with E9; `10-sentiment-validation.R` §3b → `results/descriptives/sentiment_validation_thresholds.csv`):**
+
+| Neutral band | Agreement | κ | Corpus neutral |
+|---|---|---|---|
+| ±0.05 (in force) | 56.4 % | 0.24 | 50 % |
+| ±0.20 | 61.1 % | 0.26 | 55 % |
+| ±0.35 | 67.4 % | 0.28 (highest) | 64 % |
+| ±0.50 | 72.7 % | 0.23 | 78 % |
+| ±0.60–0.75 | 73–76 % | 0.09–0.12 | 87–95 % |
+
+Agreement follows the share labelled neutral (the human majority class, 77 %). κ stays inside the ±0.05 interval (0.17–0.31) up to ±0.45 and falls beyond. No cut-off fixes the disagreement, which lies in the construct (wording valence vs the author's stance). **The ±0.05 encoding is kept**, and the framing as sentimental valence stands. The bands are symmetric (VADER's convention); no cut-off was optimised, since 337 posts coded by one person would overfit it.
+
 ## 3. Descriptive figures (`code/11-descriptives.R`, ~1 min)
 
 All figures and tables are in `results/descriptives/` (index: `README.md` there). The script's checks pass:
@@ -77,7 +104,7 @@ Every PNG was inspected.
 | C4 | Rank of the tones that reach the top five in any bin | cluster + reassigned |
 
 **First readings** (descriptive only; for the authors' interpretation):
-- **Volume.** Volume rises to a peak in June 2014 (≈ 17,700 posts) and stays high through 2019. It drops sharply in spring 2020 (COVID suspension) and stays at about 5,000–7,500 posts per month after 2020. The 2010, 2014 and 2018 tournaments show clear weekly peaks at kick-off. The 2022 World Cup (Qatar, November–December) shows no rise, and 2026 rises mildly.
+- **Volume.** (From July 2023 partly an artefact of the crawl regime, §4.) Volume rises to a peak in June 2014 (≈ 17,700 posts) and stays high through 2019. It drops sharply in spring 2020 (COVID suspension) and stays at about 5,000–7,500 posts per month after 2020. The 2010, 2014 and 2018 tournaments show clear weekly peaks at kick-off. The 2022 World Cup (Qatar, November–December) shows no rise, and 2026 rises mildly.
 - **Engagement.** Median comments per post go from 2–3 (bins 1–3) to 15–18 (bins 6, 7, 9). Median score goes from 1–4 to 94 in bin 7. These levels depend on the crawl regime (§4).
 - **VADER.** The monthly mean title score is positive throughout (0.05–0.15), with a slight decline: 0.105 in 2010–14, 0.096 in 2015–19, 0.093 in 2020–26. The neutral share rises from about 45 % to 55–60 % after 2022, mostly at the expense of positive titles. The negative share is stable at 13–20 %.
 - **Topic tones.**
@@ -85,6 +112,40 @@ Every PNG was inspected.
   - `competitive` climbs from rank 16–18 (bins 1–3) to rank 2 (bins 6–9).
   - `critical` and `enthusiastic` fall from ranks 2–3 in the early bins to ranks 4–9 later.
   - `neutral` rises from rank 19 to ranks 3–5.
+
+## 3b. Topic network (`code/12-topic-network.R`; author's request: edges by semantic similarity, static figure)
+
+**Method.**
+- **Nodes:** the 6,245 labelled topics, sized by their HDBSCAN cluster.
+- **Similarity:** the cosine of the topic embeddings (the mean mpnet embedding of each topic's posts). All nine models share one embedding space, so topics can be compared across bins.
+- **Edges:** each topic is linked to its 5 nearest topics in the whole corpus, at a similarity of at least 0.65. The cut-off is about the 10th percentile of the 5th neighbour's similarity, and the top 1 % of all pairs.
+- **Families:** Louvain communities (seed 42).
+- **Layout:** Fruchterman–Reingold on the main connected network, framed on the central 98 % of positions.
+
+**Result.**
+- **Links:** 21,964, of which 84 % join topics of different bins.
+- **Families:** 77 families of more than one topic, plus 123 isolated topics.
+- **Main network:** 6,053 topics (192 outside it).
+
+The largest families are about the same kinds of content in every period:
+
+| Family | Content | Topics |
+|---|---|---|
+| F1, F3 | transfers and loans | 495 + 469 |
+| F2 | league match results and threads | 120 |
+| F4 | goals | 312 |
+| F5 | managers and star players | 332 |
+| F6–F8 | specific leagues and clubs | — |
+| F14 | racism, deaths, fines | — |
+
+Most of the large families span all nine bins. Figure D2 shows every period's topics spread over the whole map. **The topics recur across periods: the bins differ in how much there is of each family, not in which families exist.**
+
+**Figures:**
+- D1: labelled F1–F8;
+- D1b: no labels on the map, larger points (author's request);
+- D2: one panel per bin.
+
+**Tables:** families, nodes, edges. The shared palette and theme moved to `code/R/plot-utils.R`; the nine figures of script 11 are byte-identical after the move.
 
 ## 4. Finding: the archive's crawl regime changes in July 2023 (engagement figures)
 
@@ -101,7 +162,17 @@ Every PNG was inspected.
 
 The step is visible in the monthly medians. From June to July 2023, the median score falls from 87 to 50 and the median comment count from 19 to 11. The crawl lag stays at about 0 h afterwards, while the medians stay around 30–45.
 
-A `retrieved_on` equal to the creation time is not plausible for scores of this size. The archive probably refreshes scores later without updating `retrieved_on`, but this has not been verified. As decided (E5), the figures do not mark the break. The chapter text should mention it: engagement levels after mid-2023 are not directly comparable with earlier years, and comparisons within a period bin are safer than across bins. The project's own 2026 collector (t0 and t48 snapshots, `reddit-soccer-collector/`) could be used to check this later.
+**It also changes the corpus composition** (checked later the same day, at Alan's question). A post fetched within hours is often archived before moderators remove it, so it carries no removal flag and passes the cleaning filters:
+
+| Months | Raw posts flagged removed/deleted | Raw posts retained in the clean corpus |
+|---|---|---|
+| Jan – Jun 2023 | 43–56 % | 38–44 % |
+| Jul 2023 | 38 % | 59 % |
+| Aug 2023 – Jun 2024 | 25–34 % | 64–70 % |
+
+The clean corpus from July 2023 therefore very likely holds posts that moderators later removed. This explains at least part of the jump in monthly volume in mid-2023 (figure A1: about 4,500 → 9,500 posts), part of the lower engagement medians, and a shift in the mix of posts behind the topic and sentiment series. **Decision E8 (Alan Nemirovski, 2026-10-27):** document it in the codebook (limitation 11, §8.5) and revisit if needed.
+
+A `retrieved_on` equal to the creation time is not plausible for scores of this size. The archive probably refreshes scores later without updating `retrieved_on`, but this has not been verified. As decided (E5), the figures do not mark the break; the codebook documents it (E8). The chapter text should mention it: engagement levels after mid-2023 are not directly comparable with earlier years, and comparisons within a period bin are safer than across bins. The project's own 2026 collector (t0 and t48 snapshots, `reddit-soccer-collector/`) could be used to check this later.
 
 ## 5. Outlier-tier evidence received today (BA, bins 1 and 5)
 
@@ -122,8 +193,11 @@ A second coder on the same files would give an agreement figure.
 
 ## 6. Open items after this session
 
-1. **Outlier tiers** (§5): the author's decision. It must come before S6 in place if the tiers change.
-2. **Sentiment coding:** assign coders A and B, collect the sheets, run `10-sentiment-validation.R`, adjudicate the disagreements, then write codebook §8.2.
+*Updated after Alan's decisions on the open items (`00_approvals.md` §2b).*
+
+1. **Outlier tiers and the 0.50 gate tolerance:** pending the remaining outlier calibration checks. No second coder. Both must be settled before S6 in place.
+2. **Sentiment coding:** done (§2b); the figures are in codebook §8.2 and limitation 10.
+2c. **VADER's weak agreement:** decided (E9). The variables are the sentimental valence of posts, reported with the validation; no further validation.
 3. **S6 in place** (`06-tag-corpus.R`, then `07-validate-analysis.R`, then `03-data-validation.R`), then codebook v3.0 final.
-4. **The political split** (E2): deferred. The rule is on record; TP's bin-9 file is still to come.
-5. **Formal confirmation** of the 0.50 gate tolerance.
+4. **The political split** (E2): held until at least TP's bin-9 file arrives.
+5. **The crawl break:** done (E8, codebook limitation 11).

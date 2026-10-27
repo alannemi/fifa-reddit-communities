@@ -1,19 +1,14 @@
 # Sentiment coding guide: validating VADER on 337 r/soccer posts
 
-*For the two co-authors who code the sentiment validation sample. Session 09, 2026-10-27; decision E1 (Alan Nemirovski).*
+*For the coder of the sentiment validation sample. Session 09, 2026-10-27; decision E1 (Alan Nemirovski). Revised the same day: **one coder, Alan Nemirovski**, codes the sample, so there is no second sheet and no adjudication.*
 
 ## Why this coding matters
 
-Every post in the corpus has a VADER sentiment score (`post_sentiment`). VADER is a general-purpose word list with rules, and it is known to misread sarcasm and football vocabulary ("brutal tackle", "killer pass", "sick goal", "crash out"). Your codes are the human reference. We measure two things from them:
-
-1. how often the two of you agree;
-2. how often VADER agrees with you.
-
-Both numbers go into the codebook (§8.2) and the chapter's methods section.
+Every post in the corpus has a VADER sentiment score (`post_sentiment`). VADER is a general-purpose word list with rules, and it is known to misread sarcasm and football vocabulary ("brutal tackle", "killer pass", "sick goal", "crash out"). Your codes are the human reference. From them we measure how often VADER agrees with a human reader: percent agreement, Cohen's κ, which kinds of posts it gets wrong, and whether that differs between periods or between link and self posts. These numbers go into the codebook (§8.2) and the chapter's methods section. With one coder, the reliability of the human reference itself is not measured; the codebook states this.
 
 ## Files
 
-- **Your sheet.** Coder A: `results/analysis/manual review/sentiment_coding/coder_A.csv`; coder B: `coder_B.csv`. Alan assigns who is A and who is B.
+- **Your sheet:** `results/analysis/manual review/sentiment_coding/coder_A.csv`, the only sheet.
 - **What the two sheets hold.** The same 337 posts in the same random order. The posts come from all nine period bins and include both link posts and self posts.
 - **Columns:**
   - `id`: the post id;
@@ -23,7 +18,7 @@ Both numbers go into the codebook (§8.2) and the chapter's methods section.
   - `code`: you fill this in;
   - `notes`: optional.
 
-**Code independently.** Do not look at the other coder's sheet, and do not discuss individual posts until both sheets are returned.
+**Code blind.** Do not look at the posts' VADER scores (`data/analysis/sentiment_validation_sample.csv`, `post_variables.csv` or the figures' tables) while coding, and do not run the validation script until the sheet is finished.
 
 ## What to code
 
@@ -46,12 +41,32 @@ Put one of three values in `code`, describing the **sentiment expressed in the t
 
 Spelling: write exactly `positive`, `neutral` or `negative`. The script also accepts `pos`, `neu`, `neg` and `1`, `0`, `-1`.
 
+## Opening and saving the sheet
+
+The titles contain accented and non-Latin characters (45 posts), and some bodies run over several lines (43 posts). Open and save the file so that these survive:
+
+1. **Excel (Mac or Windows).** Do not double-click the file. In a blank workbook, choose **Data → From Text/CSV** (Mac: **File → Import → CSV file**). Set the file origin to **Unicode (UTF-8)** and the delimiter to **comma**, and import every column as **Text**.
+2. **Make it readable.** Turn on **Wrap Text** for the `title` and `body_excerpt` columns, and widen them.
+3. **Optional: a drop-down for `code`.** Select the `code` column, then **Data → Data Validation → List**: `positive,neutral,negative`.
+4. **Sorting is allowed.** The script matches rows by `id`, so the order does not matter. Do not delete or edit rows, `id` values or column names.
+5. **Save as `CSV UTF-8 (Comma delimited) (.csv)`** under the same name. Do not use plain "CSV", which loses the accents, and do not save as `.xlsx`.
+
+Google Sheets also works: File → Import → Upload, then File → Download → Comma-separated values.
+
+## Checking your sheet
+
+After saving, `Rscript code/10-sentiment-validation.R` (run by Alan or Claude) reads whatever has been coded. It stops with a message if a code is misspelled, and it reports how many rows are coded. **Run it only after you have finished coding**, because its output includes agreement with VADER.
+
 ## Returning the sheet
 
-Upload your filled sheet to the GitHub repository under the **same file name**, in `results/analysis/manual review/sentiment_coding/`. Upload it through GitHub's web interface, as with the review files. Keep the columns and the row order as they are, and save as CSV (UTF-8).
+Save the filled sheet in place, under the same name (`coder_A.csv`), as CSV UTF-8. Then say it is finished: Claude runs the check and the comparison and commits the sheet with the results. Uploading through GitHub's web interface also works, under the same name and in the same folder.
 
-## After both sheets are back
+## After the sheet is finished
 
-1. **Run the comparison.** Alan or Claude runs `Rscript code/10-sentiment-validation.R`. It reports coder-to-coder agreement and Cohen's κ, then each coder against VADER.
-2. **Adjudicate the disagreements.** The two coders, or Alan, settle the posts where the codes differ. The result goes in an `adjudicated.csv` (columns `id`, `code`) in the same folder.
-3. **Rerun the comparison.** The script then compares the agreed reference with VADER: a confusion matrix, precision and recall per class, and agreement by period bin and by link/self post.
+Run `Rscript code/10-sentiment-validation.R` (Alan or Claude). With only `coder_A.csv` in the folder, the script treats your codes as the reference and reports, against VADER:
+- percent agreement and Cohen's κ, with a bootstrap 95 % interval;
+- the confusion matrix;
+- precision, recall and F1 per class;
+- agreement by period bin and by link/self post.
+
+The results go to `results/descriptives/sentiment_validation_*.csv`, and from there into codebook §8.2.

@@ -29,7 +29,8 @@
 #   crawled posts weeks to years after posting until June 2023 and within hours
 #   from July 2023, so the engagement series is not a constant-lag measurement.
 #   Not marked in the figures (E5); documented in docs/session-09_2026-10-27/02_session-notes.md.
-# * VADER has not yet been validated against the coders (10-sentiment-validation.R).
+# * The VADER variables are the sentimental valence of a post's wording, not the author's sentiment (author,
+#   2026-10-27; validation against one coder: 56 % agreement, kappa 0.24; codebook §8.2).
 #
 # HOW TO RUN (repository root; reads the 17 yearly files and data/analysis/post_variables.csv,
 # so it does not depend on stage S6)
@@ -61,35 +62,9 @@ WC <- tibble(period_bin = c(1L, 3L, 5L, 7L, 9L), cup = c("2010", "2014", "2018",
              final   = as.Date(c("2010-07-11", "2014-07-13", "2018-07-15", "2022-12-18", "2026-07-19")))
 
 # ---------------------------------------------------------------------------
-# Visual system: the dataviz reference palette (light mode, print), thin marks, recessive chrome
+# Visual system (palette, theme, save_fig / save_tab): code/R/plot-utils.R
 # ---------------------------------------------------------------------------
-INK <- "#0b0b0b"; INK2 <- "#52514e"; MUTED <- "#898781"; GRID <- "#e1e0d9"; AXIS <- "#c3c2b7"
-SURFACE <- "#fcfcfb"; SHADE <- "#f0efec"
-SERIES <- c("#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#6250d6", "#e34948")   # fixed order
-POS <- "#2a78d6"; NEG <- "#e34948"; NEU <- MUTED                                                       # diverging pair + gray
-SEQ <- c("#f0efec", "#cde2fb", "#86b6ef", "#3987e5", "#1c5cab", "#0d366b")                              # one-hue blue ramp
-
-theme_fifa <- function() {
-  theme_minimal(base_size = 10, base_family = "sans") +
-    theme(plot.background = element_rect(fill = SURFACE, colour = NA),
-          panel.grid.major.x = element_blank(), panel.grid.minor = element_blank(),
-          panel.grid.major.y = element_line(colour = GRID, linewidth = 0.3),
-          axis.line.x = element_line(colour = AXIS, linewidth = 0.4),
-          axis.text = element_text(colour = MUTED, size = 8), axis.title = element_text(colour = INK2, size = 9),
-          plot.title = element_text(colour = INK, size = 12, face = "bold"),
-          plot.subtitle = element_text(colour = INK2, size = 9), plot.caption = element_text(colour = MUTED, size = 7, hjust = 0),
-          plot.title.position = "plot", plot.caption.position = "plot",
-          strip.text = element_text(colour = INK2, size = 9, face = "bold", hjust = 0),
-          legend.position = "top", legend.justification = "left", legend.text = element_text(colour = INK2, size = 8),
-          legend.title = element_blank(), plot.margin = margin(10, 14, 8, 10))
-}
-
-save_fig <- function(p, id, w = 8, h = 4.5) {
-  ggsave(file.path(OUT_DIR, paste0("fig_", id, ".png")), p, width = w, height = h, dpi = 300, device = ragg::agg_png, bg = SURFACE)
-  ggsave(file.path(OUT_DIR, paste0("fig_", id, ".pdf")), p, width = w, height = h, device = grDevices::cairo_pdf, bg = SURFACE)   # cairo: en dashes and minus signs
-  log_msg("figure %s", id)
-}
-save_tab <- function(t, id) write_csv(t, file.path(OUT_DIR, paste0("tab_", id, ".csv")), na = "")
+source(file.path(dirname(.utils), "plot-utils.R"))
 
 # The World Cup bins as shaded bands behind a monthly series
 wc_bands <- tibble(xmin = BIN_START[c(1, 3, 5, 7, 9)], xmax = BIN_END[c(1, 3, 5, 7, 9)] + 1, cup = WC$cup)
@@ -213,10 +188,10 @@ p <- ggplot(c1, aes(month, mean)) + bands() +
   geom_hline(yintercept = 0, colour = AXIS, linewidth = 0.4) +
   geom_ribbon(aes(ymin = lo95, ymax = hi95), fill = SERIES[1], alpha = 0.18) +
   geom_line(colour = SERIES[1], linewidth = 0.6) +
-  month_axis + labs(title = "Sentiment of post titles, 2010–2026",
+  month_axis + labs(title = "Sentimental valence of post titles, 2010–2026",
                     subtitle = "Monthly mean VADER compound score of the title (−1 to 1), with its 95 % confidence interval; shaded: World Cup period bins",
                     x = NULL, y = "Mean VADER score",
-                    caption = sprintf("All %s posts (post_sentiment). VADER has not yet been validated against human coding for this corpus.", n_lab(N_CORPUS))) +
+                    caption = sprintf("All %s posts (post_sentiment): the valence of the title's wording, not the author's sentiment. Validation against one human coder: 56 %% agreement, κ = 0.24 (codebook §8.2).", n_lab(N_CORPUS))) +
   theme_fifa()
 save_fig(p, "C1_monthly_vader_mean")
 
@@ -230,10 +205,10 @@ p <- ggplot(c2, aes(month, share, colour = post_sentiment_label)) + bands() +
   scale_colour_manual(values = c(positive = POS, neutral = NEU, negative = NEG)) +
   scale_x_date(breaks = as.Date(sprintf("%d-01-01", seq(2011, 2025, 2))), date_labels = "%Y", expand = expansion(mult = c(0.01, 0.07))) +
   scale_y_continuous(labels = label_percent(), limits = c(0, NA), expand = expansion(mult = c(0, 0.05))) +
-  labs(title = "Positive, neutral and negative titles, 2010–2026",
+  labs(title = "Positive, neutral and negative valence of post titles, 2010–2026",
        subtitle = "Monthly share of posts by VADER label (positive > 0.05, negative < −0.05); shaded: World Cup period bins",
        x = NULL, y = "Share of posts",
-       caption = sprintf("All %s posts (post_sentiment_label). VADER not yet validated against human coding.", n_lab(N_CORPUS))) +
+       caption = sprintf("All %s posts (post_sentiment_label): the valence of the title's wording, not the author's sentiment.\nVADER gives many titles that a reader sees as neutral a positive or negative label (validation against one human coder: 56 %% agreement, κ = 0.24; codebook §8.2).", n_lab(N_CORPUS))) +
   theme_fifa()
 save_fig(p, "C2_monthly_vader_labels")
 

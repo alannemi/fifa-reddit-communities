@@ -2,7 +2,7 @@
 
 Descriptive figures of the r/soccer corpus (2010–2026) and the validation tables of the sentiment measure. Every figure comes as `fig_<id>.png` (300 dpi) and `.pdf`, with the numbers behind it in `tab_<id>.csv`.
 
-- **Made by:** `code/11-descriptives.R`, which needs no other step first: `Rscript code/11-descriptives.R`, about 1 min. The D figures come from `code/12-topic-network.R` (about 20 s; it reads the topic embeddings through the `.venv` Python). The validation tables (`sentiment_validation_*.csv`) come from `code/10-sentiment-validation.R`, once the coders have returned their sheets.
+- **Made by:** `code/11-descriptives.R`, which needs no other step first: `Rscript code/11-descriptives.R`, about 1 min. The E figures come from `code/14-worldcup-figures.R` (about 20 s; it reads the QUALTAG variables written by `code/13-recode-qualtag.R`). The D figures come from `code/12-topic-network.R` (about 20 s; it reads the topic embeddings through the `.venv` Python). The validation tables (`sentiment_validation_*.csv`) come from `code/10-sentiment-validation.R`, once the coders have returned their sheets.
 - **Decisions and notes:** `docs/session-09_2026-10-27/` (`00_approvals.md` E1–E7, `02_session-notes.md` §3–§4).
 
 | id | Figure | Population |
@@ -21,6 +21,11 @@ Descriptive figures of the r/soccer corpus (2010–2026) and the validation tabl
 | D1b_topic_network_families_unlabelled | The same without labels on the map, with larger points | as D1 |
 | D2_topic_network_periods | The same layout, one panel per period bin | as D1 |
 | D1_topic_families / _nodes / _edges (tables) | Families (size, bins, largest topics, tones); topics with family and position; links with similarity | as D1 |
+| E1_political_posts | Left: political posts as a share of all posts in each World Cup bin. Right: share of those posts in each political category (national identity, FIFA body, host country domestic, IR; a topic can carry several) | posts in cluster or singly reassigned to a topic coded political (`qt_political = yes`, `code/13-recode-qualtag.R`); denominator all posts of the bin |
+| E1_political_categories (table) | The category counts and shares behind the right-hand panel | as E1 |
+| E2_worldcup_weekly_vader | Mean VADER title score per week around each World Cup, aligned on kick-off, with 95 % CI | all posts of the five World Cup bins |
+| E3_monthly_subscribers | Monthly median of `subreddit_subscribers`, March 2018 – July 2026 (crawl-time values; none before 2018) | posts with a subscriber value |
+| E4_worldcup_tone_ranks | The ten most frequent topic tones in each World Cup bin, ranked by share of posts (the table ranks every tone) | `cluster` + `reassigned` posts of the World Cup bins |
 
 **Reading notes:**
 - `score` and `num_comments` are crawl-time values. The archive's crawl lag drops from weeks to hours in July 2023 (session notes §4), and more posts that moderators later removed remain in the clean corpus from then on. Volume and engagement before and after mid-2023 are therefore not directly comparable (codebook limitation 11, §8.5).

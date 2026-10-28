@@ -86,7 +86,55 @@ It is run with `Rscript code/13-recode-qualtag.R`.
 | 9 | 226 | 39 | 165 | 12 | 10 |
 | **All** | **1,385** | **215** | **1,074** | **55** | **41** |
 
-## 6. Open after this step
+## 6. The World Cup figures (later on 2026-10-28)
+
+**The request.** Alan asked for four figures:
+1. A breakdown of the posts of the political topics by the four political categories, with the share the political posts take in their bin.
+2. Mean sentiment over time in the five World Cup bins.
+3. r/soccer subscribers over time.
+4. Frequency ranks of the sentiment labels within each World Cup bin.
+
+He referred to reference figures, but none came through with the message, so the layouts follow the existing figures A2, C1 and C4.
+
+**What the data check found.** `subreddit_subscribers` exists only from March 2018, so the 2010 and 2014 World Cups have no value. It is the count when the archive fetched the post, not when the post was made. Before mid-2023 it moves in steps, and the monthly median falls in 18 of 100 months. The VADER labels rank in the same order in all five World Cup bins (neutral 46–55 %, positive 31–35 %, negative 14–19 %).
+
+**Decisions (Alan Nemirovski, 2026-10-28):**
+
+| # | Question | Decision |
+|---|---|---|
+| Q7 | Political posts: which posts, which denominator | **Posts in their cluster or singly reassigned to a political topic, as a share of all posts of the bin** (option b). The table also gives the share over the cluster + reassigned posts (a) and the share counting a dual post whose first or second topic is political (c). Declined for the figure: (a), (c) |
+| Q8 | Topics with several political tags (42 of 215) | **Their posts count in each category**: side-by-side bars, and a bin's category shares can sum to more than 100 %. Declined: a "multiple" group; split weights |
+| Q9 | Which "sentiment labels" to rank | **The topic tones** (`topic_tone`) of cluster + reassigned posts, ranked within each World Cup bin. Declined: the VADER labels, whose ranking is flat |
+| Q10 | Subscribers | **The corpus series, March 2018 – July 2026**, with the crawl-time reading in the caption. Declined: an external historical series |
+
+**Defaults stated with the questions (not objected to):**
+- Political means `qt_political = yes`; REVIEW topics and the topics not yet settled are excluded, and the table counts them.
+- Item 2 shows all posts of the World Cup bins, weekly and aligned on kick-off, one line per World Cup with a 95 % confidence band.
+- A new script, `code/14-worldcup-figures.R`, writes the figures and tables to `results/descriptives/` as figures E1–E4.
+
+**Run.**
+- Every check of the script passes (join, QUALTAG coverage of every topic of the five bins, population bounds, shares).
+- Each figure was rendered and inspected. Two defects were fixed: legend labels in E1, and the axis breaks of E3.
+- The palette validator could not run (Node.js absent), so the project's reference palette is used unchanged, in its fixed order.
+
+| World Cup | Posts in bin | Political posts | Share of bin (b) | Of cluster + reassigned (a) | Incl. dual (c) | National identity | FIFA body | Host country domestic | IR |
+|---|---|---|---|---|---|---|---|---|---|
+| 2010 | 10,002 | 1,793 | 17.9 % | 25.3 % | 23.6 % | 43.6 % | 50.3 % | 13.6 % | 3.5 % |
+| 2014 | 83,147 | 9,474 | 11.4 % | 18.3 % | 17.9 % | 55.2 % | 51.7 % | 13.6 % | 5.4 % |
+| 2018 | 88,648 | 5,813 | 6.6 % | 10.1 % | 10.6 % | 51.1 % | 53.3 % | 7.5 % | 17.6 % |
+| 2022 | 41,438 | 990 | 2.4 % | 3.3 % | 4.0 % | 19.9 % | 52.4 % | 48.4 % | 10.2 % |
+| 2026 | 37,626 | 2,799 | 7.4 % | 11.0 % | 11.9 % | 35.2 % | 57.4 % | 27.0 % | 14.5 % |
+
+The four category columns are shares of the political posts.
+
+**First readings** (descriptive only, for the authors' interpretation):
+- **Political share.** It falls from 2010 to 2022 and rises again in 2026.
+- **Categories.** FIFA-body topics carry about half of the political posts in every tournament. 2022 is the only World Cup where host-country domestic topics come close to that (48 %), and national identity falls there to 20 %.
+- **Sentiment.** In every World Cup except 2022 the mean title valence dips during the tournament weeks (0–4) below the eight weeks before (weighted means: 2010 0.103 → 0.077, 2014 0.117 → 0.073, 2018 0.124 → 0.100, 2026 0.104 → 0.088). In 2022 it is higher during the tournament (0.069 → 0.093). Valence is positive in every week except one 2010 week.
+- **Subscribers.** About 0.89 M (March 2018) to 8.73 M (July 2026).
+- **Tones.** `excited` ranks first in every World Cup. In 2010 and 2014 `enthusiastic` and `critical` follow. From 2022 `competitive` ranks second.
+
+## 7. Open after this step
 
 1. **For TP:** the 41 topics in `QUALTAG_to_settle.csv`: 36 untagged, 3 conflicts and 2 blank. She settles them in the bin files, and the script is re-run.
 2. **Where the variables go next:**

@@ -101,11 +101,8 @@ save_tab(a1, "A1_monthly_volume")
 p <- ggplot(a1, aes(month, posts)) + bands() +
   geom_line(colour = SERIES[1], linewidth = 0.6) +
   month_axis + scale_y_continuous(labels = label_comma(), expand = expansion(mult = c(0, 0.08))) +
-  labs(title = "Posts per month in r/soccer, 2010–2026",
-       subtitle = "Shaded: the five World Cup period bins (February–September of the tournament year; July 2022 – February 2023 for Qatar)",
-       x = NULL, y = "Posts per month",
-       caption = sprintf("Clean corpus v2.1, %s posts (bot threads, removed, deleted and spam posts excluded; codebook §5). Source: Arctic Shift archive.", n_lab(N_CORPUS))) +
-  theme_fifa()
+  labs(title = "Posts per month in r/soccer, 2010–2026", x = NULL, y = "Posts per month") +   # title only (author, 2026-10-28);
+  theme_fifa()   # shaded = the five World Cup period bins; all posts of the clean corpus v2.1 (Arctic Shift archive)
 save_fig(p, "A1_monthly_volume")
 
 a2 <- d |> filter(period_bin %in% WC$period_bin) |> inner_join(WC, by = "period_bin") |>

@@ -127,7 +127,7 @@ He referred to reference figures, but none came through with the message, so the
 
 The four category columns are shares of the political posts.
 
-**Titles only (Alan Nemirovski, 2026-10-28, after seeing the figures).** The E figures carry their bold title only: subtitles and captions were removed. The populations and reading notes that the captions held stay in the script header (`code/14-worldcup-figures.R`), in `results/descriptives/README.md` and in this section, for the chapter text. They cover:
+**Titles only (Alan Nemirovski, 2026-10-28, after seeing the figures).** The E figures carry their bold title only: subtitles and captions were removed. The same was then done for figure A1 (`code/11-descriptives.R`). The other A–D figures keep theirs. The populations and reading notes that the captions held stay in the script header (`code/14-worldcup-figures.R`), in `results/descriptives/README.md` and in this section, for the chapter text. They cover:
 - who counts as political and over which denominator;
 - the shaded tournament weeks and the 95 % intervals of E2;
 - the crawl-time subscriber counts, which start in March 2018;

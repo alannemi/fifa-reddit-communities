@@ -175,6 +175,12 @@ Both use E1's posts and counting rule, and the category names of E1. Option 4 wa
 - FIFA Governance is the most negative category: −0.012 pooled, −0.094 in 2022. 42 % of its posts carry the tone `critical`, against 5 % of non-political posts.
 - Identity & Nationalism in 2022 is the highest point (0.208), on 197 posts.
 
+**E7: tone ranks by political category (Alan Nemirovski, 2026-10-28).** E4's ranked layout broken down by category. Two layouts were put to him:
+- **one panel per category, the five World Cups pooled** (chosen);
+- a category × World Cup grid, declined because 4 of its 20 cells rest on fewer than 5 topics (International Relations 2010: one topic, 100 % `critical`).
+
+The figure shows the top 10 tones per panel, each panel in its category's colour, with non-political posts in grey. International Relations has only 8 tones, so its panel keeps two empty rows.
+
 **First readings** (descriptive only, for the authors' interpretation):
 - **Political share.** It falls from 2010 to 2022 and rises again in 2026.
 - **Categories.** FIFA-body topics carry about half of the political posts in every tournament. 2022 is the only World Cup where host-country domestic topics come close to that (48 %), and national identity falls there to 20 %.

@@ -20,6 +20,7 @@
 #   E5  mean VADER title score of the political posts per category and World
 #       Cup (95 % CI), with the non-political posts as the reference
 #   E6  the topic tones of each political category, five World Cups pooled
+#   E7  E4's tone ranks with one panel per political category (+ non-political), pooled
 # The figures carry their title only, without subtitle or caption (author, 2026-10-28): the populations and
 # reading notes below and in results/descriptives/README.md go with them into the chapter text.
 #
@@ -50,8 +51,9 @@
 # OUTPUTS  (results/descriptives/)
 # -------
 #   fig_E1_political_posts.png|pdf, fig_E1b_political_categories_daily, fig_E2_worldcup_weekly_vader, fig_E3_monthly_subscribers,
-#   fig_E4_worldcup_tone_ranks, fig_E5_vader_by_political_category, fig_E6_tones_by_political_category;
-#   tab_E5_vader_by_political_category.csv, tab_E6_tones_by_political_category.csv, tab_E1_political_posts.csv, tab_E1_political_categories.csv, tab_E1b_political_categories_daily.csv,
+#   fig_E4_worldcup_tone_ranks, fig_E5_vader_by_political_category, fig_E6_tones_by_political_category,
+#   fig_E7_tone_ranks_by_political_category; tab_E5_vader_by_political_category.csv, tab_E6_tones_by_political_category.csv,
+#   tab_E7_tone_ranks_by_political_category.csv, tab_E1_political_posts.csv, tab_E1_political_categories.csv, tab_E1b_political_categories_daily.csv,
 #   tab_E2_worldcup_weekly_vader.csv, tab_E3_monthly_subscribers.csv, tab_E4_worldcup_tone_ranks.csv
 ##############################################################################
 
@@ -330,6 +332,34 @@ p <- ggplot(e6, aes(group, topic_tone, fill = share)) +
                        legend.title = element_text(colour = INK2, size = 8), axis.text.y = element_text(colour = INK2, size = 8),
                        axis.text.x.top = element_text(colour = INK2, size = 8))
 save_fig(p, "E6_tones_by_political_category", w = 7.5, h = 6.5)
+
+# E7. Tone ranks by political category: E4's layout with one panel per category (+ non-political), the five World Cups
+# pooled (author's choice, 2026-10-28: per World Cup several categories rest on 1-5 topics); bars in the category's colour
+e7 <- by_cat |> group_by(group, topic_tone) |> summarise(posts = n(), topics = n_distinct(topic_uid), .groups = "drop") |>
+  group_by(group) |> mutate(share = posts / sum(posts), rank = rank(-share, ties.method = "first")) |> ungroup() |>
+  arrange(group, rank)
+check("E7 tone shares sum to 1 per category", all(abs(tapply(e7$share, e7$group, sum) - 1) < 1e-9))
+save_tab(e7 |> select(group, rank, topic_tone, posts, topics, share), "E7_tone_ranks_by_political_category")
+grp_levels <- c(POL_CATS, NONPOL_LAB)
+e7p <- e7 |> filter(rank <= TOP_TONES) |>
+  mutate(group = factor(as.character(group), grp_levels)) |>
+  complete(group, rank = 1:TOP_TONES) |>                      # empty rows keep the bar height equal where a category has
+  mutate(key = factor(paste(as.integer(group), rank, sep = "_"),            # fewer than TOP_TONES tones (IR: 8)
+                      rev(paste(rep(seq_along(grp_levels), each = TOP_TONES), 1:TOP_TONES, sep = "_"))),
+         lab = ifelse(is.na(topic_tone), "", paste0(rank, ". ", topic_tone)))
+p <- ggplot(e7p, aes(share, key, fill = group)) +
+  geom_col(width = 0.72, show.legend = FALSE, na.rm = TRUE) +
+  geom_text(aes(label = ifelse(is.na(share), "", sprintf("%.1f %%", 100 * share))), hjust = -0.15, size = 2.5, colour = INK2,
+            na.rm = TRUE) +
+  facet_wrap(~ group, nrow = 1, scales = "free_y", labeller = labeller(group = label_wrap_gen(24))) +
+  scale_fill_manual(values = grp_cols) +
+  scale_y_discrete(labels = setNames(e7p$lab, as.character(e7p$key))) +
+  scale_x_continuous(labels = label_percent(accuracy = 1), expand = expansion(mult = c(0, 0.34)), n.breaks = 3) +
+  labs(title = "Dominant tones in discourses by political category", x = "Share of posts", y = NULL) +
+  theme_fifa() + theme(panel.grid.major.y = element_blank(), panel.grid.major.x = element_line(colour = GRID, linewidth = 0.3),
+                       axis.line.x = element_blank(), axis.text.y = element_text(colour = INK2, size = 7.5),
+                       strip.text = element_text(size = 8.5))
+save_fig(p, "E7_tone_ranks_by_political_category", w = 12, h = 4.4)
 
 if (!all(unlist(results))) stop("a check failed: ", paste(names(results)[!unlist(results)], collapse = ", "))
 log_msg("figures E1-E4 and their tables written to %s", OUT_DIR)

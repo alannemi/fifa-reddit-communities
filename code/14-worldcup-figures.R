@@ -17,6 +17,9 @@
 #       kick-off
 #   E3  r/soccer subscribers per month, 2018-2026
 #   E4  rank of the topic tones by share of posts within each World Cup bin
+#   E5  mean VADER title score of the political posts per category and World
+#       Cup (95 % CI), with the non-political posts as the reference
+#   E6  the topic tones of each political category, five World Cups pooled
 # The figures carry their title only, without subtitle or caption (author, 2026-10-28): the populations and
 # reading notes below and in results/descriptives/README.md go with them into the chapter text.
 #
@@ -47,7 +50,8 @@
 # OUTPUTS  (results/descriptives/)
 # -------
 #   fig_E1_political_posts.png|pdf, fig_E1b_political_categories_daily, fig_E2_worldcup_weekly_vader, fig_E3_monthly_subscribers,
-#   fig_E4_worldcup_tone_ranks; tab_E1_political_posts.csv, tab_E1_political_categories.csv, tab_E1b_political_categories_daily.csv,
+#   fig_E4_worldcup_tone_ranks, fig_E5_vader_by_political_category, fig_E6_tones_by_political_category;
+#   tab_E5_vader_by_political_category.csv, tab_E6_tones_by_political_category.csv, tab_E1_political_posts.csv, tab_E1_political_categories.csv, tab_E1b_political_categories_daily.csv,
 #   tab_E2_worldcup_weekly_vader.csv, tab_E3_monthly_subscribers.csv, tab_E4_worldcup_tone_ranks.csv
 ##############################################################################
 
@@ -270,6 +274,62 @@ p <- ggplot(e4p, aes(share, key)) +
                        axis.line.x = element_blank(), axis.text.y = element_text(colour = INK2, size = 7.5),
                        strip.text = element_text(size = 8.5))
 save_fig(p, "E4_worldcup_tone_ranks", w = 12, h = 4.2)
+
+# ---------------------------------------------------------------------------
+# E5/E6. Sentiment by political category (author's request, 2026-10-28): the posts of E1 (cluster + reassigned posts
+# of political topics; a topic with several tags counts in each category) against the non-political posts of the same
+# bins (qt_political = "no").  E5: mean VADER title score per category and World Cup, 95 % CI.  E6: the analysts'
+# topic tones per category, the five World Cups pooled (per bin some categories rest on a handful of topics).
+# ---------------------------------------------------------------------------
+NONPOL_LAB <- "Non-political posts"
+cat_posts <- tp_wc |> left_join(qt |> select(topic_uid, qt_political, all_of(names(POL_CATS))), by = "topic_uid")
+by_cat <- bind_rows(
+  cat_posts |> filter(qt_political == "no") |> mutate(group = NONPOL_LAB),
+  cat_posts |> filter(qt_political == "yes") |>
+    pivot_longer(all_of(names(POL_CATS)), names_to = "column", values_to = "tag") |> filter(tag == "1") |>
+    mutate(group = POL_CATS[column])) |>
+  mutate(group = factor(group, c(NONPOL_LAB, POL_CATS))) |>
+  left_join(WC |> select(period_bin, cup), by = "period_bin")
+check("E5 category posts = E1's category counts",
+      identical(by_cat |> filter(group != NONPOL_LAB) |> count(period_bin, group) |> arrange(period_bin, group) |> pull(n),
+                e1c |> arrange(period_bin, category) |> pull(posts)))
+
+e5 <- by_cat |> group_by(cup, group) |>
+  summarise(posts = n(), mean = mean(post_sentiment), se = sd(post_sentiment) / sqrt(n()), .groups = "drop") |>
+  mutate(lo95 = mean - 1.96 * se, hi95 = mean + 1.96 * se)
+save_tab(e5, "E5_vader_by_political_category")
+grp_cols <- c(setNames(MUTED, NONPOL_LAB), CAT_COLS)
+dodge <- position_dodge(width = 0.72)
+p <- ggplot(e5, aes(paste("WC", cup), mean, colour = group, group = group)) +   # explicit group: the white halo layer
+                                                                                   # sets a fixed colour and must dodge too
+  geom_hline(yintercept = 0, colour = AXIS, linewidth = 0.4) +
+  geom_errorbar(aes(ymin = lo95, ymax = hi95), width = 0, linewidth = 0.6, position = dodge) +
+  geom_point(size = 2.6, colour = SURFACE, position = dodge) + geom_point(size = 2, position = dodge) +
+  scale_colour_manual(values = grp_cols) +
+  guides(colour = guide_legend(nrow = 2, byrow = TRUE)) +
+  labs(title = "Sentimental valence of political posts by category and World Cup", x = NULL, y = "Mean VADER score") +
+  theme_fifa()
+save_fig(p, "E5_vader_by_political_category", w = 10, h = 4.8)
+
+e6 <- by_cat |> count(group, topic_tone, name = "posts") |> group_by(group) |> mutate(share = posts / sum(posts)) |> ungroup()
+check("E6 tone shares sum to 1 per category", all(abs(tapply(e6$share, e6$group, sum) - 1) < 1e-9))
+tone_order <- e6 |> filter(group != NONPOL_LAB) |> group_by(topic_tone) |> summarise(n = sum(posts), .groups = "drop") |>
+  arrange(desc(n)) |> pull(topic_tone)
+tone_order <- c(setdiff(union(tone_order, unique(e6$topic_tone)), "other"), "other")   # by political frequency, 'other' last
+e6 <- e6 |> complete(group, topic_tone = tone_order, fill = list(posts = 0L, share = 0)) |>
+  mutate(topic_tone = factor(topic_tone, rev(tone_order)), group = factor(group, c(POL_CATS, NONPOL_LAB)))
+save_tab(e6 |> arrange(group, desc(share)), "E6_tones_by_political_category")
+p <- ggplot(e6, aes(group, topic_tone, fill = share)) +
+  geom_tile(colour = SURFACE, linewidth = 0.8) +
+  geom_text(aes(label = ifelse(share >= 0.005, sprintf("%.0f", 100 * share), "·"), colour = share > 0.2), size = 2.6, show.legend = FALSE) +
+  scale_fill_gradientn(colours = SEQ, labels = label_percent(), name = "Share of posts") +
+  scale_colour_manual(values = c(`FALSE` = INK, `TRUE` = "#ffffff")) +
+  scale_x_discrete(labels = label_wrap(16), position = "top") +
+  labs(title = "Topic tones by political category, five World Cups", x = NULL, y = NULL) +
+  theme_fifa() + theme(panel.grid.major.y = element_blank(), axis.line.x = element_blank(), legend.position = "right",
+                       legend.title = element_text(colour = INK2, size = 8), axis.text.y = element_text(colour = INK2, size = 8),
+                       axis.text.x.top = element_text(colour = INK2, size = 8))
+save_fig(p, "E6_tones_by_political_category", w = 7.5, h = 6.5)
 
 if (!all(unlist(results))) stop("a check failed: ", paste(names(results)[!unlist(results)], collapse = ", "))
 log_msg("figures E1-E4 and their tables written to %s", OUT_DIR)

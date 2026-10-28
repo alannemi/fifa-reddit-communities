@@ -26,6 +26,8 @@ Descriptive figures of the r/soccer corpus (2010–2026) and the validation tabl
 | E1b_political_categories_daily | The four categories day by day through each tournament: one panel per World Cup, days from the opening match, knockout stage shaded, shared y-axis; share of the day's posts over a centred 7-day window | as E1; denominator all posts of the day |
 | E2_worldcup_weekly_vader | Mean VADER title score per week around each World Cup, aligned on kick-off, with 95 % CI | all posts of the five World Cup bins |
 | E3_monthly_subscribers | Monthly median of `subreddit_subscribers`, March 2018 – July 2026 (crawl-time values; none before 2018) | posts with a subscriber value |
+| E5_vader_by_political_category | Mean VADER title score of the political posts per category and World Cup, 95 % CI; non-political posts of the same bins as the reference (grey) | as E1 (a topic with several tags counts in each category); non-political = cluster + reassigned posts of `qt_political = no` topics |
+| E6_tones_by_political_category | The analysts' topic tones in each political category, the five World Cups pooled (heatmap of shares); non-political column for reference | as E5 |
 | E4_worldcup_tone_ranks | The ten most frequent topic tones in each World Cup bin, ranked by share of posts (the table ranks every tone) | `cluster` + `reassigned` posts of the World Cup bins |
 
 **Reading notes:**

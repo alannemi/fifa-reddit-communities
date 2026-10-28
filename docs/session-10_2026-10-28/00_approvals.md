@@ -158,6 +158,23 @@ The four category columns are shares of the political posts.
 - Like the other E figures it carries the title only; the reference's subtitle became the x-axis title and a "Knockout" label on the band.
 - It uses the light theme of the chapter's figures, not the reference's dark one.
 
+**Sentiment by political category: E5 and E6 (Alan Nemirovski, 2026-10-28).** Alan asked whether sentiment could be mapped by category. Four options were offered:
+1. mean VADER per category and World Cup;
+2. positive / neutral / negative shares;
+3. the analysts' tones by category;
+4. day by day.
+
+He chose **1 and 3**:
+- **E5:** mean VADER title score with its 95 % confidence interval. The non-political posts of the same bins form the grey reference.
+- **E6:** tone shares per category, **pooled over the five World Cups**, because in a single tournament some categories rest on very few topics (International Relations in 2010 is one topic).
+
+Both use E1's posts and counting rule, and the category names of E1. Option 4 was advised against: International Relations has 63 posts in all of 2010.
+
+**Readings:**
+- Political posts are worded more negatively than non-political ones in every World Cup (non-political 0.086–0.132).
+- FIFA Governance is the most negative category: −0.012 pooled, −0.094 in 2022. 42 % of its posts carry the tone `critical`, against 5 % of non-political posts.
+- Identity & Nationalism in 2022 is the highest point (0.208), on 197 posts.
+
 **First readings** (descriptive only, for the authors' interpretation):
 - **Political share.** It falls from 2010 to 2022 and rises again in 2026.
 - **Categories.** FIFA-body topics carry about half of the political posts in every tournament. 2022 is the only World Cup where host-country domestic topics come close to that (48 %), and national identity falls there to 20 %.

@@ -161,7 +161,8 @@ Rscript code/12-topic-network.R              # ~20 s: topic network D1/D1b/D2 + 
 ```bash
 git pull --no-rebase origin main             # the co-authors upload their review files on GitHub
 Rscript code/13-recode-qualtag.R             # seconds: 11 qt_ columns after QUALTAG in every BIN<N>_topics_labelled_*.csv, + QUALTAG_to_settle.csv
-Rscript code/14-worldcup-figures.R           # ~20 s: figures E1-E4 + tables in results/descriptives/ (political posts, weekly VADER, subscribers, tone ranks)
+Rscript code/14-worldcup-figures.R           # ~20 s: figures E1, E1b, E2-E7 + tables in results/descriptives/ (political posts and categories,
+                                             #   weekly VADER, subscribers, tone ranks, sentiment and tones by political category)
 ```
 Re-run `14` after `13` (its political figures read the qt_ columns) or after any change of the join table.
 Re-run after any change to a bin file in `results/analysis/manual review/`; it recomputes its own columns and leaves the rest of

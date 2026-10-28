@@ -362,4 +362,4 @@ p <- ggplot(e7p, aes(share, key, fill = group)) +
 save_fig(p, "E7_tone_ranks_by_political_category", w = 12, h = 4.4)
 
 if (!all(unlist(results))) stop("a check failed: ", paste(names(results)[!unlist(results)], collapse = ", "))
-log_msg("figures E1-E4 and their tables written to %s", OUT_DIR)
+log_msg("figures E1-E7 and their tables written to %s", OUT_DIR)

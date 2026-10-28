@@ -133,6 +133,31 @@ The four category columns are shares of the political posts.
 - the crawl-time subscriber counts, which start in March 2018;
 - the reading of VADER as valence.
 
+**E1 revised and E1b added (Alan Nemirovski, 2026-10-28).**
+
+*E1 changes:*
+- The x-axis reads `WC 2010` … `WC 2026`, without the bin number.
+- The categories are named as follows:
+
+  | Tag | Name in the figures |
+  |---|---|
+  | National identity | **Identity & Nationalism** |
+  | FIFA body | **FIFA Governance** |
+  | Host country domestic | **Host Country Domestic Politics & Culture** |
+  | IR | **International Relations & Geopolitics** |
+
+  Each keeps its colour.
+
+*E1b, built after Alan's reference figure (small multiples of within-tournament dynamics):*
+- One panel per World Cup, from the opening match (day 0) to the final.
+- The knockout stage is shaded from the first knockout match: 26 June 2010, 28 June 2014, 30 June 2018, 3 December 2022, 28 June 2026 (round of 32).
+- The y-axis is shared, and each category is drawn in its colour and its own line style.
+
+*Defaults stated with the figure:*
+- The measure is the share of the day's posts whose topic carries the category, over a centred 7-day window (single days are too noisy: about 100 posts a day in 2010). This is E1's rule on the daily scale, with all posts of the day as the denominator and categories counted in each.
+- Like the other E figures it carries the title only; the reference's subtitle became the x-axis title and a "Knockout" label on the band.
+- It uses the light theme of the chapter's figures, not the reference's dark one.
+
 **First readings** (descriptive only, for the authors' interpretation):
 - **Political share.** It falls from 2010 to 2022 and rises again in 2026.
 - **Categories.** FIFA-body topics carry about half of the political posts in every tournament. 2022 is the only World Cup where host-country domestic topics come close to that (48 %), and national identity falls there to 20 %.

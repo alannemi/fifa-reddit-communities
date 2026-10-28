@@ -11,6 +11,8 @@
 #       posts, and the share of the political posts in each of the four
 #       political categories (national identity, FIFA body, host country
 #       domestic, IR)
+#   E1b the same four categories day by day through each tournament (days from
+#       the opening match; knockout stage shaded; 7-day centred window)
 #   E2  mean VADER title score per week around each World Cup, aligned on the
 #       kick-off
 #   E3  r/soccer subscribers per month, 2018-2026
@@ -44,8 +46,8 @@
 #
 # OUTPUTS  (results/descriptives/)
 # -------
-#   fig_E1_political_posts.png|pdf, fig_E2_worldcup_weekly_vader, fig_E3_monthly_subscribers,
-#   fig_E4_worldcup_tone_ranks; tab_E1_political_posts.csv, tab_E1_political_categories.csv,
+#   fig_E1_political_posts.png|pdf, fig_E1b_political_categories_daily, fig_E2_worldcup_weekly_vader, fig_E3_monthly_subscribers,
+#   fig_E4_worldcup_tone_ranks; tab_E1_political_posts.csv, tab_E1_political_categories.csv, tab_E1b_political_categories_daily.csv,
 #   tab_E2_worldcup_weekly_vader.csv, tab_E3_monthly_subscribers.csv, tab_E4_worldcup_tone_ranks.csv
 ##############################################################################
 
@@ -69,10 +71,16 @@ WC <- tibble(period_bin = c(1L, 3L, 5L, 7L, 9L), cup = c("2010", "2014", "2018",
              kickoff = as.Date(c("2010-06-11", "2014-06-12", "2018-06-14", "2022-11-20", "2026-06-11")),
              final   = as.Date(c("2010-07-11", "2014-07-13", "2018-07-15", "2022-12-18", "2026-07-19")))
 CUP_COLS <- setNames(SERIES[1:5], WC$cup)          # one fixed colour per World Cup, in order
-POL_CATS <- c(qt_national_identity = "National identity", qt_fifa_body = "FIFA body",
-              qt_host_country_domestic = "Host country domestic", qt_ir = "IR")
+# The four political tags and their names in the figures (Alan Nemirovski, 2026-10-28)
+POL_CATS <- c(qt_national_identity = "Identity & Nationalism", qt_fifa_body = "FIFA Governance",
+              qt_host_country_domestic = "Host Country Domestic Politics & Culture", qt_ir = "International Relations & Geopolitics")
+CAT_COLS  <- setNames(SERIES[1:4], POL_CATS)       # fixed: a category keeps its colour in E1 and E1b
+CAT_LINES <- setNames(c("solid", "dashed", "dotted", "dotdash"), POL_CATS)   # E1b: line style as a second encoding
+# First knockout match of each World Cup (2026: the new round of 32)
+KNOCKOUT <- as.Date(c("2010-06-26", "2014-06-28", "2018-06-30", "2022-12-03", "2026-06-28"))
+ROLL_HALF <- 3L                    # E1b: centred rolling window of 2 x 3 + 1 = 7 days
 n_lab <- function(n) format(n, big.mark = ",")
-cup_lab <- function(b) paste0("WC ", WC$cup[match(b, WC$period_bin)], "\n(bin ", b, ")")
+cup_lab <- function(b) paste("WC", WC$cup[match(b, WC$period_bin)])
 
 # ---------------------------------------------------------------------------
 # 1. Data: dates and subscribers from the yearly files, analysis variables from the join table,
@@ -138,7 +146,7 @@ e1p <- bind_rows(e1 |> transmute(period_bin, panel = "total", group = "All polit
                  e1c |> transmute(period_bin, panel = "cats", group = as.character(category), share = share_of_political, n = posts)) |>
   mutate(panel = factor(panel_lab[panel], panel_lab), group = factor(group, c("All political posts", POL_CATS)),
          bin_lab = factor(cup_lab(period_bin), cup_lab(WC$period_bin)))
-fills <- c("All political posts" = INK2, setNames(SERIES[1:4], POL_CATS))
+fills <- c("All political posts" = INK2, CAT_COLS)
 p <- ggplot(e1p, aes(bin_lab, share, fill = group)) +
   geom_col(position = position_dodge2(preserve = "single", padding = 0.12), width = 0.82) +
   geom_text(data = filter(e1p, group == "All political posts"), aes(label = sprintf("%.1f %%", 100 * share)),
@@ -149,6 +157,48 @@ p <- ggplot(e1p, aes(bin_lab, share, fill = group)) +
   labs(title = "Political posts in the five World Cup period bins", x = NULL, y = NULL) +
   theme_fifa()
 save_fig(p, "E1_political_posts", w = 10, h = 4.8)
+
+# E1b. The four categories day by day through each tournament: small multiples on one shared y-axis (the author's
+# reference figure, 2026-10-28).  Share of the day's posts (all posts of the day, as E1's denominator) whose topic
+# carries the category, over a centred 7-day window (the window shrinks at the kick-off and the final); the knockout
+# stage is shaded.
+days <- wc |> inner_join(WC, by = "period_bin") |>
+  mutate(day = as.integer(date - kickoff)) |> filter(day >= 0, date <= final)
+day_all <- days |> count(cup, day, name = "posts")
+day_cat <- days |> filter(topic_assignment %in% c("cluster", "reassigned"), topic_uid %in% pol_uid) |>
+  left_join(qt |> select(topic_uid, all_of(names(POL_CATS))), by = "topic_uid") |>
+  pivot_longer(all_of(names(POL_CATS)), names_to = "column", values_to = "tag") |> filter(tag == "1") |>
+  count(cup, day, column, name = "category_posts")
+roll_sum <- function(x, k) vapply(seq_along(x), function(i) sum(x[max(1, i - k):min(length(x), i + k)]), numeric(1))
+e1b <- WC |> transmute(cup, day = Map(seq, 0L, as.integer(final - kickoff))) |> unnest(day) |>
+  crossing(column = names(POL_CATS)) |>
+  left_join(day_all, by = c("cup", "day")) |> left_join(day_cat, by = c("cup", "day", "column")) |>
+  mutate(posts = coalesce(posts, 0L), category_posts = coalesce(category_posts, 0L)) |>
+  arrange(cup, column, day) |> group_by(cup, column) |>
+  mutate(share_day = category_posts / posts,
+         share_7d = roll_sum(category_posts, ROLL_HALF) / roll_sum(posts, ROLL_HALF)) |> ungroup() |>
+  mutate(category = factor(POL_CATS[column], POL_CATS))
+check("E1b every tournament day has posts", all(e1b$posts > 0))
+check("E1b daily category posts add up to E1's tournament-day counts",
+      sum(e1b$category_posts) == nrow(days |> filter(topic_assignment %in% c("cluster", "reassigned"), topic_uid %in% pol_uid) |>
+                                         left_join(qt |> select(topic_uid, all_of(names(POL_CATS))), by = "topic_uid") |>
+                                         pivot_longer(all_of(names(POL_CATS))) |> filter(value == "1")))
+save_tab(e1b |> select(cup, day, category, column, posts, category_posts, share_day, share_7d), "E1b_political_categories_daily")
+ko <- WC |> transmute(cup, xmin = as.integer(KNOCKOUT - kickoff), xmax = as.integer(final - kickoff))
+p <- ggplot(e1b, aes(day, share_7d, colour = category, linetype = category)) +
+  geom_rect(data = ko, aes(xmin = xmin, xmax = xmax, ymin = -Inf, ymax = Inf), inherit.aes = FALSE, fill = SHADE) +
+  geom_text(data = ko, aes(x = (xmin + xmax) / 2, y = Inf, label = "Knockout"), inherit.aes = FALSE,
+            vjust = 1.5, size = 2.3, colour = MUTED) +
+  geom_line(linewidth = 0.7) +
+  facet_wrap(~ cup, nrow = 1) +
+  scale_colour_manual(values = CAT_COLS, aesthetics = "colour") +
+  scale_linetype_manual(values = CAT_LINES) +
+  scale_x_continuous(breaks = c(0, 15, 30), limits = c(0, max(e1b$day)), expand = expansion(add = 1)) +
+  scale_y_continuous(labels = label_percent(accuracy = 1), limits = c(0, NA), expand = expansion(mult = c(0, 0.12))) +
+  labs(title = "Political categories through each World Cup", x = "Days from the opening match", y = "Share of the day's posts") +
+  theme_fifa() + theme(legend.key.width = unit(2.2, "lines"), panel.spacing.x = unit(1.1, "lines"),
+                       strip.text = element_text(colour = INK2, size = 10, face = "bold", hjust = 0.5))   # centred years, as the reference
+save_fig(p, "E1b_political_categories_daily", w = 11, h = 4)
 
 # ---------------------------------------------------------------------------
 # E2. Mean VADER title score per week around each World Cup (all posts of the bins, whole weeks)

@@ -155,3 +155,13 @@ Rscript code/12-topic-network.R              # ~20 s: topic network D1/D1b/D2 + 
 ```
 `09` refuses to overwrite a sheet that already holds codes. `10` takes `SENT_CODING_DIR` / `SENT_OUT_DIR` for tests.
 `11` does not depend on S6; re-run it after any change of the join table. Decisions and readings: `docs/session-09_2026-10-27/`.
+
+## 9. The co-authors' QUALTAG tags (session 10, 2026-10-28)
+
+```bash
+git pull --no-rebase origin main             # the co-authors upload their review files on GitHub
+Rscript code/13-recode-qualtag.R             # seconds: 11 qt_ columns after QUALTAG in every BIN<N>_topics_labelled_*.csv, + QUALTAG_to_settle.csv
+```
+Re-run after any change to a bin file in `results/analysis/manual review/`; it recomputes its own columns and leaves the rest of
+each file byte for byte as it was. It stops if a bin has two files (remove the superseded one with `git rm`) or a tag lies
+outside the scheme. Scheme, rules and decisions: that folder's `README.md` and `docs/session-10_2026-10-28/00_approvals.md`.

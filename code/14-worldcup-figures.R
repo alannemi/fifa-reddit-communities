@@ -15,6 +15,8 @@
 #       kick-off
 #   E3  r/soccer subscribers per month, 2018-2026
 #   E4  rank of the topic tones by share of posts within each World Cup bin
+# The figures carry their title only, without subtitle or caption (author, 2026-10-28): the populations and
+# reading notes below and in results/descriptives/README.md go with them into the chapter text.
 #
 # POPULATIONS AND RULES
 # ---------------------
@@ -144,12 +146,7 @@ p <- ggplot(e1p, aes(bin_lab, share, fill = group)) +
   facet_wrap(~ panel, nrow = 1, scales = "free_y") +
   scale_fill_manual(values = fills, breaks = unname(POL_CATS)) +     # unnamed: a named `breaks` would label the legend with the names
   scale_y_continuous(labels = label_percent(accuracy = 1), expand = expansion(mult = c(0, 0.1))) +
-  labs(title = "Political posts in the five World Cup period bins",
-       subtitle = "Left: posts in topics coded political, as a share of all posts in the bin. Right: share of those posts whose topic carries each political category",
-       x = NULL, y = NULL,
-       caption = paste0("Political = topics coded political in the co-authors' QUALTAG review (qt_political = yes; REVIEW and not-yet-settled topics excluded). Counted: posts in their\n",
-                        "HDBSCAN cluster or singly reassigned to a political topic (", n_lab(sum(e1$political_posts)), " posts); dual-topic and outlier posts are not counted as political. A topic can carry\n",
-                        "more than one category, so the right-hand shares of a bin can add up to more than 100 %. Other denominators and the REVIEW posts: tab_E1_political_posts.csv.")) +
+  labs(title = "Political posts in the five World Cup period bins", x = NULL, y = NULL) +
   theme_fifa()
 save_fig(p, "E1_political_posts", w = 10, h = 4.8)
 
@@ -172,12 +169,7 @@ p <- ggplot(e2, aes(week, mean, colour = cup, fill = cup)) +
   geom_line(linewidth = 0.6) +
   scale_colour_manual(values = CUP_COLS, labels = paste("World Cup", WC$cup), aesthetics = c("colour", "fill")) +
   scale_x_continuous(breaks = seq(-24, 16, 4)) +
-  labs(title = "Sentimental valence of post titles around each World Cup",
-       subtitle = "Weekly mean VADER compound score of the title (−1 to 1), with its 95 % confidence interval; weeks relative to the opening match (week 0)",
-       x = "Weeks from kick-off", y = "Mean VADER score",
-       caption = sprintf(paste0("All %s posts of the five World Cup period bins (post_sentiment), whole weeks only. Shaded: the tournaments, kick-off to final (weeks 0–%d).\n",
-                                "The valence of the title's wording, not the author's sentiment (validation against one human coder: 56 %% agreement, κ = 0.24; codebook §8.2)."),
-                         n_lab(sum(e2$posts)), max(final_weeks))) +
+  labs(title = "Sentimental valence of post titles around each World Cup", x = "Weeks from kick-off", y = "Mean VADER score") +
   theme_fifa()
 save_fig(p, "E2_worldcup_weekly_vader")
 
@@ -200,12 +192,7 @@ p <- ggplot(e3, aes(month, median / 1e6)) +
   scale_x_date(date_breaks = "1 year", date_labels = "%Y", expand = expansion(mult = 0.01)) +
   scale_y_continuous(breaks = seq(0, 10, 2), labels = label_number(accuracy = 1, suffix = " M"), limits = c(0, NA),
                      expand = expansion(mult = c(0, 0.08))) +                    # whole-million breaks: the labels round
-  labs(title = "Subscribers to r/soccer, 2018–2026",
-       subtitle = "Monthly median of the subscriber count recorded with each post; shaded: World Cup period bins",
-       x = NULL, y = "Subscribers",
-       caption = sprintf(paste0("subreddit_subscribers, recorded by the Arctic Shift archive when it fetched the post (crawl time), not when the post was made; present from %s only (no values\n",
-                                "for 2010–2017). Until mid-2023 the archive fetched posts weeks to months late, so the series moves in steps and lags the real count (codebook limitation 11)."),
-                         format(min(e3$month), "%B %Y"))) +
+  labs(title = "Subscribers to r/soccer, 2018–2026", x = NULL, y = "Subscribers") +
   theme_fifa()
 save_fig(p, "E3_monthly_subscribers")
 
@@ -228,12 +215,7 @@ p <- ggplot(e4p, aes(share, key)) +
   facet_wrap(~ bin_lab, nrow = 1, scales = "free_y") +
   scale_y_discrete(labels = setNames(e4p$lab, as.character(e4p$key))) +
   scale_x_continuous(labels = label_percent(accuracy = 1), expand = expansion(mult = c(0, 0.32)), n.breaks = 3) +
-  labs(title = "Which tones lead in each World Cup period",
-       subtitle = sprintf("The %d most frequent topic tones in each World Cup bin, ranked by share of posts", TOP_TONES),
-       x = "Share of posts", y = NULL,
-       caption = sprintf(paste0("Posts in their HDBSCAN cluster or singly reassigned to a topic (%s; dual-topic and outlier posts excluded), with the tone the two analysts gave their topic\n",
-                                "(controlled vocabulary incl. the four categories of 2026-10-27; 'other' = tones outside it). Every tone and rank: tab_E4_worldcup_tone_ranks.csv; all nine bins: figure C4."),
-                         n_lab(nrow(tp_wc)))) +
+  labs(title = "Which tones lead in each World Cup period", x = "Share of posts", y = NULL) +
   theme_fifa() + theme(panel.grid.major.y = element_blank(), panel.grid.major.x = element_line(colour = GRID, linewidth = 0.3),
                        axis.line.x = element_blank(), axis.text.y = element_text(colour = INK2, size = 7.5),
                        strip.text = element_text(size = 8.5))

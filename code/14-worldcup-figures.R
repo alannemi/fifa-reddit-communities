@@ -256,7 +256,7 @@ check("E4 every cluster + reassigned post has a tone; shares sum to 1 per bin",
       all(tp_wc$topic_tone != "") && all(abs(tapply(e4$share, e4$period_bin, sum) - 1) < 1e-9))
 save_tab(e4 |> select(period_bin, cup, rank, topic_tone, posts, share), "E4_worldcup_tone_ranks")
 e4p <- e4 |> filter(rank <= TOP_TONES) |>
-  mutate(bin_lab = factor(paste0("World Cup ", cup, " (bin ", period_bin, ")"), paste0("World Cup ", WC$cup, " (bin ", WC$period_bin, ")")),
+  mutate(bin_lab = factor(paste("World Cup", cup), paste("World Cup", WC$cup)),
          key = factor(paste(period_bin, rank, sep = "_"), rev(paste(rep(WC$period_bin, each = TOP_TONES), 1:TOP_TONES, sep = "_"))),
          lab = paste0(rank, ". ", topic_tone))
 p <- ggplot(e4p, aes(share, key)) +
@@ -265,7 +265,7 @@ p <- ggplot(e4p, aes(share, key)) +
   facet_wrap(~ bin_lab, nrow = 1, scales = "free_y") +
   scale_y_discrete(labels = setNames(e4p$lab, as.character(e4p$key))) +
   scale_x_continuous(labels = label_percent(accuracy = 1), expand = expansion(mult = c(0, 0.32)), n.breaks = 3) +
-  labs(title = "Which tones lead in each World Cup period", x = "Share of posts", y = NULL) +
+  labs(title = "Dominant tones in discourses by World Cup period", x = "Share of posts", y = NULL) +
   theme_fifa() + theme(panel.grid.major.y = element_blank(), panel.grid.major.x = element_line(colour = GRID, linewidth = 0.3),
                        axis.line.x = element_blank(), axis.text.y = element_text(colour = INK2, size = 7.5),
                        strip.text = element_text(size = 8.5))

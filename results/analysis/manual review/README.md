@@ -47,6 +47,10 @@ Re-run after any change to a bin file (it recomputes its own columns and leaves 
 Rscript code/13-recode-qualtag.R
 ```
 
+`code/16-reference-map.R` (session 12, 2026-10-30) reads these files read-only — TP's by their `QUALTAG` column, BA's bin-2 and
+bin-4 files by their `qt_` columns (`1` / `0` / blank) — to table the QUALTAG composition of the whole-corpus reference topics
+(`results/analysis/reference/reference_topics.csv`); it changes nothing here and writes no tag anywhere (decision W2).
+
 ## The outlier judgement samples (coded; session 11, 2026-10-30)
 
 They live with their bin, not here: `results/analysis/bin-N/outlier_calibration/sample_T<threshold>*coded*<initials>.csv`, one

@@ -6,8 +6,9 @@ Covers: the path root (PIPELINE_ROOT) and the tone vocabulary; period-bin bounda
 HDBSCAN grid diagnostic and the per-period-type settings; the frozen UMAP/cluster components inside BERTopic, the size
 renumbering and the K1 topic counting (a dual post recorded, not counted); JSON extraction, label validation and normalisation; the topic overrides (incl. merge chains); outlier
 thresholds; the full D2 debate engine with a scripted StubLLM (every agreement_mode, the repair and no-answer paths,
-resume); the partial S5 collect with the per-topic VADER mean and the topic crosswalk template; JSON salvage (N11);
-sentiment labels. The taxonomy stage and its tests were removed by decision D7 (2026-10-25; git history keeps them).
+resume, chunked labelling); the partial S5 collect with the per-topic VADER mean and the topic crosswalk template; JSON salvage (N11);
+sentiment labels; the whole-corpus reference run as bin 0 (session 12, 2026-10-30: bin_info / load_bin, the folder name, the guard
+mode "fixed", the model-free topics over time, the chunked nearest-topic search, the status row, the capped report). The taxonomy stage and its tests were removed by decision D7 (2026-10-25; git history keeps them).
 """
 from __future__ import annotations
 import json
@@ -74,6 +75,7 @@ def test_paths_and_tones():
     assert q["LLM_CACHE_DIR"].name == "hf-cache" and q["LLM_CACHE_DIR"] != r / "hf-cache" and q["EMBED_CACHE_DIR"] == r / "embeddings"
     s = C.effective_settings()
     assert s["PIPELINE_ROOT"] == C.PIPELINE_ROOT and s["ANALYSIS_DIR"] == str(C.ANALYSIS_DIR) and "EMBEDDING_MODEL_HQ" not in s
+    assert s["REFERENCE_BIN"]["period_type"] == "corpus" and s["REFERENCE_GUARD_ENABLED"] is False and s["TIME_BIN"]["corpus"] == "M" and s["LLM_CHUNK_TOPICS"] == 0
     # tone vocabulary: every stem maps into TONE_SET; the mapper is unchanged
     assert {cat for _, cat in C.TONE_STEMS} <= set(C.TONE_SET)
     assert [G.tone_category(x) for x in ("Frustration and anger", "anxious and desperate", "Satirical and humorous", "meh")] == ["frustrated", "anxious", "humorous", "other"]
@@ -118,6 +120,39 @@ def test_bin_boundaries():
     except ValueError:
         pass
     assert sum(C.PERIOD_BIN_EXPECTED_N.values()) == 1302021
+    # the reference run (bin 0, 2026-10-30): described by bin_info, never returned by bin_of; its folder is reference/
+    assert BINS.bin_info(0)["period_type"] == "corpus" and BINS.bin_info(0)["world_cup"] is None and BINS.period_type_of(0) == "corpus"
+    assert BINS.bin_years(0) == list(range(2010, 2027)) and 0 not in BINS.bin_of(s).tolist()
+    assert C.run_dir_name(0) == "reference" and C.run_dir_name(7) == "bin-7" and C.bin_from_run_dir("reference") == 0
+    assert C.bin_from_run_dir("bin-7") == 7 and C.bin_from_run_dir("stale") is None and C.bin_from_run_dir("manual review") is None
+    assert C.TIME_BIN["corpus"] == "M" and C.REFERENCE_BIN["start"].isoformat() == "2010-01-01" and C.REFERENCE_BIN["end"].isoformat() == "2026-07-31"
+
+
+def test_load_bin_reference():
+    """bin 0 (the reference run) loads every post of every year with its true period_bin; a period bin keeps its own posts only."""
+    saved = (BINS.read_period_bins, BINS.data.load_year)
+    years = {2010: (["a1", "a2"], 1), 2014: (["b1", "b2"], 3), 2026: (["c1", "c2"], 9)}
+    cols = ["id", "title", "selftext", "created_datetime", "year", "post_type", "lang", "author", "link_flair_text", "num_comments", "score", "domain", "is_self"]
+    def fake_year(y):
+        if y not in years:
+            return pd.DataFrame({c: pd.Series([], dtype=object) for c in cols})
+        ids = years[y][0]
+        return pd.DataFrame({"id": ids, "title": ["world cup opener tonight"] * 2, "selftext": ["", ""], "created_datetime": [f"{y}-06-12 12:00:00"] * 2,
+                             "year": [str(y)] * 2, "post_type": ["regular"] * 2, "lang": ["en"] * 2, "author": ["u"] * 2, "link_flair_text": ["", ""],
+                             "num_comments": ["1", "2"], "score": ["3", "4"], "domain": ["self"] * 2, "is_self": ["True"] * 2})
+    def fake_pb(_):
+        return pd.DataFrame({"id": [i for ids, _ in years.values() for i in ids], "period_bin": [b for ids, b in years.values() for _ in ids],
+                             "period_type": ["x"] * 6})
+    try:
+        BINS.read_period_bins, BINS.data.load_year = fake_pb, fake_year
+        allp, full = BINS.load_bin(0, Path("unused"))
+        assert len(allp) == 6 and sorted(full) == list(range(2010, 2027)) and sorted(allp["period_bin"].astype(int).unique().tolist()) == [1, 3, 9]
+        assert allp.loc[allp["id"] == "b1", "period_bin"].iloc[0] == 3 and not allp["too_short"].any()
+        one, full1 = BINS.load_bin(1, Path("unused"))
+        assert one["id"].tolist() == ["a1", "a2"] and list(full1) == [2010]
+        assert BINS.load_bin(9, Path("unused"))[0]["id"].tolist() == ["c1", "c2"]
+    finally:
+        BINS.read_period_bins, BINS.data.load_year = saved
 
 
 def test_guard():
@@ -155,6 +190,16 @@ def test_guard():
     assert T.guard_state({"hdbscan": {"min_cluster_floor": 25}, "guard": {"min_cluster_size": 547, "n_topics": 74, "target": [1656, 2484], "converged": False, "enabled": True}}) == "unconverged"
     assert T.guard_state({"guard": {"converged": False, "enabled": False}}) == "disabled" and T.guard_state({}) == "unknown"
     assert T.gate_ok({"outlier_share_raw": 0.562, "guard": {"converged": True, "enabled": True}}, 0.50) is False
+    # the reference run (decision W1, 2026-10-30): the guard off by decision -> one fit at the floor, recorded as mode "fixed"; the gate does not apply
+    r = M.guard_min_cluster_size(X4, 4000, False, fit=stub2) | {"mode": "fixed"}
+    assert T.guard_state({"guard": {k: v for k, v in r.items() if k != "labels"}}) == "fixed" and r["min_cluster_size"] == C.MIN_CLUSTER_FLOOR and len(r["trials"]) == 1
+    assert T.guard_state({"guard": {"converged": True, "enabled": False}}) == "disabled"        # a by-chance hit of a guard that did not search
+    assert T.gate_ok({"outlier_share_raw": 0.3, "guard": {"converged": False, "enabled": False, "mode": "fixed"}}, 0.50) is False
+    assert M.hdbscan_settings("corpus")["min_samples"] == 10 and C.setting(10, "corpus") == 10
+    try:
+        C.setting({"tournament": 10, "interim": 5}, "corpus"); raise AssertionError("a per-type dict without a default must refuse the corpus")
+    except KeyError:
+        pass
     # the label record survives a re-run with nothing to do (bins 3 and 5 on Drive, 2026-10-25); a real run writes its own
     real = {"llm_stats": {"calls": 92, "prompts": 1415, "seconds": 947.9, "tokens_out": 182029, "truncated": 5}, "elapsed_min": 16.2,
             "run_at": "2026-10-25T20:26:18", "n_needs_review": 7}
@@ -270,6 +315,21 @@ def test_frozen_components_in_bertopic():
     assert tt.loc[0, "share_lang_en"] == 1.0 and tt.loc[0, "mean_comments"] == 3.0
     tt2 = M.topic_table(bt, docs_df, topics, tid, rep, tid2).set_index("topic_id")               # the assignment derived from the ids
     assert tt2[M.TOPIC_COUNT_COLUMNS].equals(tt[M.TOPIC_COUNT_COLUMNS]) and (M.derive_assignment(topics, tid, tid2) == ass).all()
+    # the reference run (2026-10-30): topics over time without the model — the same four columns, counted posts only, the rest in −1
+    docs_df["date"] = pd.to_datetime(["2015-01-15 10:00:00"] * 120 + ["2015-02-15 10:00:00"] * 120, utc=True)
+    tc = M.topics_over_time_counts(docs_df, tid, "corpus", ass)
+    assert list(tc.columns) == ["topic_id", "period", "n_docs", "keywords"] and (tc["keywords"] == "").all()
+    assert sorted(tc["period"].unique().tolist()) == [pd.Timestamp("2015-01-01"), pd.Timestamp("2015-02-01")]
+    per_topic = tc.groupby("topic_id")["n_docs"].sum()
+    assert all(per_topic[t] == tt.loc[t, "n_total"] for t in (0, 1, 2)) and per_topic[-1] == n_out + n_dual and per_topic.sum() == 240
+    # the chunked nearest-topic search equals the one-shot search, and the full argsort it replaced
+    te = np.asarray(bt.topic_embeddings_)[bt._outliers:]
+    assert M.outlier_nearest_from(te, emb, topics, ids, chunk=3).equals(near) and M.outlier_nearest_from(te, emb, topics, ids, chunk=1).equals(near)
+    from sklearn.metrics.pairwise import cosine_similarity
+    order = np.argsort(-cosine_similarity(emb[topics == -1], te), axis=1)
+    assert near["nearest_topic"].tolist() == order[:, 0].tolist() and near["nearest_topic_2"].tolist() == order[:, 1].tolist()
+    one = M.outlier_nearest_from(te[:1], emb, topics, ids)                                     # a single topic: no second pair
+    assert (one["nearest_topic"] == 0).all() and one["nearest_topic_2"].isna().all() and len(one) == 10
 
 
 def test_json_and_validation():
@@ -464,6 +524,30 @@ def test_labelling_resume_and_outputs():
         shutil.rmtree(tmp)
 
 
+def test_labelling_chunks():
+    """chunk_topics (the reference run, 2026-10-30): the same labels as one debate; labels.jsonl written after every chunk."""
+    tmp, tmp2 = Path(tempfile.mkdtemp()), Path(tempfile.mkdtemp())
+    try:
+        docs = pd.DataFrame({"id": [f"p{i}" for i in range(12)], "document": [f"post {i} text" for i in range(12)], "topic_id_raw": [0] * 5 + [1] * 4 + [2] * 3})
+        topics = pd.DataFrame({"topic_id": [-1, 0, 1, 2], "n_cluster": [0, 5, 4, 3], "keywords": ["", "k0", "k1", "k2"], "representative_ids": ["", "p0|p1", "p5", "p9"]})
+        A, B = P.AGENTS
+        s = {(t, an, 1, False): label_json(f"T{t}") for t in (0, 1, 2) for an in (A, B)}
+        seen = []
+        class Counting(StubLLM):
+            def generate(self, requests, max_new_tokens, seeds=None, meta=None):
+                seen.append(len(G.read_jsonl(tmp / "labels.jsonl")) if (tmp / "labels.jsonl").exists() else 0)
+                return super().generate(requests, max_new_tokens, seeds=seeds, meta=meta)
+        out = G.run_labelling(tmp, 0, docs, topics, Counting(dict(s)), chunk_topics=1)
+        assert out["topic_id"].tolist() == [0, 1, 2] and out["name"].tolist() == ["T0", "T1", "T2"]
+        assert seen == [0, 0, 1, 1, 2, 2], seen          # two round-1 calls per chunk; the previous chunk's record is on disk before the next
+        assert [l["period_bin"] for l in G.read_jsonl(tmp / "labels.jsonl")] == [0, 0, 0]
+        one = G.run_labelling(tmp2, 0, docs, topics, StubLLM(dict(s)))
+        assert one[["topic_id", "name", "agreement_mode"]].equals(out[["topic_id", "name", "agreement_mode"]])
+        assert G.run_labelling(tmp, 0, docs, topics, StubLLM(dict(s)), chunk_topics=2)["name"].tolist() == ["T0", "T1", "T2"]   # resume: nothing to do
+    finally:
+        shutil.rmtree(tmp); shutil.rmtree(tmp2)
+
+
 def test_collect_partial():
     tmp = Path(tempfile.mkdtemp())
     try:
@@ -522,6 +606,26 @@ def test_collect_partial():
         assert st["state"] == "labelled" and st["n_topics"] == 2 and st["n_labelled"] == 2 and st["review_ready"] is True and st["n_needs_review"] == 1
         assert (b / "REVIEW_READY.txt").exists() and json.loads((b / "status.json").read_text())["review_ready"] is True
         assert T.status_table(an).set_index("bin").loc[1, "state"] == "labelled" and T.status_table(an).set_index("bin").loc[2, "state"] == "missing"
+        assert 0 not in T.status_table(an)["bin"].tolist() and len(T.status_table(an)) == 9
+        # the reference run (bin 0, folder reference/, 2026-10-30): listed by status_table with its guard mode, ignored by collect (W3)
+        r = an / "reference"; r.mkdir()
+        pd.DataFrame({"id": ids, "created_datetime": ["2010-06-01 00:00:00"] * 6 + ["2012-01-01 00:00:00"] * 4, "period_bin": [1] * 6 + [2] * 4,
+                      "post_type": ["regular"] * 10, "lang": ["en"] * 10, "num_comments": ["1"] * 10, "topic_id_raw": ["0"] * 5 + ["-1"] * 4 + [""],
+                      "topic_id": ["0"] * 5 + ["0", "-1", "-1", "-1", ""], "topic_id_2": [""] * 10,
+                      "topic_assignment": ["cluster"] * 5 + ["reassigned", "outlier", "outlier", "outlier", "not_modelled"],
+                      "similarity": [""] * 5 + ["0.7", "0.3", "0.3", "0.3", ""], "similarity_2": [""] * 10}).to_csv(r / "documents.csv", index=False)
+        pd.DataFrame({"topic_id": [-1, 0], "n_cluster": [4, 5], "n_total": [3, 6], "share": [0.3333, 0.6667], "keywords": ["", "a, b"],
+                      "representative_ids": ["", "p0"]}).to_csv(r / "topics.csv", index=False)
+        (r / "config.json").write_text(json.dumps({"topics": {"period_bin": 0, "period_type": "corpus", "n_modelled": 9, "guard": {
+            "enabled": False, "mode": "fixed", "converged": False, "floor_bound": False, "min_cluster_size": 25, "n_topics": 1, "target": [0, 1]}}}), encoding="utf-8")
+        stt = T.status_table(an).set_index("bin")
+        assert 0 in stt.index and stt.loc[0, "state"] == "topics" and stt.loc[0, "guard"] == "fixed" and stt.loc[0, "n_topics"] == 1 and len(stt) == 10
+        assert stt.loc[1, "state"] == "labelled" and stt.index.tolist() == list(range(1, 10)) + [0]
+        rs = T.write_status(r)
+        assert rs["bin"] == 0 and rs["review_ready"] is False and not (r / "REVIEW_READY.txt").exists() and json.loads((r / "status.json").read_text())["bin"] == 0
+        side = T.collect(an, ad, allow_partial=True, run_info={})
+        assert side["bins_complete"] == [1] and sorted(side["bins_state"]) == list(range(1, 10)) and side["errors"] == []
+        assert len(pd.read_csv(ad / "post_variables.csv", dtype=str, keep_default_na=False)) == 10 and len(pd.read_csv(an / "topic_labels_all_bins.csv")) == 2
         xw = pd.read_csv(an / "topic_crosswalk.csv", keep_default_na=False)
         assert list(xw.columns) == T.CROSSWALK_COLUMNS and xw["topic_id"].tolist() == [0, 1] and (xw["chapter_theme"] == "").all() and xw["period_type"].tolist() == ["tournament"] * 2
         assert xw["topic_uid"].tolist() == ["1-0", "1-1"]
@@ -547,6 +651,32 @@ def test_collect_partial():
         d = pd.read_csv(b / "documents.csv", dtype=str, keep_default_na=False); d.loc[0, "topic_id"] = "7"; d.to_csv(b / "documents.csv", index=False)
         side = T.collect(an, ad, allow_partial=True, run_info={})
         assert any("topic ids not in topics.csv" in e for e in side["errors"])
+    finally:
+        shutil.rmtree(tmp)
+
+
+def test_report_cap():
+    """report.html (2026-10-30): above REPORT_CAP_ABOVE topics the two bar charts show the REPORT_MAX_BARS largest topics and say so;
+    a bin (at most 1,602 topics) renders every topic as before; the reference run is named as such."""
+    from topicmodel import report as R
+    import datetime as dt
+    tmp = Path(tempfile.mkdtemp())
+    try:
+        def tables(n):
+            t = pd.DataFrame({"topic_id": range(n), "n_cluster": range(1, n + 1), "n_total": range(1, n + 1), "share": [1 / n] * n,
+                              "keywords": ["a, b, c, d, e"] * n, "representative_titles": ["t"] * n})
+            tot = pd.DataFrame({"topic_id": [0, 1], "period": pd.to_datetime(["2015-01-01", "2015-02-01"]), "n_docs": [3, 4], "keywords": ["", ""]})
+            st = pd.DataFrame({"topic_id": range(n), "n_docs": [1] * n, "mean_compound": [0.0] * n})
+            return t, tot, st
+        n = C.REPORT_CAP_ABOVE + 1
+        R.write_report(tmp, {"run_name": "reference", "period_type": "corpus"}, *tables(n), markers={"WC 2010": dt.date(2010, 6, 11)})
+        html = (tmp / "report.html").read_text(encoding="utf-8")
+        assert html.count(f"the {C.REPORT_MAX_BARS} largest of {n} topics") == 2 and "Reference model report" in html and "whole corpus" in html
+        md = (tmp / "report.md").read_text(encoding="utf-8")
+        assert md.startswith("# Reference model report") and md.count("\n| ") == n + 1                 # the table stays complete
+        R.write_report(tmp, {"run_name": "bin-1", "period_type": "tournament"}, *tables(50), markers=None)
+        html = (tmp / "report.html").read_text(encoding="utf-8")
+        assert "largest of" not in html and "Period bin report" in html and "per period bin" in html
     finally:
         shutil.rmtree(tmp)
 

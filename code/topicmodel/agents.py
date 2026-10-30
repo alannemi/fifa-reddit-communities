@@ -583,14 +583,17 @@ def retone_labels(bin_dir: Path, bin_id: int) -> Counter:
 
 
 def run_labelling(bin_dir: Path, bin_id: int, docs: pd.DataFrame, topics: pd.DataFrame, llm,
-                  max_topics: int | None = None, redo: list[int] | None = None, max_new_tokens: int | None = None) -> pd.DataFrame:
+                  max_topics: int | None = None, redo: list[int] | None = None, max_new_tokens: int | None = None,
+                  chunk_topics: int = 0) -> pd.DataFrame:
     """Label every topic of a bin (resumable through labels.jsonl). `docs` = modelled documents with columns
     id, document, topic_id_raw; `topics` = topics.csv. Writes labels/topic_<id>.json, labels.jsonl,
     topics_labelled.csv and the topic_overrides.csv template; returns the labelled table.
     `redo` (author's decision of 2026-10-26, F45): topics to label again — their previous transcripts move to
     labels/superseded/ (nothing deleted) and their lines leave labels.jsonl before the debate; `max_new_tokens` replaces
     the answer budget C.LLM_MAX_NEW_TOKENS_LABEL for this run (recorded per topic) — the case of the two topics whose
-    analysts were both cut off at 600 tokens."""
+    analysts were both cut off at 600 tokens. `chunk_topics` (2026-10-30, the reference run) debates the topics in consecutive
+    chunks of that size, so labels.jsonl grows after every chunk instead of only after round 1 of every topic (the engine answers
+    round 1 for all its items before the first one is resolved); 0 = one debate over every topic, the bins' behaviour."""
     labels_dir = bin_dir / "labels"; labels_dir.mkdir(parents=True, exist_ok=True)
     jsonl = bin_dir / "labels.jsonl"
     done = {int(r["topic_id"]): r for r in read_jsonl(jsonl)}
@@ -642,8 +645,13 @@ def run_labelling(bin_dir: Path, bin_id: int, docs: pd.DataFrame, topics: pd.Dat
                  rec["round_iterations"], " NEEDS REVIEW" if rec["needs_review"] else "")
 
     if items:
-        Debate("label", llm, lambda obj, it, acc: validate_label(obj, acc), labels_identical,
-               seed_prefix=str(bin_id), on_resolved=on_resolved, max_new_tokens=budget).run(items)
+        debate = Debate("label", llm, lambda obj, it, acc: validate_label(obj, acc), labels_identical,
+                        seed_prefix=str(bin_id), on_resolved=on_resolved, max_new_tokens=budget)
+        step = int(chunk_topics) if chunk_topics and int(chunk_topics) > 0 else len(items)
+        for a in range(0, len(items), step):             # the seeds are per topic, so chunking changes no prompt and no seed
+            if step < len(items):
+                log.info("labelling bin %d: topics %d–%d of %d (chunks of %d)", bin_id, a + 1, min(a + step, len(items)), len(items), step)
+            debate.run(items[a:a + step])
 
     labelled = labelled_table(done)
     labelled.to_csv(bin_dir / "topics_labelled.csv", index=False)

@@ -1,4 +1,4 @@
-# Analytical pipeline design — period-binned topic modelling, two-agent labelling and sentiment (v1.9)
+# Analytical pipeline design — period-binned topic modelling, two-agent labelling and sentiment (v2.0)
 
 **Session 04, 2026-10-22/23 · FIFA Communities chapter, McGill University.**
 Decisions: Alan Nemirovski. Drafting and technical design: Claude. Brief: `00_brief.md`. Template method: the
@@ -29,7 +29,7 @@ pipeline and its code; every post carries its topic's corpus-wide key, agreed la
 `topic_tone`); the topic table carries the mean VADER score of the topic's posts (`mean_vader_sentiment`); the cross-bin
 comparison is a manual crosswalk of topics (§7.7, §9, F42–F44). **D8** — no fixed topic range per bin but a density of 50–75
 raw topics per 10,000 modelled posts, the guard searching the minimum cluster size from a floor of 25 (§6.2). §7.4 and the S3b
-texts of §7.6 are kept as the record of the superseded protocol (`../session-08_2026-10-25/00_colab-run-log.md` §9). **Version 1.6 (2026-10-25, night)** records decision **D9** (§6.3): tiered outlier reassignment by each bin's similarity quantiles — nearest topic at or above the 80th percentile, nearest plus second-nearest topic (`dual`) from the 35th, outlier below —, a dual post counted once in each of its two topics, five more analysis columns (15; 57 in the data files), and the 50 % gate tolerance for converged bins proposed after bin 3 (§12.2; `../session-08_2026-10-25/00_colab-run-log.md` §13). **Version 1.7 (2026-10-25, night)** records decision D10: a bin whose floor cluster size already yields fewer topics than its density target is *floor-bound* and passes the gate (§6.2, §12.2, §14; first case bin 7, run log §14). **Version 1.8 (2026-10-27)** records decision E6: four tone categories (`competitive`, `informative`, `analytical`, `concerned`) added to the controlled vocabulary of §7.3, re-derived for all 6,245 topics without a model run (`--stage retone`; `../session-09_2026-10-27/`). **Version 1.9 (2026-10-30)** records decisions K1–K7 (`../session-11_2026-10-30/00_approvals.md`): the coded outlier judgement samples of all nine bins (3,600 judgements) put the precision of the admitted tiers at 43.6 % (dual) and 53.4 % (reassigned), with a coder effect larger than the similarity effect (F46), so the per-post tiers of D9 stand and every topic-level aggregate counts cluster + reassigned posts only (K1, §6.3, §6.4, §7.7); the 50 % gate tolerance for converged bins is confirmed (K4, §12.2); the inter-coder check is deferred to the chapter's editing stage (K2). `../session-11_2026-10-30/01_outlier-calibration-results.md` holds the assessment.
+texts of §7.6 are kept as the record of the superseded protocol (`../session-08_2026-10-25/00_colab-run-log.md` §9). **Version 1.6 (2026-10-25, night)** records decision **D9** (§6.3): tiered outlier reassignment by each bin's similarity quantiles — nearest topic at or above the 80th percentile, nearest plus second-nearest topic (`dual`) from the 35th, outlier below —, a dual post counted once in each of its two topics, five more analysis columns (15; 57 in the data files), and the 50 % gate tolerance for converged bins proposed after bin 3 (§12.2; `../session-08_2026-10-25/00_colab-run-log.md` §13). **Version 1.7 (2026-10-25, night)** records decision D10: a bin whose floor cluster size already yields fewer topics than its density target is *floor-bound* and passes the gate (§6.2, §12.2, §14; first case bin 7, run log §14). **Version 1.8 (2026-10-27)** records decision E6: four tone categories (`competitive`, `informative`, `analytical`, `concerned`) added to the controlled vocabulary of §7.3, re-derived for all 6,245 topics without a model run (`--stage retone`; `../session-09_2026-10-27/`). **Version 1.9 (2026-10-30)** records decisions K1–K7 (`../session-11_2026-10-30/00_approvals.md`): the coded outlier judgement samples of all nine bins (3,600 judgements) put the precision of the admitted tiers at 43.6 % (dual) and 53.4 % (reassigned), with a coder effect larger than the similarity effect (F46), so the per-post tiers of D9 stand and every topic-level aggregate counts cluster + reassigned posts only (K1, §6.3, §6.4, §7.7); the 50 % gate tolerance for converged bins is confirmed (K4, §12.2); the inter-coder check is deferred to the chapter's editing stage (K2). `../session-11_2026-10-30/01_outlier-calibration-results.md` holds the assessment. **Version 2.0 (2026-10-30, session 12)** adds the **reference model on the whole corpus** (§6.5; decisions W1–W4, `../session-12_2026-10-30/00_approvals.md`): the same pipeline fitted once on all 1.3 M posts as bin 0 (`results/analysis/reference/`), the density guard off (one HDBSCAN fit at the fixed settings, W1), its topics labelled by the two analysts, and the period topics mapped onto them by post overlap and centroid similarity (`code/16-reference-map.R`, figure G1) — the interim replacement of the manual topic crosswalk (F43) and the target onto which the co-authors' QUALTAG coding will be transferred (F47); nothing in the period bins, the join table or the codebook changes (W3).
 
 ---
 
@@ -259,6 +259,42 @@ of the posts without a topic.
 | `topics_over_time.csv` | `topic_id, period, n_docs, keywords` (weekly / monthly; counted posts only when regenerated under K1 — the files of the 2026-10-25/26 run keep the D9 counts, K7; report-only) |
 | `model/` | the BERTopic model in safetensors format (topic embeddings, c-TF-IDF). UMAP and HDBSCAN are **not** saved in this format; the raw labels come from the `.npy` files |
 | `config.json`, `log.txt`, `report.html` | effective settings, guard trials, backend, versions; run log; charts and topic table for review |
+
+### 6.5 The reference model on the whole corpus (session 12, 2026-10-30; decisions W1–W4)
+
+An interim step towards the cross-period comparison and the carrying of the co-authors' QUALTAG coding beyond the bins they
+coded: the **same pipeline fitted once on the whole cleaned corpus** (1,302,021 posts; 1,289,838 modelled), so that a
+corpus-wide topic stands beside each post's period topic. The run is bin 0 inside the code (`config.REFERENCE_BIN`,
+`bins.bin_info(0)`; `load_bin(0)` returns every post with its true `period_bin`) and writes to `results/analysis/reference/`
+(`config.run_dir_name`). It is **not a tenth bin**: `bin_of()` never returns 0, `collect` never reads the folder, and
+`post_variables.csv`, `labels_version`, S6 and the codebook are untouched (W3); the period topic remains the unit of analysis (D7).
+
+* **Settings.** The same embeddings (the mpnet cache is keyed by calendar year, so the run re-embeds nothing), the same UMAP
+  (§6.1), **HDBSCAN at the design's fixed settings with the density guard off** (W1: no density or topic target —
+  `min_cluster_size` 25, `min_samples` 10, eom, one fit; `guard.enabled = false`, `guard.mode = "fixed"`, status `fixed`), the
+  same D9 tiers from the run's own similarity quantiles and the K1 counting, the same prompts (v1.4) and model for the two
+  analysts (`period_bin` 0 in its label records; seeds `0-<topic>`). The §12.2 gate is a bin concept and is not asserted: the
+  notebook prints the raw outlier share beside the bins' 0.50 and the topic count at a **stop point** before the labelling,
+  which runs in chunks of 500 topics (`--chunk-topics`: `labels.jsonl` grows after every chunk instead of only after round 1 of
+  every topic, which would be hours with thousands of topics).
+* **Scale (estimates, not measurements).** Raw topics per 10,000 posts at the floor were 44.6–48.9 in the floor-bound interim
+  bins, so about 5,700–6,300 raw topics; labelling at 2.8–4.0 s per topic ≈ 5–7 h on the A100. The outlier-similarity step
+  runs in row chunks (`model.outlier_nearest_from`, 50,000 outliers at a time: the dense matrix of ≈ 580k outliers × thousands
+  of topics and its argsort would not fit in RAM). `topics_over_time.csv` is computed **without the model**
+  (`model.topics_over_time_counts`: monthly counts of the counted posts, `keywords` empty) — K1 counts, whereas the bins' files
+  keep the D9 counts (K7). The report's bar charts show the 200 largest topics above 2,000 topics; no review pack is written.
+* **Outputs.** `results/analysis/reference/`: the files of §6.4 and §7.7 (`documents.csv` with each post's true `period_bin`,
+  `topics.csv`, `topics_over_time.csv`, `topic_embeddings.npy`, `outlier_nearest.csv`, `outlier_calibration/`, `labels/`,
+  `labels.jsonl`, `topics_labelled.csv`, `topic_overrides.csv`, `config.json`, `status.json`, `report.html`). In git (W4):
+  everything but `documents.csv` (≈ 85 MB), `labels/` (≈ 150 MB), `umap_5d.npy`, `hdbscan_labels_raw.npy` and
+  `outlier_nearest.csv`, which live on Drive and in the hand-back zip (`results/analysis/reference/README.md`).
+* **The mapping (W2).** `code/16-reference-map.R` (local, after the hand-back) maps the period topics onto the reference topics
+  by post overlap — a post counts on either side only when it is counted there (K1) — and checks the mapping against the
+  cosine of the topic centroids (one embedding space, as the topic network of session 09): `map_pairs.csv`,
+  `map_period_topics.csv` (best and second reference topic by posts, nearest by centroid, agreement), `reference_topics.csv`
+  (sizes, posts per bin, the largest period topics, the QUALTAG composition of the counted posts by the status of their period
+  topic — TP's yes / no / review / to settle, BA's 1 / 0 / blank, uncoded bins, unmapped) and figure G1 (the best-match share
+  by bin). **No tag is written onto a reference topic**: the transfer rule follows a reading of the tables (F47).
 
 ## 7. Stage S3 — two-agent labelling with Qwen3-1.7B
 
@@ -511,6 +547,9 @@ peer while preserving quality. Same schema. JSON only.
   2026-10-25; since K1, 2026-10-30, over the topic's cluster + reassigned posts only, like every other aggregate). (The S3a answer's `id`, always `cat_1`, is not carried: it would collide with the post `id`.)
 * `results/analysis/topic_crosswalk.csv` — template for the co-authors' manual cross-bin crosswalk of topics to chapter
   themes (`period_bin, period_type, topic_id, topic_uid, name, n_total, chapter_theme, notes`; kept once it has entries; F43).
+* The reference run (§6.5) writes the same labelling files under `results/analysis/reference/` (`period_bin` 0 in its
+  `labels.jsonl`); its topics never enter `topic_labels_all_bins.csv`. The mapping tables of `code/16-reference-map.R`
+  (`map_pairs.csv`, `map_period_topics.csv`, `reference_topics.csv`) sit beside them; figure G1 in `results/descriptives/`.
 * `topic_overrides.csv` (rename / merge topics) — the one editable decision file, applied by S5.
 * *(v1.0–v1.4, removed by D7: `taxonomy.json`, `categories.csv`, `topic_categories.csv`, `categories_all_bins.csv`,
   `category_overrides.csv`, `topic_category_overrides.csv`, `category_crosswalk.csv`.)*
@@ -573,6 +612,9 @@ results/analysis/bin-1 … bin-9/   umap_5d.npy, hdbscan_labels_raw.npy, documen
                                   categories.csv, topic_overrides.csv, category_overrides.csv,
                                   config.json, log.txt, report.html
 results/analysis/topic_labels_all_bins.csv, categories_all_bins.csv, category_crosswalk.csv (manual, F4)
+results/analysis/reference/       the whole-corpus reference run (§6.5, bin 0; session 12): the same files; documents.csv,
+                                  labels/, the arrays and outlier_nearest.csv on Drive only (W4); + the mapping tables
+                                  map_pairs.csv, map_period_topics.csv, reference_topics.csv (code/16-reference-map.R)
 data/soccer_data.clean.csv, data/yearly datasets/*.csv                             v3.0 after S6 (50 columns)
 ```
 
@@ -688,6 +730,7 @@ the effective settings, guard trials, backend, CUDA/cuML versions, `pip freeze`,
 | F44 (2026-10-25) | Under the density target the interim bins yield 1,000–2,500 topics: labelling ≈ 1 h per bin on the A100 (fine), but no complete human read | the design's sample (20 topics against their posts) plus every `needs_review` topic per bin; the author decides whether a larger sample is needed |
 | F45 (2026-10-25) | Bin 7, topic 67 (126 posts, retirement announcements): both analysts' answers and the repair turn were cut off at the 600-token limit, so the topic has no name and its posts no `topic_name` — the collect checks stop until `topic_overrides.csv` names it | named first through the override files with the analysts' own names (2026-10-26); then a relabel with a 900-token budget was tried (`--redo-topics`) without result, and the label was **salvaged from the complete fields of both analysts' truncated answers** (`--salvage-topics`, decision of 2026-10-26, §14) so that the posts also carry a tone; bin 6 topic 369 was the second case |
 | F46 (2026-10-30) | The outlier judgement samples are single-coded and the coder matters more than the similarity: BA judged 34 % of the admitted posts to belong (bins 1, 3, 5, 7), AN 52 % (bins 2, 4), AM 59 % (bins 6, 8, 9); coder and bin are confounded, and the instruction ("yes if the post belongs with that topic") left the standard open. Nothing measures inter-coder agreement, and no cluster-member baseline exists | K2/K3 (author, 2026-10-30): the precision is reported as the plain pooled average with the per-coder and per-bin tables beside it, stated as single-coded; the inter-coder check is deferred to the chapter's editing stage; no baseline is coded. `../session-11_2026-10-30/01_outlier-calibration-results.md` §2.3 |
+| F47 (2026-10-30) | The reference model (§6.5) has no density target (W1), so its topic count and granularity are whatever one HDBSCAN fit at the floor gives on 1.29 M posts; how cleanly the period topics fall into reference topics — and therefore how a QUALTAG attribute coded on a period topic transfers — is unknown until the mapping tables exist | the stop point after the topics stage shows the count before the labelling hours are spent; figure G1 and `map_period_topics.csv` (best-match share, agreement of the post-overlap and centroid methods) are read before any transfer rule is decided (W2) |
 
 ## 14. Decisions log (author: Alan Nemirovski, 2026-10-22)
 
@@ -728,6 +771,10 @@ the effective settings, guard trials, backend, CUDA/cuML versions, `pip freeze`,
 | **2026-10-30 K5** | S6 in place after K1–K4 | **Later, with its own go-ahead**; the data files stay v2.1 after session 11 | the collect output is what S6 reads |
 | **2026-10-30 K6** | `mean_vader_sentiment` under K1 | **One definition: the mean title score over the topic's cluster + reassigned posts** (`n_posts_scored` the same population) | a second, dual-inclusive column declined |
 | **2026-10-30 K7** | The per-bin review-time files that show the D9 counts (`topics_over_time.csv`, `report.html`, `review_pack.md`) | **Left as they are, noted in the docs**; `--stage recount` rewrites only `bin-N/topics.csv` | `topics_over_time` needs the BERTopic model on Drive (Colab); the review packs are the record of what the co-authors reviewed |
+| **2026-10-30 W1** | Granularity of the whole-corpus reference model (§6.5) | **No preset density or topic target: one HDBSCAN fit at the design's fixed settings (`min_cluster_size` 25, `min_samples` 10, eom), the guard off and recorded as mode `fixed`; the topic count is read at a stop point before the labelling** | author: "No preset density target or topic target"; the alternatives offered were the D8 density (6,450–9,670 topics) and a coarser fixed range (1,000–1,500 topics, the 'theme' level of the manual crosswalk) |
+| **2026-10-30 W2** | Scope of the reference step | **Model + labels + the mapping tables** (`code/16-reference-map.R`: period topics ↔ reference topics by posts and by centroid; every reference topic's QUALTAG composition as shares); **the rule that writes a tag onto a reference topic is decided later**, once the tables exist | the tables are the evidence for the rule (F47) |
+| **2026-10-30 W3** | The reference topic as a post variable | **Separate file only** (`results/analysis/reference/documents.csv`); `post_variables.csv`, `labels_version`, `collect`, S6 and the codebook untouched | the period topic stays the unit of analysis (D7); the reference is an interim mapping device |
+| **2026-10-30 W4** | The reference run's large outputs | **Kept out of git**: `documents.csv` (≈ 85 MB), `labels/` (≈ 150 MB), `umap_5d.npy`, `hdbscan_labels_raw.npy` and `outlier_nearest.csv` live on Drive and in the hand-back zip (`.gitignore`); `topics.csv`, `topics_labelled.csv`, `labels.jsonl`, `topics_over_time.csv`, `topic_embeddings.npy`, `outlier_calibration/`, `config.json`, `status.json`, the report and the mapping tables are tracked | GitHub refuses files over 100 MB and the web upload over 25 MB; the nine bins' equivalents are tracked (bin 4's `documents.csv` 22 MB) |
 
 ## 15. Brief versus design
 

@@ -153,7 +153,7 @@ def main() -> int:
     ap.add_argument("--bin", type=int, required=True)
     ap.add_argument("--analysis-dir", default=str(ROOT / "results" / "analysis"))
     a = ap.parse_args()
-    bdir = Path(a.analysis_dir) / f"bin-{a.bin}"
+    bdir = Path(a.analysis_dir) / ("reference" if a.bin == 0 else f"bin-{a.bin}")   # 0 = the whole-corpus reference run (no pack by default, 2026-10-30)
     if not (bdir / "topics.csv").exists():
         sys.exit(f"{bdir} has no topics.csv")
     if a.action == "pack":

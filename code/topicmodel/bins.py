@@ -15,6 +15,10 @@ Outputs (config.ANALYSIS_DATA_DIR; <out-root>/data/analysis/ in dry runs):
 files the bin touches are loaded with `data.build_documents()` and filtered
 through period_bins.csv (never by recomputing dates), so S0 is the single
 source of truth for `period_bin` (refinement N8).
+
+Bin 0 is the whole-corpus REFERENCE RUN (session 12, 2026-10-30; config.REFERENCE_BIN):
+`bin_info(0)` describes it, `load_bin(0)` returns every post with its true
+`period_bin`, and `bin_of()` never returns 0 — it is not a tenth bin.
 """
 from __future__ import annotations
 import logging
@@ -32,6 +36,8 @@ _IDS = np.array([b["bin"] for b in C.PERIOD_BINS])
 
 
 def bin_info(b: int) -> dict:
+    if int(b) == 0:                                   # the whole-corpus reference run (config.REFERENCE_BIN, 2026-10-30)
+        return C.REFERENCE_BIN
     return next(x for x in C.PERIOD_BINS if x["bin"] == int(b))
 
 
@@ -140,6 +146,8 @@ def load_bin(b: int, analysis_data_dir: Path) -> tuple[pd.DataFrame, dict[int, p
     docs = docs.merge(pb[["id", "period_bin"]], on="id", how="left")
     if docs["period_bin"].isna().any():
         raise RuntimeError("posts without a period_bin: period_bins.csv is stale; re-run `--stage bins --force`")
-    docs = docs[docs["period_bin"] == int(b)].reset_index(drop=True)
+    if int(b) != 0:                                   # bin 0 = the reference run: every post, each keeping its true period_bin
+        docs = docs[docs["period_bin"] == int(b)]
+    docs = docs.reset_index(drop=True)
     log.info("bin %d: %d documents from years %s", b, len(docs), bin_years(b))
     return docs, full

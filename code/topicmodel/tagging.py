@@ -172,15 +172,16 @@ def merge_label_record(previous: dict | None, current: dict, relabelled: list[in
 def guard_state(topics: dict) -> str:
     """The density guard's state from a bin's `topics` section of config.json, as the notebook's gate and `--stage status` read it:
     "converged" (the density target was reached), "floor-bound" (the floor min_cluster_size already gave too few topics — accepted,
-    decision D10, 2026-10-25), "unconverged" (flagged), "disabled" (debug subsample), "unknown" (no guard record). A bin clustered
-    before D10 has no `floor_bound` key (bin 7): the state is derived from the recorded trial."""
+    decision D10, 2026-10-25), "unconverged" (flagged), "fixed" (off by decision: the reference run, W1 of 2026-10-30 — one fit at the
+    design's fixed settings), "disabled" (debug subsample), "unknown" (no guard record). A bin clustered before D10 has no
+    `floor_bound` key (bin 7): the state is derived from the recorded trial."""
     g = topics.get("guard") or {}
     if not g:
         return "unknown"
+    if not g.get("enabled", True):                      # a guard that did not search cannot have "converged" (a by-chance hit)
+        return "fixed" if g.get("mode") == "fixed" else "disabled"
     if g.get("converged"):
         return "converged"
-    if not g.get("enabled", True):
-        return "disabled"
     if "floor_bound" in g:
         return "floor-bound" if g["floor_bound"] else "unconverged"
     floor = (topics.get("hdbscan") or {}).get("min_cluster_floor", 25)
@@ -199,7 +200,7 @@ def gate_ok(topics: dict, outlier_gate: float) -> bool:
 def bin_status(bin_dir: Path) -> dict:
     """Where one bin stands (for `--stage status`, the notebook and the REVIEW_READY flag): state, topics, labelled topics,
     whether the review can start (every topic labelled), whether the outlier threshold was applied."""
-    st = {"bin": int(str(bin_dir.name).split("-")[-1]) if "-" in bin_dir.name else None, "state": bin_state(bin_dir),
+    st = {"bin": C.bin_from_run_dir(bin_dir.name), "state": bin_state(bin_dir),
           "n_modelled": None, "n_topics": None, "n_labelled": 0, "n_needs_review": None, "review_ready": False,
           "reassigned": False, "outlier_threshold": None, "single_threshold": None, "n_dual": None, "guard": None, "topics_at": None,
           "labelled_at": None}
@@ -238,7 +239,8 @@ def write_status(bin_dir: Path) -> dict:
     (bin_dir / "status.json").write_text(json.dumps(st, indent=1, default=str), encoding="utf-8")
     flag = bin_dir / "REVIEW_READY.txt"
     if st["review_ready"]:
-        flag.write_text(f"bin {st['bin']}: {st['n_labelled']} topics labelled ({st['n_needs_review']} flagged needs_review), "
+        run = "reference run" if st["bin"] == 0 else f"bin {st['bin']}"
+        flag.write_text(f"{run}: {st['n_labelled']} topics labelled ({st['n_needs_review']} flagged needs_review), "
                         f"{st['n_modelled']} posts modelled — ready for the co-author review (topic_overrides.csv). {st['written']}\n", encoding="utf-8")
     elif flag.exists():
         flag.unlink()
@@ -246,8 +248,10 @@ def write_status(bin_dir: Path) -> dict:
 
 
 def status_table(analysis_dir: Path) -> pd.DataFrame:
-    """One row per bin 1–9 for `--stage status`."""
+    """One row per bin 1–9 for `--stage status`, plus the reference run (bin 0, folder reference/) when it exists."""
     rows = [bin_status(analysis_dir / f"bin-{b}") | {"bin": b} for b in range(1, 10)]
+    if (analysis_dir / C.run_dir_name(0)).is_dir():
+        rows.append(bin_status(analysis_dir / C.run_dir_name(0)) | {"bin": 0})
     return pd.DataFrame(rows)[["bin", "state", "n_modelled", "n_topics", "guard", "n_labelled", "n_needs_review", "review_ready", "reassigned",
                                "outlier_threshold", "single_threshold", "n_dual", "labelled_at"]]
 
@@ -332,8 +336,8 @@ def collect(analysis_dir: Path, analysis_data_dir: Path, allow_partial: bool, ru
     pb = BINS.read_period_bins(analysis_data_dir)
     pb["period_bin"] = pb["period_bin"].astype(int)
     errors, states, label_frames, post_frames = [], {}, [], []
-    for b in range(1, 10):
-        bdir = analysis_dir / f"bin-{b}"
+    for b in range(1, 10):                   # the nine period bins only: the reference run (reference/, bin 0) never enters
+        bdir = analysis_dir / f"bin-{b}"     # post_variables.csv (decision W3, 2026-10-30)
         o = load_bin_outputs(bdir, b)
         states[b] = o["state"]
         if o["state"] == "missing":

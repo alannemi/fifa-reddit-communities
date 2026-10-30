@@ -89,6 +89,14 @@ PERIOD_BINS = [
     dict(bin=8, start=dt.date(2023, 3, 1),  end=dt.date(2026, 1, 31), period_type="interim",    world_cup=None),
     dict(bin=9, start=dt.date(2026, 2, 1),  end=dt.date(2026, 7, 31), period_type="tournament", world_cup=2026),
 ]
+# The REFERENCE RUN (session 12, 2026-10-30; decisions W1–W4 in docs/session-12_2026-10-30/00_approvals.md): the same pipeline fitted
+# once on the WHOLE cleaned corpus, identified as bin 0 inside the code and written to <results>/reference/ (run_dir_name()). It is
+# not a tenth bin: bin_of() never returns 0, collect never reads it and post_variables.csv is untouched (W3). Its labelled topics are
+# the corpus-wide reference list onto which the period topics are mapped by post overlap (code/16-reference-map.R) and, later, the
+# co-authors' QUALTAG attributes. load_bin(0) keeps every post with its true period_bin, so reference/documents.csv carries both.
+REFERENCE_BIN = dict(bin=0, start=dt.date(2010, 1, 1), end=dt.date(2026, 7, 31), period_type="corpus", world_cup=None)
+REFERENCE_GUARD_ENABLED = False         # W1: no density or topic target — one HDBSCAN fit at the design's fixed settings (min_cluster_size =
+                                        # MIN_CLUSTER_FLOOR, HDBSCAN_MIN_SAMPLES, eom, epsilon 0); the guard record carries mode "fixed"
 # Kick-off and final of each tournament (UTC dates): the markers drawn in the reports of the tournament bins.
 WORLD_CUPS = {
     2010: (dt.date(2010, 6, 11), dt.date(2010, 7, 11)),   # South Africa
@@ -99,7 +107,8 @@ WORLD_CUPS = {
 }
 # Bin sizes computed from the v2.1 yearly files (design §4, 2026-10-22); stage S0 compares and logs any difference.
 PERIOD_BIN_EXPECTED_N = {1: 10002, 2: 186988, 3: 83147, 4: 331216, 5: 88648, 6: 305653, 7: 41438, 8: 217303, 9: 37626}
-TIME_BIN = {"tournament": "W", "interim": "M"}   # topics-over-time resolution: weekly in tournament bins, monthly in interim bins
+TIME_BIN = {"tournament": "W", "interim": "M", "corpus": "M"}   # topics-over-time resolution: weekly in tournament bins, monthly in interim
+                                                                # bins and in the reference run (there without the model: model.topics_over_time_counts)
 
 # ---------------------------------------------------------------------------
 # S1 — sentence embeddings (design §5), cached per calendar year under EMBED_CACHE_DIR/<model-slug>/<year>.npz
@@ -124,7 +133,8 @@ GUARD_MAX_TRIALS = 6                    # at most six HDBSCAN fits on the frozen
 GUARD_STEP = 1.5                        # first move ×1.5 / ÷1.5, then bisection between the bracketing values
 # The three HDBSCAN settings below accept either one value for every bin or a dict by period type, e.g.
 # HDBSCAN_MIN_SAMPLES = {"tournament": 10, "interim": 5} — the decision space of a failed large-bin gate (design §12.2;
-# the interim bins are 20–30× larger and more heterogeneous than the tournament bins). Read through setting().
+# the interim bins are 20–30× larger and more heterogeneous than the tournament bins). Read through setting(). A dict needs a
+# "default" (or a "corpus") key since the reference run (2026-10-30) reads these settings with period type "corpus".
 HDBSCAN_MIN_SAMPLES = 10                # revisited only if the large-bin gate shows > 45 % raw outliers (design §12.2)
 HDBSCAN_SELECTION_METHOD = "eom"       # "eom" (excess of mass, the design's standard) or "leaf" (more, smaller clusters)
 HDBSCAN_EPSILON = 0.0                   # cluster_selection_epsilon in the 5-d UMAP space (0 = off); merges micro-clusters
@@ -136,6 +146,8 @@ TOP_N_WORDS = 15                        # keywords per topic
 MMR_DIVERSITY = 0.3                     # maximal-marginal-relevance re-ranking of the keywords
 N_REPRESENTATIVE_DOCS = 5               # representative posts per topic (BERTopic keeps 3 by default; review R3)
 SAMPLE_KEYWORDS = 8                     # keywords of the nearest topic shown in the outlier judgement samples
+REPORT_CAP_ABOVE = 2000                 # report.html: above this many topics the two bar charts show only the REPORT_MAX_BARS largest topics
+REPORT_MAX_BARS = 200                   #   (the reference run, 2026-10-30; every bin has at most 1,602 topics and renders as before)
 # r/soccer and Reddit scaffolding removed ONLY from the keyword descriptions (never from the documents or the
 # embeddings); no football vocabulary is removed.  `vs` and `soccer` were added by design F11.
 EXTRA_STOPWORDS = [
@@ -184,6 +196,9 @@ LLM_MAX_NEW_TOKENS_LABEL = 600          # S3a answer
 LLM_JSON_SALVAGE = True                 # recover answers whose only defect is bracket syntax (refinement N11, confirmed
                                         # 2026-10-24): strict JSON is tried first; recovered answers carry parsed_via =
                                         # "salvage" in the transcript.  False = a second syntax failure is "no answer"
+LLM_CHUNK_TOPICS = 0                    # label stage: topics debated per chunk, labels.jsonl written after each; 0 = every topic of the run in
+                                        # one debate (the bins). The reference run passes --chunk-topics 500 (2026-10-30): round 1 of every item
+                                        # runs before the first record is written — hours with thousands of topics, lost on a disconnect
 
 # ---------------------------------------------------------------------------
 # Controlled tone vocabulary (design §7.3): the analysts' free-text emotion_tone is mapped to one category for counting
@@ -234,6 +249,16 @@ def setting(value, period_type: str | None = None):
             return value["default"]
         raise KeyError(f"no value for period type {period_type!r} in {value}")
     return value
+
+def run_dir_name(b: int) -> str:
+    """Folder of a run under ANALYSIS_DIR: bin-N for the nine period bins, "reference" for the whole-corpus run (bin 0, 2026-10-30)."""
+    return "reference" if int(b) == 0 else f"bin-{int(b)}"
+
+def bin_from_run_dir(name: str) -> int | None:
+    """The inverse of run_dir_name() for a folder name; None for any other folder (stale/, manual review/)."""
+    if name == "reference":
+        return 0
+    return int(name[4:]) if name.startswith("bin-") and name[4:].isdigit() else None
 
 def effective_settings(**overrides) -> dict:
     """All settings as a JSON-serialisable dict (written to each bin's config.json), the effective paths included."""

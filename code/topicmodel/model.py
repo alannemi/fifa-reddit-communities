@@ -292,21 +292,36 @@ def representative_ids(model, docs_text: list[str], ids: np.ndarray, topics: np.
 NEAREST_COLUMNS = ["id", "nearest_topic", "similarity", "nearest_topic_2", "similarity_2"]
 
 
-def outlier_nearest_from(topic_embeddings: np.ndarray, emb: np.ndarray, topics_raw: np.ndarray, ids: np.ndarray) -> pd.DataFrame:
+def outlier_nearest_from(topic_embeddings: np.ndarray, emb: np.ndarray, topics_raw: np.ndarray, ids: np.ndarray,
+                         chunk: int = 50_000) -> pd.DataFrame:
     """For every raw outlier: the two most similar topics (cosine to the topic embeddings, row t = topic t) and the
-    similarities (N1, D9). The second pair is empty when the bin has a single topic."""
+    similarities (N1, D9). The second pair is empty when the bin has a single topic. Computed in row chunks of `chunk`
+    outliers (2026-10-30, the reference run: an estimated 580k outliers × thousands of topics — the dense similarity matrix
+    (≈ 14 GB) and its full argsort (≈ 28 GB) would not fit in Colab's RAM; a chunk of 50,000 × 6,000 is ≈ 1.2 GB)."""
     from sklearn.metrics.pairwise import cosine_similarity
     out_idx = np.where(topics_raw == -1)[0]
     if len(out_idx) == 0 or n_topics_of(topics_raw) == 0:
         return pd.DataFrame(columns=NEAREST_COLUMNS)
-    sims = cosine_similarity(emb[out_idx], np.asarray(topic_embeddings))
-    order = np.argsort(-sims, axis=1)
-    rows = np.arange(len(out_idx))
-    df = pd.DataFrame({"id": ids[out_idx].astype(str), "nearest_topic": order[:, 0].astype(int),
-                       "similarity": sims[rows, order[:, 0]].round(4)})
-    if sims.shape[1] >= 2:
-        df["nearest_topic_2"] = order[:, 1].astype(int)
-        df["similarity_2"] = sims[rows, order[:, 1]].round(4)
+    te = np.asarray(topic_embeddings)
+    k = te.shape[0]
+    step = max(1, int(chunk))
+    first, s1, second, s2 = [], [], [], []
+    for a in range(0, len(out_idx), step):
+        sims = cosine_similarity(emb[out_idx[a:a + step]], te)
+        if k >= 2:
+            top2 = np.argpartition(-sims, 1, axis=1)[:, :2]            # the two largest of each row, in either order
+            v = np.take_along_axis(sims, top2, axis=1)
+            swap = v[:, 1] > v[:, 0]
+            top2[swap] = top2[swap][:, ::-1]
+            v[swap] = v[swap][:, ::-1]
+            first.append(top2[:, 0]); s1.append(v[:, 0]); second.append(top2[:, 1]); s2.append(v[:, 1])
+        else:
+            first.append(np.zeros(len(sims), dtype=int)); s1.append(sims[:, 0])
+    df = pd.DataFrame({"id": ids[out_idx].astype(str), "nearest_topic": np.concatenate(first).astype(int),
+                       "similarity": np.concatenate(s1).round(4)})
+    if k >= 2:
+        df["nearest_topic_2"] = np.concatenate(second).astype(int)
+        df["similarity_2"] = np.concatenate(s2).round(4)
     else:
         df["nearest_topic_2"] = np.nan
         df["similarity_2"] = np.nan
@@ -509,6 +524,22 @@ def topics_over_time(model, docs: pd.DataFrame, topic_id: np.ndarray, period_typ
         tops[np.asarray(topic_id_2).astype(int) != -1] = -1          # a dual post is recognisable by its second topic
     tot = model.topics_over_time(docs["document"].tolist(), stamps.tolist(), topics=[int(t) for t in tops], global_tuning=False, evolution_tuning=False)
     tot = tot.rename(columns={"Topic": "topic_id", "Words": "keywords", "Frequency": "n_docs", "Timestamp": "period"})
+    return tot[["topic_id", "period", "n_docs", "keywords"]]
+
+
+def topics_over_time_counts(docs: pd.DataFrame, topic_id: np.ndarray, period_type: str, assignment=None) -> pd.DataFrame:
+    """topics_over_time() WITHOUT the model (the reference run, 2026-10-30): the counted posts (K1) per topic and period, the
+    uncounted ones (dual, outlier) in the −1 row, `keywords` empty — the same four columns, so report.py and every reader of the
+    per-bin file need no change. BERTopic's own routine over 199 months × thousands of topics × 1.29 M posts would add hours
+    of c-TF-IDF for words per period that the analysis does not use."""
+    freq = C.TIME_BIN[period_type]
+    stamps = docs["date"].dt.tz_localize(None).dt.to_period("W" if freq == "W" else "M").dt.start_time
+    tops = np.asarray(topic_id).astype(int).copy()
+    if assignment is not None:
+        tops[~counted(assignment)] = -1
+    tot = (pd.DataFrame({"topic_id": tops, "period": stamps.to_numpy()}).groupby(["topic_id", "period"]).size()
+           .reset_index(name="n_docs").sort_values(["period", "topic_id"]).reset_index(drop=True))
+    tot["keywords"] = ""
     return tot[["topic_id", "period", "n_docs", "keywords"]]
 
 

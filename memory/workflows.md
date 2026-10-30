@@ -185,3 +185,30 @@ Rscript code/15-outlier-calibration.R                                      # ~30
 populations are the posts' tiers, which K1 leaves as they are (checked on 2026-10-30: every PNG byte-identical). The per-bin
 `topics_over_time.csv`, `report.html` and `review_pack.md` keep the D9 counts until the next Colab pass (K7). Decisions and the
 assessment: `docs/session-11_2026-10-30/`.
+
+## 11. The reference model on the whole corpus (session 12, 2026-10-30)
+
+Decisions W1–W4 and the notes: `docs/session-12_2026-10-30/`; design §6.5; the folder's `results/analysis/reference/README.md`.
+The same pipeline, once on every post, as **bin 0** (folder `results/analysis/reference/`; on Drive `results/reference/`): the
+guard is off (one HDBSCAN fit at the fixed settings, `guard.mode = "fixed"`), `topics_over_time.csv` is computed without the
+model (monthly K1 counts), the labelling runs in chunks. On Colab: notebook section 6 — `6.1` cache check + embed, `6.2`
+optional smoke run, `6.3` topics + the **stop point** (read the topic count and the labelling estimate before `6.4`), `6.4`
+labelling behind the switch `RUN_REFERENCE_LABEL`, `6.5` hand-back without `model/` and `labels/`.
+
+```bash
+# Colab (notebook section 6; the same commands by hand):
+python code/05-analysis-pipeline.py --stage embed --bin 0                     # a cache hit for all 17 years (nothing encoded)
+python -m cuml.accel code/05-analysis-pipeline.py --stage topics --bin 0      # ≈ 1-2 h (estimate); then the stop point: n_topics_raw, outlier share
+python code/05-analysis-pipeline.py --stage label --bin 0 --chunk-topics 500  # ≈ 3-4 s per topic; resumable; labels.jsonl grows per chunk
+python code/05-analysis-pipeline.py --stage status                            # the reference row (bin 0) after the nine bins
+# locally, after unzipping the hand-back at the repository root (documents.csv, the arrays and outlier_nearest.csv are gitignored):
+Rscript code/16-reference-map.R                                               # ~2-3 min: map_pairs / map_period_topics / reference_topics in
+                                                                              #   results/analysis/reference/, figure G1 in results/descriptives/
+```
+`reassign`, `recount`, `retone` and `report` take `--bin 0` as for a bin; `--bins A-B` includes 0 only when written. `collect`
+never reads the reference folder (W3): `post_variables.csv` and `labels_version` cannot change. Re-run `16` after any change of
+the reference run's tables, of `post_variables.csv`, of `topic_labels_all_bins.csv` or of a QUALTAG review file. A local
+mechanics check of the whole chain runs on a 17-file mini corpus under its own `PIPELINE_ROOT` in the scratchpad (never the
+real yearly files: `embed --bin 0` would encode all 1.3 M posts and overwrite the local MiniLM cache), and `16` is tested on a
+synthetic reference derived from `post_variables.csv` through its `REF_*` environment variables
+(`docs/session-12_2026-10-30/00_approvals.md` §5).

@@ -14,7 +14,8 @@ Outputs:
                                                        `topic_tone_2`) and both similarities — plus the audit column topic_id_raw;
                                                        the input of 06-tag-corpus.R
   results/analysis/topic_labels_all_bins.csv           one row per topic (the brief's "separate CSV"), with the mean VADER
-                                                       score of the topic's posts (`mean_vader_sentiment`, author 2026-10-25)
+                                                       score of the topic's posts (`mean_vader_sentiment`, author 2026-10-25; since K1,
+                                                       2026-10-30, every topic aggregate counts cluster + reassigned posts only)
   results/analysis/topic_crosswalk.csv                 template for the co-authors' manual cross-bin crosswalk of topics
                                                        to chapter themes (F4; kept once it has entries)
 S5 may run before all bins exist (refinement N6): columns stay empty for bins without outputs, the sidecar lists
@@ -33,6 +34,7 @@ import pandas as pd
 
 from . import config as C
 from . import bins as BINS
+from . import model as M
 from . import sentiment as S
 from .agents import apply_topic_overrides, read_overrides
 
@@ -44,7 +46,7 @@ POST_COLUMNS = ["id", "period_bin", "period_type", "topic_id", "topic_uid", "top
 AUDIT_COLUMNS = ["topic_id_raw"]
 LABEL_COLUMNS = ["period_bin", "topic_id", "topic_uid", "name", "purpose", "emotion_tone", "tone_category", "description",
                  "inclusion_cues", "round_iterations", "agreed", "agreement_mode", "needs_review", "analyst_a_final",
-                 "analyst_b_final", "n_cluster", "n_first", "n_as_second", "n_total", "share", "mean_vader_sentiment",
+                 "analyst_b_final", "n_cluster", "n_reassigned", "n_dual_first", "n_dual_second", "n_total", "share", "mean_vader_sentiment",
                  "n_posts_scored", "keywords",
                  "llm_model", "llm_revision", "prompt_version", "decoding", "name_agent", "merged_from"]
 CROSSWALK_COLUMNS = ["period_bin", "period_type", "topic_id", "topic_uid", "name", "n_total", "chapter_theme", "notes"]
@@ -110,15 +112,16 @@ def annotate_calibration_samples(bin_dir: Path) -> int:
     """Write the nearest topic's name into every outlier_calibration/sample_T*.csv (column `nearest_topic_name`, right
     after `nearest_topic`) so the co-authors judge against a name, not only an id (author's request, 2026-10-25). Rows,
     their order and anything already filled in (`belongs`, `notes`) are kept; re-running refreshes the names (renames and
-    merges from topic_overrides.csv included). The co-authors' returned copies (`sample_T*_coded*.csv`) are never rewritten
-    (2026-10-27: a refresh had turned BA's line endings into LF). Returns the number of files written: 0 while the bin is
-    unlabelled."""
+    merges from topic_overrides.csv included). The co-authors' returned copies — any `sample_T*coded*.csv`, whatever the
+    separator and coder suffix (`_coded_BA`, `-coded-AM`, `-coded-AN`) — are never rewritten (2026-10-27: a refresh had turned
+    BA's line endings into LF; 2026-10-30: the rule widened from `_coded` to `coded`). Returns the number of files written: 0
+    while the bin is unlabelled."""
     names = topic_names(bin_dir)
     cdir = bin_dir / "outlier_calibration"
     if not names or not cdir.is_dir():
         return 0
     n = 0
-    for p in sorted(q for q in cdir.glob("sample_T*.csv") if "_coded" not in q.name):
+    for p in sorted(q for q in cdir.glob("sample_T*.csv") if "coded" not in q.name.lower()):
         s = _read(p)
         if s.empty or "nearest_topic" not in s.columns:
             continue
@@ -274,24 +277,23 @@ def load_bin_outputs(bin_dir: Path, b: int) -> dict:
         docs.loc[same, "topic_id_2"] = ""; docs.loc[same, "similarity_2"] = ""
         docs.loc[same & (docs["topic_assignment"] == "dual"), "topic_assignment"] = "reassigned"
         sizes = topics.set_index(topics["topic_id"].astype(int))
-        n_cluster = sizes["n_cluster"].astype(int).to_dict()
         kw = sizes["keywords"].to_dict()
-        for old, new in merges.items():
-            n_cluster[new] = n_cluster.get(new, 0) + n_cluster.pop(old, 0)
         merged_from = {}
         for old, new in merges.items():
             merged_from.setdefault(new, []).append(str(old))
-        # sizes after the overrides, from the posts themselves (D9 counting: a dual post counts once in each of its two
-        # topics — n_total = n_first + n_as_second; shares over the bin's modelled posts may add up to more than 1)
+        # sizes after the overrides, from the posts themselves (K1 counting, 2026-10-30: n_total = n_cluster + n_reassigned, the
+        # posts whose topic_assignment is in config.TOPIC_COUNT_ASSIGNMENTS; a dual post is recorded in n_dual_first / n_dual_second
+        # and counted in neither topic; the shares of a bin sum to at most 1). The same model-free counter writes topics.csv
+        # (model.topic_counts), so the two tables agree. A merged-away topic's cluster posts count for the target.
         modelled = docs["topic_id"] != ""
         n_mod = max(1, int(modelled.sum()))
-        first = docs.loc[modelled & (docs["topic_id"] != "-1"), "topic_id"].astype(int).value_counts().to_dict()
-        second = docs.loc[docs["topic_id_2"] != "", "topic_id_2"].astype(int).value_counts().to_dict()
-        labels["n_cluster"] = labels["topic_id"].map(n_cluster).fillna(0).astype(int)
-        labels["n_first"] = labels["topic_id"].map(first).fillna(0).astype(int)
-        labels["n_as_second"] = labels["topic_id"].map(second).fillna(0).astype(int)
-        labels["n_total"] = labels["n_first"] + labels["n_as_second"]
-        labels["share"] = (labels["n_total"] / n_mod).round(5)
+        dm = docs[modelled]
+        counts = M.topic_counts(dm["topic_id"].astype(int).to_numpy(), dm["topic_id_2"].replace({"": "-1"}).astype(int).to_numpy(),
+                                dm["topic_assignment"].to_numpy(), n_mod).set_index("topic_id")
+        for c in M.TOPIC_COUNT_COLUMNS:
+            labels[c] = labels["topic_id"].map(counts[c]).fillna(0)
+            if c != "share":
+                labels[c] = labels[c].astype(int)
         labels["keywords"] = labels["topic_id"].map(kw).fillna(labels.get("keywords", ""))
         labels["merged_from"] = labels["topic_id"].map(lambda t: "|".join(merged_from.get(t, [])))
         # the topic's label on every post of the topic (after renames and merges); empty for outliers and unmodelled posts
@@ -403,16 +405,15 @@ def collect(analysis_dir: Path, analysis_data_dir: Path, allow_partial: bool, ru
     if errors and not allow_partial:
         raise SystemExit("S5 collect: checks failed:\n  " + "\n  ".join(errors))
 
-    # the mean VADER score of each topic's posts (title score; after the topic overrides) — author's request, 2026-10-25;
-    # a dual post (D9) enters the mean of both of its topics
+    # the mean VADER score of each topic's posts (title score; after the topic overrides) — author's request, 2026-10-25.
+    # K1/K6 (2026-10-30): over the counted posts only (config.TOPIC_COUNT_ASSIGNMENTS = cluster + reassigned); a dual post
+    # enters neither of its topics' means (under D9 it entered both)
     topic_sent = {}
     if n_sent and post_frames:
         sc = pd.to_numeric(pv["post_sentiment"], errors="coerce")
-        has = sc.notna() & (pv["topic_id"].fillna("") != "") & (pv["topic_id"].astype(str) != "-1")
-        has2 = sc.notna() & (pv["topic_uid_2"].fillna("") != "")
-        pairs = pd.concat([pd.DataFrame({"b": pv.loc[has, "period_bin_run"].astype(int), "t": pv.loc[has, "topic_id"].astype(str), "s": sc[has]}),
-                           pd.DataFrame({"b": pv.loc[has2, "period_bin_run"].astype(int),
-                                         "t": pv.loc[has2, "topic_uid_2"].astype(str).str.split("-").str[-1], "s": sc[has2]})], ignore_index=True)
+        has = (sc.notna() & (pv["topic_id"].fillna("") != "") & (pv["topic_id"].astype(str) != "-1")
+               & pv["topic_assignment"].fillna("").astype(str).isin(C.TOPIC_COUNT_ASSIGNMENTS))
+        pairs = pd.DataFrame({"b": pv.loc[has, "period_bin_run"].astype(int), "t": pv.loc[has, "topic_id"].astype(str), "s": sc[has]})
         g = pairs.groupby(["b", "t"])["s"]
         topic_sent = {k: (round(float(v), C.SENTIMENT_DECIMALS), int(n)) for k, v, n in zip(g.mean().index, g.mean().to_numpy(), g.size().to_numpy())}
 
@@ -453,6 +454,7 @@ def collect(analysis_dir: Path, analysis_data_dir: Path, allow_partial: bool, ru
     sidecar = {"written": pd.Timestamp.utcnow().isoformat(timespec="seconds"), "n_posts": int(len(pv)),
                "bins_state": states, "bins_complete": bins_complete, "complete": complete, "n_with_sentiment": n_sent,
                "n_with_topic": int((pv["topic_id"] != "").sum()), "n_topics_labelled": n_topics,
+               "topic_count_assignments": list(C.TOPIC_COUNT_ASSIGNMENTS),
                "labels_version": labels_version, "columns": POST_COLUMNS, "audit_columns": AUDIT_COLUMNS,
                "errors": errors, **run_info}
     (analysis_data_dir / "post_variables.json").write_text(json.dumps(sidecar, indent=1, default=str), encoding="utf-8")

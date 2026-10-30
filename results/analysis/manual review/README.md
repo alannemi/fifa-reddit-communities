@@ -46,3 +46,13 @@ Re-run after any change to a bin file (it recomputes its own columns and leaves 
 ```bash
 Rscript code/13-recode-qualtag.R
 ```
+
+## The outlier judgement samples (coded; session 11, 2026-10-30)
+
+They live with their bin, not here: `results/analysis/bin-N/outlier_calibration/sample_T<threshold>*coded*<initials>.csv`, one
+file per similarity band (35th, 50th, 65th, 80th percentile of the bin's outlier-to-nearest-topic similarity; 100 posts each),
+beside the blank file the pipeline wrote and the band table `calibration_table.csv`. Coders: BA (bins 1, 3, 5, 7), AM (bins 6, 8,
+9), AN (bins 2, 4); `belongs` = 1/0. The pipeline never rewrites a file with `coded` in its name (any separator or suffix).
+`code/15-outlier-calibration.R` summarises them (`results/descriptives/tab_F1`–`tab_F4b`, figures F1–F2); the assessment and
+the decisions taken on them (K1–K7) are in `docs/session-11_2026-10-30/`. Inter-coder checks are a step of the chapter's editing
+process (K2).

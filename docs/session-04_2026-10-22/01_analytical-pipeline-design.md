@@ -227,15 +227,26 @@ of the posts without a topic.
   raw to about 12 % outliers; bin 3: from 45.8 % to about 16 %). The percentiles are a rank, not a quality level: the coded
   judgement samples below measure the precision of the admitted bands, and a quantile can be raised afterwards —
   `--stage reassign` re-applies the tiers in seconds per bin without a refit. Stage S2 applies the tiers itself.
-* **Counting (author, 2026-10-25).** A dual post counts once in each of its two topics: `n_total = n_first + n_as_second`,
-  where `n_first` counts the posts whose first topic it is (cluster + reassigned + dual) and `n_as_second` the dual posts for
-  which it is the second topic; `n_cluster` (HDBSCAN members) stays beside them. Shares are `n_total` over the bin's
-  modelled posts and add up to more than 1 by the dual posts; prevalence over time and the mean VADER score of a topic
-  count a dual post in both of its topics as well.
+* **Counting (author, 2026-10-25; replaced by decision K1 on 2026-10-30).** Under D9 a dual post counted once in each of its
+  two topics (`n_total = n_first + n_as_second`; the shares of a bin could add up to more than 1; prevalence over time and the
+  mean VADER score counted it in both). **Since K1** every topic-level aggregate counts the posts whose `topic_assignment` is
+  in `config.TOPIC_COUNT_ASSIGNMENTS` — cluster + reassigned — and nothing else: `n_total = n_cluster + n_reassigned`,
+  `share = n_total / n_modelled` (the shares of a bin sum to at most 1), `mean_vader_sentiment` / `n_posts_scored`,
+  `topics_over_time` and the QA shares over the same posts. A dual post keeps both labels on the post (the hedge of D9 stays
+  recorded in the data files) and is counted in neither topic; `n_dual_first` and `n_dual_second` record how many dual posts
+  carry the topic first and second. Why: the coded judgement samples (3,600 posts, all nine bins) put the dual tier's precision
+  at 43.6 % and the reassigned tier's at 53.4 %, and 38.6 % of the memberships in `n_total` came from dual posts
+  (`../session-11_2026-10-30/01_outlier-calibration-results.md`). One model-free counter (`model.topic_counts`) serves
+  `topics.csv` (`--stage recount`) and the collect, so the two tables agree.
 * Judgement samples (`outlier_calibration/`): the band table at the 35th, 50th, 65th and 80th percentiles and one 100-post
   sample per band (the posts just above each cut, with the nearest topic's id, name and keywords; `belongs` for the
   co-author), on bin 1 and one large bin at least. The first band is the one the floor admits, so it is coded first. The
-  samples validate the quantiles; they are not a prerequisite of the run.
+  samples validate the quantiles; they are not a prerequisite of the run. **Result (2026-10-30; all nine bins coded, by BA,
+  AM and AN):** 35th band 40.3 %, 50th 42.8 %, 65th 47.8 %, ≥ 80th 53.4 % of the posts judged to belong; dual tier 43.6 %,
+  all admitted 46.1 % (every judgement counting once; single-coded; the coder matters more than the similarity, F46; no rise
+  inside the top band). The quantiles stay as they are (K1); `code/15-outlier-calibration.R` writes the tables and figures
+  F1–F2. The review-time files `topics_over_time.csv`, `report.html` and `review_pack.md` of the 2026-10-25/26 run keep the D9
+  counts (K7).
 * `topic_assignment ∈ {cluster, reassigned, dual, outlier, not_modelled}` records how each post got its `topic_id`.
 
 ### 6.4 Outputs per bin (`results/analysis/bin-N/`)
@@ -244,8 +255,8 @@ of the posts without a topic.
 |---|---|
 | `umap_5d.npy`, `hdbscan_labels_raw.npy` | the persisted intermediate arrays (replay, §11) |
 | `documents.csv` | `id, created_datetime, period_bin, post_type, lang, num_comments, topic_id_raw, topic_id, topic_id_2, topic_assignment, similarity, similarity_2` (no text; join to the corpus by `id`; the `_2` columns are filled for dual posts, D9) |
-| `topics.csv` | `topic_id, n_cluster, n_first, n_as_second, n_total, share, keywords, representative_ids, representative_titles, share_match_thread, share_lang_en, mean_comments` (D9 counting, §6.3) |
-| `topics_over_time.csv` | `topic_id, period, n_docs, keywords` (weekly / monthly) |
+| `topics.csv` | `topic_id, n_cluster, n_reassigned, n_dual_first, n_dual_second, n_total, share, keywords, representative_ids, representative_titles, share_match_thread, share_lang_en, mean_comments` (K1 counting, §6.3: `n_total = n_cluster + n_reassigned`, the QA shares over the counted posts; the −1 row: `n_cluster` = raw outliers, `n_total` = posts left as outliers; `--stage recount` rewrites the count columns without the model) |
+| `topics_over_time.csv` | `topic_id, period, n_docs, keywords` (weekly / monthly; counted posts only when regenerated under K1 — the files of the 2026-10-25/26 run keep the D9 counts, K7; report-only) |
 | `model/` | the BERTopic model in safetensors format (topic embeddings, c-TF-IDF). UMAP and HDBSCAN are **not** saved in this format; the raw labels come from the `.npy` files |
 | `config.json`, `log.txt`, `report.html` | effective settings, guard trials, backend, versions; run log; charts and topic table for review |
 
@@ -492,11 +503,12 @@ peer while preserving quality. Same schema. JSON only.
   (one line per topic, append-only, the resume file).
 * **`results/analysis/topic_labels_all_bins.csv`** — the brief's single aggregated CSV, one row per topic cluster (D7):
   `period_bin, topic_id, topic_uid, name, purpose, emotion_tone, tone_category, description, inclusion_cues,
-  round_iterations, agreed, agreement_mode, needs_review, analyst_a_final, analyst_b_final, n_cluster, n_total, share,
-  mean_vader_sentiment, n_posts_scored, keywords, llm_model, llm_revision, prompt_version, decoding` (+ `name_agent`,
+  round_iterations, agreed, agreement_mode, needs_review, analyst_a_final, analyst_b_final, n_cluster, n_reassigned,
+  n_dual_first, n_dual_second, n_total, share, mean_vader_sentiment, n_posts_scored, keywords, llm_model, llm_revision,
+  prompt_version, decoding` (+ `name_agent`,
   `merged_from` from the overrides). `topic_uid` = `<period_bin>-<topic_id>`, unique across the corpus;
   `mean_vader_sentiment` = the mean title compound score of the topic's posts after reassignment and overrides (author,
-  2026-10-25). (The S3a answer's `id`, always `cat_1`, is not carried: it would collide with the post `id`.)
+  2026-10-25; since K1, 2026-10-30, over the topic's cluster + reassigned posts only, like every other aggregate). (The S3a answer's `id`, always `cat_1`, is not carried: it would collide with the post `id`.)
 * `results/analysis/topic_crosswalk.csv` — template for the co-authors' manual cross-bin crosswalk of topics to chapter
   themes (`period_bin, period_type, topic_id, topic_uid, name, n_total, chapter_theme, notes`; kept once it has entries; F43).
 * `topic_overrides.csv` (rename / merge topics) — the one editable decision file, applied by S5.

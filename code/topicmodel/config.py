@@ -161,6 +161,12 @@ OUTLIER_SINGLE_QUANTILE = 0.80          # above it a reassigned post carries one
 OUTLIER_THRESHOLD: dict = {}            # fixed-value override of T: {"default": T} or per bin {1: T1}; empty = the quantile rule
 OUTLIER_CALIBRATION_QUANTILES = (0.35, 0.50, 0.65, 0.80)   # judgement-sample bands: the first is T's band, the last the single-topic band
 OUTLIER_SAMPLE_PER_CANDIDATE = 100      # posts per band in the co-author judgement sample (outlier_calibration/)
+# K1 (author, 2026-10-30; docs/session-11_2026-10-30/): the assignments whose posts COUNT in a topic's aggregates — the sizes
+# n_total and share (topics.csv, topic_labels_all_bins.csv), the mean VADER score of the topic, topics over time and the QA
+# shares. The 3,600 coded judgement samples put the precision of the admitted tiers at 43.6 % (dual) and 53.4 % (reassigned),
+# so a dual post keeps its two labels on the post (the recorded hedge, D9) but is counted in neither topic (n_dual_first and
+# n_dual_second record it); the figures already used this population (E3, Q7). Re-applied without the model by --stage recount.
+TOPIC_COUNT_ASSIGNMENTS = ("cluster", "reassigned")
 
 # ---------------------------------------------------------------------------
 # S3 — the two analysts (design §7; agreement protocol = decision D2)

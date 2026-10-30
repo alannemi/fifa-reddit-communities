@@ -103,7 +103,10 @@ rm(posts, pv); invisible(gc())
 check("every post of the corpus joined once", nrow(d) == N_CORPUS && !anyDuplicated(d$id), n_lab(nrow(d)))
 dir.create(OUT_DIR, recursive = TRUE, showWarnings = FALSE)
 
-qt_files <- list.files(REVIEW_DIR, pattern = "^BIN\\d_topics_labelled_.*\\.csv$", full.names = TRUE)
+# The five World Cup bins only (1, 3, 5, 7, 9): since 2026-10-30 the folder also holds BA's review files of the interim
+# bins 2 and 4 (qt_ columns filled directly, no QUALTAG column); they are outside these figures and their processing
+# awaits Alan Nemirovski's decision (memory/2026-10-30_session-11.md).
+qt_files <- list.files(REVIEW_DIR, pattern = "^BIN[13579]_topics_labelled_.*\\.csv$", full.names = TRUE)
 qt <- bind_rows(lapply(qt_files, function(p)
   read_chr(p, col_select = c("topic_id", "qt_political", all_of(names(POL_CATS)))) |>
     mutate(period_bin = as.integer(substr(basename(p), 4, 4))))) |>

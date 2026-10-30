@@ -98,6 +98,7 @@ python -m cuml.accel $S --stage topics --bin 1       # S2: BERTopic per bin (GPU
 $P $S --stage label --bin 1                          # S3a: two-agent cluster labelling (resumable via labels.jsonl)
 #   -> co-author review: results/analysis/bin-1/topics_labelled.csv, report.html -> fill topic_overrides.csv
 $P $S --stage reassign --bin 1                       # D9: re-apply the outlier tiers from the persisted arrays (seconds; bins clustered before D9, or after a quantile change)
+$P $S --stage recount --bins 1-9                     # K1 (2026-10-30): the count columns of bin-N/topics.csv under config.TOPIC_COUNT_ASSIGNMENTS, no model (seconds); then collect
 $P $S --stage sentiment                              # S4: data/analysis/sentiment.csv (+ sentiment_validation_sample.csv)
 $P $S --stage collect                                # S5: data/analysis/post_variables.csv (+ .json; topic_uid/topic_name/topic_tone per post),
 #                                                       topic_labels_all_bins.csv (with mean_vader_sentiment), topic_crosswalk.csv (template)
@@ -168,3 +169,19 @@ Re-run `14` after `13` (its political figures read the qt_ columns) or after any
 Re-run after any change to a bin file in `results/analysis/manual review/`; it recomputes its own columns and leaves the rest of
 each file byte for byte as it was. It stops if a bin has two files (remove the superseded one with `git rm`) or a tag lies
 outside the scheme. Scheme, rules and decisions: that folder's `README.md` and `docs/session-10_2026-10-28/00_approvals.md`.
+
+## 10. The outlier calibration and the K1 counting (session 11, 2026-10-30)
+
+```bash
+Rscript code/15-outlier-calibration.R                                      # ~30 s: the precision of the outlier tiers from the 36 coded judgement
+                                                                           #   samples -> results/descriptives/tab_F1-F4b, figures F1-F2
+.venv/bin/python code/05-analysis-pipeline.py --stage recount --bins 1-9   # seconds, no model: the count columns of bin-N/topics.csv under
+                                                                           #   config.TOPIC_COUNT_ASSIGNMENTS (cluster + reassigned)
+.venv/bin/python code/05-analysis-pipeline.py --stage collect              # the topic table follows (n_total, share, mean_vader_sentiment);
+                                                                           #   post_variables.csv and labels_version do not change
+```
+`15` re-runs after any new or changed `sample_T*coded*.csv` (any coder suffix; those files are never rewritten by the pipeline).
+`recount` + `collect` re-run after any change of `TOPIC_COUNT_ASSIGNMENTS`; `11`, `12` and `14` are unaffected, because their
+populations are the posts' tiers, which K1 leaves as they are (checked on 2026-10-30: every PNG byte-identical). The per-bin
+`topics_over_time.csv`, `report.html` and `review_pack.md` keep the D9 counts until the next Colab pass (K7). Decisions and the
+assessment: `docs/session-11_2026-10-30/`.

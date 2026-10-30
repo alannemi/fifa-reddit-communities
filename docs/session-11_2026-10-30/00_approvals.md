@@ -56,11 +56,55 @@ With BA's bands of bins 1, 3, 5 and 7 and AM's of bin 9 (sessions 08–10), ever
 
 ## 5. What was run and changed
 
-*Filled in as the session proceeds.*
-
-- **2026-10-30, assessment (read-only):** the 36 coded files parsed and checked (100 rows each, ids identical to the blank
+- **Assessment (read-only, plan mode):** the 36 coded files parsed and checked (100 rows each, ids identical to the blank
   samples, `belongs` ∈ {0, 1}, no notes); precision by bin, band, tier, coder and period type; Wilson intervals; logistic
   fits and AUC of similarity, within-bin rank, margin to the second topic and coder; attractor topics; the effect of every
   candidate quantile pair on the corpus-wide tiers (`01_outlier-calibration-results.md`).
 - **Record of the decisions** (this file, the results document, design v1.9 §12.2 / §13 F46 / §14, `docs/README.md`,
-  `memory/2026-10-30_session-11.md`), committed and pushed at Alan's request before the implementation.
+  `memory/2026-10-30_session-11.md`), committed and pushed at Alan's request before the implementation (`40d7a0eb`).
+- **The K1 counting in the pipeline.** `config.TOPIC_COUNT_ASSIGNMENTS = ("cluster", "reassigned")`; `model.topic_counts()`
+  (model-free, shared by `topics.csv` and the collect), `model.topic_qa()`, `topic_table()` and `topics_over_time()` rebuilt
+  on it; the collect's sizes and the topic-level VADER mean (K6) over the counted posts; `n_first` / `n_as_second` replaced by
+  `n_reassigned`, `n_dual_first`, `n_dual_second`; the sidecar records `topic_count_assignments`; new `--stage recount`
+  (rewrites the count columns of `bin-N/topics.csv` without the BERTopic model, `config.json -> recount`);
+  `annotate_calibration_samples` skips every `*coded*` file. **Unit checks 14/14** (the topic-table and collect checks
+  rewritten for K1; a `-coded-XX` file survives a refresh byte for byte).
+- **Recount of the nine bins and the local collect** (seconds and 12 s). Verified: `post_variables.csv` byte-identical before
+  and after (same md5), `labels_version` unchanged (`f2bc460bf46d`), `complete = true`, no errors; in
+  `topic_labels_all_bins.csv` **Σ n_total = 827,744 = 712,218 cluster + 115,526 reassigned** (the figures' population),
+  Σ n_dual_first = Σ n_dual_second = 260,054, `n_total = n_cluster + n_reassigned` for every topic, the shares of a bin sum to
+  0.61–0.72; the per-bin `topics.csv` agree with the topic table cell for cell; no column changed besides the sizes and
+  `mean_vader_sentiment` / `n_posts_scored` (6,179 of 6,245 topic means moved, mean absolute change 0.028, largest 0.282);
+  `topic_crosswalk.csv` regenerated (still blank). Per bin, Σ n_total before → after: 1: 10,150 → 7,076 · 2: 191,665 →
+  112,405 · 3: 85,375 → 51,723 · 4: 343,821 → 200,735 · 5: 91,664 → 57,468 · 6: 317,601 → 195,745 · 7: 42,872 → 29,606 ·
+  8: 225,643 → 147,485 · 9: 39,061 → 25,501.
+- **`code/15-outlier-calibration.R`** (new): every check PASS; the tables `tab_F1`–`tab_F4b` and the figures F1–F2 in
+  `results/descriptives/`; its pooled figures equal the Python assessment to the decimal (dual 43.6 %, reassigned 53.4 %,
+  all admitted 46.1 %; AM 58.7 %, AN 51.7 %, BA 33.8 %; corpus-weighted 50.2 / 60.9 / 53.5 %; equal-coder 45.7 / 55.2 / 48.1 %).
+- **Regression of the figures:** `11`, `12` and `14` re-run; **every tracked PNG byte-identical** (the populations are the
+  posts' tiers, which K1 leaves as they are); the PDFs, changed by their timestamp only, restored from git.
+- **Scratch-root S6 chain:** not re-run — its input `post_variables.csv` is byte-identical to the one the session-09 chain test
+  passed on, and `06`/`07` do not read the topic table.
+- **Unplanned repair (`code/14-worldcup-figures.R`):** today's pull added BA's `BIN2_topics_labelled_BA.csv` and
+  `BIN4_topics_labelled_BA.csv` to `manual review/`. They carry **no `QUALTAG` column**: BA filled the eleven `qt_` indicator
+  columns directly (916 and 1,602 topics). Script 14 read every `BIN*` file and failed its check "the QUALTAG files cover the
+  five World Cup bins" (3,903 topics); its file glob is now restricted to bins 1, 3, 5, 7 and 9, which is what the check and
+  the figures intend, and it passes again (1,385 topics). **Nothing was decided about the interim bins' files:** how they are
+  processed (script 13 expects a `QUALTAG` column and would stop on them; whether the interim bins get political variables at
+  all) is an open question for Alan (§6).
+- **Documentation:** design v1.9 (§6.3 counting paragraph and the samples' result, §6.4 `topics.csv` and `topics_over_time.csv`
+  rows, §7.7 label-table columns, §12.2, §13 F46, §14 K1–K7); codebook v3.0 draft (§4.9 topic-table paragraph and the
+  `topic_assignment` row, limitation 10 with the measured precision, §8.1, §9 row; PDF re-rendered); `memory/workflows.md` §7
+  (recount) and §10; `results/descriptives/README.md` (F rows, reading note); `manual review/README.md` (the coded samples);
+  session-08 run log §15 (dated pointer); `memory/2026-10-30_session-11.md`.
+
+## 6. Open after this session
+
+1. **S6 in place** (`06-tag-corpus.R`, `07-validate-analysis.R`, `03-data-validation.R`) and **codebook v3.0 final** — with
+   Alan's go-ahead (K5). The collect output of today is what S6 reads.
+2. **BA's interim-bin review files** (bins 2 and 4; `qt_` columns filled directly, no `QUALTAG`): whether the interim bins get
+   the political variables, and how the files are checked (script 13 cannot process them as they are). Also still open: TP's
+   41 topics in `QUALTAG_to_settle.csv`; the `qt_` variables onto the posts.
+3. **Inter-coder check** on the outlier judgement samples at the chapter's editing stage (K2).
+4. The per-bin `topics_over_time.csv`, `report.html` and `review_pack.md` keep the D9 counts until a Colab pass regenerates
+   them (K7).

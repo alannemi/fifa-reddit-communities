@@ -27,6 +27,10 @@ STAGES (design §3)                                            reads -> writes  
               from the persisted arrays (no refit)            config.OUTLIER_*_QUANTILE or --outlier-threshold T) -> rewrites documents.csv,
                                                               topics.csv, topics_over_time.csv, outlier_nearest.csv, report.html; S2 applies
                                                               the same tiers itself, so this stage serves bins clustered before D9 and changes
+  recount     K1 (2026-10-30): the count columns of          bin-N/documents.csv -> topics.csv (n_cluster, n_reassigned, n_dual_first,
+              topics.csv re-derived under                    n_dual_second, n_total, share, the QA shares; keywords and representatives
+              config.TOPIC_COUNT_ASSIGNMENTS, no model       untouched); config.json -> recount. topics_over_time.csv, report.html and the
+                                                              review pack are left as they are (K7); then collect
   label       S3a two-agent cluster labelling (resumable)     bin-N/ -> labels/topic_<id>.json, labels.jsonl, topics_labelled.csv,
                                                               topic_overrides.csv (template)   -> co-author review
   retone      tone_category re-derived after a change of the  bin-N/labels.jsonl -> topics_labelled.csv (only tone_category may change,
@@ -82,7 +86,7 @@ from topicmodel import data, embed, bins as BINS, model as M, sentiment, report,
 from topicmodel import agents as G
 
 log = logging.getLogger("topicmodel")
-STAGES = ["bins", "embed", "topics", "grid", "reassign", "label", "retone", "sentiment", "collect", "report", "status"]
+STAGES = ["bins", "embed", "topics", "grid", "reassign", "recount", "label", "retone", "sentiment", "collect", "report", "status"]
 
 
 # ---------------------------------------------------------------------------
@@ -284,8 +288,8 @@ def write_bin_tables(bdir, bt, docs, modelled, topics_raw, topic_id, assignment,
     for c in ("similarity", "similarity_2"):
         out[c] = out[c].map(lambda x: "" if pd.isna(x) else f"{x:.4f}")
     out.drop(columns=["too_short"]).to_csv(bdir / "documents.csv", index=False)
-    M.topic_table(bt, modelled, topics_raw, topic_id, rep, topic_id_2).to_csv(bdir / "topics.csv", index=False)
-    M.topics_over_time(bt, modelled, topic_id, period_type, topic_id_2).to_csv(bdir / "topics_over_time.csv", index=False)
+    M.topic_table(bt, modelled, topics_raw, topic_id, rep, topic_id_2, assignment).to_csv(bdir / "topics.csv", index=False)      # K1 counting
+    M.topics_over_time(bt, modelled, topic_id, period_type, topic_id_2, assignment).to_csv(bdir / "topics_over_time.csv", index=False)
 
 
 def write_calibration(bdir, nearest, modelled, kw_of, names_of) -> dict:
@@ -378,6 +382,44 @@ def stage_reassign(args, paths: Paths, b: int):
     log.info("reassign: bin %d — T=%s C=%s: %d reassigned, %d dual, %.1f %% outliers left (raw %.1f %%)", b, T, Cc, meta["n_reassigned"],
              meta["n_dual"], 100 * meta["outlier_share_final"], 100 * float((raw == -1).mean()))
     render_report(args, paths, b)
+    tagging.write_status(bdir)
+
+
+def stage_recount(args, paths: Paths, b: int):
+    """Decision K1 (2026-10-30): rewrite the count columns of bin-N/topics.csv from documents.csv under
+    config.TOPIC_COUNT_ASSIGNMENTS — without the BERTopic model (it lives on Drive), so keywords, representative ids and titles
+    stay as they are. topics_over_time.csv, report.html and review_pack.md are left as they are (decision K7). The record of the
+    run goes to config.json -> recount; status.json is refreshed. Seconds per bin; then `--stage collect`."""
+    bdir = paths.bin_dir(b)
+    if not (bdir / "documents.csv").exists() or not (bdir / "topics.csv").exists():
+        raise SystemExit(f"bin {b}: run --stage topics first")
+    docs = pd.read_csv(bdir / "documents.csv", dtype=str, keep_default_na=False)
+    m = docs[docs["topic_id_raw"] != ""].reset_index(drop=True)                    # the modelled posts
+    tid = m["topic_id"].astype(int).to_numpy()
+    tid2 = m["topic_id_2"].replace({"": "-1"}).astype(int).to_numpy() if "topic_id_2" in m.columns else np.full(len(m), -1)
+    assignment = m["topic_assignment"].to_numpy()
+    counts = M.topic_counts(tid, tid2, assignment, len(m))
+    old = pd.read_csv(bdir / "topics.csv", dtype=str, keep_default_na=False)
+    old["topic_id"] = old["topic_id"].astype(int)
+    if set(old["topic_id"]) != set(counts["topic_id"]):
+        raise SystemExit(f"bin {b}: topics.csv and documents.csv name different topics ({sorted(set(old['topic_id']) ^ set(counts['topic_id']))[:10]})")
+    keep = [c for c in ("keywords", "representative_ids", "representative_titles") if c in old.columns]
+    new = counts.merge(old[["topic_id"] + keep], on="topic_id", how="left").merge(M.topic_qa(m, tid, assignment), on="topic_id", how="left")
+    for c in keep:
+        new[c] = new[c].fillna("")
+    for c in M.TOPIC_QA_COLUMNS:
+        new[c] = new[c].fillna(0.0)
+    new = new[M.TOPIC_COLUMNS]
+    new.to_csv(bdir / "topics.csv", index=False)
+    before = int(pd.to_numeric(old.loc[old["topic_id"] != -1, "n_total"]).sum()) if "n_total" in old.columns else None
+    after = int(new.loc[new["topic_id"] != -1, "n_total"].sum())
+    n_dual = int((assignment == "dual").sum())
+    update_config(bdir, "recount", {"count_assignments": list(C.TOPIC_COUNT_ASSIGNMENTS), "n_modelled": int(len(m)),
+                                    "n_topics": int((new["topic_id"] != -1).sum()), "sum_n_total_before": before, "sum_n_total_after": after,
+                                    "n_dual_posts": n_dual, "columns_dropped": [c for c in ("n_first", "n_as_second") if c in old.columns],
+                                    "run_at": dt.datetime.now().isoformat(timespec="seconds")})
+    log.info("recount: bin %d — %d topics; Σ n_total %s -> %d (cluster + reassigned); %d dual posts recorded, counted in neither topic",
+             b, int((new["topic_id"] != -1).sum()), before, after, n_dual)
     tagging.write_status(bdir)
 
 
@@ -527,13 +569,13 @@ def main():
     args = p.parse_args()
     os.environ.setdefault("HF_HOME", str(C.LLM_CACHE_DIR))   # every loader passes cache_dir explicitly; this keeps hub metadata there too
     paths = Paths(args.out_root)
-    per_bin = args.stage in ("embed", "topics", "grid", "reassign", "label", "retone", "report")
+    per_bin = args.stage in ("embed", "topics", "grid", "reassign", "recount", "label", "retone", "report")
     if per_bin:
         for b in parse_bins(args):
             setup_logging(paths.bin_dir(b) / "log.txt")
             log.info("=== stage %s, bin %d === args: %s | paths: %s", args.stage, b, vars(args), paths.describe())
-            {"embed": stage_embed, "topics": stage_topics, "grid": stage_grid, "reassign": stage_reassign, "label": stage_label,
-             "retone": stage_retone, "report": render_report}[args.stage](args, paths, b)
+            {"embed": stage_embed, "topics": stage_topics, "grid": stage_grid, "reassign": stage_reassign, "recount": stage_recount,
+             "label": stage_label, "retone": stage_retone, "report": render_report}[args.stage](args, paths, b)
     elif args.stage == "status":
         print(tagging.status_table(paths.analysis).to_string(index=False))
     else:

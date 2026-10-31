@@ -530,7 +530,8 @@ it needs the author's reading before the data files are final (options range fro
 tiers in the codebook, to raising `OUTLIER_REASSIGN_QUANTILE`, to confining analyses to `cluster` posts). A second coder on the same
 files would give the agreement figure. The bin-1 bands are not coded yet. *(2026-10-30: all 36 bands of the nine bins are coded;
 the assessment and decisions K1–K7 — the per-post tiers stand, topic aggregates count cluster + reassigned posts only — are in
-`../session-11_2026-10-30/`.)*
+`../session-11_2026-10-30/`.)* *(2026-10-31: decision M1 replaces that counting — dual posts at half weight in each of their two
+topics, the tiers unchanged; `../session-13_2026-10-31/`.)*
 
 **Still to run on Colab**: cell 4 — S4 VADER sentiment for every year (CPU, ≈ 15 min) and the complete S5 collect (`post_variables.csv`,
 `topic_labels_all_bins.csv` with `mean_vader_sentiment` for every bin) — and cell 5's final hand-back; then S6 locally (`06-tag-corpus.R`,

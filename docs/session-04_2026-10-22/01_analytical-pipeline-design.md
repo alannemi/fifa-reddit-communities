@@ -1,4 +1,4 @@
-# Analytical pipeline design — period-binned topic modelling, two-agent labelling and sentiment (v2.0)
+# Analytical pipeline design — period-binned topic modelling, two-agent labelling and sentiment (v2.1)
 
 **Session 04, 2026-10-22/23 · FIFA Communities chapter, McGill University.**
 Decisions: Alan Nemirovski. Drafting and technical design: Claude. Brief: `00_brief.md`. Template method: the
@@ -29,7 +29,7 @@ pipeline and its code; every post carries its topic's corpus-wide key, agreed la
 `topic_tone`); the topic table carries the mean VADER score of the topic's posts (`mean_vader_sentiment`); the cross-bin
 comparison is a manual crosswalk of topics (§7.7, §9, F42–F44). **D8** — no fixed topic range per bin but a density of 50–75
 raw topics per 10,000 modelled posts, the guard searching the minimum cluster size from a floor of 25 (§6.2). §7.4 and the S3b
-texts of §7.6 are kept as the record of the superseded protocol (`../session-08_2026-10-25/00_colab-run-log.md` §9). **Version 1.6 (2026-10-25, night)** records decision **D9** (§6.3): tiered outlier reassignment by each bin's similarity quantiles — nearest topic at or above the 80th percentile, nearest plus second-nearest topic (`dual`) from the 35th, outlier below —, a dual post counted once in each of its two topics, five more analysis columns (15; 57 in the data files), and the 50 % gate tolerance for converged bins proposed after bin 3 (§12.2; `../session-08_2026-10-25/00_colab-run-log.md` §13). **Version 1.7 (2026-10-25, night)** records decision D10: a bin whose floor cluster size already yields fewer topics than its density target is *floor-bound* and passes the gate (§6.2, §12.2, §14; first case bin 7, run log §14). **Version 1.8 (2026-10-27)** records decision E6: four tone categories (`competitive`, `informative`, `analytical`, `concerned`) added to the controlled vocabulary of §7.3, re-derived for all 6,245 topics without a model run (`--stage retone`; `../session-09_2026-10-27/`). **Version 1.9 (2026-10-30)** records decisions K1–K7 (`../session-11_2026-10-30/00_approvals.md`): the coded outlier judgement samples of all nine bins (3,600 judgements) put the precision of the admitted tiers at 43.6 % (dual) and 53.4 % (reassigned), with a coder effect larger than the similarity effect (F46), so the per-post tiers of D9 stand and every topic-level aggregate counts cluster + reassigned posts only (K1, §6.3, §6.4, §7.7); the 50 % gate tolerance for converged bins is confirmed (K4, §12.2); the inter-coder check is deferred to the chapter's editing stage (K2). `../session-11_2026-10-30/01_outlier-calibration-results.md` holds the assessment. **Version 2.0 (2026-10-30, session 12)** adds the **reference model on the whole corpus** (§6.5; decisions W1–W4, `../session-12_2026-10-30/00_approvals.md`): the same pipeline fitted once on all 1.3 M posts as bin 0 (`results/analysis/reference/`), the density guard off (one HDBSCAN fit at the fixed settings, W1), its topics labelled by the two analysts, and the period topics mapped onto them by post overlap and centroid similarity (`code/16-reference-map.R`, figure G1) — the interim replacement of the manual topic crosswalk (F43) and the target onto which the co-authors' QUALTAG coding will be transferred (F47); nothing in the period bins, the join table or the codebook changes (W3).
+texts of §7.6 are kept as the record of the superseded protocol (`../session-08_2026-10-25/00_colab-run-log.md` §9). **Version 1.6 (2026-10-25, night)** records decision **D9** (§6.3): tiered outlier reassignment by each bin's similarity quantiles — nearest topic at or above the 80th percentile, nearest plus second-nearest topic (`dual`) from the 35th, outlier below —, a dual post counted once in each of its two topics, five more analysis columns (15; 57 in the data files), and the 50 % gate tolerance for converged bins proposed after bin 3 (§12.2; `../session-08_2026-10-25/00_colab-run-log.md` §13). **Version 1.7 (2026-10-25, night)** records decision D10: a bin whose floor cluster size already yields fewer topics than its density target is *floor-bound* and passes the gate (§6.2, §12.2, §14; first case bin 7, run log §14). **Version 1.8 (2026-10-27)** records decision E6: four tone categories (`competitive`, `informative`, `analytical`, `concerned`) added to the controlled vocabulary of §7.3, re-derived for all 6,245 topics without a model run (`--stage retone`; `../session-09_2026-10-27/`). **Version 1.9 (2026-10-30)** records decisions K1–K7 (`../session-11_2026-10-30/00_approvals.md`): the coded outlier judgement samples of all nine bins (3,600 judgements) put the precision of the admitted tiers at 43.6 % (dual) and 53.4 % (reassigned), with a coder effect larger than the similarity effect (F46), so the per-post tiers of D9 stand and every topic-level aggregate counts cluster + reassigned posts only (K1, §6.3, §6.4, §7.7); the 50 % gate tolerance for converged bins is confirmed (K4, §12.2); the inter-coder check is deferred to the chapter's editing stage (K2). `../session-11_2026-10-30/01_outlier-calibration-results.md` holds the assessment. **Version 2.0 (2026-10-30, session 12)** adds the **reference model on the whole corpus** (§6.5; decisions W1–W4, `../session-12_2026-10-30/00_approvals.md`): the same pipeline fitted once on all 1.3 M posts as bin 0 (`results/analysis/reference/`), the density guard off (one HDBSCAN fit at the fixed settings, W1), its topics labelled by the two analysts, and the period topics mapped onto them by post overlap and centroid similarity (`code/16-reference-map.R`, figure G1) — the interim replacement of the manual topic crosswalk (F43) and the target onto which the co-authors' QUALTAG coding will be transferred (F47); nothing in the period bins, the join table or the codebook changes (W3). **Version 2.1 (2026-10-31, session 13)** records decision **M1** (`../session-13_2026-10-31/00_approvals.md`), taken jointly by the co-authors: dual posts enter every topic-level aggregate at half weight — 0.5 in each of their two topics, cluster and reassigned posts 1, the per-post tiers of D9 unchanged —, replacing the counting half of K1 and K6 (§6.3, §6.4, §6.5, §7.7, §14). Documentation only: the tables keep the K1 counts until the implementation and the recount run.
 
 ---
 
@@ -227,7 +227,7 @@ of the posts without a topic.
   raw to about 12 % outliers; bin 3: from 45.8 % to about 16 %). The percentiles are a rank, not a quality level: the coded
   judgement samples below measure the precision of the admitted bands, and a quantile can be raised afterwards —
   `--stage reassign` re-applies the tiers in seconds per bin without a refit. Stage S2 applies the tiers itself.
-* **Counting (author, 2026-10-25; replaced by decision K1 on 2026-10-30).** Under D9 a dual post counted once in each of its
+* **Counting (author, 2026-10-25; replaced by decision K1 on 2026-10-30, whose counting is replaced by decision M1 on 2026-10-31).** Under D9 a dual post counted once in each of its
   two topics (`n_total = n_first + n_as_second`; the shares of a bin could add up to more than 1; prevalence over time and the
   mean VADER score counted it in both). **Since K1** every topic-level aggregate counts the posts whose `topic_assignment` is
   in `config.TOPIC_COUNT_ASSIGNMENTS` — cluster + reassigned — and nothing else: `n_total = n_cluster + n_reassigned`,
@@ -238,6 +238,15 @@ of the posts without a topic.
   at 43.6 % and the reassigned tier's at 53.4 %, and 38.6 % of the memberships in `n_total` came from dual posts
   (`../session-11_2026-10-30/01_outlier-calibration-results.md`). One model-free counter (`model.topic_counts`) serves
   `topics.csv` (`--stage recount`) and the collect, so the two tables agree.
+* **Since M1 (the co-authors jointly, 2026-10-31; `../session-13_2026-10-31/00_approvals.md`)** a dual post is included at half
+  weight: 0.5 in the topic of `topic_uid` and 0.5 in the topic of `topic_uid_2`; cluster and reassigned posts weigh 1, outliers and
+  not-modelled posts 0; the per-post tiers of D9 are unchanged. `n_total = n_cluster + n_reassigned + 0.5 × (n_dual_first +
+  n_dual_second)`, `share = n_total / n_modelled` (the shares of a bin sum to 1 minus the outlier share: every admitted post has a
+  total weight of 1), `mean_vader_sentiment` the weighted mean with `n_posts_scored` the weighted count, `topics_over_time` and
+  the QA shares weighted alike. The implementation (a weight per tier in place of `config.TOPIC_COUNT_ASSIGNMENTS`,
+  `model.topic_counts` and the collect, `--stage recount`, script 16) follows with its own go-ahead; **until then every table
+  carries the K1 counts.** The points to confirm (`n_posts_scored`, the pair weights of the mapping, the figures' populations)
+  are listed in the approvals (§3).
 * Judgement samples (`outlier_calibration/`): the band table at the 35th, 50th, 65th and 80th percentiles and one 100-post
   sample per band (the posts just above each cut, with the nearest topic's id, name and keywords; `belongs` for the
   co-author), on bin 1 and one large bin at least. The first band is the one the floor admits, so it is coded first. The
@@ -255,8 +264,8 @@ of the posts without a topic.
 |---|---|
 | `umap_5d.npy`, `hdbscan_labels_raw.npy` | the persisted intermediate arrays (replay, §11) |
 | `documents.csv` | `id, created_datetime, period_bin, post_type, lang, num_comments, topic_id_raw, topic_id, topic_id_2, topic_assignment, similarity, similarity_2` (no text; join to the corpus by `id`; the `_2` columns are filled for dual posts, D9) |
-| `topics.csv` | `topic_id, n_cluster, n_reassigned, n_dual_first, n_dual_second, n_total, share, keywords, representative_ids, representative_titles, share_match_thread, share_lang_en, mean_comments` (K1 counting, §6.3: `n_total = n_cluster + n_reassigned`, the QA shares over the counted posts; the −1 row: `n_cluster` = raw outliers, `n_total` = posts left as outliers; `--stage recount` rewrites the count columns without the model) |
-| `topics_over_time.csv` | `topic_id, period, n_docs, keywords` (weekly / monthly; counted posts only when regenerated under K1 — the files of the 2026-10-25/26 run keep the D9 counts, K7; report-only) |
+| `topics.csv` | `topic_id, n_cluster, n_reassigned, n_dual_first, n_dual_second, n_total, share, keywords, representative_ids, representative_titles, share_match_thread, share_lang_en, mean_comments` (K1 counting, §6.3: `n_total = n_cluster + n_reassigned`, the QA shares over the counted posts — under M1, once the recount has run, `n_total = n_cluster + n_reassigned + 0.5 × (n_dual_first + n_dual_second)` and the QA shares weighted; the −1 row: `n_cluster` = raw outliers, `n_total` = posts left as outliers; `--stage recount` rewrites the count columns without the model) |
+| `topics_over_time.csv` | `topic_id, period, n_docs, keywords` (weekly / monthly; counted posts only when regenerated under K1, weighted under M1 — the files of the 2026-10-25/26 run keep the D9 counts, K7; report-only) |
 | `model/` | the BERTopic model in safetensors format (topic embeddings, c-TF-IDF). UMAP and HDBSCAN are **not** saved in this format; the raw labels come from the `.npy` files |
 | `config.json`, `log.txt`, `report.html` | effective settings, guard trials, backend, versions; run log; charts and topic table for review |
 
@@ -272,7 +281,7 @@ corpus-wide topic stands beside each post's period topic. The run is bin 0 insid
 * **Settings.** The same embeddings (the mpnet cache is keyed by calendar year, so the run re-embeds nothing), the same UMAP
   (§6.1), **HDBSCAN at the design's fixed settings with the density guard off** (W1: no density or topic target —
   `min_cluster_size` 25, `min_samples` 10, eom, one fit; `guard.enabled = false`, `guard.mode = "fixed"`, status `fixed`), the
-  same D9 tiers from the run's own similarity quantiles and the K1 counting, the same prompts (v1.4) and model for the two
+  same D9 tiers from the run's own similarity quantiles and the counting rule in force (K1; M1 once implemented, §6.3), the same prompts (v1.4) and model for the two
   analysts (`period_bin` 0 in its label records; seeds `0-<topic>`). The §12.2 gate is a bin concept and is not asserted: the
   notebook prints the raw outlier share beside the bins' 0.50 and the topic count at a **stop point** before the labelling,
   which runs in chunks of 500 topics (`--chunk-topics`: `labels.jsonl` grows after every chunk instead of only after round 1 of
@@ -281,7 +290,7 @@ corpus-wide topic stands beside each post's period topic. The run is bin 0 insid
   bins, so about 5,700–6,300 raw topics; labelling at 2.8–4.0 s per topic ≈ 5–7 h on the A100. The outlier-similarity step
   runs in row chunks (`model.outlier_nearest_from`, 50,000 outliers at a time: the dense matrix of ≈ 580k outliers × thousands
   of topics and its argsort would not fit in RAM). `topics_over_time.csv` is computed **without the model**
-  (`model.topics_over_time_counts`: monthly counts of the counted posts, `keywords` empty) — K1 counts, whereas the bins' files
+  (`model.topics_over_time_counts`: monthly counts of the counted posts, `keywords` empty) — K1 counts (M1 weights once implemented), whereas the bins' files
   keep the D9 counts (K7). The report's bar charts show the 200 largest topics above 2,000 topics; no review pack is written.
 * **Outputs.** `results/analysis/reference/`: the files of §6.4 and §7.7 (`documents.csv` with each post's true `period_bin`,
   `topics.csv`, `topics_over_time.csv`, `topic_embeddings.npy`, `outlier_nearest.csv`, `outlier_calibration/`, `labels/`,
@@ -289,7 +298,7 @@ corpus-wide topic stands beside each post's period topic. The run is bin 0 insid
   everything but `documents.csv` (≈ 85 MB), `labels/` (≈ 150 MB), `umap_5d.npy`, `hdbscan_labels_raw.npy` and
   `outlier_nearest.csv`, which live on Drive and in the hand-back zip (`results/analysis/reference/README.md`).
 * **The mapping (W2).** `code/16-reference-map.R` (local, after the hand-back) maps the period topics onto the reference topics
-  by post overlap — a post counts on either side only when it is counted there (K1) — and checks the mapping against the
+  by post overlap — a post counts on either side only when it is counted there (K1; under M1 with its weights, a pair taking the product of the post's two weights, to confirm) — and checks the mapping against the
   cosine of the topic centroids (one embedding space, as the topic network of session 09): `map_pairs.csv`,
   `map_period_topics.csv` (best and second reference topic by posts, nearest by centroid, agreement), `reference_topics.csv`
   (sizes, posts per bin, the largest period topics, the QUALTAG composition of the counted posts by the status of their period
@@ -544,12 +553,12 @@ peer while preserving quality. Same schema. JSON only.
   prompt_version, decoding` (+ `name_agent`,
   `merged_from` from the overrides). `topic_uid` = `<period_bin>-<topic_id>`, unique across the corpus;
   `mean_vader_sentiment` = the mean title compound score of the topic's posts after reassignment and overrides (author,
-  2026-10-25; since K1, 2026-10-30, over the topic's cluster + reassigned posts only, like every other aggregate). (The S3a answer's `id`, always `cat_1`, is not carried: it would collide with the post `id`.)
+  2026-10-25; since K1, 2026-10-30, over the topic's cluster + reassigned posts only, like every other aggregate; under M1, 2026-10-31, the weighted mean with dual posts at 0.5, once the recount has run). (The S3a answer's `id`, always `cat_1`, is not carried: it would collide with the post `id`.)
 * `results/analysis/topic_crosswalk.csv` — template for the co-authors' manual cross-bin crosswalk of topics to chapter
   themes (`period_bin, period_type, topic_id, topic_uid, name, n_total, chapter_theme, notes`; kept once it has entries; F43).
 * The reference run (§6.5) writes the same labelling files under `results/analysis/reference/` (`period_bin` 0 in its
   `labels.jsonl`); its topics never enter `topic_labels_all_bins.csv`. The mapping tables of `code/16-reference-map.R`
-  (`map_pairs.csv`, `map_period_topics.csv`, `reference_topics.csv`) sit beside them; figure G1 in `results/descriptives/`.
+  (`map_pairs.csv`, `map_period_topics.csv`, `reference_topics.csv`) sit beside them; figure G1 in `results/diagnostics/` (`results/descriptives/` until 2026-10-31, when that folder was given over to the chapter figures of `code/18-chapter-figures.R`).
 * `topic_overrides.csv` (rename / merge topics) — the one editable decision file, applied by S5.
 * *(v1.0–v1.4, removed by D7: `taxonomy.json`, `categories.csv`, `topic_categories.csv`, `categories_all_bins.csv`,
   `category_overrides.csv`, `topic_category_overrides.csv`, `category_crosswalk.csv`.)*
@@ -775,6 +784,7 @@ the effective settings, guard trials, backend, CUDA/cuML versions, `pip freeze`,
 | **2026-10-30 W2** | Scope of the reference step | **Model + labels + the mapping tables** (`code/16-reference-map.R`: period topics ↔ reference topics by posts and by centroid; every reference topic's QUALTAG composition as shares); **the rule that writes a tag onto a reference topic is decided later**, once the tables exist | the tables are the evidence for the rule (F47) |
 | **2026-10-30 W3** | The reference topic as a post variable | **Separate file only** (`results/analysis/reference/documents.csv`); `post_variables.csv`, `labels_version`, `collect`, S6 and the codebook untouched | the period topic stays the unit of analysis (D7); the reference is an interim mapping device |
 | **2026-10-30 W4** | The reference run's large outputs | **Kept out of git**: `documents.csv` (≈ 85 MB), `labels/` (≈ 150 MB), `umap_5d.npy`, `hdbscan_labels_raw.npy` and `outlier_nearest.csv` live on Drive and in the hand-back zip (`.gitignore`); `topics.csv`, `topics_labelled.csv`, `labels.jsonl`, `topics_over_time.csv`, `topic_embeddings.npy`, `outlier_calibration/`, `config.json`, `status.json`, the report and the mapping tables are tracked | GitHub refuses files over 100 MB and the web upload over 25 MB; the nine bins' equivalents are tracked (bin 4's `documents.csv` 22 MB) |
+| **2026-10-31 M1** | Dual posts in the topic-level aggregates (§6.3; replaces the counting half of K1 and K6) | **Included at half weight: 0.5 in the topic of `topic_uid` and 0.5 in the topic of `topic_uid_2`; cluster and reassigned posts 1; outliers and not-modelled posts 0. `n_total = n_cluster + n_reassigned + 0.5 × (n_dual_first + n_dual_second)`, `share = n_total / n_modelled`, `mean_vader_sentiment` / `n_posts_scored`, topics over time and the QA shares weighted alike; the per-post tiers of D9 unchanged** | the co-authors' joint decision, reported by the author on 2026-10-31 (rationale to be added to the record); under K1 the 260,054 dual posts (20.2 % of the modelled posts) counted in no topic. Documentation only in session 13: the implementation and the recount follow with their own go-ahead; `../session-13_2026-10-31/00_approvals.md` (points to confirm: `n_posts_scored`, the pair weights of the mapping, the figures' populations) |
 
 ## 15. Brief versus design
 

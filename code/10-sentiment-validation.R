@@ -34,7 +34,7 @@
 # Input: the coded sheet results/analysis/manual review/sentiment_review_coder_A-coded-AN.csv (coder A, the reference).
 # Environment variables (tests): SENT_CODER_A (another coded sheet); SENT_CODING_DIR (default results/analysis/manual review/sentiment_coding)
 # holds coder_A.csv (and, with two coders, coder_B.csv and the optional adjudicated.csv); SENT_OUT_DIR (default
-# results/descriptives).
+# results/diagnostics; results/descriptives until 2026-10-31).
 # Codes accepted (case-insensitive): positive / neutral / negative, pos / neu / neg, 1 / 0 / -1.
 #
 # OUTPUTS  (SENT_OUT_DIR)
@@ -57,7 +57,7 @@ ROOT <- find_root()
 setwd(ROOT)
 
 CODING_DIR <- Sys.getenv("SENT_CODING_DIR", "results/analysis/manual review/sentiment_coding")
-OUT_DIR    <- Sys.getenv("SENT_OUT_DIR", "results/descriptives")
+OUT_DIR    <- Sys.getenv("SENT_OUT_DIR", "results/diagnostics")   # results/descriptives until 2026-10-31 (session 14, V10)
 # The coded reference sheet: the author's file as returned on 2026-10-27 (kept under its own name, decision of the same
 # day); a test run that sets SENT_CODING_DIR reads coder_A.csv there instead, SENT_CODER_A overrides both
 CODER_A_FILE <- Sys.getenv("SENT_CODER_A", if (nzchar(Sys.getenv("SENT_CODING_DIR"))) file.path(CODING_DIR, "coder_A.csv")

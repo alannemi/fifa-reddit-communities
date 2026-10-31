@@ -46,7 +46,7 @@
 #   results/analysis/manual review/BIN<N>_topics_labelled_*.csv   TP's files carry QUALTAG + qt_*, BA's qt_* only (read-only here)
 # The locations can be redirected for a test (as 06/07 do through TAG_*): REF_ANALYSIS_DIR (results/analysis), REF_DATA_DIR
 # (data/analysis), REF_REFERENCE_DIR (the reference run's folder), REF_TABLES_DIR (where the three tables go; default = the
-# reference folder), REF_FIG_DIR (results/descriptives), REF_REVIEW_DIR (manual review), REF_PYTHON (.venv/bin/python).
+# reference folder), REF_FIG_DIR (results/diagnostics), REF_REVIEW_DIR (manual review), REF_PYTHON (.venv/bin/python).
 #
 # HOW TO RUN (repository root; needs the .venv for the .npy arrays)
 # ----------------------------
@@ -57,7 +57,7 @@
 #   results/analysis/reference/map_pairs.csv            one row per (period topic, reference topic) pair with posts counted on both sides
 #   results/analysis/reference/map_period_topics.csv    one row per period topic: best / second reference topic by posts, nearest by centroid, QUALTAG
 #   results/analysis/reference/reference_topics.csv     one row per reference topic: sizes, posts per bin, largest period topics, QUALTAG composition
-#   results/descriptives/fig_G1_reference_best_share_by_bin.png|pdf, tab_G1_reference_best_share_by_bin.csv
+#   results/diagnostics/fig_G1_reference_best_share_by_bin.png|pdf, tab_G1_reference_best_share_by_bin.csv
 ##############################################################################
 
 suppressPackageStartupMessages({ library(readr); library(dplyr); library(tidyr); library(ggplot2); library(scales); library(stringr) })
@@ -73,7 +73,7 @@ ANALYSIS_DIR  <- Sys.getenv("REF_ANALYSIS_DIR", "results/analysis")
 DATA_DIR      <- Sys.getenv("REF_DATA_DIR", "data/analysis")
 REFERENCE_DIR <- Sys.getenv("REF_REFERENCE_DIR", file.path(ANALYSIS_DIR, "reference"))
 TABLES_DIR    <- Sys.getenv("REF_TABLES_DIR", REFERENCE_DIR)
-OUT_DIR       <- Sys.getenv("REF_FIG_DIR", "results/descriptives")              # save_fig / save_tab write here
+OUT_DIR       <- Sys.getenv("REF_FIG_DIR", "results/diagnostics")               # save_fig / save_tab write here (results/descriptives until 2026-10-31)
 REVIEW_DIR    <- Sys.getenv("REF_REVIEW_DIR", file.path(ANALYSIS_DIR, "manual review"))
 PYTHON        <- Sys.getenv("REF_PYTHON", ".venv/bin/python")
 COUNT    <- c("cluster", "reassigned")     # config.TOPIC_COUNT_ASSIGNMENTS (decision K1, 2026-10-30)

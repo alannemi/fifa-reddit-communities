@@ -4,6 +4,10 @@
 himself (AN), coded the judgement samples. The assessment was made in plan mode; Alan answered two rounds of questions and
 approved the plan on 2026-10-30 before any file in the repository was changed.*
 
+*Note (2026-10-31, session 13): the counting half of K1 and decision K6 — topic aggregates over cluster + reassigned posts only —
+are replaced by decision M1 (dual posts at half weight in each of their two topics; `../session-13_2026-10-31/00_approvals.md`).
+The per-post tiers, K2–K5 and K7 stand. The tables keep the K1 counts until the M1 recount.*
+
 ## 1. The request
 
 Alan asked for four things:

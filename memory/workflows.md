@@ -98,7 +98,7 @@ python -m cuml.accel $S --stage topics --bin 1       # S2: BERTopic per bin (GPU
 $P $S --stage label --bin 1                          # S3a: two-agent cluster labelling (resumable via labels.jsonl)
 #   -> co-author review: results/analysis/bin-1/topics_labelled.csv, report.html -> fill topic_overrides.csv
 $P $S --stage reassign --bin 1                       # D9: re-apply the outlier tiers from the persisted arrays (seconds; bins clustered before D9, or after a quantile change)
-$P $S --stage recount --bins 1-9                     # K1 (2026-10-30): the count columns of bin-N/topics.csv under config.TOPIC_COUNT_ASSIGNMENTS, no model (seconds); then collect
+$P $S --stage recount --bins 1-9                     # K1 (2026-10-30): the count columns of bin-N/topics.csv under config.TOPIC_COUNT_ASSIGNMENTS, no model (seconds); then collect — M1 (2026-10-31): dual posts at 0.5 per topic, once implemented (§10)
 $P $S --stage sentiment                              # S4: data/analysis/sentiment.csv (+ sentiment_validation_sample.csv)
 $P $S --stage collect                                # S5: data/analysis/post_variables.csv (+ .json; topic_uid/topic_name/topic_tone per post),
 #                                                       topic_labels_all_bins.csv (with mean_vader_sentiment), topic_crosswalk.csv (template)
@@ -151,30 +151,30 @@ for b in 1 2 3 4 5 6 7 8 9; do .venv/bin/python code/08-review-pack.py pack --bi
 
 Rscript code/09-sentiment-coding-pack.R      # blinded coder_A.csv / coder_B.csv in results/analysis/manual review/sentiment_coding/
 Rscript code/10-sentiment-validation.R       # after both sheets are back (+ optional adjudicated.csv): agreement, kappa, confusion
-Rscript code/11-descriptives.R               # ~1 min: figures + tables in results/descriptives/ (reads the yearly files + post_variables.csv)
+# 11-descriptives.R retired on 2026-10-31 (session 14): the chapter figures are 17 -> 18 (section 12)
 Rscript code/12-topic-network.R              # ~20 s: topic network D1/D1b/D2 + family tables (topic embeddings via the .venv Python, reticulate)
 ```
 `09` refuses to overwrite a sheet that already holds codes. `10` takes `SENT_CODING_DIR` / `SENT_OUT_DIR` for tests.
-`11` does not depend on S6; re-run it after any change of the join table. Decisions and readings: `docs/session-09_2026-10-27/`.
+`10` and `12` write to `results/diagnostics/` since 2026-10-31. Decisions and readings: `docs/session-09_2026-10-27/`.
 
 ## 9. The co-authors' QUALTAG tags (session 10, 2026-10-28)
 
 ```bash
 git pull --no-rebase origin main             # the co-authors upload their review files on GitHub
 Rscript code/13-recode-qualtag.R             # seconds: 11 qt_ columns after QUALTAG in every BIN<N>_topics_labelled_*.csv, + QUALTAG_to_settle.csv
-Rscript code/14-worldcup-figures.R           # ~20 s: figures E1, E1b, E2-E7 + tables in results/descriptives/ (political posts and categories,
-                                             #   weekly VADER, subscribers, tone ranks, sentiment and tones by political category)
+# 14-worldcup-figures.R retired on 2026-10-31 (session 14): the political figures are 17 -> 18 (section 12)
 ```
-Re-run `14` after `13` (its political figures read the qt_ columns) or after any change of the join table.
+`13` recodes TP's files only; since 2026-10-31 it skips BA's files (bins 2, 4, 6, 8: `qt_` columns typed in, no `QUALTAG`) with a
+log line instead of stopping. The scheme and `parse_tags()` live in `code/R/qualtag-utils.R`, shared with `17`.
 Re-run after any change to a bin file in `results/analysis/manual review/`; it recomputes its own columns and leaves the rest of
 each file byte for byte as it was. It stops if a bin has two files (remove the superseded one with `git rm`) or a tag lies
 outside the scheme. Scheme, rules and decisions: that folder's `README.md` and `docs/session-10_2026-10-28/00_approvals.md`.
 
-## 10. The outlier calibration and the K1 counting (session 11, 2026-10-30)
+## 10. The outlier calibration and the K1 counting (session 11, 2026-10-30; the counting replaced by M1, session 13)
 
 ```bash
 Rscript code/15-outlier-calibration.R                                      # ~30 s: the precision of the outlier tiers from the 36 coded judgement
-                                                                           #   samples -> results/descriptives/tab_F1-F4b, figures F1-F2
+                                                                           #   samples -> results/diagnostics/tab_F1-F4b, figures F1-F2 (results/descriptives until 2026-10-31)
 .venv/bin/python code/05-analysis-pipeline.py --stage recount --bins 1-9   # seconds, no model: the count columns of bin-N/topics.csv under
                                                                            #   config.TOPIC_COUNT_ASSIGNMENTS (cluster + reassigned)
 .venv/bin/python code/05-analysis-pipeline.py --stage collect              # the topic table follows (n_total, share, mean_vader_sentiment);
@@ -185,6 +185,11 @@ Rscript code/15-outlier-calibration.R                                      # ~30
 populations are the posts' tiers, which K1 leaves as they are (checked on 2026-10-30: every PNG byte-identical). The per-bin
 `topics_over_time.csv`, `report.html` and `review_pack.md` keep the D9 counts until the next Colab pass (K7). Decisions and the
 assessment: `docs/session-11_2026-10-30/`.
+
+**M1 (2026-10-31, the co-authors jointly; `docs/session-13_2026-10-31/`):** dual posts enter every topic aggregate at half weight
+(0.5 in each of their two topics; cluster and reassigned posts 1; the tiers unchanged). **Not implemented yet:** a weight per tier
+replaces `TOPIC_COUNT_ASSIGNMENTS` in `config`; `model.topic_counts` / the collect / `recount` / script 16 follow; then
+`recount --bins 1-9` + `collect` (+ bin 0 after the hand-back). Until then every table carries the K1 counts.
 
 ## 11. The reference model on the whole corpus (session 12, 2026-10-30)
 
@@ -203,7 +208,7 @@ python code/05-analysis-pipeline.py --stage label --bin 0 --chunk-topics 500  # 
 python code/05-analysis-pipeline.py --stage status                            # the reference row (bin 0) after the nine bins
 # locally, after unzipping the hand-back at the repository root (documents.csv, the arrays and outlier_nearest.csv are gitignored):
 Rscript code/16-reference-map.R                                               # ~2-3 min: map_pairs / map_period_topics / reference_topics in
-                                                                              #   results/analysis/reference/, figure G1 in results/descriptives/
+                                                                              #   results/analysis/reference/, figure G1 in results/diagnostics/
 ```
 `reassign`, `recount`, `retone` and `report` take `--bin 0` as for a bin; `--bins A-B` includes 0 only when written. `collect`
 never reads the reference folder (W3): `post_variables.csv` and `labels_version` cannot change. Re-run `16` after any change of
@@ -212,3 +217,19 @@ mechanics check of the whole chain runs on a 17-file mini corpus under its own `
 real yearly files: `embed --bin 0` would encode all 1.3 M posts and overwrite the local MiniLM cache), and `16` is tested on a
 synthetic reference derived from `post_variables.csv` through its `REF_*` environment variables
 (`docs/session-12_2026-10-30/00_approvals.md` §5).
+
+## 12. The chapter figures from the co-authors' tags (session 14, 2026-10-31)
+
+Decisions V1–V14 and the record: `docs/session-14_2026-10-31/00_approvals.md`; the folder's `results/descriptives/README.md`.
+
+```bash
+git pull --no-rebase origin main             # the co-authors upload their review files on GitHub (one file per bin, BIN<N>_topics_labelled_*.csv)
+Rscript code/17-topic-tags.R                 # seconds: results/analysis/topic_tags.csv (+ _changes, _summary) from the nine review files (rule V3)
+Rscript code/18-chapter-figures.R            # ~1 min: figures and tables 1a-3d in results/descriptives/ (+ alternative visualizations/),
+                                             #   data/analysis/post_political_weights.csv (M1 weights per post; not in git)
+```
+`17` stops when a bin has two files or a tag lies outside the scheme, and warns when a bin has no file (its posts are uncoded in
+`18`: blank months in the political series, the uncoded share in the 2a table). Re-run both after any change to a review file or
+to the join table; `18` alone after a change to its figures. `TAGS_REVIEW_DIR` / `TAGS_OUT_DIR` / `TAGS_LABELS` and `FIG_TAGS` /
+`FIG_OUT_DIR` / `FIG_WEIGHTS` redirect the inputs and outputs for a test (the missing-bin and duplicate-bin paths were tested on
+scratch copies on 2026-10-31). The qualifier tags never enter an aggregate (V14); the review files are never written by 17 or 18.

@@ -41,7 +41,9 @@
 # 2. Re-runnable: qt_ columns already in a file are dropped and recomputed from QUALTAG, so the script is simply
 #    re-run after TP edits a file or uploads a new bin.
 # 3. One file per bin: the script finds BIN<N>_topics_labelled_*.csv and stops if a bin has two (a superseded
-#    version is removed with git rm, as BIN1_..._TP:BA.csv and BIN3_..._TP.csv were on 2026-10-28).
+#    version is removed with git rm, as BIN1_..._TP:BA.csv and BIN3_..._TP.csv were on 2026-10-28, and
+#    BIN5_..._TP.csv on 2026-10-31).  A file without a QUALTAG column (BA's even bins, coded directly in the qt_
+#    columns) is skipped with a log line (2026-10-31); the scheme and parse_tags() live in code/R/qualtag-utils.R.
 #
 # HOW TO RUN (repository root)
 # ----------------------------
@@ -69,25 +71,14 @@ REVIEW_DIR <- Sys.getenv("QT_REVIEW_DIR", "results/analysis/manual review")
 FILE_RE    <- "^BIN(\\d)_topics_labelled_.*\\.csv$"
 SETTLE     <- file.path(REVIEW_DIR, "QUALTAG_to_settle.csv")
 
-# The scheme: tag as read (lower case, single spaces) -> its indicator column
-POLITICAL_TAGS <- c("host country domestic" = "qt_host_country_domestic", "national identity" = "qt_national_identity",
-                    "fifa body" = "qt_fifa_body", "ir" = "qt_ir")
-QUALIFIER_TAGS <- c("club" = "qt_club", "intl non-wc" = "qt_intl_non_wc", "player" = "qt_player", "humour" = "qt_humour")
-TAG_COL        <- c("wc" = "qt_wc", POLITICAL_TAGS, QUALIFIER_TAGS, "review" = "qt_review")
-NONPOL         <- "non-political"                  # no column of its own: it decides qt_political
-SPELLINGS      <- c("humor" = "humour")            # variants found in the files, read as the scheme's spelling
+source(file.path(dirname(.utils), "qualtag-utils.R"))   # the scheme (POLITICAL_TAGS, QUALIFIER_TAGS, TAG_COL, NONPOL,
+                                                        # SPELLINGS) and parse_tags(), shared with 17-topic-tags.R (2026-10-31)
 QT_COLS        <- c("qt_wc", "qt_political", unname(POLITICAL_TAGS), unname(QUALIFIER_TAGS), "qt_review")
 INDICATOR_COLS <- setdiff(QT_COLS, "qt_political")
 
 # ---------------------------------------------------------------------------
-# 1. Helpers: parse a QUALTAG cell, recode it, write a file in its source format
+# 1. Helpers: recode a topic's tags (parse_tags() comes from qualtag-utils.R), write a file in its source format
 # ---------------------------------------------------------------------------
-parse_tags <- function(x) {
-  p <- tolower(gsub("\\s+", " ", trimws(strsplit(x, ";", fixed = TRUE)[[1]])))
-  p <- p[p != ""]                                  # a trailing ';' leaves an empty part
-  unique(unname(ifelse(p %in% names(SPELLINGS), SPELLINGS[p], p)))
-}
-
 # One topic's tags -> the 11 qt_ values and the reason it goes on TP's list ("" = settled)
 recode_tags <- function(tags) {
   out <- setNames(rep("", length(QT_COLS)), QT_COLS)
@@ -140,6 +131,11 @@ src <- lapply(files, function(f) {
   d <- read_chr(p, trim_ws = FALSE)                # keep TP's cells exactly (readr trims by default)
   list(path = p, raw = raw, fmt = source_format(raw), d = d)
 })
+# BA's files (bins 2, 4, 6, 8) carry the qt_ columns typed in directly and no QUALTAG column: nothing to recode, so they
+# are skipped (2026-10-31, session 14; before that the script stopped on them).  17-topic-tags.R reads both kinds.
+has_qt <- vapply(src, function(s) "QUALTAG" %in% names(s$d), logical(1))
+if (any(!has_qt)) log_msg("skipped, no QUALTAG column (coded directly in the qt_ columns): %s", paste(files[!has_qt], collapse = ", "))
+src <- src[has_qt]; files <- files[has_qt]; bins <- bins[has_qt]
 
 # Every tag must belong to the scheme before anything is written
 for (i in seq_along(src)) {

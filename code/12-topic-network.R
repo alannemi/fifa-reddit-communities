@@ -34,7 +34,7 @@
 # ----------------------------
 #   Rscript code/12-topic-network.R          # ~1-2 min
 #
-# OUTPUTS  (results/descriptives/)
+# OUTPUTS  (results/diagnostics/; results/descriptives/ until 2026-10-31)
 # -------
 #   fig_D1_topic_network_families.png|pdf   the network coloured by the eight largest families, labelled F1-F8
 #   fig_D1b_topic_network_families_unlabelled.png|pdf   the same without the labels on the map (legend only)
@@ -54,7 +54,7 @@ ROOT <- find_root()
 setwd(ROOT)
 
 LABELS   <- "results/analysis/topic_labels_all_bins.csv"
-OUT_DIR  <- "results/descriptives"
+OUT_DIR  <- "results/diagnostics"          # moved from results/descriptives on 2026-10-31 (session 14, V10)
 K        <- 5L                     # nearest neighbours per topic
 MIN_SIM  <- 0.65                   # cosine cut-off for an edge
 N_COLOUR <- 8L                     # families coloured (the categorical palette has eight slots)

@@ -1,42 +1,60 @@
 # results/descriptives/
 
-Descriptive figures of the r/soccer corpus (2010–2026) and the validation tables of the sentiment measure. Every figure comes as `fig_<id>.png` (300 dpi) and `.pdf`, with the numbers behind it in `tab_<id>.csv`.
+The chapter's descriptive figures and tables (1a–3d), written by `code/18-chapter-figures.R` from the cleaned corpus (the 17
+yearly files), the join table `data/analysis/post_variables.csv` and the topic-tag table `results/analysis/topic_tags.csv`
+(`code/17-topic-tags.R`). Every figure comes as `fig_<id>.png` (300 dpi) and `.pdf`, with the numbers behind it in
+`tab_<id>.csv`; `alternative visualizations/` holds the counterpart of each political figure (raw counts where the main version
+shows shares, shares where it shows counts; the counts behind 3b–3d). Specified by Alan Nemirovski on 2026-10-31 (decisions
+V1–V14, `docs/session-14_2026-10-31/00_approvals.md`). The earlier A–E set (scripts 11 and 14) was retired the same day, and the
+diagnostics that lived here (D, F, G1, the sentiment validation tables) moved to `results/diagnostics/`.
 
-- **Made by:** `code/11-descriptives.R`, which needs no other step first: `Rscript code/11-descriptives.R`, about 1 min. The E figures come from `code/14-worldcup-figures.R` (about 20 s; it reads the QUALTAG variables written by `code/13-recode-qualtag.R`). The D figures come from `code/12-topic-network.R` (about 20 s; it reads the topic embeddings through the `.venv` Python). The validation tables (`sentiment_validation_*.csv`) come from `code/10-sentiment-validation.R`, once the coders have returned their sheets. The F tables and figures come from `code/15-outlier-calibration.R` (about 30 s; it reads the 36 coded outlier judgement samples under `results/analysis/bin-N/outlier_calibration/`). The G figure comes from `code/16-reference-map.R` (about 2–3 min; it reads the whole-corpus reference run's post table, which is not in git, beside `post_variables.csv`; session 12).
-- **Decisions and notes:** `docs/session-09_2026-10-27/` (`00_approvals.md` E1–E7, `02_session-notes.md` §3–§4). The F figures: `docs/session-11_2026-10-30/` (the assessment `01_outlier-calibration-results.md`, decisions K1–K7 in `00_approvals.md`).
+- **Re-run:** `Rscript code/17-topic-tags.R && Rscript code/18-chapter-figures.R` (about 1 min) after any change to the review
+  files in `results/analysis/manual review/` or to the join table. Every CSV is read as text.
+- **Titles only:** no subtitle or caption on any figure; the populations and reading notes below go with them into the chapter text.
 
-| id | Figure | Population |
+## Populations and rules
+
+- **Political topics** (`topic_tags.csv`, rule V3): a topic carrying any of the four analytical categories — domestic politics
+  (tag Host Country Domestic), international relations (IR), FIFA governance (FIFA Body), identity & nationalism (National
+  Identity) — is political; a topic with none is non-political unless it carries REVIEW, in which case it is **excluded**
+  (REVIEW beside a category is political). In BA's even bins `qt_political = 1` without a category is political and
+  *uncategorised* (in the political share, in no category); blank = non-political (V9). The qualifier tags (WC, Club, Intl
+  non-WC, player, humour) never enter an aggregate (V14). A topic with several categories counts fully in each (Q8), so the
+  category shares of 2c/2d can add up to more than 100 % of the political posts.
+- **Post weights (decision M1, V4):** a cluster or reassigned post weighs 1 in its topic, a dual post 0.5 in each of its two
+  topics, an outlier or not-modelled post 0. A post's political weight is 0, 0.5 or 1; its category weights likewise.
+  Denominators are all posts of the month / day / bin, each with weight 1. **Non-political = everything not political** (V5):
+  1 − the political weight, so outliers, excluded and uncoded posts are non-political, and 2b is the exact complement of the
+  political share. A bin without a review file would be *uncoded* (its months blank in the political series; the 2a table
+  reports the share); since 2026-10-31 every bin is coded. The weights of every post are in `data/analysis/post_political_weights.csv` (not in git).
+- `score` and `num_comments` are crawl-time values; the archive's crawl lag drops from weeks to hours in July 2023 (codebook
+  limitation 11, §8.5), and the figures do not mark the break (decision E5, 2026-10-27).
+- The VADER variables are the sentimental valence of a title's wording, not the author's sentiment (κ = 0.24 against one human
+  coder; codebook §8.2). 3b and 3c use the weighted mean with the weights above; se = sqrt(Σ w (x − m)² / Σ w) / sqrt(Σ w).
+
+| id | Figure / table | Population |
 |---|---|---|
-| A1_monthly_volume | Posts per month, World Cup bins shaded | all 1,302,021 posts |
-| A2_worldcup_weekly_volume | Posts per week around each World Cup, aligned on kick-off | the five World Cup bins |
-| B1_monthly_comments | Median `num_comments` per month, with IQR | all posts |
-| B2_monthly_score | Median `score` per month, with IQR (the view is clipped above the second-highest month) | all posts |
-| B3_engagement_by_bin | Both metrics per period bin, median and IQR | all posts |
-| C1_monthly_vader_mean | Mean VADER title score per month, with 95 % CI | all posts |
-| C2_monthly_vader_labels | Shares of positive / neutral / negative titles per month | all posts |
-| C3_tone_by_bin | Topic tone composition per bin (heatmap) | `cluster` + `reassigned` posts (827,744) |
-| C4_tone_ranks | Rank of the leading tones across the bins | as C3 |
-| C_other_contents (table only) | The analysts' tones still mapped to `other`, per bin | as C3 |
-| D1_topic_network_families | Topic network (semantic similarity, all bins), the eight largest families coloured and labelled F1–F8 | all 6,245 topics (6,053 in the main network) |
-| D1b_topic_network_families_unlabelled | The same without labels on the map, with larger points | as D1 |
-| D2_topic_network_periods | The same layout, one panel per period bin | as D1 |
-| D1_topic_families / _nodes / _edges (tables) | Families (size, bins, largest topics, tones); topics with family and position; links with similarity | as D1 |
-| E1_political_posts | Left: political posts as a share of all posts in each World Cup bin. Right: share of those posts in each political category (national identity, FIFA body, host country domestic, IR; a topic can carry several) | posts in cluster or singly reassigned to a topic coded political (`qt_political = yes`, `code/13-recode-qualtag.R`); denominator all posts of the bin |
-| E1_political_categories (table) | The category counts and shares behind the right-hand panel | as E1 |
-| E1b_political_categories_daily | The four categories day by day through each tournament: one panel per World Cup, days from the opening match, knockout stage shaded, shared y-axis; share of the day's posts over a centred 7-day window | as E1; denominator all posts of the day |
-| E2_worldcup_weekly_vader | Mean VADER title score per week around each World Cup, aligned on kick-off, with 95 % CI | all posts of the five World Cup bins |
-| E3_monthly_subscribers | Monthly median of `subreddit_subscribers`, March 2018 – July 2026 (crawl-time values; none before 2018) | posts with a subscriber value |
-| E5_vader_by_political_category | Mean VADER title score of the political posts per category and World Cup, 95 % CI; non-political posts of the same bins as the reference (grey) | as E1 (a topic with several tags counts in each category); non-political = cluster + reassigned posts of `qt_political = no` topics |
-| E6_tones_by_political_category | The analysts' topic tones in each political category, the five World Cups pooled (heatmap of shares); non-political column for reference | as E5 |
-| E7_tone_ranks_by_political_category | E4's layout with one panel per political category and the non-political posts: the ten most frequent topic tones, ranked by share of posts, five World Cups pooled (the table ranks every tone, with its topic count) | as E5 |
-| E4_worldcup_tone_ranks | The ten most frequent topic tones in each World Cup bin, ranked by share of posts (the table ranks every tone) | `cluster` + `reassigned` posts of the World Cup bins |
-| F1_outlier_precision_by_band | Share of the admitted outlier posts judged to belong to their topic, per similarity band (35th, 50th, 65th, ≥ 80th percentile) and bin, with 95 % Wilson intervals and the coder named | the 36 coded judgement samples: 100 raw outliers per band and bin, 3,600 in all (BA bins 1, 3, 5, 7; AM 6, 8, 9; AN 2, 4) |
-| F2_outlier_precision_by_similarity | The same share against the absolute cosine similarity of the post to its nearest topic, one line per coder and pooled | as F1 |
-| F1 / F2 / F3 (tables) | Precision per bin × band; pooled per band, tier, coder and period type (plain pooling, the figure of record, beside the corpus-weighted and equal-coder variants); per absolute-similarity band | as F1 |
-| F4 / F4b (tables) | What each candidate reassignment floor would leave as outliers, per bin; corpus-wide tiers under candidate (floor, single-topic) quantile pairs | every raw outlier's similarity to its nearest topic (`outlier_nearest.csv`, nine bins) |
-| G1_reference_best_share_by_bin | Share of a period topic's counted posts that fall into its best-matching topic of the whole-corpus reference model, box plots per period bin (the table: median, quartiles, share above one half, agreement of the post-overlap and centroid methods) | the period topics with posts counted (cluster + reassigned) on both sides; the reference model of session 12 (`results/analysis/reference/`) |
+| 1a_monthly_volume | Posts per month, World Cup bins shaded | all 1,302,021 posts |
+| 1b_monthly_comments_per_post | Mean `num_comments` per post per month (the table carries the median and quartiles too) | all posts |
+| 1c_monthly_comments | Comments per month (the sum of `num_comments`) | all posts |
+| 2a_political_share (table) | Political posts as a share of all posts, per period bin and overall; the uncategorised, excluded and uncoded shares beside it | all posts; the political weight (M1) |
+| 2b_political_share_monthly | Political and non-political posts as shares of the month's posts | all posts |
+| 2c_political_categories (table) | Political posts carrying each category, as a share of the political posts and of all posts, per bin and overall | the category weights |
+| 2d_political_categories_by_world_cup | The four categories as shares of the bin's political posts, one group of bars per World Cup bin (the former E1, right half) | the five tournament bins |
+| 2e_political_categories_daily | The categories day by day through each tournament: days from the opening match, knockout stage shaded, share of the day's posts over a centred 7-day window (the former E1b) | the tournament days of the five World Cup bins |
+| 2f_comments_political_share (+ `_by_bin`) | Comments under political posts as a share of the month's comments (Σ political weight × comments / Σ comments); the second table per bin and overall | all posts |
+| 3a_political_categories_monthly | Share of the month's posts carrying each category, four lines, whole corpus | all posts |
+| 3b_vader_by_political_category | Weighted mean VADER title score per category and World Cup with its 95 % CI; the non-political posts of the same bins as the grey reference (the former E5) | the tournament bins |
+| 3c_vader_by_category_monthly | The same per month, with 95 % CI ribbons, whole corpus | all posts of coded months |
+| 3d_political_user_concentration (+ `_curve`) | Users ranked by their political posts: the cumulative share of users against the cumulative share of political posts, the diagonal as equality; the table: users, top-1 / 5 / 10 % shares, the Gini index, the share of political posts whose author reads `[deleted]` | political posts with a named author (32,031 users). `[deleted]` authors hold 13 % of the political weight: about 30 % of the posts crawled late (2010 – June 2023) carry no author, none from 2024 (limitation 11) |
 
-**Reading notes:**
-- `score` and `num_comments` are crawl-time values. The archive's crawl lag drops from weeks to hours in July 2023 (session notes §4), and more posts that moderators later removed remain in the clean corpus from then on. Volume and engagement before and after mid-2023 are therefore not directly comparable (codebook limitation 11, §8.5).
-- The VADER variables are the sentimental valence of a post's wording, not the author's sentiment. Validation against one human coder: 56 % agreement, κ = 0.24 (codebook §8.2). The tables `sentiment_validation_*.csv` hold the validation figures.
-- The outlier tiers (decision D9) admit about half right: 53.4 % of the singly reassigned posts and 43.6 % of the dual-tier posts were judged to belong to their topic (F1–F3; single-coded, and the coders differ). Since decision K1 (2026-10-30) the topic table counts cluster + reassigned posts only, the population the C, D and E figures already used.
+`alternative visualizations/`: `2a_political_counts`, `2b_political_counts_monthly`, `2c_political_category_counts`,
+`2d_political_categories_by_world_cup_counts`, `2e_political_categories_daily_counts` (posts over the 7-day window),
+`2f_comments_political_counts`, `3a_political_categories_monthly_counts` (also the counts behind 3c),
+`3b_posts_by_political_category` (log scale, with the non-political reference), `3d_political_user_concentration_counts`
+(cumulative political posts against user rank).
+
+**Reading notes.** The monthly category lines (3a, 3c) rest on few posts in the early years (2010: about 400 posts a month) and
+are noisy; the 3c ribbons widen accordingly. Engagement levels before and after July 2023 are not comparable (limitation 11).
+The political shares are 0.5–4.5 points above the retired E1 figures of session 10 for the same bins — the effect of the
+half-weighted dual posts (M1) and of rule V3 (REVIEW beside a category, conflicts and untagged topics now decided).

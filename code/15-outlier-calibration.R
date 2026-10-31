@@ -37,7 +37,7 @@
 # ----------------------------
 #   Rscript code/15-outlier-calibration.R          # ~30 s
 #
-# OUTPUTS  (results/descriptives/)
+# OUTPUTS  (results/diagnostics/; results/descriptives/ until 2026-10-31)
 # -------
 #   tab_F1_outlier_precision_bin_band.csv       bin x band: coder, n, belongs, precision, Wilson CI, posts of the band in the corpus
 #   tab_F2_outlier_precision_pooled.csv         pooled by band, tier, coder, period type and coder x tier: plain pooling (the
@@ -59,7 +59,7 @@ setwd(ROOT)
 source(file.path(dirname(.utils), "plot-utils.R"))   # palette, theme_fifa, save_fig / save_tab
 
 ANALYSIS <- "results/analysis"
-OUT_DIR  <- "results/descriptives"
+OUT_DIR  <- "results/diagnostics"          # moved from results/descriptives on 2026-10-31 (session 14, V10)
 dir.create(OUT_DIR, recursive = TRUE, showWarnings = FALSE)
 
 BINS <- tibble(bin = 1:9,

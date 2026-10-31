@@ -11,13 +11,21 @@ The pipeline itself does not read anything here: the files it applies are the pe
 
 | File | Content |
 |---|---|
-| `BIN<N>_topics_labelled_*.csv` | One file per tournament bin (1, 3, 5, 7, 9): the bin's labelled topics with TP's qualitative tags in `QUALTAG` (bin 1 with BA). One file per bin: a superseded version is removed (`BIN1_…_TP:BA.csv` and `BIN3_…_TP.csv` on 2026-10-28; git keeps them) |
+| `BIN<N>_topics_labelled_*.csv` | One file per bin, all nine since 2026-10-31. Tournament bins (1, 3, 5, 7, 9): the bin's labelled topics with TP's qualitative tags in `QUALTAG` (bin 1 with BA) and the 11 `qt_` columns of script 13. Interim bins (2, 4, 6, 8): BA's coding typed directly into the `qt_` columns (1 / 0 / blank; no `QUALTAG`); bins 6 and 8 arrived as `topics_labelled_bin<N>_BA.csv` on 2026-10-31 and were renamed to the convention. A superseded version is removed with `git rm` (`BIN1_…_TP:BA.csv` and `BIN3_…_TP.csv` on 2026-10-28; `BIN5_…_TP.csv` on 2026-10-31 — `BIN5_topics_labelled_TP_FINAL.csv` is the file of record, decision V13; git keeps them) |
 | `QUALTAG_to_settle.csv` | The topics whose tags do not decide whether they are political: `bin, topic_id, name, QUALTAG, issue`. Written by `code/13-recode-qualtag.R`; TP settles them in the bin files, then the script is re-run |
 | `sentiment_review_coder_A-coded-AN.csv` | Alan Nemirovski's coding of the 337-post VADER validation sample (session 09) |
 
+**The analytical status of every topic** — political / non-political / excluded and the four categories (domestic politics, international
+relations, FIFA governance, identity & nationalism) — is derived from these files, read-only, by `code/17-topic-tags.R` into
+`results/analysis/topic_tags.csv` (with `topic_tags_changes.csv`, every topic whose status differs from the file's own `qt_political`, and
+`topic_tags_summary.csv`), by the rule of 2026-10-31 (decision V3, `docs/session-14_2026-10-31/00_approvals.md`): any category tag →
+political (also beside `non-political` or REVIEW); no category tag → non-political unless REVIEW → excluded; BA's `qt_political = 1`
+without a category → political, uncategorised; BA's blank → non-political. The chapter figures (`code/18-chapter-figures.R`,
+`results/descriptives/`) aggregate posts from that table; nothing is written back here.
+
 ## The QUALTAG variables (`code/13-recode-qualtag.R`, 2026-10-28)
 
-The script adds 11 columns right after `QUALTAG` in each bin file. `QUALTAG` itself and every other column stay exactly as
+The script adds 11 columns right after `QUALTAG` in each of TP's bin files (since 2026-10-31 it skips BA's files, which have no `QUALTAG`; the scheme and the parser live in `code/R/qualtag-utils.R`, shared with script 17). `QUALTAG` itself and every other column stay exactly as
 the co-authors wrote them. The scheme and the rules are Alan Nemirovski's (`docs/session-10_2026-10-28/00_approvals.md`):
 
 | Column | From the tag(s) | Values |
@@ -57,6 +65,6 @@ They live with their bin, not here: `results/analysis/bin-N/outlier_calibration/
 file per similarity band (35th, 50th, 65th, 80th percentile of the bin's outlier-to-nearest-topic similarity; 100 posts each),
 beside the blank file the pipeline wrote and the band table `calibration_table.csv`. Coders: BA (bins 1, 3, 5, 7), AM (bins 6, 8,
 9), AN (bins 2, 4); `belongs` = 1/0. The pipeline never rewrites a file with `coded` in its name (any separator or suffix).
-`code/15-outlier-calibration.R` summarises them (`results/descriptives/tab_F1`–`tab_F4b`, figures F1–F2); the assessment and
+`code/15-outlier-calibration.R` summarises them (`results/diagnostics/tab_F1`–`tab_F4b`, figures F1–F2; in `results/descriptives/` until 2026-10-31); the assessment and
 the decisions taken on them (K1–K7) are in `docs/session-11_2026-10-30/`. Inter-coder checks are a step of the chapter's editing
 process (K2).

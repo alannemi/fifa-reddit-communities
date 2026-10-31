@@ -5,8 +5,9 @@
 #
 # The dataviz reference palette in light mode (print), the ggplot theme, and the writers of a figure (PNG via
 # ragg at 300 dpi + PDF via cairo) and of the table behind it.  save_fig() and save_tab() write to OUT_DIR,
-# which the calling script defines.  Moved out of 11-descriptives.R on 2026-10-27 when the network figure
-# (12) was added, so that every figure of the chapter uses one palette and one theme.
+# which the calling script defines, or to the folder given as `dir` (18-chapter-figures.R writes its alternative
+# versions to a subfolder that way; added 2026-10-31).  Moved out of 11-descriptives.R on 2026-10-27 when the
+# network figure (12) was added, so that every figure of the chapter uses one palette and one theme.
 ##############################################################################
 
 suppressPackageStartupMessages({ library(ggplot2); library(readr) })
@@ -35,10 +36,13 @@ theme_fifa <- function() {
           legend.title = element_blank(), plot.margin = margin(10, 14, 8, 10))
 }
 
-save_fig <- function(p, id, w = 8, h = 4.5) {
-  ggsave(file.path(OUT_DIR, paste0("fig_", id, ".png")), p, width = w, height = h, dpi = 300, device = ragg::agg_png, bg = SURFACE)
-  ggsave(file.path(OUT_DIR, paste0("fig_", id, ".pdf")), p, width = w, height = h, device = grDevices::cairo_pdf, bg = SURFACE)   # cairo: en dashes and minus signs
+save_fig <- function(p, id, w = 8, h = 4.5, dir = OUT_DIR) {
+  dir.create(dir, recursive = TRUE, showWarnings = FALSE)
+  ggsave(file.path(dir, paste0("fig_", id, ".png")), p, width = w, height = h, dpi = 300, device = ragg::agg_png, bg = SURFACE)
+  ggsave(file.path(dir, paste0("fig_", id, ".pdf")), p, width = w, height = h, device = grDevices::cairo_pdf, bg = SURFACE)   # cairo: en dashes and minus signs
   log_msg("figure %s", id)
 }
-save_tab <- function(t, id) write_csv(t, file.path(OUT_DIR, paste0("tab_", id, ".csv")), na = "")
-
+save_tab <- function(t, id, dir = OUT_DIR) {
+  dir.create(dir, recursive = TRUE, showWarnings = FALSE)
+  write_csv(t, file.path(dir, paste0("tab_", id, ".csv")), na = "")
+}

@@ -94,7 +94,7 @@ existing figures in `results/descriptives/`, ready to run once the topic labels 
 - **Documentation:** `results/descriptives/README.md` rewritten, `results/diagnostics/README.md` new, `results/README.md`,
   `manual review/README.md`, `results/analysis/reference/README.md`, codebook (two paths; PDF re-rendered), design v2.1 (one path),
   `memory/workflows.md` (§8, §9, §10, §11, new §12), `docs/README.md`, `memory/2026-10-31_session-14.md`.
-- Nothing committed in this session (Alan commits; pull before commit).
+- Committed and pushed as `9fb9ff51` at Alan's request at the close of the session.
 
 ## 6. Open after this session
 

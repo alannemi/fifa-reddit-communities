@@ -32,7 +32,9 @@
 # * Comments are crawl-time values; the July-2023 crawl break (codebook limitation 11) is not marked (decision E5).
 # * Weighted mean and se: m = sum(w x) / sum(w); se = sqrt(sum(w (x - m)^2) / sum(w)) / sqrt(sum(w)); effective n = sum(w).
 # * 3d: authors other than "[deleted]", ranked by their political weight; x = the cumulative share of users, y = the
-#   cumulative share of political weight; the Gini index from the same ranking.  "[deleted]" authors are about 30 % of
+#   cumulative share of political weight; the Gini index from the same ranking; the same curve for the non-political posts
+#   (1 - the political weight) as the reference on the same panel, the Ginis in the corner; for the whole corpus, the five
+#   tournament bins pooled, and one panel per tournament bin.  "[deleted]" authors are about 30 % of
 #   the posts the archive crawled late (2010 - June 2023) and none from 2024: the table reports their share.
 # * Titles only: no subtitle, no caption (author, 2026-10-28 / 2026-10-31).
 #
@@ -345,32 +347,63 @@ p <- ggplot(c3, aes(month, mean, colour = group, fill = group, linetype = group)
 save_fig(p, "3c_vader_by_category_monthly")
 
 # ---------------------------------------------------------------------------
-# 3d. Concentration of political posts among users (authors other than [deleted])
+# 3d. Concentration of political posts among users (authors other than [deleted]), the non-political posts as the
+#     reference curve on the same panel, the Gini of each curve in the corner (Alan Nemirovski, 2026-10-31): the whole
+#     corpus, the five tournament bins pooled, and one panel per tournament bin
 # ---------------------------------------------------------------------------
-pol <- d |> filter(w_political > 0)
-total_w <- sum(pol$w_political); deleted_w <- sum(pol$w_political[pol$author == "[deleted]"])
-users <- pol |> filter(author != "[deleted]") |> group_by(author) |> summarise(w = sum(w_political), .groups = "drop") |>
-  arrange(desc(w), author) |> mutate(rank = row_number(), cum_w = cumsum(w), share_users = rank / n(), share_posts = cum_w / sum(w))
-xs <- sort(users$w); n_u <- length(xs)
-gini <- (2 * sum(seq_len(n_u) * xs)) / (n_u * sum(xs)) - (n_u + 1) / n_u
-top_share <- function(q) users$share_posts[max(1, ceiling(q * n_u))]
-attributed_w <- sum(users$w); max_w <- max(users$w); one_post <- sum(users$w <= 1)   # before the tibble: `users` becomes a column there
-d3 <- tibble(users = n_u, political_weight_attributed = attributed_w, political_weight_total = total_w,
-             deleted_share = deleted_w / total_w, top1_share = top_share(0.01), top5_share = top_share(0.05), top10_share = top_share(0.10),
-             gini = gini, max_posts_one_user = max_w, users_with_one_post = one_post)
-check("3d the curve ends at 100 % of users and posts, Gini in [0, 1]",
-      abs(tail(users$share_users, 1) - 1) < 1e-9 && abs(tail(users$share_posts, 1) - 1) < 1e-9 && gini >= 0 && gini <= 1)
+concentration <- function(dd, w, label, scope) {  # w: the posts' weight in the group; users ranked by their weight, descending
+  pol <- dd[w > 0, ] |> mutate(.w = w[w > 0])
+  total_w <- sum(pol$.w); deleted_w <- sum(pol$.w[pol$author == "[deleted]"])
+  users <- pol |> filter(author != "[deleted]") |> group_by(author) |> summarise(w = sum(.w), .groups = "drop") |>
+    arrange(desc(w), author) |> mutate(rank = row_number(), cum_w = cumsum(w), share_users = rank / n(), share_posts = cum_w / sum(w))
+  xs <- sort(users$w); n_u <- length(xs)
+  gini <- (2 * sum(seq_len(n_u) * xs)) / (n_u * sum(xs)) - (n_u + 1) / n_u
+  top_share <- function(q) users$share_posts[max(1, ceiling(q * n_u))]
+  attributed_w <- sum(users$w); max_w <- max(users$w); one_post <- sum(users$w <= 1)   # before the tibble: `users` becomes a column there
+  stats <- tibble(scope = scope, group = label, users = n_u, weight_attributed = attributed_w, weight_total = total_w,
+                  deleted_share = deleted_w / total_w, top1_share = top_share(0.01), top5_share = top_share(0.05),
+                  top10_share = top_share(0.10), gini = gini, max_posts_one_user = max_w, users_with_one_post = one_post)
+  idx <- unique(c(1L, round(seq(1, n_u, length.out = 2000L)), n_u))
+  list(stats = stats, curve = users[idx, ] |> transmute(scope = scope, group = label, rank, share_users, cum_w, share_posts))
+}
+both_groups <- function(dd, scope) {
+  a <- concentration(dd, dd$w_political, POL_LAB, scope); b <- concentration(dd, dd$w_nonpol, NONPOL_LAB, scope)
+  list(stats = bind_rows(a$stats, b$stats), curve = bind_rows(a$curve, b$curve))
+}
+SCOPE_CORPUS <- "whole corpus"; SCOPE_POOLED <- "tournament bins pooled"
+scopes <- c(list(both_groups(d, SCOPE_CORPUS), both_groups(d |> filter(period_bin %in% WC$period_bin), SCOPE_POOLED)),
+            lapply(WC$period_bin, function(b) both_groups(d |> filter(period_bin == b), as.character(cup_lab(b)))))
+SCOPE_LEVELS <- c(SCOPE_CORPUS, SCOPE_POOLED, levels(cup_lab(1L)))
+d3 <- bind_rows(lapply(scopes, `[[`, "stats")) |> mutate(scope = factor(scope, SCOPE_LEVELS), group = factor(group, c(POL_LAB, NONPOL_LAB)))
+curves <- bind_rows(lapply(scopes, `[[`, "curve")) |> mutate(scope = factor(scope, SCOPE_LEVELS), group = factor(group, c(POL_LAB, NONPOL_LAB)))
+check("3d every curve ends at 100 % of users and posts, Gini in [0, 1]",
+      all(abs(curves |> group_by(scope, group) |> summarise(u = last(share_users), p = last(share_posts), .groups = "drop") |> select(u, p) - 1) < 1e-9) &&
+        all(d3$gini >= 0 & d3$gini <= 1))
 save_tab(d3, "3d_political_user_concentration")
-idx <- unique(c(1L, round(seq(1, n_u, length.out = 2000L)), n_u))
-save_tab(users[idx, ] |> select(rank, share_users, cum_w, share_posts), "3d_political_user_concentration_curve")
-p <- ggplot(users[idx, ], aes(share_users, share_posts)) +
-  geom_abline(slope = 1, intercept = 0, colour = AXIS, linetype = "dashed", linewidth = 0.4) +
-  geom_line(colour = INK2, linewidth = 0.7) +
-  scale_x_continuous(labels = pct, expand = expansion(mult = 0.01)) + scale_y_continuous(labels = pct, expand = expansion(mult = c(0, 0.04))) +
-  labs(title = "Concentration of political posts among users", x = "Share of users, ranked by political posts", y = "Share of political posts") +
-  theme_fifa()
-save_fig(p, "3d_political_user_concentration", w = 6, h = 5.2)
-p <- ggplot(users[idx, ], aes(rank, cum_w)) + geom_line(colour = INK2, linewidth = 0.7) +
+save_tab(curves, "3d_political_user_concentration_curve")
+gini_labels <- function(st) st |> group_by(scope) |>
+  summarise(label = sprintf("Gini\nPolitical %.2f\nNon-political %.2f", gini[group == POL_LAB], gini[group == NONPOL_LAB]), .groups = "drop")
+conc_plot <- function(sc, title) {               # both curves, the equality line clipped to the unit square, the Ginis in the corner
+  cv <- curves |> filter(scope %in% sc); st <- d3 |> filter(scope %in% sc)
+  ggplot(cv, aes(share_users, share_posts, colour = group, linetype = group)) +
+    annotate("segment", x = 0, y = 0, xend = 1, yend = 1, colour = AXIS, linetype = "dashed", linewidth = 0.4) +
+    geom_line(linewidth = 0.7) +
+    geom_text(data = gini_labels(st), aes(x = 0.97, y = 0.03, label = label), inherit.aes = FALSE, hjust = 1, vjust = 0,
+              size = 2.5, colour = INK2, lineheight = 0.95) +
+    scale_colour_manual(values = POL_COLS) + scale_linetype_manual(values = setNames(c("solid", "longdash"), c(POL_LAB, NONPOL_LAB))) +
+    scale_x_continuous(labels = pct, limits = c(0, 1), expand = expansion(mult = 0.01)) +
+    scale_y_continuous(labels = pct, limits = c(0, 1), expand = expansion(mult = c(0, 0.04))) +
+    labs(title = title, x = "Share of users, ranked by posts in the group", y = "Share of the group's posts") +
+    theme_fifa() + theme(legend.key.width = unit(2.2, "lines"))
+}
+save_fig(conc_plot(SCOPE_CORPUS, "Concentration of political and non-political posts among users"), "3d_political_user_concentration", w = 6.5, h = 5.4)
+save_fig(conc_plot(SCOPE_POOLED, "Concentration of posts among users, World Cup bins pooled"),
+         "3d_political_user_concentration_tournaments_pooled", w = 6.5, h = 5.4)
+p <- conc_plot(levels(cup_lab(1L)), "Concentration of political and non-political posts among users by World Cup") +
+  facet_wrap(~ scope, nrow = 1) +
+  theme(panel.spacing.x = unit(1.1, "lines"), strip.text = element_text(colour = INK2, size = 10, face = "bold", hjust = 0.5))
+save_fig(p, "3d_political_user_concentration_by_tournament", w = 12, h = 3.9)
+p <- ggplot(curves |> filter(scope == SCOPE_CORPUS, group == POL_LAB), aes(rank, cum_w)) + geom_line(colour = INK2, linewidth = 0.7) +
   scale_x_continuous(labels = label_comma(), expand = expansion(mult = 0.01)) + y_count(0.04) +
   labs(title = "Cumulative political posts by user rank", x = "Users, ranked by political posts", y = "Cumulative political posts") + theme_fifa()
 save_fig(p, "3d_political_user_concentration_counts", w = 6, h = 5.2, dir = ALT_DIR)
@@ -378,7 +411,8 @@ save_fig(p, "3d_political_user_concentration_counts", w = 6, h = 5.2, dir = ALT_
 # ---------------------------------------------------------------------------
 # 4. Gate
 # ---------------------------------------------------------------------------
-MAIN <- c("fig_1a_monthly_volume", "fig_1b_monthly_comments_per_post", "fig_1c_monthly_comments", "tab_2a_political_share",
+MAIN <- c("fig_3d_political_user_concentration_tournaments_pooled", "fig_3d_political_user_concentration_by_tournament",
+          "fig_1a_monthly_volume", "fig_1b_monthly_comments_per_post", "fig_1c_monthly_comments", "tab_2a_political_share",
           "fig_2b_political_share_monthly", "tab_2c_political_categories", "fig_2d_political_categories_by_world_cup",
           "fig_2e_political_categories_daily", "fig_2f_comments_political_share", "fig_3a_political_categories_monthly",
           "fig_3b_vader_by_political_category", "fig_3c_vader_by_category_monthly", "fig_3d_political_user_concentration")

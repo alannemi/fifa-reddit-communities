@@ -95,6 +95,12 @@ existing figures in `results/descriptives/`, ready to run once the topic labels 
   `manual review/README.md`, `results/analysis/reference/README.md`, codebook (two paths; PDF re-rendered), design v2.1 (one path),
   `memory/workflows.md` (§8, §9, §10, §11, new §12), `docs/README.md`, `memory/2026-10-31_session-14.md`.
 - Committed and pushed as `9fb9ff51` at Alan's request at the close of the session.
+- **Addendum (2026-10-31, after the commit; Alan's request):** figure 3d rebuilt with the non-political posts as the reference curve on
+  the same panel, the equality line clipped to the unit square and the Gini of each curve in the corner (an annotation, to keep the
+  titles-only rule), in three versions — the whole corpus (`fig_3d_political_user_concentration`), the five tournament bins pooled
+  (`…_tournaments_pooled`) and one panel per tournament bin (`…_by_tournament`); "tournament windows" read as the tournament period
+  bins, as 2d and 3b. Non-political posts are the more concentrated (Gini 0.80 against 0.54 in the whole corpus; 0.72 against 0.46
+  pooled over the tournament bins). Committed separately.
 
 ## 6. Open after this session
 

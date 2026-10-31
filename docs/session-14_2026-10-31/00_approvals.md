@@ -102,8 +102,9 @@ existing figures in `results/descriptives/`, ready to run once the topic labels 
   bins, as 2d and 3b. Non-political posts are the more concentrated (Gini 0.80 against 0.54 in the whole corpus; 0.72 against 0.46
   pooled over the tournament bins). Committed separately.
 - **Addendum (2026-10-31, Alan's requests):** figure 2b's non-political line dashed. **Figure 2g** added: 2e's layout for the comments
-  under each category's posts through each World Cup, as a share of the comments under political posts (Alan's choice over all
-  comments of the day), both over the centred 7-day window; the raw comment counts as the counterpart in the alternatives.
+  under each category's posts through each World Cup, both over the centred 7-day window — first as a share of the comments under
+  political posts (Alan's choice), then reframed the same day at his request as a share of all comments of the day (the political
+  denominator stays in the table as `share_of_political_7d`); the raw comment counts as the counterpart in the alternatives.
 
 ## 6. Open after this session
 

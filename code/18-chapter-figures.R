@@ -13,7 +13,7 @@
 #   2a share of political posts, table (per bin and overall); 2b political and non-political posts per month (shares)
 #   2c political posts per category, table; 2d categories by World Cup (share of the bin's political posts)
 #   2e categories day by day through each World Cup; 2f share of comments under political posts per month; 2g the comments
-#   under each category's posts through each World Cup, as a share of the comments under political posts
+#   under each category's posts through each World Cup, as a share of all comments of the day
 #   3a categories per month, whole corpus (shares); 3b mean VADER score by category and World Cup (non-political as the
 #   reference); 3c mean VADER score by category per month; 3d concentration of political posts among users
 # The alternative versions (raw counts where the main figure shows shares, shares where it shows counts; the counts
@@ -46,7 +46,7 @@
 #
 # OUTPUTS
 # -------
-#   results/descriptives/fig_<id>.png|pdf + tab_<id>.csv for 1a-3d (2a, 2c: tables only; 2f and 3d: a second table);
+#   results/descriptives/fig_<id>.png for 1a-3d, the tables tab_<id>.csv in tabs/, the PDFs in pdfs/ (2a, 2c: tables only; 2f and 3d: a second table);
 #   results/descriptives/alternative visualizations/ (the alternatives); data/analysis/post_political_weights.csv (every
 #   post's weights; not in git, like post_variables.csv)
 ##############################################################################
@@ -112,6 +112,8 @@ wstats <- function(x, w) {                         # weighted mean and se (heade
   tibble(w_posts = sw, mean = m, se = se)
 }
 dir.create(ALT_DIR, recursive = TRUE, showWarnings = FALSE)
+fig <- function(p, id, w = 8, h = 4.5, dir = OUT_DIR) save_fig(p, id, w, h, dir = dir, pdf_dir = file.path(dir, "pdfs"))   # PNG in the folder,
+tab <- function(t, id, dir = OUT_DIR) save_tab(t, id, dir = file.path(dir, "tabs"))                                   # PDF in pdfs/, table in tabs/ (Alan, 2026-10-31)
 
 # ---------------------------------------------------------------------------
 # 1. Data: dates, comments and authors from the yearly files; topics, tiers and sentiment from the join table;
@@ -179,18 +181,18 @@ check("the monthly table covers every month from 2010-01 to 2026-07 once", nrow(
 check("monthly posts sum to the corpus", sum(monthly$posts) == N_CORPUS)
 
 # 1a-1c. Volume and comments
-save_tab(monthly |> select(month, posts), "1a_monthly_volume")
+tab(monthly |> select(month, posts), "1a_monthly_volume")
 p <- ggplot(monthly, aes(month, posts)) + bands() + geom_line(colour = SERIES[1], linewidth = 0.6) + month_axis + y_count() +
   labs(title = "Posts per month in r/soccer, 2010–2026", x = NULL, y = "Posts per month") + theme_fifa()
-save_fig(p, "1a_monthly_volume")
-save_tab(monthly |> select(month, posts, posts_with_comments, mean_comments, median_comments, q25_comments, q75_comments), "1b_monthly_comments_per_post")
+fig(p, "1a_monthly_volume")
+tab(monthly |> select(month, posts, posts_with_comments, mean_comments, median_comments, q25_comments, q75_comments), "1b_monthly_comments_per_post")
 p <- ggplot(monthly, aes(month, mean_comments)) + bands() + geom_line(colour = SERIES[1], linewidth = 0.6) + month_axis + y_count() +
   labs(title = "Mean comments per post by month, 2010–2026", x = NULL, y = "Mean comments per post") + theme_fifa()
-save_fig(p, "1b_monthly_comments_per_post")
-save_tab(monthly |> select(month, posts, posts_with_comments, comments), "1c_monthly_comments")
+fig(p, "1b_monthly_comments_per_post")
+tab(monthly |> select(month, posts, posts_with_comments, comments), "1c_monthly_comments")
 p <- ggplot(monthly, aes(month, comments)) + bands() + geom_line(colour = SERIES[1], linewidth = 0.6) + month_axis + y_count() +
   labs(title = "Comments per month in r/soccer, 2010–2026", x = NULL, y = "Comments per month") + theme_fifa()
-save_fig(p, "1c_monthly_comments")
+fig(p, "1c_monthly_comments")
 
 # ---------------------------------------------------------------------------
 # 2a / 2c. Political posts and their categories per bin and overall (tables)
@@ -206,21 +208,21 @@ a2 <- by_bin |> mutate(share_political = shares(political, posts, coded), share_
                        share_non_political = shares(non_political, posts, coded), share_excluded = shares(excluded, posts, coded),
                        share_uncoded = uncoded / posts)
 check("2a political + non-political = posts in every row", all(abs(a2$political + a2$non_political - a2$posts) < 1e-6))
-save_tab(a2 |> select(period_bin, period_type, posts, starts_with("share_")), "2a_political_share")
-save_tab(a2 |> select(period_bin, period_type, posts, political, political_uncategorised, non_political, excluded, uncoded), "2a_political_counts", dir = ALT_DIR)
+tab(a2 |> select(period_bin, period_type, posts, starts_with("share_")), "2a_political_share")
+tab(a2 |> select(period_bin, period_type, posts, political, political_uncategorised, non_political, excluded, uncoded), "2a_political_counts", dir = ALT_DIR)
 
 c2 <- by_bin |> select(period_bin, period_type, posts, political, coded, all_of(W_CATS)) |>
   pivot_longer(all_of(W_CATS), names_to = "column", values_to = "category_posts") |>
   mutate(column = sub("^w_", "", column), category = factor(CATS[column], CATS),
          share_of_political = if_else(coded & political > 0, category_posts / political, NA_real_), share_of_all = shares(category_posts, posts, coded)) |>
   arrange(period_bin, category)
-save_tab(c2 |> select(period_bin, period_type, category, share_of_political, share_of_all, political, posts), "2c_political_categories")
-save_tab(c2 |> select(period_bin, period_type, category, category_posts, political, posts), "2c_political_category_counts", dir = ALT_DIR)
+tab(c2 |> select(period_bin, period_type, category, share_of_political, share_of_all, political, posts), "2c_political_categories")
+tab(c2 |> select(period_bin, period_type, category, category_posts, political, posts), "2c_political_category_counts", dir = ALT_DIR)
 
 # 2d. The categories by World Cup: share of the bin's political posts (E1's right half), and the counts
 d2 <- c2 |> filter(period_bin %in% WC$period_bin) |> mutate(bin_lab = cup_lab(period_bin))
 check("2d odd-bin category counts are 2c's", identical(d2$category_posts, c2$category_posts[c2$period_bin %in% WC$period_bin]))
-save_tab(d2 |> select(period_bin, bin_lab, category, category_posts, political, posts, share_of_political, share_of_all), "2d_political_categories_by_world_cup")
+tab(d2 |> select(period_bin, bin_lab, category, category_posts, political, posts, share_of_political, share_of_all), "2d_political_categories_by_world_cup")
 cat_bars <- function(data, y, title, ylab, labels) {
   ggplot(data, aes(bin_lab, {{ y }}, fill = category)) +
     geom_col(position = position_dodge2(preserve = "single", padding = 0.12), width = 0.82) +
@@ -229,9 +231,9 @@ cat_bars <- function(data, y, title, ylab, labels) {
 }
 p <- cat_bars(d2, share_of_political, "Political categories by World Cup, share of the bin's political posts", "Share of political posts",
               sprintf("%.0f %%", 100 * d2$share_of_political)) + y_share(0.12)
-save_fig(p, "2d_political_categories_by_world_cup", w = 10, h = 4.8)
+fig(p, "2d_political_categories_by_world_cup", w = 10, h = 4.8)
 p <- cat_bars(d2, category_posts, "Political posts by category and World Cup", "Political posts", n_lab(round(d2$category_posts))) + y_count(0.12)
-save_fig(p, "2d_political_categories_by_world_cup_counts", w = 10, h = 4.8, dir = ALT_DIR)
+fig(p, "2d_political_categories_by_world_cup_counts", w = 10, h = 4.8, dir = ALT_DIR)
 
 # ---------------------------------------------------------------------------
 # 2b / 2f / 3a. Monthly series: political vs non-political posts, comments under political posts, the categories
@@ -242,36 +244,36 @@ b2 <- monthly |> select(month, posts, political, non_political, share_political,
          group = factor(if_else(group == "political", POL_LAB, NONPOL_LAB), c(POL_LAB, NONPOL_LAB))) |>
   select(month, posts, group, n, share)
 check("2b the two shares sum to 1 in every coded month", all(abs(monthly$share_political[monthly$coded] + monthly$share_non_political[monthly$coded] - 1) < 1e-9))
-save_tab(b2, "2b_political_share_monthly")
-save_fig(line_series(b2, share, "Share of political and non-political posts by month, 2010–2026", "Share of the month's posts", POL_COLS, POL_LINES) + y_share(),
+tab(b2, "2b_political_share_monthly")
+fig(line_series(b2, share, "Share of political and non-political posts by month, 2010–2026", "Share of the month's posts", POL_COLS, POL_LINES) + y_share(),
          "2b_political_share_monthly")
-save_fig(line_series(b2, n, "Political and non-political posts per month, 2010–2026", "Posts per month", POL_COLS, POL_LINES) + y_count(),
+fig(line_series(b2, n, "Political and non-political posts per month, 2010–2026", "Posts per month", POL_COLS, POL_LINES) + y_count(),
          "2b_political_counts_monthly", dir = ALT_DIR)
 
 f2 <- monthly |> select(month, comments, comments_political, comments_non_political, share_comments_political)
-save_tab(f2, "2f_comments_political_share")
+tab(f2, "2f_comments_political_share")
 f2_bin <- bind_rows(d |> group_by(period_bin) |> summarise(comments = sum(num_comments, na.rm = TRUE), comments_political = sum(w_political * num_comments, na.rm = TRUE), .groups = "drop"),
                     d |> summarise(period_bin = NA_integer_, comments = sum(num_comments, na.rm = TRUE), comments_political = sum(w_political * num_comments, na.rm = TRUE))) |>
   mutate(period_type = if_else(is.na(period_bin), "all bins", BIN_TYPE[period_bin]), comments_non_political = comments - comments_political,
          share_comments_political = if_else(is.na(period_bin) | period_bin %in% coded_bins, comments_political / comments, NA_real_)) |>
   relocate(period_type, .after = period_bin)
-save_tab(f2_bin, "2f_comments_political_share_by_bin")
+tab(f2_bin, "2f_comments_political_share_by_bin")
 p <- ggplot(f2, aes(month, share_comments_political)) + bands() + geom_line(colour = INK2, linewidth = 0.6, na.rm = TRUE) + month_axis + y_share() +
   labs(title = "Share of comments under political posts by month, 2010–2026", x = NULL, y = "Share of the month's comments") + theme_fifa()
-save_fig(p, "2f_comments_political_share")
+fig(p, "2f_comments_political_share")
 f2l <- f2 |> pivot_longer(c(comments_political, comments_non_political), names_to = "group", values_to = "n") |>
   mutate(group = factor(if_else(group == "comments_political", POL_LAB, NONPOL_LAB), c(POL_LAB, NONPOL_LAB)))
-save_fig(line_series(f2l, n, "Comments under political and non-political posts by month, 2010–2026", "Comments per month", POL_COLS) + y_count(),
+fig(line_series(f2l, n, "Comments under political and non-political posts by month, 2010–2026", "Comments per month", POL_COLS) + y_count(),
          "2f_comments_political_counts", dir = ALT_DIR)
 
 a3 <- monthly |> select(month, posts, coded, all_of(names(CATS))) |>
   pivot_longer(all_of(names(CATS)), names_to = "column", values_to = "category_posts") |>
   mutate(group = factor(CATS[column], CATS), share = if_else(coded, category_posts / posts, NA_real_)) |>
   select(month, posts, category = group, category_posts, share)
-save_tab(a3, "3a_political_categories_monthly")
-save_fig(line_series(a3 |> rename(group = category), share, "Political categories by month, share of posts, 2010–2026", "Share of the month's posts", CAT_COLS, CAT_LINES, 2) + y_share(),
+tab(a3, "3a_political_categories_monthly")
+fig(line_series(a3 |> rename(group = category), share, "Political categories by month, share of posts, 2010–2026", "Share of the month's posts", CAT_COLS, CAT_LINES, 2) + y_share(),
          "3a_political_categories_monthly")
-save_fig(line_series(a3 |> rename(group = category), category_posts, "Political posts by category and month, 2010–2026", "Posts per month", CAT_COLS, CAT_LINES, 2) + y_count(),
+fig(line_series(a3 |> rename(group = category), category_posts, "Political posts by category and month, 2010–2026", "Posts per month", CAT_COLS, CAT_LINES, 2) + y_count(),
          "3a_political_categories_monthly_counts", dir = ALT_DIR)   # also the counts behind 3c
 
 # 2e. The categories day by day through each World Cup (E1b): share of the day's posts over a centred 7-day window
@@ -289,7 +291,7 @@ e2 <- WC |> transmute(cup, day = Map(seq, 0L, as.integer(final - kickoff))) |> u
   mutate(category = factor(CATS[column], CATS))
 check("2e every tournament day has posts", all(e2$posts > 0))
 check("2e daily category weights add up to the tournament days' totals", abs(sum(e2$category_posts) - sum(days[W_CATS])) < 1e-6)
-save_tab(e2 |> select(cup, day, category, posts, category_posts, share_day, share_7d, category_posts_7d), "2e_political_categories_daily")
+tab(e2 |> select(cup, day, category, posts, category_posts, share_day, share_7d, category_posts_7d), "2e_political_categories_daily")
 ko <- WC |> transmute(cup, xmin = as.integer(knockout - kickoff), xmax = as.integer(final - kickoff))
 daily_plot <- function(data, y, title, ylab) {
   ggplot(data, aes(day, {{ y }}, colour = category, linetype = category)) +
@@ -302,32 +304,37 @@ daily_plot <- function(data, y, title, ylab) {
     theme_fifa() + theme(legend.key.width = unit(2.2, "lines"), panel.spacing.x = unit(1.1, "lines"),
                          strip.text = element_text(colour = INK2, size = 10, face = "bold", hjust = 0.5))
 }
-save_fig(daily_plot(e2, share_7d, "Political categories through each World Cup", "Share of the day's posts") + y_share(0.12), "2e_political_categories_daily", w = 11, h = 4)
-save_fig(daily_plot(e2, category_posts_7d, "Political posts by category through each World Cup", "Posts, 7-day window") + y_count(0.12),
+fig(daily_plot(e2, share_7d, "Political categories through each World Cup", "Share of the day's posts") + y_share(0.12), "2e_political_categories_daily", w = 11, h = 4)
+fig(daily_plot(e2, category_posts_7d, "Political posts by category through each World Cup", "Posts, 7-day window") + y_count(0.12),
          "2e_political_categories_daily_counts", w = 11, h = 4, dir = ALT_DIR)
 
-# 2g. Comments under each category's posts through each World Cup (Alan Nemirovski, 2026-10-31): the category's comments
-# (post weight x num_comments) as a share of the comments under political posts, both summed over the centred 7-day window;
-# the counts version in the alternatives.  A category's comments count fully in each of its categories (Q8).
-day_pol_c <- days |> group_by(cup, day) |> summarise(comments_political = sum(w_political * num_comments, na.rm = TRUE), .groups = "drop")
+# 2g. Comments under each category's posts through each World Cup (Alan Nemirovski, 2026-10-31, reframed the same day): the
+# category's comments (post weight x num_comments) as a share of all comments of the day, both summed over the centred 7-day
+# window; the share of the comments under political posts stays in the table; the counts version in the alternatives.  A
+# post's comments count fully in each of its categories (Q8).
+day_pol_c <- days |> group_by(cup, day) |>
+  summarise(comments_all = sum(num_comments, na.rm = TRUE), comments_political = sum(w_political * num_comments, na.rm = TRUE), .groups = "drop")
 day_cat_c <- days |> group_by(cup, day) |> summarise(across(all_of(W_CATS), ~ sum(.x * num_comments, na.rm = TRUE)), .groups = "drop") |>
   pivot_longer(all_of(W_CATS), names_to = "column", values_to = "category_comments") |> mutate(column = sub("^w_", "", column))
 g2 <- WC |> transmute(cup, day = Map(seq, 0L, as.integer(final - kickoff))) |> unnest(day) |> crossing(column = names(CATS)) |>
   left_join(day_pol_c, by = c("cup", "day")) |> left_join(day_cat_c, by = c("cup", "day", "column")) |>
-  mutate(comments_political = coalesce(comments_political, 0), category_comments = coalesce(category_comments, 0)) |>
+  mutate(comments_all = coalesce(comments_all, 0), comments_political = coalesce(comments_political, 0), category_comments = coalesce(category_comments, 0)) |>
   arrange(cup, column, day) |> group_by(cup, column) |>
-  mutate(share_day = if_else(comments_political > 0, category_comments / comments_political, NA_real_),
-         comments_political_7d = roll_sum(comments_political, ROLL_HALF), category_comments_7d = roll_sum(category_comments, ROLL_HALF),
-         share_7d = if_else(comments_political_7d > 0, category_comments_7d / comments_political_7d, NA_real_)) |> ungroup() |>
+  mutate(share_day = if_else(comments_all > 0, category_comments / comments_all, NA_real_),
+         comments_all_7d = roll_sum(comments_all, ROLL_HALF), comments_political_7d = roll_sum(comments_political, ROLL_HALF),
+         category_comments_7d = roll_sum(category_comments, ROLL_HALF),
+         share_7d = if_else(comments_all_7d > 0, category_comments_7d / comments_all_7d, NA_real_),
+         share_of_political_7d = if_else(comments_political_7d > 0, category_comments_7d / comments_political_7d, NA_real_)) |> ungroup() |>
   mutate(category = factor(CATS[column], CATS))
-check("2g every tournament day has comments under political posts over the 7-day window", all(g2$comments_political_7d > 0))
+check("2g every tournament day has comments over the 7-day window", all(g2$comments_all_7d > 0 & g2$comments_political_7d > 0))
 check("2g the categories' comments add up to 2f's political comments of the tournament days or more (Q8)",
       sum(g2$category_comments) >= sum(day_pol_c$comments_political) - 1e-6)
-save_tab(g2 |> select(cup, day, category, comments_political, category_comments, share_day, comments_political_7d, category_comments_7d, share_7d),
+tab(g2 |> select(cup, day, category, comments_all, comments_political, category_comments, share_day, comments_all_7d, comments_political_7d,
+                      category_comments_7d, share_7d, share_of_political_7d),
          "2g_comments_by_political_category_daily")
-save_fig(daily_plot(g2, share_7d, "Share of political comments by category through each World Cup", "Share of the day's comments under political posts") + y_share(0.12),
+fig(daily_plot(g2, share_7d, "Share of comments by political category through each World Cup", "Share of the day's comments") + y_share(0.12),
          "2g_comments_by_political_category_daily", w = 11, h = 4)
-save_fig(daily_plot(g2, category_comments_7d, "Comments under political posts by category through each World Cup", "Comments, 7-day window") + y_count(0.12),
+fig(daily_plot(g2, category_comments_7d, "Comments under political posts by category through each World Cup", "Comments, 7-day window") + y_count(0.12),
          "2g_comments_by_political_category_daily_counts", w = 11, h = 4, dir = ALT_DIR)
 
 # ---------------------------------------------------------------------------
@@ -345,7 +352,7 @@ GRP_COLS <- c(setNames(MUTED, NONPOL_LAB), CAT_COLS)
 b3 <- group_stats(d |> filter(period_bin %in% WC$period_bin) |> mutate(cup = cup_lab(period_bin)), "cup") |> arrange(cup, group)
 check("3b category weights are 2d's", all(abs(b3 |> filter(group != NONPOL_LAB) |> arrange(cup, group) |> pull(w_posts) -
                                              d2 |> arrange(bin_lab, category) |> pull(category_posts)) < 1e-6))
-save_tab(b3 |> select(cup, group, w_posts, mean, se, lo95, hi95), "3b_vader_by_political_category")
+tab(b3 |> select(cup, group, w_posts, mean, se, lo95, hi95), "3b_vader_by_political_category")
 dodge <- position_dodge(width = 0.72)
 p <- ggplot(b3, aes(cup, mean, colour = group, group = group)) +
   geom_hline(yintercept = 0, colour = AXIS, linewidth = 0.4) +
@@ -353,15 +360,15 @@ p <- ggplot(b3, aes(cup, mean, colour = group, group = group)) +
   geom_point(size = 2.6, colour = SURFACE, position = dodge) + geom_point(size = 2, position = dodge) +
   scale_colour_manual(values = GRP_COLS) + guides(colour = guide_legend(nrow = 1)) +
   labs(title = "Sentimental valence of political posts by category and World Cup", x = NULL, y = "Mean VADER score") + theme_fifa()
-save_fig(p, "3b_vader_by_political_category", w = 10, h = 4.8)
+fig(p, "3b_vader_by_political_category", w = 10, h = 4.8)
 p <- ggplot(b3, aes(cup, w_posts, fill = group)) + geom_col(position = position_dodge2(preserve = "single", padding = 0.12), width = 0.82) +
   scale_fill_manual(values = GRP_COLS) + guides(fill = guide_legend(nrow = 1)) +
   scale_y_log10(labels = label_comma(), expand = expansion(mult = c(0, 0.08))) +
   labs(title = "Posts behind the valence estimates by group and World Cup", x = NULL, y = "Posts (log scale)") + theme_fifa()
-save_fig(p, "3b_posts_by_political_category", w = 10, h = 4.8, dir = ALT_DIR)
+fig(p, "3b_posts_by_political_category", w = 10, h = 4.8, dir = ALT_DIR)
 
 c3 <- group_stats(d |> filter(coded), "month") |> arrange(month, group)
-save_tab(c3 |> select(month, group, w_posts, mean, se, lo95, hi95), "3c_vader_by_category_monthly")
+tab(c3 |> select(month, group, w_posts, mean, se, lo95, hi95), "3c_vader_by_category_monthly")
 p <- ggplot(c3, aes(month, mean, colour = group, fill = group, linetype = group)) + bands() +
   geom_hline(yintercept = 0, colour = AXIS, linewidth = 0.4) +
   geom_ribbon(aes(ymin = lo95, ymax = hi95), alpha = 0.12, colour = NA, na.rm = TRUE) + geom_line(linewidth = 0.6, na.rm = TRUE) +
@@ -370,7 +377,7 @@ p <- ggplot(c3, aes(month, mean, colour = group, fill = group, linetype = group)
   guides(colour = guide_legend(nrow = 1), fill = guide_legend(nrow = 1), linetype = guide_legend(nrow = 1)) +
   labs(title = "Sentimental valence by political category and month, 2010–2026", x = NULL, y = "Mean VADER score") +
   theme_fifa() + theme(legend.key.width = unit(2.2, "lines"))
-save_fig(p, "3c_vader_by_category_monthly")
+fig(p, "3c_vader_by_category_monthly")
 
 # ---------------------------------------------------------------------------
 # 3d. Concentration of political posts among users (authors other than [deleted]), the non-political posts as the
@@ -405,8 +412,8 @@ curves <- bind_rows(lapply(scopes, `[[`, "curve")) |> mutate(scope = factor(scop
 check("3d every curve ends at 100 % of users and posts, Gini in [0, 1]",
       all(abs(curves |> group_by(scope, group) |> summarise(u = last(share_users), p = last(share_posts), .groups = "drop") |> select(u, p) - 1) < 1e-9) &&
         all(d3$gini >= 0 & d3$gini <= 1))
-save_tab(d3, "3d_political_user_concentration")
-save_tab(curves, "3d_political_user_concentration_curve")
+tab(d3, "3d_political_user_concentration")
+tab(curves, "3d_political_user_concentration_curve")
 gini_labels <- function(st) st |> group_by(scope) |>
   summarise(label = sprintf("Gini\nPolitical %.2f\nNon-political %.2f", gini[group == POL_LAB], gini[group == NONPOL_LAB]), .groups = "drop")
 conc_plot <- function(sc, title) {               # both curves, the equality line clipped to the unit square, the Ginis in the corner
@@ -422,17 +429,17 @@ conc_plot <- function(sc, title) {               # both curves, the equality lin
     labs(title = title, x = "Share of users, ranked by posts in the group", y = "Share of the group's posts") +
     theme_fifa() + theme(legend.key.width = unit(2.2, "lines"))
 }
-save_fig(conc_plot(SCOPE_CORPUS, "Concentration of political and non-political posts among users"), "3d_political_user_concentration", w = 6.5, h = 5.4)
-save_fig(conc_plot(SCOPE_POOLED, "Concentration of posts among users, World Cup bins pooled"),
+fig(conc_plot(SCOPE_CORPUS, "Concentration of political and non-political posts among users"), "3d_political_user_concentration", w = 6.5, h = 5.4)
+fig(conc_plot(SCOPE_POOLED, "Concentration of posts among users, World Cup bins pooled"),
          "3d_political_user_concentration_tournaments_pooled", w = 6.5, h = 5.4)
 p <- conc_plot(levels(cup_lab(1L)), "Concentration of political and non-political posts among users by World Cup") +
   facet_wrap(~ scope, nrow = 1) +
   theme(panel.spacing.x = unit(1.1, "lines"), strip.text = element_text(colour = INK2, size = 10, face = "bold", hjust = 0.5))
-save_fig(p, "3d_political_user_concentration_by_tournament", w = 12, h = 3.9)
+fig(p, "3d_political_user_concentration_by_tournament", w = 12, h = 3.9)
 p <- ggplot(curves |> filter(scope == SCOPE_CORPUS, group == POL_LAB), aes(rank, cum_w)) + geom_line(colour = INK2, linewidth = 0.7) +
   scale_x_continuous(labels = label_comma(), expand = expansion(mult = 0.01)) + y_count(0.04) +
   labs(title = "Cumulative political posts by user rank", x = "Users, ranked by political posts", y = "Cumulative political posts") + theme_fifa()
-save_fig(p, "3d_political_user_concentration_counts", w = 6, h = 5.2, dir = ALT_DIR)
+fig(p, "3d_political_user_concentration_counts", w = 6, h = 5.2, dir = ALT_DIR)
 
 # ---------------------------------------------------------------------------
 # 4. Gate
@@ -445,7 +452,7 @@ MAIN <- c("fig_3d_political_user_concentration_tournaments_pooled", "fig_3d_poli
 ALT <- c("tab_2a_political_counts", "fig_2b_political_counts_monthly", "tab_2c_political_category_counts",
          "fig_2d_political_categories_by_world_cup_counts", "fig_2e_political_categories_daily_counts", "fig_2g_comments_by_political_category_daily_counts", "fig_2f_comments_political_counts",
          "fig_3a_political_categories_monthly_counts", "fig_3b_posts_by_political_category", "fig_3d_political_user_concentration_counts")
-exists_out <- function(dir, id) file.exists(file.path(dir, paste0(id, if (startsWith(id, "fig_")) ".png" else ".csv")))
+exists_out <- function(dir, id) file.exists(if (startsWith(id, "fig_")) file.path(dir, paste0(id, ".png")) else file.path(dir, "tabs", paste0(id, ".csv")))
 check("every main output exists", all(vapply(MAIN, exists_out, logical(1), dir = OUT_DIR)))
 check("every alternative output exists", all(vapply(ALT, exists_out, logical(1), dir = ALT_DIR)))
 if (!all(unlist(results))) stop("a check failed: ", paste(names(results)[!unlist(results)], collapse = ", "))

@@ -36,10 +36,10 @@ theme_fifa <- function() {
           legend.title = element_blank(), plot.margin = margin(10, 14, 8, 10))
 }
 
-save_fig <- function(p, id, w = 8, h = 4.5, dir = OUT_DIR) {
-  dir.create(dir, recursive = TRUE, showWarnings = FALSE)
+save_fig <- function(p, id, w = 8, h = 4.5, dir = OUT_DIR, pdf_dir = dir) {   # pdf_dir: the chapter figures keep their PDFs in pdfs/ (2026-10-31)
+  dir.create(dir, recursive = TRUE, showWarnings = FALSE); dir.create(pdf_dir, recursive = TRUE, showWarnings = FALSE)
   ggsave(file.path(dir, paste0("fig_", id, ".png")), p, width = w, height = h, dpi = 300, device = ragg::agg_png, bg = SURFACE)
-  ggsave(file.path(dir, paste0("fig_", id, ".pdf")), p, width = w, height = h, device = grDevices::cairo_pdf, bg = SURFACE)   # cairo: en dashes and minus signs
+  ggsave(file.path(pdf_dir, paste0("fig_", id, ".pdf")), p, width = w, height = h, device = grDevices::cairo_pdf, bg = SURFACE)   # cairo: en dashes and minus signs
   log_msg("figure %s", id)
 }
 save_tab <- function(t, id, dir = OUT_DIR) {

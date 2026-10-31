@@ -2,8 +2,8 @@
 
 The chapter's descriptive figures and tables (1a–3d), written by `code/18-chapter-figures.R` from the cleaned corpus (the 17
 yearly files), the join table `data/analysis/post_variables.csv` and the topic-tag table `results/analysis/topic_tags.csv`
-(`code/17-topic-tags.R`). Every figure comes as `fig_<id>.png` (300 dpi) and `.pdf`, with the numbers behind it in
-`tab_<id>.csv`; `alternative visualizations/` holds the counterpart of each political figure (raw counts where the main version
+(`code/17-topic-tags.R`). Every figure comes as `fig_<id>.png` (300 dpi) in the folder, its `.pdf` in `pdfs/` and the numbers behind it in
+`tabs/tab_<id>.csv` (the same layout inside the alternatives subfolder; Alan Nemirovski, 2026-10-31); `alternative visualizations/` holds the counterpart of each political figure (raw counts where the main version
 shows shares, shares where it shows counts; the counts behind 3b–3d). Specified by Alan Nemirovski on 2026-10-31 (decisions
 V1–V14, `docs/session-14_2026-10-31/00_approvals.md`). The earlier A–E set (scripts 11 and 14) was retired the same day, and the
 diagnostics that lived here (D, F, G1, the sentiment validation tables) moved to `results/diagnostics/`.
@@ -42,7 +42,7 @@ diagnostics that lived here (D, F, G1, the sentiment validation tables) moved to
 | 2c_political_categories (table) | Political posts carrying each category, as a share of the political posts and of all posts, per bin and overall | the category weights |
 | 2d_political_categories_by_world_cup | The four categories as shares of the bin's political posts, one group of bars per World Cup bin (the former E1, right half) | the five tournament bins |
 | 2e_political_categories_daily | The categories day by day through each tournament: days from the opening match, knockout stage shaded, share of the day's posts over a centred 7-day window (the former E1b) | the tournament days of the five World Cup bins |
-| 2g_comments_by_political_category_daily | The comments under each category's posts through each tournament (post weight × `num_comments`), as a share of the comments under political posts, both over the centred 7-day window; 2e's layout | the tournament days of the five World Cup bins; denominator = comments under political posts (Alan Nemirovski, 2026-10-31) |
+| 2g_comments_by_political_category_daily | The comments under each category's posts through each tournament (post weight × `num_comments`), as a share of all comments of the day, both over the centred 7-day window; 2e's layout (the table also gives the share of the comments under political posts) | the tournament days of the five World Cup bins; denominator = all comments of the day (Alan Nemirovski, 2026-10-31) |
 | 2f_comments_political_share (+ `_by_bin`) | Comments under political posts as a share of the month's comments (Σ political weight × comments / Σ comments); the second table per bin and overall | all posts |
 | 3a_political_categories_monthly | Share of the month's posts carrying each category, four lines, whole corpus | all posts |
 | 3b_vader_by_political_category | Weighted mean VADER title score per category and World Cup with its 95 % CI; the non-political posts of the same bins as the grey reference (the former E5) | the tournament bins |

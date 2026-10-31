@@ -30,7 +30,7 @@ diagnostics that lived here (D, F, G1, the sentiment validation tables) moved to
 - `score` and `num_comments` are crawl-time values; the archive's crawl lag drops from weeks to hours in July 2023 (codebook
   limitation 11, §8.5), and the figures do not mark the break (decision E5, 2026-10-27).
 - The VADER variables are the sentimental valence of a title's wording, not the author's sentiment (κ = 0.24 against one human
-  coder; codebook §8.2). 3b and 3c use the weighted mean with the weights above; se = sqrt(Σ w (x − m)² / Σ w) / sqrt(Σ w).
+  coder; codebook §8.2). 3c and 3d use the weighted mean with the weights above; se = sqrt(Σ w (x − m)² / Σ w) / sqrt(Σ w).
 
 | id | Figure / table | Population |
 |---|---|---|
@@ -45,17 +45,19 @@ diagnostics that lived here (D, F, G1, the sentiment validation tables) moved to
 | 2g_comments_by_political_category_daily | The comments under each category's posts through each tournament (post weight × `num_comments`), as a share of all comments of the day, both over the centred 7-day window; 2e's layout (the table also gives the share of the comments under political posts) | the tournament days of the five World Cup bins; denominator = all comments of the day (Alan Nemirovski, 2026-10-31) |
 | 2f_comments_political_share (+ `_by_bin`) | Comments under political posts as a share of the month's comments (Σ political weight × comments / Σ comments); the second table per bin and overall | all posts |
 | 3a_political_categories_monthly | Share of the month's posts carrying each category, four lines, whole corpus | all posts |
-| 3b_vader_by_political_category | Weighted mean VADER title score per category and World Cup with its 95 % CI; the non-political posts of the same bins as the grey reference (the former E5) | the tournament bins |
-| 3c_vader_by_category_monthly | The same per month, with 95 % CI ribbons, whole corpus | all posts of coded months |
-| 3d_political_user_concentration (+ `_tournaments_pooled`, `_by_tournament`; tables `3d_…` and `3d_…_curve`) | Users ranked by their posts in the group: the cumulative share of users against the cumulative share of the group's posts, political and non-political on one panel, the equality line, the Gini of each curve in the corner; three versions — the whole corpus, the five tournament bins pooled, one panel per tournament bin. The table: per scope and group, users, top-1 / 5 / 10 % shares, Gini, the share of the group's weight whose author reads `[deleted]` | posts with a named author (whole corpus: 32,031 users with political posts, 156,540 with non-political ones). `[deleted]` authors hold 13 % of the political weight: about 30 % of the posts crawled late (2010 – June 2023) carry no author, none from 2024 (limitation 11) |
+| 3b_comments_by_political_category_monthly | The comments under each category's posts (post weight × `num_comments`) as a share of the month's comments, four lines, whole corpus (2g's measure across the corpus) | all posts |
+| 3c_vader_by_political_category | Weighted mean VADER title score per category and World Cup with its 95 % CI; the non-political posts of the same bins as the grey reference (the former E5) | the tournament bins |
+| 3d_vader_by_category_monthly | The same per month, with 95 % CI ribbons, whole corpus | all posts of coded months |
+| 3e_political_user_concentration (+ `_by_tournament`; tables `3e_…` and `3e_…_curve`) | Users ranked by their posts in the group: the cumulative share of users against the cumulative share of the group's posts, political and non-political on one panel, the equality line, the Gini of each curve in the corner; two versions — the whole corpus and one panel per tournament bin. The table: per scope and group, users, top-1 / 5 / 10 % shares, Gini, the share of the group's weight whose author reads `[deleted]` | posts with a named author (whole corpus: 32,031 users with political posts, 156,540 with non-political ones). `[deleted]` authors hold 13 % of the political weight: about 30 % of the posts crawled late (2010 – June 2023) carry no author, none from 2024 (limitation 11) |
 
 `alternative visualizations/`: `2a_political_counts`, `2b_political_counts_monthly`, `2c_political_category_counts`,
 `2d_political_categories_by_world_cup_counts`, `2e_political_categories_daily_counts` (posts over the 7-day window),
-`2g_comments_by_political_category_daily_counts` (comments over the 7-day window), `2f_comments_political_counts`, `3a_political_categories_monthly_counts` (also the counts behind 3c),
-`3b_posts_by_political_category` (log scale, with the non-political reference), `3d_political_user_concentration_counts`
+`2g_comments_by_political_category_daily_counts` (comments over the 7-day window), `2f_comments_political_counts`, `3a_political_categories_monthly_counts` (also the counts behind 3d),
+`3b_comments_by_political_category_monthly_counts`, `3c_posts_by_political_category` (log scale, with the non-political reference),
+`3e_political_user_concentration_counts`
 (cumulative political posts against user rank).
 
-**Reading notes.** The monthly category lines (3a, 3c) rest on few posts in the early years (2010: about 400 posts a month) and
-are noisy; the 3c ribbons widen accordingly. Engagement levels before and after July 2023 are not comparable (limitation 11).
+**Reading notes.** Figure ids 3b–3d of the plan became 3c–3e on 2026-10-31 when the comments figure 3b was added. The monthly category lines (3a, 3b, 3d) rest on few posts in the early years (2010: about 400 posts a month) and
+are noisy; the 3d ribbons widen accordingly. Engagement levels before and after July 2023 are not comparable (limitation 11).
 The political shares are 0.5–4.5 points above the retired E1 figures of session 10 for the same bins — the effect of the
 half-weighted dual posts (M1) and of rule V3 (REVIEW beside a category, conflicts and untagged topics now decided).

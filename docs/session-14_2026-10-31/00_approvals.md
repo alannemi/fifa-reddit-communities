@@ -105,6 +105,12 @@ existing figures in `results/descriptives/`, ready to run once the topic labels 
   under each category's posts through each World Cup, both over the centred 7-day window — first as a share of the comments under
   political posts (Alan's choice), then reframed the same day at his request as a share of all comments of the day (the political
   denominator stays in the table as `share_of_political_7d`); the raw comment counts as the counterpart in the alternatives.
+- **Addendum (2026-10-31, Alan's requests):** **figure 3b** added — 2g's measure across the whole corpus (the comments under each
+  category's posts as a share of the month's comments, four lines, counts counterpart) — and the later figures **renumbered: 3b → 3c
+  (VADER by category and World Cup), 3c → 3d (VADER by category per month), 3d → 3e (user concentration)**; the files moved with
+  `git mv`. The tournament-bins-pooled version of the concentration curve was removed (the whole-corpus and per-World-Cup versions
+  stay). The chapter PDFs moved to `pdfs/` and the tables to `tabs/` in both folders. In the sections above, 3b–3d name the
+  figures as planned; the README carries the current ids.
 
 ## 6. Open after this session
 

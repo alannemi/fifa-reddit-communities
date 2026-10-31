@@ -42,6 +42,7 @@ diagnostics that lived here (D, F, G1, the sentiment validation tables) moved to
 | 2c_political_categories (table) | Political posts carrying each category, as a share of the political posts and of all posts, per bin and overall | the category weights |
 | 2d_political_categories_by_world_cup | The four categories as shares of the bin's political posts, one group of bars per World Cup bin (the former E1, right half) | the five tournament bins |
 | 2e_political_categories_daily | The categories day by day through each tournament: days from the opening match, knockout stage shaded, share of the day's posts over a centred 7-day window (the former E1b) | the tournament days of the five World Cup bins |
+| 2g_comments_by_political_category_daily | The comments under each category's posts through each tournament (post weight × `num_comments`), as a share of the comments under political posts, both over the centred 7-day window; 2e's layout | the tournament days of the five World Cup bins; denominator = comments under political posts (Alan Nemirovski, 2026-10-31) |
 | 2f_comments_political_share (+ `_by_bin`) | Comments under political posts as a share of the month's comments (Σ political weight × comments / Σ comments); the second table per bin and overall | all posts |
 | 3a_political_categories_monthly | Share of the month's posts carrying each category, four lines, whole corpus | all posts |
 | 3b_vader_by_political_category | Weighted mean VADER title score per category and World Cup with its 95 % CI; the non-political posts of the same bins as the grey reference (the former E5) | the tournament bins |
@@ -50,7 +51,7 @@ diagnostics that lived here (D, F, G1, the sentiment validation tables) moved to
 
 `alternative visualizations/`: `2a_political_counts`, `2b_political_counts_monthly`, `2c_political_category_counts`,
 `2d_political_categories_by_world_cup_counts`, `2e_political_categories_daily_counts` (posts over the 7-day window),
-`2f_comments_political_counts`, `3a_political_categories_monthly_counts` (also the counts behind 3c),
+`2g_comments_by_political_category_daily_counts` (comments over the 7-day window), `2f_comments_political_counts`, `3a_political_categories_monthly_counts` (also the counts behind 3c),
 `3b_posts_by_political_category` (log scale, with the non-political reference), `3d_political_user_concentration_counts`
 (cumulative political posts against user rank).
 

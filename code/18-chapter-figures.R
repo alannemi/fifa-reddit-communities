@@ -79,6 +79,7 @@ CAT_COLS  <- setNames(SERIES[c(3, 4, 2, 1)], CATS)
 CAT_LINES <- setNames(c("solid", "dashed", "dotted", "dotdash"), CATS)
 POL_LAB <- "Political"; NONPOL_LAB <- "Non-political"
 POL_COLS <- setNames(c(INK2, MUTED), c(POL_LAB, NONPOL_LAB))
+POL_LINES <- setNames(c("solid", "longdash"), c(POL_LAB, NONPOL_LAB))   # 2b, 3d: the non-political line dashed (Alan, 2026-10-31)
 W_CATS  <- paste0("w_", names(CATS))
 n_lab   <- function(n) format(n, big.mark = ",")
 cup_lab <- function(b) factor(paste("WC", WC$cup[match(b, WC$period_bin)]), paste("WC", WC$cup))
@@ -241,9 +242,9 @@ b2 <- monthly |> select(month, posts, political, non_political, share_political,
   select(month, posts, group, n, share)
 check("2b the two shares sum to 1 in every coded month", all(abs(monthly$share_political[monthly$coded] + monthly$share_non_political[monthly$coded] - 1) < 1e-9))
 save_tab(b2, "2b_political_share_monthly")
-save_fig(line_series(b2, share, "Share of political and non-political posts by month, 2010–2026", "Share of the month's posts", POL_COLS) + y_share(),
+save_fig(line_series(b2, share, "Share of political and non-political posts by month, 2010–2026", "Share of the month's posts", POL_COLS, POL_LINES) + y_share(),
          "2b_political_share_monthly")
-save_fig(line_series(b2, n, "Political and non-political posts per month, 2010–2026", "Posts per month", POL_COLS) + y_count(),
+save_fig(line_series(b2, n, "Political and non-political posts per month, 2010–2026", "Posts per month", POL_COLS, POL_LINES) + y_count(),
          "2b_political_counts_monthly", dir = ALT_DIR)
 
 f2 <- monthly |> select(month, comments, comments_political, comments_non_political, share_comments_political)
@@ -390,7 +391,7 @@ conc_plot <- function(sc, title) {               # both curves, the equality lin
     geom_line(linewidth = 0.7) +
     geom_text(data = gini_labels(st), aes(x = 0.97, y = 0.03, label = label), inherit.aes = FALSE, hjust = 1, vjust = 0,
               size = 2.5, colour = INK2, lineheight = 0.95) +
-    scale_colour_manual(values = POL_COLS) + scale_linetype_manual(values = setNames(c("solid", "longdash"), c(POL_LAB, NONPOL_LAB))) +
+    scale_colour_manual(values = POL_COLS) + scale_linetype_manual(values = POL_LINES) +
     scale_x_continuous(labels = pct, limits = c(0, 1), expand = expansion(mult = 0.01)) +
     scale_y_continuous(labels = pct, limits = c(0, 1), expand = expansion(mult = c(0, 0.04))) +
     labs(title = title, x = "Share of users, ranked by posts in the group", y = "Share of the group's posts") +

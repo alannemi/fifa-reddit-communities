@@ -173,12 +173,16 @@ OUTLIER_SINGLE_QUANTILE = 0.80          # above it a reassigned post carries one
 OUTLIER_THRESHOLD: dict = {}            # fixed-value override of T: {"default": T} or per bin {1: T1}; empty = the quantile rule
 OUTLIER_CALIBRATION_QUANTILES = (0.35, 0.50, 0.65, 0.80)   # judgement-sample bands: the first is T's band, the last the single-topic band
 OUTLIER_SAMPLE_PER_CANDIDATE = 100      # posts per band in the co-author judgement sample (outlier_calibration/)
-# K1 (author, 2026-10-30; docs/session-11_2026-10-30/): the assignments whose posts COUNT in a topic's aggregates — the sizes
-# n_total and share (topics.csv, topic_labels_all_bins.csv), the mean VADER score of the topic, topics over time and the QA
-# shares. The 3,600 coded judgement samples put the precision of the admitted tiers at 43.6 % (dual) and 53.4 % (reassigned),
-# so a dual post keeps its two labels on the post (the recorded hedge, D9) but is counted in neither topic (n_dual_first and
-# n_dual_second record it); the figures already used this population (E3, Q7). Re-applied without the model by --stage recount.
-TOPIC_COUNT_ASSIGNMENTS = ("cluster", "reassigned")
+# M1 (the co-authors jointly, 2026-10-31; confirmed by Alan Nemirovski on 2026-11-01 — docs/session-13_2026-10-31/,
+# docs/session-15_2026-11-01/): the WEIGHT a post carries in a topic's aggregates — the sizes n_total and share (topics.csv,
+# topic_labels_all_bins.csv), the topic's mean VADER score and n_posts_scored, topics over time and the QA shares — by its
+# topic_assignment. Cluster and reassigned posts weigh 1 in their topic; a dual post weighs 0.5 in EACH of its two topics
+# (topic_id and topic_id_2), so every admitted post has a total weight of 1 and the shares of a bin sum to 1 minus the outlier
+# share; outlier and not_modelled posts weigh 0 (absent here). The per-post tiers of D9 are unchanged. It replaced K1 (author,
+# 2026-10-30; docs/session-11_2026-10-30/: cluster + reassigned posts only, a dual post counted in neither topic — after the 3,600
+# coded judgement samples put the precision of the admitted tiers at 43.6 % (dual) and 53.4 % (reassigned)), which had replaced
+# D9's counting (a dual post once in each of its two topics). Re-applied without the model by --stage recount, then collect.
+TOPIC_WEIGHTS = {"cluster": 1.0, "reassigned": 1.0, "dual": 0.5}
 
 # ---------------------------------------------------------------------------
 # S3 — the two analysts (design §7; agreement protocol = decision D2)

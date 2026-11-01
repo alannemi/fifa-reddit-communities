@@ -77,6 +77,8 @@ The reference run's `topics_over_time.csv` carries K1 counts (cluster + reassign
 without the model; the nine bins' files keep the D9 counts of the 2026-10-25/26 run (K7) until a Colab pass regenerates them.
 Nothing reads either file but the reports.
 
+*Note (2026-11-01, session 15): since the M1 recount the topic tables (`topics.csv`, `topic_labels_all_bins.csv`) carry the M1 weights, and a reference run's `topics_over_time.csv` will too; the nine bins' files keep the D9 counts (K7). The mapping of §4 is out of scope for now and `code/16-reference-map.R` stays on K1 (`../session-15_2026-11-01/00_approvals.md` M1b).*
+
 ## 6. Not in this step
 
 The QUALTAG transfer rule and any tag on a reference topic or a post (W2, after the tables); S6 in place and codebook v3.0

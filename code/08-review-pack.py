@@ -53,7 +53,7 @@ def build_pack(bdir: Path, bin_id: int) -> Path:
     labelled = _read(bdir / "topics_labelled.csv")
     t = topics.merge(labelled, on="topic_id", how="left", suffixes=("", "_lab"))
     t["topic_id"] = t["topic_id"].astype(int)
-    t["n_total"] = t["n_total"].astype(int)
+    t["n_total"] = pd.to_numeric(t["n_total"], errors="coerce").fillna(0).map(lambda v: int(v) if float(v).is_integer() else v)   # M1: 1234.5 possible
     t = t[t["topic_id"] >= 0].sort_values("topic_id")
     t["share_f"] = pd.to_numeric(t["share"], errors="coerce").fillna(0.0)      # share of the bin's modelled posts (topics.csv)
     cfg = json.loads((bdir / "config.json").read_text(encoding="utf-8")) if (bdir / "config.json").exists() else {}

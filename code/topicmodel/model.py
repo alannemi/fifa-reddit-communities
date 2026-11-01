@@ -426,20 +426,52 @@ def apply_outlier_threshold(topics_raw: np.ndarray, ids: np.ndarray, nearest: pd
 
 
 # ---------------------------------------------------------------------------
-# The per-bin tables (design §6.4) — counting rule K1 (author, 2026-10-30; docs/session-11_2026-10-30/): a topic's
-# aggregates count the posts whose topic_assignment is in config.TOPIC_COUNT_ASSIGNMENTS (cluster + reassigned). A dual post
-# keeps both labels on the post (the recorded hedge of D9) but is counted in neither topic; n_dual_first / n_dual_second
-# record it. This replaced D9's counting (n_total = n_first + n_as_second, a dual post once in each of its two topics) after
-# the coded judgement samples put the dual tier's precision at 43.6 % and the reassigned tier's at 53.4 %.
+# The per-bin tables (design §6.4) — counting rule M1 (the co-authors jointly, 2026-10-31; confirmed by Alan Nemirovski on
+# 2026-11-01; docs/session-13_2026-10-31/, docs/session-15_2026-11-01/): a post enters a topic's aggregates with the weight
+# config.TOPIC_WEIGHTS[topic_assignment] — cluster and reassigned posts 1 in their topic, a dual post 0.5 in EACH of its two topics
+# (topic_id and topic_id_2), outliers 0 — so every admitted post has a total weight of 1. It replaced K1 (2026-10-30: cluster +
+# reassigned posts only, a dual post counted in neither topic; the coded judgement samples had put the dual tier's precision at
+# 43.6 % and the reassigned tier's at 53.4 %) and, before that, D9's counting (a dual post once in each of its two topics).
+# n_cluster, n_reassigned, n_dual_first and n_dual_second stay plain counts; n_total, n_docs and the weighted aggregates may be
+# half-integers and are written as 1234.5 (an integral value without a decimal part, as before: `num`).
 # ---------------------------------------------------------------------------
 TOPIC_COUNT_COLUMNS = ["n_cluster", "n_reassigned", "n_dual_first", "n_dual_second", "n_total", "share"]
 TOPIC_QA_COLUMNS = ["share_match_thread", "share_lang_en", "mean_comments"]
 TOPIC_COLUMNS = ["topic_id"] + TOPIC_COUNT_COLUMNS + ["keywords", "representative_ids", "representative_titles"] + TOPIC_QA_COLUMNS
 
 
+def weight_of(assignment) -> np.ndarray:
+    """The weight each post carries in the topic of its topic_id (config.TOPIC_WEIGHTS; 0 for outlier and not_modelled posts)."""
+    return np.array([C.TOPIC_WEIGHTS.get(x, 0.0) for x in np.asarray(assignment).astype(str)], dtype=float)
+
+
 def counted(assignment) -> np.ndarray:
-    """Boolean mask of the posts that count in a topic's aggregates (config.TOPIC_COUNT_ASSIGNMENTS)."""
-    return np.isin(np.asarray(assignment).astype(str), list(C.TOPIC_COUNT_ASSIGNMENTS))
+    """Boolean mask of the posts that carry a positive weight in a topic (cluster, reassigned and dual posts under M1)."""
+    return weight_of(assignment) > 0
+
+
+def num(x):
+    """A weighted count for the tables: a Python int when the value is integral, else the float (1234.5) — so n_total reads as it did
+    under K1 wherever no half enters, and a CSV cell is never '7076.0'."""
+    x = float(x)
+    return int(x) if x.is_integer() else x
+
+
+def memberships(topic_id, topic_id_2, assignment) -> pd.DataFrame:
+    """One row per (post, topic) membership with its weight (M1): the post's topic_id at weight_of(assignment) when positive, and,
+    for a dual post, its topic_id_2 at config.TOPIC_WEIGHTS["dual"]. Columns: row (the post's position), topic_id, w. The common
+    basis of topic_counts, topic_qa and topics_over_time_counts; the collect's weighted VADER mean follows the same rule."""
+    tid = np.asarray(topic_id).astype(int)
+    tid2 = np.asarray(topic_id_2).astype(int) if topic_id_2 is not None else np.full(len(tid), -1)
+    a = np.asarray(assignment).astype(str)
+    w1 = weight_of(a)
+    r1 = np.flatnonzero(w1 > 0)
+    frames = [pd.DataFrame({"row": r1, "topic_id": tid[r1], "w": w1[r1]})]
+    w2 = float(C.TOPIC_WEIGHTS.get("dual", 0.0))
+    r2 = np.flatnonzero((a == "dual") & (tid2 != -1))
+    if w2 > 0 and len(r2):
+        frames.append(pd.DataFrame({"row": r2, "topic_id": tid2[r2], "w": w2}))
+    return pd.concat(frames, ignore_index=True)
 
 
 def derive_assignment(topic_id_raw, topic_id, topic_id_2) -> np.ndarray:
@@ -449,12 +481,13 @@ def derive_assignment(topic_id_raw, topic_id, topic_id_2) -> np.ndarray:
 
 
 def topic_counts(topic_id, topic_id_2, assignment, n_modelled: int) -> pd.DataFrame:
-    """One row per topic, the −1 row included (K1): n_cluster (HDBSCAN members), n_reassigned (outliers singly reassigned to
-    the topic), n_dual_first / n_dual_second (dual posts carrying the topic first / second — recorded, not counted),
-    n_total = n_cluster + n_reassigned, share = n_total over the bin's modelled posts (the shares of a bin sum to at most 1).
-    The −1 row keeps its earlier meaning: n_cluster = the raw outliers (HDBSCAN's noise set), n_total = the posts left as
-    outliers. Model-free: works on the columns of documents.csv, after the overrides in the collect, so topics.csv and
-    topic_labels_all_bins.csv are counted by one function."""
+    """One row per topic, the −1 row included (M1): n_cluster (HDBSCAN members), n_reassigned (outliers singly reassigned to
+    the topic), n_dual_first / n_dual_second (dual posts carrying the topic first / second; plain counts),
+    n_total = Σ weights = n_cluster × w_cluster + n_reassigned × w_reassigned + (n_dual_first + n_dual_second) × w_dual
+    (config.TOPIC_WEIGHTS: 1, 1, 0.5), share = n_total over the bin's modelled posts (the shares of a bin sum to 1 minus the
+    outlier share: every admitted post weighs 1 in all). The −1 row keeps its earlier meaning: n_cluster = the raw outliers
+    (HDBSCAN's noise set), n_total = the posts left as outliers. Model-free: works on the columns of documents.csv, after the
+    overrides in the collect, so topics.csv and topic_labels_all_bins.csv are counted by one function."""
     tid = np.asarray(topic_id).astype(int)
     tid2 = np.asarray(topic_id_2).astype(int) if topic_id_2 is not None else np.full(len(tid), -1)
     a = np.asarray(assignment).astype(str)
@@ -462,38 +495,48 @@ def topic_counts(topic_id, topic_id_2, assignment, n_modelled: int) -> pd.DataFr
     if (a != "cluster").any():
         topics.add(-1)
     cl = pd.Series(tid[a == "cluster"]).value_counts(); re_ = pd.Series(tid[a == "reassigned"]).value_counts()
-    d1 = pd.Series(tid[a == "dual"]).value_counts(); d2 = pd.Series(tid2[tid2 != -1]).value_counts()
+    d1 = pd.Series(tid[a == "dual"]).value_counts(); d2 = pd.Series(tid2[(a == "dual") & (tid2 != -1)]).value_counts()
+    w = C.TOPIC_WEIGHTS
     rows = []
     for t in sorted(topics):
         if t == -1:
             n_cl, n_re, n_d1, n_d2, n_tot = int((a != "cluster").sum()), 0, 0, 0, int((a == "outlier").sum())
         else:
             n_cl, n_re, n_d1, n_d2 = int(cl.get(t, 0)), int(re_.get(t, 0)), int(d1.get(t, 0)), int(d2.get(t, 0))
-            n_tot = n_cl + n_re
+            n_tot = num(n_cl * w.get("cluster", 0.0) + n_re * w.get("reassigned", 0.0) + (n_d1 + n_d2) * w.get("dual", 0.0))
         rows.append({"topic_id": int(t), "n_cluster": n_cl, "n_reassigned": n_re, "n_dual_first": n_d1, "n_dual_second": n_d2,
-                     "n_total": n_tot, "share": round(n_tot / max(1, n_modelled), 5)})
-    return pd.DataFrame(rows, columns=["topic_id"] + TOPIC_COUNT_COLUMNS)
+                     "n_total": n_tot, "share": round(float(n_tot) / max(1, n_modelled), 5)})
+    out = pd.DataFrame(rows, columns=["topic_id"] + TOPIC_COUNT_COLUMNS)
+    out["n_total"] = pd.Series([num(v) for v in out["n_total"]], index=out.index, dtype=object)     # 7076 / 1234.5, never 7076.0
+    return out
 
 
-def topic_qa(docs: pd.DataFrame, topic_id, assignment) -> pd.DataFrame:
-    """share_match_thread, share_lang_en and mean_comments per topic over the counted posts (the −1 row over the posts left
-    as outliers). `docs` carries post_type, lang and num_comments aligned with topic_id."""
-    tid = np.asarray(topic_id).astype(int); a = np.asarray(assignment).astype(str)
-    keep = counted(a) | (a == "outlier")
-    d = pd.DataFrame({"topic_id": tid[keep],
-                      "mt": (docs["post_type"].to_numpy()[keep] == "match_thread").astype(float),
-                      "en": (docs["lang"].to_numpy()[keep] == "en").astype(float),
-                      "nc": pd.to_numeric(pd.Series(docs["num_comments"].to_numpy()[keep]), errors="coerce").fillna(0).to_numpy()})
-    g = d.groupby("topic_id").agg(share_match_thread=("mt", "mean"), share_lang_en=("en", "mean"), mean_comments=("nc", "mean"))
-    g[["share_match_thread", "share_lang_en"]] = g[["share_match_thread", "share_lang_en"]].round(4)
-    g["mean_comments"] = g["mean_comments"].round(2)
-    return g.reset_index()
+def topic_qa(docs: pd.DataFrame, topic_id, assignment, topic_id_2=None) -> pd.DataFrame:
+    """share_match_thread, share_lang_en and mean_comments per topic as weighted means over the topic's memberships (M1: cluster
+    and reassigned posts at 1, a dual post at 0.5 in each of its two topics); the −1 row over the posts left as outliers, each at
+    1. `docs` carries post_type, lang and num_comments aligned with topic_id."""
+    a = np.asarray(assignment).astype(str)
+    mem = memberships(topic_id, topic_id_2, a)
+    out_rows = np.flatnonzero(a == "outlier")
+    if len(out_rows):
+        mem = pd.concat([mem, pd.DataFrame({"row": out_rows, "topic_id": -1, "w": 1.0})], ignore_index=True)
+    rows = mem["row"].to_numpy(); w = mem["w"].to_numpy(dtype=float)
+    nc = pd.to_numeric(pd.Series(docs["num_comments"].to_numpy()), errors="coerce").fillna(0).to_numpy(dtype=float)
+    d = pd.DataFrame({"topic_id": mem["topic_id"].to_numpy(), "w": w,
+                      "mt": (docs["post_type"].to_numpy()[rows] == "match_thread").astype(float) * w,
+                      "en": (docs["lang"].to_numpy()[rows] == "en").astype(float) * w,
+                      "nc": nc[rows] * w})
+    g = d.groupby("topic_id")[["w", "mt", "en", "nc"]].sum()
+    out = pd.DataFrame({"share_match_thread": (g["mt"] / g["w"]).round(4), "share_lang_en": (g["en"] / g["w"]).round(4),
+                        "mean_comments": (g["nc"] / g["w"]).round(2)}, index=g.index)
+    return out.reset_index()
 
 
 def topic_table(model, docs: pd.DataFrame, topic_id_raw: np.ndarray, topic_id: np.ndarray,
                 rep_ids: dict[int, list[str]], topic_id_2: np.ndarray | None = None, assignment=None) -> pd.DataFrame:
-    """topics.csv of a bin: the K1 sizes (topic_counts), keywords from cluster members, representative posts, and the QA
-    covariates over the counted posts (topic_qa). `assignment` is derived from the three id arrays when not given."""
+    """topics.csv of a bin: the M1 sizes (topic_counts), keywords from cluster members, representative posts, and the QA
+    covariates as weighted means over the topic's memberships (topic_qa). `assignment` is derived from the three id arrays when
+    not given."""
     tid2 = np.asarray(topic_id_2) if topic_id_2 is not None else np.full(len(docs), -1)
     if assignment is None:
         assignment = derive_assignment(topic_id_raw, topic_id, tid2)
@@ -505,7 +548,7 @@ def topic_table(model, docs: pd.DataFrame, topic_id_raw: np.ndarray, topic_id: n
         reps = rep_ids.get(int(t), []) if t != -1 else []
         deco.append({"topic_id": int(t), "keywords": ", ".join(words), "representative_ids": "|".join(reps),
                      "representative_titles": " || ".join(str(title_of.get(i, ""))[:140] for i in reps)})
-    out = counts.merge(pd.DataFrame(deco), on="topic_id", how="left").merge(topic_qa(docs, topic_id, assignment), on="topic_id", how="left")
+    out = counts.merge(pd.DataFrame(deco), on="topic_id", how="left").merge(topic_qa(docs, topic_id, assignment, tid2), on="topic_id", how="left")
     for c in TOPIC_QA_COLUMNS:
         out[c] = out[c].fillna(0.0)
     return out[TOPIC_COLUMNS]
@@ -513,32 +556,47 @@ def topic_table(model, docs: pd.DataFrame, topic_id_raw: np.ndarray, topic_id: n
 
 def topics_over_time(model, docs: pd.DataFrame, topic_id: np.ndarray, period_type: str,
                      topic_id_2: np.ndarray | None = None, assignment=None) -> pd.DataFrame:
-    """Weekly (tournament bins) or monthly (interim bins) topic frequencies over the counted posts (K1: cluster + reassigned;
-    a dual post is passed as −1, so it is counted in neither topic). Needs the fitted model (c-TF-IDF words per period)."""
+    """Weekly (tournament bins) or monthly (interim bins) topic frequencies with the M1 weights — n_docs = Σ weights of the topic's
+    memberships in the period (topics_over_time_counts: a dual post 0.5 in each of its two topics, outliers in the −1 row) — and
+    BERTopic's c-TF-IDF words per period (`keywords`), which need the fitted model. The words are computed over every post's
+    first topic (a dual post's second topic enters n_docs only). Under K1 a dual post was passed as −1 and counted in neither topic;
+    the per-bin files of the 2026-10-25/26 run keep the D9 counts until a Colab pass (K7)."""
     freq = C.TIME_BIN[period_type]
     stamps = docs["date"].dt.tz_localize(None).dt.to_period("W" if freq == "W" else "M").dt.start_time
     tops = np.asarray(topic_id).astype(int).copy()
     if assignment is not None:
         tops[~counted(assignment)] = -1
-    elif topic_id_2 is not None:
-        tops[np.asarray(topic_id_2).astype(int) != -1] = -1          # a dual post is recognisable by its second topic
-    tot = model.topics_over_time(docs["document"].tolist(), stamps.tolist(), topics=[int(t) for t in tops], global_tuning=False, evolution_tuning=False)
-    tot = tot.rename(columns={"Topic": "topic_id", "Words": "keywords", "Frequency": "n_docs", "Timestamp": "period"})
+    words = model.topics_over_time(docs["document"].tolist(), stamps.tolist(), topics=[int(t) for t in tops], global_tuning=False, evolution_tuning=False)
+    words = words.rename(columns={"Topic": "topic_id", "Words": "keywords", "Timestamp": "period"})[["topic_id", "period", "keywords"]]
+    words["topic_id"] = words["topic_id"].astype(int); words["period"] = pd.to_datetime(words["period"])
+    cnt = topics_over_time_counts(docs, topic_id, period_type, assignment, topic_id_2).drop(columns="keywords")
+    cnt["period"] = pd.to_datetime(cnt["period"])
+    tot = cnt.merge(words, on=["topic_id", "period"], how="left")
+    tot["keywords"] = tot["keywords"].fillna("")
     return tot[["topic_id", "period", "n_docs", "keywords"]]
 
 
-def topics_over_time_counts(docs: pd.DataFrame, topic_id: np.ndarray, period_type: str, assignment=None) -> pd.DataFrame:
-    """topics_over_time() WITHOUT the model (the reference run, 2026-10-30): the counted posts (K1) per topic and period, the
-    uncounted ones (dual, outlier) in the −1 row, `keywords` empty — the same four columns, so report.py and every reader of the
-    per-bin file need no change. BERTopic's own routine over 199 months × thousands of topics × 1.29 M posts would add hours
-    of c-TF-IDF for words per period that the analysis does not use."""
+def topics_over_time_counts(docs: pd.DataFrame, topic_id: np.ndarray, period_type: str, assignment=None, topic_id_2=None) -> pd.DataFrame:
+    """topics_over_time() WITHOUT the model (the reference run, 2026-10-30): per topic and period the sum of the M1 weights of the
+    topic's memberships (a dual post 0.5 in each of its two topics), the outliers in the −1 row at 1, `keywords` empty — the same
+    four columns, so report.py and every reader of the per-bin file need no change; Σ n_docs = the modelled posts. Without
+    `assignment` every post counts once in its topic_id. BERTopic's own routine over 199 months × thousands of topics × 1.29 M
+    posts would add hours of c-TF-IDF for words per period that the analysis does not use."""
     freq = C.TIME_BIN[period_type]
-    stamps = docs["date"].dt.tz_localize(None).dt.to_period("W" if freq == "W" else "M").dt.start_time
-    tops = np.asarray(topic_id).astype(int).copy()
-    if assignment is not None:
-        tops[~counted(assignment)] = -1
-    tot = (pd.DataFrame({"topic_id": tops, "period": stamps.to_numpy()}).groupby(["topic_id", "period"]).size()
-           .reset_index(name="n_docs").sort_values(["period", "topic_id"]).reset_index(drop=True))
+    stamps = docs["date"].dt.tz_localize(None).dt.to_period("W" if freq == "W" else "M").dt.start_time.to_numpy()
+    tid = np.asarray(topic_id).astype(int)
+    if assignment is None:
+        mem = pd.DataFrame({"row": np.arange(len(tid)), "topic_id": tid, "w": 1.0})
+    else:
+        a = np.asarray(assignment).astype(str)
+        mem = memberships(tid, topic_id_2, a)
+        rest = np.flatnonzero(~counted(a))                              # outliers (and any post without a positive weight): the −1 row
+        if len(rest):
+            mem = pd.concat([mem, pd.DataFrame({"row": rest, "topic_id": -1, "w": 1.0})], ignore_index=True)
+    mem["period"] = stamps[mem["row"].to_numpy()]
+    tot = (mem.groupby(["topic_id", "period"])["w"].sum().reset_index(name="n_docs")
+           .sort_values(["period", "topic_id"]).reset_index(drop=True))
+    tot["n_docs"] = pd.Series([num(v) for v in tot["n_docs"]], index=tot.index, dtype=object)
     tot["keywords"] = ""
     return tot[["topic_id", "period", "n_docs", "keywords"]]
 

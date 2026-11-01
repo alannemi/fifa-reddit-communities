@@ -4,7 +4,7 @@ Unit checks for the analytical pipeline — no GPU, no language model (session 0
 Run:  .venv/bin/python code/tests/test_pipeline_units.py        (exit code 1 if any check fails)
 Covers: the path root (PIPELINE_ROOT) and the tone vocabulary; period-bin boundaries; the topic-density guard (D8), the
 HDBSCAN grid diagnostic and the per-period-type settings; the frozen UMAP/cluster components inside BERTopic, the size
-renumbering and the K1 topic counting (a dual post recorded, not counted); JSON extraction, label validation and normalisation; the topic overrides (incl. merge chains); outlier
+renumbering and the M1 topic weights (a dual post 0.5 in each of its two topics); JSON extraction, label validation and normalisation; the topic overrides (incl. merge chains); outlier
 thresholds; the full D2 debate engine with a scripted StubLLM (every agreement_mode, the repair and no-answer paths,
 resume, chunked labelling); the partial S5 collect with the per-topic VADER mean and the topic crosswalk template; JSON salvage (N11);
 sentiment labels; the whole-corpus reference run as bin 0 (session 12, 2026-10-30: bin_info / load_bin, the folder name, the guard
@@ -306,22 +306,38 @@ def test_frozen_components_in_bertopic():
     docs_df = pd.DataFrame({"id": ids, "title": docs, "post_type": "regular", "lang": "en", "num_comments": "3"})
     tt = M.topic_table(bt, docs_df, topics, tid, rep, tid2, ass).set_index("topic_id")
     assert list(tt.reset_index().columns) == M.TOPIC_COLUMNS and set(tt.index) == {-1, 0, 1, 2}
-    # K1 counting (2026-10-30): n_total = n_cluster + n_reassigned; a dual post is recorded (n_dual_first / n_dual_second), counted in neither topic
-    assert tt.loc[0, "n_cluster"] == 110 and tt.loc[0, "n_reassigned"] == n_single and tt.loc[0, "n_dual_first"] == n_dual and tt.loc[0, "n_total"] == 110 + n_single
-    assert tt["n_dual_second"].sum() == n_dual and tt.loc[0, "n_dual_second"] == 0
-    assert (tt.drop(index=-1)["n_total"] == tt.drop(index=-1)["n_cluster"] + tt.drop(index=-1)["n_reassigned"]).all()
+    # M1 weights (2026-10-31, confirmed 2026-11-01): n_total = n_cluster + n_reassigned + 0.5 × (n_dual_first + n_dual_second); the dual
+    # posts' first topic is 0 (the nearest), their second topics are 1 or 2
+    assert tt.loc[0, "n_cluster"] == 110 and tt.loc[0, "n_reassigned"] == n_single and tt.loc[0, "n_dual_first"] == n_dual
+    assert tt.loc[0, "n_total"] == 110 + n_single + 0.5 * n_dual and tt["n_dual_second"].sum() == n_dual and tt.loc[0, "n_dual_second"] == 0
+    body = tt.drop(index=-1)
+    assert (body["n_total"].astype(float) == body["n_cluster"] + body["n_reassigned"] + 0.5 * (body["n_dual_first"] + body["n_dual_second"])).all()
+    assert all(isinstance(v, int) == float(v).is_integer() for v in body["n_total"]) and M.num(3.0) == 3 and isinstance(M.num(3.0), int) and M.num(2.5) == 2.5
     assert tt.loc[-1, "n_cluster"] == 10 and tt.loc[-1, "n_total"] == n_out                    # the -1 row: raw outliers, posts left as outliers
-    assert abs(tt.drop(index=-1)["share"].sum() - (230 + n_single) / 240) < 1e-4 and tt.drop(index=-1)["share"].sum() <= 1   # shares rounded to 5 decimals
+    assert abs(body["share"].sum() - (240 - n_out) / 240) < 1e-4 and body["share"].sum() <= 1   # every admitted post weighs 1 in all; 5 decimals
+    assert M.weight_of(["cluster", "reassigned", "dual", "outlier", "not_modelled"]).tolist() == [1.0, 1.0, 0.5, 0.0, 0.0]
+    mem = M.memberships(tid, tid2, ass)
+    assert abs(mem["w"].sum() - (240 - n_out)) < 1e-9 and (mem.loc[mem["row"] >= 10, "w"] == 1).all() and len(mem) == 240 - n_out + n_dual
     assert tt.loc[0, "share_lang_en"] == 1.0 and tt.loc[0, "mean_comments"] == 3.0
     tt2 = M.topic_table(bt, docs_df, topics, tid, rep, tid2).set_index("topic_id")               # the assignment derived from the ids
     assert tt2[M.TOPIC_COUNT_COLUMNS].equals(tt[M.TOPIC_COUNT_COLUMNS]) and (M.derive_assignment(topics, tid, tid2) == ass).all()
     # the reference run (2026-10-30): topics over time without the model — the same four columns, counted posts only, the rest in −1
     docs_df["date"] = pd.to_datetime(["2015-01-15 10:00:00"] * 120 + ["2015-02-15 10:00:00"] * 120, utc=True)
-    tc = M.topics_over_time_counts(docs_df, tid, "corpus", ass)
+    tc = M.topics_over_time_counts(docs_df, tid, "corpus", ass, tid2)
     assert list(tc.columns) == ["topic_id", "period", "n_docs", "keywords"] and (tc["keywords"] == "").all()
     assert sorted(tc["period"].unique().tolist()) == [pd.Timestamp("2015-01-01"), pd.Timestamp("2015-02-01")]
-    per_topic = tc.groupby("topic_id")["n_docs"].sum()
-    assert all(per_topic[t] == tt.loc[t, "n_total"] for t in (0, 1, 2)) and per_topic[-1] == n_out + n_dual and per_topic.sum() == 240
+    per_topic = tc.assign(n=tc["n_docs"].astype(float)).groupby("topic_id")["n"].sum()
+    assert all(per_topic[t] == float(tt.loc[t, "n_total"]) for t in (0, 1, 2)) and per_topic[-1] == n_out and per_topic.sum() == 240   # a dual post 0.5 + 0.5
+    # with the model (the bins): BERTopic's words per period beside the same weighted n_docs
+    docs_df["document"] = docs
+    tm = M.topics_over_time(bt, docs_df, tid, "interim", tid2, ass)
+    assert list(tm.columns) == ["topic_id", "period", "n_docs", "keywords"] and len(tm) == len(tc)
+    both = tm.merge(tc, on=["topic_id", "period"])
+    assert len(both) == len(tc) and both["n_docs_x"].astype(float).tolist() == both["n_docs_y"].astype(float).tolist()
+    # words exist exactly where a post has the topic as its FIRST topic in the period; a row fed by dual posts' second halves alone has none
+    first = set(zip([int(t) for t in np.where(M.counted(ass), tid, -1)], pd.to_datetime(docs_df["date"].dt.tz_localize(None).dt.to_period("M").dt.start_time)))
+    assert all((tm.loc[i, "keywords"] != "") == ((int(tm.loc[i, "topic_id"]), tm.loc[i, "period"]) in first) for i in tm.index)
+    assert (tm["keywords"] == "").sum() >= 1 and (tm.loc[tm["keywords"] == "", "n_docs"].astype(float) < 240).all()   # the second halves: 0.5 each
     # the chunked nearest-topic search equals the one-shot search, and the full argsort it replaced
     te = np.asarray(bt.topic_embeddings_)[bt._outliers:]
     assert M.outlier_nearest_from(te, emb, topics, ids, chunk=3).equals(near) and M.outlier_nearest_from(te, emb, topics, ids, chunk=1).equals(near)
@@ -595,13 +611,13 @@ def test_collect_partial():
         lab = pd.read_csv(an / "topic_labels_all_bins.csv", dtype=str, keep_default_na=False)
         assert list(lab.columns) == T.LABEL_COLUMNS and lab.loc[lab["topic_id"] == "1", "name"].iloc[0] == "One (final)"
         assert lab["topic_uid"].tolist() == ["1-0", "1-1"]
-        # K1 counting (2026-10-30): the dual post p3 (first topic 1, second topic 0) is recorded in both topics and counted in neither
+        # M1 weights (2026-10-31, confirmed 2026-11-01): the dual post p3 (first topic 1, second topic 0) weighs 0.5 in each of its two topics
         assert lab["n_cluster"].tolist() == ["2", "1"] and lab["n_reassigned"].tolist() == ["0", "0"]
-        assert lab["n_dual_first"].tolist() == ["0", "1"] and lab["n_dual_second"].tolist() == ["1", "0"] and lab["n_total"].tolist() == ["2", "1"]
-        assert lab["share"].tolist() == ["0.4", "0.2"]                     # over the 5 modelled posts; p3 (dual) and p4 (outlier) count nowhere
-        # the mean VADER score per topic (title score) over the counted posts: topic 0 = p0, p1; topic 1 = p2 (p3 is dual: in neither)
-        assert lab["mean_vader_sentiment"].tolist() == ["0.0000", "0.0000"] and lab["n_posts_scored"].tolist() == ["2", "1"]
-        assert side["topic_count_assignments"] == ["cluster", "reassigned"]
+        assert lab["n_dual_first"].tolist() == ["0", "1"] and lab["n_dual_second"].tolist() == ["1", "0"] and lab["n_total"].tolist() == ["2.5", "1.5"]
+        assert lab["share"].tolist() == ["0.5", "0.3"]                     # over the 5 modelled posts; p4 (outlier) counts nowhere: 0.5 + 0.3 = 1 − 0.2
+        # the weighted mean VADER score per topic (title score): topic 0 = p0, p1 at 1 and p3 at 0.5 -> 0.05 / 2.5; topic 1 = p2 at 1 and p3 at 0.5 -> 0.05 / 1.5
+        assert lab["mean_vader_sentiment"].tolist() == ["0.0200", "0.0333"] and lab["n_posts_scored"].tolist() == ["2.5", "1.5"]   # n_posts_scored = Σ weights (2026-11-01)
+        assert side["topic_weights"] == {"cluster": 1.0, "reassigned": 1.0, "dual": 0.5} == C.TOPIC_WEIGHTS
         st = T.write_status(b)                                                            # the per-bin flag for the review
         assert st["state"] == "labelled" and st["n_topics"] == 2 and st["n_labelled"] == 2 and st["review_ready"] is True and st["n_needs_review"] == 1
         assert (b / "REVIEW_READY.txt").exists() and json.loads((b / "status.json").read_text())["review_ready"] is True

@@ -4,6 +4,8 @@
 taken jointly by the co-authors outside the session; Alan asked on 2026-10-31 that the documentation reflect it. No code, no
 table and no data file changed in this session; the implementation follows with its own go-ahead (§4).*
 
+*Note (2026-11-01, session 15): M1 confirmed by Alan Nemirovski and implemented — `../session-15_2026-11-01/00_approvals.md`. The points of §3 were settled there: `n_posts_scored` = the weighted count (M1a); the period-to-reference mapping is out of scope for now, so script 16 stays on K1 (M1b); the figures already weighted (V4); the rationale recorded (M1c). §4 is done except script 16; every topic table carries the M1 weights since the recount of 2026-11-01.*
+
 ## 1. The request
 
 Alan's words: "update the documentation to reflect a new decision (made jointly by co-authors) that dual-tagged posts will be

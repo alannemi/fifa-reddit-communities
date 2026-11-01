@@ -10,8 +10,8 @@ and `post_variables.csv` is untouched (W3). The folder is empty until the Colab 
 | File | Content | In git? |
 |---|---|---|
 | `documents.csv` | one row per post of the corpus: `id, created_datetime, period_bin` (the post's **true** period bin, 1–9), `post_type, lang, num_comments, topic_id_raw, topic_id, topic_id_2, topic_assignment, similarity, similarity_2` — the reference assignment (D9 tiers from the run's own similarity quantiles) | **no** (≈ 85 MB; Drive and the hand-back zip; decision W4) |
-| `topics.csv` | one row per reference topic (+ the −1 row): the K1 counts (`n_cluster, n_reassigned, n_dual_first, n_dual_second, n_total, share`; the M1 weights — dual posts 0.5 in each of their two topics, decision of 2026-10-31 — once implemented), keywords, representative posts, QA shares | yes |
-| `topics_over_time.csv` | monthly counts of the counted posts per topic (`topic_id, period, n_docs, keywords` with `keywords` empty): computed without the model, K1 counts (M1 weights once implemented) — unlike the nine bins' files, which keep the D9 counts (K7) | yes |
+| `topics.csv` | one row per reference topic (+ the −1 row): the M1 weights (`n_cluster, n_reassigned, n_dual_first, n_dual_second, n_total, share`: cluster / reassigned posts 1, dual posts 0.5 in each of their two topics — decision of 2026-10-31, implemented 2026-11-01), keywords, representative posts, weighted QA shares | yes |
+| `topics_over_time.csv` | monthly counts of the counted posts per topic (`topic_id, period, n_docs, keywords` with `keywords` empty): computed without the model as sums of the M1 weights — unlike the nine bins' files, which keep the D9 counts (K7) | yes |
 | `topic_embeddings.npy` | row t = the mean mpnet embedding of topic t's posts (the centroid used by script 16; the same space as `bin-N/topic_embeddings.npy`) | yes |
 | `umap_5d.npy`, `hdbscan_labels_raw.npy` | the intermediate arrays (replay, design §11) | no (Drive) |
 | `outlier_nearest.csv` | every raw outlier's two nearest topics and similarities (computed in chunks) | no (Drive) |
@@ -23,7 +23,7 @@ and `post_variables.csv` is untouched (W3). The folder is empty until the Colab 
 
 ## The mapping tables (`Rscript code/16-reference-map.R`, locally, after the hand-back; ≈ 2–3 min)
 
-A post counts on either side only when it is **counted** there (decision K1: `topic_assignment` `cluster` or `reassigned`; under decision M1 of 2026-10-31 a dual post will enter with the weight 0.5 per topic, the pair weight to confirm — not implemented yet, `docs/session-13_2026-10-31/`);
+A post counts on either side only when it is **counted** there under K1 (`topic_assignment` `cluster` or `reassigned`): **the script was deliberately left on K1 on 2026-11-01, the mapping being out of scope for now** (Alan Nemirovski, `docs/session-15_2026-11-01/00_approvals.md` M1b), so its checks against the M1 `n_total` of the topic tables fail by design until its pair weights are decided;
 dual, outlier and not-modelled posts appear as uncounted shares. Read every CSV as text.
 
 - `map_pairs.csv` — one row per (period topic, reference topic) pair with posts counted on both sides: `period_bin, topic_uid,

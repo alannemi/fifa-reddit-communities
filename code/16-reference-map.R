@@ -76,7 +76,12 @@ TABLES_DIR    <- Sys.getenv("REF_TABLES_DIR", REFERENCE_DIR)
 OUT_DIR       <- Sys.getenv("REF_FIG_DIR", "results/diagnostics")               # save_fig / save_tab write here (results/descriptives until 2026-10-31)
 REVIEW_DIR    <- Sys.getenv("REF_REVIEW_DIR", file.path(ANALYSIS_DIR, "manual review"))
 PYTHON        <- Sys.getenv("REF_PYTHON", ".venv/bin/python")
-COUNT    <- c("cluster", "reassigned")     # config.TOPIC_COUNT_ASSIGNMENTS (decision K1, 2026-10-30)
+COUNT    <- c("cluster", "reassigned")     # decision K1 (2026-10-30). NOTE (2026-11-01, Alan Nemirovski, docs/session-15_2026-11-01/):
+                                           # the mapping of the period topics onto the reference topics is OUT OF SCOPE for now, so this
+                                           # script was deliberately NOT moved to the M1 weights (config.TOPIC_WEIGHTS: dual posts 0.5 in
+                                           # each of their two topics) that bin-N/topics.csv and topic_labels_all_bins.csv carry since the
+                                           # recount of 2026-11-01. Its checks "counted posts = n_total (K1)" FAIL against those tables by
+                                           # design; decide the pair weights (session-15 approvals §3) before running it.
 N_CORPUS <- 1302021L                       # the cleaned corpus (codebook §1)
 QT       <- c("qt_political", "qt_host_country_domestic", "qt_national_identity", "qt_fifa_body", "qt_ir")
 STATUS   <- c("tp_yes", "tp_no", "tp_review", "tp_to_settle", "ba_1", "ba_0", "ba_blank", "uncoded_bin", "unmapped")

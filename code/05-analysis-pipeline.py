@@ -27,9 +27,9 @@ STAGES (design §3)                                            reads -> writes  
               from the persisted arrays (no refit)            config.OUTLIER_*_QUANTILE or --outlier-threshold T) -> rewrites documents.csv,
                                                               topics.csv, topics_over_time.csv, outlier_nearest.csv, report.html; S2 applies
                                                               the same tiers itself, so this stage serves bins clustered before D9 and changes
-  recount     K1 (2026-10-30): the count columns of          bin-N/documents.csv -> topics.csv (n_cluster, n_reassigned, n_dual_first,
-              topics.csv re-derived under                    n_dual_second, n_total, share, the QA shares; keywords and representatives
-              config.TOPIC_COUNT_ASSIGNMENTS, no model       untouched); config.json -> recount. topics_over_time.csv, report.html and the
+  recount     M1 (2026-10-31/11-01; K1 before): the count   bin-N/documents.csv -> topics.csv (n_cluster, n_reassigned, n_dual_first,
+              columns of topics.csv re-derived under the     n_dual_second, n_total, share, the QA shares; keywords and representatives
+              weights config.TOPIC_WEIGHTS, no model         untouched); config.json -> recount. topics_over_time.csv, report.html and the
                                                               review pack are left as they are (K7); then collect
   label       S3a two-agent cluster labelling (resumable)     bin-N/ -> labels/topic_<id>.json, labels.jsonl, topics_labelled.csv,
                                                               topic_overrides.csv (template)   -> co-author review
@@ -47,7 +47,7 @@ S6 (append the 15 analysis columns to the master and yearly files) is code/06-ta
 THE REFERENCE RUN (session 12, 2026-10-30; decisions W1–W4, docs/session-12_2026-10-30/00_approvals.md): `--bin 0` runs the same
 per-bin stages (embed, topics, reassign, recount, label, retone, report; `status` lists it) on the WHOLE corpus into
 <results>/reference/ — the guard off (one HDBSCAN fit at the design's fixed settings, recorded as guard mode "fixed"), a monthly
-topics_over_time.csv computed without the model (K1 counts), the report's bar charts capped to the 200 largest topics, the labelling
+topics_over_time.csv computed without the model (the M1 weights), the report's bar charts capped to the 200 largest topics, the labelling
 in chunks (`--chunk-topics 500`). collect never reads it: post_variables.csv is untouched. `--bins A-B` includes 0 only when written.
 The mapping of the period topics onto the reference topics is code/16-reference-map.R (local, after the hand-back).
 
@@ -305,8 +305,8 @@ def write_bin_tables(bdir, bt, docs, modelled, topics_raw, topic_id, assignment,
     for c in ("similarity", "similarity_2"):
         out[c] = out[c].map(lambda x: "" if pd.isna(x) else f"{x:.4f}")
     out.drop(columns=["too_short"]).to_csv(bdir / "documents.csv", index=False)
-    M.topic_table(bt, modelled, topics_raw, topic_id, rep, topic_id_2, assignment).to_csv(bdir / "topics.csv", index=False)      # K1 counting
-    tot = (M.topics_over_time_counts(modelled, topic_id, period_type, assignment) if period_type == "corpus"   # the reference run: no model
+    M.topic_table(bt, modelled, topics_raw, topic_id, rep, topic_id_2, assignment).to_csv(bdir / "topics.csv", index=False)      # M1 weights
+    tot = (M.topics_over_time_counts(modelled, topic_id, period_type, assignment, topic_id_2) if period_type == "corpus"   # the reference run: no model
            else M.topics_over_time(bt, modelled, topic_id, period_type, topic_id_2, assignment))
     tot.to_csv(bdir / "topics_over_time.csv", index=False)
 
@@ -405,10 +405,10 @@ def stage_reassign(args, paths: Paths, b: int):
 
 
 def stage_recount(args, paths: Paths, b: int):
-    """Decision K1 (2026-10-30): rewrite the count columns of bin-N/topics.csv from documents.csv under
-    config.TOPIC_COUNT_ASSIGNMENTS — without the BERTopic model (it lives on Drive), so keywords, representative ids and titles
-    stay as they are. topics_over_time.csv, report.html and review_pack.md are left as they are (decision K7). The record of the
-    run goes to config.json -> recount; status.json is refreshed. Seconds per bin; then `--stage collect`."""
+    """Decision M1 (2026-10-31, confirmed 2026-11-01; K1 of 2026-10-30 before it): rewrite the count columns of bin-N/topics.csv from
+    documents.csv under the weights config.TOPIC_WEIGHTS — without the BERTopic model (it lives on Drive), so keywords, representative
+    ids and titles stay as they are. topics_over_time.csv, report.html and review_pack.md are left as they are (decision K7). The
+    record of the run goes to config.json -> recount; status.json is refreshed. Seconds per bin; then `--stage collect`."""
     bdir = paths.bin_dir(b)
     if not (bdir / "documents.csv").exists() or not (bdir / "topics.csv").exists():
         raise SystemExit(f"bin {b}: run --stage topics first")
@@ -423,22 +423,22 @@ def stage_recount(args, paths: Paths, b: int):
     if set(old["topic_id"]) != set(counts["topic_id"]):
         raise SystemExit(f"bin {b}: topics.csv and documents.csv name different topics ({sorted(set(old['topic_id']) ^ set(counts['topic_id']))[:10]})")
     keep = [c for c in ("keywords", "representative_ids", "representative_titles") if c in old.columns]
-    new = counts.merge(old[["topic_id"] + keep], on="topic_id", how="left").merge(M.topic_qa(m, tid, assignment), on="topic_id", how="left")
+    new = counts.merge(old[["topic_id"] + keep], on="topic_id", how="left").merge(M.topic_qa(m, tid, assignment, tid2), on="topic_id", how="left")
     for c in keep:
         new[c] = new[c].fillna("")
     for c in M.TOPIC_QA_COLUMNS:
         new[c] = new[c].fillna(0.0)
     new = new[M.TOPIC_COLUMNS]
     new.to_csv(bdir / "topics.csv", index=False)
-    before = int(pd.to_numeric(old.loc[old["topic_id"] != -1, "n_total"]).sum()) if "n_total" in old.columns else None
-    after = int(new.loc[new["topic_id"] != -1, "n_total"].sum())
+    before = M.num(pd.to_numeric(old.loc[old["topic_id"] != -1, "n_total"]).sum()) if "n_total" in old.columns else None
+    after = M.num(new.loc[new["topic_id"] != -1, "n_total"].astype(float).sum())
     n_dual = int((assignment == "dual").sum())
-    update_config(bdir, "recount", {"count_assignments": list(C.TOPIC_COUNT_ASSIGNMENTS), "n_modelled": int(len(m)),
+    update_config(bdir, "recount", {"topic_weights": dict(C.TOPIC_WEIGHTS), "n_modelled": int(len(m)),
                                     "n_topics": int((new["topic_id"] != -1).sum()), "sum_n_total_before": before, "sum_n_total_after": after,
                                     "n_dual_posts": n_dual, "columns_dropped": [c for c in ("n_first", "n_as_second") if c in old.columns],
                                     "run_at": dt.datetime.now().isoformat(timespec="seconds")})
-    log.info("recount: bin %d — %d topics; Σ n_total %s -> %d (cluster + reassigned); %d dual posts recorded, counted in neither topic",
-             b, int((new["topic_id"] != -1).sum()), before, after, n_dual)
+    log.info("recount: bin %d — %d topics; Σ n_total %s -> %s under the weights %s; %d dual posts at %s in each of their two topics",
+             b, int((new["topic_id"] != -1).sum()), before, after, dict(C.TOPIC_WEIGHTS), n_dual, C.TOPIC_WEIGHTS.get("dual", 0))
     tagging.write_status(bdir)
 
 

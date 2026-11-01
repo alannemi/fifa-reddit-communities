@@ -80,7 +80,7 @@ th{{background:#e8eef5}} pre{{background:#f0f4f8;padding:8px;font-size:12px}}</s
 <h1>{kind} — {meta['run_name']}</h1>
 <p>Generated {dt.datetime.now():%Y-%m-%d %H:%M}. One document = one r/soccer post (title + up to {C.BODY_MAX_CHARS} characters of body); {scope}.</p>
 <h2>Run summary</h2><pre>{json.dumps(summary, indent=1, default=str)}</pre>
-<p><b>How to read this.</b> Topics are dense groups of posts with similar meaning found by BERTopic; each is described by its most distinctive words (c-TF-IDF keywords) and, once the labelling stage has run, by the name, tone and description the two analysts agreed on. Posts that fit no topic are topic −1 (outliers); above the calibrated similarity threshold they are reassigned to their nearest topic (<code>n_cluster</code> = cluster members, <code>n_total</code> = after reassignment). Sentiment is the VADER compound score of the title in [−1, 1], a lexicon measure (design F10).</p>
+<p><b>How to read this.</b> Topics are dense groups of posts with similar meaning found by BERTopic; each is described by its most distinctive words (c-TF-IDF keywords) and, once the labelling stage has run, by the name, tone and description the two analysts agreed on. Posts that fit no topic are topic −1 (outliers); the most similar of them join their nearest topic, the less confident ones carry a second topic as well (decision D9). <code>n_cluster</code> = cluster members; <code>n_total</code> = the topic's weighted size — cluster and reassigned posts at 1, dual posts at 0.5 in each of their two topics (decision M1, 2026-10-31). Sentiment is the VADER compound score of the title in [−1, 1], a lexicon measure (design F10).</p>
 <h2>Charts</h2>{''.join(parts)}
 <h2>Topics</h2>{table_html}
 </body></html>"""

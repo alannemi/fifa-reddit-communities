@@ -98,7 +98,7 @@ python -m cuml.accel $S --stage topics --bin 1       # S2: BERTopic per bin (GPU
 $P $S --stage label --bin 1                          # S3a: two-agent cluster labelling (resumable via labels.jsonl)
 #   -> co-author review: results/analysis/bin-1/topics_labelled.csv, report.html -> fill topic_overrides.csv
 $P $S --stage reassign --bin 1                       # D9: re-apply the outlier tiers from the persisted arrays (seconds; bins clustered before D9, or after a quantile change)
-$P $S --stage recount --bins 1-9                     # K1 (2026-10-30): the count columns of bin-N/topics.csv under config.TOPIC_COUNT_ASSIGNMENTS, no model (seconds); then collect — M1 (2026-10-31): dual posts at 0.5 per topic, once implemented (§10)
+$P $S --stage recount --bins 1-9                     # M1 (2026-11-01; K1 on 2026-10-30 before it): the count columns of bin-N/topics.csv under the weights config.TOPIC_WEIGHTS (cluster / reassigned 1, dual 0.5 in each of its two topics), no model (seconds); then collect (§10)
 $P $S --stage sentiment                              # S4: data/analysis/sentiment.csv (+ sentiment_validation_sample.csv)
 $P $S --stage collect                                # S5: data/analysis/post_variables.csv (+ .json; topic_uid/topic_name/topic_tone per post),
 #                                                       topic_labels_all_bins.csv (with mean_vader_sentiment), topic_crosswalk.csv (template)
@@ -170,33 +170,36 @@ Re-run after any change to a bin file in `results/analysis/manual review/`; it r
 each file byte for byte as it was. It stops if a bin has two files (remove the superseded one with `git rm`) or a tag lies
 outside the scheme. Scheme, rules and decisions: that folder's `README.md` and `docs/session-10_2026-10-28/00_approvals.md`.
 
-## 10. The outlier calibration and the K1 counting (session 11, 2026-10-30; the counting replaced by M1, session 13)
+## 10. The outlier calibration and the topic counting (session 11, 2026-10-30; K1 replaced by M1 — session 13, implemented in session 15)
 
 ```bash
 Rscript code/15-outlier-calibration.R                                      # ~30 s: the precision of the outlier tiers from the 36 coded judgement
                                                                            #   samples -> results/diagnostics/tab_F1-F4b, figures F1-F2 (results/descriptives until 2026-10-31)
 .venv/bin/python code/05-analysis-pipeline.py --stage recount --bins 1-9   # seconds, no model: the count columns of bin-N/topics.csv under
-                                                                           #   config.TOPIC_COUNT_ASSIGNMENTS (cluster + reassigned)
+                                                                           #   the weights config.TOPIC_WEIGHTS (M1: cluster / reassigned 1, dual 0.5 per topic)
 .venv/bin/python code/05-analysis-pipeline.py --stage collect              # the topic table follows (n_total, share, mean_vader_sentiment);
                                                                            #   post_variables.csv and labels_version do not change
 ```
 `15` re-runs after any new or changed `sample_T*coded*.csv` (any coder suffix; those files are never rewritten by the pipeline).
-`recount` + `collect` re-run after any change of `TOPIC_COUNT_ASSIGNMENTS`; `11`, `12` and `14` are unaffected, because their
-populations are the posts' tiers, which K1 leaves as they are (checked on 2026-10-30: every PNG byte-identical). The per-bin
+`recount` + `collect` re-run after any change of `TOPIC_WEIGHTS`; the figure scripts are unaffected (`12` and `15` read `n_cluster`,
+`17` / `18` derive their own M1 post weights from `post_variables.csv`), because the posts' tiers do not change. The per-bin
 `topics_over_time.csv`, `report.html` and `review_pack.md` keep the D9 counts until the next Colab pass (K7). Decisions and the
 assessment: `docs/session-11_2026-10-30/`.
 
-**M1 (2026-10-31, the co-authors jointly; `docs/session-13_2026-10-31/`):** dual posts enter every topic aggregate at half weight
-(0.5 in each of their two topics; cluster and reassigned posts 1; the tiers unchanged). **Not implemented yet:** a weight per tier
-replaces `TOPIC_COUNT_ASSIGNMENTS` in `config`; `model.topic_counts` / the collect / `recount` / script 16 follow; then
-`recount --bins 1-9` + `collect` (+ bin 0 after the hand-back). Until then every table carries the K1 counts.
+**M1 (2026-10-31, the co-authors jointly; confirmed and implemented on 2026-11-01 — `docs/session-13_2026-10-31/`,
+`docs/session-15_2026-11-01/`):** dual posts enter every topic aggregate at half weight (0.5 in each of their two topics; cluster and
+reassigned posts 1; the tiers unchanged): `config.TOPIC_WEIGHTS`, `model.memberships` / `topic_counts` / `topic_qa` /
+`topics_over_time(_counts)`, the collect (weighted `mean_vader_sentiment`; `n_posts_scored` = Σ weights). `recount --bins 1-9` + `collect`
+ran on 2026-11-01: Σ n_total 827,744 → 1,087,798, `post_variables.csv` and `labels_version` unchanged; bin 0 follows its hand-back.
+`code/16-reference-map.R` was left on K1 by decision (the mapping is out of scope for now; its `n_total` checks fail against the M1
+tables by design until its pair weights are decided).
 
 ## 11. The reference model on the whole corpus (session 12, 2026-10-30)
 
 Decisions W1–W4 and the notes: `docs/session-12_2026-10-30/`; design §6.5; the folder's `results/analysis/reference/README.md`.
 The same pipeline, once on every post, as **bin 0** (folder `results/analysis/reference/`; on Drive `results/reference/`): the
 guard is off (one HDBSCAN fit at the fixed settings, `guard.mode = "fixed"`), `topics_over_time.csv` is computed without the
-model (monthly K1 counts), the labelling runs in chunks. On Colab: notebook section 6 — `6.1` cache check + embed, `6.2`
+model (monthly sums of the M1 weights), the labelling runs in chunks. On Colab: notebook section 6 — `6.1` cache check + embed, `6.2`
 optional smoke run, `6.3` topics + the **stop point** (read the topic count and the labelling estimate before `6.4`), `6.4`
 labelling behind the switch `RUN_REFERENCE_LABEL`, `6.5` hand-back without `model/` and `labels/`.
 
@@ -211,7 +214,9 @@ Rscript code/16-reference-map.R                                               # 
                                                                               #   results/analysis/reference/, figure G1 in results/diagnostics/
 ```
 `reassign`, `recount`, `retone` and `report` take `--bin 0` as for a bin; `--bins A-B` includes 0 only when written. `collect`
-never reads the reference folder (W3): `post_variables.csv` and `labels_version` cannot change. Re-run `16` after any change of
+never reads the reference folder (W3): `post_variables.csv` and `labels_version` cannot change. **Note (2026-11-01, Alan Nemirovski):** the
+mapping of the period topics onto the reference topics is out of scope for now — `16` still counts under K1 and its checks against `n_total`
+fail on the M1 tables until its pair weights are decided (`docs/session-15_2026-11-01/00_approvals.md` M1b). Re-run `16` after any change of
 the reference run's tables, of `post_variables.csv`, of `topic_labels_all_bins.csv` or of a QUALTAG review file. A local
 mechanics check of the whole chain runs on a 17-file mini corpus under its own `PIPELINE_ROOT` in the scratchpad (never the
 real yearly files: `embed --bin 0` would encode all 1.3 M posts and overwrite the local MiniLM cache), and `16` is tested on a

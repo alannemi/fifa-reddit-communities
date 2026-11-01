@@ -82,6 +82,11 @@ topic-table paragraph, limitation 10, §8.1, §9; PDF re-rendered); `memory/work
 dated pointers in `../session-13_2026-10-31/00_approvals.md` and `../session-12_2026-10-30/01_reference-model-notes.md` §5;
 `docs/README.md`; `../../memory/2026-11-01_session-15.md`.
 
+**Addendum (2026-11-01, Alan's request):** figure 3c's x-axis labels now show the year alone (`2010` … `2026`) instead of `WC 2010`; the
+same for its counts counterpart in `alternative visualizations/`. A label function in `code/18-chapter-figures.R` (`YEAR_ONLY`) on the two
+plots only — the data, the 3c table and the other figures (2d, 3e) keep `WC <year>`. Re-run of script 18: ALL CHECKS PASSED; only the two 3c
+PNG/PDF pairs changed (the other PDFs, rewritten with a new timestamp only, were restored from git). Committed and pushed separately.
+
 ## 6. Open after this session
 
 1. From session 12: the Colab reference run (notebook section 6, the stop point), the hand-back, then `recount --bin 0` under M1;

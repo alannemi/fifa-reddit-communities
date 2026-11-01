@@ -85,6 +85,7 @@ POL_LINES <- setNames(c("solid", "longdash"), c(POL_LAB, NONPOL_LAB))   # 2b, 3d
 W_CATS  <- paste0("w_", names(CATS))
 n_lab   <- function(n) format(n, big.mark = ",")
 cup_lab <- function(b) factor(paste("WC", WC$cup[match(b, WC$period_bin)]), paste("WC", WC$cup))
+YEAR_ONLY <- function(x) sub("^WC ", "", x)   # axis labels with the year alone (3c and its counts counterpart; the data keep "WC <year>")
 pct     <- label_percent(accuracy = 1)
 # The World Cup bins as shaded bands behind a monthly series (as 11-descriptives.R did)
 wc_bands <- tibble(xmin = BIN_START[WC$period_bin], xmax = BIN_END[WC$period_bin] + 1, cup = WC$cup)
@@ -377,11 +378,12 @@ p <- ggplot(b3, aes(cup, mean, colour = group, group = group)) +
   geom_errorbar(aes(ymin = lo95, ymax = hi95), width = 0, linewidth = 0.6, position = dodge) +
   geom_point(size = 2.6, colour = SURFACE, position = dodge) + geom_point(size = 2, position = dodge) +
   scale_colour_manual(values = GRP_COLS) + guides(colour = guide_legend(nrow = 1)) +
+  scale_x_discrete(labels = YEAR_ONLY) +                                   # 3c: the year alone on the axis (Alan Nemirovski, 2026-11-01)
   labs(title = "Sentimental valence of political posts by category and World Cup", x = NULL, y = "Mean VADER score") + theme_fifa()
 fig(p, "3c_vader_by_political_category", w = 10, h = 4.8)
 p <- ggplot(b3, aes(cup, w_posts, fill = group)) + geom_col(position = position_dodge2(preserve = "single", padding = 0.12), width = 0.82) +
   scale_fill_manual(values = GRP_COLS) + guides(fill = guide_legend(nrow = 1)) +
-  scale_y_log10(labels = label_comma(), expand = expansion(mult = c(0, 0.08))) +
+  scale_y_log10(labels = label_comma(), expand = expansion(mult = c(0, 0.08))) + scale_x_discrete(labels = YEAR_ONLY) +
   labs(title = "Posts behind the valence estimates by group and World Cup", x = NULL, y = "Posts (log scale)") + theme_fifa()
 fig(p, "3c_posts_by_political_category", w = 10, h = 4.8, dir = ALT_DIR)
 
